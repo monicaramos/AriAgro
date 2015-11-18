@@ -188,11 +188,11 @@ Private PrimeraVez As Boolean
 
 'Private ReestableceSoloImprimir As Boolean
 Private Sub chkEMAIL_Click()
-    If chkEmail.Value = 1 Then Me.chkSoloImprimir.Value = 0
+    If chkEMAIL.Value = 1 Then Me.chkSoloImprimir.Value = 0
 End Sub
 
 Private Sub chkSoloImprimir_Click()
-    If Me.chkSoloImprimir.Value = 1 Then Me.chkEmail.Value = 0
+    If Me.chkSoloImprimir.Value = 1 Then Me.chkEMAIL.Value = 0
 End Sub
 
 
@@ -207,7 +207,7 @@ End Sub
 
 Private Sub cmdImprimir_Click()
 
-    If Me.chkSoloImprimir.Value = 1 And Me.chkEmail.Value = 1 Then
+    If Me.chkSoloImprimir.Value = 1 And Me.chkEMAIL.Value = 1 Then
         MsgBox "Si desea enviar por mail no debe marcar vista preliminar", vbExclamation
         Exit Sub
     End If
@@ -230,7 +230,7 @@ Private Sub Form_Activate()
         ElseIf Me.EnvioEMail Then
             Me.Hide
             DoEvents
-            chkEmail.Value = 1
+            chkEMAIL.Value = 1
             Imprime
             Unload Me
         End If
@@ -416,16 +416,24 @@ Dim LanzaAbrirOutlook As Boolean
 '        End If
         .ConSubInforme = ConSubInforme
         .Opcion = Opcion
-        .ExportarPDF = (chkEmail.Value = 1)
+        .ExportarPDF = (chkEMAIL.Value = 1)
         .CambioHorientacionPapel = CambioHorientacionPapel
         .Show vbModal
     End With
     
-    If Me.chkEmail.Value = 1 Then
+    If Me.chkEMAIL.Value = 1 Then
         If CadenaDesdeOtroForm <> "" Then 'se exporto el informe OK (.pdf)
             
             If Me.EnvioEMail Then  'se llamo desde envio masivo
 '                frmEMail.Show vbModal
+
+                '[Monica]18/11/2015: si viene del CMR lanzamos al outlook (antes no hacia nada)
+                If Me.outTipoDocumento = 7 Then
+                    If vParamAplic.ExeEnvioMail <> "" Then
+                        LanzaAbrirOutlook = True
+                        LanzaProgramaAbrirOutlook
+                    End If
+                End If
                 
             Else 'informe normal, pero que se selecciono enviar e-mail
                 'Febrero 2010
@@ -457,7 +465,7 @@ Dim LanzaAbrirOutlook As Boolean
 End Function
 
 Private Sub Form_Unload(Cancel As Integer)
-    If Me.chkEmail.Value = 1 Then Me.chkSoloImprimir.Value = 1
+    If Me.chkEMAIL.Value = 1 Then Me.chkSoloImprimir.Value = 1
     'If ReestableceSoloImprimir Then SoloImprimir = False
     OperacionesArchivoDefecto
     NombreSubRptConta = ""
@@ -532,7 +540,9 @@ Dim Lanza As String
         Aux = "FPROF" & Me.outClaveNombreArchiv & ".pdf"
     Case 6
         Aux = "ORD" & Me.outClaveNombreArchiv & ".pdf"
-        
+    '[Monica]18/11/2015: listado del CMR
+    Case 7
+        Aux = "CMR" & Me.outClaveNombreArchiv & ".pdf"
     Case 51
         Aux = "PEDP" & Me.outClaveNombreArchiv & ".pdf"
         
@@ -560,6 +570,10 @@ Dim Lanza As String
         Aux = "Factura proforma desde Oferta: " & outClaveNombreArchiv
     Case 6
         Aux = "Orden nº" & outClaveNombreArchiv
+    
+    '[Monica]18/11/2015: listado del CMR
+    Case 7
+        Aux = "CMR nº" & outClaveNombreArchiv
         
         
     '--------------------------------------------------
@@ -608,7 +622,7 @@ Dim Aux As String
         
         Aux = ""
         '[Monica]07/06/2013: faltaba la opcion 4, que es cuando venia de la impresion de albaranes
-        If outTipoDocumento = 1 Or outTipoDocumento = 2 Or outTipoDocumento = 3 Or outTipoDocumento = 4 Or outTipoDocumento = 6 Then
+        If outTipoDocumento = 1 Or outTipoDocumento = 2 Or outTipoDocumento = 3 Or outTipoDocumento = 4 Or outTipoDocumento = 6 Or outTipoDocumento = 7 Then
             '[Monica]06/05/2015: si hay destino sacamos el mail de destino primero
             If outCodigoDestino <> "" Then
                 Aux = DevuelveDesdeBDNew(cAgro, "destinos", "maidesti", "codclien", Me.outCodigoCliProv, "N", , "coddesti", Me.outCodigoDestino, "N")

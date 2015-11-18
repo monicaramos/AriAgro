@@ -261,7 +261,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public NumCod As String 'Para indicar el numero de albaran
+Public numcod As String 'Para indicar el numero de albaran
 Public NomTrans As String 'indicamos el nombre de transportista
 Public CadTag As String 'Cadena con el Tag del campo que se va a poner en D/H en los listados
                         'Se necesita si el tipo de codigo es texto
@@ -318,7 +318,7 @@ Dim Contador As Long
 Dim vTipoMov As CTiposMov
 Dim Mens As String
 Dim ContCMR As String
-Dim SQL As String
+Dim Sql As String
 
 
     InicializarVbles
@@ -369,7 +369,7 @@ Dim SQL As String
     If vTipoMov.leer(CodTipoMov) Then
         'contador del albaran
         ContCMR = ""
-        ContCMR = DevuelveDesdeBDNew(cAgro, "albaran", "numerocmr", "numalbar", NumCod, "N")
+        ContCMR = DevuelveDesdeBDNew(cAgro, "albaran", "numerocmr", "numalbar", numcod, "N")
         If ContCMR = "" Then
             Contador = vTipoMov.ConseguirContador(CodTipoMov)
         
@@ -390,7 +390,7 @@ Dim SQL As String
             Exit Sub
         End If
         
-        AnyadirAFormula cadFormula, "{tmpcmr.numalbar} = " & NumCod & " and {tmpcmr.codusu} = " & vUsu.Codigo
+        AnyadirAFormula cadFormula, "{tmpcmr.numalbar} = " & numcod & " and {tmpcmr.codusu} = " & vUsu.Codigo
         
         If CargarVariedades(Mens) Then
             'Nombre fichero .rpt a Imprimir
@@ -417,15 +417,48 @@ Dim SQL As String
             End If
         Else
             ' actualizamos el contador del albaran
-            SQL = "update albaran set numerocmr = " & DBSet(Contador, "N")
-            SQL = SQL & " where numalbar = " & DBSet(NumCod, "N")
+            Sql = "update albaran set numerocmr = " & DBSet(Contador, "N")
+            Sql = Sql & " where numalbar = " & DBSet(numcod, "N")
         
-            conn.Execute SQL
+            conn.Execute Sql
         End If
+        
+        
+        '[Monica]18/11/2015: en el caso de que tenga el cliente la marca de enviar por email
+        If EnvioEMail(numcod) Then
+            With frmImprimir
+               '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
+                .outClaveNombreArchiv = Format(Contador, "0000000")
+                .outCodigoCliProv = DevuelveValor("select codclien from albaran where numalbar = " & DBSet(numcod, "N"))
+                .outTipoDocumento = 7
+                
+                .FormulaSeleccion = cadFormula
+                .OtrosParametros = cadParam
+                .NumeroParametros = numParam
+                .SoloImprimir = False
+                .EnvioEMail = True
+                .Titulo = cadTitulo
+                .NombreRPT = cadNombreRPT
+                .Opcion = 0
+                .ConSubInforme = True
+                .Show vbModal
+            End With
+        
+        End If
+        
         cmdCancel_Click
     
     End If
 End Sub
+
+Private Function EnvioEMail(Albaran As String) As Boolean
+Dim Sql As String
+
+    Sql = "select envcmremail from clientes, albaran where albaran.codclien = clientes.codclien and albaran.numalbar = " & DBSet(Albaran, "N")
+    EnvioEMail = (DevuelveValor(Sql) = 1)
+
+End Function
+
 
 Private Sub cmdCancel_Click()
     Unload Me
@@ -442,7 +475,7 @@ End Sub
 Private Sub Form_Load()
 Dim h As Integer, w As Integer
 Dim List As Collection
-Dim SQL As String
+Dim Sql As String
 
     PrimeraVez = True
     limpiar Me
@@ -457,9 +490,9 @@ Dim SQL As String
     txtCodigo(2).Text = Format(Now, "dd/mm/yyyy")
     txtCodigo(6).Text = NomTrans
     
-    SQL = "Las partes intervinientes en este contrato se someten expresamente a  la Junta Arbitral del Transporte de "
-    SQL = SQL & ProvAgenciaTransporte & "(España), incluso en controversias que excedan de 3005'06€"
-    txtCodigo(1).Text = SQL
+    Sql = "Las partes intervinientes en este contrato se someten expresamente a  la Junta Arbitral del Transporte de "
+    Sql = Sql & ProvAgenciaTransporte & "(España), incluso en controversias que excedan de 3005'06€"
+    txtCodigo(1).Text = Sql
     
     txtCodigo(8).visible = (vParamAplic.Cooperativa = 2)
     txtCodigo(8).Enabled = (vParamAplic.Cooperativa = 2)
@@ -540,7 +573,7 @@ Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Cad As String, cadTipo As String 'tipo cliente
+Dim cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
     txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
@@ -664,21 +697,21 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -691,17 +724,17 @@ End Function
 
 
 Private Function CargarVariedades(Mens As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim b As Boolean
 
-    SQL = "delete from tmpinformes where codusu =" & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu =" & vUsu.Codigo
+    conn.Execute Sql
     
-    SQL = "select sum(pesobrut) from albaran_variedad where numalbar = " & NumCod
+    Sql = "select sum(pesobrut) from albaran_variedad where numalbar = " & numcod
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         If DBLet(Rs.Fields(0).Value, "N") > vParamAplic.LimPesoCMR Then
@@ -719,7 +752,7 @@ Dim b As Boolean
 End Function
 
 Private Function RepartirBrutos(Mens As String, SumaBrutos As Currency) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim Importe As Currency
@@ -731,10 +764,10 @@ Dim CadValues As String
     RepartirBrutos = False
     If SumaBrutos = 0 Then Exit Function
 
-    SQL = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
+    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & numcod
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Sql2 = "insert into tmpinformes (codusu, campo1, importe1) values "
     
@@ -760,7 +793,7 @@ eRepartirBrutos:
 End Function
 
 Private Function CargarBrutos(Mens As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim Importe As Currency
@@ -769,10 +802,10 @@ Dim CadValues As String
     
     On Error GoTo eCargarBrutos
     
-    SQL = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
+    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & numcod
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Sql2 = "insert into tmpinformes (codusu, campo1, importe1) values "
     
@@ -797,7 +830,7 @@ eCargarBrutos:
 End Function
 
 Private Function InsertarTemporal() As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo eInsertarTemporal
     
@@ -805,25 +838,25 @@ Dim SQL As String
 
     conn.Execute "delete from tmpcmr where codusu = " & vUsu.Codigo
     
-    SQL = "insert into tmpcmr(numlinea, codusu, numalbar) select numlinea, "
-    SQL = SQL & vUsu.Codigo & "," & NumCod & " from tmpcopiascmr "
-    conn.Execute SQL
+    Sql = "insert into tmpcmr(numlinea, codusu, numalbar) select numlinea, "
+    Sql = Sql & vUsu.Codigo & "," & numcod & " from tmpcopiascmr "
+    conn.Execute Sql
 
 eInsertarTemporal:
     If Err.Number <> 0 Then InsertarTemporal = False
 End Function
 
 Private Function ProvAgenciaTransporte() As String
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
     
     ProvAgenciaTransporte = ""
     
-    SQL = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(NumCod, "N")
-    SQL = SQL & " and albaran.codtrans = agencias.codtrans"
+    Sql = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(numcod, "N")
+    Sql = Sql & " and albaran.codtrans = agencias.codtrans"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         ProvAgenciaTransporte = UCase(DBLet(Rs.Fields(0).Value, "T"))
     End If
