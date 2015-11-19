@@ -1591,7 +1591,7 @@ Dim Tipo As Byte
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     
@@ -1981,18 +1981,37 @@ Dim Tipo As Byte
             
             Exit Sub
         End If
+        
+        
+        
+        
         If ProcesarCambios(cadtabla, cadselect) Then
             '[Monica]16/11/2011: en el caso de la salida a Excel
             If Check1(8).Value Then
-                
-                If Dir(App.path & "\Ventas.exe", vbArchive) <> "" And _
-                   Dir(App.path & "\PlantillaVta.xls", vbArchive) <> "" And _
-                   Dir(App.path & "\ControlVtas.cfg", vbArchive) <> "" Then
-                    Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|", vbNormalFocus
+                '[Monica]19/11/2015: insertamos las calidades para el caso de catadau sacar una hoja diferente
+                If vParamAplic.Cooperativa = 0 Then
+                    If CargarTemporal Then
+                        If HayRegistros("tmpinformes", "codusu=" & vUsu.Codigo) Then
+                            If Dir(App.path & "\Ventas.exe", vbArchive) <> "" And _
+                               Dir(App.path & "\PlantillaVtaCatadau.xls", vbArchive) <> "" And _
+                               Dir(App.path & "\ControlVtas.cfg", vbArchive) <> "" Then
+                                Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|", vbNormalFocus
+                            Else
+                                MsgBox "No tiene los ficheros necesarios para realizar el proceso. Llame a Ariadna", vbExclamation
+                            End If
+                        
+                        End If
+                    
+                    End If
                 Else
-                    MsgBox "No tiene los ficheros necesarios para realizar el proceso. Llame a Ariadna", vbExclamation
+                    If Dir(App.path & "\Ventas.exe", vbArchive) <> "" And _
+                       Dir(App.path & "\PlantillaVta.xls", vbArchive) <> "" And _
+                       Dir(App.path & "\ControlVtas.cfg", vbArchive) <> "" Then
+                        Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|", vbNormalFocus
+                    Else
+                        MsgBox "No tiene los ficheros necesarios para realizar el proceso. Llame a Ariadna", vbExclamation
+                    End If
                 End If
-            
             Else
               
                 cadTitulo = "Albaranes de Venta"
@@ -3966,4 +3985,35 @@ eProcesarCambiosEvolucion:
     If Err.Number <> 0 Then
         ProcesarCambiosEvolucion = False
     End If
+End Function
+
+
+Private Function CargarTemporal() As Boolean
+Dim sql As String
+Dim SqlIns As String
+Dim Rs As ADODB.Recordset
+
+    On Error GoTo eCargarTemporal
+
+    CargarTemporal = False
+
+
+    sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute sql
+    
+    sql = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_calibre.numcajas, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe "
+    sql = sql & " from ((tmpinfventas inner join albaran on tmpinfventas.numalbar = albaran.numalbar) inner join albaran_calibre on tmpinfventas.numalbar = albaran_calibre.numalbar and tmpinfventas.numlinea = albaran_calibre.numlinea)  "
+    sql = sql & " left join facturas_calibre on albaran_calibre.numalbar = facturas_calibre.numalbar and albaran_calibre.numlinea = facturas_calibre.numlinealbar and albaran_calibre.numline1 = facturas_calibre.numline1albar "
+    sql = sql & " where tmpinfventas.codusu = " & DBSet(vUsu.Codigo, "N")
+    sql = sql & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
+                                            'fecalbar, numcajas, codcalib, numalbar,  numlinea,  numline1,  pesoneto, importe
+    SqlIns = "insert into tmpinformes (codusu, fecha1, importe1, importe2, importeb1, importeb2, importeb3, importe3, importe4 )     "
+    SqlIns = SqlIns & sql
+    conn.Execute SqlIns
+    
+    CargarTemporal = True
+    Exit Function
+    
+eCargarTemporal:
+    MuestraError Err.Number, "Cargar Temporal", Err.Description
 End Function
