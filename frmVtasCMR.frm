@@ -426,6 +426,9 @@ Dim Sql As String
         
         '[Monica]18/11/2015: en el caso de que tenga el cliente la marca de enviar por email
         If EnvioEMail(numcod) Then
+            '[Monica]26/11/2015: solo hay que imprimir la primera página
+            cadParam = cadParam & "pEsCorreo=1|"
+            numParam = numParam + 1
             With frmImprimir
                '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
                 .outClaveNombreArchiv = Format(Contador, "0000000")
