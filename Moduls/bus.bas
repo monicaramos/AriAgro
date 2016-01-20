@@ -62,6 +62,7 @@ Public FormatoDec5d4 As String 'Decimal(5,4)
 Public FormatoDec8d4 As String 'Decimal(8,4)
 Public FormatoDec6d4 As String 'Decimal(6,4)
 Public FormatoDec8d2 As String 'Decimal(8,2)
+Public FormatoDec10d4 As String 'Decimal(10,4)
 
 Public FIni As String
 Public FFin As String
@@ -1125,6 +1126,7 @@ Public Sub InicializarFormatos()
     FormatoDec5d4 = "0.0000"   'Decimal(5,4)
     FormatoDec8d4 = "###0.0000" ' Decimal(8,4)
     FormatoDec8d2 = "###,##0.00" ' Decimal(8,2)
+    FormatoDec10d4 = "###,##0.0000" ' Decimal(10,4)
     FormatoDec6d4 = "#0.0000" ' Decimal(6,4)
     FormatoExp = "0000000000"
 '    FormatoKms = "#,##0.00##" 'Decimal(8,4)
@@ -1202,7 +1204,7 @@ UsuariosConectados = False
 If cad <> "" Then
     UsuariosConectados = True
     i = 1
-    metag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
+    metag = "Los siguientes PC's están conectados a: " & vEmpresa.nomEmpre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
     Do
         Sql = RecuperaValor(cad, i)
         If Sql <> "" Then

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -2633,7 +2633,7 @@ Private Sub btnBuscar_Click(Index As Integer)
 
 End Sub
 
-Private Sub check1_Click(Index As Integer)
+Private Sub Check1_Click(Index As Integer)
     If Modo = 1 Then
         'Buscqueda
         If InStr(1, BuscaChekc, "check1(" & Index & ")") = 0 Then BuscaChekc = BuscaChekc & "check1(" & Index & ")|"
@@ -2653,7 +2653,7 @@ Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -2716,7 +2716,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid2.AllowAddNew = False
-                        If Not Adoaux(0).Recordset.EOF Then Adoaux(0).Recordset.MoveFirst
+                        If Not AdoAux(0).Recordset.EOF Then AdoAux(0).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid2"
@@ -2733,7 +2733,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid3.AllowAddNew = False
-                        If Not Adoaux(1).Recordset.EOF Then Adoaux(1).Recordset.MoveFirst
+                        If Not AdoAux(1).Recordset.EOF Then AdoAux(1).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid3"
@@ -2751,7 +2751,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid1.AllowAddNew = False
-                        If Not Adoaux(2).Recordset.EOF Then Adoaux(2).Recordset.MoveFirst
+                        If Not AdoAux(2).Recordset.EOF Then AdoAux(2).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid3"
@@ -2907,7 +2907,7 @@ Private Sub BotonModificarLinea(Index As Integer)
 'Modificar una linea
 Dim vWhere As String
 Dim anc As Single
-Dim j As Byte
+Dim J As Byte
 
     On Error GoTo eModificarLinea
 
@@ -2941,14 +2941,14 @@ Dim j As Byte
     Select Case NumTabMto
         Case 0 ' variedades
             vWhere = Replace(ObtenerWhereCP(False), "facturas", "facturas_variedad")
-            vWhere = vWhere & " and numlinea=" & Adoaux(0).Recordset!numlinea
+            vWhere = vWhere & " and numlinea=" & AdoAux(0).Recordset!numlinea
             If Not BloqueaRegistro("facturas_variedad", vWhere) Then
                 TerminaBloquear
                 Exit Sub
             End If
             If DataGrid2.Bookmark < DataGrid2.FirstRow Or DataGrid2.Bookmark > (DataGrid2.FirstRow + DataGrid2.VisibleRows - 1) Then
-                j = DataGrid2.Bookmark - DataGrid2.FirstRow
-                DataGrid2.Scroll 0, j
+                J = DataGrid2.Bookmark - DataGrid2.FirstRow
+                DataGrid2.Scroll 0, J
                 DataGrid2.Refresh
             End If
             
@@ -2960,9 +2960,9 @@ Dim j As Byte
                 anc = anc + DataGrid2.RowTop(DataGrid2.Row) + 10
             End If
         
-            For j = 0 To 7
-                txtAux3(j).Text = DataGrid2.Columns(j).Text
-            Next j
+            For J = 0 To 7
+                txtAux3(J).Text = DataGrid2.Columns(J).Text
+            Next J
             txtAux3(15).Text = DataGrid2.Columns(8).Text
             txtAux3(8).Text = DataGrid2.Columns(9).Text
             txtAux3(9).Text = DataGrid2.Columns(10).Text
@@ -2974,9 +2974,9 @@ Dim j As Byte
             txtAux3(13).Text = DataGrid2.Columns(19).Text '18
             txtAux3(14).Text = DataGrid2.Columns(20).Text '19
             
-            For j = 4 To 11
-                txtAux3(j).Enabled = True
-            Next j
+            For J = 4 To 11
+                txtAux3(J).Enabled = True
+            Next J
             txtAux3(15).Enabled = True
             
             '[Monica]15/07/2011: dejamos modificar cantidades
@@ -3002,14 +3002,14 @@ Dim j As Byte
             BloquearBtn Me.btnBuscar(1), True
         Case 1 ' envases
             vWhere = Replace(ObtenerWhereCP(False), "facturas", "facturas_envases")
-            vWhere = vWhere & " and numlinea=" & Adoaux(1).Recordset!numlinea
+            vWhere = vWhere & " and numlinea=" & AdoAux(1).Recordset!numlinea
             If Not BloqueaRegistro("facturas_envases", vWhere) Then
                 TerminaBloquear
                 Exit Sub
             End If
             If DataGrid3.Bookmark < DataGrid3.FirstRow Or DataGrid3.Bookmark > (DataGrid3.FirstRow + DataGrid3.VisibleRows - 1) Then
-                j = DataGrid3.Bookmark - DataGrid3.FirstRow
-                DataGrid3.Scroll 0, j
+                J = DataGrid3.Bookmark - DataGrid3.FirstRow
+                DataGrid3.Scroll 0, J
                 DataGrid3.Refresh
             End If
             
@@ -3021,15 +3021,15 @@ Dim j As Byte
                 anc = anc + DataGrid3.RowTop(DataGrid3.Row) + 10
             End If
         
-            For j = 0 To 5
-                txtAux(j).Text = DataGrid3.Columns(j).Text
-            Next j
-            For j = 7 To 10
-                txtAux(j - 1).Text = DataGrid3.Columns(j).Text
-            Next j
+            For J = 0 To 5
+                txtAux(J).Text = DataGrid3.Columns(J).Text
+            Next J
+            For J = 7 To 10
+                txtAux(J - 1).Text = DataGrid3.Columns(J).Text
+            Next J
             
-            Text2(0).Text = DataGrid3.Columns(6).Text  ' nombre de articulo
-            Text2(16).Text = DataGrid3.Columns(11).Text ' ampliacion
+            text2(0).Text = DataGrid3.Columns(6).Text  ' nombre de articulo
+            text2(16).Text = DataGrid3.Columns(11).Text ' ampliacion
             
 '            cmbAux(0).Text = DataGrid3.Columns(7).Text
             txtAux(10).Text = DataGrid3.Columns(12).Text
@@ -3113,9 +3113,9 @@ Dim b As Boolean
                 txtAux(jj).visible = b
                 txtAux(jj).Enabled = b
             Next jj
-            Text2(0).Height = DataGrid3.RowHeight - 10
-            Text2(0).Top = alto + 5
-            Text2(0).visible = b
+            text2(0).Height = DataGrid3.RowHeight - 10
+            text2(0).Top = alto + 5
+            text2(0).visible = b
            
             btnBuscar(0).Height = DataGrid3.RowHeight - 10
             btnBuscar(0).Top = alto + 5
@@ -3234,12 +3234,12 @@ End Sub
 
 
 Private Sub DataGrid2_DblClick()
-            frmVtasLinFacturas.TipoM = Me.Adoaux(0).Recordset!codTipoM
-            frmVtasLinFacturas.NumFactu = Me.Adoaux(0).Recordset!NumFactu
-            frmVtasLinFacturas.FecFactu = Me.Adoaux(0).Recordset!FecFactu
-            frmVtasLinFacturas.numlinea = Me.Adoaux(0).Recordset!numlinea
-            frmVtasLinFacturas.Albaran = Me.Adoaux(0).Recordset!numalbar
-            frmVtasLinFacturas.Linea = Me.Adoaux(0).Recordset!numlinealbar
+            frmVtasLinFacturas.TipoM = Me.AdoAux(0).Recordset!codTipoM
+            frmVtasLinFacturas.NumFactu = Me.AdoAux(0).Recordset!NumFactu
+            frmVtasLinFacturas.FecFactu = Me.AdoAux(0).Recordset!FecFactu
+            frmVtasLinFacturas.numlinea = Me.AdoAux(0).Recordset!numlinea
+            frmVtasLinFacturas.Albaran = Me.AdoAux(0).Recordset!NumAlbar
+            frmVtasLinFacturas.Linea = Me.AdoAux(0).Recordset!numlinealbar
             frmVtasLinFacturas.ModoExt = 0
             frmVtasLinFacturas.Variedad = Text3(3).Text
             frmVtasLinFacturas.Confeccion = Text3(4).Text
@@ -3248,15 +3248,15 @@ Private Sub DataGrid2_DblClick()
 End Sub
 
 Private Sub DataGrid2_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not Me.Adoaux(0).Recordset.EOF And ModificaLineas <> 1 Then
-        CargarDatosAlbaran Me.Adoaux(0).Recordset!numalbar, Adoaux(0).Recordset!numlinealbar
+    If Not Me.AdoAux(0).Recordset.EOF And ModificaLineas <> 1 Then
+        CargarDatosAlbaran Me.AdoAux(0).Recordset!NumAlbar, AdoAux(0).Recordset!numlinealbar
     End If
 End Sub
 
 Private Sub DataGrid3_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
-    If Not Adoaux(1).Recordset.EOF Then
-        If Not IsNull(Adoaux(1).Recordset!ampliaci) Then
-            Text2(16).Text = Adoaux(1).Recordset!ampliaci
+    If Not AdoAux(1).Recordset.EOF Then
+        If Not IsNull(AdoAux(1).Recordset!ampliaci) Then
+            text2(16).Text = AdoAux(1).Recordset!ampliaci
         End If
     End If
 End Sub
@@ -3275,7 +3275,7 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -3321,9 +3321,9 @@ Dim I As Integer
     Next kCampo
    ' ***********************************
    'IMAGES para zoom
-    For I = 0 To Me.imgZoom.Count - 1
-        Me.imgZoom(I).Picture = frmPpal.imgListImages16.ListImages(3).Picture
-    Next I
+    For i = 0 To Me.imgZoom.Count - 1
+        Me.imgZoom(i).Picture = frmPpal.imgListImages16.ListImages(3).Picture
+    Next i
     
     LimpiarCampos   'Limpia los campos TextBox
     CargaCombo
@@ -3354,7 +3354,7 @@ Dim I As Integer
         CadenaConsulta = CadenaConsulta & " where numfactu = -1 and codtipom <> 'EAC'"
     End If
     
-    Data1.ConnectionString = conn
+    Data1.ConnectionString = Conn
     Data1.RecordSource = CadenaConsulta
     Data1.Refresh
         
@@ -3391,16 +3391,16 @@ End Sub
 
 
 Private Sub LimpiarCampos()
-Dim I As Integer
+Dim i As Integer
 On Error Resume Next
     limpiar Me   'Metodo general: Limpia los controles TextBox
     lblIndicador.Caption = ""
     'Aqui va el especifico de cada form es
     '### a mano
     Me.Combo1(0).ListIndex = -1
-    For I = 0 To 3
-        Me.Check1(I).Value = 0
-    Next I
+    For i = 0 To 3
+        Me.Check1(i).Value = 0
+    Next i
     
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -3420,13 +3420,13 @@ End Sub
 
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod almacen
-    Text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
+    text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
 End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
 'Articulos
     txtAux(5).Text = RecuperaValor(CadenaSeleccion, 1) 'codartic
-    Text2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    text2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
     If txtAux(5) <> "" Then
         txtAux(7) = DevuelveDesdeBDNew(cAgro, "sartic", "preciove", "codartic", txtAux(5), "T")
         If Combo1(0).ListIndex = 1 Then
@@ -3474,20 +3474,20 @@ End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
     PonerFoco Text1(indice)
 End Sub
 
 Private Sub frmFPag_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'Codigo
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
 Dim Sql As String
 Dim Sql2 As String
-Dim CADENA As String
+Dim cadena As String
 
     If CadenaSeleccion <> "" Then
         FacturasADescontar = " (codtipom, numfactu, fecfactu) in (" & CadenaSeleccion & ")"
@@ -3500,7 +3500,7 @@ Dim CADENA As String
         Sql = Sql & " select " & DBSet(Text1(6).Text, "T") & "," & DBSet(Text1(0).Text, "N") & "," & DBSet(Text1(1).Text, "F") & ", codtipom, numfactu, fecfactu, totalfac from facturas "
         Sql = Sql & " where " & FacturasADescontar
         
-        conn.Execute Sql
+        Conn.Execute Sql
         
         '[Monica]28/08/2013: insertamos en el log que hemos insertado una linea en una factura contabilizada
         If Check1(1).Value = 1 Then
@@ -3508,10 +3508,10 @@ Dim CADENA As String
             '  LOG de acciones.
             Set LOG = New cLOG
             
-            CADENA = "Inserta Linea de Facturas a Cuenta "
-            CADENA = CADENA & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Fras." & CadenaSeleccion
+            cadena = "Inserta Linea de Facturas a Cuenta "
+            cadena = cadena & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Fras." & CadenaSeleccion
             
-            LOG.Insertar 9, vUsu, CADENA
+            LOG.Insertar 9, vUsu, cadena
             Set LOG = Nothing
               '-----------------------------------------------------------------------------
         End If
@@ -3695,7 +3695,7 @@ Dim Sql As String
     'bloquear cabecera albaranes x factura
     Sql = "select * FROM scafac1 "
     Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    Conn.Execute Sql, , adCmdText
     BloqueaAlbxFac = True
 
 EBloqueaAlb:
@@ -3713,7 +3713,7 @@ Dim Sql As String
     'bloquear cabecera albaranes x factura
     Sql = "select * FROM slifac "
     Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    Conn.Execute Sql, , adCmdText
     BloqueaLineasFac = True
 
 EBloqueaLin:
@@ -3796,10 +3796,10 @@ Dim vTipoMov As CTiposMov
             If PonerFormatoEntero(Text1(Index)) Then
                 '[Monica]28/08/2013: añado or modo= 4
                 If Modo = 1 Or Modo = 4 Then
-                    Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
+                    text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
                 Else
                     PonerDatosCliente (Text1(Index).Text)
-                    If Text2(Index).Text = "" Then
+                    If text2(Index).Text = "" Then
                         cadMen = "No existe el Cliente: " & Text1(Index).Text & vbCrLf
                         cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                         If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -3831,8 +3831,8 @@ Dim vTipoMov As CTiposMov
             
         Case 4 ' Forma de Pago
             If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
-                If Text2(Index).Text = "" Then
+                text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
+                If text2(Index).Text = "" Then
                     cadMen = "No existe la Forma de Pago: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -3934,7 +3934,7 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
@@ -3945,7 +3945,7 @@ Dim Desc As String, devuelve As String
     cad = cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
     cad = cad & "Nombre Cliente|clientes.nomclien|N||45·"
     cad = cad & ParaGrid(Text1(1), 15, "F.Factura")
-    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
+    Tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
     
     Titulo = "Facturas"
     devuelve = "0|1|4|"
@@ -3954,7 +3954,7 @@ Dim Desc As String, devuelve As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vTabla = Tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
@@ -4023,7 +4023,7 @@ Private Sub PonerCamposLineas()
 'Carga el grid de los AlbaranesxFactura, es decir, la tabla scafac1 de la factura seleccionada
 Dim b As Boolean
 Dim b2 As Boolean
-Dim I As Integer
+Dim i As Integer
 
     On Error GoTo EPonerLineas
 
@@ -4031,35 +4031,35 @@ Dim I As Integer
 
     Screen.MousePointer = vbHourglass
     
-    For I = 0 To 2
-        Select Case I
+    For i = 0 To 2
+        Select Case i
             Case 0 'variedades
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid2, Adoaux(0), True
+                    CargaGrid DataGrid2, AdoAux(0), True
                 Else
-                    CargaGrid DataGrid2, Adoaux(0), False
+                    CargaGrid DataGrid2, AdoAux(0), False
                 End If
-                If Not Adoaux(0).Recordset.EOF Then CargarDatosAlbaran Adoaux(0).Recordset!numalbar, Adoaux(0).Recordset!numlinealbar
+                If Not AdoAux(0).Recordset.EOF Then CargarDatosAlbaran AdoAux(0).Recordset!NumAlbar, AdoAux(0).Recordset!numlinealbar
             Case 1  ' envases
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid3, Adoaux(1), True
+                    CargaGrid DataGrid3, AdoAux(1), True
                 Else
-                    CargaGrid DataGrid3, Adoaux(1), False
+                    CargaGrid DataGrid3, AdoAux(1), False
                 End If
-                If Not Adoaux(1).Recordset.EOF Then
-                    Text2(16).Text = DBLet(Adoaux(1).Recordset!ampliaci, "T")
+                If Not AdoAux(1).Recordset.EOF Then
+                    text2(16).Text = DBLet(AdoAux(1).Recordset!ampliaci, "T")
                 Else
-                    Text2(16).Text = ""
+                    text2(16).Text = ""
                 End If
             Case 2  ' facturas a cuenta
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid1, Adoaux(2), True
+                    CargaGrid DataGrid1, AdoAux(2), True
                 Else
-                    CargaGrid DataGrid1, Adoaux(2), False
+                    CargaGrid DataGrid1, AdoAux(2), False
                 End If
                 
         End Select
-    Next I
+    Next i
     
     Screen.MousePointer = vbDefault
     Exit Sub
@@ -4093,8 +4093,8 @@ Dim b As Boolean
     
     TipoFactura = DevuelveDesdeBDNew(cAgro, "clientes", "tipofact", "codclien", Text1(3).Text, "N")
     
-    Text2(3).Text = PonerNombreDeCod(Text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
-    Text2(4).Text = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", Text1(4), "N") 'forma de pago
+    text2(3).Text = PonerNombreDeCod(Text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
+    text2(4).Text = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", Text1(4), "N") 'forma de pago
 '    Text2(18).Text = PonerNombreDeCod(Text1(16), "salmpr", "nomalmac", "codalmac", "N") 'almacen
     
     Modo = 2
@@ -4116,7 +4116,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim I As Byte, Numreg As Byte
+Dim i As Byte, Numreg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -4152,10 +4152,10 @@ Dim b As Boolean
     'si estamos en modificar bloquea las compos que son clave primaria
     BloquearText1 Me, Modo
     
-    For I = 9 To 31
-        BloquearTxt Text1(I), Not (Modo = 1)
-        Text1(I).Enabled = (Modo = 1)
-    Next I
+    For i = 9 To 31
+        BloquearTxt Text1(i), Not (Modo = 1)
+        Text1(i).Enabled = (Modo = 1)
+    Next i
 '    Me.Check1.Enabled = (Modo = 1)
     
     b = (Modo <> 1) And (Modo <> 3)
@@ -4205,29 +4205,29 @@ Dim b As Boolean
     End If
     
     'Si no es modo lineas Boquear los TxtAux
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = False
-        BloquearTxt txtAux(I), True
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = False
+        BloquearTxt txtAux(i), True
+    Next i
     
-    For I = 0 To 0
-        Text2(I).visible = ((Modo = 5) And (indFrame = 1))
-        Text2(I).Enabled = False
-    Next I
+    For i = 0 To 0
+        text2(i).visible = ((Modo = 5) And (indFrame = 1))
+        text2(i).Enabled = False
+    Next i
     
-    BloquearTxt Text2(16), (Modo <> 5)
+    BloquearTxt text2(16), (Modo <> 5)
     
     BloquearBtn Me.btnBuscar(0), True
     BloquearBtn Me.btnBuscar(1), True
     
-    For I = 0 To Text3.Count - 1
-        Text3(I).Enabled = False
-    Next I
+    For i = 0 To Text3.Count - 1
+        Text3(i).Enabled = False
+    Next i
     
 '    For I = 4 To 11
-    For I = 0 To txtAux3.Count - 1
-        txtAux3(I).visible = False
-        BloquearTxt txtAux3(I), True
+    For i = 0 To txtAux3.Count - 1
+        txtAux3(i).visible = False
+        BloquearTxt txtAux3(i), True
 '        txtAux3(I).visible = ((Modo = 5) And (indFrame = 0))
 '        If I <> 6 And I <> 7 And I <> 9 And I <> 11 Then
 '            BloquearTxt txtAux3(I), Not ((Modo = 5) And (indFrame = 0))
@@ -4235,13 +4235,13 @@ Dim b As Boolean
 '            BloquearTxt txtAux3(I), True
 '        End If
 '
-    Next I
+    Next i
     
     
-    For I = 0 To txtAux1.Count - 1
-        txtAux1(I).visible = False
-        BloquearTxt txtAux1(I), True
-    Next I
+    For i = 0 To txtAux1.Count - 1
+        txtAux1(i).visible = False
+        BloquearTxt txtAux1(i), True
+    Next i
     
     
     '---------------------------------------------
@@ -4359,7 +4359,7 @@ Dim Rs As ADODB.Recordset
     
         Sql = "select distinct codclien from facturas_variedad where codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu = " & DBSet(Text1(0).Text, "N") & " and fecfactu = " & DBSet(Text1(1).Text, "F")
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         While Not Rs.EOF And b
             If Rs.Fields(0).Value <> Text1(3).Text Then
                 MsgBox "Recuerde que los albaranes incluidos han de ser del nuevo cliente. Revise.", vbExclamation
@@ -4380,23 +4380,23 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo EDatosOkLinea
 
     DatosOkLinea = False
     b = True
 
-    For I = 0 To txtAux.Count - 1
-        If I = 4 Or I = 6 Or I = 7 Then
-            If txtAux(I).Text = "" Then
-                MsgBox "El campo " & txtAux(I).Tag & " no puede ser nulo", vbExclamation
+    For i = 0 To txtAux.Count - 1
+        If i = 4 Or i = 6 Or i = 7 Then
+            If txtAux(i).Text = "" Then
+                MsgBox "El campo " & txtAux(i).Tag & " no puede ser nulo", vbExclamation
                 b = False
-                PonerFoco txtAux(I)
+                PonerFoco txtAux(i)
                 Exit Function
             End If
         End If
-    Next I
+    Next i
             
     DatosOkLinea = b
     
@@ -4466,7 +4466,7 @@ Dim Precio As Currency
     Sql = Sql & " order by 1,2,3,4,5 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     numlinea = 0
     CadValues = ""
@@ -4488,7 +4488,7 @@ Dim Precio As Currency
         txtAux(8).Text = "0"
         txtAux(9).Text = DBLet(Rs!ImpFianza)
         txtAux(10).Text = DBLet(Rs!Codigiva)
-        txtAux(11).Text = DBLet(Rs!numalbar)
+        txtAux(11).Text = DBLet(Rs!NumAlbar)
         txtAux(12).Text = DBLet(Rs!numlinea)
         txtAux(13).Text = DBLet(Rs!FechaAlb)
         
@@ -4513,7 +4513,7 @@ Dim cad As String
 Dim Sql As String
 Dim Mens As String
 Dim b As Boolean
-Dim CADENA As String
+Dim cadena As String
 
     On Error GoTo EEliminarLinea
 
@@ -4539,13 +4539,13 @@ Dim CADENA As String
         Case 0 'variedades
             ' *************** canviar la pregunta ****************
             cad = "¿Seguro que desea eliminar la Variedad?"
-            cad = cad & vbCrLf & "Factura: " & Adoaux(0).Recordset.Fields(0)
-            cad = cad & vbCrLf & "Albarán: " & Adoaux(0).Recordset.Fields(4) & "-" & Adoaux(0).Recordset.Fields(5)
+            cad = cad & vbCrLf & "Factura: " & AdoAux(0).Recordset.Fields(0)
+            cad = cad & vbCrLf & "Albarán: " & AdoAux(0).Recordset.Fields(4) & "-" & AdoAux(0).Recordset.Fields(5)
             
             If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
                 On Error GoTo EEliminarLinea
                 Screen.MousePointer = vbHourglass
-                NumRegElim = Adoaux(0).Recordset.AbsolutePosition
+                NumRegElim = AdoAux(0).Recordset.AbsolutePosition
                 TerminaBloquear
                 
                 
@@ -4556,13 +4556,13 @@ Dim CADENA As String
                 Else
                     CalcularDatosFactura
                 
-                    SituarDataTrasEliminar Adoaux(0), NumRegElim
+                    SituarDataTrasEliminar AdoAux(0), NumRegElim
                     
-                    If Me.Adoaux(0).Recordset.EOF Then
+                    If Me.AdoAux(0).Recordset.EOF Then
                         CargarDatosAlbaran "", ""
                     End If
                     
-                    CargaGrid DataGrid2, Adoaux(0), True
+                    CargaGrid DataGrid2, AdoAux(0), True
                     SSTab1.Tab = 0
                 End If
             End If
@@ -4571,20 +4571,20 @@ Dim CADENA As String
        Case 1 'envases
             ' *************** canviar la pregunta ****************
             cad = "¿Seguro que desea eliminar el Envase?"
-            cad = cad & vbCrLf & "Factura: " & Adoaux(1).Recordset.Fields(1)
-            cad = cad & vbCrLf & "Artículo: " & Adoaux(1).Recordset.Fields(5) & " - " & Adoaux(1).Recordset.Fields(6)
+            cad = cad & vbCrLf & "Factura: " & AdoAux(1).Recordset.Fields(1)
+            cad = cad & vbCrLf & "Artículo: " & AdoAux(1).Recordset.Fields(5) & " - " & AdoAux(1).Recordset.Fields(6)
             
             If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
                 On Error GoTo EEliminarLinea
                 Screen.MousePointer = vbHourglass
-                NumRegElim = Adoaux(1).Recordset.AbsolutePosition
+                NumRegElim = AdoAux(1).Recordset.AbsolutePosition
                 
                 If Not EliminarLinea Then
                     Screen.MousePointer = vbDefault
                     Exit Sub
                 Else
                     CalcularDatosFactura
-                    If SituarDataTrasEliminar(Adoaux(1), NumRegElim) Then
+                    If SituarDataTrasEliminar(AdoAux(1), NumRegElim) Then
                         PonerCampos
                     Else
                         PonerCampos
@@ -4598,12 +4598,12 @@ Dim CADENA As String
        Case 2 'facturas a cuenta
             ' *************** canviar la pregunta ****************
             cad = "¿Seguro que desea eliminar la factura a cuenta?"
-            cad = cad & vbCrLf & "Factura: " & Adoaux(2).Recordset.Fields(4)
+            cad = cad & vbCrLf & "Factura: " & AdoAux(2).Recordset.Fields(4)
             
             If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
                 On Error GoTo EEliminarLinea
                 Screen.MousePointer = vbHourglass
-                NumRegElim = Adoaux(2).Recordset.AbsolutePosition
+                NumRegElim = AdoAux(2).Recordset.AbsolutePosition
                 
                 If Not EliminarLineaFacCta Then
                     Screen.MousePointer = vbDefault
@@ -4612,7 +4612,7 @@ Dim CADENA As String
                 
                     CalcularDatosFactura
                     
-                    If SituarDataTrasEliminar(Adoaux(2), NumRegElim) Then
+                    If SituarDataTrasEliminar(AdoAux(2), NumRegElim) Then
                         PonerCampos
                     Else
                         PonerCampos
@@ -4826,7 +4826,7 @@ Dim tots As String
             arregla tots, DataGrid3, Me
             
             
-            If Adoaux(0).Recordset.EOF Then CargarDatosAlbaran "", ""
+            If AdoAux(0).Recordset.EOF Then CargarDatosAlbaran "", ""
             
      
          Case "DataGrid1" 'facturas_acuenta
@@ -4906,10 +4906,10 @@ Dim vCStock As CStock
         
             devuelve = ""
             If ModificaLineas = 2 Then
-                If Not Adoaux(1).Recordset.EOF Then devuelve = Adoaux(1).Recordset!codArtic
+                If Not AdoAux(1).Recordset.EOF Then devuelve = AdoAux(1).Recordset!codArtic
             End If
         
-            If Not PonerArticulo(txtAux(5), Text2(0), txtAux(4).Text, CodTipoMov, ModificaLineas, devuelve) Then
+            If Not PonerArticulo(txtAux(5), text2(0), txtAux(4).Text, CodTipoMov, ModificaLineas, devuelve) Then
                 PonerFoco txtAux(Index)
             Else
                 
@@ -4951,7 +4951,7 @@ Dim vCStock As CStock
             End If
             
         Case 7 ' Precio
-            PonerFormatoDecimal txtAux(Index), 7
+            PonerFormatoDecimal txtAux(Index), 10
             
         Case 8  'Descuentos
             PonerFormatoDecimal txtAux(Index), 4 'Tipo 4: Decimal(4,2)
@@ -4988,7 +4988,7 @@ Dim Mens As String
 
     If Data1.Recordset.EOF Then Exit Function
         
-    conn.BeginTrans
+    Conn.BeginTrans
         
     b = EliminarStock
 
@@ -4998,20 +4998,20 @@ Dim Mens As String
         Sql = " " & ObtenerWhereCP(True)
         
         'Lineas de calibres (facturas_calibre)
-        conn.Execute "Delete from facturas_calibre " & Replace(Sql, "facturas", "facturas_calibre")
+        Conn.Execute "Delete from facturas_calibre " & Replace(Sql, "facturas", "facturas_calibre")
         
         'Lineas de envases (facturas_variedad)
-        conn.Execute "Delete from facturas_variedad " & Replace(Sql, "facturas", "facturas_variedad")
+        Conn.Execute "Delete from facturas_variedad " & Replace(Sql, "facturas", "facturas_variedad")
         
         'Lineas de coste (facturas_envases)
-        conn.Execute "Delete from facturas_envases " & Replace(Sql, "facturas", "facturas_envases")
+        Conn.Execute "Delete from facturas_envases " & Replace(Sql, "facturas", "facturas_envases")
         
         'Lineas de facturas a cuenta (facturas_acuenta)
-        conn.Execute "delete from facturas_acuenta " & Replace(Sql, "facturas", "facturas_acuenta")
+        Conn.Execute "delete from facturas_acuenta " & Replace(Sql, "facturas", "facturas_acuenta")
     
 
         'Cabecera de factura
-        conn.Execute "Delete from " & NombreTabla & Sql
+        Conn.Execute "Delete from " & NombreTabla & Sql
         
         'Decrementar contador si borramos el ult. palet
         Set vTipoMov = New CTiposMov
@@ -5026,10 +5026,10 @@ FinEliminar:
         b = False
     End If
     If Not b Then
-        conn.RollbackTrans
+        Conn.RollbackTrans
         Eliminar = False
     Else
-        conn.CommitTrans
+        Conn.CommitTrans
         Eliminar = True
     End If
 End Function
@@ -5040,14 +5040,14 @@ Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim Mens As String
 Dim vCStock As CStock
-Dim CADENA As String
+Dim cadena As String
 
     On Error GoTo FinEliminar
 
     b = False
-    If Adoaux(1).Recordset.EOF Then Exit Function
+    If AdoAux(1).Recordset.EOF Then Exit Function
         
-    conn.BeginTrans
+    Conn.BeginTrans
         
     Mens = ""
     
@@ -5059,8 +5059,8 @@ Dim CADENA As String
         Set LOG = New cLOG
         'campo = "Facturas de Clientes: " & """"
         
-        CADENA = "Eliminar Linea de Envases "
-        LOG.Insertar 9, vUsu, CADENA & Adoaux(1).Recordset.Fields(0) & " " & Adoaux(1).Recordset.Fields(1) & " " & Adoaux(1).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & Adoaux(1).Recordset.Fields(3) & " " & Adoaux(1).Recordset.Fields(5)
+        cadena = "Eliminar Linea de Envases "
+        LOG.Insertar 9, vUsu, cadena & AdoAux(1).Recordset.Fields(0) & " " & AdoAux(1).Recordset.Fields(1) & " " & AdoAux(1).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & AdoAux(1).Recordset.Fields(3) & " " & AdoAux(1).Recordset.Fields(5)
         Set LOG = Nothing
           '-----------------------------------------------------------------------------
     End If
@@ -5071,18 +5071,18 @@ Dim CADENA As String
     
     'Eliminar en tablas de facturas_envases
     '------------------------------------------
-    Sql = " where codtipom = " & DBSet(Adoaux(1).Recordset.Fields(0), "T")
-    Sql = Sql & " and numfactu = " & Adoaux(1).Recordset.Fields(1)
-    Sql = Sql & " and fecfactu = " & DBSet(Adoaux(1).Recordset.Fields(2), "F")
-    Sql = Sql & " and numlinea = " & DBSet(Adoaux(1).Recordset.Fields(3), "N")
+    Sql = " where codtipom = " & DBSet(AdoAux(1).Recordset.Fields(0), "T")
+    Sql = Sql & " and numfactu = " & AdoAux(1).Recordset.Fields(1)
+    Sql = Sql & " and fecfactu = " & DBSet(AdoAux(1).Recordset.Fields(2), "F")
+    Sql = Sql & " and numlinea = " & DBSet(AdoAux(1).Recordset.Fields(3), "N")
 
 
      ' borramos el movimiento y aumentamos el stock
     Set vCStock = New CStock
     
-    txtAux(11).Text = DBLet(Adoaux(1).Recordset!numalbar, "N")
-    txtAux(12).Text = DBLet(Adoaux(1).Recordset!numlinealbar, "N")
-    txtAux(13).Text = DBLet(Adoaux(1).Recordset!FecAlbar, "F")
+    txtAux(11).Text = DBLet(AdoAux(1).Recordset!NumAlbar, "N")
+    txtAux(12).Text = DBLet(AdoAux(1).Recordset!numlinealbar, "N")
+    txtAux(13).Text = DBLet(AdoAux(1).Recordset!FecAlbar, "F")
     
     
     If Not InicializarCStock(vCStock, "E") Then Exit Function
@@ -5092,7 +5092,7 @@ Dim CADENA As String
      Set vCStock = Nothing
 
     'Lineas de variedades
-    conn.Execute "Delete from facturas_envases " & Sql
+    Conn.Execute "Delete from facturas_envases " & Sql
     
 FinEliminar:
     If Err.Number <> 0 Or Not b Then
@@ -5100,10 +5100,10 @@ FinEliminar:
         b = False
     End If
     If Not b Then
-        conn.RollbackTrans
+        Conn.RollbackTrans
         EliminarLinea = False
     Else
-        conn.CommitTrans
+        Conn.CommitTrans
         EliminarLinea = True
     End If
 End Function
@@ -5114,14 +5114,14 @@ Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim Mens As String
 Dim vCStock As CStock
-Dim CADENA As String
+Dim cadena As String
 
     On Error GoTo FinEliminar
 
     b = False
-    If Adoaux(2).Recordset.EOF Then Exit Function
+    If AdoAux(2).Recordset.EOF Then Exit Function
         
-    conn.BeginTrans
+    Conn.BeginTrans
         
     Mens = ""
     
@@ -5135,24 +5135,24 @@ Dim CADENA As String
         Set LOG = New cLOG
         'campo = "Facturas de Clientes: " & """"
         
-        CADENA = "Eliminar Linea Facturas a Cuenta "
-        LOG.Insertar 9, vUsu, CADENA & Adoaux(2).Recordset.Fields(0) & " " & Adoaux(2).Recordset.Fields(1) & " " & Adoaux(2).Recordset.Fields(2) & " de " & Text1(25).Text & " " & Adoaux(2).Recordset.Fields(3) & " " & Adoaux(2).Recordset.Fields(4) & " " & Adoaux(2).Recordset.Fields(5)
+        cadena = "Eliminar Linea Facturas a Cuenta "
+        LOG.Insertar 9, vUsu, cadena & AdoAux(2).Recordset.Fields(0) & " " & AdoAux(2).Recordset.Fields(1) & " " & AdoAux(2).Recordset.Fields(2) & " de " & Text1(25).Text & " " & AdoAux(2).Recordset.Fields(3) & " " & AdoAux(2).Recordset.Fields(4) & " " & AdoAux(2).Recordset.Fields(5)
         Set LOG = Nothing
           '-----------------------------------------------------------------------------
     End If
     
     'Eliminar en tablas de facturas_acuenta
     '------------------------------------------
-    Sql = " where codtipom = " & DBSet(Adoaux(2).Recordset.Fields(0), "T")
-    Sql = Sql & " and numfactu = " & Adoaux(2).Recordset.Fields(1)
-    Sql = Sql & " and fecfactu = " & DBSet(Adoaux(2).Recordset.Fields(2), "F")
-    Sql = Sql & " and codtipomcta = " & DBSet(Adoaux(2).Recordset.Fields(3), "T")
-    Sql = Sql & " and numfactucta = " & Adoaux(2).Recordset.Fields(4)
-    Sql = Sql & " and fecfactucta = " & DBSet(Adoaux(2).Recordset.Fields(5), "F")
+    Sql = " where codtipom = " & DBSet(AdoAux(2).Recordset.Fields(0), "T")
+    Sql = Sql & " and numfactu = " & AdoAux(2).Recordset.Fields(1)
+    Sql = Sql & " and fecfactu = " & DBSet(AdoAux(2).Recordset.Fields(2), "F")
+    Sql = Sql & " and codtipomcta = " & DBSet(AdoAux(2).Recordset.Fields(3), "T")
+    Sql = Sql & " and numfactucta = " & AdoAux(2).Recordset.Fields(4)
+    Sql = Sql & " and fecfactucta = " & DBSet(AdoAux(2).Recordset.Fields(5), "F")
 
 
     'Lineas de variedades
-    conn.Execute "Delete from facturas_acuenta " & Sql
+    Conn.Execute "Delete from facturas_acuenta " & Sql
     
 FinEliminar:
     If Err.Number <> 0 Or Not b Then
@@ -5160,10 +5160,10 @@ FinEliminar:
         b = False
     End If
     If Not b Then
-        conn.RollbackTrans
+        Conn.RollbackTrans
         EliminarLineaFacCta = False
     Else
-        conn.CommitTrans
+        Conn.CommitTrans
         EliminarLineaFacCta = True
     End If
 End Function
@@ -5176,14 +5176,14 @@ Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim Mens As String
 Dim vCStock As CStock
-Dim CADENA As String
+Dim cadena As String
 
     On Error GoTo FinEliminar
 
     b = False
-    If Adoaux(0).Recordset.EOF Then Exit Function
+    If AdoAux(0).Recordset.EOF Then Exit Function
         
-    conn.BeginTrans
+    Conn.BeginTrans
         
     Mens = ""
    
@@ -5194,30 +5194,30 @@ Dim CADENA As String
         Set LOG = New cLOG
         'campo = "Facturas de Clientes: " & """"
         
-        CADENA = "Eliminar Linea de Variedades "
-        LOG.Insertar 9, vUsu, CADENA & Adoaux(0).Recordset.Fields(0) & " " & Adoaux(0).Recordset.Fields(1) & " " & Adoaux(0).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & Adoaux(0).Recordset.Fields(3) & " Alb " & Adoaux(0).Recordset.Fields(4) & " " & Adoaux(0).Recordset.Fields(5)
+        cadena = "Eliminar Linea de Variedades "
+        LOG.Insertar 9, vUsu, cadena & AdoAux(0).Recordset.Fields(0) & " " & AdoAux(0).Recordset.Fields(1) & " " & AdoAux(0).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & AdoAux(0).Recordset.Fields(3) & " Alb " & AdoAux(0).Recordset.Fields(4) & " " & AdoAux(0).Recordset.Fields(5)
         Set LOG = Nothing
           '-----------------------------------------------------------------------------
     End If
         
-    Sql = "delete from facturas_calibre where codtipom = " & DBSet(Adoaux(0).Recordset.Fields(0), "T")
-    Sql = Sql & " and numfactu = " & Adoaux(0).Recordset.Fields(1)
-    Sql = Sql & " and fecfactu = " & DBSet(Adoaux(0).Recordset.Fields(2), "F")
-    Sql = Sql & " and numlinea = " & DBSet(Adoaux(0).Recordset.Fields(3), "N")
-    conn.Execute Sql
+    Sql = "delete from facturas_calibre where codtipom = " & DBSet(AdoAux(0).Recordset.Fields(0), "T")
+    Sql = Sql & " and numfactu = " & AdoAux(0).Recordset.Fields(1)
+    Sql = Sql & " and fecfactu = " & DBSet(AdoAux(0).Recordset.Fields(2), "F")
+    Sql = Sql & " and numlinea = " & DBSet(AdoAux(0).Recordset.Fields(3), "N")
+    Conn.Execute Sql
         
         
-    Sql = "delete from facturas_variedad where codtipom = " & DBSet(Adoaux(0).Recordset.Fields(0), "T")
-    Sql = Sql & " and numfactu = " & Adoaux(0).Recordset.Fields(1)
-    Sql = Sql & " and fecfactu = " & DBSet(Adoaux(0).Recordset.Fields(2), "F")
-    Sql = Sql & " and numlinea = " & DBSet(Adoaux(0).Recordset.Fields(3), "N")
-    conn.Execute Sql
+    Sql = "delete from facturas_variedad where codtipom = " & DBSet(AdoAux(0).Recordset.Fields(0), "T")
+    Sql = Sql & " and numfactu = " & AdoAux(0).Recordset.Fields(1)
+    Sql = Sql & " and fecfactu = " & DBSet(AdoAux(0).Recordset.Fields(2), "F")
+    Sql = Sql & " and numlinea = " & DBSet(AdoAux(0).Recordset.Fields(3), "N")
+    Conn.Execute Sql
                    
     Mens = "Recalcular Dtos calibres"
-    b = RecalcularDtosLineas(Adoaux(0).Recordset.Fields(0), Adoaux(0).Recordset.Fields(1), Adoaux(0).Recordset.Fields(2), Mens)
+    b = RecalcularDtosLineas(AdoAux(0).Recordset.Fields(0), AdoAux(0).Recordset.Fields(1), AdoAux(0).Recordset.Fields(2), Mens)
                    
     Mens = "Recalcular Dtos lineas"
-    b = RecalcularDtos(Adoaux(0).Recordset.Fields(0), Adoaux(0).Recordset.Fields(1), Adoaux(0).Recordset.Fields(2), Mens)
+    b = RecalcularDtos(AdoAux(0).Recordset.Fields(0), AdoAux(0).Recordset.Fields(1), AdoAux(0).Recordset.Fields(2), Mens)
     
 FinEliminar:
     If Err.Number <> 0 Or Not b Then
@@ -5225,10 +5225,10 @@ FinEliminar:
         b = False
     End If
     If Not b Then
-        conn.RollbackTrans
+        Conn.RollbackTrans
         EliminarLineaVariedades = False
     Else
-        conn.CommitTrans
+        Conn.CommitTrans
         EliminarLineaVariedades = True
     End If
 End Function
@@ -5242,9 +5242,9 @@ Private Sub LimpiarDataGrids()
 'Pone los Grids sin datos, apuntando a ningún registro
 On Error Resume Next
 
-    CargaGrid DataGrid2, Me.Adoaux(1), False 'envases
-    CargaGrid DataGrid3, Me.Adoaux(0), False 'variedades
-    CargaGrid DataGrid1, Me.Adoaux(2), False 'facturas a cuenta
+    CargaGrid DataGrid2, Me.AdoAux(1), False 'envases
+    CargaGrid DataGrid3, Me.AdoAux(0), False 'variedades
+    CargaGrid DataGrid1, Me.AdoAux(2), False 'facturas a cuenta
     
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -5361,7 +5361,7 @@ End Function
 Private Sub PonerModoOpcionesMenu(Modo As Byte)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean, bAux As Boolean
-Dim I As Integer
+Dim i As Integer
 
         b = ((Modo = 2) Or (Modo = 0)) And (Facturas = "") And (hcoCodMovim = "") 'Or (Modo = 5 And ModificaLineas = 0)
         'Buscar
@@ -5393,24 +5393,24 @@ Dim I As Integer
     '[Monica]28/08/2013: dejo modificar la factura aunque esté contabilizada y demas
     '                    quito la condicion de todos los checks
     b = (Modo = 2) And (Facturas = "") And (hcoCodMovim = "")  ' And Not (Check1(0).Value = 1 Or (Check1(1).Value = 1 And vUsu.Nivel >= 1) Or Check1(2).Value = 1)
-    For I = 0 To ToolAux.Count - 1
-        ToolAux(I).Buttons(1).Enabled = b
+    For i = 0 To ToolAux.Count - 1
+        ToolAux(i).Buttons(1).Enabled = b
         
         If b Then
-            Select Case I
+            Select Case i
               Case 0
-                bAux = (b And Me.Adoaux(0).Recordset.RecordCount > 0)
+                bAux = (b And Me.AdoAux(0).Recordset.RecordCount > 0)
               Case 1
-                bAux = (b And Me.Adoaux(1).Recordset.RecordCount > 0)
+                bAux = (b And Me.AdoAux(1).Recordset.RecordCount > 0)
               Case 2
-                bAux = (b And Me.Adoaux(2).Recordset.RecordCount > 0)
+                bAux = (b And Me.AdoAux(2).Recordset.RecordCount > 0)
             End Select
         End If
-        ToolAux(I).Buttons(2).Enabled = bAux
-        ToolAux(I).Buttons(3).Enabled = bAux
-    Next I
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
     '[Monica]25/06/2012: actualizar precios de fianza
-    ToolAux(1).Buttons(4).Enabled = b And (Me.Adoaux(1).Recordset.RecordCount = 0)
+    ToolAux(1).Buttons(4).Enabled = b And (Me.AdoAux(1).Recordset.RecordCount = 0)
 
 
 End Sub
@@ -5420,7 +5420,7 @@ Private Sub BotonImprimir()
 Dim cadFormula As String
 Dim cadParam As String
 Dim numParam As Byte
-Dim cadselect As String 'select para insertar en tabla temporal
+Dim cadSelect As String 'select para insertar en tabla temporal
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
@@ -5433,7 +5433,7 @@ Dim NroCopias As Integer
     
     cadFormula = ""
     cadParam = ""
-    cadselect = ""
+    cadSelect = ""
     numParam = 0
     
     '===================================================
@@ -5453,20 +5453,20 @@ Dim NroCopias As Integer
         devuelve = "{" & NombreTabla & ".codtipom}='" & Text1(6).Text & "'"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         devuelve = "codtipom = '" & Text1(6).Text & "'"
-        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
+        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Sub
         'Nº Factura
         devuelve = "{" & NombreTabla & ".numfactu}=" & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         devuelve = "numfactu = " & Val(Text1(0).Text)
-        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
+        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Sub
         'Fecha Factura
         devuelve = "{" & NombreTabla & ".fecfactu}=Date(" & Year(Text1(1).Text) & "," & Month(Text1(1).Text) & "," & Day(Text1(1).Text) & ")"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
         devuelve = "fecfactu = " & DBSet(Text1(1).Text, "F")
-        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
+        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Sub
     End If
     
-    If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
+    If Not HayRegParaInforme(NombreTabla, cadSelect) Then Exit Sub
      
     NroCopias = DevuelveValor("select nrocopias from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
      
@@ -5529,11 +5529,11 @@ Dim V As Long
                 
             
             
-            CargaGrid DataGrid2, Adoaux(0), True
+            CargaGrid DataGrid2, AdoAux(0), True
             CalcularDatosFactura
             
             DataGrid2.SetFocus
-            Adoaux(0).Recordset.Find (Adoaux(0).Recordset.Fields(3).Name & " =" & V)
+            AdoAux(0).Recordset.Find (AdoAux(0).Recordset.Fields(3).Name & " =" & V)
             
             
             
@@ -5718,7 +5718,7 @@ End Sub
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim I As Byte
+Dim i As Byte
     
     Combo1(0).Clear
     
@@ -5758,7 +5758,7 @@ Dim Sql2 As String
     Sql = Sql & " and numfactu = " & DBSet(Text1(0).Text, "N")
     Sql = Sql & " and fecfactu = " & DBSet(FechaAnt, "F")
     
-    conn.Execute Sql
+    Conn.Execute Sql
 
     ModificarFactura = True
     Exit Function
@@ -5772,31 +5772,31 @@ Private Function ModificaCabecera() As Boolean
 Dim b As Boolean
 Dim MenError As String
 Dim vFactura As CFactura
-Dim CADENA As String
+Dim cadena As String
 
     On Error GoTo EModificarCab
 
-    conn.BeginTrans
+    Conn.BeginTrans
     
     '[Monica]28/08/2013: Dejamos modificar los datos de la factura aunque esté contabilizada
     Set LOG = Nothing
     
-    CADENA = Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " "
-    If Text1(1).Text <> FechaAnt Then CADENA = CADENA & FechaAnt & " por " & Text1(1).Text
-    If ClienteAnt <> Text1(3).Text Then CADENA = CADENA & " Cli " & ClienteAnt & " por " & Text1(3).Text
-    If FPagoAnt <> Text1(4).Text Then CADENA = CADENA & " FPago " & FPagoAnt & " por " & Text1(4).Text
-    If Dto1Ant <> Text1(7).Text Then CADENA = CADENA & " Dto1 " & Dto1Ant & " por " & Text1(7).Text
-    If Dto2Ant <> Text1(8).Text Then CADENA = CADENA & " Dto2 " & Dto2Ant & " por " & Text1(8).Text
-    If IDtoAnt <> Text1(5).Text Then CADENA = CADENA & " IDto " & IDtoAnt & " por " & Text1(5).Text
-    If ObsAnt <> Text1(2).Text Then CADENA = CADENA & " Obs " & Trim(ObsAnt) & " por " & Trim(Text1(2).Text)
-    If EdiAnt <> Check1(2).Value Then CADENA = CADENA & " Edi " & EdiAnt & " por " & Check1(2).Value
+    cadena = Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " "
+    If Text1(1).Text <> FechaAnt Then cadena = cadena & FechaAnt & " por " & Text1(1).Text
+    If ClienteAnt <> Text1(3).Text Then cadena = cadena & " Cli " & ClienteAnt & " por " & Text1(3).Text
+    If FPagoAnt <> Text1(4).Text Then cadena = cadena & " FPago " & FPagoAnt & " por " & Text1(4).Text
+    If Dto1Ant <> Text1(7).Text Then cadena = cadena & " Dto1 " & Dto1Ant & " por " & Text1(7).Text
+    If Dto2Ant <> Text1(8).Text Then cadena = cadena & " Dto2 " & Dto2Ant & " por " & Text1(8).Text
+    If IDtoAnt <> Text1(5).Text Then cadena = cadena & " IDto " & IDtoAnt & " por " & Text1(5).Text
+    If ObsAnt <> Text1(2).Text Then cadena = cadena & " Obs " & Trim(ObsAnt) & " por " & Trim(Text1(2).Text)
+    If EdiAnt <> Check1(2).Value Then cadena = cadena & " Edi " & EdiAnt & " por " & Check1(2).Value
     
 
-    If CADENA <> "" And ((Text1(1).Text <> FechaAnt) Or Check1(1).Value = 1) Then
+    If cadena <> "" And ((Text1(1).Text <> FechaAnt) Or Check1(1).Value = 1) Then
         '-----------------------------------------------------------------------------
         '  LOG de acciones.
         Set LOG = New cLOG
-        LOG.Insertar 9, vUsu, "Modificación Cabecera: " & CADENA & vbCrLf
+        LOG.Insertar 9, vUsu, "Modificación Cabecera: " & cadena & vbCrLf
         Set LOG = Nothing
         '-----------------------------------------------------------------------------
         
@@ -5841,10 +5841,10 @@ EModificarCab:
     End If
     If b Then
         ModificaCabecera = True
-        conn.CommitTrans
+        Conn.CommitTrans
     Else
         ModificaCabecera = False
-        conn.RollbackTrans
+        Conn.RollbackTrans
     End If
 End Function
 
@@ -5884,7 +5884,7 @@ Dim Sql As String
         Set vTipoMov = Nothing
     Else
         Sql = CadenaInsertarDesdeForm(Me)
-        conn.Execute Sql
+        Conn.Execute Sql
 
         CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
         PonerCadenaBusqueda
@@ -5934,9 +5934,9 @@ Dim devuelve As String
     
     
     'Aqui empieza transaccion
-    conn.BeginTrans
+    Conn.BeginTrans
     MenError = "Error al insertar en la tabla Cabecera de Facturas (" & NombreTabla & ")."
-    conn.Execute vSQL, , adCmdText
+    Conn.Execute vSQL, , adCmdText
     
     MenError = "Error al actualizar el contador de la Factura."
     vTipoMov.IncrementarContador (CodTipoMov)
@@ -5948,10 +5948,10 @@ EInsertarOferta:
             bol = False
         End If
         If bol Then
-            conn.CommitTrans
+            Conn.CommitTrans
             InsertarOferta = True
         Else
-            conn.RollbackTrans
+            Conn.RollbackTrans
             InsertarOferta = False
         End If
 End Function
@@ -5974,7 +5974,7 @@ Private Sub InsertarLinea(Index As Integer)
 Dim nomframe As String
 Dim b As Boolean
 Dim Mens As String
-Dim CADENA As String
+Dim cadena As String
 
 
     On Error Resume Next
@@ -5995,7 +5995,7 @@ Dim CADENA As String
         Select Case Index
             Case 0
                 '[Monica]22/02/2012: insertamos la transaccion
-                conn.BeginTrans
+                Conn.BeginTrans
                 If InsertarDesdeForm2(Me, 2, nomframe) Then
                     
                     '[Monica]28/08/2013: insertamos en el log que hemos insertado una linea en una factura contabilizada
@@ -6004,11 +6004,11 @@ Dim CADENA As String
                         '  LOG de acciones.
                         Set LOG = New cLOG
                         
-                        CADENA = "Inserta Linea de Variedades "
-                        CADENA = CADENA & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Linea " & txtAux3(3).Text
-                        CADENA = CADENA & " Albaran " & txtAux3(4).Text & " " & txtAux3(5).Text & " de " & txtAux3(11).Text
+                        cadena = "Inserta Linea de Variedades "
+                        cadena = cadena & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Linea " & txtAux3(3).Text
+                        cadena = cadena & " Albaran " & txtAux3(4).Text & " " & txtAux3(5).Text & " de " & txtAux3(11).Text
                         
-                        LOG.Insertar 9, vUsu, CADENA
+                        LOG.Insertar 9, vUsu, cadena
                         Set LOG = Nothing
                           '-----------------------------------------------------------------------------
                     End If
@@ -6023,26 +6023,26 @@ Dim CADENA As String
                     
                     If b Then
                         
-                        conn.CommitTrans
+                        Conn.CommitTrans
                         
                         CalcularDatosFactura
                         ' *************************************************
                         b = BloqueaRegistro("facturas", "codtipom = " & DBSet(Data1.Recordset!codTipoM, "T") & " and numfactu = " & DBSet(Data1.Recordset!NumFactu, "N") & " and fecfactu = " & DBSet(Data1.Recordset!FecFactu, "F"))
-                        CargaGrid DataGrid2, Adoaux(0), True
+                        CargaGrid DataGrid2, AdoAux(0), True
                         If b Then BotonAnyadirLinea NumTabMto
                         SSTab1.Tab = NumTabMto
                     Else
-                        conn.RollbackTrans
+                        Conn.RollbackTrans
                     End If
                 Else
-                    conn.RollbackTrans
+                    Conn.RollbackTrans
                 End If
             
             Case 1
                 If InsertarLineaEnv(txtAux(3).Text) Then
                     CalcularDatosFactura
                     b = BloqueaRegistro("facturas", "numfactu = " & Data1.Recordset!NumFactu)
-                    CargaGrid DataGrid3, Adoaux(1), True
+                    CargaGrid DataGrid3, AdoAux(1), True
                     If b Then BotonAnyadirLinea NumTabMto
                     SSTab1.Tab = NumTabMto
                 End If
@@ -6055,7 +6055,7 @@ Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vTabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModificaLineas = 1 'Posem Modo Afegir Llínia
     
@@ -6102,7 +6102,7 @@ Dim I As Integer
             NumF = SugerirCodigoSiguienteStr(vTabla, "numlinea", vWhere)
             ' ***************************************************************
 
-            AnyadirLinea DataGrid2, Adoaux(0)
+            AnyadirLinea DataGrid2, AdoAux(0)
     
             anc = DataGrid2.Top
             If DataGrid2.Row < 0 Then
@@ -6159,7 +6159,7 @@ Dim I As Integer
             NumF = SugerirCodigoSiguienteStr(vTabla, "numlinea", vWhere)
             ' ***************************************************************
 
-            AnyadirLinea DataGrid3, Adoaux(1)
+            AnyadirLinea DataGrid3, AdoAux(1)
     
             anc = DataGrid3.Top
             If DataGrid3.Row < 0 Then
@@ -6176,13 +6176,13 @@ Dim I As Integer
             txtAux(2).Text = Text1(1).Text 'fecfactu
             txtAux(3).Text = NumF
             PonerFoco txtAux(4)
-            For I = 0 To 0
-                Text2(I).Text = ""
-            Next I
+            For i = 0 To 0
+                text2(i).Text = ""
+            Next i
             txtAux(10).Enabled = False
             txtAux(10).visible = False
             BloquearTxt txtAux(9), True
-            BloquearTxt Text2(16), False
+            BloquearTxt text2(16), False
             BloquearBtn Me.btnBuscar(0), False
         ' ******************************************
         
@@ -6193,7 +6193,7 @@ Dim I As Integer
              DescontarFacturasACuenta Text1(6).Text, Text1(0).Text, Text1(1).Text, Text1(3).Text
              TerminaBloquear
              CalcularDatosFactura
-             CargaGrid Me.DataGrid1, Me.Adoaux(2), True
+             CargaGrid Me.DataGrid1, Me.AdoAux(2), True
              If Not BloqueaRegistro("facturas_acuenta", vWhere) Then Exit Sub
     
     End Select
@@ -6217,7 +6217,7 @@ Dim Sql As String
 Dim vCStock As CStock
 Dim b As Boolean
 Dim Mens As String
-Dim CADENA As String
+Dim cadena As String
     
     On Error GoTo eModificarLinea
 
@@ -6237,7 +6237,7 @@ Dim CADENA As String
         
         Select Case NumTabMto
         Case 0
-            conn.BeginTrans
+            Conn.BeginTrans
         
             '[Monica]28/08/2013: insertamos en el log que hemos eliminado una linea en una factura contabilizada
             If Check1(1).Value = 1 Then
@@ -6245,9 +6245,9 @@ Dim CADENA As String
                 '  LOG de acciones.
                 Set LOG = New cLOG
                 
-                CADENA = "Modificar Linea de Variedades "
+                cadena = "Modificar Linea de Variedades "
                 
-                LOG.Insertar 9, vUsu, CADENA & Adoaux(0).Recordset.Fields(0) & " " & Adoaux(0).Recordset.Fields(1) & " " & Adoaux(0).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & Adoaux(0).Recordset.Fields(3) & " Alb " & Adoaux(0).Recordset.Fields(4) & " " & Adoaux(0).Recordset.Fields(5) & " de " & Adoaux(0).Recordset.Fields(12) & "-" & txtAux3(11).Text
+                LOG.Insertar 9, vUsu, cadena & AdoAux(0).Recordset.Fields(0) & " " & AdoAux(0).Recordset.Fields(1) & " " & AdoAux(0).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & AdoAux(0).Recordset.Fields(3) & " Alb " & AdoAux(0).Recordset.Fields(4) & " " & AdoAux(0).Recordset.Fields(5) & " de " & AdoAux(0).Recordset.Fields(12) & "-" & txtAux3(11).Text
                 Set LOG = Nothing
                   '-----------------------------------------------------------------------------
             End If
@@ -6278,21 +6278,21 @@ Dim CADENA As String
     '            If BLOQUEADesdeFormulario2(Me, Data1, 1) Then BotonModificar
                 If b Then
                 
-                    conn.CommitTrans
+                    Conn.CommitTrans
                     
-                    V = Adoaux(0).Recordset.Fields(3) 'el 2 es el nº de llinia
+                    V = AdoAux(0).Recordset.Fields(3) 'el 2 es el nº de llinia
                 
                     CalcularDatosFactura
                     ModificaLineas = 0
         
 '                    V = AdoAux(0).Recordset.Fields(3) 'el 2 es el nº de llinia
-                    CargaGrid DataGrid2, Adoaux(0), True
+                    CargaGrid DataGrid2, AdoAux(0), True
     
                     ' *** si n'hi han tabs ***
                     SSTab1.Tab = 0
     
                     DataGrid2.SetFocus
-                    Adoaux(0).Recordset.Find (Adoaux(0).Recordset.Fields(3).Name & " =" & V)
+                    AdoAux(0).Recordset.Find (AdoAux(0).Recordset.Fields(3).Name & " =" & V)
     
                     LLamaLineas ModificaLineas, 0, "DataGrid2"
                End If
@@ -6305,7 +6305,7 @@ Dim CADENA As String
             
             If DatosOkLineaEnv(vCStock) Then
                 '#### LAURA 15/11/2006
-                conn.BeginTrans
+                Conn.BeginTrans
                 
                 '[Monica]28/08/2013: insertamos en el log que hemos eliminado una linea en una factura contabilizada
                 If Check1(1).Value = 1 Then
@@ -6313,8 +6313,8 @@ Dim CADENA As String
                     '  LOG de acciones.
                     Set LOG = New cLOG
                     
-                    CADENA = "Modificar Linea de Envases "
-                    LOG.Insertar 9, vUsu, CADENA & Adoaux(1).Recordset.Fields(0) & " " & Adoaux(1).Recordset.Fields(1) & " " & Adoaux(1).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & Adoaux(1).Recordset.Fields(3) & " " & Adoaux(1).Recordset.Fields(5) & " de " & Adoaux(1).Recordset.Fields(10) & "-" & txtAux(9).Text
+                    cadena = "Modificar Linea de Envases "
+                    LOG.Insertar 9, vUsu, cadena & AdoAux(1).Recordset.Fields(0) & " " & AdoAux(1).Recordset.Fields(1) & " " & AdoAux(1).Recordset.Fields(2) & " de " & Text1(25).Text & " Linea " & AdoAux(1).Recordset.Fields(3) & " " & AdoAux(1).Recordset.Fields(5) & " de " & AdoAux(1).Recordset.Fields(10) & "-" & txtAux(9).Text
                     Set LOG = Nothing
                     '-----------------------------------------------------------------------------
                 End If
@@ -6334,34 +6334,34 @@ Dim CADENA As String
                     'actualizar la linea de Albaran
                     If b Then
                         Sql = "UPDATE facturas_envases Set codalmac = " & txtAux(4).Text & ", codartic=" & DBSet(txtAux(5).Text, "T") & ", "
-                        Sql = Sql & "ampliaci=" & DBSet(Text2(16).Text, "T") & ", "
+                        Sql = Sql & "ampliaci=" & DBSet(text2(16).Text, "T") & ", "
                         Sql = Sql & "cantidad= " & DBSet(txtAux(6).Text, "N") & ", "
                         Sql = Sql & "precioar= " & DBSet(txtAux(7).Text, "N") & ", " 'precio
                         Sql = Sql & "dtolinea= " & DBSet(txtAux(8).Text, "N") & ", "
                         Sql = Sql & "importel= " & DBSet(txtAux(9).Text, "N") & ", " 'Importe
                         Sql = Sql & "codigiva= " & DBSet(txtAux(10).Text, "N") & " " 'codigo de iva
-                        Sql = Sql & Replace(ObtenerWhereCP(True), NombreTabla, "facturas_envases") & " AND numlinea=" & Adoaux(1).Recordset!numlinea
-                        conn.Execute Sql
+                        Sql = Sql & Replace(ObtenerWhereCP(True), NombreTabla, "facturas_envases") & " AND numlinea=" & AdoAux(1).Recordset!numlinea
+                        Conn.Execute Sql
                     End If
                 End If
                 
-                If b Then conn.CommitTrans
+                If b Then Conn.CommitTrans
             End If
             Set vCStock = Nothing
                 
             ModificaLineas = 0
             
-            V = Adoaux(1).Recordset.Fields(3) 'el 2 es el nº de llinia
+            V = AdoAux(1).Recordset.Fields(3) 'el 2 es el nº de llinia
             
             CalcularDatosFactura
             
-            CargaGrid DataGrid3, Adoaux(1), True
+            CargaGrid DataGrid3, AdoAux(1), True
 
             ' *** si n'hi han tabs ***
             SSTab1.Tab = 1
 
             DataGrid3.SetFocus
-            Adoaux(1).Recordset.Find (Adoaux(1).Recordset.Fields(3).Name & " =" & V)
+            AdoAux(1).Recordset.Find (AdoAux(1).Recordset.Fields(3).Name & " =" & V)
 
             LLamaLineas ModificaLineas, 0, "DataGrid3"
         
@@ -6379,7 +6379,7 @@ eModificarLinea:
 '        conn.CommitTrans
         ModificarLinea = True
     Else
-        conn.RollbackTrans
+        Conn.RollbackTrans
         ModificarLinea = False
     End If
 End Function
@@ -6392,7 +6392,7 @@ Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
 Dim vFact As Byte, vDocum As Byte
-Dim cliente As String
+Dim Cliente As String
 Dim TipoDto As Byte
 
     DatosOkLlin = True
@@ -6409,10 +6409,10 @@ Dim TipoDto As Byte
     'en variedades comprobamos que el albaran introducido corresponde al cliente
    Select Case nomframe
         Case "FrameAux0"
-            cliente = ""
-            cliente = DevuelveDesdeBDNew(cAgro, "albaran", "codclien", "numalbar", txtAux3(4).Text, "N")
+            Cliente = ""
+            Cliente = DevuelveDesdeBDNew(cAgro, "albaran", "codclien", "numalbar", txtAux3(4).Text, "N")
             
-            If CLng(cliente) <> CLng(Data1.Recordset!CodClien) Then
+            If CLng(Cliente) <> CLng(Data1.Recordset!CodClien) Then
                 MsgBox "El albarán introducido no es del cliente del la factura. Revise.", vbExclamation
                 b = False
             End If
@@ -6480,9 +6480,9 @@ Dim Observaciones As String
             Text1(3).Text = vCliente.Codigo
             FormateaCampo Text1(3)
             If (Modo = 3) Or (Modo = 4) Then
-                Text2(3).Text = vCliente.Nombre  'Nom clien
+                text2(3).Text = vCliente.Nombre  'Nom clien
                 Text1(4).Text = vCliente.ForPago
-                Text2(4).Text = PonerNombreDeCod(Text1(4), "forpago", "nomforpa")
+                text2(4).Text = PonerNombreDeCod(Text1(4), "forpago", "nomforpa")
                 Text1(7).Text = Format(vCliente.Dto1, FormatoDescuento)
                 Text1(8).Text = Format(vCliente.Dto2, FormatoDescuento)
                 Me.Combo1(0).ListIndex = vCliente.TipoIva
@@ -6520,15 +6520,15 @@ End Sub
 
 
 Private Sub LimpiarDatosCliente()
-Dim I As Byte
+Dim i As Byte
 
     Text1(2).Text = ""
     Text1(4).Text = ""
     Text1(7).Text = ""
     Text1(8).Text = ""
 
-    Text2(3).Text = ""
-    Text2(4).Text = ""
+    text2(3).Text = ""
+    text2(4).Text = ""
     Me.Combo1(0).ListIndex = -1
 End Sub
     
@@ -6537,7 +6537,7 @@ Dim Forfait As String
 Dim Pesoneto As String
 Dim NumCajas As String
 Dim KilosCaja As String
-Dim I As Integer
+Dim i As Integer
 Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim vPrecio As Currency
@@ -6546,9 +6546,9 @@ Dim vPrecio As Currency
         txtAux3(6).Text = ""
         txtAux3(7).Text = ""
         txtAux3(15).Text = ""
-        For I = 0 To Text3.Count - 1
-            Text3(I).Text = ""
-        Next I
+        For i = 0 To Text3.Count - 1
+            Text3(i).Text = ""
+        Next i
         
         '[Monica]23/04/2013: limpiamos el precio bruto
         txtAux3(8).Text = ""
@@ -6568,7 +6568,7 @@ Dim vPrecio As Currency
         
         Set Rs = New ADODB.Recordset
         
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         If Not Rs.EOF Then
             '[Monica]10/06/2013: en las facturas rectificativas la cantidad en negativo y el precio en posivivo, se lo damos por defecto
@@ -6610,9 +6610,9 @@ Dim vPrecio As Currency
             txtAux3(6).Text = ""
             txtAux3(7).Text = ""
             txtAux3(15).Text = ""
-            For I = 0 To Text3.Count - 1
-                Text3(I).Text = ""
-            Next I
+            For i = 0 To Text3.Count - 1
+                Text3(i).Text = ""
+            Next i
             
             MsgBox "No existe la línea de albarán. Reintroduzca.", vbExclamation
             txtAux3(5).Text = ""
@@ -6634,7 +6634,7 @@ Dim vWhere As String
 Dim b As Boolean
 Dim vCStock As CStock
 Dim DentroTRANS As Boolean
-Dim CADENA As String
+Dim cadena As String
 
     InsertarLineaEnv = False
     Sql = ""
@@ -6656,7 +6656,7 @@ Dim CADENA As String
         Sql = Sql & DBSet(txtAux(6).Text, "N") & ", "
         Sql = Sql & DBSet(txtAux(7).Text, "N") & ", " & DBSet(txtAux(8).Text, "N") & ", "
         Sql = Sql & DBSet(txtAux(9).Text, "N") & ","
-        Sql = Sql & DBSet(Text2(16).Text, "T") & ","
+        Sql = Sql & DBSet(text2(16).Text, "T") & ","
         Sql = Sql & DBSet(txtAux(10).Text, "N") & ","
         Sql = Sql & DBSet(txtAux(11).Text, "N") & ","
         Sql = Sql & DBSet(txtAux(12).Text, "N") & ","
@@ -6667,11 +6667,11 @@ Dim CADENA As String
     
     If Sql <> "" Then
         On Error GoTo EInsertarLineaEnv
-        conn.BeginTrans
+        Conn.BeginTrans
         DentroTRANS = True
         
         'insertar la linea
-        conn.Execute Sql
+        Conn.Execute Sql
         
         
         '[Monica]28/08/2013: insertamos en el log que hemos insertado una linea en una factura contabilizada
@@ -6680,11 +6680,11 @@ Dim CADENA As String
             '  LOG de acciones.
             Set LOG = New cLOG
             
-            CADENA = "Inserta Linea de Envases "
-            CADENA = CADENA & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Linea " & txtAux(3).Text
-            CADENA = CADENA & " " & txtAux(5).Text
+            cadena = "Inserta Linea de Envases "
+            cadena = cadena & Text1(6).Text & " " & Text1(0).Text & " " & Text1(1).Text & " de " & Text1(25).Text & " Linea " & txtAux(3).Text
+            cadena = cadena & " " & txtAux(5).Text
 
-            LOG.Insertar 9, vUsu, CADENA
+            LOG.Insertar 9, vUsu, cadena
             Set LOG = Nothing
               '-----------------------------------------------------------------------------
         End If
@@ -6701,10 +6701,10 @@ Dim CADENA As String
     Set vCStock = Nothing
     
     If b Then
-        conn.CommitTrans
+        Conn.CommitTrans
         InsertarLineaEnv = True
     Else
-        conn.RollbackTrans
+        Conn.RollbackTrans
          InsertarLineaEnv = False
     End If
     Exit Function
@@ -6712,7 +6712,7 @@ Dim CADENA As String
 EInsertarLineaEnv:
     If Err.Number <> 0 Then
         InsertarLineaEnv = False
-        If DentroTRANS Then conn.RollbackTrans
+        If DentroTRANS Then Conn.RollbackTrans
         MuestraError Err.Number, "Insertar Lineas Facturas" & vbCrLf & Err.Description
 '        b = False
     End If
@@ -6815,27 +6815,27 @@ Private Function InicializarCStock(ByRef vCStock As CStock, TipoM As String, Opt
         If ModificaLineas = 1 Then '1=Insertar
             vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
         Else '2=Modificar(Debe haber en stock la diferencia)
-            If Adoaux(1).Recordset!codArtic = txtAux(5).Text Then
-                vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text)) - Adoaux(1).Recordset!Cantidad
+            If AdoAux(1).Recordset!codArtic = txtAux(5).Text Then
+                vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text)) - AdoAux(1).Recordset!Cantidad
             Else
                 vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
             End If
         End If
         vCStock.Importe = CCur(ComprobarCero(txtAux(9).Text))
     Else
-        vCStock.codArtic = Adoaux(1).Recordset!codArtic
-        vCStock.codAlmac = CInt(Adoaux(1).Recordset!codAlmac)
-        vCStock.Cantidad = CSng(Adoaux(1).Recordset!Cantidad)
-        vCStock.Importe = CCur(Adoaux(1).Recordset!ImporteL)
+        vCStock.codArtic = AdoAux(1).Recordset!codArtic
+        vCStock.codAlmac = CInt(AdoAux(1).Recordset!codAlmac)
+        vCStock.Cantidad = CSng(AdoAux(1).Recordset!Cantidad)
+        vCStock.Importe = CCur(AdoAux(1).Recordset!ImporteL)
     End If
     If ModificaLineas = 1 Then
         vCStock.LineaDocu = CInt(ComprobarCero(numlinea))
     Else
         '[Monica]20/03/2012: dependiendo de si viene de factura o de un albaran de envase (añado la condicion)
         If ComprobarCero(txtAux(11).Text) = 0 Or ComprobarCero(txtAux(12).Text) = 0 Or Not EsFacturaEnvases(Text1(6).Text, Text1(0).Text, Text1(1).Text) Then
-            vCStock.LineaDocu = CInt(Adoaux(1).Recordset!numlinea)
+            vCStock.LineaDocu = CInt(AdoAux(1).Recordset!numlinea)
         Else
-            vCStock.LineaDocu = CInt(Adoaux(1).Recordset!numlinealbar)
+            vCStock.LineaDocu = CInt(AdoAux(1).Recordset!numlinealbar)
         End If
     End If
     If Err.Number <> 0 Then
@@ -6851,7 +6851,7 @@ End Function
 
 Private Function DatosOkLineaEnv(ByRef vCStock As CStock) As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
     
     On Error GoTo EDatosOkLineaEnv
 
@@ -6882,7 +6882,7 @@ Dim b As Boolean
     Sql = "select * from facturas_envases where " & Replace(ObtenerWhereCP(False), "facturas", "facturas_envases")
     Set Rs = New ADODB.Recordset
     
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     b = True
     While Not Rs.EOF And b
@@ -6892,8 +6892,8 @@ Dim b As Boolean
         vCStock.codAlmac = DBLet(Rs!codAlmac, "N")
         vCStock.codArtic = DBLet(Rs!codArtic, "T")
         '[Monica]20/03/2012: lo que se guardó es el numero de albaran
-        If DBLet(Rs!numalbar, "N") <> 0 And EsFacturaEnvases(Text1(6).Text, Text1(0).Text, Text1(1).Text) Then
-            vCStock.Documento = CLng(DBLet(Rs!numalbar, "N"))
+        If DBLet(Rs!NumAlbar, "N") <> 0 And EsFacturaEnvases(Text1(6).Text, Text1(0).Text, Text1(1).Text) Then
+            vCStock.Documento = CLng(DBLet(Rs!NumAlbar, "N"))
             vCStock.DetaMov = "ALV"
             vCStock.LineaDocu = DBLet(Rs!numlinealbar, "N")
             vCStock.Fechamov = DBLet(Rs!FecAlbar, "F")
@@ -6926,14 +6926,14 @@ End Function
 
 
 Private Sub CalcularDatosFactura()
-Dim I As Integer
+Dim i As Integer
 Dim cadWHERE As String, Sql As String
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
-    For I = 9 To 31
-         Text1(I).Text = ""
-    Next I
+    For i = 9 To 31
+         Text1(i).Text = ""
+    Next i
     
     'Comprobar que hay lineas de facturas_variedad para calcular totales
     cadWHERE = ObtenerWhereCP(False)
@@ -6971,7 +6971,7 @@ Private Function CalcularDatosFacturaVenta(cadWHERE As String, NomTabla As Strin
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
 Dim Rs As ADODB.Recordset
-Dim I As Integer
+Dim i As Integer
 
 Dim Sql As String
 Dim cadAux As String
@@ -7088,14 +7088,14 @@ Dim Nulo3 As String
     Sql = Sql & " ORDER BY 1 "
 
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
     TotBruto = 0
     TotNeto = 0
     TotImpIVA = 0
     vBruto = 0
     vNeto = 0
-    I = 1
+    i = 1
 
     '[Monica]23/08/2013: he metido en el if la instruccion de ivaant
     If Not Rs.EOF Then
@@ -7133,7 +7133,7 @@ Dim Nulo3 As String
         Sql = Sql & ",totalfac = " & ValorNulo
         Sql = Sql & " where " & cadWHERE
         
-        conn.Execute Sql
+        Conn.Execute Sql
     
         CalcularDatosFacturaVenta = True
         Exit Function
@@ -7174,7 +7174,7 @@ Dim Nulo3 As String
             End If
 
 
-            Select Case I
+            Select Case i
                 Case 1  'IVA 1
                     TipoIVA1 = IvaAnt 'RS!codigiva
 
@@ -7221,7 +7221,7 @@ Dim Nulo3 As String
             End Select
             
             
-            I = I + 1
+            i = i + 1
             IvaAnt = Rs.Fields(0).Value
             vBruto = DBLet(Rs.Fields(1).Value, "N")
             vNeto = DBLet(Rs.Fields(2).Value, "N")
@@ -7269,7 +7269,7 @@ Dim Nulo3 As String
 
 
 
-    Select Case I
+    Select Case i
         Case 1  'IVA 1
             TipoIVA1 = IvaAnt
 
@@ -7350,7 +7350,7 @@ Dim Nulo3 As String
     Sql = Sql & ",totalfac = " & DBSet(TotalFac, "N")
     Sql = Sql & " where " & cadWHERE
     
-    conn.Execute Sql
+    Conn.Execute Sql
 
     CalcularDatosFacturaVenta = True
 
@@ -7387,7 +7387,7 @@ On Error Resume Next
         Sql = Sql & " and numfactu = " & DBSet(Factura, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         
         SumaBruto = 0
         If Not Rs.EOF Then
@@ -7423,7 +7423,7 @@ On Error Resume Next
         Sql = Sql & " and numfactu = " & DBSet(Factura, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         
         SumaBruto = 0
         If Not Rs.EOF Then
@@ -7469,7 +7469,7 @@ Dim vImpNeto As Currency
 Dim vPrecNeto As Currency
 Dim TipoDto As String
 Dim ImpDto As String
-Dim cliente As String
+Dim Cliente As String
 Dim Rdo As Long
 
 Dim TotImpBru As Currency
@@ -7489,7 +7489,7 @@ Dim vHayReg As Byte
     Sql = Sql & " order by numlinea "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
     Sql = ""
     Sql = DevuelveDesdeBDNew(cAgro, "facturas", "impdtoc", "codtipom", TipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
@@ -7506,9 +7506,9 @@ Dim vHayReg As Byte
     '++monica:030608:traemos el redondeo del precio
     Sql = ""
     Sql = DevuelveDesdeBDNew(cAgro, "facturas", "codclien", "codtipom", TipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
-    cliente = ComprobarCero(Sql)
+    Cliente = ComprobarCero(Sql)
     Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "clientes", "nrodecprec", "codclien", cliente, "N")
+    Sql = DevuelveDesdeBDNew(cAgro, "clientes", "nrodecprec", "codclien", Cliente, "N")
     Rdo = ComprobarCero(Sql)
     
     vHayReg = 0
@@ -7517,7 +7517,7 @@ Dim vHayReg As Byte
         vHayReg = 1
         
         TipoDto = DevuelveDesdeBDNew(cAgro, "clientes", "tipodtos", "codclien", Text1(3).Text, "N")
-        If TipoFacturarForfaits(CStr(Rs!numalbar), CStr(Rs!numlinealbar)) = 1 Then 'kilos
+        If TipoFacturarForfaits(CStr(Rs!NumAlbar), CStr(Rs!numlinealbar)) = 1 Then 'kilos
             TipoFactFor = 1
             ImpDto = CalcularImporteDto(DBLet(Rs!cantreal, "N"), DBLet(Rs!precibru, "N"), TipoM, Factura, FecFactu, CStr(vImpDto), True)
             vImpNeto = CalcularImporteFClien(DBLet(Rs!cantreal, "N"), DBLet(Rs!precibru, "N"), CStr(vDto1), CStr(vDto2), CByte(TipoDto), CStr(ImpDto), DBLet(Rs!imporbru, "N"))
@@ -7560,7 +7560,7 @@ Dim vHayReg As Byte
         Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
         Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!numlinea, "N")
     
-        conn.Execute Sql2
+        Conn.Execute Sql2
     
         UltimaLinea = DBLet(Rs!numlinea, "N")
     
@@ -7577,7 +7577,7 @@ Dim vHayReg As Byte
         Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql2, conn, adOpenForwardOnly, adLockReadOnly, adCmdText
+        Rs.Open Sql2, Conn, adOpenForwardOnly, adLockReadOnly, adCmdText
     
         Diferencia = 0
         If Not Rs.EOF Then
@@ -7604,7 +7604,7 @@ Dim vHayReg As Byte
                 Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
                 Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
             
-                conn.Execute Sql2
+                Conn.Execute Sql2
         
                 If TipoFactFor = 1 Then 'kilos
                     Sql2 = "update facturas_variedad set precinet = round(impornet / cantreal, " & DBSet(Rdo, "N") & ") "
@@ -7613,7 +7613,7 @@ Dim vHayReg As Byte
                     Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
                     Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
                 
-                    conn.Execute Sql2
+                    Conn.Execute Sql2
                 Else 'unidades
                     'precio neto
                     Sql2 = "update facturas_variedad set precinet = round(impornet / unidades, " & DBSet(Rdo, "N") & ") "
@@ -7622,7 +7622,7 @@ Dim vHayReg As Byte
                     Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
                     Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
                 
-                    conn.Execute Sql2
+                    Conn.Execute Sql2
                 End If
             End If
         
@@ -7655,7 +7655,7 @@ Dim vImpNeto As Currency
 Dim vPrecNeto As Currency
 Dim TipoDto As String
 Dim ImpDto As String
-Dim cliente As String
+Dim Cliente As String
 Dim Rdo As Long
 
 Dim TotImpBru As Currency
@@ -7677,7 +7677,7 @@ Dim vHayReg As Byte
     Sql = Sql & " order by numlinea, numline1 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
     Sql = ""
     Sql = DevuelveDesdeBDNew(cAgro, "facturas", "impdtoc", "codtipom", TipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
@@ -7694,9 +7694,9 @@ Dim vHayReg As Byte
     '++monica:030608:traemos el redondeo del precio
     Sql = ""
     Sql = DevuelveDesdeBDNew(cAgro, "facturas", "codclien", "codtipom", TipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
-    cliente = ComprobarCero(Sql)
+    Cliente = ComprobarCero(Sql)
     Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "clientes", "nrodecprec", "codclien", cliente, "N")
+    Sql = DevuelveDesdeBDNew(cAgro, "clientes", "nrodecprec", "codclien", Cliente, "N")
     Rdo = ComprobarCero(Sql)
     
     vHayReg = 0
@@ -7705,7 +7705,7 @@ Dim vHayReg As Byte
         vHayReg = 1
         
         TipoDto = DevuelveDesdeBDNew(cAgro, "clientes", "tipodtos", "codclien", Text1(3).Text, "N")
-        If TipoFacturarForfaits(CStr(Rs!numalbar), CStr(Rs!numlinealbar)) = 1 Then 'kilos
+        If TipoFacturarForfaits(CStr(Rs!NumAlbar), CStr(Rs!numlinealbar)) = 1 Then 'kilos
             TipoFactFor = 1
             ImpDto = CalcularImporteDto(DBLet(Rs!cantreal, "N"), DBLet(Rs!precibru, "N"), TipoM, Factura, FecFactu, CStr(vImpDto), True)
             vImpNeto = CalcularImporteFClien(DBLet(Rs!cantreal, "N"), DBLet(Rs!precibru, "N"), CStr(vDto1), CStr(vDto2), CByte(TipoDto), CStr(ImpDto), DBLet(Rs!imporbru, "N"))
@@ -7749,7 +7749,7 @@ Dim vHayReg As Byte
         Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!numlinea, "N")
         Sql2 = Sql2 & " and numline1 = " & DBSet(Rs!numline1, "N")
     
-        conn.Execute Sql2
+        Conn.Execute Sql2
     
         UltimaLinea = DBLet(Rs!numlinea, "N")
         UltimaLine1 = DBLet(Rs!numline1, "N")
@@ -7768,7 +7768,7 @@ Dim vHayReg As Byte
         
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql2, conn, adOpenForwardOnly, adLockReadOnly, adCmdText
+        Rs.Open Sql2, Conn, adOpenForwardOnly, adLockReadOnly, adCmdText
     
         Diferencia = 0
         If Not Rs.EOF Then
@@ -7796,7 +7796,7 @@ Dim vHayReg As Byte
                 Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
                 Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLine1, "N")
             
-                conn.Execute Sql2
+                Conn.Execute Sql2
         
                 If TipoFactFor = 1 Then 'kilos
                     Sql2 = "update facturas_calibre set precinet = round(impornet / cantreal, " & DBSet(Rdo, "N") & ") "
@@ -7806,7 +7806,7 @@ Dim vHayReg As Byte
                     Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
                     Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLine1, "N")
                 
-                    conn.Execute Sql2
+                    Conn.Execute Sql2
                 Else 'unidades
                     'precio neto
                     Sql2 = "update facturas_calibre set precinet = round(impornet / unidades, " & DBSet(Rdo, "N") & ") "
@@ -7816,7 +7816,7 @@ Dim vHayReg As Byte
                     Sql2 = Sql2 & " and numlinea = " & DBSet(UltimaLinea, "N")
                     Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLine1, "N")
                 
-                    conn.Execute Sql2
+                    Conn.Execute Sql2
                 End If
             End If
         End If
@@ -7835,12 +7835,12 @@ eRecalcularDtosLineas:
 End Function
 
 
-Private Sub DescontarFacturasACuenta(TipoM As String, Factu As String, FecFac As String, cliente As String)
+Private Sub DescontarFacturasACuenta(TipoM As String, Factu As String, FecFac As String, Cliente As String)
 Dim Sql As String
 Dim cadWHERE As String
 
     Sql = "select codtipom, numfactu, fecfactu, totalfac from facturas "
-    cadWHERE = "where codtipom = 'EAC' and codclien = " & DBSet(cliente, "N")
+    cadWHERE = "where codtipom = 'EAC' and codclien = " & DBSet(Cliente, "N")
     cadWHERE = cadWHERE & " and (codtipom, numfactu, fecfactu) not in (select codtipomcta, numfactucta, fecfactucta from facturas_acuenta) "
 
     
@@ -7866,7 +7866,7 @@ Private Function ActualizarVariedades(codTipoM As String, NumFactu As String, Fe
 Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
-Dim SQL1 As String
+Dim Sql1 As String
 
     On Error GoTo eActualizarVariedades
 
@@ -7876,19 +7876,19 @@ Dim SQL1 As String
     Sql = Sql & " and numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
 
     Set Rs2 = New ADODB.Recordset
-    Rs2.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs2.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
     While Not Rs2.EOF
-        SQL1 = "select sum(if(cantreal is null,0,cantreal)), sum(if(cantfact is null,0,cantfact)), sum(if(imporbru is null,0,imporbru)), sum(if(impornet is null,0,impornet))"
-        SQL1 = SQL1 & " from facturas_calibre "
-        SQL1 = SQL1 & " where codtipom = " & DBSet(codTipoM, "T")
-        SQL1 = SQL1 & " and numfactu = " & DBSet(NumFactu, "N")
-        SQL1 = SQL1 & " and fecfactu = " & DBSet(FecFactu, "F")
-        SQL1 = SQL1 & " and numlinea = " & DBSet(Rs2!numlinea, "N")
-        conn.Execute SQL1
+        Sql1 = "select sum(if(cantreal is null,0,cantreal)), sum(if(cantfact is null,0,cantfact)), sum(if(imporbru is null,0,imporbru)), sum(if(impornet is null,0,impornet))"
+        Sql1 = Sql1 & " from facturas_calibre "
+        Sql1 = Sql1 & " where codtipom = " & DBSet(codTipoM, "T")
+        Sql1 = Sql1 & " and numfactu = " & DBSet(NumFactu, "N")
+        Sql1 = Sql1 & " and fecfactu = " & DBSet(FecFactu, "F")
+        Sql1 = Sql1 & " and numlinea = " & DBSet(Rs2!numlinea, "N")
+        Conn.Execute Sql1
     
         Set Rs = New ADODB.Recordset
-        Rs.Open SQL1, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Sql1, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         If Not Rs.EOF Then
             Sql = "update facturas_variedad set cantreal = " & DBSet(Rs.Fields(0).Value, "N")
@@ -7897,7 +7897,7 @@ Dim SQL1 As String
             Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
             Sql = Sql & " and numlinea = " & DBSet(Rs2!numlinea, "N")
     
-            conn.Execute Sql
+            Conn.Execute Sql
                 
             Sql = "update facturas_variedad set cantfact = " & DBSet(Rs.Fields(1).Value, "N")
             Sql = Sql & " where codtipom = " & DBSet(codTipoM, "T")
@@ -7905,7 +7905,7 @@ Dim SQL1 As String
             Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
             Sql = Sql & " and numlinea = " & DBSet(Rs2!numlinea, "N")
     
-            conn.Execute Sql
+            Conn.Execute Sql
             
             Sql = "update facturas_variedad set imporbru = " & DBSet(Rs.Fields(2).Value, "N")
             Sql = Sql & " where codtipom = " & DBSet(codTipoM, "T")
@@ -7913,7 +7913,7 @@ Dim SQL1 As String
             Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
             Sql = Sql & " and numlinea = " & DBSet(Rs2!numlinea, "N")
     
-            conn.Execute Sql
+            Conn.Execute Sql
             
             Sql = "update facturas_variedad set impornet = " & DBSet(Rs.Fields(3).Value, "N")
             Sql = Sql & " where codtipom = " & DBSet(codTipoM, "T")
@@ -7921,9 +7921,9 @@ Dim SQL1 As String
             Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
             Sql = Sql & " and numlinea = " & DBSet(Rs2!numlinea, "N")
     
-            conn.Execute Sql
+            Conn.Execute Sql
         
-            If TipoFacturarForfaits(DBLet(Rs2!numalbar, "N"), DBLet(Rs2!numlinealbar, "N")) = 1 Then
+            If TipoFacturarForfaits(DBLet(Rs2!NumAlbar, "N"), DBLet(Rs2!numlinealbar, "N")) = 1 Then
                 Sql = "update facturas_variedad set precibru = round(imporbru / cantreal,4), "
                 Sql = Sql & " precinet = round(impornet / cantreal,4) "
             Else
@@ -7935,7 +7935,7 @@ Dim SQL1 As String
             Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
             Sql = Sql & " and numlinea = " & DBSet(Rs2!numlinea, "N")
     
-            conn.Execute Sql
+            Conn.Execute Sql
         
         End If
         Rs.Close
@@ -8008,7 +8008,7 @@ End Function
 
 'En vTesoreria pondremos como estaba el recibo
 'Es decir. El  msgbox que pondra al final lo guardo en esta variable
-Private Function ComprobarCobroArimoney(vTesoreria As String, LEtra As String, Codfaccl As Long, fecha As Date) As Boolean
+Private Function ComprobarCobroArimoney(vTesoreria As String, LEtra As String, Codfaccl As Long, Fecha As Date) As Boolean
 Dim vR As ADODB.Recordset
 Dim cad As String
 
@@ -8017,7 +8017,7 @@ On Error GoTo EComprobarCobroArimoney
     Set vR = New ADODB.Recordset
     cad = "Select * from scobro where numserie='" & LEtra & "'"
     cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND fecfaccl =" & DBSet(fecha, "F")
+    cad = cad & " AND fecfaccl =" & DBSet(Fecha, "F")
     
     '
     vTesoreria = ""

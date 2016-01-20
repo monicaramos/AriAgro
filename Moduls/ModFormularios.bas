@@ -1203,6 +1203,7 @@ Public Function PonerFormatoDecimal(ByRef T As TextBox, tipoF As Single) As Bool
 '  7 -> Decimal(8,4)  nuevo
 '  8 -> Decimal(6,4)  nuevo
 '  9 -> Decimal(8,2)  nuevo
+'  10 -> Decimal(10,4)  nuevo
 
 Dim Valor As Currency
 Dim PEntera As Currency
@@ -1290,6 +1291,11 @@ Dim cadEnt As String
                     MsgBox "El valor no puede ser mayor de 999999,99", vbExclamation
                     NoOK = True
                 End If
+            Case 10 'decimal(10,4)
+                If Len(CStr(PEntera)) > 6 Then
+                    MsgBox "El valor no puede ser mayor de 999999,9999", vbExclamation
+                    NoOK = True
+                End If
             
         End Select
 
@@ -1338,6 +1344,8 @@ Dim cadEnt As String
                     .Text = Format(Valor, FormatoDec6d4)
                 Case 9 'Formato Decimal(8,2)
                     .Text = Format(Valor, FormatoDec8d2)
+                Case 10 'Formato Decimal(10,4)
+                    .Text = Format(Valor, FormatoDec10d4)
             End Select
             PonerFormatoDecimal = True
 '        End If
@@ -1392,7 +1400,7 @@ End Function
 
 
 
-Public Sub PonerIndicador(ByRef lblIndicador As label, Modo As Byte, Optional ModoLineas As Byte)
+Public Sub PonerIndicador(ByRef lblIndicador As Label, Modo As Byte, Optional ModoLineas As Byte)
 'Pone el titulo del label lblIndicador
     Select Case Modo
         Case 0    'Modo Inicial
