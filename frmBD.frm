@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmBD 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Acceso a MYSQL"
@@ -2035,7 +2035,7 @@ Dim Sql2 As String
     conn.Execute "SET FOREIGN_KEY_CHECKS = 0"
      
     ' Tendremos que ir añadiendo las tablas que no son maestras
-    NumTablas = 189
+    NumTablas = 190
     CargarProgres Pb1, NumTablas
      
     '1 advfacturas
@@ -3014,6 +3014,17 @@ Dim Sql2 As String
     DoEvents
     
     
+    '[Monica]29/01/2016: solo para el caso de catadau borramos los datos de asegurado
+    '190 rcampos_seguros
+    If vParamAplic.Cooperativa = 0 Then
+        Sql2 = "delete from ariagro.rcampos_seguros"
+        conn.Execute Sql2
+        IncrementarProgres Pb1, 1
+        DoEvents
+    Else
+        IncrementarProgres Pb1, 1
+        DoEvents
+    End If
      
      
      
