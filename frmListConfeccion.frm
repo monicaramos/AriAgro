@@ -361,7 +361,7 @@ Option Explicit
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
 
-Public OpcionListado As Integer
+Public Opcionlistado As Integer
     '==== Listados BASICOS ====
     '=============================
     '0 - Listado de confecciones
@@ -388,7 +388,7 @@ Attribute frmF.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para el frmImprimir
 Private conSubRPT As Boolean 'Si el informe tiene subreports
 Private cadNombreRPT As String 'Nombre del informe
@@ -434,7 +434,7 @@ Dim Sql As String
     DatosOk = False
     b = True
     
-    Select Case OpcionListado
+    Select Case Opcionlistado
         Case 0 ' Informe de confecciones
         
         Case 1 ' Duplicar Confeccion
@@ -480,7 +480,7 @@ Dim Sql As String
     
     On Error GoTo eProcesoDuplicarConfeccion
 
-    Conn.BeginTrans
+    conn.BeginTrans
 
     ' tabla de cabecera: forfaits
     Sql = "insert into forfaits (codforfait,nomconfe,observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
@@ -490,7 +490,7 @@ Dim Sql As String
     Sql = Sql & " codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom "
     Sql = Sql & " from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    Conn.Execute Sql
+    conn.Execute Sql
     
     ' tabla de lineas envases: forfaits_envases
     Sql = "insert into forfaits_envases (codforfait,numlinea,codartic,cantidad) "
@@ -498,7 +498,7 @@ Dim Sql As String
     Sql = Sql & " numlinea,codartic,cantidad "
     Sql = Sql & " from forfaits_envases where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    Conn.Execute Sql
+    conn.Execute Sql
     
     ' tabla de lineas de costes: forfaits_costes
     Sql = "insert into forfaits_costes (codforfait,codcoste,importes) "
@@ -506,14 +506,14 @@ Dim Sql As String
     Sql = Sql & " codcoste,importes "
     Sql = Sql & " from forfaits_costes where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    Conn.Execute Sql
+    conn.Execute Sql
     
     ProcesoDuplicarConfeccion = True
-    Conn.CommitTrans
+    conn.CommitTrans
     Exit Function
 
 eProcesoDuplicarConfeccion:
-    Conn.RollbackTrans
+    conn.RollbackTrans
     MuestraError Err.Number, "Proceso Duplicar Confección", Err.Description
 End Function
 
@@ -522,19 +522,22 @@ Private Sub cmdAceptar_Click()
 'Listado de Articulos
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
-Dim cadTabla As String, cOrden As String
+Dim cadTABLA As String, cOrden As String
 Dim campo As String
 Dim Opcion As Byte, numOp As Byte
+
+Dim indRPT As Byte
+Dim nomDocu As String
 
     InicializarVbles
     
     cadNombreRPT = "rConfeccion.rpt"  'Nombre fichero .rpt a Imprimir
-    cadTabla = "forfaits"
+    cadTABLA = "forfaits"
     
     '===================================================
     '============ PARAMETROS ===========================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
     numParam = numParam + 1
     
     
@@ -549,7 +552,7 @@ Dim Opcion As Byte, numOp As Byte
     nHasta = txtNombre(71).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & cadTabla & ".codforfait}"
+        Codigo = "{" & cadTABLA & ".codforfait}"
         TipCod = "T"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHConfeccion= """) Then Exit Sub
     End If
@@ -577,16 +580,20 @@ Dim Opcion As Byte, numOp As Byte
     cadTitulo = "Listado de Confecciones"
 
     If Opcion = 0 Then
-        cadTabla = "forfaits_envases"
-        cadSelect = Replace(cadSelect, "forfaits", "forfaits_envases")
+        cadTABLA = "forfaits_envases"
+        cadselect = Replace(cadselect, "forfaits", "forfaits_envases")
     End If
-    If HayRegParaInforme(cadTabla, cadSelect) Then
+    If HayRegParaInforme(cadTABLA, cadselect) Then
         '[Monica]13/12/2010: caso de costes de confeccion por linea
         If Me.Opcion(6).Value Then
             If CargarParametros Then
-                CambioHorientacionPapel = False
-                cadNombreRPT = "rConfeccion1.rpt"  'Nombre fichero .rpt a Imprimir
-                cadTabla = "forfaits"
+            
+                indRPT = 108 ' Personalizacion del informe de confecciones
+                If PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then
+                    CambioHorientacionPapel = False
+                    cadNombreRPT = nomDocu '"rConfeccion1.rpt"  'Nombre fichero .rpt a Imprimir
+                    cadTABLA = "forfaits"
+                End If
             End If
         End If
        LlamarImprimir
@@ -604,7 +611,7 @@ Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
         
-        Select Case OpcionListado
+        Select Case Opcionlistado
             Case 0
                 PonerFoco txtCodigo(70)
                 Me.Opcion(0).Value = True
@@ -620,8 +627,8 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
-Dim I As Integer
+Dim H As Integer, W As Integer
+Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -630,9 +637,9 @@ Dim I As Integer
 
 
 
-    For I = 27 To 28
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 27 To 28
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
 
     'Ocultar todos los Frames de Formulario
     Me.FrameInfConfecciones.visible = False
@@ -641,14 +648,14 @@ Dim I As Integer
     '###Descomentar
 '    CommitConexion
     
-    Select Case OpcionListado
+    Select Case Opcionlistado
     'LISTADOS DE MANTENIMIENTOS BASICOS
     '---------------------
     Case 0 '0: Listado de Confecciones
-        FrameInfConfeccionesVisible True, h, w
+        FrameInfConfeccionesVisible True, H, W
     
     Case 1 '1: Duplicar Confeccion
-        FrameDuplicarConfeccionesVisible True, h, w
+        FrameDuplicarConfeccionesVisible True, H, W
         
         txtCodigo(0).Text = NumCod
         txtNombre(0).Text = DevuelveValor("select nomconfe from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T"))
@@ -670,7 +677,7 @@ Dim I As Integer
 '    Me.Height = H + 350
 End Sub
 
-Private Sub FrameInfConfeccionesVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameInfConfeccionesVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el listado de clientes
     Me.FrameInfConfecciones.visible = visible
     If visible = True Then
@@ -678,13 +685,13 @@ Private Sub FrameInfConfeccionesVisible(visible As Boolean, ByRef h As Integer, 
         Me.FrameInfConfecciones.Left = 0
         Me.FrameInfConfecciones.Height = 4650
         Me.FrameInfConfecciones.Width = 8240
-        w = Me.FrameInfConfecciones.Width
-        h = Me.FrameInfConfecciones.Height
+        W = Me.FrameInfConfecciones.Width
+        H = Me.FrameInfConfecciones.Height
     End If
 End Sub
 
 
-Private Sub FrameDuplicarConfeccionesVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameDuplicarConfeccionesVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el listado de clientes
     Me.FrameDuplicarConf.visible = visible
     If visible = True Then
@@ -692,8 +699,8 @@ Private Sub FrameDuplicarConfeccionesVisible(visible As Boolean, ByRef h As Inte
         Me.FrameDuplicarConf.Left = 0
         Me.FrameDuplicarConf.Height = 4650
         Me.FrameDuplicarConf.Width = 8240
-        w = Me.FrameDuplicarConf.Width
-        h = Me.FrameDuplicarConf.Height
+        W = Me.FrameDuplicarConf.Width
+        H = Me.FrameDuplicarConf.Height
     End If
 End Sub
 
@@ -752,8 +759,8 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
-Dim codcampo As String, nomcampo As String
+Dim tabla As String
+Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
 Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
@@ -779,22 +786,22 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 End Sub
 
 
-Private Sub ponerFrameConfeccionesVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub ponerFrameConfeccionesVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el informe de Articulos, de tabla: sartic
 Dim b As Boolean
 
     b = True
-    h = 4950
-    w = 8250
+    H = 4950
+    W = 8250
     
-    PonerFrameVisible Me.FrameInfConfecciones, visible, h, w
+    PonerFrameVisible Me.FrameInfConfecciones, visible, H, W
 
 End Sub
 
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
     conSubRPT = False
@@ -815,11 +822,11 @@ Dim devuelve2 As String
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
         devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -841,7 +848,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .EnvioEMail = False
         .NombreRPT = cadNombreRPT
-        .ConSubinforme = True
+        .ConSubInforme = True
         .Opcion = 0 'Opcion
         .CambioHorientacionPapel = CambioHorientacionPapel
         .Show vbModal
@@ -851,10 +858,10 @@ End Sub
 
 Private Function PonerGrupo(numGrupo As Byte, cadgrupo As String) As Byte
 Dim campo As String
-Dim nomcampo As String
+Dim nomCampo As String
 
     campo = "pGroup" & numGrupo & "="
-    nomcampo = "pGroup" & numGrupo & "Name="
+    nomCampo = "pGroup" & numGrupo & "Name="
     PonerGrupo = 0
     
     Select Case cadgrupo
@@ -916,9 +923,9 @@ EComprobar:
     If Err.Number <> 0 Then MuestraError Err.Number, "Comprobar Fechas", Err.Description
 End Function
 
-Private Sub ListadosAlmacen(h As Integer, w As Integer)
+Private Sub ListadosAlmacen(H As Integer, W As Integer)
    'Listado de Artículo
-    ponerFrameConfeccionesVisible True, h, w
+    ponerFrameConfeccionesVisible True, H, W
     Codigo = "{sartic"
     indFrame = 11
     cadTitulo = "Listado de Confecciones"
@@ -962,7 +969,7 @@ Dim Rsx As ADODB.Recordset
     
     
     Set Rsx = New ADODB.Recordset
-    Rsx.Open Sql2, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rsx.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Coste1 = -1
     Coste2 = -1

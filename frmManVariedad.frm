@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -118,7 +118,6 @@ Begin VB.Form frmManVariedad
       _Version        =   393216
       Style           =   1
       Tabs            =   4
-      Tab             =   3
       TabsPerRow      =   6
       TabHeight       =   520
       ShowFocusRect   =   0   'False
@@ -133,39 +132,71 @@ Begin VB.Form frmManVariedad
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmManVariedad.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label1(26)"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label18"
+      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "imgBuscar(0)"
+      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "imgBuscar(1)"
+      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "Label5"
+      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Label20"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "imgBuscar(2)"
+      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).Control(7)=   "imgBuscar(4)"
+      Tab(0).Control(7).Enabled=   0   'False
       Tab(0).Control(8)=   "Label26"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "imgBuscar(9)"
+      Tab(0).Control(9).Enabled=   0   'False
       Tab(0).Control(10)=   "Label27"
+      Tab(0).Control(10).Enabled=   0   'False
       Tab(0).Control(11)=   "Label28"
+      Tab(0).Control(11).Enabled=   0   'False
       Tab(0).Control(12)=   "imgBuscar(10)"
+      Tab(0).Control(12).Enabled=   0   'False
       Tab(0).Control(13)=   "imgAyuda(0)"
+      Tab(0).Control(13).Enabled=   0   'False
       Tab(0).Control(14)=   "Label1(1)"
+      Tab(0).Control(14).Enabled=   0   'False
       Tab(0).Control(15)=   "Label1(2)"
+      Tab(0).Control(15).Enabled=   0   'False
       Tab(0).Control(16)=   "text2(2)"
+      Tab(0).Control(16).Enabled=   0   'False
       Tab(0).Control(17)=   "text1(2)"
+      Tab(0).Control(17).Enabled=   0   'False
       Tab(0).Control(18)=   "text1(4)"
+      Tab(0).Control(18).Enabled=   0   'False
       Tab(0).Control(19)=   "text1(3)"
+      Tab(0).Control(19).Enabled=   0   'False
       Tab(0).Control(20)=   "text2(3)"
+      Tab(0).Control(20).Enabled=   0   'False
       Tab(0).Control(21)=   "text1(9)"
+      Tab(0).Control(21).Enabled=   0   'False
       Tab(0).Control(22)=   "text2(9)"
+      Tab(0).Control(22).Enabled=   0   'False
       Tab(0).Control(23)=   "Frame3"
+      Tab(0).Control(23).Enabled=   0   'False
       Tab(0).Control(24)=   "text2(26)"
+      Tab(0).Control(24).Enabled=   0   'False
       Tab(0).Control(25)=   "text1(26)"
+      Tab(0).Control(25).Enabled=   0   'False
       Tab(0).Control(26)=   "text1(27)"
+      Tab(0).Control(26).Enabled=   0   'False
       Tab(0).Control(27)=   "text2(27)"
+      Tab(0).Control(27).Enabled=   0   'False
       Tab(0).Control(28)=   "Frame4"
+      Tab(0).Control(28).Enabled=   0   'False
       Tab(0).Control(29)=   "Frame6"
+      Tab(0).Control(29).Enabled=   0   'False
       Tab(0).Control(30)=   "Combo1(1)"
+      Tab(0).Control(30).Enabled=   0   'False
       Tab(0).Control(31)=   "Combo1(2)"
+      Tab(0).Control(31).Enabled=   0   'False
       Tab(0).ControlCount=   32
       TabCaption(1)   =   "Calibres"
       TabPicture(1)   =   "frmManVariedad.frx":0028
@@ -179,7 +210,7 @@ Begin VB.Form frmManVariedad
       Tab(2).ControlCount=   1
       TabCaption(3)   =   "Recolección"
       TabPicture(3)   =   "frmManVariedad.frx":0060
-      Tab(3).ControlEnabled=   -1  'True
+      Tab(3).ControlEnabled=   0   'False
       Tab(3).Control(0)=   "Label7"
       Tab(3).Control(0).Enabled=   0   'False
       Tab(3).Control(1)=   "Label6"
@@ -254,7 +285,7 @@ Begin VB.Form frmManVariedad
       Begin VB.ComboBox Combo1 
          Height          =   315
          Index           =   2
-         Left            =   -67440
+         Left            =   7560
          Style           =   2  'Dropdown List
          TabIndex        =   134
          Tag             =   "Tipo Variedad|N|N|||variedades|tipovarie2||N|"
@@ -264,7 +295,7 @@ Begin VB.Form frmManVariedad
       Begin VB.ComboBox Combo1 
          Height          =   315
          Index           =   1
-         Left            =   -67440
+         Left            =   7560
          Style           =   2  'Dropdown List
          TabIndex        =   12
          Tag             =   "Tipo Mercancia|N|N|||variedades|tipovariedad||N|"
@@ -274,7 +305,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Frame Frame6 
          Caption         =   "Cuenta Contable Comisionistas"
          Height          =   870
-         Left            =   -69060
+         Left            =   5940
          TabIndex        =   124
          Top             =   3510
          Width           =   5595
@@ -319,7 +350,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Frame Frame5 
          Caption         =   "Cuentas Contables"
          Height          =   2385
-         Left            =   4140
+         Left            =   -70860
          TabIndex        =   117
          Top             =   1890
          Width           =   7185
@@ -327,7 +358,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   37
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   114
             Tag             =   "Cta.Acarreo Recolección|T|S|||variedades|ctaacarecol|||"
@@ -339,7 +370,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   37
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   131
             Top             =   1860
             Width           =   3210
@@ -349,7 +380,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   36
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   129
             Top             =   1530
             Width           =   3210
@@ -358,7 +389,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   36
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   113
             Tag             =   "Cta.Facturas Transporte|T|S|||variedades|ctatransporte|||"
@@ -369,7 +400,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   35
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   112
             Tag             =   "Cta.Compras Terceros|T|S|||variedades|ctasiniestros|||"
@@ -381,7 +412,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   35
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   127
             Top             =   1215
             Width           =   3210
@@ -391,7 +422,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   33
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   123
             Top             =   900
             Width           =   3210
@@ -401,7 +432,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   32
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   122
             Top             =   585
             Width           =   3210
@@ -411,7 +442,7 @@ Begin VB.Form frmManVariedad
             Enabled         =   0   'False
             Height          =   285
             Index           =   31
-            Left            =   3690
+            Left            =   3810
             TabIndex        =   121
             Top             =   240
             Width           =   3180
@@ -420,7 +451,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   33
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   111
             Tag             =   "Cta.Compras Terceros|T|S|||variedades|ctacomtercero|||"
@@ -431,7 +462,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   32
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   110
             Tag             =   "Cta Liquidación|T|S|||variedades|ctaliquidacion|||"
@@ -442,7 +473,7 @@ Begin VB.Form frmManVariedad
             Alignment       =   1  'Right Justify
             Height          =   285
             Index           =   31
-            Left            =   2175
+            Left            =   2295
             MaxLength       =   35
             TabIndex        =   109
             Tag             =   "Cuenta Anticipos|T|S|||variedades|ctaanticipo|||"
@@ -550,7 +581,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   30
-         Left            =   1860
+         Left            =   -73140
          MaxLength       =   35
          TabIndex        =   100
          Tag             =   "Rdto Maximo|N|S|||variedades|rdtomaximo|###,###,##0||"
@@ -560,7 +591,7 @@ Begin VB.Form frmManVariedad
       Begin VB.ComboBox Combo1 
          Height          =   315
          Index           =   0
-         Left            =   1875
+         Left            =   -73125
          TabIndex        =   90
          Tag             =   "Clasificación|N|N|0|1|variedades|tipoclasifica|0|N|"
          Text            =   "Combo1"
@@ -571,7 +602,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   20
-         Left            =   9930
+         Left            =   -65070
          MaxLength       =   35
          TabIndex        =   108
          Tag             =   "Euros/kg hanegada|N|S|||variedades|eurhaneg|0.0000||"
@@ -582,7 +613,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   19
-         Left            =   9930
+         Left            =   -65070
          MaxLength       =   35
          TabIndex        =   107
          Tag             =   "Euros/kg tria|N|S|||variedades|eurotria|0.0000||"
@@ -593,7 +624,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   18
-         Left            =   6300
+         Left            =   -68580
          MaxLength       =   35
          TabIndex        =   106
          Tag             =   "Euros/kg Seg.Social|N|S|||variedades|eursegsoc|0.0000||"
@@ -604,7 +635,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   17
-         Left            =   6300
+         Left            =   -68580
          MaxLength       =   35
          TabIndex        =   105
          Tag             =   "Euros/kg mano obra|N|S|||variedades|eurmanob|0.0000||"
@@ -615,7 +646,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   16
-         Left            =   6300
+         Left            =   -68580
          MaxLength       =   35
          TabIndex        =   104
          Tag             =   "Euros/kg recolecion|N|S|||variedades|eurecole|0.0000||"
@@ -626,7 +657,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   15
-         Left            =   6300
+         Left            =   -68580
          MaxLength       =   35
          TabIndex        =   103
          Tag             =   "Euros/kg destajo|N|S|||variedades|eurdesta|0.0000||"
@@ -637,7 +668,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   14
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   99
          Tag             =   "Porc.Destrio|N|S|||variedades|porcdest|##0.00||"
@@ -648,7 +679,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   13
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   98
          Tag             =   "Porc.Mermas|N|S|||variedades|porcmerm|##0.00||"
@@ -659,7 +690,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   12
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   97
          Tag             =   "Porc.Industria|N|S|||variedades|porcindu|##0.00||"
@@ -670,7 +701,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   8
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   96
          Tag             =   "Arroba/Jornal|N|S|0|999.99|variedades|arrobjor|##0.00||"
@@ -681,7 +712,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   11
-         Left            =   9915
+         Left            =   -65085
          MaxLength       =   35
          TabIndex        =   102
          Tag             =   "Factor Cor.Destrio|N|S|0|999.99|variedades|facorrme|##0.00||"
@@ -692,7 +723,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   10
-         Left            =   9915
+         Left            =   -65085
          MaxLength       =   35
          TabIndex        =   101
          Tag             =   "Factor Cor.Destrio|N|S|0|999.99|variedades|facorrde|##0.00||"
@@ -703,7 +734,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   7
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   95
          Tag             =   "Max Kilos Cajon|N|S|0|999.99|variedades|maxkgcaj|##0.00||"
@@ -714,7 +745,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   6
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   93
          Tag             =   "Min Kilos Cajon|N|S|0|999.99|variedades|minkgcaj|##0.00||"
@@ -725,7 +756,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   5
-         Left            =   1845
+         Left            =   -73155
          MaxLength       =   35
          TabIndex        =   92
          Tag             =   "Kilos Cajon|N|S|0|999.99|variedades|kgscajon|##0.00||"
@@ -1044,7 +1075,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Frame Frame4 
          Caption         =   "Cuentas Contables Transporte"
          Height          =   1095
-         Left            =   -69060
+         Left            =   5940
          TabIndex        =   58
          Top             =   2295
          Width           =   5595
@@ -1128,7 +1159,7 @@ Begin VB.Form frmManVariedad
          Enabled         =   0   'False
          Height          =   285
          Index           =   27
-         Left            =   -66855
+         Left            =   8145
          TabIndex        =   56
          Top             =   1890
          Width           =   3345
@@ -1137,7 +1168,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   27
-         Left            =   -67620
+         Left            =   7380
          MaxLength       =   4
          TabIndex        =   13
          Tag             =   "Centro Coste|T|S|||variedades|codccost|||"
@@ -1148,7 +1179,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   26
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   2
          TabIndex        =   5
          Tag             =   "Codigo IVA|N|N|0|99|variedades|codigiva|00||"
@@ -1160,7 +1191,7 @@ Begin VB.Form frmManVariedad
          Enabled         =   0   'False
          Height          =   285
          Index           =   26
-         Left            =   -72660
+         Left            =   2340
          TabIndex        =   54
          Top             =   1545
          Width           =   3435
@@ -1168,7 +1199,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Frame Frame3 
          Caption         =   "Cuentas Contables Ventas"
          Height          =   2085
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   42
          Top             =   2295
          Width           =   5685
@@ -1364,7 +1395,7 @@ Begin VB.Form frmManVariedad
          Enabled         =   0   'False
          Height          =   285
          Index           =   9
-         Left            =   -72660
+         Left            =   2340
          TabIndex        =   41
          Top             =   1230
          Width           =   3435
@@ -1373,7 +1404,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   9
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   3
          TabIndex        =   4
          Tag             =   "Tipo Unidad|N|S|||variedades|codunida|00||"
@@ -1385,7 +1416,7 @@ Begin VB.Form frmManVariedad
          Enabled         =   0   'False
          Height          =   285
          Index           =   3
-         Left            =   -72660
+         Left            =   2340
          TabIndex        =   38
          Top             =   870
          Width           =   3435
@@ -1394,7 +1425,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   3
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   3
          TabIndex        =   3
          Tag             =   "Clase|N|N|0|999|variedades|codclase|000||"
@@ -1621,7 +1652,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   4
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   6
          TabIndex        =   6
          Tag             =   "C.Conselleria|N|N|||variedades|codconse|||"
@@ -1632,7 +1663,7 @@ Begin VB.Form frmManVariedad
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   2
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   3
          TabIndex        =   2
          Tag             =   "Producto|N|N|0|999|variedades|codprodu|000||"
@@ -1644,7 +1675,7 @@ Begin VB.Form frmManVariedad
          Enabled         =   0   'False
          Height          =   285
          Index           =   2
-         Left            =   -72660
+         Left            =   2340
          TabIndex        =   23
          Top             =   495
          Width           =   3435
@@ -1653,7 +1684,7 @@ Begin VB.Form frmManVariedad
          Caption         =   "Tipo Variedad"
          Height          =   255
          Index           =   2
-         Left            =   -68910
+         Left            =   6090
          TabIndex        =   135
          Top             =   930
          Width           =   1380
@@ -1662,7 +1693,7 @@ Begin VB.Form frmManVariedad
          Caption         =   "Tipo de Mercancia"
          Height          =   255
          Index           =   1
-         Left            =   -68910
+         Left            =   6090
          TabIndex        =   133
          Top             =   510
          Width           =   1380
@@ -1670,7 +1701,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgAyuda 
          Height          =   240
          Index           =   0
-         Left            =   -65970
+         Left            =   9030
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
@@ -1680,7 +1711,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label31 
          Caption         =   "Rdto Máximo Hda."
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   94
          Top             =   3990
          Width           =   1320
@@ -1689,7 +1720,7 @@ Begin VB.Form frmManVariedad
          Caption         =   "Clasificación"
          Height          =   255
          Index           =   19
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   91
          Top             =   900
          Width           =   1110
@@ -1697,7 +1728,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label17 
          Caption         =   "Euros/kg Hanegada"
          Height          =   255
-         Left            =   8025
+         Left            =   -66975
          TabIndex        =   89
          Top             =   855
          Width           =   1770
@@ -1705,7 +1736,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label16 
          Caption         =   "Euros/kg Tria"
          Height          =   255
-         Left            =   8025
+         Left            =   -66975
          TabIndex        =   88
          Top             =   540
          Width           =   1770
@@ -1713,23 +1744,23 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label15 
          Caption         =   "Euros/kg Seg.Social"
          Height          =   255
-         Left            =   4455
+         Left            =   -70545
          TabIndex        =   87
          Top             =   1500
-         Width           =   1770
+         Width           =   2010
       End
       Begin VB.Label Label14 
          Caption         =   "Euros/kg Mano Obra"
          Height          =   255
-         Left            =   4455
+         Left            =   -70545
          TabIndex        =   86
          Top             =   1170
-         Width           =   1770
+         Width           =   1950
       End
       Begin VB.Label Label13 
          Caption         =   "Euros/kg Recolec."
          Height          =   255
-         Left            =   4455
+         Left            =   -70545
          TabIndex        =   85
          Top             =   825
          Width           =   2040
@@ -1737,15 +1768,15 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label12 
          Caption         =   "Euros/kg Destajo"
          Height          =   255
-         Left            =   4455
+         Left            =   -70545
          TabIndex        =   84
          Top             =   510
-         Width           =   1410
+         Width           =   1680
       End
       Begin VB.Label Label11 
          Caption         =   "Porcentaje Destrio"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   83
          Top             =   3540
          Width           =   1410
@@ -1753,7 +1784,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label10 
          Caption         =   "Porcentaje Mermas"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   82
          Top             =   3225
          Width           =   1410
@@ -1761,7 +1792,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label9 
          Caption         =   "Porcentaje Industria"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   81
          Top             =   2940
          Width           =   1680
@@ -1769,7 +1800,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label3 
          Caption         =   "Arroba/Jornal"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   80
          Top             =   2430
          Width           =   1410
@@ -1777,7 +1808,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label2 
          Caption         =   "Factor Corrección Mermas"
          Height          =   255
-         Left            =   8025
+         Left            =   -66975
          TabIndex        =   79
          Top             =   1485
          Width           =   1995
@@ -1785,7 +1816,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label8 
          Caption         =   "Factor Correción Destrio"
          Height          =   255
-         Left            =   8025
+         Left            =   -66975
          TabIndex        =   78
          Top             =   1170
          Width           =   1860
@@ -1793,7 +1824,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label19 
          Caption         =   "Max.Kilos / Cajon"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   77
          Top             =   2025
          Width           =   1410
@@ -1801,7 +1832,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label6 
          Caption         =   "Min.Kilos / Cajon"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   76
          Top             =   1665
          Width           =   1230
@@ -1809,7 +1840,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label7 
          Caption         =   "Kilos / Cajon"
          Height          =   255
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   75
          Top             =   1260
          Width           =   1095
@@ -1817,7 +1848,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   10
-         Left            =   -67890
+         Left            =   7110
          ToolTipText     =   "Buscar Centro Coste"
          Top             =   1890
          Width           =   240
@@ -1825,7 +1856,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label28 
          Caption         =   "Centro Coste"
          Height          =   255
-         Left            =   -68925
+         Left            =   6075
          TabIndex        =   57
          Top             =   1920
          Width           =   1005
@@ -1833,7 +1864,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label27 
          Caption         =   "Código IVA"
          Height          =   255
-         Left            =   -74685
+         Left            =   315
          TabIndex        =   55
          Top             =   1560
          Width           =   915
@@ -1841,7 +1872,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   9
-         Left            =   -73650
+         Left            =   1350
          ToolTipText     =   "Buscar Cta.Contable"
          Top             =   1530
          Width           =   240
@@ -1849,7 +1880,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label26 
          Caption         =   "Código EAN"
          Height          =   255
-         Left            =   -65100
+         Left            =   9900
          TabIndex        =   53
          Top             =   540
          Width           =   915
@@ -1857,7 +1888,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   330
          Index           =   4
-         Left            =   -64155
+         Left            =   10845
          ToolTipText     =   "Códigos EAN asociados"
          Top             =   495
          Width           =   375
@@ -1865,7 +1896,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   -73650
+         Left            =   1350
          ToolTipText     =   "Buscar T.Unidad"
          Top             =   1215
          Width           =   240
@@ -1873,7 +1904,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label20 
          Caption         =   "Tipo Unidad"
          Height          =   255
-         Left            =   -74685
+         Left            =   315
          TabIndex        =   40
          Top             =   1245
          Width           =   915
@@ -1881,7 +1912,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label5 
          Caption         =   "Clase"
          Height          =   255
-         Left            =   -74685
+         Left            =   315
          TabIndex        =   39
          Top             =   855
          Width           =   735
@@ -1889,7 +1920,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   -73650
+         Left            =   1350
          ToolTipText     =   "Buscar Clase"
          Top             =   855
          Width           =   240
@@ -1897,7 +1928,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   -73650
+         Left            =   1350
          ToolTipText     =   "Buscar Producto"
          Top             =   495
          Width           =   240
@@ -1905,7 +1936,7 @@ Begin VB.Form frmManVariedad
       Begin VB.Label Label18 
          Caption         =   "Producto"
          Height          =   255
-         Left            =   -74685
+         Left            =   315
          TabIndex        =   31
          Top             =   480
          Width           =   735
@@ -1914,7 +1945,7 @@ Begin VB.Form frmManVariedad
          Caption         =   "Cód.Consellería"
          Height          =   255
          Index           =   26
-         Left            =   -74685
+         Left            =   315
          TabIndex        =   30
          Top             =   1920
          Width           =   1320
@@ -2222,7 +2253,7 @@ Private HaDevueltoDatos As Boolean
 
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
-Dim Indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
+Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
 Dim CadB As String
 
 Private Sub cmbAux_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -2428,6 +2459,19 @@ Dim i As Integer
         Text1(33).Tag = "Cta.Liquidación Industria|T|S|||variedades|ctacomtercero|||"
     End If
     
+    '[Monica]15/03/2016: Si es Abn ponemos los gastos molturacion y envasado en la variedad
+    If vParamAplic.Cooperativa = 1 Then
+        Label14.Caption = "Euros/kg Gtos.Molturación"
+        Text1(17).Tag = "Euros/kg Gtos.Molturación|N|S|||variedades|eurmanob|0.0000||"
+        Label15.Caption = "Euros/litro Gtos.Envasado"
+        Text1(18).Tag = "Euros/kg Gtos.Envasado|N|S|||variedades|eursegsoc|0.0000||"
+        Label12.Caption = "Precio Venta"
+        Text1(15).Tag = "Precio Venta|N|S|||variedades|eurdesta|0.0000||"
+        Label13.Caption = "Precio Excedido"
+        Text1(16).Tag = "Precio Excedido|N|S|||variedades|eurecole|0.0000||"
+    End If
+    
+    
     
 '    If DatosADevolverBusqueda = "" Then
 '        PonerModo 0
@@ -2616,39 +2660,39 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim Tabla As String
+Dim Sql As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'CALIBRES
-            SQL = "SELECT codvarie, codcalib, nomcalib, nomcalab"
-            SQL = SQL & " FROM calibres "
+            Sql = "SELECT codvarie, codcalib, nomcalib, nomcalab"
+            Sql = Sql & " FROM calibres "
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " WHERE calibres.codvarie = -1"
+                Sql = Sql & " WHERE calibres.codvarie = -1"
             End If
-            SQL = SQL & " ORDER BY calibres.codcalib"
+            Sql = Sql & " ORDER BY calibres.codcalib"
                
         Case 1 'CALIDADES
-            SQL = "SELECT rcalidad.codvarie,codcalid,nomcalid, nomcalab, tipcalid, CASE rcalidad.tipcalid WHEN 0 THEN ""Normal"" WHEN 1 THEN ""Destrio (Sólo una)"" WHEN 2 THEN ""Venta Campo"" END,  "
-            SQL = SQL & "rcalidad.tipcalid1, "
-            SQL = SQL & " CASE rcalidad.tipcalid1 WHEN 0 THEN ""Comercial"" WHEN 1 THEN ""No Comercial"" WHEN 2 THEN ""Retirada"" END, "
-            SQL = SQL & " nomcalibrador1, nomcalibrador2, gastosrec, IF(gastosrec=1,'*','') as dgastorec "
-            SQL = SQL & " FROM rcalidad"
+            Sql = "SELECT rcalidad.codvarie,codcalid,nomcalid, nomcalab, tipcalid, CASE rcalidad.tipcalid WHEN 0 THEN ""Normal"" WHEN 1 THEN ""Destrio (Sólo una)"" WHEN 2 THEN ""Venta Campo"" END,  "
+            Sql = Sql & "rcalidad.tipcalid1, "
+            Sql = Sql & " CASE rcalidad.tipcalid1 WHEN 0 THEN ""Comercial"" WHEN 1 THEN ""No Comercial"" WHEN 2 THEN ""Retirada"" END, "
+            Sql = Sql & " nomcalibrador1, nomcalibrador2, gastosrec, IF(gastosrec=1,'*','') as dgastorec "
+            Sql = Sql & " FROM rcalidad"
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " where codvarie = -1"
+                Sql = Sql & " where codvarie = -1"
             End If
             
-            SQL = SQL & " ORDER BY codcalid"
+            Sql = Sql & " ORDER BY codcalid"
             
     End Select
     
-    MontaSQLCarga = SQL
+    MontaSQLCarga = Sql
 End Function
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -2674,21 +2718,21 @@ End Sub
 
 Private Sub frmCCos_DatoSeleccionado(CadenaSeleccion As String)
 'Centro de Coste de la contabilidad
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
-    text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
-    text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 End Sub
 
 Private Sub frmIva_DatoSeleccionado(CadenaSeleccion As String)
 'Tipo de iva de la contabilidad
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigiva
-    FormateaCampo Text1(Indice)
-    text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Porceiva
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigiva
+    FormateaCampo Text1(indice)
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Porceiva
 End Sub
 
 Private Sub frmTra_Actualizar(vValor As String)
@@ -2908,7 +2952,7 @@ Private Sub cmdRegresar_Click()
 Dim cad As String
 Dim Aux As String
 Dim i As Integer
-Dim J As Integer
+Dim j As Integer
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
@@ -2918,12 +2962,12 @@ Dim J As Integer
     cad = ""
     i = 0
     Do
-        J = i + 1
-        i = InStr(J, DatosADevolverBusqueda, "|")
+        j = i + 1
+        i = InStr(j, DatosADevolverBusqueda, "|")
         If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, i - J)
-            J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+            Aux = Mid(DatosADevolverBusqueda, j, i - j)
+            j = Val(Aux)
+            cad = cad & Text1(j).Text & "|"
         End If
     Loop Until i = 0
     RaiseEvent DatoSeleccionado(cad)
@@ -3193,7 +3237,7 @@ End Sub
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 'Dim Datos As String
 
     On Error GoTo EDatosOK
@@ -3210,8 +3254,8 @@ Dim SQL As String
     
     If b Then
         If vEmpresa.TieneAnalitica Then 'hay contab. analitica
-             SQL = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", Text1(27), "T")
-             If SQL = "" Then
+             Sql = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", Text1(27), "T")
+             If Sql = "" Then
                 MsgBox "No existe el Centro de Coste. Reintroduzca.", vbExclamation
                 PonerFoco Text1(27)
                 b = False
@@ -3449,9 +3493,9 @@ Dim cerrar As Boolean
     If cerrar Then Unload Me
 End Sub
 
-Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgBuscar_Click (Indice)
+    imgBuscar_Click (indice)
 End Sub
 
 '************* LLINIES: ****************************
@@ -3471,7 +3515,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -3498,23 +3542,23 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'calibres
-            SQL = "¿Seguro que desea eliminar el Calibre?"
-            SQL = SQL & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
-            SQL = SQL & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!nomcalib
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar el Calibre?"
+            Sql = Sql & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
+            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!nomcalib
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM calibres"
-                SQL = SQL & vWhere & " AND codcalib= " & AdoAux(Index).Recordset!codcalib
+                Sql = "DELETE FROM calibres"
+                Sql = Sql & vWhere & " AND codcalib= " & AdoAux(Index).Recordset!codcalib
             End If
             
         Case 1 'variedades anecoop
-            SQL = "¿Seguro que desea eliminar la Variedad Anecoop?"
-            SQL = SQL & vbCrLf & "Código: " & AdoAux(Index).Recordset!numlinea
-            SQL = SQL & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codvaane
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar la Variedad Anecoop?"
+            Sql = Sql & vbCrLf & "Código: " & AdoAux(Index).Recordset!numlinea
+            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codvaane
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM variane"
-                SQL = SQL & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = "DELETE FROM variane"
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
             End If
             
     End Select
@@ -3522,7 +3566,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute SQL
+        conn.Execute Sql
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
         If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
@@ -3615,7 +3659,7 @@ End Sub
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
     Dim i As Integer
-    Dim J As Integer
+    Dim j As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
@@ -3652,18 +3696,18 @@ Private Sub BotonModificarLinea(Index As Integer)
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 'calibres
         
-            For J = 0 To 3
-                txtAux(J).Text = DataGridAux(Index).Columns(J).Text
-            Next J
+            For j = 0 To 3
+                txtAux(j).Text = DataGridAux(Index).Columns(j).Text
+            Next j
             
             For i = 0 To 1
                 BloquearTxt txtAux(i), False
             Next i
             
         Case 1 'variedades anecoop
-            For J = 8 To 10
-                txtAux(J).Text = DataGridAux(Index).Columns(J - 8).Text
-            Next J
+            For j = 8 To 10
+                txtAux(j).Text = DataGridAux(Index).Columns(j - 8).Text
+            Next j
             
             For i = 8 To 9
                 BloquearTxt txtAux(i), False
@@ -3750,8 +3794,8 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Function DatosOkLlin(nomframe As String) As Boolean
-Dim RS As ADODB.Recordset
-Dim SQL As String
+Dim Rs As ADODB.Recordset
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -3821,29 +3865,29 @@ Dim numNivel As Byte
             If vParamAplic.NumeroConta = 0 Then Exit Sub
         
             If Index = 3 Then
-                Indice = Index + 18
+                indice = Index + 18
             Else
-                Indice = Index + 17
+                indice = Index + 17
             End If
             
             Set frmCtas = New frmCtasConta
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = Text1(Indice).Text
+            frmCtas.CodigoActual = Text1(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
             
        Case 13, 14, 15 ' cuentas contables de recoleccion
             If vParamAplic.NumeroConta = 0 Then Exit Sub
         
-            Indice = Index + 18
+            indice = Index + 18
             
             Set frmCtas = New frmCtasConta
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = Text1(Indice).Text
+            frmCtas.CodigoActual = Text1(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
        
                    
        Case 4 'codigos ean de esa variedad
@@ -3855,48 +3899,48 @@ Dim numNivel As Byte
              
        Case 9  'Porcentaje iva
             If vParamAplic.NumeroConta = 0 Then Exit Sub
-            Indice = 26
+            indice = 26
             Set frmIva = New frmTipIVAConta
             frmIva.DeConsulta = True
             frmIva.DatosADevolverBusqueda = "0|1|2|"
-            frmIva.CodigoActual = Text1(Indice).Text
+            frmIva.CodigoActual = Text1(indice).Text
             frmIva.Show vbModal
             Set frmIva = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
        
        Case 10 'Centro de Coste
             If vParamAplic.NumeroConta = 0 Then Exit Sub
-            Indice = 27
+            indice = 27
             Set frmCCos = New frmCCosConta
             frmCCos.DatosADevolverBusqueda = "0|1|"
-            frmCCos.CodigoActual = Text1(Indice).Text
+            frmCCos.CodigoActual = Text1(indice).Text
             frmCCos.Show vbModal
             Set frmCCos = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
     
         Case 11, 12 'cuentas contables de transporte
             If vParamAplic.NumeroConta = 0 Then Exit Sub
         
-            Indice = Index + 17
+            indice = Index + 17
             
             Set frmCtas = New frmCtasConta
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = Text1(Indice).Text
+            frmCtas.CodigoActual = Text1(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
     
         Case 16, 17, 18, 19
             If vParamAplic.NumeroConta = 0 Then Exit Sub
         
-            Indice = Index + 18
+            indice = Index + 18
             
             Set frmCtas = New frmCtasConta
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = Text1(Indice).Text
+            frmCtas.CodigoActual = Text1(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco Text1(Indice)
+            PonerFoco Text1(indice)
     
     End Select
     

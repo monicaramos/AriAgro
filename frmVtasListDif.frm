@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasListDif 
    BorderStyle     =   3  'Fixed Dialog
@@ -393,7 +393,7 @@ InicializarVbles
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     '======== FORMULA  ====================================
@@ -423,7 +423,7 @@ InicializarVbles
     
         frmMensVariedad.OpcionMensaje = 21
         frmMensVariedad.Label5 = "Variedades"
-        frmMensVariedad.cadWhere = vsqlVariedad
+        frmMensVariedad.cadWHERE = vsqlVariedad
         frmMensVariedad.Show vbModal
     
         Set frmMensVariedad = Nothing
@@ -957,7 +957,9 @@ Dim Destrio As Long
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and rhisfruta.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
     '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    If Variedades <> "" Then
+        Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    End If
     
     Sql = Sql & " group by 1,2 "
     Sql = Sql & " order by 1,2 "
@@ -1017,7 +1019,9 @@ Dim Destrio As Long
         If txtCodigo(5).Text <> "" Then Sql = Sql & " and rentradas.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
         
         '[Monica]15/12/2014: punteo de variedades
-        Sql = Sql & " and rentradas.codvarie " & Variedades
+        If Variedades <> "" Then
+            Sql = Sql & " and rentradas.codvarie " & Variedades
+        End If
         
         Sql = Sql & " group by 1,2 "
         Sql = Sql & " order by 1,2 "
@@ -1061,7 +1065,9 @@ Dim Destrio As Long
         If txtCodigo(5).Text <> "" Then Sql = Sql & " and rclasifica.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
         
         '[Monica]15/12/2014: punteo de variedades
-        Sql = Sql & " and rclasifica.codvarie " & Variedades
+        If Variedades <> "" Then
+            Sql = Sql & " and rclasifica.codvarie " & Variedades
+        End If
         
         Sql = Sql & " group by 1,2 "
         Sql = Sql & " order by 1,2 "
@@ -1109,7 +1115,9 @@ Dim Destrio As Long
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and albaran_variedad.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
     '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and albaran_variedad.codvarie " & Variedades
+    If Variedades <> "" Then
+        Sql = Sql & " and albaran_variedad.codvarie " & Variedades
+    End If
     
     Sql = Sql & " group by 1,2 "
     Sql = Sql & " order by 1,2 "
@@ -1207,7 +1215,9 @@ Dim Nregs As Long
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and rhisfruta.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
     '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    If Variedades <> "" Then
+        Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    End If
     
     Nregs = TotalRegistrosConsulta(Sql)
     
@@ -1221,7 +1231,9 @@ Dim Nregs As Long
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and albaran_variedad.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
     '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    If Variedades <> "" Then
+        Sql = Sql & " and albaran_variedad.codvarie " & Variedades
+    End If
     
     
     Nregs = Nregs + TotalRegistrosConsulta(Sql)
@@ -1247,8 +1259,10 @@ Dim Nregs As Long
     If txtCodigo(4).Text <> "" Then Sql = Sql & " and rhisfruta.codvarie >= " & DBSet(txtCodigo(4).Text, "N")
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and rhisfruta.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
-    '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    '[Monica]15/12/2014: punteo de
+    If Variedades <> "" Then
+        Sql = Sql & " and rhisfruta.codvarie " & Variedades
+    End If
     Sql = Sql & " order by 1,2 "
     
     Set Rs = New ADODB.Recordset
@@ -1309,7 +1323,9 @@ Dim Nregs As Long
     If txtCodigo(5).Text <> "" Then Sql = Sql & " and albaran_variedad.codvarie <= " & DBSet(txtCodigo(5).Text, "N")
     
     '[Monica]15/12/2014: punteo de variedades
-    Sql = Sql & " and albaran_variedad.codvarie " & Variedades
+    If Variedades <> "" Then
+        Sql = Sql & " and albaran_variedad.codvarie " & Variedades
+    End If
     
     Sql = Sql & " order by 1,2 "
     
@@ -1321,20 +1337,20 @@ Dim Nregs As Long
         IncrementarProgresNew Pb1, 1
     
         Sql2 = "select sum(facturas_variedad.impornet) from facturas_variedad where numalbar = " & DBSet(Rs!NumAlbar, "N")
-        Sql2 = Sql2 & " and numlinealbar = " & DBSet(Rs!NumLinea, "N")
+        Sql2 = Sql2 & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
         
         ImporteFacturado = DevuelveValor(Sql2)
         
         If ImporteFacturado = 0 Then
             If DBLet(Rs!preciodef, "N") = 0 Then
-                ImporteFacturado = Round2(DBLet(Rs!PesoNeto, "N") * DBLet(Rs!preciopro, "N"), 2)
+                ImporteFacturado = Round2(DBLet(Rs!Pesoneto, "N") * DBLet(Rs!preciopro, "N"), 2)
             Else
-                ImporteFacturado = Round2(DBLet(Rs!PesoNeto, "N") * DBLet(Rs!preciodef, "N"), 2)
+                ImporteFacturado = Round2(DBLet(Rs!Pesoneto, "N") * DBLet(Rs!preciodef, "N"), 2)
             End If
         End If
         
         '[Monica]12/06/2013: al importe facturado he de eliminarle los gastos
-        ImporteFacturado = ImporteFacturado - CalcularGastos(Rs!NumAlbar, Rs!NumLinea)
+        ImporteFacturado = ImporteFacturado - CalcularGastos(Rs!NumAlbar, Rs!numlinea)
         
         
         SQL1 = "select count(*) from tmpinfventas where codusu = " & vUsu.Codigo & " and "

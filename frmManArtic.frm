@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -1425,7 +1425,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim cad As String, Indicador As String
 Dim bol As Boolean
-Dim codigo As String
+Dim Codigo As String
 
     Screen.MousePointer = vbHourglass
     
@@ -1438,9 +1438,9 @@ Dim codigo As String
         Case 3 'INSERTAR
             If DatosOk Then
                 If InsertarDesdeForm2(Me, 1) Then
-                    codigo = Text1(0).Text
+                    Codigo = Text1(0).Text
                     InsetarArticulosPorAlmacen
-                    PosicionarData codigo
+                    PosicionarData Codigo
                     CargaGrid 0, True
                     PonerModo 2
                 End If
@@ -1577,7 +1577,7 @@ Dim i As Integer
     'Mirem com està guardat el valor del check
     chkVistaPrevia(0).Value = CheckValueLeer(Name)
     
-    Data1.ConnectionString = conn
+    Data1.ConnectionString = Conn
     '***** cambiar el nombre de la PK de la cabecera *************
     Data1.RecordSource = "Select * from " & NombreTabla & " where codartic=-1"
     Data1.Refresh
@@ -1600,7 +1600,7 @@ Private Sub LimpiarCampos()
     
     limpiar Me   'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
-    chkCtrStock(0).Value = 0
+    chkctrstock(0).Value = 0
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -1669,7 +1669,7 @@ Dim b As Boolean
     BloquearImgBuscar Me, Modo, ModoLineas
     BloquearImgFec Me, 0, Modo
     BloquearImgFec Me, 1, Modo
-    BloquearChk chkCtrStock(0), (Modo = 0 Or Modo = 2 Or Modo = 5)
+    BloquearChk chkctrstock(0), (Modo = 0 Or Modo = 2 Or Modo = 5)
     
     chkVistaPrevia(0).Enabled = (Modo <= 2)
     
@@ -1769,7 +1769,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2090,7 +2090,7 @@ Private Sub cmdRegresar_Click()
 Dim cad As String
 Dim Aux As String
 Dim i As Integer
-Dim J As Integer
+Dim j As Integer
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
@@ -2100,12 +2100,12 @@ Dim J As Integer
     cad = ""
     i = 0
     Do
-        J = i + 1
-        i = InStr(J, DatosADevolverBusqueda, "|")
+        j = i + 1
+        i = InStr(j, DatosADevolverBusqueda, "|")
         If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, i - J)
-            J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+            Aux = Mid(DatosADevolverBusqueda, j, i - j)
+            j = Val(Aux)
+            cad = cad & Text1(j).Text & "|"
         End If
     Loop Until i = 0
     RaiseEvent DatoSeleccionado(cad)
@@ -2268,7 +2268,7 @@ Dim Sql As String
     If Sql <> "" Then
         Sql = "select sum(canstock) from salmac where codartic=" & DBSet(Text1(0).Text, "T")
         Set rst = New ADODB.Recordset
-        rst.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        rst.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not rst.EOF Then
             Me.txtSumaStock.Text = rst.Fields(0).Value
         End If
@@ -2404,11 +2404,11 @@ EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
 
-Private Sub PosicionarData(codigo As String)
+Private Sub PosicionarData(Codigo As String)
 Dim cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(codartic='" & Trim(codigo) & "')" 'DBSet(Text1(0).Text, "T") & ")"
+    cad = "(codartic='" & Trim(Codigo) & "')" 'DBSet(Text1(0).Text, "T") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(Data1, cad, Indicador) Then
@@ -2426,25 +2426,25 @@ Dim vWhere As String
 
     On Error GoTo FinEliminar
 
-    conn.BeginTrans
+    Conn.BeginTrans
     ' ***** canviar el nom de la PK de la capçalera, repasar codEmpre *******
     vWhere = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
         
     ' ***** elimina les llínies ****
-    conn.Execute "DELETE FROM salmac " & vWhere
+    Conn.Execute "DELETE FROM salmac " & vWhere
         
         
     'Eliminar la CAPÇALERA
     vWhere = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
-    conn.Execute "Delete from " & NombreTabla & vWhere
+    Conn.Execute "Delete from " & NombreTabla & vWhere
        
 FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar"
-        conn.RollbackTrans
+        Conn.RollbackTrans
         Eliminar = False
     Else
-        conn.CommitTrans
+        Conn.CommitTrans
         Eliminar = True
     End If
 End Function
@@ -2677,7 +2677,7 @@ Dim Eliminar As Boolean
     PonerModo 5, Index
 
     If AdoAux(Index).Recordset.EOF Then Exit Sub
-    If Not SepuedeBorrar(Index) Then Exit Sub
+    If Not SepuedeBorrarArticulo() Then Exit Sub
     NumTabMto = Index
     Eliminar = False
    
@@ -2701,7 +2701,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute Sql
+        Conn.Execute Sql
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
         If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
@@ -2786,7 +2786,7 @@ End Sub
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
     Dim i As Integer
-    Dim J As Integer
+    Dim j As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
@@ -2825,13 +2825,13 @@ Private Sub BotonModificarLinea(Index As Integer)
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 'stocks en almacenes
         
-            For J = 0 To 1
-                Text3(J).Text = DataGridAux(Index).Columns(J).Text
-            Next J
+            For j = 0 To 1
+                Text3(j).Text = DataGridAux(Index).Columns(j).Text
+            Next j
             txtAux2(0).Text = DataGridAux(Index).Columns(2).Text
-            For J = 3 To 8
-                Text3(J - 1).Text = DataGridAux(Index).Columns(J).Text
-            Next J
+            For j = 3 To 8
+                Text3(j - 1).Text = DataGridAux(Index).Columns(j).Text
+            Next j
             
             Text3(9).Text = Mid(Text3(8).Text, 12, 8)
             
@@ -2917,7 +2917,7 @@ Private Sub Text3_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Function DatosOkLlin(nomframe As String) As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
@@ -3096,7 +3096,7 @@ Private Sub CargaFrame(Index As Integer, enlaza As Boolean)
 Dim tip As Integer
 Dim i As Byte
 
-    AdoAux(Index).ConnectionString = conn
+    AdoAux(Index).ConnectionString = Conn
     AdoAux(Index).RecordSource = MontaSQLCarga(Index, enlaza)
     AdoAux(Index).CursorType = adOpenDynamic
     AdoAux(Index).LockType = adLockPessimistic
@@ -3305,13 +3305,13 @@ Dim cad As String
     vCodArtic = Text1(0).Text
     Set rsAlmPr = New ADODB.Recordset
     cad = "Select codalmac from salmpr order by codalmac;"
-    rsAlmPr.Open cad, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    rsAlmPr.Open cad, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
     While Not rsAlmPr.EOF
         vcodalmac = rsAlmPr.Fields(0).Value
         cad = "INSERT INTO salmac (codartic,codalmac,canstock,stockmin,puntoped,stockmax,stockinv,fechainv,horainve,statusin)"
         cad = cad & " VALUES (" & DBSet(vCodArtic, "T") & "," & vcodalmac & ",0,0,0,0,0,NULL,NULL,0)"
-        conn.Execute cad
+        Conn.Execute cad
         rsAlmPr.MoveNext
     Wend
         

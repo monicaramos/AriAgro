@@ -1,5 +1,5 @@
-SCC = This is a Source Code Control file
-
+[SCC]
+SCC=This is a source code control file
 [Ariagro.vbp]
-SCC_Aux_Path =\\ARIADNA\Fuentes\AriAgro,
-SCC_Project_Name ="$/Ariagro_Monica", HLBAAAAA
+SCC_Project_Name=this project is not under source code control
+SCC_Aux_Path=<This is an empty string for the mssccprj.scc file>
