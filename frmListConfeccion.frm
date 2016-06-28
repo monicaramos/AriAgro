@@ -15,10 +15,286 @@ Begin VB.Form frmListConfeccion
    ScaleWidth      =   8160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin MSComDlg.CommonDialog cd1 
+      Left            =   8730
+      Top             =   5580
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
+   End
+   Begin VB.Frame FrameInfConfecciones 
+      Height          =   4440
+      Left            =   45
+      TabIndex        =   0
+      Top             =   -15
+      Width           =   8040
+      Begin VB.TextBox txtCodigo 
+         Height          =   285
+         Index           =   4
+         Left            =   1710
+         MaxLength       =   16
+         TabIndex        =   4
+         Top             =   2160
+         Width           =   1455
+      End
+      Begin VB.TextBox txtCodigo 
+         Height          =   285
+         Index           =   3
+         Left            =   1710
+         MaxLength       =   16
+         TabIndex        =   3
+         Top             =   1830
+         Width           =   1455
+      End
+      Begin VB.Frame Frame1 
+         Caption         =   "Ordenado por"
+         ForeColor       =   &H00972E0B&
+         Height          =   705
+         Left            =   4680
+         TabIndex        =   18
+         Top             =   2520
+         Width           =   2835
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Alfabético"
+            Height          =   255
+            Index           =   5
+            Left            =   1530
+            TabIndex        =   20
+            Top             =   300
+            Width           =   1095
+         End
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Código"
+            Height          =   255
+            Index           =   4
+            Left            =   300
+            TabIndex        =   19
+            Top             =   300
+            Width           =   1155
+         End
+      End
+      Begin VB.Frame FrameStockMaxMin 
+         Caption         =   "Tipo de Informe"
+         ForeColor       =   &H00972E0B&
+         Height          =   1830
+         Left            =   405
+         TabIndex        =   12
+         Top             =   2520
+         Width           =   4035
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Costes por Confección detallada en línea"
+            Height          =   255
+            Index           =   6
+            Left            =   450
+            TabIndex        =   21
+            Top             =   1170
+            Width           =   3255
+         End
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Costes por Confección detallada"
+            Height          =   255
+            Index           =   3
+            Left            =   450
+            TabIndex        =   17
+            Top             =   870
+            Width           =   2595
+         End
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Confecciones completas"
+            Height          =   255
+            Index           =   2
+            Left            =   450
+            TabIndex        =   16
+            Top             =   1470
+            Width           =   2100
+         End
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Envases por Confección "
+            Height          =   255
+            Index           =   0
+            Left            =   450
+            TabIndex        =   14
+            Top             =   270
+            Width           =   2055
+         End
+         Begin VB.OptionButton Opcion 
+            Caption         =   "Costes por Confección"
+            Height          =   255
+            Index           =   1
+            Left            =   450
+            TabIndex        =   13
+            Top             =   570
+            Width           =   2055
+         End
+      End
+      Begin VB.TextBox txtNombre 
+         BackColor       =   &H80000018&
+         Height          =   285
+         Index           =   71
+         Left            =   3195
+         Locked          =   -1  'True
+         TabIndex        =   8
+         Text            =   "Text5"
+         Top             =   1395
+         Width           =   4305
+      End
+      Begin VB.TextBox txtNombre 
+         BackColor       =   &H80000018&
+         Height          =   285
+         Index           =   70
+         Left            =   3195
+         Locked          =   -1  'True
+         TabIndex        =   7
+         Text            =   "Text5"
+         Top             =   1080
+         Width           =   4305
+      End
+      Begin VB.TextBox txtCodigo 
+         Height          =   285
+         Index           =   71
+         Left            =   1710
+         MaxLength       =   16
+         TabIndex        =   2
+         Top             =   1395
+         Width           =   1455
+      End
+      Begin VB.TextBox txtCodigo 
+         Height          =   285
+         Index           =   70
+         Left            =   1710
+         MaxLength       =   16
+         TabIndex        =   1
+         Top             =   1080
+         Width           =   1455
+      End
+      Begin VB.CommandButton cmdAceptar 
+         Caption         =   "&Aceptar"
+         Height          =   375
+         Left            =   5400
+         TabIndex        =   5
+         Top             =   3915
+         Width           =   975
+      End
+      Begin VB.CommandButton cmdCancel 
+         Caption         =   "&Cancelar"
+         Height          =   375
+         Index           =   11
+         Left            =   6570
+         TabIndex        =   6
+         Top             =   3915
+         Width           =   975
+      End
+      Begin VB.Image imgFecha 
+         Height          =   240
+         Index           =   0
+         Left            =   1440
+         Picture         =   "frmListConfeccion.frx":000C
+         Top             =   1830
+         Width           =   240
+      End
+      Begin VB.Image imgFecha 
+         Height          =   240
+         Index           =   1
+         Left            =   1440
+         Picture         =   "frmListConfeccion.frx":0097
+         Top             =   2160
+         Width           =   240
+      End
+      Begin VB.Label Label3 
+         Caption         =   "Desde"
+         Height          =   195
+         Index           =   3
+         Left            =   870
+         TabIndex        =   36
+         Top             =   1860
+         Width           =   465
+      End
+      Begin VB.Label Label3 
+         Caption         =   "Hasta"
+         Height          =   195
+         Index           =   2
+         Left            =   870
+         TabIndex        =   35
+         Top             =   2175
+         Width           =   420
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         Caption         =   "Fecha"
+         ForeColor       =   &H00972E0B&
+         Height          =   195
+         Index           =   2
+         Left            =   510
+         TabIndex        =   34
+         Top             =   1650
+         Width           =   450
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Informe de Confecciones"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   345
+         Left            =   495
+         TabIndex        =   15
+         Top             =   285
+         Width           =   6735
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   28
+         Left            =   1425
+         Top             =   1395
+         Width           =   240
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   27
+         Left            =   1425
+         Top             =   1080
+         Width           =   240
+      End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         Caption         =   "Confección"
+         ForeColor       =   &H00972E0B&
+         Height          =   195
+         Index           =   38
+         Left            =   510
+         TabIndex        =   11
+         Top             =   810
+         Width           =   810
+      End
+      Begin VB.Label Label3 
+         Caption         =   "Hasta"
+         Height          =   195
+         Index           =   54
+         Left            =   870
+         TabIndex        =   10
+         Top             =   1395
+         Width           =   420
+      End
+      Begin VB.Label Label3 
+         Caption         =   "Desde"
+         Height          =   195
+         Index           =   51
+         Left            =   870
+         TabIndex        =   9
+         Top             =   1080
+         Width           =   465
+      End
+   End
    Begin VB.Frame FrameDuplicarConf 
       Height          =   4350
       Left            =   0
-      TabIndex        =   20
+      TabIndex        =   22
       Top             =   0
       Width           =   8040
       Begin VB.CommandButton cmdCancel 
@@ -26,7 +302,7 @@ Begin VB.Form frmListConfeccion
          Height          =   375
          Index           =   0
          Left            =   6570
-         TabIndex        =   24
+         TabIndex        =   26
          Top             =   3645
          Width           =   975
       End
@@ -34,7 +310,7 @@ Begin VB.Form frmListConfeccion
          Caption         =   "&Aceptar"
          Height          =   375
          Left            =   5400
-         TabIndex        =   23
+         TabIndex        =   25
          Top             =   3645
          Width           =   975
       End
@@ -44,7 +320,7 @@ Begin VB.Form frmListConfeccion
          Left            =   2010
          Locked          =   -1  'True
          MaxLength       =   16
-         TabIndex        =   26
+         TabIndex        =   28
          Top             =   1380
          Width           =   1455
       End
@@ -53,7 +329,7 @@ Begin VB.Form frmListConfeccion
          Index           =   1
          Left            =   1980
          MaxLength       =   16
-         TabIndex        =   21
+         TabIndex        =   23
          Top             =   2175
          Width           =   1455
       End
@@ -63,7 +339,7 @@ Begin VB.Form frmListConfeccion
          Index           =   0
          Left            =   3495
          Locked          =   -1  'True
-         TabIndex        =   25
+         TabIndex        =   27
          Text            =   "Text5"
          Top             =   1380
          Width           =   4305
@@ -73,7 +349,7 @@ Begin VB.Form frmListConfeccion
          Index           =   2
          Left            =   1980
          MaxLength       =   40
-         TabIndex        =   22
+         TabIndex        =   24
          Text            =   "Text5"
          Top             =   2550
          Width           =   4305
@@ -83,7 +359,7 @@ Begin VB.Form frmListConfeccion
          Height          =   195
          Index           =   1
          Left            =   990
-         TabIndex        =   31
+         TabIndex        =   33
          Top             =   2580
          Width           =   855
       End
@@ -92,7 +368,7 @@ Begin VB.Form frmListConfeccion
          Height          =   195
          Index           =   0
          Left            =   960
-         TabIndex        =   30
+         TabIndex        =   32
          Top             =   2220
          Width           =   615
       End
@@ -103,7 +379,7 @@ Begin VB.Form frmListConfeccion
          Height          =   195
          Index           =   1
          Left            =   510
-         TabIndex        =   29
+         TabIndex        =   31
          Top             =   1890
          Width           =   1335
       End
@@ -114,7 +390,7 @@ Begin VB.Form frmListConfeccion
          Height          =   195
          Index           =   0
          Left            =   510
-         TabIndex        =   28
+         TabIndex        =   30
          Top             =   1410
          Width           =   1320
       End
@@ -132,222 +408,9 @@ Begin VB.Form frmListConfeccion
          ForeColor       =   &H00800000&
          Height          =   345
          Left            =   510
-         TabIndex        =   27
+         TabIndex        =   29
          Top             =   495
          Width           =   6735
-      End
-   End
-   Begin MSComDlg.CommonDialog cd1 
-      Left            =   8730
-      Top             =   5580
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
-   End
-   Begin VB.Frame FrameInfConfecciones 
-      Height          =   4350
-      Left            =   45
-      TabIndex        =   0
-      Top             =   45
-      Width           =   8040
-      Begin VB.Frame Frame1 
-         Caption         =   "Ordenado por"
-         ForeColor       =   &H00972E0B&
-         Height          =   705
-         Left            =   4680
-         TabIndex        =   16
-         Top             =   2340
-         Width           =   2835
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Alfabético"
-            Height          =   255
-            Index           =   5
-            Left            =   1530
-            TabIndex        =   18
-            Top             =   300
-            Width           =   1095
-         End
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Código"
-            Height          =   255
-            Index           =   4
-            Left            =   300
-            TabIndex        =   17
-            Top             =   300
-            Width           =   1155
-         End
-      End
-      Begin VB.Frame FrameStockMaxMin 
-         Caption         =   "Tipo de Informe"
-         ForeColor       =   &H00972E0B&
-         Height          =   1830
-         Left            =   405
-         TabIndex        =   10
-         Top             =   2340
-         Width           =   4035
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Costes por Confección detallada en línea"
-            Height          =   255
-            Index           =   6
-            Left            =   450
-            TabIndex        =   19
-            Top             =   1170
-            Width           =   3255
-         End
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Costes por Confección detallada"
-            Height          =   255
-            Index           =   3
-            Left            =   450
-            TabIndex        =   15
-            Top             =   870
-            Width           =   2595
-         End
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Confecciones completas"
-            Height          =   255
-            Index           =   2
-            Left            =   450
-            TabIndex        =   14
-            Top             =   1470
-            Width           =   2100
-         End
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Envases por Confección "
-            Height          =   255
-            Index           =   0
-            Left            =   450
-            TabIndex        =   12
-            Top             =   270
-            Width           =   2055
-         End
-         Begin VB.OptionButton Opcion 
-            Caption         =   "Costes por Confección"
-            Height          =   255
-            Index           =   1
-            Left            =   450
-            TabIndex        =   11
-            Top             =   570
-            Width           =   2055
-         End
-      End
-      Begin VB.TextBox txtNombre 
-         BackColor       =   &H80000018&
-         Height          =   285
-         Index           =   71
-         Left            =   3195
-         Locked          =   -1  'True
-         TabIndex        =   6
-         Text            =   "Text5"
-         Top             =   1935
-         Width           =   4305
-      End
-      Begin VB.TextBox txtNombre 
-         BackColor       =   &H80000018&
-         Height          =   285
-         Index           =   70
-         Left            =   3195
-         Locked          =   -1  'True
-         TabIndex        =   5
-         Text            =   "Text5"
-         Top             =   1620
-         Width           =   4305
-      End
-      Begin VB.TextBox txtCodigo 
-         Height          =   285
-         Index           =   71
-         Left            =   1710
-         MaxLength       =   16
-         TabIndex        =   2
-         Top             =   1935
-         Width           =   1455
-      End
-      Begin VB.TextBox txtCodigo 
-         Height          =   285
-         Index           =   70
-         Left            =   1710
-         MaxLength       =   16
-         TabIndex        =   1
-         Top             =   1620
-         Width           =   1455
-      End
-      Begin VB.CommandButton cmdAceptar 
-         Caption         =   "&Aceptar"
-         Height          =   375
-         Left            =   5400
-         TabIndex        =   3
-         Top             =   3645
-         Width           =   975
-      End
-      Begin VB.CommandButton cmdCancel 
-         Caption         =   "&Cancelar"
-         Height          =   375
-         Index           =   11
-         Left            =   6570
-         TabIndex        =   4
-         Top             =   3645
-         Width           =   975
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Informe de Confecciones"
-         BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   14.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00800000&
-         Height          =   345
-         Left            =   495
-         TabIndex        =   13
-         Top             =   495
-         Width           =   6735
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   28
-         Left            =   1425
-         Top             =   1935
-         Width           =   240
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   27
-         Left            =   1425
-         Top             =   1620
-         Width           =   240
-      End
-      Begin VB.Label Label4 
-         AutoSize        =   -1  'True
-         Caption         =   "Confección"
-         ForeColor       =   &H00972E0B&
-         Height          =   195
-         Index           =   38
-         Left            =   510
-         TabIndex        =   9
-         Top             =   1350
-         Width           =   810
-      End
-      Begin VB.Label Label3 
-         Caption         =   "Hasta"
-         Height          =   195
-         Index           =   54
-         Left            =   870
-         TabIndex        =   8
-         Top             =   1935
-         Width           =   420
-      End
-      Begin VB.Label Label3 
-         Caption         =   "Desde"
-         Height          =   195
-         Index           =   51
-         Left            =   870
-         TabIndex        =   7
-         Top             =   1620
-         Width           =   465
       End
    End
 End
@@ -593,6 +656,18 @@ Dim nomDocu As String
                     CambioHorientacionPapel = False
                     cadNombreRPT = nomDocu '"rConfeccion1.rpt"  'Nombre fichero .rpt a Imprimir
                     cadTABLA = "forfaits"
+                    
+                    If vParamAplic.Cooperativa = 0 Then
+                        If txtCodigo(3).Text <> "" Then
+                            cadParam = cadParam & "pDesFec=Date(" & Year(txtCodigo(3).Text) & "," & Month(txtCodigo(3).Text) & "," & Day(txtCodigo(3).Text) & ")" & "|"
+                            numParam = numParam + 1
+                        End If
+                        If txtCodigo(4).Text <> "" Then
+                            cadParam = cadParam & "pDesFec=Date(" & Year(txtCodigo(4).Text) & "," & Month(txtCodigo(4).Text) & "," & Day(txtCodigo(4).Text) & ")" & "|"
+                            numParam = numParam + 1
+                        End If
+                    End If
+                    
                 End If
             End If
         End If
@@ -743,8 +818,47 @@ Private Sub imgBuscar_Click(Index As Integer)
     Screen.MousePointer = vbDefault
 End Sub
 
+Private Sub imgFecha_Click(Index As Integer)
+    Dim esq As Long
+    Dim dalt As Long
+    Dim menu As Long
+    Dim obj As Object
+
+    Screen.MousePointer = vbHourglass
+
+    Set frmF = New frmCal
+    
+    esq = imgFecha(Index).Left
+    dalt = imgFecha(Index).Top
+    
+    Set obj = imgFecha(Index).Container
+
+    While imgFecha(Index).Parent.Name <> obj.Name
+        esq = esq + obj.Left
+        dalt = dalt + obj.Top
+        Set obj = obj.Container
+    Wend
+    
+    menu = Me.Height - Me.ScaleHeight 'ací tinc el heigth del menú i de la toolbar
+
+    frmF.Left = esq + imgFecha(Index).Parent.Left + 30
+    frmF.Top = dalt + imgFecha(Index).Parent.Top + imgFecha(Index).Height + menu - 40
 
 
+   imgFecha(0).Tag = Index
+'   Set frmF = New frmCal
+   frmF.NovaData = Now
+   
+   indCodigo = Index + 3
+   
+   PonerFormatoFecha txtCodigo(indCodigo)
+   If txtCodigo(indCodigo).Text <> "" Then frmF.NovaData = CDate(txtCodigo(indCodigo).Text)
+   
+   Screen.MousePointer = vbDefault
+   frmF.Show vbModal
+   Set frmF = Nothing
+   PonerFoco txtCodigo(indCodigo)
+End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
     ConseguirFoco txtCodigo(Index), 3
@@ -781,6 +895,12 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 70, 71  'Cod. confeccion
             txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "forfaits", "nomconfe", "codforfait", "T")
+            
+        Case 3, 4 ' fechas
+            If txtCodigo(Index).Text <> "" Then
+                 PonerFormatoFecha txtCodigo(Index)
+            End If
+            
     End Select
     
 End Sub
