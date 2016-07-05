@@ -168,6 +168,15 @@ Begin VB.Form frmIntEdicom
       End
       Begin VB.Label Label4 
          Caption         =   "Tipo Movimiento"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   3
@@ -216,10 +225,19 @@ Begin VB.Form frmIntEdicom
       End
       Begin VB.Label Label4 
          Caption         =   "Fecha Factura"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   16
-         Left            =   465
+         Left            =   495
          TabIndex        =   17
          Top             =   2475
          Width           =   1815
@@ -356,7 +374,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -364,8 +382,8 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
-Dim Codigo As String 'Código para FormulaSelection de Crystal Report
+Dim tabla As String
+Dim codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -384,7 +402,7 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim I As Byte
+Dim i As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
@@ -397,7 +415,7 @@ InicializarVbles
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
     numParam = numParam + 1
     
      '======== FORMULA  ====================================
@@ -407,9 +425,9 @@ InicializarVbles
 '    If Not AnyadirAFormula(cadSelect, Codigo) Then Exit Sub
     
     'Tipo de movimiento
-    Codigo = "{facturas.codtipom} = '" & Combo1(0).Text & "'"
-    If Not AnyadirAFormula(cadFormula, Codigo) Then Exit Sub
-    If Not AnyadirAFormula(cadSelect, Codigo) Then Exit Sub
+    codigo = "{facturas.codtipom} = '" & Combo1(0).Text & "'"
+    If Not AnyadirAFormula(cadFormula, codigo) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, codigo) Then Exit Sub
     
     'D/H Cliente
     cDesde = Trim(txtCodigo(0).Text)
@@ -418,7 +436,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".codclien}"
+        codigo = "{" & tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -428,7 +446,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(5).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{facturas.numfactu}"
+        codigo = "{facturas.numfactu}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHFactura= """) Then Exit Sub
     End If
@@ -438,33 +456,33 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".fecfactu}"
+        codigo = "{" & tabla & ".fecfactu}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
     
-    cadSelect = cadSelect & " and facturas.pasedicom = 0"
+    cadselect = cadselect & " and facturas.pasedicom = 0"
     
-    If HayRegistros(Tabla, cadSelect) Then
-        If Not HayRegistrosEnvases(cadSelect) Then
+    If HayRegistros(tabla, cadselect) Then
+        If Not HayRegistrosEnvases(cadselect) Then
             If vParamAplic.PathEdicom <> "" Then
                 If Not ExistenFicheros Then
-                    If ComprobarFicheros(cadSelect) Then
-                        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
+                    If ComprobarFicheros(cadselect) Then
+                        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
                         
                         If TotalRegistros(Sql) <> 0 Then
                             MsgBox "Hay errores en la integración EDICOM. Debe corregirlos previamente.", vbExclamation
                             cadTitulo = "Errores de integración EDICOM"
                             cadNombreRPT = "rErroresEDICOM.rpt"
                             
-                            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
+                            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
                             numParam = 1
                             
                             LlamarImprimir
                             Exit Sub
                         End If
                     
-                        If GenerarFicheros(cadSelect) Then
+                        If GenerarFicheros(cadselect) Then
                             MsgBox "Proceso realizado correctamente", vbExclamation
                             cmdCancel_Click
                         Else
@@ -498,31 +516,31 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 
     PrimeraVez = True
     limpiar Me
 
     'IMAGES para busqueda
-     For h = 0 To 1
-        Me.imgBuscar(h).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-     Next h
+     For H = 0 To 1
+        Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+     Next H
 
     '###Descomentar
 '    CommitConexion
          
-    FrameCobrosVisible True, h, w
+    FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "facturas"
+    tabla = "facturas"
     Me.Label2.Caption = ""
     Me.Refresh
     CargaCombo
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
     Me.cmdCancel.Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
@@ -673,21 +691,21 @@ Dim cad As String, cadTipo As String 'tipo cliente
     End Select
 End Sub
 
-Private Sub FrameCobrosVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCobros.visible = visible
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
         Me.FrameCobros.Height = 5760
         Me.FrameCobros.Width = 6690
-        w = Me.FrameCobros.Width
-        h = Me.FrameCobros.Height
+        W = Me.FrameCobros.Width
+        H = Me.FrameCobros.Height
     End If
 End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -703,15 +721,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -725,7 +743,7 @@ End Function
 
 Private Sub LlamarImprimir()
     With frmImprimir
-        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.Codigo
+        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.codigo
         .OtrosParametros = cadParam
         .NumeroParametros = numParam + 1
         .SoloImprimir = False
@@ -816,7 +834,7 @@ Dim Rs As ADODB.Recordset
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -829,8 +847,8 @@ End Function
 
 Private Function ProcesarCambios(cadWHERE As String) As Boolean
 Dim Sql As String
-Dim Sql1 As String
-Dim I As Integer
+Dim SQL1 As String
+Dim i As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 
@@ -838,7 +856,7 @@ On Error GoTo eProcesarCambios
 
     HayReg = 0
     
-    Conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
         
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -846,16 +864,16 @@ On Error GoTo eProcesarCambios
         cadWHERE = QuitarCaracterACadena(cadWHERE, "_1")
     End If
         
-    Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.Codigo, "N")
+    Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.codigo, "N")
     Sql = Sql & ", albaran.numalbar from albaran, albaran_variedad where albaran.numalbar not in (select numalbar from tcafpa) "
     Sql = Sql & " and albaran.numalbar = albaran_variedad.numalbar "
     
     If cadWHERE <> "" Then Sql = Sql & " and " & cadWHERE
     
     
-    Conn.Execute Sql
+    conn.Execute Sql
         
-    ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.Codigo)
+    ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.codigo)
 
 eProcesarCambios:
     If Err.Number <> 0 Then
@@ -868,32 +886,32 @@ Private Sub InsertaLineaEnTemporal(ByRef ItmX As ListItem)
 Dim Sql As String
 Dim Codmacta As String
 Dim Rs As ADODB.Recordset
-Dim Sql1 As String
+Dim SQL1 As String
 
-        Sql1 = "insert into tmpinformes(codusu, codigo1) values ("
-        Sql1 = Sql1 & DBSet(vUsu.Codigo, "N") & "," & DBSet(ItmX.Text, "N") & ")"
+        SQL1 = "insert into tmpinformes(codusu, codigo1) values ("
+        SQL1 = SQL1 & DBSet(vUsu.codigo, "N") & "," & DBSet(ItmX.Text, "N") & ")"
 
-        Conn.Execute Sql1
+        conn.Execute SQL1
     
 End Sub
 
 Private Sub CargaCombo()
 Dim cad As String
 Dim Rs As ADODB.Recordset
-Dim I As Integer
+Dim i As Integer
     On Error GoTo ErrCarga
     Combo1(0).Clear
     'Conceptos
     
     cad = "SELECT codtipom FROM usuarios.stipom WHERE codtipom like 'F%' ORDER BY codtipom"
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open cad, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     'Combo1.AddItem "" 'pose uno en blanc sinse valor
-    I = 0
+    i = 0
     While Not Rs.EOF
         Combo1(0).AddItem Rs!codTipoM
-        Combo1(0).ItemData(Combo1(0).NewIndex) = I
+        Combo1(0).ItemData(Combo1(0).NewIndex) = i
         Rs.MoveNext
         '.MoveNext
     Wend
@@ -1020,7 +1038,7 @@ Dim Mens As String
     If b Then
         Sql = "update facturas set pasedicom = 1 where " & cadWHERE
         
-        Conn.Execute Sql
+        conn.Execute Sql
     End If
     
 '    GenerarFicheros = b
@@ -1059,11 +1077,11 @@ Dim b As Boolean
 Dim NF As Long
 Dim cad As String
 Dim Sql As String
-Dim Sql1 As String
-Dim I As Integer
+Dim SQL1 As String
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim vCliente As CCliente
 Dim Neto As Currency
 Dim Impuestos As Currency
@@ -1086,12 +1104,12 @@ Dim Descuen As Currency
     If cadWHERE <> "" Then Sql = Sql & " where " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Generando Fichero CABFAC.TXT"
     Me.Refresh
     
-    I = 0
+    i = 0
     While Not Rs.EOF
         cad = ""
         
@@ -1100,36 +1118,36 @@ Dim Descuen As Currency
         'si se ha modificado el cliente volver a cargar los datos
         If vCliente.Existe(Rs!CodClien) Then
             If vCliente.LeerDatos(Rs!CodClien) Then
-                Sql1 = "select albaran.*, destinos.codigoedi, destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla "
-                Sql1 = Sql1 & " from albaran, facturas_variedad, destinos "
-                Sql1 = Sql1 & " where facturas_variedad.codtipom = " & DBSet(Rs!codTipoM, "T")
-                Sql1 = Sql1 & " and facturas_variedad.numfactu = " & DBSet(Rs!NumFactu, "N")
-                Sql1 = Sql1 & " and facturas_variedad.fecfactu = " & DBSet(Rs!FecFactu, "F")
-                Sql1 = Sql1 & " and facturas_variedad.numalbar = albaran.numalbar "
-                Sql1 = Sql1 & " and albaran.codclien = destinos.codclien "
-                Sql1 = Sql1 & " and albaran.coddesti = destinos.coddesti "
+                SQL1 = "select albaran.*, destinos.codigoedi, destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla "
+                SQL1 = SQL1 & " from albaran, facturas_variedad, destinos "
+                SQL1 = SQL1 & " where facturas_variedad.codtipom = " & DBSet(Rs!codTipoM, "T")
+                SQL1 = SQL1 & " and facturas_variedad.numfactu = " & DBSet(Rs!NumFactu, "N")
+                SQL1 = SQL1 & " and facturas_variedad.fecfactu = " & DBSet(Rs!FecFactu, "F")
+                SQL1 = SQL1 & " and facturas_variedad.numalbar = albaran.numalbar "
+                SQL1 = SQL1 & " and albaran.codclien = destinos.codclien "
+                SQL1 = SQL1 & " and albaran.coddesti = destinos.coddesti "
                 
-                Set RS1 = New ADODB.Recordset
-                RS1.Open Sql1, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+                Set Rs1 = New ADODB.Recordset
+                Rs1.Open SQL1, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
             
                 cad = cad & RellenaABlancos(DBLet(Rs!NumFactu, "N"), True, 15) '1.-nro factura
                 cad = cad & RellenaABlancos(vParamAplic.CodigoEdi, True, 17)  '2.-codigo edi vendedor
                 cad = cad & RellenaABlancos(vParamAplic.CodigoEdi, True, 17) '3.-codigo edi emisor
                 cad = cad & Space(17)                                       '4.-
-                cad = cad & RellenaABlancos(DBLet(RS1!CodigoEdi, "T"), True, 17)   '5.-codigo edi comprador
+                cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)   '5.-codigo edi comprador
                 cad = cad & Space(13)                                       '6.-departamento
-                cad = cad & RellenaABlancos(DBLet(RS1!CodigoEdi, "T"), True, 17)  '7.-codigo edi receptor--> de la tabla de destinos
+                cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)  '7.-codigo edi receptor--> de la tabla de destinos
                 
                 If vCliente.DestEDI = 0 Then
                     cad = cad & RellenaABlancos(vCliente.CodigoEdi, True, 17)   '8.-codigo edi cliente, destinatario de la factura
                     cad = cad & RellenaABlancos(vCliente.CodigoEdi, True, 17)   '9.-pagador
                 Else
-                    cad = cad & RellenaABlancos(DBLet(RS1!CodigoEdi, "T"), True, 17)   '8.-codigo edi cliente, destinatario de la factura
-                    cad = cad & RellenaABlancos(DBLet(RS1!CodigoEdi, "T"), True, 17)   '9.-pagador
+                    cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)   '8.-codigo edi cliente, destinatario de la factura
+                    cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)   '9.-pagador
                 End If
                 
                 'cad = cad & Space(17)                                       '9.-
-                cad = cad & RellenaABlancos(DBLet(RS1!refclien, "N"), True, 17)  '10.-nro pedido-->albaran.refclien
+                cad = cad & RellenaABlancos(DBLet(Rs1!refclien, "N"), True, 17)  '10.-nro pedido-->albaran.refclien
                 cad = cad & Format(DBLet(Rs!FecFactu, "F"), "YYYYMMDDhhmm") '11.-fecha emision de la factura
                 cad = cad & "380"                                           '12.-tipo de factura
                 cad = cad & Space(3)                                        '13.-
@@ -1153,7 +1171,7 @@ Dim Descuen As Currency
                 
                 cad = cad & RellenaABlancos(vCliente.NIF, True, 17)         '18.-nif cliente
                 cad = cad & Space(3)                                        '19.-razon
-                cad = cad & RellenaABlancos(DBLet(RS1!NumAlbar, "N"), True, 17) '20.-albaran
+                cad = cad & RellenaABlancos(DBLet(Rs1!NumAlbar, "N"), True, 17) '20.-albaran
                 cad = cad & Space(17)  '21.-
                 cad = cad & Space(17)  '22.-
                 cad = cad & Space(3)   '23.-
@@ -1360,6 +1378,7 @@ Dim Descuen As Currency
                 
                 cad = cad & Space(15) '62.-
                 cad = cad & Space(3) '63.-
+                
                 cad = cad & Space(2) '64.-
                 cad = cad & Space(3) '65.-
                 cad = cad & Space(8) '66.-
@@ -1369,6 +1388,7 @@ Dim Descuen As Currency
                 cad = cad & Space(3) '70.-
                 cad = cad & Space(8) '71.-
                 cad = cad & Space(15) '72.-
+                
                 cad = cad & Space(3) '73.-
                 cad = cad & Space(2) '74.-
                 cad = cad & Space(3) '75.-
@@ -1383,6 +1403,7 @@ Dim Descuen As Currency
                 cad = cad & Space(2) '84.-
                 cad = cad & Space(3) '85.-
                 cad = cad & Space(8) '86.-
+                
                 cad = cad & Space(15) '87.-
                 
                 cad = cad & RellenaABlancos(vParam.NombreEmpresa, True, 70) '88.-
@@ -1395,14 +1416,21 @@ Dim Descuen As Currency
                 cad = cad & Space(17) '95.-
                 cad = cad & Space(17) '96.-
                 cad = cad & Space(17) '97.-
+                
                 cad = cad & Format(DBLet(Rs!FecFactu, "F"), "YYYYMMDDhhmm") '98.-
                 cad = cad & Space(17) '99.-
                 cad = cad & Space(17) '100.-
                 cad = cad & Space(35) '101.-
                 cad = cad & Space(35) '102.-
                 cad = cad & Space(35) '103.-
+                
                 cad = cad & Space(25) '104.-
-                cad = cad & Space(12) '105.-
+                '[Monica]05/07/2016: si codclien es lidl
+                If DBLet(Rs!CodClien, "N") = 104 Then
+                    cad = cad & Format(DBLet(Rs1!FechaAlb, "F"), "YYYYMMDDhhmm") '105.- fecha de albaran
+                Else
+                    cad = cad & Space(12) '105.-
+                End If
                 cad = cad & Space(35) '106.-
                 cad = cad & Space(35) '107.-
                 cad = cad & Space(35) '108.-
@@ -1449,7 +1477,7 @@ Dim Descuen As Currency
                 
                 Print #NF, cad
                 
-                Set RS1 = Nothing
+                Set Rs1 = Nothing
                 
             End If
         End If
@@ -1485,7 +1513,7 @@ Dim cad As String
 Dim Sql As String
 Dim Sql2 As String
 Dim NF As Long
-Dim I As Integer
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Neto As Currency
@@ -1524,17 +1552,24 @@ Dim Impuestos As Currency
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Generando Fichero OBSFAC.TXT"
     Me.Refresh
     
-    I = 0
+    i = 0
     While Not Rs.EOF
         cad = ""
         cad = cad & RellenaABlancos(DBLet(Rs!NumFactu, "N"), True, 15) '1.-nro factura
         cad = cad & "00001" '2.- nro de observacion
-        cad = cad & Space(3) '3.- tema
+        
+        '[Monica]05/07/2016: para el caso de LIDL hay que poner en el tema SUR
+        If DBLet(Rs!CodClien, "N") = 104 Then
+            cad = cad & "SUR" '3.- tema
+        Else
+            cad = cad & Space(3) '3.- tema
+        End If
+        
         cad = cad & RellenaABlancos(Mid(DBLet(Rs!Observac, "T"), 1, 70), True, 70) '4.-observaciones
         
 '        If Len(DBLet(RS!Observac, "T")) > 70 Then
@@ -1573,7 +1608,7 @@ Private Function GeneraDTOFAC(cadWHERE As String, Mens As String) As Boolean
 Dim b As Boolean
 Dim cad As String
 Dim NF As Long
-Dim I As Integer
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Neto As Currency
@@ -1599,12 +1634,12 @@ Dim importe2 As Currency
     If cadWHERE <> "" Then Sql = Sql & " and " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Generando Fichero OBSFAC.TXT"
     Me.Refresh
     
-    I = 0
+    i = 0
     While Not Rs.EOF
         
         If DBLet(Rs!dtocom1, "N") <> 0 And DBLet(Rs!dtocom2, "N") <> 0 Then
@@ -1746,7 +1781,7 @@ Dim b As Boolean
 Dim cad As String
 Dim Sql As String
 Dim NF As Long
-Dim I As Integer
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Neto As Currency
@@ -1762,12 +1797,12 @@ Dim Impuestos As Currency
     Sql = "select * from facturas where " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Generando Fichero IMPFAC.TXT"
     Me.Refresh
     
-    I = 0
+    i = 0
     While Not Rs.EOF
         If Not IsNull(Rs!codiiva1) Then
             cad = ""
@@ -1896,10 +1931,10 @@ Dim b As Boolean
 Dim cad As String
 Dim Sql As String
 Dim NF As Long
-Dim I As Integer
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim vCliente As CCliente
 Dim Neto As Currency
 Dim Impuestos As Currency
@@ -1907,6 +1942,9 @@ Dim REFEAN As String
 Dim NomArtic As String
 Dim PrecioNeto As Currency
 Dim TipFac As Byte
+                
+Dim cadAux As String
+Dim PorcIva As Currency
 
     On Error GoTo eGeneraLINFAC
 
@@ -1921,36 +1959,36 @@ Dim TipFac As Byte
     Sql = Sql & " and facturas.fecfactu = facturas_variedad.fecfactu "
     If cadWHERE <> "" Then Sql = Sql & " where " & cadWHERE
     
-    Set RS1 = New ADODB.Recordset
-    RS1.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs1 = New ADODB.Recordset
+    Rs1.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Generando Fichero LINFAC.TXT"
     Me.Refresh
     
     
-    While Not RS1.EOF
-        I = 0
+    While Not Rs1.EOF
+        i = 0
         
         '***** INSERTAMOS LAS LINEAS DE VARIEDADES *****
         Sql = "select facturas_variedad.*, albaran_variedad.codforfait, albaran_variedad.codvarie from facturas_variedad, albaran_variedad where "
-        Sql = Sql & " facturas_variedad.codtipom = " & DBSet(RS1!codTipoM, "T")
-        Sql = Sql & " and facturas_variedad.numfactu = " & DBSet(RS1!NumFactu, "N")
-        Sql = Sql & " and facturas_variedad.fecfactu = " & DBSet(RS1!FecFactu, "F")
+        Sql = Sql & " facturas_variedad.codtipom = " & DBSet(Rs1!codTipoM, "T")
+        Sql = Sql & " and facturas_variedad.numfactu = " & DBSet(Rs1!NumFactu, "N")
+        Sql = Sql & " and facturas_variedad.fecfactu = " & DBSet(Rs1!FecFactu, "F")
         Sql = Sql & " and facturas_variedad.numalbar = albaran_variedad.numalbar "
         Sql = Sql & " and facturas_variedad.numlinealbar = albaran_variedad.numlinea "
         Sql = Sql & " order by facturas_variedad.codtipom, facturas_variedad.numfactu, "
         Sql = Sql & " facturas_variedad.fecfactu, facturas_variedad.numlinea "
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
         While Not Rs.EOF
             cad = ""
             
-            I = I + 1
+            i = i + 1
             
             REFEAN = ""
-            REFEAN = DevuelveDesdeBDNew(cAgro, "codigoean", "codigoean", "codclien", RS1!CodClien, "N", , "codforfait", Rs!Codforfait, "T", "codvarie", Rs!codvarie, "N")
+            REFEAN = DevuelveDesdeBDNew(cAgro, "codigoean", "codigoean", "codclien", Rs1!CodClien, "N", , "codforfait", Rs!codforfait, "T", "codvarie", Rs!codvarie, "N")
             
             NomArtic = ""
             NomArtic = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Rs!codvarie, "N")
@@ -1958,7 +1996,7 @@ Dim TipFac As Byte
             TipFac = TipoFacturarForfaits(CStr(Rs!NumAlbar), CStr(Rs!numlinealbar))
             
             cad = cad & RellenaABlancos(DBLet(Rs!NumFactu, "N"), True, 15) '1.-nro factura
-            cad = cad & Format(I, "00000")  '2.-nro linea
+            cad = cad & Format(i, "00000")  '2.-nro linea
             cad = cad & RellenaABlancos(REFEAN, True, 17) '3.-referencia del articulo
             cad = cad & Space(35)      '4.-
             cad = cad & Space(35)      '5.-
@@ -2013,9 +2051,26 @@ Dim TipFac As Byte
 '            End If
 '            cad = cad & Format(DBLet(RS!precinet, "N"), "0000000000.000")
             
+            '[Monica]05/07/2016: en el caso de lidl es obligatorio
+            If DBLet(Rs1!CodClien, "N") = 104 Then
+                cad = cad & "VAT" '14.- tipo de impuesto
+                
+                '15.- porcentaje de iva
+                PorcIva = 0
+                cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", Rs!Codigiva, "N")
+                If cadAux <> "" Then PorcIva = ImporteSinFormato(cadAux)
+                
+                If DBLet(PorcIva, "N") >= 0 Then
+                    cad = cad & "+"
+                Else
+                    cad = cad & "-"
+                End If
+                cad = cad & Format(DBLet(PorcIva, "N"), "000.000")
+            Else
+                cad = cad & Space(3) '14.-
+                cad = cad & Space(8) '15.-
+            End If
             
-            cad = cad & Space(3) '14.-
-            cad = cad & Space(8) '15.-
             cad = cad & Space(15) '16.-
             cad = cad & Space(3) '17.-
             cad = cad & Space(8) '18.-
@@ -2213,11 +2268,11 @@ Dim TipFac As Byte
 '        Set RS = Nothing
     
     
-        RS1.MoveNext
+        Rs1.MoveNext
     Wend
     
-    RS1.Close
-    Set RS1 = Nothing
+    Rs1.Close
+    Set Rs1 = Nothing
     
     Close #NF
     
@@ -2368,12 +2423,12 @@ End Sub
 
 Private Function HayRegistrosEnvases(cad As String) As Boolean
 Dim Sql As String
-Dim Sql1 As String
+Dim SQL1 As String
 
     Sql = "select codtipom, numfactu, fecfactu from facturas where " & cad
-    Sql1 = "select count(*) from facturas_envases where (codtipom, numfactu, fecfactu) = (" & Sql & ")"
+    SQL1 = "select count(*) from facturas_envases where (codtipom, numfactu, fecfactu) = (" & Sql & ")"
     
-    HayRegistrosEnvases = (RegistrosAListar(Sql1) <> 0)
+    HayRegistrosEnvases = (RegistrosAListar(SQL1) <> 0)
 
 End Function
 
@@ -2386,8 +2441,8 @@ Dim Mens As String
         
     On Error GoTo eComprobarFicheros
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    Conn.Execute Sql
+    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
+    conn.Execute Sql
     
     b = True
     If b Then
@@ -2420,11 +2475,11 @@ Dim b As Boolean
 Dim NF As Long
 Dim cad As String
 Dim Sql As String
-Dim Sql1 As String
-Dim I As Integer
+Dim SQL1 As String
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim vCliente As CCliente
 Dim Neto As Currency
 Dim Impuestos As Currency
@@ -2446,55 +2501,55 @@ Dim Mens As String
     If cadWHERE <> "" Then Sql = Sql & " where " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Comprobando Registros para el Fichero CABFAC.TXT"
     Me.Refresh
     
-    I = 0
+    i = 0
     
     'parametros de empresa
     If vParamAplic.CodigoEdi = "" Then '2.-codigo edi vendedor
         Mens = "No existe codigo edi vendedor"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParam.NombreEmpresa = "" Then  '88.-
         Mens = "No existe nombre de empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParam.DomicilioEmpresa = "" Then  '89.-
         Mens = "No existe domicilio de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParam.Poblacion = "" Then  '90.-
         Mens = "No existe poblacion de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParam.CPostal = "" Then '91.-
         Mens = "No existe codigo postal de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParam.CifEmpresa = "" Then   '92.-
         Mens = "No existe cif empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     If vParamAplic.RegMercantil = "" Then  '93.-
         Mens = "No existe registro mercantil empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-        Conn.Execute Sql
+              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+        conn.Execute Sql
     End If
     'end parametros empresa
     
@@ -2507,100 +2562,100 @@ Dim Mens As String
         'si se ha modificado el cliente volver a cargar los datos
         If vCliente.Existe(Rs!CodClien) Then
             If vCliente.LeerDatos(Rs!CodClien) Then
-                Sql1 = "select albaran.*, destinos.codigoedi, destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla "
-                Sql1 = Sql1 & " from albaran, facturas_variedad, destinos "
-                Sql1 = Sql1 & " where facturas_variedad.codtipom = " & DBSet(Rs!codTipoM, "T")
-                Sql1 = Sql1 & " and facturas_variedad.numfactu = " & DBSet(Rs!NumFactu, "N")
-                Sql1 = Sql1 & " and facturas_variedad.fecfactu = " & DBSet(Rs!FecFactu, "F")
-                Sql1 = Sql1 & " and facturas_variedad.numalbar = albaran.numalbar "
-                Sql1 = Sql1 & " and albaran.codclien = destinos.codclien "
-                Sql1 = Sql1 & " and albaran.coddesti = destinos.coddesti "
+                SQL1 = "select albaran.*, destinos.codigoedi, destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla "
+                SQL1 = SQL1 & " from albaran, facturas_variedad, destinos "
+                SQL1 = SQL1 & " where facturas_variedad.codtipom = " & DBSet(Rs!codTipoM, "T")
+                SQL1 = SQL1 & " and facturas_variedad.numfactu = " & DBSet(Rs!NumFactu, "N")
+                SQL1 = SQL1 & " and facturas_variedad.fecfactu = " & DBSet(Rs!FecFactu, "F")
+                SQL1 = SQL1 & " and facturas_variedad.numalbar = albaran.numalbar "
+                SQL1 = SQL1 & " and albaran.codclien = destinos.codclien "
+                SQL1 = SQL1 & " and albaran.coddesti = destinos.coddesti "
                 
-                Set RS1 = New ADODB.Recordset
-                RS1.Open Sql1, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+                Set Rs1 = New ADODB.Recordset
+                Rs1.Open SQL1, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
             
-                If Not RS1.EOF Then RS1.MoveFirst
+                If Not Rs1.EOF Then Rs1.MoveFirst
 '                While Not Rs1.EOF
                 
                     If vCliente.CodigoEdi = "" Then '5.-codigo edi comprador
                         Mens = "No existe codigo edi comprador " & Rs!CodClien
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                        Conn.Execute Sql
+                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                        conn.Execute Sql
                     End If
-                    If DBLet(RS1!CodigoEdi, "T") = "" Then  '7.-codigo edi receptor--> de la tabla de destinos
+                    If DBLet(Rs1!CodigoEdi, "T") = "" Then  '7.-codigo edi receptor--> de la tabla de destinos
                         Mens = "No existe codigo edi del destino "
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                        Conn.Execute Sql
+                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                        conn.Execute Sql
                     End If
-                    If DBLet(RS1!refclien, "T") = "" Then '10.-nro pedido-->albaran.refclien
+                    If DBLet(Rs1!refclien, "T") = "" Then '10.-nro pedido-->albaran.refclien
                         Mens = "No existe la referencia del albaran"
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                        Conn.Execute Sql
+                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                        conn.Execute Sql
                     End If
                     If vCliente.DestEDI = 0 Then 'destino de factura es el cliente
                         If vCliente.Nombre = "" Then       '14.-razon social del cliente
                             Mens = "No existe nombre del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                         If vCliente.Domicilio = "" Then      '15.-domicilio del cliente
                             Mens = "No existe domicilio del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                         If vCliente.Poblacion = "" Then      '16.-ciudad del cliente
                             Mens = "No existe poblacion del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                         If vCliente.CPostal = "" Then                '17.-codigo postal del cliente
                             Mens = "No existe codigo postal del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                     Else ' destinos de factura es el destino
-                        If DBLet(RS1!nomdesti, "T") = "" Then       '14.-nombre del cliente
+                        If DBLet(Rs1!nomdesti, "T") = "" Then       '14.-nombre del cliente
                             Mens = "No existe nombre del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
-                        If DBLet(RS1!domdesti, "T") = "" Then       '15.-domicilio del cliente
+                        If DBLet(Rs1!domdesti, "T") = "" Then       '15.-domicilio del cliente
                             Mens = "No existe domicilio del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
-                        If DBLet(RS1!pobdesti, "T") = "" Then      '16.-ciudad del cliente
+                        If DBLet(Rs1!pobdesti, "T") = "" Then      '16.-ciudad del cliente
                             Mens = "No existe poblacion del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                         If vCliente.CPostal = "" Then                '17.-codigo postal del cliente
                             Mens = "No existe codigo postal del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                            Conn.Execute Sql
+                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                            conn.Execute Sql
                         End If
                     End If
                     If vCliente.NIF = "" Then          '18.-nif cliente
                         Mens = "No existe nif del cliente"
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                        Conn.Execute Sql
+                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                        conn.Execute Sql
                     End If
                     
 '                    Rs1.MoveNext
 '                Wend
-                Set RS1 = Nothing
+                Set Rs1 = Nothing
                 
             End If
         End If
@@ -2635,11 +2690,11 @@ Dim b As Boolean
 Dim NF As Long
 Dim cad As String
 Dim Sql As String
-Dim Sql1 As String
-Dim I As Integer
+Dim SQL1 As String
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim vCliente As CCliente
 Dim Neto As Currency
 Dim Impuestos As Currency
@@ -2662,7 +2717,7 @@ Dim Mens As String
     If cadWHERE <> "" Then Sql = Sql & " where " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     Label2.Caption = "Comprobando Registros para el Fichero CABFAC.TXT"
     Me.Refresh
@@ -2679,23 +2734,23 @@ Dim Mens As String
         Sql = Sql & " order by facturas_variedad.codtipom, facturas_variedad.numfactu, "
         Sql = Sql & " facturas_variedad.fecfactu, facturas_variedad.numlinea "
         
-        Set RS1 = New ADODB.Recordset
-        RS1.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Set Rs1 = New ADODB.Recordset
+        Rs1.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
-        While Not RS1.EOF
+        While Not Rs1.EOF
             REFEAN = ""
-            REFEAN = DevuelveDesdeBDNew(cAgro, "codigoean", "codigoean", "codclien", Rs!CodClien, "N", , "codforfait", RS1!Codforfait, "T", "codvarie", RS1!codvarie, "N")
+            REFEAN = DevuelveDesdeBDNew(cAgro, "codigoean", "codigoean", "codclien", Rs!CodClien, "N", , "codforfait", Rs1!codforfait, "T", "codvarie", Rs1!codvarie, "N")
             
             If REFEAN = "" Then
-                Mens = "No existe referencia C" & Format(Rs!CodClien, "000000") & "-F" & Trim(RS1!Codforfait) & "-V" & Format(RS1!codvarie, "0000")
+                Mens = "No existe referencia C" & Format(Rs!CodClien, "000000") & "-F" & Trim(Rs1!codforfait) & "-V" & Format(Rs1!codvarie, "0000")
                 Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                      vUsu.Codigo & "," & DBSet(RS1!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
-                Conn.Execute Sql
+                      vUsu.codigo & "," & DBSet(Rs1!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                conn.Execute Sql
             End If
-            RS1.MoveNext
+            Rs1.MoveNext
         Wend
         
-        Set RS1 = Nothing
+        Set Rs1 = Nothing
         Rs.MoveNext
     Wend
     
@@ -2710,4 +2765,5 @@ eComprobarLINFAC:
         ComprobarLINFAC = False
     End If
 End Function
+
 
