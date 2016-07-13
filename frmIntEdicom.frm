@@ -383,7 +383,7 @@ Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
 Dim tabla As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -425,9 +425,9 @@ InicializarVbles
 '    If Not AnyadirAFormula(cadSelect, Codigo) Then Exit Sub
     
     'Tipo de movimiento
-    codigo = "{facturas.codtipom} = '" & Combo1(0).Text & "'"
-    If Not AnyadirAFormula(cadFormula, codigo) Then Exit Sub
-    If Not AnyadirAFormula(cadselect, codigo) Then Exit Sub
+    Codigo = "{facturas.codtipom} = '" & Combo1(0).Text & "'"
+    If Not AnyadirAFormula(cadFormula, Codigo) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, Codigo) Then Exit Sub
     
     'D/H Cliente
     cDesde = Trim(txtCodigo(0).Text)
@@ -436,7 +436,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & tabla & ".codclien}"
+        Codigo = "{" & tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -446,7 +446,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(5).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{facturas.numfactu}"
+        Codigo = "{facturas.numfactu}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHFactura= """) Then Exit Sub
     End If
@@ -456,7 +456,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & tabla & ".fecfactu}"
+        Codigo = "{" & tabla & ".fecfactu}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
@@ -468,7 +468,7 @@ InicializarVbles
             If vParamAplic.PathEdicom <> "" Then
                 If Not ExistenFicheros Then
                     If ComprobarFicheros(cadselect) Then
-                        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+                        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
                         
                         If TotalRegistros(Sql) <> 0 Then
                             MsgBox "Hay errores en la integración EDICOM. Debe corregirlos previamente.", vbExclamation
@@ -721,13 +721,13 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
         If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
@@ -743,7 +743,7 @@ End Function
 
 Private Sub LlamarImprimir()
     With frmImprimir
-        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.codigo
+        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.Codigo
         .OtrosParametros = cadParam
         .NumeroParametros = numParam + 1
         .SoloImprimir = False
@@ -856,7 +856,7 @@ On Error GoTo eProcesarCambios
 
     HayReg = 0
     
-    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
         
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -864,7 +864,7 @@ On Error GoTo eProcesarCambios
         cadWHERE = QuitarCaracterACadena(cadWHERE, "_1")
     End If
         
-    Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.codigo, "N")
+    Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.Codigo, "N")
     Sql = Sql & ", albaran.numalbar from albaran, albaran_variedad where albaran.numalbar not in (select numalbar from tcafpa) "
     Sql = Sql & " and albaran.numalbar = albaran_variedad.numalbar "
     
@@ -873,7 +873,7 @@ On Error GoTo eProcesarCambios
     
     conn.Execute Sql
         
-    ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.codigo)
+    ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.Codigo)
 
 eProcesarCambios:
     If Err.Number <> 0 Then
@@ -889,7 +889,7 @@ Dim Rs As ADODB.Recordset
 Dim SQL1 As String
 
         SQL1 = "insert into tmpinformes(codusu, codigo1) values ("
-        SQL1 = SQL1 & DBSet(vUsu.codigo, "N") & "," & DBSet(ItmX.Text, "N") & ")"
+        SQL1 = SQL1 & DBSet(vUsu.Codigo, "N") & "," & DBSet(ItmX.Text, "N") & ")"
 
         conn.Execute SQL1
     
@@ -1134,7 +1134,14 @@ Dim Descuen As Currency
                 cad = cad & RellenaABlancos(vParamAplic.CodigoEdi, True, 17)  '2.-codigo edi vendedor
                 cad = cad & RellenaABlancos(vParamAplic.CodigoEdi, True, 17) '3.-codigo edi emisor
                 cad = cad & Space(17)                                       '4.-
-                cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)   '5.-codigo edi comprador
+                
+                '[Monica]07/07/2016: en el caso de lidl el codigo edi del comprador es el del cliente
+                If DBLet(Rs!CodClien, "N") = 104 Then
+                    cad = cad & RellenaABlancos(vCliente.CodigoEdi, True, 17)   '5.-codigo edi comprador
+                Else
+                    cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)   '5.-codigo edi comprador
+                End If
+                
                 cad = cad & Space(13)                                       '6.-departamento
                 cad = cad & RellenaABlancos(DBLet(Rs1!CodigoEdi, "T"), True, 17)  '7.-codigo edi receptor--> de la tabla de destinos
                 
@@ -2034,13 +2041,18 @@ Dim PorcIva As Currency
             End If
             cad = cad & Format(DBLet(Rs!precibru, "N"), "0000000000.000")
             
-            '13.- Precio Neto
-            If DBLet(Rs!precibru, "N") >= 0 Then
-                cad = cad & "+"
+            '[Monica]07/07/2016: si es lidl dejamos a cero la posicion del precio neto
+            If DBLet(Rs1!CodClien, "N") = 104 Then
+                cad = cad & Space(15)
             Else
-                cad = cad & "-"
+                '13.- Precio Neto
+                If DBLet(Rs!precibru, "N") >= 0 Then
+                    cad = cad & "+"
+                Else
+                    cad = cad & "-"
+                End If
+                cad = cad & Format(DBLet(Rs!precibru, "N"), "0000000000.000")
             End If
-            cad = cad & Format(DBLet(Rs!precibru, "N"), "0000000000.000")
             
 '--monica: si hay descuentos de cabecera los precios son iguales y coinciden son el bruto.
 '            '13.- Precio Neto
@@ -2441,7 +2453,7 @@ Dim Mens As String
         
     On Error GoTo eComprobarFicheros
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute Sql
     
     b = True
@@ -2512,43 +2524,43 @@ Dim Mens As String
     If vParamAplic.CodigoEdi = "" Then '2.-codigo edi vendedor
         Mens = "No existe codigo edi vendedor"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParam.NombreEmpresa = "" Then  '88.-
         Mens = "No existe nombre de empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParam.DomicilioEmpresa = "" Then  '89.-
         Mens = "No existe domicilio de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParam.Poblacion = "" Then  '90.-
         Mens = "No existe poblacion de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParam.CPostal = "" Then '91.-
         Mens = "No existe codigo postal de la empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParam.CifEmpresa = "" Then   '92.-
         Mens = "No existe cif empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     If vParamAplic.RegMercantil = "" Then  '93.-
         Mens = "No existe registro mercantil empresa"
         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
         conn.Execute Sql
     End If
     'end parametros empresa
@@ -2580,76 +2592,76 @@ Dim Mens As String
                     If vCliente.CodigoEdi = "" Then '5.-codigo edi comprador
                         Mens = "No existe codigo edi comprador " & Rs!CodClien
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                         conn.Execute Sql
                     End If
                     If DBLet(Rs1!CodigoEdi, "T") = "" Then  '7.-codigo edi receptor--> de la tabla de destinos
                         Mens = "No existe codigo edi del destino "
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                         conn.Execute Sql
                     End If
                     If DBLet(Rs1!refclien, "T") = "" Then '10.-nro pedido-->albaran.refclien
                         Mens = "No existe la referencia del albaran"
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                         conn.Execute Sql
                     End If
                     If vCliente.DestEDI = 0 Then 'destino de factura es el cliente
                         If vCliente.Nombre = "" Then       '14.-razon social del cliente
                             Mens = "No existe nombre del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If vCliente.Domicilio = "" Then      '15.-domicilio del cliente
                             Mens = "No existe domicilio del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If vCliente.Poblacion = "" Then      '16.-ciudad del cliente
                             Mens = "No existe poblacion del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If vCliente.CPostal = "" Then                '17.-codigo postal del cliente
                             Mens = "No existe codigo postal del cliente"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                     Else ' destinos de factura es el destino
                         If DBLet(Rs1!nomdesti, "T") = "" Then       '14.-nombre del cliente
                             Mens = "No existe nombre del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If DBLet(Rs1!domdesti, "T") = "" Then       '15.-domicilio del cliente
                             Mens = "No existe domicilio del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If DBLet(Rs1!pobdesti, "T") = "" Then      '16.-ciudad del cliente
                             Mens = "No existe poblacion del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                         If vCliente.CPostal = "" Then                '17.-codigo postal del cliente
                             Mens = "No existe codigo postal del destino"
                             Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                                  vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                                  vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                             conn.Execute Sql
                         End If
                     End If
                     If vCliente.NIF = "" Then          '18.-nif cliente
                         Mens = "No existe nif del cliente"
                         Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                              vUsu.codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                              vUsu.Codigo & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                         conn.Execute Sql
                     End If
                     
@@ -2744,7 +2756,7 @@ Dim Mens As String
             If REFEAN = "" Then
                 Mens = "No existe referencia C" & Format(Rs!CodClien, "000000") & "-F" & Trim(Rs1!codforfait) & "-V" & Format(Rs1!codvarie, "0000")
                 Sql = "insert into tmpinformes (codusu, importe1, nombre1) values (" & _
-                      vUsu.codigo & "," & DBSet(Rs1!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Rs1!NumFactu, "N") & "," & DBSet(Mens, "T") & ")"
                 conn.Execute Sql
             End If
             Rs1.MoveNext
