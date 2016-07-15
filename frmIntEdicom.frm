@@ -1997,8 +1997,9 @@ Dim PorcIva As Currency
             REFEAN = ""
             REFEAN = DevuelveDesdeBDNew(cAgro, "codigoean", "codigoean", "codclien", Rs1!CodClien, "N", , "codforfait", Rs!codforfait, "T", "codvarie", Rs!codvarie, "N")
             
+            '[Monica]15/07/2016: cambiamos antes salia el nombre de la variedad, ahora el nombre de la confeccion
             NomArtic = ""
-            NomArtic = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Rs!codvarie, "N")
+            NomArtic = DevuelveDesdeBDNew(cAgro, "forfaits", "nomconfe", "codforfait", Rs!codforfait, "T")
             
             TipFac = TipoFacturarForfaits(CStr(Rs!NumAlbar), CStr(Rs!numlinealbar))
             
