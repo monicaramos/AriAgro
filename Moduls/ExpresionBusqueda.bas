@@ -1,17 +1,17 @@
 Attribute VB_Name = "ExpresionBusqueda"
 
-Public Function SeparaCampoBusqueda(Tipo As String, campo As String, CADENA As String, ByRef DevSQL As String) As Byte
+Public Function SeparaCampoBusqueda(tipo As String, campo As String, CADENA As String, ByRef DevSQL As String) As Byte
 Dim cad As String
 Dim Aux As String
 Dim CH As String
 Dim Fin As Boolean
-Dim i, J As String
+Dim i, j As String
 
 On Error GoTo ErrSepara
 SeparaCampoBusqueda = 1
 DevSQL = ""
 cad = ""
-Select Case Tipo
+Select Case tipo
 Case "N"
     '----------------  NUMERICO  ---------------------
     i = CararacteresCorrectos(CADENA, "N")
@@ -428,18 +428,18 @@ ErrSepara:
     If Err.Number <> 0 Then MuestraError Err.Number
 End Function
 
-Public Function SeparaCampoBusqueda3(Tipo As String, campo As String, CADENA As String, ByRef DevSQL As String, Optional paraRPT) As Byte
+Public Function SeparaCampoBusqueda3(tipo As String, campo As String, CADENA As String, ByRef DevSQL As String, Optional paraRPT) As Byte
 Dim cad As String
 Dim Aux As String
 Dim CH As String
 Dim Fin As Boolean
-Dim i, J As String
+Dim i, j As String
 
 On Error GoTo ErrSepara
 SeparaCampoBusqueda3 = 1
 DevSQL = ""
 cad = ""
-Select Case Tipo
+Select Case tipo
 Case "N"
     '----------------  NUMERICO  ---------------------
     '==== Laura: 11/07/05
@@ -774,14 +774,14 @@ ErrSepara:
 End Function
 
 
-Private Function CararacteresCorrectos(vcad As String, Tipo As String) As Byte
+Private Function CararacteresCorrectos(vcad As String, tipo As String) As Byte
 Dim i As Integer
 Dim CH As String
 Dim Error As Boolean
 
 CararacteresCorrectos = 1
 Error = False
-Select Case Tipo
+Select Case tipo
 Case "N"
     'Numero. Aceptamos numeros, >,< = :
     For i = 1 To Len(vcad)
@@ -808,6 +808,8 @@ Case "T"
             Case "<", ">"
             Case "Ñ", "ñ"
             Case "-" 'Añade Laura
+            Case "#", "@", "$" '[Monica]29/07/2016: no estaba incluida la arroba
+
             Case Else
                 Error = True
                 Exit For

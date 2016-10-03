@@ -261,7 +261,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public numcod As String 'Para indicar el numero de albaran
+Public NumCod As String 'Para indicar el numero de albaran
 Public NomTrans As String 'indicamos el nombre de transportista
 Public CadTag As String 'Cadena con el Tag del campo que se va a poner en D/H en los listados
                         'Se necesita si el tipo de codigo es texto
@@ -279,7 +279,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -309,7 +309,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
-Dim cadtabla As String, cOrden As String
+Dim cadTABLA As String, cOrden As String
 Dim i As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
@@ -369,7 +369,7 @@ Dim Sql As String
     If vTipoMov.leer(CodTipoMov) Then
         'contador del albaran
         ContCMR = ""
-        ContCMR = DevuelveDesdeBDNew(cAgro, "albaran", "numerocmr", "numalbar", numcod, "N")
+        ContCMR = DevuelveDesdeBDNew(cAgro, "albaran", "numerocmr", "numalbar", NumCod, "N")
         If ContCMR = "" Then
             Contador = vTipoMov.ConseguirContador(CodTipoMov)
         
@@ -390,7 +390,7 @@ Dim Sql As String
             Exit Sub
         End If
         
-        AnyadirAFormula cadFormula, "{tmpcmr.numalbar} = " & numcod & " and {tmpcmr.codusu} = " & vUsu.Codigo
+        AnyadirAFormula cadFormula, "{tmpcmr.numalbar} = " & NumCod & " and {tmpcmr.codusu} = " & vUsu.Codigo
         
         If CargarVariedades(Mens) Then
             'Nombre fichero .rpt a Imprimir
@@ -418,21 +418,21 @@ Dim Sql As String
         Else
             ' actualizamos el contador del albaran
             Sql = "update albaran set numerocmr = " & DBSet(Contador, "N")
-            Sql = Sql & " where numalbar = " & DBSet(numcod, "N")
+            Sql = Sql & " where numalbar = " & DBSet(NumCod, "N")
         
             conn.Execute Sql
         End If
         
         
         '[Monica]18/11/2015: en el caso de que tenga el cliente la marca de enviar por email
-        If EnvioEMail(numcod) Then
+        If EnvioEMail(NumCod) Then
             '[Monica]26/11/2015: solo hay que imprimir la primera página
             cadParam = cadParam & "pEsCorreo=1|"
             numParam = numParam + 1
             With frmImprimir
                '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
                 .outClaveNombreArchiv = Format(Contador, "0000000")
-                .outCodigoCliProv = DevuelveValor("select codclien from albaran where numalbar = " & DBSet(numcod, "N"))
+                .outCodigoCliProv = DevuelveValor("select codclien from albaran where numalbar = " & DBSet(NumCod, "N"))
                 .outTipoDocumento = 7
                 
                 .FormulaSeleccion = cadFormula
@@ -476,7 +476,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 Dim Sql As String
 
@@ -486,7 +486,7 @@ Dim Sql As String
     '###Descomentar
 '    CommitConexion
          
-    FrameCobrosVisible True, h, w
+    FrameCobrosVisible True, H, W
     indFrame = 5
     tabla = "pedidos"
     
@@ -497,19 +497,19 @@ Dim Sql As String
     Sql = Sql & ProvAgenciaTransporte & "(España), incluso en controversias que excedan de 3005'06€"
     txtCodigo(1).Text = Sql
     
-    txtCodigo(8).visible = (vParamAplic.Cooperativa = 2)
-    txtCodigo(8).Enabled = (vParamAplic.Cooperativa = 2)
+    txtCodigo(8).visible = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
+    txtCodigo(8).Enabled = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
     txtCodigo(8).Text = Format(Time, "hh:mm:ss")
-    Label4(5).visible = (vParamAplic.Cooperativa = 2)
-    Label4(5).Enabled = (vParamAplic.Cooperativa = 2)
+    Label4(5).visible = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
+    Label4(5).Enabled = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
     
     
     
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
     Me.cmdCancel.Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
@@ -594,21 +594,21 @@ Dim cad As String, cadTipo As String 'tipo cliente
     End Select
 End Sub
 
-Private Sub FrameCobrosVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCobros.visible = visible
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
         Me.FrameCobros.Height = 6585
         Me.FrameCobros.Width = 6930
-        w = Me.FrameCobros.Width
-        h = Me.FrameCobros.Height
+        W = Me.FrameCobros.Width
+        H = Me.FrameCobros.Height
     End If
 End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -628,11 +628,11 @@ Dim devuelve2 As String
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
         devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -734,7 +734,7 @@ Dim b As Boolean
     Sql = "delete from tmpinformes where codusu =" & vUsu.Codigo
     conn.Execute Sql
     
-    Sql = "select sum(pesobrut) from albaran_variedad where numalbar = " & numcod
+    Sql = "select sum(pesobrut) from albaran_variedad where numalbar = " & NumCod
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -767,7 +767,7 @@ Dim CadValues As String
     RepartirBrutos = False
     If SumaBrutos = 0 Then Exit Function
 
-    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & numcod
+    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -805,7 +805,7 @@ Dim CadValues As String
     
     On Error GoTo eCargarBrutos
     
-    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & numcod
+    Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -842,7 +842,7 @@ Dim Sql As String
     conn.Execute "delete from tmpcmr where codusu = " & vUsu.Codigo
     
     Sql = "insert into tmpcmr(numlinea, codusu, numalbar) select numlinea, "
-    Sql = Sql & vUsu.Codigo & "," & numcod & " from tmpcopiascmr "
+    Sql = Sql & vUsu.Codigo & "," & NumCod & " from tmpcopiascmr "
     conn.Execute Sql
 
 eInsertarTemporal:
@@ -855,7 +855,7 @@ Dim Rs As ADODB.Recordset
     
     ProvAgenciaTransporte = ""
     
-    Sql = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(numcod, "N")
+    Sql = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(NumCod, "N")
     Sql = Sql & " and albaran.codtrans = agencias.codtrans"
     
     Set Rs = New ADODB.Recordset

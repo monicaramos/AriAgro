@@ -421,7 +421,7 @@ Attribute frmMensProducto.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -429,8 +429,8 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim tabla As String
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -468,7 +468,7 @@ InicializarVbles
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
      '======== FORMULA  ====================================
@@ -485,7 +485,7 @@ InicializarVbles
     nHasta = txtNombre(5).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{variedades.codprodu}"
+        Codigo = "{variedades.codprodu}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHProducto= """) Then Exit Sub
     End If
@@ -508,7 +508,7 @@ InicializarVbles
         Exit Sub
     End If
     
-    cadSelect = ""
+    cadselect = ""
     cadFormula = ""
     
     'D/H Variedad
@@ -518,7 +518,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & Tabla & ".codvarie}"
+        Codigo = "{" & tabla & ".codvarie}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHVariedad= """) Then Exit Sub
     End If
@@ -532,13 +532,13 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & Tabla & ".fecalbar}"
+        Codigo = "{" & tabla & ".fecalbar}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
     
     ' en rhisfruta seleccionamos lo de horto
-    cadTABLA = "((" & Tabla & " INNER JOIN variedades ON rhisfruta.codvarie = variedades.codvarie) "
+    cadTABLA = "((" & tabla & " INNER JOIN variedades ON rhisfruta.codvarie = variedades.codvarie) "
     cadTABLA = cadTABLA & " INNER JOIN productos ON variedades.codprodu = productos.codprodu) "
     cadTABLA = cadTABLA & " INNER JOIN grupopro ON productos.codgrupo = grupopro.codgrupo "
     cadTABLA = cadTABLA & " and grupopro.codgrupo <> 5 and grupopro.codgrupo <> 6 " ' grupo no puede ser 5=almazara ni 6=bodega
@@ -558,14 +558,14 @@ InicializarVbles
     cadTABLA1 = "(albaran_variedad INNER JOIN variedades ON albaran_variedad.codvarie = variedades.codvarie) "
     cadTABLA1 = cadTABLA1 & " INNER JOIN albaran ON albaran_variedad.numalbar = albaran.numalbar "
     
-    cadSelect1 = Replace(cadSelect, "rhisfruta.fecalbar", "albaran.fechaalb")
+    cadSelect1 = Replace(cadselect, "rhisfruta.fecalbar", "albaran.fechaalb")
     cadSelect1 = Replace(cadSelect1, "rhisfruta.codvarie", "albaran_variedad.codvarie")
     
-    If HayRegistros(cadTABLA, cadSelect, cadTABLA1, cadSelect1) Then
-        If CargarTemporal(cadTABLA, cadSelect, cadTABLA1, cadSelect1) Then
+    If HayRegistros(cadTABLA, cadselect, cadTABLA1, cadSelect1) Then
+        If CargarTemporal(cadTABLA, cadselect, cadTABLA1, cadSelect1) Then
         
             Sql2 = "SELECT COUNT(*) from (SELECT DISTINCT codsocio  FROM  " & cadTABLA
-            If cadSelect <> "" Then Sql2 = Sql2 & " where " & cadSelect
+            If cadselect <> "" Then Sql2 = Sql2 & " where " & cadselect
             Sql2 = Sql2 & ") aaaa "
             
             NSocs = DevuelveValor(Sql2)
@@ -573,7 +573,7 @@ InicializarVbles
             cadParam = cadParam & "pSocios=" & NSocs & "|"
             numParam = numParam + 1
             
-            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
             cadTitulo = "Facturas Pendientes"
             cadNombreRPT = "rInfOPA4.rpt"
             
@@ -613,7 +613,7 @@ Dim List As Collection
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "rhisfruta"
+    tabla = "rhisfruta"
     Me.Label2.Caption = ""
     Me.Refresh
         
@@ -639,7 +639,7 @@ Dim Sql2 As String
     Else
         Sql = " {rhisfruta.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 End Sub
 
@@ -817,7 +817,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -833,15 +833,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -855,7 +855,7 @@ End Function
 
 Private Sub LlamarImprimir()
     With frmImprimir
-        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.codigo
+        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.Codigo
         .OtrosParametros = cadParam
         .NumeroParametros = numParam + 1
         .SoloImprimir = False
@@ -938,7 +938,7 @@ End Sub
 
 Private Function CargarTemporal(cTabla As String, cadWHERE As String, cTABLA1 As String, cadwhere1 As String) As Boolean
 Dim Sql As String
-Dim Sql1 As String
+Dim SQL1 As String
 Dim Sql2 As String
 Dim Sql4 As String
 Dim Codiva As String
@@ -947,7 +947,7 @@ Dim i As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 Dim Registro As String
-Dim cadena As String
+Dim CADENA As String
 Dim vCliente As CCliente
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
@@ -971,7 +971,7 @@ On Error GoTo eCargarTemporal
     
     CargarTemporal = False
     
-    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
         
     Sql = "Select rhisfruta.codvarie FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cadWHERE <> "" Then
@@ -996,7 +996,7 @@ On Error GoTo eCargarTemporal
                                   '(codusu, variedad,  superficie,kilosnetEnt,kilosnetSal, kilosnetVC, kilosmer1, kilosmer2, kilosmer3, kilosmer4)
     Sql4 = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4,  importeb1, importeb2, importeb3, importeb4) values "
     
-    cadena = ""
+    CADENA = ""
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -1004,15 +1004,15 @@ On Error GoTo eCargarTemporal
     If Not Rs.EOF Then
         VarieAnt = DBLet(Rs!codvarie, "N")
                                   '(codusu, variedad)
-        cadena = "(" & vUsu.codigo & ","
-        cadena = cadena & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
+        CADENA = "(" & vUsu.Codigo & ","
+        CADENA = CADENA & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
     End If
     
     While Not Rs.EOF
         Variedad = DBLet(Rs!codvarie, "N")
         If VarieAnt <> Variedad Then
-            cadena = cadena & "(" & vUsu.codigo & ","
-            cadena = cadena & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
+            CADENA = CADENA & "(" & vUsu.Codigo & ","
+            CADENA = CADENA & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
             
             VarieAnt = DBLet(Variedad, "N")
         End If
@@ -1021,13 +1021,13 @@ On Error GoTo eCargarTemporal
     Wend
     Set Rs = Nothing
     
-    If cadena <> "" Then
+    If CADENA <> "" Then
                                       '(codusu, variedad, superficie,kilosnetEnt,kilosnetSal,kilosVC,  kilosmer1, kilosmer2, kilosmer3, kilosmer4)
         Sql = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4, importeb1, importeb2, importeb3, importeb4) values "
-        Sql = Sql & Mid(cadena, 1, Len(cadena) - 1) ' quitamos la ultima coma
+        Sql = Sql & Mid(CADENA, 1, Len(CADENA) - 1) ' quitamos la ultima coma
         conn.Execute Sql
     
-        Sql = "select codigo1 from tmpinformes where codusu = " & vUsu.codigo & " order by codigo1 "
+        Sql = "select codigo1 from tmpinformes where codusu = " & vUsu.Codigo & " order by codigo1 "
         Set Rs = New ADODB.Recordset
         Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
@@ -1072,7 +1072,7 @@ On Error GoTo eCargarTemporal
             Sql2 = Sql2 & " and rcampos.fecbajas is null "
             Sql2 = Sql2 & " group by 1 "
         
-            If vParamAplic.Cooperativa = 2 Then
+            If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
                 Sql2 = "select rcampos.codvarie,   "
                 
                 If Option3(0).Value Then
@@ -1111,7 +1111,7 @@ On Error GoTo eCargarTemporal
             Sql2 = Sql2 & " and albaran.numalbar = albaran_variedad.numalbar "
             Sql2 = Sql2 & " and albaran.codtimer = tipomer.codtimer "
             
-            If vParamAplic.Cooperativa = 2 Then
+            If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
                 Sql2 = Sql2 & " and albaran.codtimer <> 0 "
             End If
             
@@ -1130,7 +1130,7 @@ On Error GoTo eCargarTemporal
             Retirada = 0
             
             While Not Rs2.EOF
-                If vParamAplic.Cooperativa = 2 Then
+                If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
                     Select Case DBLet(Rs2!tiptimer, "N")
                         Case 0, 4
                             Interior = Interior + DBLet(Rs2!Pesoneto, "N")
@@ -1165,7 +1165,7 @@ On Error GoTo eCargarTemporal
             Sql = Sql & ", importeb2 = " & DBSet(Exportacion, "N")
             Sql = Sql & ", importeb3 = " & DBSet(Industria, "N")
             Sql = Sql & ", importeb4 = " & DBSet(Retirada, "N")
-            Sql = Sql & " where codusu = " & vUsu.codigo
+            Sql = Sql & " where codusu = " & vUsu.Codigo
             Sql = Sql & " and codigo1 = " & DBSet(Rs!Codigo1, "N")
         
             conn.Execute Sql

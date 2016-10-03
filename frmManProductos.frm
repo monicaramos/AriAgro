@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -1090,7 +1090,7 @@ Dim Modo As Byte
 '--------------------------------------------------
 Dim PrimeraVez As Boolean
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim I As Integer
+Dim i As Integer
 
 Private BuscaChekc As String
 
@@ -1118,9 +1118,9 @@ Dim b As Boolean
     
     BuscaChekc = ""
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = Not b And (Modo <> 5)
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = Not b And (Modo <> 5)
+    Next i
     
     txtAux2(2).visible = Not b And (Modo <> 5)
     btnBuscar(0).visible = Not b And (Modo <> 5)
@@ -1171,15 +1171,15 @@ Dim bAux As Boolean
     Me.mnImprimir.Enabled = b
     
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
-    For I = 0 To ToolAux.Count - 1
-        If Not Me.AdoAux(I).Recordset Is Nothing Then
-            ToolAux(I).Buttons(1).Enabled = b
-            If b Then bAux = (b And Me.AdoAux(I).Recordset.RecordCount > 0)
-            ToolAux(I).Buttons(2).Enabled = bAux
-            ToolAux(I).Buttons(3).Enabled = bAux
-            ToolAux(I).Buttons(4).Enabled = b
+    For i = 0 To ToolAux.Count - 1
+        If Not Me.AdoAux(i).Recordset Is Nothing Then
+            ToolAux(i).Buttons(1).Enabled = b
+            If b Then bAux = (b And Me.AdoAux(i).Recordset.RecordCount > 0)
+            ToolAux(i).Buttons(2).Enabled = bAux
+            ToolAux(i).Buttons(3).Enabled = bAux
+            ToolAux(i).Buttons(4).Enabled = b
         End If
-    Next I
+    Next i
     
     
     
@@ -1199,6 +1199,11 @@ Private Sub BotonAnyadir()
         NumF = SugerirCodigoSiguienteStr("productos", "codprodu")
     End If
     '********************************************************************
+    
+    Modo = 3
+    PonerModo Modo
+    
+    
     'Situamos el grid al final
     AnyadirLinea DataGrid1, adodc1
          
@@ -1210,9 +1215,9 @@ Private Sub BotonAnyadir()
     End If
     txtAux(0).Text = NumF
     FormateaCampo txtAux(0)
-    For I = 1 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 1 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     txtAux2(2).Text = ""
     chkAux(0).Value = 0
 
@@ -1240,18 +1245,18 @@ Private Sub BotonBuscar()
     
     '*******************************************************************************
     'Buscar
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     chkAux(0).Value = 0
     
-    For I = 0 To txtAux1.Count - 1
-        txtAux1(I).Text = ""
-    Next I
+    For i = 0 To txtAux1.Count - 1
+        txtAux1(i).Text = ""
+    Next i
     
-    For I = 0 To txtAux3.Count - 1
-        txtAux3(I).Text = ""
-    Next I
+    For i = 0 To txtAux3.Count - 1
+        txtAux3(i).Text = ""
+    Next i
     
     
     LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
@@ -1260,13 +1265,13 @@ End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -1304,9 +1309,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Top = alto
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Top = alto
+    Next i
     
     ' ### [Monica] 12/09/2006
     txtAux2(2).Top = alto
@@ -1351,6 +1356,7 @@ Dim temp As Boolean
     On Error GoTo Error2
     'Ciertas comprobaciones
     If adodc1.Recordset.EOF Then Exit Sub
+    
 '    If Not SepuedeBorrar Then Exit Sub
         
     ' ### [Monica] 26/09/2006 dejamos modificar y eliminar el codigo 0
@@ -1370,8 +1376,16 @@ Dim temp As Boolean
         
         CargarUnProducto CLng(adodc1.Recordset!codprodu), "D"
         
+        Sql = "Delete from productos_herb where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute Sql
+        
+        Sql = "Delete from productos_insec where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute Sql
+        
         Sql = "Delete from productos where codprodu=" & adodc1.Recordset!codprodu
         conn.Execute Sql
+        
+        
         CargaGrid CadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
@@ -1380,10 +1394,12 @@ Dim temp As Boolean
 '            CargaGrid ""
 '            lblIndicador.Caption = ""
 '        End If
+        
         temp = SituarDataTrasEliminar(adodc1, NumRegElim, True)
         PonerModoOpcionesMenu Modo
         adodc1.Recordset.Cancel
     End If
+    
     Exit Sub
     
 Error2:
@@ -1435,7 +1451,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-    Dim I As Integer
+    Dim i As Integer
 
     Select Case Modo
         Case 1 'BUSQUEDA
@@ -1471,7 +1487,7 @@ Private Sub cmdAceptar_Click()
                 If ModificaDesdeFormulario(Me) Then
                     CargarUnProducto CLng(txtAux(0)), "U"
                     TerminaBloquear
-                    I = adodc1.Recordset.Fields(0)
+                    i = adodc1.Recordset.Fields(0)
                     PonerModo 2
                     CargaGrid CadB
 '                    If CadB <> "" Then
@@ -1481,7 +1497,7 @@ Private Sub cmdAceptar_Click()
 '                        CargaGrid
 '                        lblIndicador.Caption = ""
 '                    End If
-                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
+                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
                     PonerFocoGrid Me.DataGrid1
                 End If
             End If
@@ -1565,8 +1581,8 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 Dim cad As String
-Dim I As Integer
-Dim J As Integer
+Dim i As Integer
+Dim j As Integer
 Dim Aux As String
 
     If adodc1.Recordset.EOF Then
@@ -1574,16 +1590,16 @@ Dim Aux As String
         Exit Sub
     End If
     cad = ""
-    I = 0
+    i = 0
     Do
-        J = I + 1
-        I = InStr(J, DatosADevolverBusqueda, "|")
-        If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, I - J)
-            J = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(J) & "|"
+        j = i + 1
+        i = InStr(j, DatosADevolverBusqueda, "|")
+        If i > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, j, i - j)
+            j = Val(Aux)
+            cad = cad & adodc1.Recordset.Fields(j) & "|"
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -1600,7 +1616,11 @@ Private Sub DataGrid1_RowColChange(LastRow As Variant, ByVal LastCol As Integer)
 Dim KK As Integer
     PonerContRegIndicador
     For KK = 0 To 1
-        CargaGridAux KK, True
+        If Modo = 3 Then
+            CargaGridAux KK, False
+        Else
+            CargaGridAux KK, True
+        End If
     Next KK
 End Sub
 
@@ -1641,8 +1661,8 @@ Private Sub Form_Load()
 
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
-    For I = 0 To ToolAux.Count - 1
-        With Me.ToolAux(I)
+    For i = 0 To ToolAux.Count - 1
+        With Me.ToolAux(i)
             .HotImageList = frmPpal.imgListComun_OM16
             .DisabledImageList = frmPpal.imgListComun_BN16
             .ImageList = frmPpal.imgListComun16
@@ -1651,7 +1671,7 @@ Private Sub Form_Load()
             .Buttons(3).Image = 5   'Borrar
             .Buttons(4).Image = 19   'Insertar linea
         End With
-    Next I
+    Next i
     ' ***********************************
 
 
@@ -1787,7 +1807,6 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
         Case 8
                 mnEliminar_Click
         Case 11
-                'MsgBox "Imprimir...under construction"
                 mnImprimir_Click
         Case 12
                 mnSalir_Click
@@ -1831,7 +1850,7 @@ End Sub
 
 Private Sub CargaGridAux(Index As Integer, enlaza As Boolean)
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim tots As String
 
     On Error GoTo ECarga
@@ -2015,7 +2034,7 @@ Private Sub printNou()
         .cadTodosReg = ""
         '.cadTodosReg = "{itinerar.codempre} = " & codEmpre
         ' *** repasar si li pose ordre o no ****
-        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|pOrden={sforpa.codforpa}|"
+        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomEmpre & "'|pOrden={sforpa.codforpa}|"
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|"
         ' *** posar el nº de paràmetres que he posat en OtrosParametros2 ***
         '.NumeroParametros2 = 1
@@ -2128,7 +2147,7 @@ Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vTabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -2214,7 +2233,7 @@ Private Sub BotonIntercalarLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vTabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -2238,7 +2257,7 @@ Dim I As Integer
 '    Set frmMens = Nothing
     
     
-    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!NumLinea)
+    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!numlinea)
        
     NumTabMto = Index
     PonerModo 5, Index
@@ -2302,8 +2321,8 @@ End Sub
 
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
-    Dim I As Integer
-    Dim J As Integer
+    Dim i As Integer
+    Dim j As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
@@ -2336,8 +2355,8 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         Case 0, 1 ' *** pose els index de llínies que tenen datagrid (en o sense tab) ***
             If DataGridAux(Index).Bookmark < DataGridAux(Index).FirstRow Or DataGridAux(Index).Bookmark > (DataGridAux(Index).FirstRow + DataGridAux(Index).VisibleRows - 1) Then
-                I = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
-                DataGridAux(Index).Scroll 0, I
+                i = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
+                DataGridAux(Index).Scroll 0, i
                 DataGridAux(Index).Refresh
             End If
               
@@ -2352,21 +2371,21 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 ' insecticidas
-            For J = 0 To 6
-                txtAux1(J).Text = DataGridAux(Index).Columns(J).Text
-            Next J
+            For j = 0 To 6
+                txtAux1(j).Text = DataGridAux(Index).Columns(j).Text
+            Next j
             BloquearTxt txtAux(0), True
             BloquearTxt txtAux(3), True
             
             BloquearbtnBuscar Me, Modo, ModoLineas, "FrameAux0"
             
         Case 1 ' herbicidas
-            For J = 0 To 5
-                txtAux3(J).Text = DataGridAux(Index).Columns(J).Text
-            Next J
-            For I = 9 To 9
-                BloquearTxt txtAux(I), True
-            Next I
+            For j = 0 To 5
+                txtAux3(j).Text = DataGridAux(Index).Columns(j).Text
+            Next j
+            For i = 9 To 9
+                BloquearTxt txtAux(i), True
+            Next i
             BloquearbtnBuscar Me, Modo, ModoLineas, "FrameAux1"
             
     End Select
@@ -2429,7 +2448,7 @@ Dim Eliminar As Boolean
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 Sql = "DELETE FROM productos_insec "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
             End If
             
         Case 1 'herbicidas
@@ -2438,7 +2457,7 @@ Dim Eliminar As Boolean
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 Sql = "DELETE FROM productos_herb "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
             End If
             
     End Select
@@ -2554,13 +2573,13 @@ EInsertarLinea:
 End Sub
 
 
-Private Function InsertarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
+Private Function InsertarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
 Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim SqlValues As String
-Dim I As Integer
+Dim i As Integer
 Dim SQLinsert As String
 
 
@@ -2582,22 +2601,22 @@ Dim SQLinsert As String
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not Rs.EOF
         SqlValues = SqlValues & "(" & DBSet(Rs!codprodu, "N") & ","
-        If Tipo = 0 Then
-            For I = 1 To 6
-                If I = 1 Or I = 6 Then
-                    SqlValues = SqlValues & DBSet(txtAux1(I).Text, "N") & ","
+        If tipo = 0 Then
+            For i = 1 To 6
+                If i = 1 Or i = 6 Then
+                    SqlValues = SqlValues & DBSet(txtAux1(i).Text, "N") & ","
                 Else
-                    SqlValues = SqlValues & DBSet(txtAux1(I).Text, "T") & ","
+                    SqlValues = SqlValues & DBSet(txtAux1(i).Text, "T") & ","
                 End If
-            Next I
+            Next i
         Else
-            For I = 1 To 5
-                If I = 1 Then
-                    SqlValues = SqlValues & DBSet(txtAux3(I).Text, "N") & ","
+            For i = 1 To 5
+                If i = 1 Then
+                    SqlValues = SqlValues & DBSet(txtAux3(i).Text, "N") & ","
                 Else
-                    SqlValues = SqlValues & DBSet(txtAux3(I).Text, "T") & ","
+                    SqlValues = SqlValues & DBSet(txtAux3(i).Text, "T") & ","
                 End If
-            Next I
+            Next i
             SqlValues = SqlValues & DBSet(Me.chkAux1(0).Value, "N") & ","
         End If
         SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1) & "),"
@@ -2606,7 +2625,7 @@ Dim SQLinsert As String
     Set Rs = Nothing
 
     If SqlValues <> "" Then
-        If Tipo = 0 Then
+        If tipo = 0 Then
             SQLinsert = "insert into productos_insec (codprodu,numlinea,matactiva,nombre,dosis,plagas,psdias,cultivoaut) values "
         Else
             SQLinsert = "insert into productos_herb (codprodu,numlinea,matactiva,nombre,dosis,plagas,eshelicida) values "
@@ -2622,7 +2641,7 @@ eInsertarEnProductosGrupo:
 End Function
 
 
-Private Function ModificarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
+Private Function ModificarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
 Dim Sql As String
@@ -2637,7 +2656,7 @@ Dim Rs As ADODB.Recordset
 
 '    If CADENA = "" Then Exit Function
 
-    If Tipo = 0 Then
+    If tipo = 0 Then
         Sql = "update productos_insec set "
         Sql = Sql & "matactiva = " & DBSet(txtAux1(2).Text, "T")
         Sql = Sql & ",nombre = " & DBSet(txtAux1(3).Text, "T")
@@ -2665,7 +2684,7 @@ eModificarEnProductosGrupo:
 End Function
 
 
-Private Function EliminarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
+Private Function EliminarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
 Dim Sql As String
@@ -2677,12 +2696,12 @@ Dim Rs As ADODB.Recordset
     
     If EsKaki(adodc1.Recordset!codprodu) Then Exit Function
 
-    If Tipo = 0 Then
+    If tipo = 0 Then
         Sql = "delete from productos_insec "
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!NumLinea
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!numlinea
     Else
         Sql = "delete from productos_herb "
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!NumLinea
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!numlinea
     End If
             
     conn.Execute Sql
@@ -2821,7 +2840,7 @@ EEPonerBusq:
 End Sub
 
 Private Sub PonerCampos()
-Dim I As Integer
+Dim i As Integer
 Dim codPobla As String, desPobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
@@ -2829,11 +2848,15 @@ Dim CPostal As String, desProvi As String, desPais As String
     
     ' *** si n'hi han llínies en datagrids ***
     'For i = 0 To DataGridAux.Count - 1
-    For I = 0 To 1
-        CargaGridAux I, True
-        If Not AdoAux(I).Recordset.EOF Then _
-            PonerCamposForma2 Me, AdoAux(I), 2, "FrameAux" & I
-    Next I
+    For i = 0 To 1
+        If AdoAux(i).Recordset Is Nothing Then
+            CargaGridAux i, False
+        Else
+            CargaGridAux i, True
+        End If
+        If Not AdoAux(i).Recordset.EOF Then _
+            PonerCamposForma2 Me, AdoAux(i), 2, "FrameAux" & i
+    Next i
 
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Me.adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount

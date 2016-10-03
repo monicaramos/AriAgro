@@ -508,8 +508,8 @@ Dim List As Collection
     Check2.Enabled = (vParamAplic.Cooperativa = 9)
     
     '[Monica]15/12/2014: solo para el caso de Picassent
-    Check3.visible = (vParamAplic.Cooperativa = 2)
-    Check3.Enabled = (vParamAplic.Cooperativa = 2)
+    Check3.visible = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
+    Check3.Enabled = (vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16)
     
     Label4(27).visible = False
     Me.Pb1.visible = False

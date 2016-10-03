@@ -187,7 +187,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
 Dim Sql As String
-Dim Sql1 As String
+Dim SQL1 As String
     
     
     
@@ -195,7 +195,7 @@ Dim Sql1 As String
 
     If DatosOk Then
         '[Monica]20/03/2013: tanto si copiamos como si actualizamos hemos de borrar los datos del destino
-        If vParamAplic.Cooperativa = 2 Then
+        If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
             If ActualizarRegistrosNew Then
                 MsgBox "Proceso realizado correctamente.", vbExclamation
                 cmdCancel_Click
@@ -231,16 +231,16 @@ End Sub
 
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
-Dim I As Integer
+Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
     PrimeraVez = True
     limpiar Me
 
-    For I = 27 To 27
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 27 To 27
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
 
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
@@ -291,7 +291,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -320,7 +320,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 End Sub
 
 Private Function DatosOk() As Boolean
-Dim I As Integer
+Dim i As Integer
 
     DatosOk = False
     If txtCodigo(70).Text = "" Then
