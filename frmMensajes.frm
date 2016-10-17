@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmMensajes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Mensajes"
@@ -2196,7 +2196,7 @@ Dim cad As String
 On Error Resume Next
 
     FrameCobrosPtes.visible = False
-    FrameAcercaDe.visible = False
+    frameAcercaDE.visible = False
     FrameNSeries.visible = False
     FrameComponentes.visible = False
     FrameComponentes2.visible = False
@@ -2223,13 +2223,13 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaCobrosPtes
             Me.Caption = "Cobros Pendientes"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 2 'Mensaje de no hay suficiente Stock
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaArtSinStock (vCampos)
             Me.Caption = "Artículos sin stock suficiente"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 3 'Mensaje ACERCA DE
             CargaImagen
@@ -2297,7 +2297,7 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaErrContab
             Me.Caption = "Facturas NO contabilizadas: "
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
         
         Case 11 'Lineas Factura a Rectificar
             PonerFrameNSeriesVisible True, H, W
@@ -2315,7 +2315,7 @@ On Error Resume Next
             Me.Label1(0).Caption = "Existen Albaranes que NO se van a Facturar:"
             Me.Label1(0).Top = 260
             Me.Label1(0).Left = 480
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 13 'Muestra Errores
             H = 6000
@@ -2429,32 +2429,32 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
             Me.Label1(0).Caption = "CLIENTE: " & vCampos
         Case 2
             W = 8800
-            Me.cmdAceptarCobros.Top = 4000
-            Me.cmdAceptarCobros.Left = 4200
+            Me.CmdAceptarCobros.Top = 4000
+            Me.CmdAceptarCobros.Left = 4200
         Case 5 'Componentes
             W = 6000
             H = 5000
-            Me.cmdAceptarCobros.Left = 4000
+            Me.CmdAceptarCobros.Left = 4000
 
         Case 6, 7 'Prefacturar Albaranes
             W = 7000
             H = 6000
-            Me.cmdAceptarCobros.Top = 5400
-            Me.cmdAceptarCobros.Left = 4600
+            Me.CmdAceptarCobros.Top = 5400
+            Me.CmdAceptarCobros.Left = 4600
 
         Case 10, 12 'Errores al contabilizar facturas
             H = 6000
             W = 8400
-            Me.cmdAceptarCobros.Top = 5300
-            Me.cmdAceptarCobros.Left = 4900
+            Me.CmdAceptarCobros.Top = 5300
+            Me.CmdAceptarCobros.Left = 4900
             If OpcionMensaje = 12 Then
-                Me.cmdCancelarCobros.Top = 5300
-                Me.cmdCancelarCobros.Left = 4600
-                Me.cmdAceptarCobros.Left = 3300
+                Me.CmdCancelarCobros.Top = 5300
+                Me.CmdCancelarCobros.Left = 4600
+                Me.CmdAceptarCobros.Left = 3300
                 Me.Label1(1).Top = 4800
                 Me.Label1(1).Left = 3400
-                Me.cmdAceptarCobros.Caption = "&SI"
-                Me.cmdCancelarCobros.Caption = "&NO"
+                Me.CmdAceptarCobros.Caption = "&SI"
+                Me.CmdCancelarCobros.Caption = "&NO"
             End If
     End Select
             
@@ -2463,7 +2463,7 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
     If visible = True Then
         Me.txtParam.visible = (OpcionMensaje = 6 Or OpcionMensaje = 7)
         Me.Label1(0).visible = (OpcionMensaje = 1) Or (OpcionMensaje = 5) Or (OpcionMensaje = 12)
-        Me.cmdCancelarCobros.visible = (OpcionMensaje = 12)
+        Me.CmdCancelarCobros.visible = (OpcionMensaje = 12)
         Me.Label1(1).visible = (OpcionMensaje = 12)
     End If
 End Sub
@@ -2494,16 +2494,16 @@ End Sub
 Private Sub PonerFrameAcercaDeVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Pone el Frame ACERCA DE visible y Ajustado al Formulario
 
-    Me.FrameAcercaDe.visible = visible
+    Me.frameAcercaDE.visible = visible
     If visible = True Then
         'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
-        Me.FrameAcercaDe.Top = -90
-        Me.FrameAcercaDe.Left = 0
-        Me.FrameAcercaDe.Height = 4555
-        Me.FrameAcercaDe.Width = 6600
+        Me.frameAcercaDE.Top = -90
+        Me.frameAcercaDE.Left = 0
+        Me.frameAcercaDE.Height = 4555
+        Me.frameAcercaDE.Width = 6600
         
-        W = Me.FrameAcercaDe.Width
-        H = Me.FrameAcercaDe.Height
+        W = Me.frameAcercaDE.Width
+        H = Me.frameAcercaDE.Height
     End If
 End Sub
 
@@ -3050,20 +3050,20 @@ Dim Sql As String
         ListView2.ColumnHeaders.Add , , "T.Alb", 660
         ListView2.ColumnHeaders.Add , , "Nº Alb", 840
         ListView2.ColumnHeaders.Add , , "Lin.", 450
-         ListView2.ColumnHeaders.Item(3).Alignment = lvwColumnRight
+         ListView2.ColumnHeaders.item(3).Alignment = lvwColumnRight
         ListView2.ColumnHeaders.Add , , "Alm", 460
         ListView2.ColumnHeaders.Add , , "Artic", 1380
         ListView2.ColumnHeaders.Add , , "Desc. Artic.", 2500
         ListView2.ColumnHeaders.Add , , "Cant.", 600
-        ListView2.ColumnHeaders.Item(7).Alignment = lvwColumnRight
+        ListView2.ColumnHeaders.item(7).Alignment = lvwColumnRight
         ListView2.ColumnHeaders.Add , , "Precio", 960
-        ListView2.ColumnHeaders.Item(8).Alignment = lvwColumnRight
+        ListView2.ColumnHeaders.item(8).Alignment = lvwColumnRight
         ListView2.ColumnHeaders.Add , , "Dto 1", 600
-        ListView2.ColumnHeaders.Item(9).Alignment = lvwColumnRight
+        ListView2.ColumnHeaders.item(9).Alignment = lvwColumnRight
         ListView2.ColumnHeaders.Add , , "Dto 2", 600
-        ListView2.ColumnHeaders.Item(10).Alignment = lvwColumnRight
+        ListView2.ColumnHeaders.item(10).Alignment = lvwColumnRight
         ListView2.ColumnHeaders.Add , , "Importe", 950
-        ListView2.ColumnHeaders.Item(11).Alignment = lvwColumnRight
+        ListView2.ColumnHeaders.item(11).Alignment = lvwColumnRight
     
         While Not Rs.EOF
              Set ItmX = ListView2.ListItems.Add
@@ -3130,7 +3130,7 @@ Dim Sql As String
         ListView1.ColumnHeaders.Add , , "Tipo", 700
         ListView1.ColumnHeaders.Add , , "Nº Albaran", 1000, 1
         ListView1.ColumnHeaders.Add , , "Fecha", 1100, 1
-        ListView1.ColumnHeaders.Item(3).Alignment = lvwColumnCenter
+        ListView1.ColumnHeaders.item(3).Alignment = lvwColumnCenter
         ListView1.ColumnHeaders.Add , , "Cod. Cli.", 900
         ListView1.ColumnHeaders.Add , , "Cliente", 3400
     
@@ -3140,7 +3140,7 @@ Dim Sql As String
             ItmX.SubItems(1) = Format(Rs!NumAlbar, "0000000")
             ItmX.SubItems(2) = Rs!FechaAlb
             ItmX.SubItems(3) = Format(Rs!CodClien, "000000")
-            ItmX.SubItems(4) = Rs!nomclien
+            ItmX.SubItems(4) = Rs!Nomclien
             Rs.MoveNext
         Wend
     End If
@@ -3179,7 +3179,7 @@ Dim Sql As String
         ListView5.ColumnHeaders.Add , , "Nº Palet", 1000
         ListView5.ColumnHeaders.Add , , "Lin.Conf.", 1000, 1
         ListView5.ColumnHeaders.Add , , "F.Inicio", 1100, 1
-        ListView5.ColumnHeaders.Item(3).Alignment = lvwColumnCenter
+        ListView5.ColumnHeaders.item(3).Alignment = lvwColumnCenter
         ListView5.ColumnHeaders.Add , , "Hora ", 900
         ListView5.ColumnHeaders.Add , , "F.Fin", 1100
         ListView5.ColumnHeaders.Add , , "Hora ", 900
@@ -3439,7 +3439,7 @@ End Sub
 
 
 
-Private Sub ListView11_ItemCheck(ByVal Item As MSComctlLib.ListItem)
+Private Sub ListView11_ItemCheck(ByVal item As MSComctlLib.ListItem)
     For NumRegElim = 1 To ListView11.ListItems.Count
         If ListView11.ListItems(NumRegElim).Tag = 0 Then
             ListView11.ListItems(NumRegElim).Checked = False
@@ -3768,7 +3768,7 @@ Dim Sql As String
 
         ListView6.ColumnHeaders.Add , , "Nº Pedido", 1000
         ListView6.ColumnHeaders.Add , , "Fecha", 1100, 1
-        ListView6.ColumnHeaders.Item(2).Alignment = lvwColumnCenter
+        ListView6.ColumnHeaders.item(2).Alignment = lvwColumnCenter
         ListView6.ColumnHeaders.Add , , "Código", 900
         ListView6.ColumnHeaders.Add , , "Cliente", 2100
         ListView6.ColumnHeaders.Add , , "Código  ", 700
@@ -3781,7 +3781,7 @@ Dim Sql As String
             ItmX.Text = Format(Rs!numpedid, "000000")
             ItmX.SubItems(1) = Rs!FechaPed
             ItmX.SubItems(2) = Format(Rs!CodClien, "000000")
-            ItmX.SubItems(3) = Rs!nomclien
+            ItmX.SubItems(3) = Rs!Nomclien
             ItmX.SubItems(4) = Format(Rs!coddesti, "000")
             ItmX.SubItems(5) = Rs!nomdesti
             Rs.MoveNext
@@ -3829,6 +3829,9 @@ Dim IT As ListItem
         '[Monica]20/09/2013: productos
         Case "Productos"
             Sql = "select productos.codprodu as codigo, productos.nomprodu as descripcion from productos "
+        '[Monica]17/10/2016: contratos
+        Case "Contratos"
+            Sql = "select distinct nrocontra as codigo, '' as descripcion from albaran "
     End Select
 
 '    ' viene de un rango de clases
@@ -3838,6 +3841,9 @@ Dim IT As ListItem
     If cadWHERE <> "" Then Sql = Sql & " where (1=1) " & cadWHERE
     
     If Label5 = "Comisionistas" Then Sql = Sql & " and agencias.tipo = 1"
+    
+    '[Monica]17/10/2016: contrato
+    If Label5 = "Contratos" Then Sql = Sql & " group by 1 order by 1"
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -3882,10 +3888,12 @@ Dim IT As ListItem
                 IT.Text = DBLet(Rs!codigo, "T")
             Case "Productos"
                 IT.Text = DBLet(Rs!codigo, "T")
+            Case "Contratos"
+                IT.Text = DBLet(Rs!codigo, "T")
         End Select
         IT.SubItems(1) = DBLet(Rs!Descripcion, "T")
          
-        If Label5.Caption = "Categorias" Then
+        If Label5.Caption = "Categorias" Or Label5.Caption = "Contratos" Then
             IT.Checked = True
         Else
             IT.Checked = False
@@ -3981,7 +3989,7 @@ Dim I As Integer
         IT.SubItems(3) = Format(DBLet(Rs!NumCajas, "N"), "###,##0")
         IT.SubItems(4) = Format(DBLet(Rs!Unidades, "N"), "###,##0")
         IT.SubItems(5) = Format(DBLet(Rs!pesobrut, "N"), "###,##0")
-        IT.SubItems(6) = Format(DBLet(Rs!PesoNeto, "N"), "###,##0")
+        IT.SubItems(6) = Format(DBLet(Rs!Pesoneto, "N"), "###,##0")
         
         If I = -1 Then
             I = IT.Index
@@ -4057,7 +4065,7 @@ Dim Sql As String
     While Not miRsAux.EOF
         Set IT = lw(0).ListItems.Add()
         IT.Text = miRsAux!nombre1  'codartic
-        IT.SubItems(1) = miRsAux!Nombre2 'nomartic
+        IT.SubItems(1) = miRsAux!nombre2 'nomartic
         IT.SubItems(2) = miRsAux!campo1
         IT.SubItems(3) = miRsAux!campo2
         IT.SubItems(4) = Format(miRsAux!precio1, "###,##0.0000")

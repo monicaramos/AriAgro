@@ -4,7 +4,7 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasInformes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   9465
+   ClientHeight    =   9750
    ClientLeft      =   45
    ClientTop       =   2430
    ClientWidth     =   9585
@@ -12,12 +12,12 @@ Begin VB.Form frmVtasInformes
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9465
+   ScaleHeight     =   9750
    ScaleWidth      =   9585
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameCobros 
-      Height          =   9420
+      Height          =   9630
       Left            =   45
       TabIndex        =   24
       Top             =   0
@@ -28,7 +28,7 @@ Begin VB.Form frmVtasInformes
          Index           =   11
          Left            =   6570
          TabIndex        =   104
-         Top             =   8550
+         Top             =   8730
          Width           =   2595
       End
       Begin VB.CheckBox Check1 
@@ -37,7 +37,7 @@ Begin VB.Form frmVtasInformes
          Index           =   10
          Left            =   6570
          TabIndex        =   103
-         Top             =   5820
+         Top             =   6000
          Width           =   2130
       End
       Begin VB.CheckBox Check1 
@@ -46,7 +46,7 @@ Begin VB.Form frmVtasInformes
          Index           =   9
          Left            =   6570
          TabIndex        =   102
-         Top             =   7620
+         Top             =   7800
          Width           =   2445
       End
       Begin VB.CheckBox Check1 
@@ -55,7 +55,7 @@ Begin VB.Form frmVtasInformes
          Index           =   0
          Left            =   6570
          TabIndex        =   101
-         Top             =   5235
+         Top             =   5415
          Width           =   2130
       End
       Begin VB.CheckBox Check1 
@@ -64,7 +64,7 @@ Begin VB.Form frmVtasInformes
          Index           =   1
          Left            =   6570
          TabIndex        =   100
-         Top             =   5520
+         Top             =   5700
          Width           =   2130
       End
       Begin VB.CheckBox Check1 
@@ -73,7 +73,7 @@ Begin VB.Form frmVtasInformes
          Index           =   2
          Left            =   6570
          TabIndex        =   99
-         Top             =   6120
+         Top             =   6300
          Width           =   2580
       End
       Begin VB.CheckBox Check1 
@@ -82,7 +82,7 @@ Begin VB.Form frmVtasInformes
          Index           =   3
          Left            =   6570
          TabIndex        =   98
-         Top             =   6405
+         Top             =   6585
          Width           =   2130
       End
       Begin VB.CheckBox Check1 
@@ -91,7 +91,7 @@ Begin VB.Form frmVtasInformes
          Index           =   4
          Left            =   6570
          TabIndex        =   97
-         Top             =   6720
+         Top             =   6900
          Width           =   2445
       End
       Begin VB.CheckBox Check1 
@@ -100,7 +100,7 @@ Begin VB.Form frmVtasInformes
          Index           =   5
          Left            =   6570
          TabIndex        =   96
-         Top             =   7005
+         Top             =   7185
          Width           =   2445
       End
       Begin VB.CheckBox Check1 
@@ -109,7 +109,7 @@ Begin VB.Form frmVtasInformes
          Index           =   7
          Left            =   6570
          TabIndex        =   95
-         Top             =   7305
+         Top             =   7485
          Width           =   2445
       End
       Begin VB.CheckBox Check1 
@@ -118,7 +118,7 @@ Begin VB.Form frmVtasInformes
          Index           =   8
          Left            =   6570
          TabIndex        =   94
-         Top             =   8250
+         Top             =   8430
          Width           =   2595
       End
       Begin VB.ComboBox Combo1 
@@ -147,7 +147,7 @@ Begin VB.Form frmVtasInformes
          Index           =   6
          Left            =   6570
          TabIndex        =   91
-         Top             =   7935
+         Top             =   8115
          Width           =   2595
       End
       Begin VB.TextBox txtNombre 
@@ -206,18 +206,27 @@ Begin VB.Form frmVtasInformes
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   5025
+         Height          =   5280
          Left            =   6255
          TabIndex        =   69
-         Top             =   135
+         Top             =   105
          Width           =   3000
+         Begin VB.OptionButton optList1 
+            Caption         =   "Contrato - Fecha"
+            Height          =   255
+            Index           =   15
+            Left            =   270
+            TabIndex        =   106
+            Top             =   4950
+            Width           =   2625
+         End
          Begin VB.OptionButton optList1 
             Caption         =   "Comisionista - Variedad - Fecha"
             Height          =   255
             Index           =   14
             Left            =   270
             TabIndex        =   105
-            Top             =   4680
+            Top             =   4641
             Width           =   2625
          End
          Begin VB.OptionButton optList1 
@@ -226,7 +235,7 @@ Begin VB.Form frmVtasInformes
             Index           =   13
             Left            =   270
             TabIndex        =   85
-            Top             =   4380
+            Top             =   4332
             Width           =   2655
          End
          Begin VB.OptionButton optList1 
@@ -235,7 +244,7 @@ Begin VB.Form frmVtasInformes
             Index           =   12
             Left            =   270
             TabIndex        =   84
-            Top             =   3425
+            Top             =   3405
             Width           =   2505
          End
          Begin VB.OptionButton optList1 
@@ -244,7 +253,7 @@ Begin VB.Form frmVtasInformes
             Index           =   11
             Left            =   270
             TabIndex        =   81
-            Top             =   4050
+            Top             =   4023
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -253,7 +262,7 @@ Begin VB.Form frmVtasInformes
             Index           =   10
             Left            =   270
             TabIndex        =   80
-            Top             =   3736
+            Top             =   3714
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -262,7 +271,7 @@ Begin VB.Form frmVtasInformes
             Index           =   9
             Left            =   270
             TabIndex        =   79
-            Top             =   3114
+            Top             =   3096
             Width           =   2505
          End
          Begin VB.OptionButton optList1 
@@ -271,7 +280,7 @@ Begin VB.Form frmVtasInformes
             Index           =   8
             Left            =   270
             TabIndex        =   78
-            Top             =   2803
+            Top             =   2787
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -280,7 +289,7 @@ Begin VB.Form frmVtasInformes
             Index           =   7
             Left            =   270
             TabIndex        =   77
-            Top             =   2492
+            Top             =   2478
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -289,7 +298,7 @@ Begin VB.Form frmVtasInformes
             Index           =   6
             Left            =   270
             TabIndex        =   76
-            Top             =   2181
+            Top             =   2169
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -298,7 +307,7 @@ Begin VB.Form frmVtasInformes
             Index           =   5
             Left            =   270
             TabIndex        =   75
-            Top             =   1870
+            Top             =   1860
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -307,7 +316,7 @@ Begin VB.Form frmVtasInformes
             Index           =   4
             Left            =   270
             TabIndex        =   74
-            Top             =   1559
+            Top             =   1551
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -316,7 +325,7 @@ Begin VB.Form frmVtasInformes
             Index           =   3
             Left            =   270
             TabIndex        =   73
-            Top             =   1248
+            Top             =   1242
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -325,7 +334,7 @@ Begin VB.Form frmVtasInformes
             Index           =   2
             Left            =   270
             TabIndex        =   72
-            Top             =   937
+            Top             =   933
             Width           =   2235
          End
          Begin VB.OptionButton optList1 
@@ -344,7 +353,7 @@ Begin VB.Form frmVtasInformes
             Index           =   1
             Left            =   270
             TabIndex        =   70
-            Top             =   626
+            Top             =   624
             Width           =   2235
          End
       End
@@ -681,7 +690,7 @@ Begin VB.Form frmVtasInformes
          Height          =   375
          Left            =   7740
          TabIndex        =   23
-         Top             =   8910
+         Top             =   9060
          Width           =   975
       End
       Begin VB.CommandButton cmdAceptar 
@@ -689,7 +698,7 @@ Begin VB.Form frmVtasInformes
          Height          =   375
          Left            =   6570
          TabIndex        =   22
-         Top             =   8910
+         Top             =   9060
          Width           =   975
       End
       Begin VB.TextBox txtCodigo 
@@ -754,7 +763,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   8520
+         Top             =   8700
          Width           =   240
       End
       Begin VB.Image imgAyuda 
@@ -764,7 +773,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   5820
+         Top             =   6000
          Width           =   240
       End
       Begin VB.Image imgAyuda 
@@ -774,7 +783,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   7920
+         Top             =   8100
          Width           =   240
       End
       Begin VB.Image imgAyuda 
@@ -784,7 +793,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   8220
+         Top             =   8400
          Width           =   240
       End
       Begin VB.Image imgAyuda 
@@ -794,7 +803,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   7620
+         Top             =   7800
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -824,7 +833,7 @@ Begin VB.Form frmVtasInformes
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   7290
+         Top             =   7470
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -1507,6 +1516,8 @@ Private WithEvents frmMens As frmMensajes 'mensajes
 Attribute frmMens.VB_VarHelpID = -1
 Private WithEvents frmMensCate As frmMensajes 'mensajes
 Attribute frmMensCate.VB_VarHelpID = -1
+Private WithEvents frmMensContr As frmMensajes 'Contratos
+Attribute frmMensContr.VB_VarHelpID = -1
 
 
 Private WithEvents frmMensClase As frmMensajes 'mensajes
@@ -1533,7 +1544,7 @@ Attribute frmMensComisionista.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -1542,7 +1553,7 @@ Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
 Dim tabla As String
-Dim Codigo As String 'Código para FormulaSelection de Crystal Report
+Dim codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -1568,7 +1579,7 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim i As Byte
+Dim I As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
@@ -1583,7 +1594,7 @@ Dim vSqlMarca As String
 Dim vSqlMercado As String
 Dim vSqlPais As String
 Dim vSqlComisionista As String
-Dim tipo As Byte
+Dim Tipo As Byte
 
 
 
@@ -1591,7 +1602,7 @@ Dim tipo As Byte
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     
@@ -1608,7 +1619,7 @@ Dim tipo As Byte
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{variedades.codclase}"
+        codigo = "{variedades.codclase}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHClase= """) Then Exit Sub
     End If
@@ -1628,7 +1639,7 @@ Dim tipo As Byte
     nHasta = txtNombre(3).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran_variedad.codvarie}"
+        codigo = "{albaran_variedad.codvarie}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHVariedad= """) Then Exit Sub
     End If
@@ -1651,10 +1662,10 @@ Dim tipo As Byte
         Select Case Combo1(0).ListIndex
             Case 0 ' cooperativa
                 If Not AnyadirAFormula(cadFormula, "{variedades.tipovariedad} = 0") Then Exit Sub
-                If Not AnyadirAFormula(cadselect, "{variedades.tipovariedad} = 0") Then Exit Sub
+                If Not AnyadirAFormula(cadSelect, "{variedades.tipovariedad} = 0") Then Exit Sub
             Case 1 ' ajenas
                 If Not AnyadirAFormula(cadFormula, "{variedades.tipovariedad} = 1") Then Exit Sub
-                If Not AnyadirAFormula(cadselect, "{variedades.tipovariedad} = 1") Then Exit Sub
+                If Not AnyadirAFormula(cadSelect, "{variedades.tipovariedad} = 1") Then Exit Sub
             Case 2 ' todas
                 ' sin condicion
         End Select
@@ -1668,7 +1679,7 @@ Dim tipo As Byte
     nHasta = txtNombre(5).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran.codclien}"
+        codigo = "{albaran.codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -1685,7 +1696,7 @@ Dim tipo As Byte
     nHasta = txtNombre(7).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran.coddesti}"
+        codigo = "{albaran.coddesti}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHDestino= """) Then Exit Sub
     End If
@@ -1701,7 +1712,7 @@ Dim tipo As Byte
     cHasta = Trim(txtCodigo(17).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran.fechaalb}"
+        codigo = "{albaran.fechaalb}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
@@ -1713,7 +1724,7 @@ Dim tipo As Byte
     nHasta = txtNombre(9).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran_variedad.codforfait}"
+        codigo = "{albaran_variedad.codforfait}"
         TipCod = "T"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHForfait= """) Then Exit Sub
     End If
@@ -1729,7 +1740,7 @@ Dim tipo As Byte
     nHasta = txtNombre(11).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran_variedad.codmarca}"
+        codigo = "{albaran_variedad.codmarca}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHMarca= """) Then Exit Sub
     End If
@@ -1744,7 +1755,7 @@ Dim tipo As Byte
     nHasta = txtNombre(13).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{albaran.codtimer}"
+        codigo = "{albaran.codtimer}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHMercado= """) Then Exit Sub
     End If
@@ -1759,7 +1770,7 @@ Dim tipo As Byte
     nHasta = txtNombre(15).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{destinos.codpaise}"
+        codigo = "{destinos.codpaise}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHPais= """) Then Exit Sub
     End If
@@ -1776,9 +1787,9 @@ Dim tipo As Byte
         'Cadena para seleccion Desde y Hasta
         '[Monica]12/12/2013: si esta marcado se refiere al de las líneas
         If Check1(11).Value = 1 Then
-            Codigo = "{albaran_variedad.codcomis}"
+            codigo = "{albaran_variedad.codcomis}"
         Else
-            Codigo = "{albaran.codcomis}"
+            codigo = "{albaran.codcomis}"
         End If
         
         TipCod = "N"
@@ -1793,7 +1804,7 @@ Dim tipo As Byte
         Case 0 ' todas
         Case Is >= 1 '0=convencional 1=bilogico 2=reconversion
             If Not AnyadirAFormula(cadFormula, "{albaran_variedad.codtipo} = " & Combo1(1).ListIndex - 1) Then Exit Sub
-            If Not AnyadirAFormula(cadselect, "{albaran_variedad.codtipo} = " & Combo1(1).ListIndex - 1) Then Exit Sub
+            If Not AnyadirAFormula(cadSelect, "{albaran_variedad.codtipo} = " & Combo1(1).ListIndex - 1) Then Exit Sub
     End Select
     
     
@@ -1907,7 +1918,17 @@ Dim tipo As Byte
     Set frmMensCate = Nothing
     
     
-    
+    '[Monica]17/10/2016: nuevo informe de albaranes por categoria
+    If optList1(15).Value Then
+        Set frmMensContr = New frmMensajes
+        
+        frmMensContr.OpcionMensaje = 21
+        frmMensContr.Label5 = "Contratos"
+        frmMensContr.cadWHERE = ""
+        frmMensContr.Show vbModal
+        
+        Set frmMensContr = Nothing
+    End If
     
     ' detalle de albaranes
     If Check1(0).Value Then
@@ -1942,7 +1963,7 @@ Dim tipo As Byte
         cadTABLA = "(" & cadTABLA & ") LEFT JOIN facturas_variedad ON albaran_variedad.numalbar = facturas_variedad.numalbar and albaran_variedad.numlinea = facturas_variedad.numlinealbar "
     End If
     
-    cadFormula = "{tmpinfventas.codusu} = " & vUsu.Codigo
+    cadFormula = "{tmpinfventas.codusu} = " & vUsu.codigo
 '    If optList1(10).Value Then
 '        If ProcesarCambiosCalibres(cadTabla, cadSelect) Then
 '            cadTitulo = "Albaranes de Venta"
@@ -1954,14 +1975,14 @@ Dim tipo As Byte
     ' ++monica: 16/03/2009
     ' añadido: el listado donde las variedades son difentes a las variedades comerciales
     If optList1(13).Value Then
-        If cadselect <> "" Then cadselect = cadselect & " and "
-        cadselect = cadselect & " albaran_variedad.codvarie <> albaran_variedad.codvarco "
+        If cadSelect <> "" Then cadSelect = cadSelect & " and "
+        cadSelect = cadSelect & " albaran_variedad.codvarie <> albaran_variedad.codvarco "
     End If
     ' ++
 
-    If HayRegistros(cadTABLA, cadselect) Then
+    If HayRegistros(cadTABLA, cadSelect) Then
         If Check1(6).Value = 1 Then ' proceso de informe de evolucion de precios
-            If ProcesarCambiosEvolucion(cadTABLA, cadselect) Then
+            If ProcesarCambiosEvolucion(cadTABLA, cadSelect) Then
                 cadTitulo = "Evolución Precios Albaranes de Venta"
                 ConSubInforme = False
                 If optList1(0).Value Then
@@ -1985,17 +2006,17 @@ Dim tipo As Byte
         
         
         
-        If ProcesarCambios(cadTABLA, cadselect) Then
+        If ProcesarCambios(cadTABLA, cadSelect) Then
             '[Monica]16/11/2011: en el caso de la salida a Excel
             If Check1(8).Value Then
                 '[Monica]19/11/2015: insertamos las calidades para el caso de catadau sacar una hoja diferente
                 If vParamAplic.Cooperativa = 0 Then
                     If CargarTemporal Then
-                        If HayRegistros("tmpinformes", "codusu=" & vUsu.Codigo) Then
+                        If HayRegistros("tmpinformes", "codusu=" & vUsu.codigo) Then
                             If Dir(App.path & "\Ventas.exe", vbArchive) <> "" And _
                                Dir(App.path & "\PlantillaVtaCatadau.xls", vbArchive) <> "" And _
                                Dir(App.path & "\ControlVtas.cfg", vbArchive) <> "" Then
-                                Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|", vbNormalFocus
+                                Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.codigo & "|", vbNormalFocus
                             Else
                                 MsgBox "No tiene los ficheros necesarios para realizar el proceso. Llame a Ariadna", vbExclamation
                             End If
@@ -2007,7 +2028,7 @@ Dim tipo As Byte
                     If Dir(App.path & "\Ventas.exe", vbArchive) <> "" And _
                        Dir(App.path & "\PlantillaVta.xls", vbArchive) <> "" And _
                        Dir(App.path & "\ControlVtas.cfg", vbArchive) <> "" Then
-                        Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.Codigo & "|", vbNormalFocus
+                        Shell App.path & "\ventas.exe /E|" & vUsu.CadenaConexion & "|" & vUsu.codigo & "|", vbNormalFocus
                     Else
                         MsgBox "No tiene los ficheros necesarios para realizar el proceso. Llame a Ariadna", vbExclamation
                     End If
@@ -2101,7 +2122,7 @@ Dim tipo As Byte
                         cadNombreRPT = "rAlbaranVta10.rpt"
                         ConSubInforme = True
                         
-                        If NroGastosMayoraCuatro(cadTABLA, cadselect) Then
+                        If NroGastosMayoraCuatro(cadTABLA, cadSelect) Then
                             cadNombreRPT = "rAlbaranVta10a.rpt"
                         End If
                     Else
@@ -2127,7 +2148,7 @@ Dim tipo As Byte
                         cadNombreRPT = "rAlbaranVta13.rpt"
                         ConSubInforme = True
                     
-                        If NroGastosMayoraCuatro(cadTABLA, cadselect) Then
+                        If NroGastosMayoraCuatro(cadTABLA, cadSelect) Then
                             cadNombreRPT = "rAlbaranVta13a.rpt"
                         End If
                     Else
@@ -2150,12 +2171,21 @@ Dim tipo As Byte
                     numParam = numParam + 1
                 End If
                 
+                '[Monica]17/10/2016: en el caso de contrato
+                If optList1(15).Value Then
+                    cadTitulo = "Contrato - Fecha"
+                    cadNombreRPT = "rAlbaranVta17.rpt"
+                    ConSubInforme = True
+                    cadParam = cadParam & "pOrden=""Contrato - Fecha""|"
+                    numParam = numParam + 1
+                End If
+                              
                 
                 If Check1(5).Value Then
                     '[Monica]27/02/2012: si estamos en rdto por calibre hemos de prorratear todos los gastos por el peso neto
                     '      nueva funcion de ProcesarCambiosGastos
                     If ProcesarCambiosGastos Then
-                        cadFormula = "{tmpinformes.codusu} =" & vUsu.Codigo
+                        cadFormula = "{tmpinformes.codusu} =" & vUsu.codigo
                         cadTitulo = "Rendimiento por Calibre"
                         cadNombreRPT = "rAlbaranVta15.rpt"
                         ConSubInforme = False
@@ -2167,7 +2197,7 @@ Dim tipo As Byte
                 If (optList1(0).Value Or optList1(2).Value) And Check1(10).Value = 1 Then
                     If Not EliminarCobrados Then Exit Sub
                     
-                    If Not HayRegistros("tmpinfventas", "codusu = " & vUsu.Codigo) Then Exit Sub
+                    If Not HayRegistros("tmpinfventas", "codusu = " & vUsu.codigo) Then Exit Sub
                 End If
                 
                 
@@ -2185,7 +2215,7 @@ Dim Sql As String
         
     EliminarCobrados = False
         
-    Sql = "delete from tmpinfventas where codusu = " & vUsu.Codigo
+    Sql = "delete from tmpinfventas where codusu = " & vUsu.codigo
     Sql = Sql & " and cobrado = 1 "
 
     conn.Execute Sql
@@ -2219,10 +2249,10 @@ Dim HayReg As Long
     On Error GoTo eProcesarCambiosGastos
     
 
-    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
     conn.Execute Sql
 
-    Sql = "select * from tmpinfventas where codusu = " & vUsu.Codigo
+    Sql = "select * from tmpinfventas where codusu = " & vUsu.codigo
     Sql = Sql & " order by numalbar, numlinea "
     
     
@@ -2242,7 +2272,7 @@ Dim HayReg As Long
                                             'albaran,numlinea,numline1,gasto por linea de calibre, importe de venta
     Sql2 = "insert into tmpinformes (codusu, codigo1, campo1, campo2, importe1, importe2) values "
     
-    cadselect = ""
+    cadSelect = ""
     
     While Not Rs.EOF
         IncrementarProgresNew Pb1, 1
@@ -2270,11 +2300,11 @@ Dim HayReg As Long
             
             ImporteFac = DevuelveValor(Sql4)
         
-            cadselect = "(" & vUsu.Codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
-            cadselect = cadselect & DBSet(RS3!numline1, "N") & "," & DBSet(vGastos, "N") & ","
-            cadselect = cadselect & DBSet(ImporteFac, "N") & ")"
+            cadSelect = "(" & vUsu.codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+            cadSelect = cadSelect & DBSet(RS3!numline1, "N") & "," & DBSet(vGastos, "N") & ","
+            cadSelect = cadSelect & DBSet(ImporteFac, "N") & ")"
         
-            conn.Execute Sql2 & cadselect
+            conn.Execute Sql2 & cadSelect
         
             RS3.MoveNext
         Wend
@@ -2284,7 +2314,7 @@ Dim HayReg As Long
         If GastosAc <> Gastos Then
             Diferencia = Gastos - GastosAc
             Sql3 = "update tmpinformes set importe1 = importe1 + " & DBSet(Diferencia, "N")
-            Sql3 = Sql3 & " where codusu = " & vUsu.Codigo
+            Sql3 = Sql3 & " where codusu = " & vUsu.codigo
             Sql3 = Sql3 & " and codigo1 = " & DBSet(Rs!NumAlbar, "N")
             Sql3 = Sql3 & " and campo1 = " & DBSet(Rs!numlinea, "N")
             Sql3 = Sql3 & " and campo2 = " & DBSet(UltimaLinea1, "N")
@@ -2316,7 +2346,7 @@ Private Function ProcesarCambios(cadTABLA, cadWHERE As String) As Boolean
 Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
-Dim i As Integer
+Dim I As Integer
 Dim HayReg As Long
 Dim b As Boolean
 Dim Rs As ADODB.Recordset
@@ -2355,7 +2385,7 @@ On Error GoTo eProcesarCambios
     
     ProcesarCambios = False
     
-    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.codigo, "N")
         
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -2754,7 +2784,7 @@ On Error GoTo eProcesarCambios
             End If
         End If
         
-        Sql = Sql & "(" & DBSet(vUsu.Codigo, "N") & ","
+        Sql = Sql & "(" & DBSet(vUsu.codigo, "N") & ","
         Sql = Sql & DBSet(Rs.Fields(0).Value, "F") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "N") & ","
         Sql = Sql & DBSet(Rs.Fields(3).Value, "N") & "," 'numero de cajas
         Sql = Sql & DBSet(PesoReal, "N") & "," & DBSet(Rs.Fields(4).Value, "N") & "," 'peso neto
@@ -2788,8 +2818,8 @@ On Error GoTo eProcesarCambios
     End If
     
     Sql3 = "update tmpinfventas a, tmpinfventas b set a.codigo5 = b.codigo5 "
-    Sql3 = Sql3 & " where b.codusu = " & vUsu.Codigo
-    Sql3 = Sql3 & " and a.codusu = " & vUsu.Codigo
+    Sql3 = Sql3 & " where b.codusu = " & vUsu.codigo
+    Sql3 = Sql3 & " and a.codusu = " & vUsu.codigo
     Sql3 = Sql3 & " and  b.codigo5 > 0 and a.codigo5 = -1"
     
     conn.Execute Sql3
@@ -2806,7 +2836,7 @@ eProcesarCambios:
 End Function
 
 
-Private Function ProrrateoPortesComisProvisional(Albaran As String, Linea As String, tipo As Byte) As Currency
+Private Function ProrrateoPortesComisProvisional(Albaran As String, Linea As String, Tipo As Byte) As Currency
 'Tipo = 0 portes
 '     = 1 comisiones
 Dim CADENA As String
@@ -2816,7 +2846,7 @@ Dim KilosTot As Long
 Dim KilosNet As Long
 Dim PortesTot As Currency
 
-    If tipo = 0 Then
+    If Tipo = 0 Then
         Sql = "select portespre from albaran where numalbar = " & DBSet(Albaran, "N")
     Else
         Sql = "select comisionespre from albaran where numalbar = " & DBSet(Albaran, "N")
@@ -2842,7 +2872,7 @@ Private Function ProcesarCambiosCalibres(cadTABLA, cadWHERE As String) As Boolea
 Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
-Dim i As Integer
+Dim I As Integer
 Dim HayReg As Long
 Dim b As Boolean
 Dim Rs As ADODB.Recordset
@@ -2862,7 +2892,7 @@ On Error GoTo eProcesarCambiosCalibres
 
     HayReg = 0
     
-    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.codigo, "N")
         
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -2910,14 +2940,14 @@ On Error GoTo eProcesarCambiosCalibres
         
         While Not Rs1.EOF
             Incluido = 0
-            For i = 0 To 8
-                If Calibre(i) = -1 Or Calibre(i) = DBLet(Rs1.Fields(0).Value, "N") Then
-                    Calibre(i) = DBLet(Rs1.Fields(0).Value, "N")
-                    Neto(i) = Neto(i) + DBLet(Rs1.Fields(1).Value, "N")
+            For I = 0 To 8
+                If Calibre(I) = -1 Or Calibre(I) = DBLet(Rs1.Fields(0).Value, "N") Then
+                    Calibre(I) = DBLet(Rs1.Fields(0).Value, "N")
+                    Neto(I) = Neto(I) + DBLet(Rs1.Fields(1).Value, "N")
                     Incluido = 1
                     Exit For
                 End If
-            Next i
+            Next I
             
             Rs1.MoveNext
         Wend
@@ -2925,7 +2955,7 @@ On Error GoTo eProcesarCambiosCalibres
         
         Sql = "insert into tmpinfventas (codusu, fecalbar, numalbar, numlinea, numcajas, pesoneto, "
         Sql = Sql & " calibre1, neto1, calibre2, neto2, calibre3, neto3, calibre4, neto4, calibre5, neto5, "
-        Sql = Sql & " calibre6, neto6, calibre7, neto7, calibre8, neto8, calibre9, neto9, impcalibres) values (" & DBSet(vUsu.Codigo, "N") & ","
+        Sql = Sql & " calibre6, neto6, calibre7, neto7, calibre8, neto8, calibre9, neto9, impcalibres) values (" & DBSet(vUsu.codigo, "N") & ","
         Sql = Sql & DBSet(Rs.Fields(1).Value, "F") & "," & DBSet(Rs.Fields(2).Value, "N") & "," & DBSet(Rs.Fields(3).Value, "N") & ","
         Sql = Sql & DBSet(Rs.Fields(4).Value, "N") & "," 'numero de cajas
         Sql = Sql & DBSet(Rs.Fields(5).Value, "N") & "," 'peso neto
@@ -2948,7 +2978,7 @@ On Error GoTo eProcesarCambiosCalibres
     Label4(27).visible = False
     Pb1.visible = False
     
-    ProcesarCambiosCalibres = HayRegistros("tmpinfventas", "codusu = " & vUsu.Codigo)
+    ProcesarCambiosCalibres = HayRegistros("tmpinfventas", "codusu = " & vUsu.codigo)
     
     Exit Function
     
@@ -3080,7 +3110,7 @@ Dim Sql2 As String
     Else
         Sql = " {variedades.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3111,10 +3141,41 @@ Dim Sql2 As String
                 Sql = " {albaran_variedad.categori} = '-1' "
             End If
         End If
-        If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+        If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
         If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
     End If
 End Sub
+
+Private Sub frmMensContr_DatoSeleccionado(CadenaSeleccion As String)
+Dim Sql As String
+Dim Sql2 As String
+
+    If SeleccionadosTodos Then
+        ' no hacemos nada
+
+    Else
+        If CadenaSeleccion <> "" Then
+            '[Monica]17/10/2016: añadido el contrato
+            If CategoriaValorNulo Then
+                Sql = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='' or {albaran.nrocontra} in (" & CadenaSeleccion & "))"
+                Sql2 = " (isnull({albaran.nrocontra}) or {albaran.nrocontra} ='' or {albaran.nrocontra} in [" & CadenaSeleccion & "])"
+            Else
+                Sql = " {albaran.nrocontra} in (" & CadenaSeleccion & ")"
+                Sql2 = " {albaran.nrocontra} in [" & CadenaSeleccion & "]"
+            End If
+        Else
+            If CategoriaValorNulo Then
+                Sql = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='') "
+                Sql2 = " (isnull({albaran.nrocontra}) or {albaran.nrocontra} ='') "
+            Else
+                Sql = " {albaran.nrocontra} = '-1' "
+            End If
+        End If
+        If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
+        If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
+    End If
+End Sub
+
 
 Private Sub frmMensClase_DatoSeleccionado(CadenaSeleccion As String)
 Dim Sql As String
@@ -3126,7 +3187,7 @@ Dim Sql2 As String
     Else
         Sql = " {variedades.codclase} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3141,7 +3202,7 @@ Dim Sql2 As String
     Else
         Sql = " {albaran.codclien} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3163,7 +3224,7 @@ Dim Sql2 As String
         Sql2 = Replace(Sql2, "{albaran.codcomis}", "{albaran_variedad.codcomis}")
     End If
     
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3179,7 +3240,7 @@ Dim Sql2 As String
     Else
         Sql = " {destinos.coddesti} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3194,7 +3255,7 @@ Dim Sql2 As String
     Else
         Sql = " {forfaits.codforfait} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3209,7 +3270,7 @@ Dim Sql2 As String
     Else
         Sql = " {albaran_variedad.codmarca} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3224,7 +3285,7 @@ Dim Sql2 As String
     Else
         Sql = " {albaran.codtimer} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3239,7 +3300,7 @@ Dim Sql2 As String
     Else
         Sql = " {destinos.codpaise} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 
@@ -3255,7 +3316,7 @@ Dim Sql2 As String
     Else
         Sql = " {variedades.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
+    If Not AnyadirAFormula(cadSelect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3528,7 +3589,7 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 9420 '9105
+        Me.FrameCobros.Height = 9630 '9105
         Me.FrameCobros.Width = 9675
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
@@ -3537,7 +3598,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadselect = ""
+    cadSelect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -3553,15 +3614,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -3769,13 +3830,13 @@ End Function
 
 
 Private Sub ActivarAyuda(sn As Boolean)
-Dim i As Integer
+Dim I As Integer
 
-    For i = 0 To imgAyuda.Count - 1
-        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
-        imgAyuda(i).visible = sn
-        imgAyuda(i).Enabled = sn
-    Next i
+    For I = 0 To imgAyuda.Count - 1
+        imgAyuda(I).Picture = frmPpal.ImageListB.ListImages(10).Picture
+        imgAyuda(I).visible = sn
+        imgAyuda(I).Enabled = sn
+    Next I
 End Sub
 
 
@@ -3849,14 +3910,14 @@ End Sub
 
 ' ********* si n'hi han combos a la capçalera ************
 Private Sub CargaCombo()
-Dim i As Integer
+Dim I As Integer
 Dim cad As String
 Dim Rs As ADODB.Recordset
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
-    For i = 0 To Combo1.Count - 1
-        Combo1(i).Clear
-    Next i
+    For I = 0 To Combo1.Count - 1
+        Combo1(I).Clear
+    Next I
     
     Combo1(0).AddItem "Cooperativa"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 0
@@ -3889,7 +3950,7 @@ Private Function ProcesarCambiosEvolucion(cadTABLA, cadWHERE As String) As Boole
 Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
-Dim i As Integer
+Dim I As Integer
 Dim HayReg As Long
 Dim b As Boolean
 Dim Rs As ADODB.Recordset
@@ -3930,7 +3991,7 @@ On Error GoTo eProcesarCambiosEvolucion
     
     ProcesarCambiosEvolucion = False
     
-    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute "delete from tmpinfventas where codusu = " & DBSet(vUsu.codigo, "N")
         
     If cadWHERE <> "" Then
         cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
@@ -3967,7 +4028,7 @@ On Error GoTo eProcesarCambiosEvolucion
         If Not IsNull(Rs.Fields(3).Value) Then Cobrado = AlbaranCobradoTesoreria(DBLet(Rs.Fields(1).Value, "N"), DBLet(Rs.Fields(2).Value, "N"))
 
         
-        Sql = Sql & "(" & DBSet(vUsu.Codigo, "N") & ","
+        Sql = Sql & "(" & DBSet(vUsu.codigo, "N") & ","
         Sql = Sql & DBSet(Rs.Fields(1).Value, "N") & "," ' albaran
         Sql = Sql & DBSet(Rs.Fields(2).Value, "N") & "," ' linea
         Sql = Sql & DBSet(Rs.Fields(0).Value, "F") & "," ' fechaalbaran
@@ -4014,13 +4075,13 @@ Dim Rs As ADODB.Recordset
     CargarTemporal = False
 
 
-    Sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
+    Sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
     conn.Execute Sql
     
-    Sql = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_calibre.numcajas, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe "
+    Sql = "select " & vUsu.codigo & ", albaran.fechaalb, albaran_calibre.numcajas, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe "
     Sql = Sql & " from ((tmpinfventas inner join albaran on tmpinfventas.numalbar = albaran.numalbar) inner join albaran_calibre on tmpinfventas.numalbar = albaran_calibre.numalbar and tmpinfventas.numlinea = albaran_calibre.numlinea)  "
     Sql = Sql & " left join facturas_calibre on albaran_calibre.numalbar = facturas_calibre.numalbar and albaran_calibre.numlinea = facturas_calibre.numlinealbar and albaran_calibre.numline1 = facturas_calibre.numline1albar "
-    Sql = Sql & " where tmpinfventas.codusu = " & DBSet(vUsu.Codigo, "N")
+    Sql = Sql & " where tmpinfventas.codusu = " & DBSet(vUsu.codigo, "N")
     Sql = Sql & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
                                             'fecalbar, numcajas, codcalib, numalbar,  numlinea,  numline1,  pesoneto, importe
     SqlIns = "insert into tmpinformes (codusu, fecha1, importe1, importe2, importeb1, importeb2, importeb3, importe3, importe4 )     "
