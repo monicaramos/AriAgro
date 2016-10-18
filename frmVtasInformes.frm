@@ -212,7 +212,7 @@ Begin VB.Form frmVtasInformes
          Top             =   105
          Width           =   3000
          Begin VB.OptionButton optList1 
-            Caption         =   "Contrato - Fecha"
+            Caption         =   "Cliente - Fecha"
             Height          =   255
             Index           =   15
             Left            =   270
@@ -2004,8 +2004,6 @@ Dim Tipo As Byte
         End If
         
         
-        
-        
         If ProcesarCambios(cadTABLA, cadSelect) Then
             '[Monica]16/11/2011: en el caso de la salida a Excel
             If Check1(8).Value Then
@@ -2173,10 +2171,10 @@ Dim Tipo As Byte
                 
                 '[Monica]17/10/2016: en el caso de contrato
                 If optList1(15).Value Then
-                    cadTitulo = "Contrato - Fecha"
+                    cadTitulo = "Clientes - Fecha"
                     cadNombreRPT = "rAlbaranVta17.rpt"
                     ConSubInforme = True
-                    cadParam = cadParam & "pOrden=""Contrato - Fecha""|"
+                    cadParam = cadParam & "pOrden=""Clientes - Fecha""|"
                     numParam = numParam + 1
                 End If
                               
