@@ -148,6 +148,7 @@ Private mvarHayAnecoop As Byte  'Hay Integracion Anecoop
 Private mvarCodAnecoop As String ' Cliente de Anecoop
 Private mvarEnvAnecoop As String ' Envase de Anecoop
 
+Private mvarContabilidadNueva As Boolean
 
 Private Sql As String  'Para la sentencia
 Private Mens As String    'Para los mensajes
@@ -774,6 +775,10 @@ Public Property Get EnvAnecoop() As String
      EnvAnecoop = mvarEnvAnecoop
 End Property
 
+'[Monica]03/11/2016: si hay contabilidad nueva
+Public Property Get ContabilidadNueva() As Boolean
+     ContabilidadNueva = mvarContabilidadNueva
+End Property
 
 
 '******
@@ -893,6 +898,9 @@ On Error GoTo Err3
         mvarHayAnecoop = DBLet(Rs!HayAnecoop, "N") ' hay integracion anecoop
         mvarCodAnecoop = DBLet(Rs!CodAnecoop, "N") ' código de socio anecoop
         mvarEnvAnecoop = DBLet(Rs!EnvAnecoop, "T") ' envase de anecoop
+
+        '[Monica]03/11/2016: nueva contabilidad
+        mvarContabilidadNueva = DevuelveValor("select nuevacontabilidad from rparam") = 1
 
         leer = 0
         

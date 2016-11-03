@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -354,13 +354,9 @@ Begin VB.Form frmClientes
       TabPicture(1)   =   "frmClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Frame3"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "FrameDatosContacto"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).Control(2)=   "Frame4"
-      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Frame5"
-      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Destinos"
       TabPicture(2)   =   "frmClientes.frx":0044
@@ -2501,10 +2497,10 @@ Private Sub btnBuscar_Click(Index As Integer)
         Case 0 'Articulos
             Set frmArt = New frmManArtic
             frmArt.DatosADevolverBusqueda = "0|1|"
-            frmArt.CodigoActual = txtaux1(1).Text
+            frmArt.CodigoActual = txtAux1(1).Text
             frmArt.Show vbModal
             Set frmArt = Nothing
-            PonerFoco txtaux1(1)
+            PonerFoco txtAux1(1)
     End Select
     If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
 End Sub
@@ -2846,7 +2842,7 @@ Dim b As Boolean
     ' ****************************************************************************
     b = (Modo = 5 And (ModoLineas = 2) And (NumTabMto = 1))
     BloquearBtn btnBuscar(0), b
-    BloquearTxt txtaux1(1), b
+    BloquearTxt txtAux1(1), b
 '    imgBuscar(3).Enabled = b
             
     chkVistaPrevia(0).Enabled = (Modo <= 2)
@@ -3039,7 +3035,7 @@ End Function
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
 'Articulos
-    txtaux1(1).Text = RecuperaValor(CadenaSeleccion, 1) 'codartic
+    txtAux1(1).Text = RecuperaValor(CadenaSeleccion, 1) 'codartic
     txtAux2(6).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
     VisualizaPrecio
 End Sub
@@ -3377,7 +3373,7 @@ Private Sub cmdRegresar_Click()
 Dim cad As String
 Dim Aux As String
 Dim I As Integer
-Dim J As Integer
+Dim j As Integer
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
@@ -3387,12 +3383,12 @@ Dim J As Integer
     cad = ""
     I = 0
     Do
-        J = I + 1
-        I = InStr(J, DatosADevolverBusqueda, "|")
+        j = I + 1
+        I = InStr(j, DatosADevolverBusqueda, "|")
         If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, I - J)
-            J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+            Aux = Mid(DatosADevolverBusqueda, j, I - j)
+            j = Val(Aux)
+            cad = cad & Text1(j).Text & "|"
         End If
     Loop Until I = 0
     RaiseEvent DatoSeleccionado(cad)
@@ -4347,16 +4343,16 @@ Dim I As Integer
                     PonerFoco txtAux(15)
                  
                  Case 1 ' clientes_precio
-                    For I = 0 To txtaux1.Count - 1
-                        txtaux1(I).Text = ""
+                    For I = 0 To txtAux1.Count - 1
+                        txtAux1(I).Text = ""
                     Next I
-                    txtaux1(0).Text = Text1(0).Text 'codclien
+                    txtAux1(0).Text = Text1(0).Text 'codclien
                     For I = 1 To 2
-                        txtaux1(I).Text = ""
+                        txtAux1(I).Text = ""
                     Next I
                     txtAux2(6).Text = ""
                     
-                    PonerFoco txtaux1(1)
+                    PonerFoco txtAux1(1)
                     
             End Select
             
@@ -4376,7 +4372,7 @@ End Sub
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
     Dim I As Integer
-    Dim J As Integer
+    Dim j As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
@@ -4450,10 +4446,10 @@ Private Sub BotonModificarLinea(Index As Integer)
             BloquearTxt txtAux(12), False
             
         Case 1 ' clientes_precios
-            txtaux1(0).Text = DataGridAux(Index).Columns(0).Text
-            txtaux1(1).Text = DataGridAux(Index).Columns(1).Text
+            txtAux1(0).Text = DataGridAux(Index).Columns(0).Text
+            txtAux1(1).Text = DataGridAux(Index).Columns(1).Text
             txtAux2(6).Text = DataGridAux(Index).Columns(2).Text
-            txtaux1(2).Text = DataGridAux(Index).Columns(3).Text
+            txtAux1(2).Text = DataGridAux(Index).Columns(3).Text
             
     End Select
     
@@ -4464,7 +4460,7 @@ Private Sub BotonModificarLinea(Index As Integer)
         Case 0 'cuentas bancarias
             PonerFoco txtAux(0)
         Case 1 ' precios articulos
-            PonerFoco txtaux1(2)
+            PonerFoco txtAux1(2)
     End Select
     ' ***************************************************************************************
 End Sub
@@ -4516,15 +4512,15 @@ Dim b As Boolean
 
         Case 1 ' clientes_precio
              For jj = 1 To 2 '3
-                txtaux1(jj).visible = b
-                txtaux1(jj).Top = alto
+                txtAux1(jj).visible = b
+                txtAux1(jj).Top = alto
             Next jj
             txtAux2(6).visible = b
             txtAux2(6).Top = alto
             
             btnBuscar(0).visible = b
-            btnBuscar(0).Top = txtaux1(1).Top
-            btnBuscar(0).Height = txtaux1(1).Height
+            btnBuscar(0).Top = txtAux1(1).Top
+            btnBuscar(0).Height = txtAux1(1).Height
             
     End Select
 End Sub
@@ -4663,7 +4659,7 @@ End Sub
 
 
 Private Function DatosOkLlin(nomframe As String) As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
@@ -5306,8 +5302,8 @@ Dim I As Integer
                 txtAux(I).Text = ""
             Next I
         Case 1 ' precios articulos
-            For I = 0 To txtaux1.Count - 1
-                txtaux1(I).Text = ""
+            For I = 0 To txtAux1.Count - 1
+                txtAux1(I).Text = ""
             Next I
     End Select
     
@@ -5512,7 +5508,7 @@ End Sub
 
 Private Sub CargaDatosLW2()
 Dim cad As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim IT As ListItem
 Dim ElIcono As Integer
 Dim GroupBy As String
@@ -5590,38 +5586,38 @@ Dim Orden As String
     BuscaChekc = ""
     
     lw1.ListItems.Clear
-    Set RS = New ADODB.Recordset
-    RS.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
+    Set Rs = New ADODB.Recordset
+    Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
         Set IT = lw1.ListItems.Add()
         If lw1.ColumnHeaders(1).Tag <> "" Then
-            IT.Text = Format(RS.Fields(0), lw1.ColumnHeaders(1).Tag)
+            IT.Text = Format(Rs.Fields(0), lw1.ColumnHeaders(1).Tag)
         Else
-            IT.Text = RS.Fields(0)
+            IT.Text = Rs.Fields(0)
         End If
         'El resto de cmpos
         For NumRegElim = 2 To CInt(RecuperaValor(lw1.Tag, 2))
-            If IsNull(RS.Fields(NumRegElim - 1)) Then
+            If IsNull(Rs.Fields(NumRegElim - 1)) Then
                 IT.SubItems(NumRegElim - 1) = " "
             Else
                 If lw1.ColumnHeaders(NumRegElim).Tag <> "" Then
-                    IT.SubItems(NumRegElim - 1) = Format(RS.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
+                    IT.SubItems(NumRegElim - 1) = Format(Rs.Fields(NumRegElim - 1), lw1.ColumnHeaders(NumRegElim).Tag)
                 Else
-                    IT.SubItems(NumRegElim - 1) = RS.Fields(NumRegElim - 1)
+                    IT.SubItems(NumRegElim - 1) = Rs.Fields(NumRegElim - 1)
                 End If
             End If
         Next
         IT.SmallIcon = ElIcono
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
     
     Exit Sub
 ECargaDatosLW:
     MuestraError Err.Number
-    Set RS = Nothing
+    Set Rs = Nothing
     
 End Sub
 
@@ -5654,7 +5650,7 @@ Dim Seleccionado As Long
     Case 1
         'Albaranes de ventas
         Set frmAlb = New frmVtasAlbaranes
-        frmAlb.numalbar = lw1.SelectedItem.Text
+        frmAlb.NumAlbar = lw1.SelectedItem.Text
         frmAlb.hcoCodMovim = lw1.SelectedItem.Text
         frmAlb.Show vbModal
         Set frmAlb = Nothing
@@ -5697,7 +5693,7 @@ Private Sub txtAux1_LostFocus(Index As Integer)
 Dim cadMen As String
 Dim Nuevo As Boolean
     
-    If Not PerderFocoGnral(txtaux1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(txtAux1(Index), Modo) Then Exit Sub
 
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -5707,25 +5703,25 @@ Dim Nuevo As Boolean
     ' ******* configurar el LostFocus dels camps de llínies (dins i fora grid) ********
     Select Case Index
         Case 1 ' articulo
-            If txtaux1(Index) <> "" Then
-                txtAux2(6).Text = PonerNombreDeCod(txtaux1(Index), "sartic", "nomartic")
+            If txtAux1(Index) <> "" Then
+                txtAux2(6).Text = PonerNombreDeCod(txtAux1(Index), "sartic", "nomartic")
                 VisualizaPrecio
                 If txtAux2(6).Text = "" Then
-                    cadMen = "No existe el Envase: " & txtaux1(Index).Text & vbCrLf
+                    cadMen = "No existe el Envase: " & txtAux1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmArt = New frmManArtic
                         frmArt.DatosADevolverBusqueda = "0|1|"
-                        frmArt.NuevoCodigo = txtaux1(Index).Text
-                        txtaux1(Index).Text = ""
+                        frmArt.NuevoCodigo = txtAux1(Index).Text
+                        txtAux1(Index).Text = ""
                         TerminaBloquear
                         frmArt.Show vbModal
                         Set frmArt = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        txtaux1(Index).Text = ""
+                        txtAux1(Index).Text = ""
                     End If
-                    PonerFoco txtaux1(Index)
+                    PonerFoco txtAux1(Index)
                 End If
             Else
                 txtAux2(6).Text = ""
@@ -5733,22 +5729,22 @@ Dim Nuevo As Boolean
             
             
         Case 2 'precio
-            If PonerFormatoDecimal(txtaux1(Index), 7) Then cmdAceptar.SetFocus
+            If PonerFormatoDecimal(txtAux1(Index), 7) Then cmdAceptar.SetFocus
         
     End Select
     
 End Sub
 
 Private Sub txtAux1_GotFocus(Index As Integer)
-   If Not txtaux1(Index).MultiLine Then ConseguirFocoLin txtaux1(Index)
+   If Not txtAux1(Index).MultiLine Then ConseguirFocoLin txtAux1(Index)
 End Sub
 
 Private Sub TxtAux1_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-    If Not txtaux1(Index).MultiLine Then KEYdown KeyCode
+    If Not txtAux1(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
 Private Sub txtAux1_KeyPress(Index As Integer, KeyAscii As Integer)
-    If Not txtaux1(Index).MultiLine Then
+    If Not txtAux1(Index).MultiLine Then
         If KeyAscii = teclaBuscar Then
             If Modo = 5 And (ModoLineas = 1 Or ModoLineas = 2) Then
                 Select Case Index
@@ -5770,7 +5766,7 @@ Private Sub VisualizaPrecio()
 '    End Select
 '
 ' Precio de venta
-    txtaux1(2).Text = DevuelveDesdeBDNew(cAgro, "sartic", "preciove", "codartic", txtaux1(1), "T")
+    txtAux1(2).Text = DevuelveDesdeBDNew(cAgro, "sartic", "preciove", "codartic", txtAux1(1), "T")
 
 End Sub
 
@@ -5820,19 +5816,29 @@ Dim cad As String
             Sql = Sql & ", nifdatos = " & DBSet(Trim(Text1(3).Text), "T")
             Sql = Sql & ", maidatos = " & DBSet(Trim(Text1(14).Text), "T")
             Sql = Sql & ", webdatos = " & DBSet(Trim(Text1(9).Text), "T")
-            Sql = Sql & ", entidad = " & DBSet(Trim(Text1(1).Text), "T", "S")
-            Sql = Sql & ", oficina = " & DBSet(Trim(Text1(28).Text), "T", "S")
-            Sql = Sql & ", cc = " & DBSet(Trim(Text1(29).Text), "T", "S")
-            Sql = Sql & ", cuentaba = " & DBSet(Trim(Text1(30).Text), "T", "S")
             
             '[Monica]26/03/2015: antes no grababamos la forma de pago de la cuenta
             Sql = Sql & ", forpa = " & DBSet(Trim(Text1(27).Text), "N", "S")
             
-            '[Monica]22/11/2013: tema iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & ", iban = " & DBSet(Trim(Text1(42).Text), "T", "S")
-            End If
             
+            If vParamAplic.ContabilidadNueva Then
+                Dim vIban As String
+                
+                vIban = MiFormat(Text1(42).Text, "") & MiFormat(Text1(1).Text, "0000") & MiFormat(Text1(28).Text, "0000") & MiFormat(Text1(29).Text, "00") & MiFormat(Text1(30).Text, "0000000000")
+            
+                Sql = Sql & ", iban = " & DBSet(vIban, "T")
+                Sql = Sql & ", codpais = 'ES' "
+            Else
+                Sql = Sql & ", entidad = " & DBSet(Trim(Text1(1).Text), "T", "S")
+                Sql = Sql & ", oficina = " & DBSet(Trim(Text1(28).Text), "T", "S")
+                Sql = Sql & ", cc = " & DBSet(Trim(Text1(29).Text), "T", "S")
+                Sql = Sql & ", cuentaba = " & DBSet(Trim(Text1(30).Text), "T", "S")
+            
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & ", iban = " & DBSet(Trim(Text1(42).Text), "T", "S")
+                End If
+            End If
             Sql = Sql & " where codmacta = " & DBSet(Trim(Text1(24).Text), "T")
                         
             ConnConta.Execute Sql
@@ -5863,94 +5869,5 @@ Dim cad As String
 eModificarDatosCuentaContable:
     MuestraError Err.Number, "Modificar Datos Cuenta Contable", Err.Description
 End Sub
-
-
-Private Function HayCobrosPagosPendientes(vCodmacta As String) As Boolean
-Dim Sql As String
-Dim Sql2 As String
-Dim RS As ADODB.Recordset
-Dim Nregs As Long
-
-    On Error GoTo eHayCobrosPagosPendientes
-
-
-    Sql = "select count(*) from scobro where codmacta = " & DBSet(vCodmacta, "T")
-    Sql = Sql & " and (codrem is null or codrem = 0) and (transfer is null or transfer = 0) "
-    
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
-    If Not RS.EOF Then
-        If DBLet(RS.Fields(0).Value) <> 0 Then Nregs = DBLet(RS.Fields(0).Value)
-    End If
-            
-    Sql = "select count(*) from spagop where ctaprove = " & DBSet(vCodmacta, "T")
-    Sql = Sql & " and (transfer is null or transfer = 0)"
-    
-    Set RS = Nothing
-    
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
-    If Not RS.EOF Then
-        If DBLet(RS.Fields(0).Value) <> 0 Then Nregs = Nregs + DBLet(RS.Fields(0).Value)
-    End If
-    Set RS = Nothing
-    
-    HayCobrosPagosPendientes = (Nregs <> 0)
-    Exit Function
-    
-eHayCobrosPagosPendientes:
-    MuestraError Err.Number, "Hay Cobros Pagos Pendientes", Err.Description
-End Function
-
-Private Function ActualizarCobrosPagosPdtes(vCodmacta As String, vBanco As String, vSucur As String, vDigcon As String, vCta As String, vIban As String, vFPago As String) As Boolean
-Dim Sql2 As String
-    
-    On Error GoTo eActualizarCobrosPagosPdtes
-    
-    ConnConta.BeginTrans
-    
-    ActualizarCobrosPagosPdtes = False
-    
-    Sql2 = "update scobro set codbanco = " & DBSet(vBanco, "N", "S") & ", codsucur = " & DBSet(vSucur, "N", "S")
-    Sql2 = Sql2 & ", digcontr = " & DBSet(vDigcon, "T", "S") & ", cuentaba = " & DBSet(vCta, "T", "S")
-    
-    '[Monica]22/11/2013: tema iban
-    If vEmpresa.HayNorma19_34Nueva = 1 Then
-        Sql2 = Sql2 & ", iban = " & DBSet(vIban, "T", "S")
-    End If
-    
-    '[Monica]26/03/2015: se modifica tambien la forma de pago
-    Sql2 = Sql2 & ", codforpa = " & DBSet(vFPago, "N")
-    
-    Sql2 = Sql2 & " where codmacta = " & DBSet(vCodmacta, "T")
-    Sql2 = Sql2 & " and (codrem is null or codrem = 0) and (transfer is null or transfer = 0)"
-    
-    ConnConta.Execute Sql2
-    
-    Sql2 = "update spagop set entidad = " & DBSet(vBanco, "T", "S") & ", oficina = " & DBSet(vSucur, "T", "S")
-    Sql2 = Sql2 & ", cc = " & DBSet(vDigcon, "T", "S") & ", cuentaba = " & DBSet(vCta, "T", "S")
-    
-    '[Monica]22/11/2013: tema iban
-    If vEmpresa.HayNorma19_34Nueva = 1 Then
-        Sql2 = Sql2 & ", iban = " & DBSet(vIban, "T", "S")
-    End If
-    
-    '[Monica]26/03/2015: se modifica tambien la forma de pago
-    Sql2 = Sql2 & ", codforpa = " & DBSet(vFPago, "N")
-    
-    
-    Sql2 = Sql2 & " where ctaprove = " & DBSet(vCodmacta, "T")
-    Sql2 = Sql2 & " and (transfer is null or transfer = 0)"
-   
-    ConnConta.Execute Sql2
-    
-    ActualizarCobrosPagosPdtes = True
-    ConnConta.CommitTrans
-    Exit Function
-    
-eActualizarCobrosPagosPdtes:
-    ConnConta.RollbackTrans
-    MuestraError Err.Number, "Actualizar Cobros Pagos Pendientes", Err.Description
-End Function
 
 

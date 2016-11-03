@@ -2321,7 +2321,7 @@ On Error Resume Next
             H = 6000
             W = 8800
             PonerFrameVisible Me.FrameErrores, True, H, W
-            Me.text1.Text = vCampos
+            Me.Text1.Text = vCampos
             Me.Caption = "Errores"
         
         Case 14 'Muestra Empresas del sistema
@@ -2567,10 +2567,15 @@ Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
 Dim Sql As String
 
-    Sql = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro "
-    Sql = Sql & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
-    Sql = Sql & cadWHERE
-
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "SELECT numserie, numfactu, fecfactu, fecvenci, impvenci, impcobro "
+        Sql = Sql & " FROM cobros INNER JOIN formapago ON cobros.codforpa=formapago.codforpa "
+        Sql = Sql & cadWHERE
+    Else
+        Sql = "SELECT numserie, codfaccl, fecfaccl, fecvenci, impvenci, impcobro "
+        Sql = Sql & " FROM scobro INNER JOIN sforpa ON scobro.codforpa=sforpa.codforpa "
+        Sql = Sql & cadWHERE
+    End If
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
      
@@ -2757,74 +2762,6 @@ ECargarLista:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargar Nº Series", Err.Description
 End Sub
 
-
-'Private Sub CargarListaComponentes(opt As Byte)
-''Muestra la lista Detallada de cobros en un ListView
-''Carga los valores de la tabla scobro de la Contabilidad
-'Dim RS As ADODB.Recordset
-'Dim ItmX As ListItem
-'Dim SQL As String
-'Dim Codigo As String, cadCodigo As String
-'
-'    Select Case opt
-'        Case 1 'Mantenimiento
-'            Codigo = RecuperaValor(vCampos, 1)
-'            If Codigo = "" Then
-'                cadCodigo = " isnull(nummante) "
-'            Else
-'                cadCodigo = " nummante=" & DBSet(Codigo, "T")
-'            End If
-'            SQL = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
-'            Me.Label1(0).Caption = "Mantenimiento: " & Codigo
-'
-'        Case 2 'Departamento
-'            Codigo = RecuperaValor(vCampos, 2)
-'            If Codigo = "" Then
-'                cadCodigo = "isnull(coddirec)"
-'            Else
-'                cadCodigo = " coddirec=" & Codigo
-'            End If
-'            SQL = ObtenerSQLcomponentes(cadWHERE & " and " & cadCodigo)
-'            If vParamAplic.Departamento Then
-'                Me.Caption = "Equipos del Departamento"
-'                Me.Label1(0).Caption = " Departamento: " & RecuperaValor(vCampos, 3)
-'            Else
-'                Me.Caption = "Equipos de la Dirección"
-'                Me.Label1(0).Caption = " Dirección: " & Codigo & " " & RecuperaValor(vCampos, 3)
-'            End If
-'
-'        Case 3 'Cliente
-'            SQL = ObtenerSQLcomponentes(cadWHERE)
-'            Me.Caption = "Equipos del Cliente"
-'            Me.Label1(0).Caption = "Cliente: " & RecuperaValor(vCampos, 4)
-'    End Select
-'
-'    Set RS = New ADODB.Recordset
-'    RS.Open SQL, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-'
-'    'Los encabezados
-'    ListView1.Top = 800
-'    ListView1.Left = 280
-'    ListView1.Width = 4900
-'    ListView1.Height = 3250
-'    ListView1.ColumnHeaders.Clear
-'
-'    ListView1.ColumnHeaders.Add , , "TA", 760
-'    ListView1.ColumnHeaders.Add , , "Tipo Articulo", 2800
-'    ListView1.ColumnHeaders.Add , , "Cantidad", 1280, 2
-'
-'    If Not RS.EOF Then
-'        While Not RS.EOF
-'            Set ItmX = ListView1.ListItems.Add
-'            ItmX.Text = RS.Fields(0).Value 'TA
-'            ItmX.SubItems(1) = RS.Fields(1).Value 'Tipo Articulo
-'            ItmX.SubItems(2) = RS.Fields(2).Value 'Cantidad
-'            RS.MoveNext
-'        Wend
-'    End If
-'    RS.Close
-'    Set RS = Nothing
-'End Sub
 
 
 Private Sub CargarListaPreFacturar()

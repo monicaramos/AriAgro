@@ -164,11 +164,17 @@ Dim vTranspor As CTransportista
 Dim b As Boolean
 Dim NombPais As String
 Dim CtaBancoPropio As String
+Dim vIban As String
 
     On Error GoTo EInsCta
     
-    '[Monica]21/11/2014: añadida la forma de pago
-    Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais, entidad, oficina, cc, cuentaba, forpa, ctabanco"
+    
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,codpais, forpa, ctabanco"
+    Else
+        '[Monica]21/11/2014: añadida la forma de pago
+        Sql = "INSERT INTO cuentas (codmacta,nommacta,apudirec,model347,razosoci,dirdatos,codposta,despobla,desprovi,nifdatos,maidatos,webdatos,obsdatos,pais, entidad, oficina, cc, cuentaba, forpa, ctabanco"
+    End If
     
     '[Monica]22/11/2013: tema iban
     If vEmpresa.HayNorma19_34Nueva = 1 Then
@@ -178,8 +184,6 @@ Dim CtaBancoPropio As String
     End If
         
     Sql = Sql & " VALUES (" & DBSet(Cuenta, "T") & ","
-    
-    
     
     
     If cadClien <> "" Then
@@ -198,14 +202,23 @@ Dim CtaBancoPropio As String
             End If
             '++
         
-            Sql = Sql & DBSet(vCliente.Nombre, "T") & ",'S',1," & DBSet(vCliente.Nombre, "T") & "," & DBSet(vCliente.Domicilio, "T") & ","
-            Sql = Sql & DBSet(vCliente.CPostal, "T") & "," & DBSet(vCliente.Poblacion, "T") & "," & DBSet(vCliente.Provincia, "T") & "," & DBSet(vCliente.NIF, "T") & "," & DBSet(vCliente.EMailAdm, "T") & "," & DBSet(vCliente.WebClien, "T") & "," & ValorNulo & "," & DBSet(NombPais, "T") & "," & DBSet(vCliente.Banco, "T", "S") & "," & DBSet(vCliente.Sucursal, "T", "S") & "," & DBSet(vCliente.DigControl, "T", "S") & "," & DBSet(vCliente.CuentaBan, "T", "S") & "," & DBSet(vCliente.ForPago, "N")
-            
-            '[Monica]22/11/2013: tema iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & "," & ValorNulo & "," & DBSet(vCliente.Iban, "T", "S") & ")"
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & DBSet(vCliente.Nombre, "T") & ",'S',1," & DBSet(vCliente.Nombre, "T") & "," & DBSet(vCliente.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vCliente.CPostal, "T") & "," & DBSet(vCliente.Poblacion, "T") & "," & DBSet(vCliente.Provincia, "T") & "," & DBSet(vCliente.NIF, "T") & "," & DBSet(vCliente.EMailAdm, "T") & "," & DBSet(vCliente.WebClien, "T") & "," & ValorNulo & "," & DBSet(NombPais, "T") & "," & DBSet(vCliente.Banco, "T", "S") & "," & DBSet(vCliente.Sucursal, "T", "S") & "," & DBSet(vCliente.DigControl, "T", "S") & "," & DBSet(vCliente.CuentaBan, "T", "S") & "," & DBSet(vCliente.ForPago, "N")
+                
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & "," & ValorNulo & "," & DBSet(vCliente.Iban, "T", "S") & ")"
+                Else
+                    Sql = Sql & "," & ValorNulo & ")"
+                End If
             Else
-                Sql = Sql & "," & ValorNulo & ")"
+                Sql = Sql & DBSet(vCliente.Nombre, "T") & ",'S',1," & DBSet(vCliente.Nombre, "T") & "," & DBSet(vCliente.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vCliente.CPostal, "T") & "," & DBSet(vCliente.Poblacion, "T") & "," & DBSet(vCliente.Provincia, "T") & "," & DBSet(vCliente.NIF, "T") & "," & DBSet(vCliente.EMailAdm, "T") & "," & DBSet(vCliente.WebClien, "T") & "," & ValorNulo & "," & DBSet(NombPais, "T") & "," & DBSet(vCliente.ForPago, "N")
+                
+                vIban = MiFormat(vCliente.Iban, "") & MiFormat(vCliente.Banco, "0000") & MiFormat(vCliente.Sucursal, "0000") & MiFormat(vCliente.DigControl, "00") & MiFormat(vCliente.CuentaBan, "0000000000")
+                
+                Sql = Sql & "," & ValorNulo & "," & DBSet(vIban, "T", "S") & ")"
             End If
             
             ConnConta.Execute Sql
@@ -220,20 +233,41 @@ Dim CtaBancoPropio As String
     If cadProve <> "" Then
         Set vProveedor = New CProveedor
         If vProveedor.LeerDatos(cadProve) Then
-            Sql = Sql & DBSet(vProveedor.Nombre, "T") & ",'S',1," & DBSet(vProveedor.NomComer, "T") & "," & DBSet(vProveedor.Domicilio, "T") & ","
-            Sql = Sql & DBSet(vProveedor.CPostal, "T") & "," & DBSet(vProveedor.Poblacion, "T") & "," & DBSet(vProveedor.Provincia, "T") & "," & DBSet(vProveedor.NIF, "T") & "," & DBSet(vProveedor.EMailAdmon, "T") & "," & DBSet(vProveedor.WebProve, "T") & "," & ValorNulo & ",'ESPAÑA'," & DBSet(vProveedor.Banco, "T", "S") & "," & DBSet(vProveedor.Sucursal, "T", "S") & "," & DBSet(vProveedor.DigControl, "T", "S") & "," & DBSet(vProveedor.CuentaBan, "T", "S") & "," & DBSet(vProveedor.ForPago, "N")
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & DBSet(vProveedor.Nombre, "T") & ",'S',1," & DBSet(vProveedor.NomComer, "T") & "," & DBSet(vProveedor.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vProveedor.CPostal, "T") & "," & DBSet(vProveedor.Poblacion, "T") & "," & DBSet(vProveedor.Provincia, "T") & "," & DBSet(vProveedor.NIF, "T") & "," & DBSet(vProveedor.EMailAdmon, "T") & "," & DBSet(vProveedor.WebProve, "T") & "," & ValorNulo & ",'ESPAÑA'," & DBSet(vProveedor.Banco, "T", "S") & "," & DBSet(vProveedor.Sucursal, "T", "S") & "," & DBSet(vProveedor.DigControl, "T", "S") & "," & DBSet(vProveedor.CuentaBan, "T", "S") & "," & DBSet(vProveedor.ForPago, "N")
+                
+                '[Monica]28/10/2016: faltaba la cta contable del banco propio
+                CtaBancoPropio = ""
+                If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
+                    CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vProveedor.BancoPropio, "N"))
+                End If
             
-            '[Monica]28/10/2016: faltaba la cta contable del banco propio
-            CtaBancoPropio = ""
-            If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
-                CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vProveedor.BancoPropio, "N"))
-            End If
-            
-            '[Monica]22/11/2013: tema iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vProveedor.Iban, "T", "S") & ")"
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vProveedor.Iban, "T", "S") & ")"
+                Else
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                End If
             Else
-                Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                Sql = Sql & DBSet(vProveedor.Nombre, "T") & ",'S',1," & DBSet(vProveedor.NomComer, "T") & "," & DBSet(vProveedor.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vProveedor.CPostal, "T") & "," & DBSet(vProveedor.Poblacion, "T") & "," & DBSet(vProveedor.Provincia, "T") & "," & DBSet(vProveedor.NIF, "T") & "," & DBSet(vProveedor.EMailAdmon, "T") & "," & DBSet(vProveedor.WebProve, "T") & "," & ValorNulo & ",'ESPAÑA'," & DBSet(vProveedor.ForPago, "N")
+                
+                '[Monica]28/10/2016: faltaba la cta contable del banco propio
+                CtaBancoPropio = ""
+                If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
+                    CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vProveedor.BancoPropio, "N"))
+                End If
+            
+                vIban = MiFormat(vProveedor.Iban, "") & MiFormat(vProveedor.Banco, "0000") & MiFormat(vProveedor.Sucursal, "0000") & MiFormat(vProveedor.DigControl, "00") & MiFormat(vProveedor.CuentaBan, "0000000000")
+            
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vIban, "T", "S") & ")"
+                Else
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                End If
+            
             End If
             
             ConnConta.Execute Sql
@@ -248,21 +282,43 @@ Dim CtaBancoPropio As String
     If cadTrans <> "" Then
         Set vTranspor = New CTransportista
         If vTranspor.LeerDatos(cadTrans) Then
-            Sql = Sql & DBSet(vTranspor.Nombre, "T") & ",'S',1," & DBSet(Cuenta, "T") & "," & DBSet(vTranspor.Domicilio, "T") & ","
-            Sql = Sql & DBSet(vTranspor.CPostal, "T") & "," & DBSet(vTranspor.Poblacion, "T") & "," & DBSet(vTranspor.Provincia, "T") & "," & DBSet(vTranspor.NIF, "T") & "," & DBSet(vTranspor.EMailAdmon, "T") & "," & DBSet(vTranspor.WebTrans, "T") & "," & ValorNulo & "," & ValorNulo & "," & DBSet(vTranspor.Banco, "T", "S") & "," & DBSet(vTranspor.Sucursal, "T", "S") & "," & DBSet(vTranspor.DigControl, "T", "S") & "," & DBSet(vTranspor.CuentaBan, "T", "S") & "," & DBSet(vTranspor.ForPago, "N")
+            If Not vParamAplic.ContabilidadNueva Then
+                Sql = Sql & DBSet(vTranspor.Nombre, "T") & ",'S',1," & DBSet(Cuenta, "T") & "," & DBSet(vTranspor.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vTranspor.CPostal, "T") & "," & DBSet(vTranspor.Poblacion, "T") & "," & DBSet(vTranspor.Provincia, "T") & "," & DBSet(vTranspor.NIF, "T") & "," & DBSet(vTranspor.EMailAdmon, "T") & "," & DBSet(vTranspor.WebTrans, "T") & "," & ValorNulo & "," & ValorNulo & "," & DBSet(vTranspor.Banco, "T", "S") & "," & DBSet(vTranspor.Sucursal, "T", "S") & "," & DBSet(vTranspor.DigControl, "T", "S") & "," & DBSet(vTranspor.CuentaBan, "T", "S") & "," & DBSet(vTranspor.ForPago, "N")
+                
+                '[Monica]28/10/2016: faltaba la cta contable del banco propio
+                CtaBancoPropio = ""
+                If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
+                    CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vTranspor.BancoPropio, "N"))
+                End If
+                
+                
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vTranspor.Iban, "T", "S") & ")"
+                Else
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                End If
             
-            '[Monica]28/10/2016: faltaba la cta contable del banco propio
-            CtaBancoPropio = ""
-            If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
-                CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vTranspor.BancoPropio, "N"))
-            End If
-            
-            
-            '[Monica]22/11/2013: tema iban
-            If vEmpresa.HayNorma19_34Nueva = 1 Then
-                Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vTranspor.Iban, "T", "S") & ")"
             Else
-                Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                Sql = Sql & DBSet(vTranspor.Nombre, "T") & ",'S',1," & DBSet(Cuenta, "T") & "," & DBSet(vTranspor.Domicilio, "T") & ","
+                Sql = Sql & DBSet(vTranspor.CPostal, "T") & "," & DBSet(vTranspor.Poblacion, "T") & "," & DBSet(vTranspor.Provincia, "T") & "," & DBSet(vTranspor.NIF, "T") & "," & DBSet(vTranspor.EMailAdmon, "T") & "," & DBSet(vTranspor.WebTrans, "T") & "," & ValorNulo & "," & ValorNulo & "," & DBSet(vTranspor.ForPago, "N")
+                
+                '[Monica]28/10/2016: faltaba la cta contable del banco propio
+                CtaBancoPropio = ""
+                If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
+                    CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vTranspor.BancoPropio, "N"))
+                End If
+                
+                vIban = MiFormat(vTranspor.Iban, "") & MiFormat(vTranspor.Banco, "0000") & MiFormat(vTranspor.Sucursal, "0000") & MiFormat(vTranspor.DigControl, "00") & MiFormat(vTranspor.CuentaBan, "0000000000")
+                
+                '[Monica]22/11/2013: tema iban
+                If vEmpresa.HayNorma19_34Nueva = 1 Then
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & "," & DBSet(vIban, "T") & ")"
+                Else
+                    Sql = Sql & "," & DBSet(CtaBancoPropio, "T", "S") & ")"
+                End If
+            
             End If
             
             ConnConta.Execute Sql
@@ -280,54 +336,6 @@ EInsCta:
         MuestraError Err.Description, "Insertando cuenta contable", Err.Description
     End If
     InsertarCuentaCble = b
-End Function
-
-
-'=============================================================================
-'==========     CENTROS DE COSTE
-'=============================================================================
-'LAURA
-Public Function PonerNombreCCoste(Empresa As String, ByRef Txt As TextBox) As String
-'Obtener el nombre de un centro de coste
-Dim codCCoste As String
-Dim cad As String
-
-     If Txt.Text = "" Then
-         PonerNombreCCoste = ""
-         Exit Function
-    End If
-    codCCoste = Txt.Text
-    If CCosteCorrecto(Empresa, codCCoste, cad) Then
-        Txt.Text = codCCoste
-        PonerNombreCCoste = cad
-    Else
-        MsgBox cad, vbExclamation
-'        Txt.Text = ""
-        PonerNombreCCoste = ""
-        PonerFoco Txt
-    End If
-'    codCCoste = ""
-End Function
-
-'LAURA
-Public Function CCosteCorrecto(Empresa As String, ByRef Centro As String, ByRef devuelve As String) As Boolean
-    Dim Sql As String
-    
-    CCosteCorrecto = False
- 
-    'BD 2: conexion a BD Conta
-    If Val(Empresa) <> Val(vEmpresa.codempre) Then
-        Sql = DevuelveDesdeBDNew(3, "cabccost", "nomccost", "codccost", Centro, "T")
-    Else
-        Sql = DevuelveDesdeBDNew(cConta, "cabccost", "nomccost", "codccost", Centro, "T")
-    End If
-    If Sql = "" Then
-        devuelve = "No existe el Centro de coste : " & Centro
-        Exit Function
-    Else
-        devuelve = Sql
-        CCosteCorrecto = True
-    End If
 End Function
 
 
@@ -375,214 +383,6 @@ Public Function ConceptoCorrecto(ByRef Concep As String, ByRef devuelve As Strin
         ConceptoCorrecto = True
     End If
 End Function
-
-' ### [Monica] 27/09/2006
-Public Function FacturaContabilizada(numserie As String, NumFactu As String, Anofactu As String) As Boolean
-Dim Sql As String
-Dim NumAsi As Currency
-
-    FacturaContabilizada = False
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cConta, "cabfact", "numasien", "numserie", numserie, "T", , "codfaccl", NumFactu, "N", "anofaccl", Anofactu, "N")
-    
-    If Sql = "" Then Exit Function
-    
-    NumAsi = DBLet(Sql, "N")
-    
-    If NumAsi <> 0 Then FacturaContabilizada = True
-
-End Function
-
-' ### [Monica] 27/09/2006
-Public Function FacturaRemesada(numserie As String, NumFactu As String, FecFactu As String) As Boolean
-Dim Sql As String
-Dim NumRem As Currency
-
-    FacturaRemesada = False
-    
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cConta, "scobro", "codrem", "numserie", numserie, "T", , "codfaccl", NumFactu, "N", "fecfaccl", FecFactu, "F")
-    
-    If Sql = "" Then Exit Function
-    
-    NumRem = DBLet(Sql, "N")
-    
-    If NumRem <> 0 Then FacturaRemesada = True
-    
-End Function
-
-' ### [Monica] 27/09/2006
-Public Function FacturaCobrada(numserie As String, NumFactu As String, FecFactu As String) As Boolean
-Dim Sql As String
-Dim ImpCob As Currency
-
-    FacturaCobrada = False
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cConta, "scobro", "impcobro", "numserie", numserie, "T", , "codfaccl", NumFactu, "N", "fecfaccl", FecFactu, "F")
-    If Sql = "" Then Exit Function
-    ImpCob = DBLet(Sql, "N")
-    
-    If ImpCob <> 0 Then FacturaCobrada = True
-    
-End Function
-
-' ### [Monica] 27/09/2006
-Public Function ModificaClienteFacturaContabilidad(letraser As String, NumFactu As String, FecFactu As String, CtaConta As String, Tipo As Byte) As Boolean
-Dim Sql As String
-Dim Anyo As Currency
-
-    On Error GoTo eModificaClienteFacturaContabilidad
-
-    ModificaClienteFacturaContabilidad = False
-
-    Anyo = Year(CDate(FecFactu))
-    
-    If Tipo = 0 Then
-        Sql = "update cabfact set codmacta = " & DBSet(CtaConta, "T") & " where numserie = " & DBSet(letraser, "T") & " and " & _
-                  "codfaccl = " & DBSet(NumFactu, "N") & " and anofaccl = " & DBSet(Anyo, "N")
-        ConnConta.Execute Sql
-    End If
-    
-    Sql = "update scobro set codmacta = " & DBSet(CtaConta, "T") & " where numserie = " & DBSet(letraser, "T") & " and " & _
-              "codfaccl = " & DBSet(NumFactu, "N") & " and fecfaccl = " & DBSet(FecFactu, "F")
-              
-    ConnConta.Execute Sql
-              
-    ModificaClienteFacturaContabilidad = True
-    
-eModificaClienteFacturaContabilidad:
-    If Err.Number <> 0 Then
-        MsgBox "Error en ModificaClienteFacturaContabilidad: " & Err.Description, vbExclamation
-    End If
-
-End Function
-
-' ### [Monica] 27/09/2006
-Public Sub ModificaFormaPagoTesoreria(letraser As String, NumFactu As String, FecFactu As String, Forpa As String, forpaant As String)
-Dim Sql As String
-Dim SQL1 As String
-Dim TipForpa As String
-Dim TipForpaAnt As String
-Dim cadWHERE As String
-
-    cadWHERE = " numserie = " & DBSet(letraser, "T") & " and " & _
-              "codfaccl = " & NumFactu & " and fecfaccl = " & DBSet(FecFactu, "F")
-    
-    Sql = "update scobro set codforpa = " & Forpa & " where " & cadWHERE
-
-    ConnConta.Execute Sql
-
-End Sub
-
-'' ### [Monica] 29/09/2006
-'Public Function ModificaImportesFacturaContabilidad(letraser As String, numfactu As String, fecfactu As String, Importe As String, Forpa As String, vtabla As String) As Boolean
-'Dim SQL As String
-'Dim vWhere As String
-'Dim b As Boolean
-'Dim CadValues As String
-'Dim vSocio As CSocio
-'Dim RS As ADODB.Recordset
-'Dim TipForpa As String
-'
-'    On Error GoTo eModificaImportesFacturaContabilidad
-'
-'    b = False
-'
-'    vWhere = "numserie = " & DBSet(letraser, "T") & " and codfaccl = " & _
-'              numfactu & " and anofaccl = " & Format(Year(fecfactu), "0000")
-'
-'
-'    SQL = "select codsocio from " & vtabla & " where letraser = " & DBSet(letraser, "T") & " and numfactu = " & _
-'           numfactu & " and fecfactu = " & DBSet(fecfactu, "F")
-'
-'    Set RS = New ADODB.Recordset
-'    RS.Open SQL, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-'    If Not RS.EOF Then RS.MoveFirst
-'
-'    Set vSocio = New CSocio
-'    If vSocio.LeerDatos(RS.Fields(0).Value) Then
-'    '********************************+estoy aqui
-'
-'        If vtabla = "schfac" Then
-'            SQL = "delete from linfact where " & vWhere
-'            ConnConta.Execute SQL
-'
-'            SQL = "delete from cabfact where " & vWhere
-'            ConnConta.Execute SQL
-'
-'            SQL = "schfac.letraser = " & DBSet(letraser, "T") & " and numfactu = " & numfactu
-'            SQL = SQL & " and fecfactu = " & DBSet(fecfactu, "F")
-'
-'
-'            b = CrearTMPErrFact("schfac")
-'            If b Then b = PasarFactura2(SQL, vSocio)
-'        Else
-'            b = CrearTMPErrFact("schfacr")
-'        End If
-'
-'        ' 09/02/2007
-'        TipForpa = DevuelveDesdeBDNew(cAgro, "sforpa", "tipforpa", "codforpa", Forpa, "N")
-'        If TipForpa <> "0" And b Then
-'            b = ModificaCobroTesoreria(letraser, numfactu, fecfactu, vSocio, vtabla)
-'        End If
-'    End If
-'
-'    ModificaImportesFacturaContabilidad = b
-'
-'eModificaImportesFacturaContabilidad:
-'    If Err.Number <> 0 Then
-'        MsgBox "Error en ModificaImportesFacturaContabilidad: " & Err.Description, vbExclamation
-'    End If
-'End Function
-
-'Public Function ModificaCobroTesoreria(letraser As String, numfactu As String, fecfactu As String, vSocio As CSocio, vtabla As String) As Boolean
-'Dim SQL As String
-'Dim RS As ADODB.Recordset
-'Dim cadwhere As String
-'Dim BanPr As String
-'Dim Mens As String
-'Dim b As Boolean
-'
-'    On Error GoTo eModificaCobroTesoreria
-'
-'    ModificaCobroTesoreria = False
-'    b = True
-'
-'    ' antes de borrar he de obtener la fecha de vencimiento y el codmacta para sacar el banco propio que le pasaré
-'    ' a la rutina de InsertarEnTesoreria
-'
-'    SQL = "select fecvenci, ctabanc1 from scobro where numserie = " & DBSet(letraser, "T") & " and codfaccl = " & DBSet(numfactu, "N")
-'    SQL = SQL & " and fecfaccl = " & DBSet(fecfactu, "F") & " and numorden = 1"
-'
-'    Set RS = New ADODB.Recordset
-'    RS.Open SQL, ConnConta, adOpenForwardOnly, adLockOptimistic, adCmdText
-'    If Not RS.EOF Then
-'        RS.MoveFirst
-'
-'        cadwhere = vtabla & ".letraser =" & DBSet(letraser, "T") & " and numfactu=" & DBLet(numfactu, "N")
-'        cadwhere = cadwhere & " and fecfactu=" & DBSet(fecfactu, "F")
-'
-'        BanPr = ""
-'        BanPr = DevuelveDesdeBDNew(cAgro, "sbanco", "codbanpr", "codmacta", RS.Fields(1).Value, "T")
-'
-'        SQL = "delete from scobro where "
-'        SQL = SQL & " numserie = " & DBSet(letraser, "T") & " and codfaccl = " & numfactu
-'        SQL = SQL & " and fecfaccl = " & DBSet(fecfactu, "F")
-'
-'        ConnConta.Execute SQL
-'
-'        ' hemos de crear el cobro nuevamente
-'        Mens = "Insertando en Tesoreria "
-'        b = InsertarEnTesoreria(cadwhere, CStr(RS.Fields(0).Value), BanPr, Mens, vSocio, vtabla)
-'    End If
-'
-'    ModificaCobroTesoreria = b
-'
-'eModificaCobroTesoreria:
-'    If Err.Number <> 0 Then
-'        MsgBox "Error en ModificaCobroTesoreria " & Err.Description, vbExclamation
-'    End If
-'End Function
 
 
 Public Function CalcularIva(Importe As String, articulo As String) As Currency
@@ -679,4 +479,126 @@ Public Function NombreCuentaCorrecta(ByRef Cuenta As String) As String
     End If
 
 End Function
+
+
+Public Function HayCobrosPagosPendientes(vCodmacta As String) As Boolean
+Dim Sql As String
+Dim Sql2 As String
+Dim Rs As ADODB.Recordset
+Dim Nregs As Long
+
+    On Error GoTo eHayCobrosPagosPendientes
+
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "select count(*) from cobros where codmacta = " & DBSet(vCodmacta, "T")
+        Sql = Sql & " and (codrem is null or codrem = 0) and (transfer is null or transfer = 0) "
+    Else
+        Sql = "select count(*) from scobro where codmacta = " & DBSet(vCodmacta, "T")
+        Sql = Sql & " and (codrem is null or codrem = 0) and (transfer is null or transfer = 0) "
+    End If
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        If DBLet(Rs.Fields(0).Value) <> 0 Then Nregs = DBLet(Rs.Fields(0).Value)
+    End If
+            
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "select count(*) from pagos where codmacta = " & DBSet(vCodmacta, "T")
+        Sql = Sql & " and (nrodocum is null or nrodocum = 0)"
+    Else
+        Sql = "select count(*) from spagop where ctaprove = " & DBSet(vCodmacta, "T")
+        Sql = Sql & " and (transfer is null or transfer = 0)"
+    End If
+    Set Rs = Nothing
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        If DBLet(Rs.Fields(0).Value) <> 0 Then Nregs = Nregs + DBLet(Rs.Fields(0).Value)
+    End If
+    Set Rs = Nothing
+    
+    HayCobrosPagosPendientes = (Nregs <> 0)
+    Exit Function
+    
+eHayCobrosPagosPendientes:
+    MuestraError Err.Number, "Hay Cobros Pagos Pendientes", Err.Description
+End Function
+
+Public Function ActualizarCobrosPagosPdtes(vCodmacta As String, vBanco As String, vSucur As String, vDigcon As String, vCta As String, vIban As String, vFPago As String) As Boolean
+Dim Sql2 As String
+Dim vvIban As String
+    
+    On Error GoTo eActualizarCobrosPagosPdtes
+    
+    ConnConta.BeginTrans
+    
+    ActualizarCobrosPagosPdtes = False
+    
+    If vParamAplic.ContabilidadNueva Then
+        vvIban = MiFormat(vIban, "") & MiFormat(vBanco, "0000") & MiFormat(vSucur, "0000") & MiFormat(vDigcon, "00") & MiFormat(vCta, "0000000000")
+        
+        Sql2 = "update cobros set iban = " & DBSet(vvIban, "T", "S")
+    Else
+        Sql2 = "update scobro set codbanco = " & DBSet(vBanco, "N", "S") & ", codsucur = " & DBSet(vSucur, "N", "S")
+        Sql2 = Sql2 & ", digcontr = " & DBSet(vDigcon, "T", "S") & ", cuentaba = " & DBSet(vCta, "T", "S")
+    
+        '[Monica]22/11/2013: tema iban
+        If vEmpresa.HayNorma19_34Nueva = 1 Then
+            Sql2 = Sql2 & ", iban = " & DBSet(vIban, "T", "S")
+        End If
+    End If
+    
+    '[Monica]26/03/2015: se modifica tambien la forma de pago
+    Sql2 = Sql2 & ", codforpa = " & DBSet(vFPago, "N")
+    
+    Sql2 = Sql2 & " where codmacta = " & DBSet(vCodmacta, "T")
+    Sql2 = Sql2 & " and (codrem is null or codrem = 0) and (transfer is null or transfer = 0)"
+    
+    ConnConta.Execute Sql2
+    
+    
+    If vParamAplic.ContabilidadNueva Then
+        vvIban = MiFormat(vIban, "") & MiFormat(vBanco, "0000") & MiFormat(vSucur, "0000") & MiFormat(vDigcon, "00") & MiFormat(vCta, "0000000000")
+        
+        Sql2 = "update pagos set iban = " & DBSet(vvIban, "T", "S")
+        
+        '[Monica]26/03/2015: se modifica tambien la forma de pago
+        Sql2 = Sql2 & ", codforpa = " & DBSet(vFPago, "N")
+        
+        
+        Sql2 = Sql2 & " where codmacta = " & DBSet(vCodmacta, "T")
+        Sql2 = Sql2 & " and (nrodocum is null or nrodocum = 0)"
+    
+    Else
+        Sql2 = "update spagop set entidad = " & DBSet(vBanco, "T", "S") & ", oficina = " & DBSet(vSucur, "T", "S")
+        Sql2 = Sql2 & ", cc = " & DBSet(vDigcon, "T", "S") & ", cuentaba = " & DBSet(vCta, "T", "S")
+        
+        '[Monica]22/11/2013: tema iban
+        If vEmpresa.HayNorma19_34Nueva = 1 Then
+            Sql2 = Sql2 & ", iban = " & DBSet(vIban, "T", "S")
+        End If
+        '[Monica]26/03/2015: se modifica tambien la forma de pago
+        Sql2 = Sql2 & ", codforpa = " & DBSet(vFPago, "N")
+        
+        
+        Sql2 = Sql2 & " where ctaprove = " & DBSet(vCodmacta, "T")
+        Sql2 = Sql2 & " and (transfer is null or transfer = 0)"
+    End If
+   
+    ConnConta.Execute Sql2
+    
+    ActualizarCobrosPagosPdtes = True
+    ConnConta.CommitTrans
+    Exit Function
+    
+eActualizarCobrosPagosPdtes:
+    ConnConta.RollbackTrans
+    MuestraError Err.Number, "Actualizar Cobros Pagos Pendientes", Err.Description
+End Function
+
+
+
+
+
 

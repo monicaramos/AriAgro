@@ -392,7 +392,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -411,12 +411,12 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim i As Byte
+Dim I As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-Dim sql As String
+Dim Sql As String
 
 InicializarVbles
     
@@ -424,7 +424,7 @@ InicializarVbles
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
      '======== FORMULA  ====================================
@@ -441,7 +441,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & Tabla & ".codclien}"
+        codigo = "{" & tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -461,7 +461,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & Tabla & ".fechaalb}"
+        codigo = "{" & tabla & ".fechaalb}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
@@ -471,7 +471,7 @@ InicializarVbles
 
 '    If AnyadirAFormula(cadSelect, "clientes.limiteriesgos <> 0 and clientes.limiteriesgos is not null ") = False Then Exit Sub
     
-    cadTABLA = Tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
+    cadTABLA = tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
     
     cadParam = cadParam & "pSoloResumen=" & chkResumen.Value & "|"
     numParam = numParam + 1
@@ -500,30 +500,30 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 
     PrimeraVez = True
     limpiar Me
 
     'IMAGES para busqueda
-     For h = 0 To 1
-        Me.imgBuscar(h).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-     Next h
+     For H = 0 To 1
+        Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+     Next H
 
     '###Descomentar
 '    CommitConexion
          
-    FrameCobrosVisible True, h, w
+    FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "albaran"
+    tabla = "albaran"
     Me.Label2.Caption = ""
     Me.Refresh
         
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
     Me.cmdCancel.Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
@@ -658,15 +658,15 @@ Dim cad As String, cadTipo As String 'tipo cliente
     End Select
 End Sub
 
-Private Sub FrameCobrosVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCobros.visible = visible
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
         Me.FrameCobros.Height = 5760
         Me.FrameCobros.Width = 6690
-        w = Me.FrameCobros.Width
-        h = Me.FrameCobros.Height
+        W = Me.FrameCobros.Width
+        H = Me.FrameCobros.Height
     End If
 End Sub
 
@@ -782,21 +782,21 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim sql As String
-Dim RS As ADODB.Recordset
+Dim Sql As String
+Dim Rs As ADODB.Recordset
 
-    sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        sql = sql & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If RS.EOF Then
+    If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
         HayRegistros = False
     Else
@@ -805,19 +805,19 @@ Dim RS As ADODB.Recordset
 
 End Function
 
-Private Function CargarTemporal(cTabla As String, cadWhere As String) As Boolean
-Dim sql As String
+Private Function CargarTemporal(cTabla As String, cadWHERE As String) As Boolean
+Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim Codiva As String
 Dim PorcIva As String
-Dim i As Integer
+Dim I As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 Dim Registro As String
 Dim CADENA As String
 Dim vCliente As CCliente
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Importe As Currency
 Dim ImporteFacturado As Currency
 Dim Dias As Long
@@ -827,7 +827,7 @@ Dim MenError As String
 
 '[Monica]23/05/2013: los calculos ahora se hacen con respecto a la fecha de factura si el albaran está facturado
 Dim FechaFactura As String
-Dim vSql As String
+Dim vSQL As String
 
 On Error GoTo eCargarTemporal
 
@@ -837,31 +837,31 @@ On Error GoTo eCargarTemporal
     
     conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
         
-    If cadWhere <> "" Then
-        cadWhere = QuitarCaracterACadena(cadWhere, "{")
-        cadWhere = QuitarCaracterACadena(cadWhere, "}")
-        cadWhere = QuitarCaracterACadena(cadWhere, "_1")
+    If cadWHERE <> "" Then
+        cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
+        cadWHERE = QuitarCaracterACadena(cadWHERE, "}")
+        cadWHERE = QuitarCaracterACadena(cadWHERE, "_1")
     End If
                                   '(codusu, albaran,  linea, fecalbar,cliente, imp.factu,imp.provi,fec.pag,dias,   asterisco)
-    sql = "insert into tmpinformes (codusu, importe1, campo1, fecha1, codigo1, importe2, importe3, fecha2, campo2, nombre1) values "
+    Sql = "insert into tmpinformes (codusu, importe1, campo1, fecha1, codigo1, importe2, importe3, fecha2, campo2, nombre1) values "
     
     Sql2 = "select albaran.fechaalb, albaran.codclien, clientes.tipoiva, clientes.diasasegurados, albaran_variedad.* from albaran_variedad, albaran, clientes where albaran.numalbar = albaran_variedad.numalbar "
     Sql2 = Sql2 & " and albaran.codclien = clientes.codclien "
-    If cadWhere <> "" Then Sql2 = Sql2 & " and " & cadWhere
+    If cadWHERE <> "" Then Sql2 = Sql2 & " and " & cadWHERE
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     CADENA = ""
     
-    While Not RS.EOF
-        Registro = "(" & vUsu.codigo & "," & DBSet(RS!NumAlbar, "N") & "," & DBSet(RS!NumLinea, "N") & ","
-        Registro = Registro & DBSet(RS!FechaAlb, "F") & "," & DBSet(RS!CodClien, "N") & ","
-        If AlbaranFacturado(CCur(RS!NumAlbar), CCur(RS!NumLinea)) Then
+    While Not Rs.EOF
+        Registro = "(" & vUsu.codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+        Registro = Registro & DBSet(Rs!FechaAlb, "F") & "," & DBSet(Rs!CodClien, "N") & ","
+        If AlbaranFacturado(CCur(Rs!NumAlbar), CCur(Rs!numlinea)) Then
             FechaFactura = ""
            '[Monica]16/04/2010:antes FacturaCobradaTesoreria
            ' If FacturaCobradaTesoreria(CCur(RS!numalbar), CCur(RS!numlinea)) Then
-            If AlbaranCobradoTesoreria(CCur(RS!NumAlbar), CCur(RS!NumLinea)) Then
+            If AlbaranCobradoTesoreria(CCur(Rs!NumAlbar), CCur(Rs!numlinea)) Then
             ' si la factura está cobrada en tesoreria no hacemos nada.
                 Registro = ""
 '                Importe = CCur(ImporteAlbaranFacturado(CCur(Rs!numalbar), CCur(Rs!numlinea)))
@@ -882,10 +882,10 @@ On Error GoTo eCargarTemporal
                 '[Monica]26/09/2011:antes ImporteFacturado = CCur(ImporteAlbaranFacturado(CCur(RS!numalbar), CCur(RS!numlinea)))
                 Dim Parcial As Boolean
                 Parcial = False
-                ImporteFacturado = CCur(ImporteAlbaranFacturadoNoCobrado(CCur(RS!NumAlbar), CCur(RS!NumLinea), Parcial))
+                ImporteFacturado = CCur(ImporteAlbaranFacturadoNoCobrado(CCur(Rs!NumAlbar), CCur(Rs!numlinea), Parcial))
                 If Not Parcial Then
-                    Sql2 = "select codigiva from facturas_variedad where numalbar = " & DBSet(RS!NumAlbar, "N")
-                    Sql2 = Sql2 & " and numlinealbar = " & DBSet(RS!NumLinea, "N")
+                    Sql2 = "select codigiva from facturas_variedad where numalbar = " & DBSet(Rs!NumAlbar, "N")
+                    Sql2 = Sql2 & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
                     Codiva = DevuelveValor(Sql2)
     
                     PorcIva = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", Codiva, "N")
@@ -895,10 +895,10 @@ On Error GoTo eCargarTemporal
                 End If
                 Importe = 0
                  
-                vSql = "select max(fecfactu) from facturas_variedad where numalbar = " & DBSet(RS!NumAlbar, "N")
-                vSql = vSql & " and numlinealbar = " & DBSet(RS!NumLinea, "N")
+                vSQL = "select max(fecfactu) from facturas_variedad where numalbar = " & DBSet(Rs!NumAlbar, "N")
+                vSQL = vSQL & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
                 
-                FechaFactura = DevuelveValor(vSql)
+                FechaFactura = DevuelveValor(vSQL)
                 
 '[Monica]:02/02/2010 o calculamos el importe facturado o el provisional
 '                ' calculamos el importe provisional
@@ -919,12 +919,12 @@ On Error GoTo eCargarTemporal
                 Registro = Registro & DBSet(ImporteFacturado, "N") & "," & DBSet(Importe, "N") & ","
             End If
         Else
-            FechaFactura = CStr(DBLet(RS!FechaAlb, "F"))
+            FechaFactura = CStr(DBLet(Rs!FechaAlb, "F"))
             ' calculamos el importe provisional
-            Importe = Round2(DBLet(RS!Pesoneto, "N") * DBLet(RS!preciopro, "N"), 2)
-            Select Case RS!TipoIva
+            Importe = Round2(DBLet(Rs!Pesoneto, "N") * DBLet(Rs!preciopro, "N"), 2)
+            Select Case Rs!TipoIva
                 Case 0
-                    Codiva = DevuelveDesdeBDNew(cAgro, "variedades", "codigiva", "codvarie", RS!codvarie, "N")
+                    Codiva = DevuelveDesdeBDNew(cAgro, "variedades", "codigiva", "codvarie", Rs!codvarie, "N")
                 Case 1
                     Codiva = vParamAplic.CodIvaExento
                 Case 2
@@ -941,12 +941,12 @@ On Error GoTo eCargarTemporal
         ' si hemos cargado algo lo metremos en la cadena
         If Registro <> "" Then
             'fecha de pago                                                              '[Monica]23/05/2013: cambiado RS!FechaAlb
-            Registro = Registro & DBSet(DateAdd("d", CDbl(DBLet(RS!Diasasegurados, "N")), CDate(FechaFactura)), "F") & ","
+            Registro = Registro & DBSet(DateAdd("d", CDbl(DBLet(Rs!Diasasegurados, "N")), CDate(FechaFactura)), "F") & ","
             'dias
             Dias = CDate(txtCodigo(6).Text) - CDate(FechaFactura) 'DBLet(RS!FechaAlb, "F")
             Registro = Registro & DBSet(Dias, "N") & ","
             '[Monica]28/02/2012: añadido el igual en : DBLet(RS!Diasasegurados, "N") >= 0
-            If Dias > DBLet(RS!Diasasegurados, "N") And DBLet(RS!Diasasegurados, "N") >= 0 Then
+            If Dias > DBLet(Rs!Diasasegurados, "N") And DBLet(Rs!Diasasegurados, "N") >= 0 Then
                 Registro = Registro & "'*'),"
             Else
                 Registro = Registro & "''),"
@@ -955,51 +955,51 @@ On Error GoTo eCargarTemporal
             CADENA = CADENA & Registro
         End If
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     ' quitamos la ultima coma
     If Len(CADENA) > 0 Then
         CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     
-        conn.Execute sql & CADENA
+        conn.Execute Sql & CADENA
     End If
         
     '[Monica]06/10/2011
     ' quitamos las cantidades que esten duplicadas en el listado que se correspondan con facturas parcialmente cobradas
     '             cliente, imp.factu, albaran,  linea
-    sql = "select codigo1, importe2, importe1, campo1 from tmpinformes "
-    sql = sql & " where codusu = " & vUsu.codigo & " and (codigo1,importe2) in ( "
-    sql = sql & " select codigo1, importe2 from (select codigo1,importe2,count(*)"
-    sql = sql & " from tmpinformes where codusu = " & vUsu.codigo & " and importe2 <> 0"
-    sql = sql & " group by 1,2"
-    sql = sql & " having count(*) > 1"
-    sql = sql & " order by codigo1) aaaaa )"
-    sql = sql & " order by 1,2,3,4"
+    Sql = "select codigo1, importe2, importe1, campo1 from tmpinformes "
+    Sql = Sql & " where codusu = " & vUsu.codigo & " and (codigo1,importe2) in ( "
+    Sql = Sql & " select codigo1, importe2 from (select codigo1,importe2,count(*)"
+    Sql = Sql & " from tmpinformes where codusu = " & vUsu.codigo & " and importe2 <> 0"
+    Sql = Sql & " group by 1,2"
+    Sql = Sql & " having count(*) > 1"
+    Sql = Sql & " order by codigo1) aaaaa )"
+    Sql = Sql & " order by 1,2,3,4"
 
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Primero = True
     MenError = ""
     
-    While Not RS.EOF And Not MenError <> ""
-        If AlbaranDeFacturaCobradaParcialmente(RS.Fields(2).Value, RS.Fields(3).Value, MenError) Then
+    While Not Rs.EOF And Not MenError <> ""
+        If AlbaranDeFacturaCobradaParcialmente(Rs.Fields(2).Value, Rs.Fields(3).Value, MenError) Then
             If Primero Then
                 Primero = False
             Else
-                sql = "update tmpinformes set importe2 = 0 where codusu = " & vUsu.codigo & " and importe1 = " & DBSet(RS.Fields(2).Value, "N")
-                sql = sql & " and campo1 = " & DBSet(RS.Fields(3).Value, "N")
+                Sql = "update tmpinformes set importe2 = 0 where codusu = " & vUsu.codigo & " and importe1 = " & DBSet(Rs.Fields(2).Value, "N")
+                Sql = Sql & " and campo1 = " & DBSet(Rs.Fields(3).Value, "N")
                             
-                conn.Execute sql
+                conn.Execute Sql
             End If
         End If
-        RS.MoveNext
+        Rs.MoveNext
     Wend
         
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If MenError = "" Then
         CargarTemporal = True
@@ -1029,19 +1029,26 @@ End Function
 
 
 Private Function AlbaranDeFacturaCobradaParcialmente(Albaran As Long, Linea As Long, MenError As String) As Boolean
-Dim sql As String
+Dim Sql As String
 
     On Error GoTo eAlbaranDeFacturaCobradaParcialmente
 
-    
-    sql = "select  sum(if(isnull(impcobro),0,impcobro)) from conta" & vParamAplic.NumeroConta & ".scobro where (numserie, codfaccl, fecfaccl) in ("
-    sql = sql & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
-    sql = sql & " from facturas_variedad, usuarios.stipom stipom "
-    sql = sql & " where facturas_variedad.numalbar = " & Albaran
-    sql = sql & " and facturas_variedad.numlinealbar = " & Linea
-    sql = sql & " and facturas_variedad.codtipom = stipom.codtipom) "
-
-    AlbaranDeFacturaCobradaParcialmente = (DevuelveValor(sql) <> 0)
+    If vParamAplic.ContabilidadNueva Then
+        Sql = "select  sum(if(isnull(impcobro),0,impcobro)) from ariconta" & vParamAplic.NumeroConta & ".cobros where (numserie, numfactu, fecfactu) in ("
+        Sql = Sql & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
+        Sql = Sql & " from facturas_variedad, usuarios.stipom stipom "
+        Sql = Sql & " where facturas_variedad.numalbar = " & Albaran
+        Sql = Sql & " and facturas_variedad.numlinealbar = " & Linea
+        Sql = Sql & " and facturas_variedad.codtipom = stipom.codtipom) "
+    Else
+        Sql = "select  sum(if(isnull(impcobro),0,impcobro)) from conta" & vParamAplic.NumeroConta & ".scobro where (numserie, codfaccl, fecfaccl) in ("
+        Sql = Sql & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
+        Sql = Sql & " from facturas_variedad, usuarios.stipom stipom "
+        Sql = Sql & " where facturas_variedad.numalbar = " & Albaran
+        Sql = Sql & " and facturas_variedad.numlinealbar = " & Linea
+        Sql = Sql & " and facturas_variedad.codtipom = stipom.codtipom) "
+    End If
+    AlbaranDeFacturaCobradaParcialmente = (DevuelveValor(Sql) <> 0)
 
     Exit Function
     

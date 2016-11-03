@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmANECOOPTrasPagos 
    BorderStyle     =   3  'Fixed Dialog
@@ -463,7 +463,7 @@ Dim cadErr As String
             cmdAceptar.Enabled = False
             cmdCancelar.Enabled = False
         
-            If InsertarAsientoDiario(txtcodigo(14).Text, txtcodigo(3).Text, txtcodigo(1).Text, txtcodigo(0).Text, FecLiq, cadErr) Then
+            If InsertarAsientoDiario(txtCodigo(14).Text, txtCodigo(3).Text, txtCodigo(1).Text, txtCodigo(0).Text, FecLiq, cadErr) Then
                 
                 MsgBox "Proceso realizado correctamente.", vbExclamation
                 
@@ -493,7 +493,7 @@ End Sub
 Private Function ComprobarDesdobles()
 Dim Sql As String
 Dim SqlValues As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eComprobarDesdobles
         
@@ -504,22 +504,22 @@ Dim RS As ADODB.Recordset
     
     Sql = "select distinct expediente_id"
     Sql = Sql & " from anecoop_pago ff"
-    Sql = Sql & " where ff.num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+    Sql = Sql & " where ff.num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
     Sql = Sql & " and (mid(ff.expediente_id,1,1) = '0' or length(ff.expediente_id) <> 18) "
     Sql = Sql & " order by 1 "
     
     SqlValues = ""
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
-        If Len(RS!expediente_id) <> 18 Then
-            Sql = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(RS!expediente_id, "T") & "),17) "
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        If Len(Rs!expediente_id) <> 18 Then
+            Sql = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17) "
             Sql = Sql & " and mid(expediente_id,1,1)  <> '0' "
-            Sql = Sql & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+            Sql = Sql & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
             
             If TotalRegistros(Sql) = 0 Then
-                Sql = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(RS!expediente_id, "T") & "),17)  "
+                Sql = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17)  "
                 If TotalRegistrosConsulta(Sql) <> 0 Then
                     SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(DevuelveValor(Sql), "T") & "),"
                 End If
@@ -527,14 +527,14 @@ Dim RS As ADODB.Recordset
         
         
         Else
-            If Mid(RS!expediente_id, 1, 1) = "0" Then
+            If Mid(Rs!expediente_id, 1, 1) = "0" Then
             
-                Sql = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = mid(" & DBSet(RS!expediente_id, "T") & ",2,17) "
+                Sql = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
                 Sql = Sql & " and mid(expediente_id,1,1)  <> '0' "
-                Sql = Sql & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+                Sql = Sql & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
                 
                 If TotalRegistros(Sql) = 0 Then
-                    Sql = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = mid(" & DBSet(RS!expediente_id, "T") & ",2,17) "
+                    Sql = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
                     If TotalRegistrosConsulta(Sql) <> 0 Then
                         SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(DevuelveValor(Sql), "T") & "),"
                     End If
@@ -542,9 +542,9 @@ Dim RS As ADODB.Recordset
             
             End If
         End If
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
     
     If SqlValues <> "" Then
         SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1)
@@ -604,7 +604,7 @@ Dim List As Collection
 '    CommitConexion
         
     FrameIntegracionVisible True, H, W
-    pb1.visible = False
+    Pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
@@ -730,27 +730,27 @@ Dim tipoMov As String
 
     b = True
     ' Datos contables introducidos
-    If txtcodigo(14).Text = "" Then
+    If txtCodigo(14).Text = "" Then
         MsgBox "Debe de introducir la fecha de pago. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(14)
+        PonerFoco txtCodigo(14)
     End If
-    If b And txtcodigo(3).Text = "" Then
+    If b And txtCodigo(3).Text = "" Then
         MsgBox "Debe de introducir el número de diario. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(3)
+        PonerFoco txtCodigo(3)
     End If
-    If b And txtcodigo(1).Text = "" Then
+    If b And txtCodigo(1).Text = "" Then
         MsgBox "Debe de introducir la cuenta de banco. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(1)
+        PonerFoco txtCodigo(1)
     End If
     
     ' Introducido nro de liquidacion
-    If b And txtcodigo(0).Text = "" Then
+    If b And txtCodigo(0).Text = "" Then
         MsgBox "Debe introducir el número de liquidación. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(0)
+        PonerFoco txtCodigo(0)
     End If
     
     DatosOk = b
@@ -762,7 +762,7 @@ Private Function ComprobarLiquidacion() As Boolean
 Dim Sql As String
 Dim CadResult As String
 Dim CadResult2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim Total As Currency
 Dim SqlValues As String
@@ -808,110 +808,135 @@ Dim I As Long
     
     Total = 0
     
-    Sql = "select ll.*, cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtcodigo(0).Text, "N")
+    Sql = "select ll.*, cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtCodigo(0).Text, "N")
     Sql = Sql & " and ll.expediente_id = cc.expediente_id"
     
     TotalAnecoop = DevuelveValor("select sum(importe) from (" & Sql & ") aaaa")
     
     Nregs = TotalRegistrosConsulta(Sql)
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Nregs <> 0 Then
         'fecha que pondremos en el documento del apunte del asiento al debe del banco
-        FecLiq = DBLet(RS!fecha_pago, "F")
+        FecLiq = DBLet(Rs!fecha_pago, "F")
         
         lblProgres(0).Caption = "Comprobando datos: "
-        pb1.visible = True
-        pb1.Max = Nregs
-        pb1.Value = 0
+        Pb1.visible = True
+        Pb1.Max = Nregs
+        Pb1.Value = 0
         DoEvents
         I = 0
         
-        While Not RS.EOF
+        While Not Rs.EOF
             I = I + 1
             lblProgres(1).Caption = "Linea " & I
-            IncrementarProgresNew pb1, 1
+            IncrementarProgresNew Pb1, 1
             DoEvents
             
             
             letraser = ObtenerLetraSerie(CodtipomAnecoop)
         
             '[Monica]02/06/2015: si el nro de albaran es alfa damos un error y salimos
-            If Not IsNumeric(DBLet(RS!numero_salida_cooperativa, "T")) Then
-                MsgBox "El nro de albarán del expediente " & DBLet(RS!expediente_id) & " no es numérico." & vbCrLf & vbCrLf & "Revise.", vbExclamation
+            If Not IsNumeric(DBLet(Rs!numero_salida_cooperativa, "T")) Then
+                MsgBox "El nro de albarán del expediente " & DBLet(Rs!expediente_id) & " no es numérico." & vbCrLf & vbCrLf & "Revise.", vbExclamation
                 Exit Function
             End If
         
-            Sql = "select * from conta" & vParamAplic.NumeroConta & ".scobro where numserie = " & DBSet(letraser, "T") & " and codfaccl = " & DBSet(RS!num_factura, "N")
-            Sql = Sql & " and fecfaccl = " & DBSet(RS!fecha_factura, "F")
+            If vParamAplic.ContabilidadNueva Then
+                Sql = "select * from ariconta" & vParamAplic.NumeroConta & ".cobros where numserie = " & DBSet(letraser, "T") & " and numfactu = " & DBSet(Rs!num_factura, "N")
+                Sql = Sql & " and fecfactu = " & DBSet(Rs!fecha_factura, "F")
+            Else
+                Sql = "select * from conta" & vParamAplic.NumeroConta & ".scobro where numserie = " & DBSet(letraser, "T") & " and codfaccl = " & DBSet(Rs!num_factura, "N")
+                Sql = Sql & " and fecfaccl = " & DBSet(Rs!fecha_factura, "F")
+            End If
             
-            If Mid(DBLet(RS!tipo_pago), 1, 1) = "I" Then
-                If DBLet(RS!nombre_variedad) = "" Then
+            If Mid(DBLet(Rs!tipo_pago), 1, 1) = "I" Then
+                If DBLet(Rs!nombre_variedad) = "" Then
                     Sql = Sql & " and coalesce(referencia,'') = 'IVA ENVASE'"
-                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(RS!numero_salida_cooperativa, "N")
+                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(Rs!numero_salida_cooperativa, "N")
                 Else
                     Sql = Sql & " and coalesce(referencia,'') = 'IVA VARIEDAD'"
-                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(RS!numero_salida_cooperativa, "N")
-                    Sql = Sql & " and cast(referencia2 as unsigned) = " & DBSet(RS!numlinea, "N")
+                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(Rs!numero_salida_cooperativa, "N")
+                    Sql = Sql & " and cast(referencia2 as unsigned) = " & DBSet(Rs!numlinea, "N")
                 End If
             Else
-                If DBLet(RS!nombre_variedad) = "" Then
+                If DBLet(Rs!nombre_variedad) = "" Then
                     Sql = Sql & " and coalesce(referencia,'') = 'ENVASES'"
-                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(RS!numero_salida_cooperativa, "N")
+                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(Rs!numero_salida_cooperativa, "N")
                 Else
-                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(RS!numero_salida_cooperativa, "N")
-                    Sql = Sql & " and cast(referencia2 as unsigned) = " & DBSet(RS!numlinea, "N")
+                    Sql = Sql & " and cast(referencia1 as unsigned) = " & DBSet(Rs!numero_salida_cooperativa, "N")
+                    Sql = Sql & " and cast(referencia2 as unsigned) = " & DBSet(Rs!numlinea, "N")
                     Sql = Sql & " and coalesce(referencia,'') <> 'IVA VARIEDAD'"
                 End If
             End If
             
             If TotalRegistrosConsulta(Sql) = 0 Then
-                If InStr(1, CadResult, DBLet(RS!expediente_id)) = 0 Then CadResult = CadResult & DBLet(RS!expediente_id) & ", "
+                If InStr(1, CadResult, DBLet(Rs!expediente_id)) = 0 Then CadResult = CadResult & DBLet(Rs!expediente_id) & ", "
             Else
-                SqlNue = Sql & " and not (numserie, codfaccl, fecfaccl, numorden) in (select codtipom, numfactu, fecfactu, baseimpo from tmprfactsoc where codusu = " & DBSet(vUsu.codigo, "N") & ")"
+                If vParamAplic.ContabilidadNueva Then
+                    SqlNue = Sql & " and not (numserie, numfactu, fecfactu, numorden) in (select codtipom, numfactu, fecfactu, baseimpo from tmprfactsoc where codusu = " & DBSet(vUsu.codigo, "N") & ")"
+                Else
+                    SqlNue = Sql & " and not (numserie, codfaccl, fecfaccl, numorden) in (select codtipom, numfactu, fecfactu, baseimpo from tmprfactsoc where codusu = " & DBSet(vUsu.codigo, "N") & ")"
+                End If
                 
                 Set Rs2 = New ADODB.Recordset
                 Rs2.Open SqlNue, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
                 If Not Rs2.EOF Then
-                    If DBLet(Rs2!ImpVenci) <> DBLet(RS!Importe) Then
+                    If DBLet(Rs2!ImpVenci) <> DBLet(Rs!Importe) Then
                         ' caso de que una linea de albaran corresponde a 2 o mas pagos de anecoop
                     
-                        CadResult2 = CadResult2 & DBLet(RS!expediente_id) & ", "
+                        CadResult2 = CadResult2 & DBLet(Rs!expediente_id) & ", "
                         
-                        Total = Total + DBLet(RS!Importe)
+                        Total = Total + DBLet(Rs!Importe)
                     
-                        SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        If vParamAplic.ContabilidadNueva Then
+                            SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!NumFactu, "N") & "," & DBSet(Rs2!FecFactu, "F") & ","
+                        Else
+                            SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        End If
+                        
                         SqlValues = SqlValues & DBSet(Rs2!numorden, "N") & "),"
                         
                         Sql2 = "insert into tmpinformes2 (codusu, nombre1, nombre2) values (" & vUsu.codigo & ","
-                        Sql2 = Sql2 & DBSet(RS!expediente_id, "T") & "," & DBSet(RS!expediente_pagoid, "T") & ")"
+                        Sql2 = Sql2 & DBSet(Rs!expediente_id, "T") & "," & DBSet(Rs!expediente_pagoid, "T") & ")"
                         conn.Execute Sql2
                     
                         '[Monica]30/06/2015: insertamos en rfactsoc.baseimpo el numorden de la scobro
                         '                    nos guardamos los cobros que ya han sido procesados
                         Sql3 = "insert into tmprfactsoc (codusu, codtipom, numfactu, fecfactu, baseimpo) values ( "
-                        Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        If vParamAplic.ContabilidadNueva Then
+                            Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!NumFactu, "N") & "," & DBSet(Rs2!FecFactu, "F") & ","
+                        Else
+                            Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        End If
                         Sql3 = Sql3 & DBSet(Rs2!numorden, "N") & ")"
                         conn.Execute Sql3
                     
                     Else
                 
                         Total = Total + DBLet(Rs2!ImpVenci)
-                        
-                        SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        If vParamAplic.ContabilidadNueva Then
+                            SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!NumFactu, "N") & "," & DBSet(Rs2!FecFactu, "F") & ","
+                        Else
+                            SqlValues = SqlValues & "(" & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        End If
                         SqlValues = SqlValues & DBSet(Rs2!numorden, "N") & "),"
                         
                         Sql2 = "insert into tmpinformes2 (codusu, nombre1, nombre2) values (" & vUsu.codigo & ","
-                        Sql2 = Sql2 & DBSet(RS!expediente_id, "T") & "," & DBSet(RS!expediente_pagoid, "T") & ")"
+                        Sql2 = Sql2 & DBSet(Rs!expediente_id, "T") & "," & DBSet(Rs!expediente_pagoid, "T") & ")"
                         conn.Execute Sql2
                     
                         '[Monica]30/06/2015: insertamos en rfactsoc.baseimpo el numorden de la scobro
                         '                    nos guardamos los cobros que ya han sido procesados
                         Sql3 = "insert into tmprfactsoc (codusu, codtipom, numfactu, fecfactu, baseimpo) values ( "
-                        Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        If vParamAplic.ContabilidadNueva Then
+                            Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!NumFactu, "N") & "," & DBSet(Rs2!FecFactu, "F") & ","
+                        Else
+                            Sql3 = Sql3 & vUsu.codigo & "," & DBSet(Rs2!numserie, "T") & "," & DBSet(Rs2!Codfaccl, "N") & "," & DBSet(Rs2!fecfaccl, "F") & ","
+                        End If
                         Sql3 = Sql3 & DBSet(Rs2!numorden, "N") & ")"
                         conn.Execute Sql3
                     
@@ -919,10 +944,10 @@ Dim I As Long
                 Else
 '                    CadResult = CadResult & DBLet(Rs!expediente_id) & ", "
                     
-                    Total = Total + DBLet(RS!Importe)
+                    Total = Total + DBLet(Rs!Importe)
                     
                     Sql2 = "insert into tmpinformes2 (codusu, nombre1, nombre2) values (" & vUsu.codigo & ","
-                    Sql2 = Sql2 & DBSet(RS!expediente_id, "T") & "," & DBSet(RS!expediente_pagoid, "T") & ")"
+                    Sql2 = Sql2 & DBSet(Rs!expediente_id, "T") & "," & DBSet(Rs!expediente_pagoid, "T") & ")"
                     conn.Execute Sql2
 
                 End If
@@ -930,7 +955,7 @@ Dim I As Long
                 Set Rs2 = Nothing
             End If
         
-            RS.MoveNext
+            Rs.MoveNext
         Wend
         
         Mens = ""
@@ -945,7 +970,7 @@ Dim I As Long
                 
                 '========= PARAMETROS  =============================
                 'Añadir el parametro de Empresa
-                cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+                cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
                 numParam = numParam + 1
                 
                 cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
@@ -971,7 +996,7 @@ Dim I As Long
                 
                 '========= PARAMETROS  =============================
                 'Añadir el parametro de Empresa
-                cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+                cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
                 numParam = numParam + 1
                 
                 cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
@@ -992,7 +1017,7 @@ Dim I As Long
             SQLinsert = "insert into tmpinformes (codusu, nombre1, importe1, fecha1, importe2) values "
             conn.Execute SQLinsert & Mid(SqlValues, 1, Len(SqlValues) - 1)
         End If
-        Set RS = Nothing
+        Set Rs = Nothing
     
         
         ComprobarLiquidacion = (Mens = "")
@@ -1003,7 +1028,7 @@ Dim I As Long
     
     lblProgres(0).visible = False
     lblProgres(1).visible = False
-    pb1.visible = False
+    Pb1.visible = False
   
     Exit Function
 
@@ -1013,18 +1038,18 @@ End Function
 
 Private Sub frmBas_DatoSeleccionado(CadenaSeleccion As String)
 'tipos de diario de la Contabilidad
-    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
     
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 
 End Sub
@@ -1060,7 +1085,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmBas.Caption = "Tipos de Diario"
             frmBas.DeConsulta = True
             frmBas.DatosADevolverBusqueda = "0|1|"
-            frmBas.CodigoActual = txtcodigo(3).Text
+            frmBas.CodigoActual = txtCodigo(3).Text
             frmBas.Show vbModal
             
             Set frmBas = Nothing
@@ -1069,7 +1094,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         Case 1 'cuenta contable banco
             AbrirFrmCuentas (Index)
     End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 End Sub
 
@@ -1099,18 +1124,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
+    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1136,7 +1161,7 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1148,17 +1173,17 @@ Dim cad As String, cadTipo As String 'tipo cliente
     
     
         Case 1 ' cta banco
-            If txtcodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtcodigo(Index), 2)
+            If txtCodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtCodigo(Index), 2)
         
         Case 3 ' numero de diario
-            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
+            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtCodigo(Index).Text, "N")
             If txtNombre(Index).Text = "" Then
                 MsgBox "Código de diario no existe. Reintroduzca.", vbExclamation
 '                PonerFoco txtcodigo(Index)
             End If
         
         Case 14 'FECHAS
-            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
     End Select
 End Sub
 
@@ -1167,7 +1192,7 @@ Private Sub AbrirFrmCuentas(indice As Integer)
     indCodigo = indice
     Set frmCtas = New frmCtasConta
     frmCtas.DatosADevolverBusqueda = "0|1|"
-    frmCtas.CodigoActual = txtcodigo(indCodigo)
+    frmCtas.CodigoActual = txtCodigo(indCodigo)
     frmCtas.Show vbModal
     Set frmCtas = Nothing
 End Sub
@@ -1176,9 +1201,9 @@ Private Sub CalcularImporte()
 Dim Sql As String
 
     txtNombre(0).Text = ""
-    If txtcodigo(0).Text = "" Then Exit Sub
+    If txtCodigo(0).Text = "" Then Exit Sub
 
-    Sql = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtcodigo(0).Text, "N") & " and idcontab = 0"
+    Sql = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtCodigo(0).Text, "N") & " and idcontab = 0"
     txtNombre(0).Text = Format(DevuelveValor(Sql), "###,###,##0.00")
 
 End Sub

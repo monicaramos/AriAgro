@@ -3129,9 +3129,9 @@ Dim b As Boolean
             DeseleccionaGrid Me.DataGrid1
             b = (xModo = 1 Or xModo = 2)
             For jj = 3 To 6
-                txtaux1(jj).Height = DataGrid1.RowHeight - 10
-                txtaux1(jj).Top = alto + 5
-                txtaux1(jj).visible = b
+                txtAux1(jj).Height = DataGrid1.RowHeight - 10
+                txtAux1(jj).Top = alto + 5
+                txtAux1(jj).visible = b
             Next jj
             btnBuscar(2).Height = DataGrid1.RowHeight - 10
             btnBuscar(2).Top = alto + 5
@@ -4238,9 +4238,9 @@ Dim b As Boolean
     Next I
     
     
-    For I = 0 To txtaux1.Count - 1
-        txtaux1(I).visible = False
-        BloquearTxt txtaux1(I), True
+    For I = 0 To txtAux1.Count - 1
+        txtAux1(I).visible = False
+        BloquearTxt txtAux1(I), True
     Next I
     
     
@@ -8022,10 +8022,17 @@ Dim cad As String
 On Error GoTo EComprobarCobroArimoney
     ComprobarCobroArimoney = False
     Set vR = New ADODB.Recordset
-    cad = "Select * from scobro where numserie='" & LEtra & "'"
-    cad = cad & " AND codfaccl =" & Codfaccl
-    cad = cad & " AND fecfaccl =" & DBSet(fecha, "F")
     
+    If vParamAplic.ContabilidadNueva Then
+        cad = "Select * from cobros where numserie='" & LEtra & "'"
+        cad = cad & " AND numfactu =" & Codfaccl
+        cad = cad & " AND fecfactu =" & DBSet(fecha, "F")
+    
+    Else
+        cad = "Select * from scobro where numserie='" & LEtra & "'"
+        cad = cad & " AND codfaccl =" & Codfaccl
+        cad = cad & " AND fecfaccl =" & DBSet(fecha, "F")
+    End If
     '
     vTesoreria = ""
     vR.Open cad, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -8041,9 +8048,7 @@ On Error GoTo EComprobarCobroArimoney
                 If DBLet(vR!recedocu, "N") = 1 Then
                     cad = "Documento recibido"
                 Else
-                    If DBLet(vR!Estacaja, "N") = 1 Then
-                        cad = "Cobrado por caja"
-                    Else
+                    If vParamAplic.ContabilidadNueva Then
                         If DBLet(vR!transfer, "N") = 1 Then
                             cad = "Esta en una transferencia"
                         Else
@@ -8052,7 +8057,21 @@ On Error GoTo EComprobarCobroArimoney
                             
                                     'Si hubeira que poner mas coas iria aqui
                         End If 'transfer
-                    End If 'estacaja
+                    
+                    Else
+                        If DBLet(vR!Estacaja, "N") = 1 Then
+                            cad = "Cobrado por caja"
+                        Else
+                            If DBLet(vR!transfer, "N") = 1 Then
+                                cad = "Esta en una transferencia"
+                            Else
+                               If DBLet(vR!impcobro, "N") > 0 Then cad = "Esta parcialmente cobrado: " & vR!impcobro
+                            
+                                
+                                        'Si hubeira que poner mas coas iria aqui
+                            End If 'transfer
+                        End If 'estacaja
+                    End If
                 End If 'recdedocu
             End If 'remesado
             If cad <> "" Then vTesoreria = vTesoreria & "Vto: " & vR!numorden & "      " & cad & vbCrLf

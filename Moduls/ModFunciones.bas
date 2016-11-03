@@ -2028,7 +2028,7 @@ End Function
 'Para ello le decimos el orden  y ya ta
 Public Function RecuperaValor(ByRef CADENA As String, Orden As Integer) As String
 Dim I As Integer
-Dim J As Integer
+Dim j As Integer
 Dim Cont As Integer
 Dim cad As String
 
@@ -2036,11 +2036,11 @@ Dim cad As String
     Cont = 1
     cad = ""
     Do
-        J = I + 1
-        I = InStr(J, CADENA, "|")
+        j = I + 1
+        I = InStr(j, CADENA, "|")
         If I > 0 Then
             If Cont = Orden Then
-                cad = Mid(CADENA, J, I - J)
+                cad = Mid(CADENA, j, I - j)
                 I = Len(CADENA) 'Para salir del bucle
                 Else
                     Cont = Cont + 1
@@ -2060,7 +2060,7 @@ End Function
 
 Public Sub PonerOpcionesMenuGeneral(ByRef formulario As Form)
 Dim I As Integer
-Dim J As Integer
+Dim j As Integer
 'Dim bol As Boolean
 
 On Error GoTo EPonerOpcionesMenuGeneral
@@ -2070,8 +2070,8 @@ On Error GoTo EPonerOpcionesMenuGeneral
 With formulario
     For I = 1 To .Toolbar1.Buttons.Count
         If .Toolbar1.Buttons(I).Tag <> "" Then
-            J = Val(.Toolbar1.Buttons(I).Tag)
-            If J < vUsu.Nivel Then
+            j = Val(.Toolbar1.Buttons(I).Tag)
+            If j < vUsu.Nivel Then
                 .Toolbar1.Buttons(I).Enabled = False
             End If
         End If
@@ -2123,7 +2123,7 @@ End Sub
 Public Sub PonerOpcionesMenuGeneralNew(formulario As Form)
 Dim Control As Object
 Dim I As Integer
-Dim J As Integer
+Dim j As Integer
 'Dim bol As Boolean
 
 On Error GoTo EPonerOpcionesMenuGeneralNew
@@ -2134,8 +2134,8 @@ On Error GoTo EPonerOpcionesMenuGeneralNew
         
         If Mid(Control.Name, 1, 2) = "mn" And Mid(Control.Name, 1, 7) <> "mnBarra" _
            And Control.Name <> "mnOpciones" Then
-            J = Val(Control.HelpContextID)
-            If J < vUsu.Nivel And J <> 0 Then
+            j = Val(Control.HelpContextID)
+            If j < vUsu.Nivel And j <> 0 Then
                 Control.Enabled = False
             End If
         End If
@@ -2453,7 +2453,7 @@ Public Function ComprobarCero(Valor As String) As String
     End If
 End Function
 
-Public Sub InsertarCambios(tabla As String, ValorAnterior As String, numalbar As String)
+Public Sub InsertarCambios(tabla As String, ValorAnterior As String, NumAlbar As String)
 Dim Sql As String
 Dim Sql2 As String
 
@@ -2461,7 +2461,7 @@ Dim Sql2 As String
 
     Sql2 = "insert into cambios (codusu, fechacambio, tabla, numalbar, cadena, valoranterior) values ("
     Sql2 = Sql2 & DBSet(vSesion.Codusu, "N") & "," & DBSet(Now, "FH") & "," & DBSet(tabla, "T") & ","
-    Sql2 = Sql2 & DBSet(numalbar, "T") & ","
+    Sql2 = Sql2 & DBSet(NumAlbar, "T") & ","
     Sql2 = Sql2 & DBSet(Sql, "T") & ","
     If ValorAnterior = ValorNulo Then
         Sql2 = Sql2 & ValorNulo & ")"
@@ -3344,7 +3344,7 @@ End Sub
 ' Funcion que inserta o modifica las lineas de FACTURAS_CALIBRE
 ' se usa en el mantenimiento de facturas de cliente y en el paso de albaranes a facturas
 
-Public Function InsertarModificarCalibres(Insertar As Boolean, codTipoM As String, Factura As String, FecFactu As String, NumLinea As String, Albaran As String, NumlineaAlb As String, TCantReal As String, TUnidades As String, TImpBruto As String, TImpNeto As String, MenError As String) As Boolean
+Public Function InsertarModificarCalibres(Insertar As Boolean, codTipoM As String, Factura As String, FecFactu As String, numlinea As String, Albaran As String, NumlineaAlb As String, TCantReal As String, TUnidades As String, TImpBruto As String, TImpNeto As String, MenError As String) As Boolean
 ' Insertar : = true : insertamos todas las lineas en facturas_calibre del albaran prorrateando
 '            = false: venimos de modificar lineas en facturas_variedad prorrateamos lineas de facturas_calibre segun los cambios que hay en facturas_variedad
 Dim Rs As ADODB.Recordset
@@ -3387,7 +3387,7 @@ Dim KilosCaja As Currency
         Sql = "insert into facturas_calibre (codtipom,numfactu,fecfactu,numlinea,numline1,numalbar,numlinealbar,numline1albar,cantreal,cantfact,"
         Sql = Sql & " precibru,precinet,dtocom1,dtocom2,imporbru,impornet,unidades) "
         Sql = Sql & " select " & DBSet(codTipoM, "T") & "," & DBSet(Factura, "N") & "," & DBSet(FecFactu, "F") & ","
-        Sql = Sql & DBSet(NumLinea, "N") & ",numline1," & DBSet(Albaran, "N") & "," & DBSet(NumlineaAlb, "N") & ",numline1,"
+        Sql = Sql & DBSet(numlinea, "N") & ",numline1," & DBSet(Albaran, "N") & "," & DBSet(NumlineaAlb, "N") & ",numline1,"
         Sql = Sql & " pesoneto, round(numcajas * " & DBSet(KilosCaja, "N") & ",2), 0,0,0,0,0,0,unidades "
         Sql = Sql & " from albaran_calibre where numalbar = " & DBSet(Albaran, "N")
         Sql = Sql & " and numlinea = " & DBSet(NumlineaAlb, "N")
@@ -3398,7 +3398,7 @@ Dim KilosCaja As Currency
     
     ' Prorrateamos TODO con respecto a los kilos
     Sql = "select * from facturas_calibre where codtipom = " & DBSet(codTipoM, "T") & " and numfactu = " & DBSet(Factura, "N")
-    Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F") & " and numlinea = " & DBSet(NumLinea, "N")
+    Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F") & " and numlinea = " & DBSet(numlinea, "N")
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -3500,7 +3500,7 @@ Dim KilosCaja As Currency
         Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
         Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
         Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-        Sql2 = Sql2 & " and numlinea = " & DBSet(NumLinea, "N")
+        Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
         Sql2 = Sql2 & " and numline1 = " & DBSet(Rs!numline1, "N")
     
         conn.Execute Sql2
@@ -3523,7 +3523,7 @@ Dim KilosCaja As Currency
             Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
             Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
             Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-            Sql2 = Sql2 & " and numlinea = " & DBSet(NumLinea, "N")
+            Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
             Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
         
             conn.Execute Sql2
@@ -3533,7 +3533,7 @@ Dim KilosCaja As Currency
                 Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
                 Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
                 Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-                Sql2 = Sql2 & " and numlinea = " & DBSet(NumLinea, "N")
+                Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
                 Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
             
                 conn.Execute Sql2
@@ -3543,7 +3543,7 @@ Dim KilosCaja As Currency
                 Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
                 Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
                 Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-                Sql2 = Sql2 & " and numlinea = " & DBSet(NumLinea, "N")
+                Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
                 Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
             
                 conn.Execute Sql2
@@ -3564,4 +3564,15 @@ eInsertarModificarCalibres:
 End Function
 
 
-
+'Si es "" devuelve "" , si no, devuelve el campo formateado
+Public Function MiFormat(Valor As String, Formato As String) As String
+    If Trim(Valor) = "" Then
+       MiFormat = ""
+    Else
+        If Formato = "" Then
+            MiFormat = Valor
+        Else
+            MiFormat = Format(Valor, Formato)
+        End If
+    End If
+End Function
