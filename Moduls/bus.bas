@@ -116,6 +116,11 @@ Public ardDB As BaseDatos ' este es la base de datos que soportará aridoc
 Public CategoriaValorNulo As Boolean
 Public SeleccionadosTodos As Boolean
 
+
+Public Const SerieFraPro = "1"
+
+
+
 'Inicio Aplicación
 Public Sub Main()
 
@@ -539,7 +544,7 @@ Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc
     MsgBox cad, vbExclamation
 End Sub
 
-Public Function DBSet(vData As Variant, Tipo As String, Optional EsNulo As String) As Variant
+Public Function DBSet(vData As Variant, tipo As String, Optional EsNulo As String) As Variant
 'Establece el valor del dato correcto antes de Insertar en la BD
 Dim cad As String
 
@@ -548,8 +553,8 @@ Dim cad As String
             Exit Function
         End If
 
-        If Tipo <> "" Then
-            Select Case Tipo
+        If tipo <> "" Then
+            Select Case tipo
                 Case "T"    'Texto
                     If vData = "" Then
                         If EsNulo = "N" Then
@@ -631,12 +636,12 @@ End Function
 
 
 
-Public Function DBLet(vData As Variant, Optional Tipo As String) As Variant
+Public Function DBLet(vData As Variant, Optional tipo As String) As Variant
 'Para cuando recupera Datos de la BD
     If IsNull(vData) Then
         DBLet = ""
-        If Tipo <> "" Then
-            Select Case Tipo
+        If tipo <> "" Then
+            Select Case tipo
                 Case "T"    'Texto
                     DBLet = ""
                 Case "N"    'Numero
@@ -773,7 +778,7 @@ Dim Aux As String
 End Function
 
 
-Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional Tipo As String, Optional ByRef otroCampo As String) As String
+Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional tipo As String, Optional ByRef otroCampo As String) As String
     Dim Rs As Recordset
     Dim cad As String
     Dim Aux As String
@@ -784,15 +789,15 @@ Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As S
     If otroCampo <> "" Then cad = cad & ", " & otroCampo
     cad = cad & " FROM " & Ktabla
     cad = cad & " WHERE " & Kcodigo & " = "
-    If Tipo = "" Then Tipo = "N"
-    Select Case Tipo
+    If tipo = "" Then tipo = "N"
+    Select Case tipo
     Case "N"
         'No hacemos nada
         cad = cad & ValorCodigo
     Case "T", "F"
         cad = cad & "'" & ValorCodigo & "'"
     Case Else
-        MsgBox "Tipo : " & Tipo & " no definido", vbExclamation
+        MsgBox "Tipo : " & tipo & " no definido", vbExclamation
         Exit Function
     End Select
     
@@ -1003,7 +1008,7 @@ End Function
 
 
 'CESAR
-Public Function DevuelveDesdeBDnew2(kBD As Integer, kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional Tipo As String, Optional num As Byte, Optional ByRef otroCampo As String) As String
+Public Function DevuelveDesdeBDnew2(kBD As Integer, kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional tipo As String, Optional num As Byte, Optional ByRef otroCampo As String) As String
 Dim Rs As Recordset
 Dim cad As String
 Dim Aux As String
@@ -1024,10 +1029,10 @@ If Kcodigo <> "" Then cad = cad & " where "
 For v_aux = 1 To num
     campo = RecuperaValor(Kcodigo, v_aux)
     Valor = RecuperaValor(ValorCodigo, v_aux)
-    tip = RecuperaValor(Tipo, v_aux)
+    tip = RecuperaValor(tipo, v_aux)
         
     cad = cad & campo & "="
-    If tip = "" Then Tipo = "N"
+    If tip = "" Then tipo = "N"
     
     Select Case tip
             Case "N"
