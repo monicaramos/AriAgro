@@ -223,3 +223,4 @@ frmManProve = 0, 0, 790, 507, , 208, 208, 893, 747, C
 frmCopiaCalibCalid = 78, 78, 896, 594, , 234, 234, 919, 773, C
 frmBD = 0, 0, 0, 0, C, 0, 0, 685, 539, C
 frmVtasListDif = 104, 104, 922, 620, , 26, 26, 711, 565, C
+cContabilizarFacturas = 26, 26, 600, 563, 

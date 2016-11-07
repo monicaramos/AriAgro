@@ -242,6 +242,7 @@ Form=frmManProve.frm
 Form=frmCopiaCalibCalid.frm
 Form=frmBD.frm
 Form=frmVtasListDif.frm
+Class=cContabilizarFacturas; Clases\cContabilizarFacturas.cls
 IconForm="MDIppal"
 Startup="Sub Main"
 HelpFile=""

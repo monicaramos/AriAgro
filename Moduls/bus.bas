@@ -544,7 +544,7 @@ Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc
     MsgBox cad, vbExclamation
 End Sub
 
-Public Function DBSet(vData As Variant, tipo As String, Optional EsNulo As String) As Variant
+Public Function DBSet(vData As Variant, Tipo As String, Optional EsNulo As String) As Variant
 'Establece el valor del dato correcto antes de Insertar en la BD
 Dim cad As String
 
@@ -553,8 +553,8 @@ Dim cad As String
             Exit Function
         End If
 
-        If tipo <> "" Then
-            Select Case tipo
+        If Tipo <> "" Then
+            Select Case Tipo
                 Case "T"    'Texto
                     If vData = "" Then
                         If EsNulo = "N" Then
@@ -636,12 +636,12 @@ End Function
 
 
 
-Public Function DBLet(vData As Variant, Optional tipo As String) As Variant
+Public Function DBLet(vData As Variant, Optional Tipo As String) As Variant
 'Para cuando recupera Datos de la BD
     If IsNull(vData) Then
         DBLet = ""
-        If tipo <> "" Then
-            Select Case tipo
+        If Tipo <> "" Then
+            Select Case Tipo
                 Case "T"    'Texto
                     DBLet = ""
                 Case "N"    'Numero
@@ -686,28 +686,28 @@ End Sub
 '   Cogemos un numero formateado: 1.256.256,98  y deevolvemos 1256256,98
 '   Tiene que venir numérico
 Public Function ImporteFormateado(Importe As String) As Currency
-Dim I As Integer
+Dim i As Integer
 
     If Importe = "" Then
         ImporteFormateado = 0
     Else
         'Primero quitamos los puntos
         Do
-            I = InStr(1, Importe, ".")
-            If I > 0 Then Importe = Mid(Importe, 1, I - 1) & Mid(Importe, I + 1)
-        Loop Until I = 0
+            i = InStr(1, Importe, ".")
+            If i > 0 Then Importe = Mid(Importe, 1, i - 1) & Mid(Importe, i + 1)
+        Loop Until i = 0
         ImporteFormateado = Importe
     End If
 End Function
 
 ' ### [Monica] 11/09/2006
 Public Function ImporteSinFormato(CADENA As String) As String
-Dim I As Integer
+Dim i As Integer
 'Quitamos puntos
 Do
-    I = InStr(1, CADENA, ".")
-    If I > 0 Then CADENA = Mid(CADENA, 1, I - 1) & Mid(CADENA, I + 1)
-Loop Until I = 0
+    i = InStr(1, CADENA, ".")
+    If i > 0 Then CADENA = Mid(CADENA, 1, i - 1) & Mid(CADENA, i + 1)
+Loop Until i = 0
 ImporteSinFormato = TransformaPuntosComas(CADENA)
 End Function
 
@@ -716,30 +716,30 @@ End Function
 'Cambia los puntos de los numeros decimales
 'por comas
 Public Function TransformaComasPuntos(CADENA As String) As String
-Dim I As Integer
+Dim i As Integer
     Do
-        I = InStr(1, CADENA, ",")
-        If I > 0 Then
-            CADENA = Mid(CADENA, 1, I - 1) & "." & Mid(CADENA, I + 1)
+        i = InStr(1, CADENA, ",")
+        If i > 0 Then
+            CADENA = Mid(CADENA, 1, i - 1) & "." & Mid(CADENA, i + 1)
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     TransformaComasPuntos = CADENA
 End Function
 
 'Para los nombre que pueden tener ' . Para las comillas habra que hacer dentro otro INSTR
 Public Sub NombreSQL(ByRef CADENA As String)
 Dim j As Integer
-Dim I As Integer
+Dim i As Integer
 Dim Aux As String
     j = 1
     Do
-        I = InStr(j, CADENA, "'")
-        If I > 0 Then
-            Aux = Mid(CADENA, 1, I - 1) & "\"
-            CADENA = Aux & Mid(CADENA, I)
-            j = I + 2
+        i = InStr(j, CADENA, "'")
+        If i > 0 Then
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
+            j = i + 2
         End If
-    Loop Until I = 0
+    Loop Until i = 0
 End Sub
 
 Public Function EsFechaOKString(ByRef T As String) As Boolean
@@ -763,22 +763,22 @@ End Function
 
 Public Function DevNombreSQL(CADENA As String) As String
 Dim j As Integer
-Dim I As Integer
+Dim i As Integer
 Dim Aux As String
     j = 1
     Do
-        I = InStr(j, CADENA, "'")
-        If I > 0 Then
-            Aux = Mid(CADENA, 1, I - 1) & "\"
-            CADENA = Aux & Mid(CADENA, I)
-            j = I + 2
+        i = InStr(j, CADENA, "'")
+        If i > 0 Then
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
+            j = i + 2
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     DevNombreSQL = CADENA
 End Function
 
 
-Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional tipo As String, Optional ByRef otroCampo As String) As String
+Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional Tipo As String, Optional ByRef otroCampo As String) As String
     Dim Rs As Recordset
     Dim cad As String
     Dim Aux As String
@@ -789,15 +789,15 @@ Public Function DevuelveDesdeBD(kCampo As String, Ktabla As String, Kcodigo As S
     If otroCampo <> "" Then cad = cad & ", " & otroCampo
     cad = cad & " FROM " & Ktabla
     cad = cad & " WHERE " & Kcodigo & " = "
-    If tipo = "" Then tipo = "N"
-    Select Case tipo
+    If Tipo = "" Then Tipo = "N"
+    Select Case Tipo
     Case "N"
         'No hacemos nada
         cad = cad & ValorCodigo
     Case "T", "F"
         cad = cad & "'" & ValorCodigo & "'"
     Case Else
-        MsgBox "Tipo : " & tipo & " no definido", vbExclamation
+        MsgBox "Tipo : " & Tipo & " no definido", vbExclamation
         Exit Function
     End Select
     
@@ -1008,7 +1008,7 @@ End Function
 
 
 'CESAR
-Public Function DevuelveDesdeBDnew2(kBD As Integer, kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional tipo As String, Optional num As Byte, Optional ByRef otroCampo As String) As String
+Public Function DevuelveDesdeBDnew2(kBD As Integer, kCampo As String, Ktabla As String, Kcodigo As String, ValorCodigo As String, Optional Tipo As String, Optional num As Byte, Optional ByRef otroCampo As String) As String
 Dim Rs As Recordset
 Dim cad As String
 Dim Aux As String
@@ -1029,10 +1029,10 @@ If Kcodigo <> "" Then cad = cad & " where "
 For v_aux = 1 To num
     campo = RecuperaValor(Kcodigo, v_aux)
     Valor = RecuperaValor(ValorCodigo, v_aux)
-    tip = RecuperaValor(tipo, v_aux)
+    tip = RecuperaValor(Tipo, v_aux)
         
     cad = cad & campo & "="
-    If tip = "" Then tipo = "N"
+    If tip = "" Then Tipo = "N"
     
     Select Case tip
             Case "N"
@@ -1070,7 +1070,7 @@ End Function
 
 
 Public Function EsEntero(Texto As String) As Boolean
-Dim I As Integer
+Dim i As Integer
 Dim C As Integer
 Dim L As Integer
 Dim res As Boolean
@@ -1085,24 +1085,24 @@ Dim res As Boolean
         C = 0
         L = 1
         Do
-            I = InStr(L, Texto, ".")
-            If I > 0 Then
-                L = I + 1
+            i = InStr(L, Texto, ".")
+            If i > 0 Then
+                L = i + 1
                 C = C + 1
             End If
-        Loop Until I = 0
+        Loop Until i = 0
         If C > 1 Then res = False
         
         'Si ha puesto mas de una coma y no tiene puntos
         If C = 0 Then
             L = 1
             Do
-                I = InStr(L, Texto, ",")
-                If I > 0 Then
-                    L = I + 1
+                i = InStr(L, Texto, ",")
+                If i > 0 Then
+                    L = i + 1
                     C = C + 1
                 End If
-            Loop Until I = 0
+            Loop Until i = 0
             If C > 1 Then res = False
         End If
         
@@ -1111,13 +1111,13 @@ Dim res As Boolean
 End Function
 
 Public Function TransformaPuntosComas(CADENA As String) As String
-    Dim I As Integer
+    Dim i As Integer
     Do
-        I = InStr(1, CADENA, ".")
-        If I > 0 Then
-            CADENA = Mid(CADENA, 1, I - 1) & "," & Mid(CADENA, I + 1)
+        i = InStr(1, CADENA, ".")
+        If i > 0 Then
+            CADENA = Mid(CADENA, 1, i - 1) & "," & Mid(CADENA, i + 1)
         End If
-        Loop Until I = 0
+        Loop Until i = 0
     TransformaPuntosComas = CADENA
 End Function
 
@@ -1204,23 +1204,23 @@ End Function
 
 
 Public Function UsuariosConectados() As Boolean
-Dim I As Integer
+Dim i As Integer
 Dim cad As String
 Dim metag As String
-Dim Sql As String
+Dim SQL As String
 cad = OtrosPCsContraAplicacion
 UsuariosConectados = False
 If cad <> "" Then
     UsuariosConectados = True
-    I = 1
+    i = 1
     metag = "Los siguientes PC's están conectados a: " & vEmpresa.nomempre & " (" & vUsu.CadenaConexion & ")" & vbCrLf & vbCrLf
     Do
-        Sql = RecuperaValor(cad, I)
-        If Sql <> "" Then
-            metag = metag & "    - " & Sql & vbCrLf
-            I = I + 1
+        SQL = RecuperaValor(cad, i)
+        If SQL <> "" Then
+            metag = metag & "    - " & SQL & vbCrLf
+            i = i + 1
         End If
-    Loop Until Sql = ""
+    Loop Until SQL = ""
     MsgBox metag, vbExclamation
 End If
 End Function
@@ -1493,14 +1493,14 @@ End Function
 '            1: Inferior
 '            2: Superior
 
-Public Function EsFechaOKConta(fecha As Date) As Byte
+Public Function EsFechaOKConta(Fecha As Date) As Byte
 Dim F2 As Date
 
-    If vEmpresa.FechaIni > fecha Then
+    If vEmpresa.FechaIni > Fecha Then
         EsFechaOKConta = 1
     Else
         F2 = DateAdd("yyyy", 1, vEmpresa.FechaFin)
-        If fecha > F2 Then
+        If Fecha > F2 Then
             EsFechaOKConta = 2
         Else
             'OK. Dentro de los ejercicios contables
@@ -1508,5 +1508,16 @@ Dim F2 As Date
         End If
     End If
 
+End Function
+
+Public Function ejecutar(ByRef SQL As String, OcultarMsg As Boolean) As Boolean
+    On Error Resume Next
+    conn.Execute SQL
+    If Err.Number <> 0 Then
+        If Not OcultarMsg Then MuestraError Err.Number, Err.Description, SQL
+        ejecutar = False
+    Else
+        ejecutar = True
+    End If
 End Function
 
