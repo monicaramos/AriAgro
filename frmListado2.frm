@@ -4195,11 +4195,11 @@ End Sub
 
 
 Private Sub cmdDeselTodos_Click()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 1 To ListView1.ListItems.Count
-        ListView1.ListItems(i).Checked = False
-    Next i
+    For I = 1 To ListView1.ListItems.Count
+        ListView1.ListItems(I).Checked = False
+    Next I
 End Sub
 
 Private Sub cmdHcoMante_Click()
@@ -4266,11 +4266,11 @@ Dim miSQL As String
 End Sub
 
 Private Sub cmdSelTodos_Click()
-Dim i As Byte
+Dim I As Byte
 
-    For i = 1 To ListView1.ListItems.Count
-        ListView1.ListItems(i).Checked = True
-    Next i
+    For I = 1 To ListView1.ListItems.Count
+        ListView1.ListItems(I).Checked = True
+    Next I
 End Sub
 
 
@@ -4811,7 +4811,6 @@ End Sub
 Private Sub txtCodigo_GotFocus(Index As Integer)
     ConseguirFoco txtCodigo(Index), 3
 End Sub
-
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     KEYdown KeyCode
@@ -5510,7 +5509,7 @@ End Sub
 Private Sub CargarListView()
 'Carga el List View del frame: frameMovimArtic
 'con los parametros de la tabla: stipom (Tipos de Movimientos)
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
 
@@ -5519,11 +5518,11 @@ Dim ItmX As ListItem
     ListView1.ColumnHeaders.Add , , "Código", 800
     ListView1.ColumnHeaders.Add , , "Descripción", 2250
     
-    SQL = "select * from usuarios.stipom stipom where muevesto = 1 "
-    If DeServicios Then SQL = SQL & " and codtipom in ('SES','SEC','RES','REC')"
+    Sql = "select * from usuarios.stipom stipom where muevesto = 1 "
+    If DeServicios Then Sql = Sql & " and codtipom in ('SES','SEC','RES','REC')"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         Set ItmX = ListView1.ListItems.Add
@@ -5562,7 +5561,7 @@ Private Function PonerFormulaYParametrosInf9() As Boolean
 Dim cad As String
 Dim todosMarcados As Boolean
 Dim devuelve As String
-Dim i As Byte
+Dim I As Byte
 
     PonerFormulaYParametrosInf9 = False
     InicializarVbles
@@ -5621,20 +5620,20 @@ Dim i As Byte
     If DeServicios Then
         cad = ""
         devuelve = ""
-        For i = 1 To Me.ListView1.ListItems.Count
-            If Me.ListView1.ListItems(i).Checked Then
+        For I = 1 To Me.ListView1.ListItems.Count
+            If Me.ListView1.ListItems(I).Checked Then
                 If cad = "" Then
-                    cad = Me.ListView1.ListItems(i).Text
+                    cad = Me.ListView1.ListItems(I).Text
                 Else
-                    cad = cad & ", " & Me.ListView1.ListItems(i).Text
+                    cad = cad & ", " & Me.ListView1.ListItems(I).Text
                 End If
                 If devuelve = "" Then
-                    devuelve = codigo & " = """ & Me.ListView1.ListItems(i).Text & """"
+                    devuelve = codigo & " = """ & Me.ListView1.ListItems(I).Text & """"
                 Else
-                    devuelve = devuelve & " or " & codigo & " = """ & Me.ListView1.ListItems(i).Text & """"
+                    devuelve = devuelve & " or " & codigo & " = """ & Me.ListView1.ListItems(I).Text & """"
                 End If
             End If
-        Next i
+        Next I
         
         If devuelve <> "" Then 'Hay algun movimiento marcado
             If cadFormula <> "" Then
@@ -5658,29 +5657,29 @@ Dim i As Byte
     Else
         'Si todos seleccionados no añadir la select
         todosMarcados = True
-        i = 1
-        While Not i > Me.ListView1.ListItems.Count And todosMarcados
-            If Not Me.ListView1.ListItems(i).Checked Then todosMarcados = False
-            i = i + 1
+        I = 1
+        While Not I > Me.ListView1.ListItems.Count And todosMarcados
+            If Not Me.ListView1.ListItems(I).Checked Then todosMarcados = False
+            I = I + 1
         Wend
         SoloServicios = False
         If Not todosMarcados Then
             cad = ""
             devuelve = ""
-            For i = 1 To Me.ListView1.ListItems.Count
-                If Me.ListView1.ListItems(i).Checked Then
+            For I = 1 To Me.ListView1.ListItems.Count
+                If Me.ListView1.ListItems(I).Checked Then
                     If cad = "" Then
-                        cad = Me.ListView1.ListItems(i).Text
+                        cad = Me.ListView1.ListItems(I).Text
                     Else
-                        cad = cad & ", " & Me.ListView1.ListItems(i).Text
+                        cad = cad & ", " & Me.ListView1.ListItems(I).Text
                     End If
                     If devuelve = "" Then
-                        devuelve = codigo & " = """ & Me.ListView1.ListItems(i).Text & """"
+                        devuelve = codigo & " = """ & Me.ListView1.ListItems(I).Text & """"
                     Else
-                        devuelve = devuelve & " or " & codigo & " = """ & Me.ListView1.ListItems(i).Text & """"
+                        devuelve = devuelve & " or " & codigo & " = """ & Me.ListView1.ListItems(I).Text & """"
                     End If
                 End If
-            Next i
+            Next I
     
             If devuelve <> "" Then 'Hay algun movimiento marcado
                 If cadFormula <> "" Then
@@ -5700,13 +5699,13 @@ Dim i As Byte
                 numParam = numParam + 1
             Else 'Todos desmarcados
                 cad = ""
-                For i = 1 To ListView1.ListItems.Count
+                For I = 1 To ListView1.ListItems.Count
                     If cad = "" Then
-                        cad = """" & ListView1.ListItems(i).Text & """"
+                        cad = """" & ListView1.ListItems(I).Text & """"
                     Else
-                        cad = cad & ", """ & ListView1.ListItems(i).Text & """"
+                        cad = cad & ", """ & ListView1.ListItems(I).Text & """"
                     End If
-                Next i
+                Next I
                 devuelve = codigo & " NOT IN [" & cad & "]"
                 cad = codigo & " NOT IN (" & cad & ")"
                 cad = QuitarCaracterACadena(cad, "{")
@@ -6024,7 +6023,7 @@ Private Function InsertarInventario() As Boolean
 'Inserta en la Tabla:sinven los articulos seleccionados para realizar Inventario
 'Inserta en la Tabla Hist.: shinve los datos que habia de inventario
 'Además Actualiza la Tabla:salmac los campos:fechainv, horainve, statusin
-Dim SQL As String, ADonde As String
+Dim Sql As String, ADonde As String
 Dim Rs As ADODB.Recordset
 Dim hora As Date
 
@@ -6053,17 +6052,17 @@ On Error GoTo EInventario:
         'Insertar en la tabla de Histórico: shinve
         'Pasamos al Hist. los datos que habia antes de hacer nuevo inventario
         ADonde = "Insertando datos en Histórico. Tabla: shinve"
-        SQL = "INSERT INTO shinve (codartic,codalmac,fechainv,horainve,existenc) "
-        SQL = SQL & " SELECT codartic,codalmac,fechainv,horainve,stockinv "
+        Sql = "INSERT INTO shinve (codartic,codalmac,fechainv,horainve,existenc) "
+        Sql = Sql & " SELECT codartic,codalmac,fechainv,horainve,stockinv "
 '        SQL = SQL & " FROM salmac INNER JOIN sartic ON salmac.codartic=sartic.codartic "
-        SQL = SQL & " FROM tmpInven "
+        Sql = Sql & " FROM tmpInven "
 '        SQL = SQL & " WHERE " & cadFormula
         'si no se ha inventariado antes no lo pasamos al historico
-        SQL = SQL & " WHERE not isnull(fechainv) "
+        Sql = Sql & " WHERE not isnull(fechainv) "
         '--- Laura 03/01/2006
-        SQL = SQL & " AND fechainv<>'0000-00-00' AND date(horainve)<>'0000-00-00' "
+        Sql = Sql & " AND fechainv<>'0000-00-00' AND date(horainve)<>'0000-00-00' "
         '---
-        conn.Execute SQL
+        conn.Execute Sql
         
         
         
@@ -6083,14 +6082,14 @@ On Error GoTo EInventario:
 
         'Insertamos en la Tabla sinven
         ADonde = "Insertando datos en Inventario Real. Tabla: sinven"
-        SQL = "INSERT INTO sinven (codartic, codalmac, codfamia, codprove, fechainv, horainve, existenc) "
-        SQL = SQL & "SELECT codartic, codalmac, codfamia, codprove," & DBSet(txtCodigo(20).Text, "F") & " as fechainv," & DBSet(hora, "FH") & " as horainve, 0 as existenc "
+        Sql = "INSERT INTO sinven (codartic, codalmac, codfamia, codprove, fechainv, horainve, existenc) "
+        Sql = Sql & "SELECT codartic, codalmac, codfamia, codprove," & DBSet(txtCodigo(20).Text, "F") & " as fechainv," & DBSet(hora, "FH") & " as horainve, 0 as existenc "
 '        SQL = SQL & " FROM salmac INNER JOIN sartic ON salmac.codartic=sartic.codartic "
-        SQL = SQL & " FROM tmpInven "
+        Sql = Sql & " FROM tmpInven "
 '        SQL = SQL & " WHERE " & cadFormula
         'Insertamos los articulos que tiene control de stock
 '        SQL = SQL & " AND sartic.ctrstock=1"
-        conn.Execute SQL
+        conn.Execute Sql
 
 
         
@@ -6099,11 +6098,11 @@ On Error GoTo EInventario:
 '        SQL = SQL & "FROM salmac INNER JOIN sartic ON salmac.codartic=sartic.codartic "
 '        SQL = SQL & " WHERE " & cadFormula
         
-        SQL = "SELECT codartic, codalmac, codfamia, codprove "
-        SQL = SQL & " FROM tmpInven "
+        Sql = "SELECT codartic, codalmac, codfamia, codprove "
+        Sql = Sql & " FROM tmpInven "
     
         Set Rs = New ADODB.Recordset
-        Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         While Not Rs.EOF
             
         
@@ -6128,11 +6127,11 @@ On Error GoTo EInventario:
             'realizar movimientos, traspasos, etc.
             'Actualizamos la Tabla: salmac los campos: fechainv, horainve
             ADonde = "Actualizando datos en Articulos x Almacen"
-            SQL = "UPDATE salmac SET fechainv='" & Format(txtCodigo(20).Text, "yyyy-mm-dd") & "', "
-            SQL = SQL & " horainve='" & Format(hora, "yyyy-mm-dd hh:mm:ss") & "', " & "statusin=1 , stockinv=0"
-            SQL = SQL & " WHERE codartic=" & DBSet(Rs.Fields(0).Value, "T") & " AND "
-            SQL = SQL & "codalmac=" & Rs.Fields(1).Value
-            conn.Execute SQL
+            Sql = "UPDATE salmac SET fechainv='" & Format(txtCodigo(20).Text, "yyyy-mm-dd") & "', "
+            Sql = Sql & " horainve='" & Format(hora, "yyyy-mm-dd hh:mm:ss") & "', " & "statusin=1 , stockinv=0"
+            Sql = Sql & " WHERE codartic=" & DBSet(Rs.Fields(0).Value, "T") & " AND "
+            Sql = Sql & "codalmac=" & Rs.Fields(1).Value
+            conn.Execute Sql
             Rs.MoveNext
         Wend
     
@@ -6145,9 +6144,9 @@ On Error GoTo EInventario:
 EInventario:
     If Err.Number <> 0 Then
          'Hay error , almacenamos y salimos
-          SQL = "Insertando Datos de Inventario." & vbCrLf & "--------------------------------------" & vbCrLf
-          SQL = SQL & ADonde
-          MuestraError Err.Number, SQL, Err.Description
+          Sql = "Insertando Datos de Inventario." & vbCrLf & "--------------------------------------" & vbCrLf
+          Sql = Sql & ADonde
+          MuestraError Err.Number, Sql, Err.Description
         conn.RollbackTrans
         InsertarInventario = False
     Else
@@ -6158,40 +6157,40 @@ End Function
 
 
 Private Function CrearTmpInventario(cadFormula As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
 
     On Error GoTo ECrearInv
     
     b = False
-    SQL = "CREATE TEMPORARY TABLE tmpInven ( "
-    SQL = SQL & "codartic varchar(16) NOT NULL default '0', "
-    SQL = SQL & "codalmac smallint(3) unsigned NOT NULL default '0', "
-    SQL = SQL & "codfamia smallint(4) unsigned NOT NULL default '0', "
-    SQL = SQL & "codprove int(6) unsigned NOT NULL default '0', "
-    SQL = SQL & "fechainv date NOT NULL default '0000-00-00', "
-    SQL = SQL & "horainve datetime NOT NULL default '0000-00-00 00:00:00', "
-    SQL = SQL & "stockinv decimal(12,2) NOT NULL default '0.00')"
-    conn.Execute SQL
+    Sql = "CREATE TEMPORARY TABLE tmpInven ( "
+    Sql = Sql & "codartic varchar(16) NOT NULL default '0', "
+    Sql = Sql & "codalmac smallint(3) unsigned NOT NULL default '0', "
+    Sql = Sql & "codfamia smallint(4) unsigned NOT NULL default '0', "
+    Sql = Sql & "codprove int(6) unsigned NOT NULL default '0', "
+    Sql = Sql & "fechainv date NOT NULL default '0000-00-00', "
+    Sql = Sql & "horainve datetime NOT NULL default '0000-00-00 00:00:00', "
+    Sql = Sql & "stockinv decimal(12,2) NOT NULL default '0.00')"
+    conn.Execute Sql
     b = True
     
     
     'Seleccionar todos los registros que vamos a inventariar, insertarlos en la TMP
     'y trabajar con estos valores
-    SQL = "SELECT salmac.codartic, salmac.codalmac, sartic.codfamia, sartic.codprove,salmac.fechainv,salmac.horainve,salmac.stockinv  "
-    SQL = SQL & "FROM salmac INNER JOIN sartic ON salmac.codartic=sartic.codartic "
-    SQL = SQL & " WHERE " & cadFormula
-    SQL = SQL & " AND sartic.ctrstock=1"
+    Sql = "SELECT salmac.codartic, salmac.codalmac, sartic.codfamia, sartic.codprove,salmac.fechainv,salmac.horainve,salmac.stockinv  "
+    Sql = Sql & "FROM salmac INNER JOIN sartic ON salmac.codartic=sartic.codartic "
+    Sql = Sql & " WHERE " & cadFormula
+    Sql = Sql & " AND sartic.ctrstock=1"
 
-    SQL = " INSERT INTO tmpInven " & SQL
-    conn.Execute SQL
+    Sql = " INSERT INTO tmpInven " & Sql
+    conn.Execute Sql
     
     
     
 ECrearInv:
     If Err.Number <> 0 Then
-        SQL = " DROP TABLE IF EXISTS tmpInven;"
-        conn.Execute SQL
+        Sql = " DROP TABLE IF EXISTS tmpInven;"
+        conn.Execute Sql
         b = False
         Err.Clear
     End If
@@ -6210,7 +6209,7 @@ Private Function ActualizarInventario() As Boolean
 '* Elimina de la Tabla: sinven los registros seleccinados para actualizar
 '* Inserta Movimientos de Articulos en la Tabla: smoval
 '-------------------------------------------------------------------
-Dim SQL As String, ADonde As String
+Dim Sql As String, ADonde As String
 Dim Rs As ADODB.Recordset
 Dim DevStock As String
 Dim CanStock As Long, Diferencia As Long
@@ -6224,13 +6223,13 @@ Dim bol As Boolean
     On Error Resume Next
     
     'Obtener Registros de la Tabla:sinven de los que se va a actualizar el Stock
-    SQL = "SELECT * "
-    SQL = SQL & " FROM sinven "
-    SQL = SQL & " WHERE " & cadFormula
+    Sql = "SELECT * "
+    Sql = Sql & " FROM sinven "
+    Sql = Sql & " WHERE " & cadFormula
    
     bol = True
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     If Rs.EOF Then
         bol = False
         ActualizarInventario = False
@@ -6294,9 +6293,9 @@ Dim bol As Boolean
         '---------------------------------------
         If bol Then
             ADonde = "Actualizando Stock de Articulos en Almacen. Tabla: salmac."
-            SQL = "UPDATE salmac SET canstock=" & DBSet(Rs!existenc, "N") & ", statusin=0"
-            SQL = SQL & " WHERE codartic=" & DBSet(Rs!CodArtic, "T") & " AND codalmac=" & Rs!codAlmac
-            conn.Execute SQL
+            Sql = "UPDATE salmac SET canstock=" & DBSet(Rs!existenc, "N") & ", statusin=0"
+            Sql = Sql & " WHERE codartic=" & DBSet(Rs!CodArtic, "T") & " AND codalmac=" & Rs!codAlmac
+            conn.Execute Sql
         End If
 
         Rs.MoveNext
@@ -6317,9 +6316,9 @@ Dim bol As Boolean
         'Eliminamos los registros seleccionados de la Tabla: sinven
         '----------------------------------------------------------
         ADonde = "Eliminando registros de Inventario. Tabla: sinven."
-        SQL = "DELETE FROM sinven "
-        SQL = SQL & " WHERE " & cadFormula
-        conn.Execute SQL
+        Sql = "DELETE FROM sinven "
+        Sql = Sql & " WHERE " & cadFormula
+        conn.Execute Sql
         
         
         'Incrementamos el contador para el Tipo De Movimiento
@@ -6333,9 +6332,9 @@ Dim bol As Boolean
 EActualizarInven:
     If Err.Number <> 0 Or Not bol Then
          'Hay error , almacenamos y salimos
-          SQL = "Actualizar Inventario." & vbCrLf & "----------------------------" & vbCrLf
-          SQL = SQL & ADonde
-          MuestraError Err.Number, SQL, Err.Description
+          Sql = "Actualizar Inventario." & vbCrLf & "----------------------------" & vbCrLf
+          Sql = Sql & ADonde
+          MuestraError Err.Number, Sql, Err.Description
           conn.RollbackTrans
           ActualizarInventario = False
           Set vTipoMov = Nothing
@@ -6349,7 +6348,7 @@ End Function
 Private Function InsertarMovimArticulos(CadValues As String, CodArtic As String, Cantidad As Long, LetraSerie As String, NumMovim As Long, NumLinea As Long) As Boolean
 Dim vImporte As Single, vPrecioVenta As String
 Dim tipoMov As Byte
-Dim SQL As String
+Dim Sql As String
 On Error Resume Next
          
         'Obtener el precio de venta del articulo
@@ -6372,10 +6371,10 @@ On Error Resume Next
             tipoMov = 0
         End If
         
-        SQL = "INSERT INTO smoval (codartic, codalmac, fechamov, horamovi, tipomovi, detamovi, cantidad, impormov, codigope, letraser, document, numlinea) "
-        SQL = SQL & " VALUES (" & CadValues & tipoMov & ", '" & "DFI" & "', " & DBSet(Cantidad, "N") & ", " & DBSet(vImporte, "N") & ", 0,'" '--monica he quitado el trabajador  & Val(txtCodigo(21).Text) & ", '"
-        SQL = SQL & LetraSerie & "', " & NumMovim & ", " & NumLinea & ")"
-        conn.Execute SQL
+        Sql = "INSERT INTO smoval (codartic, codalmac, fechamov, horamovi, tipomovi, detamovi, cantidad, impormov, codigope, letraser, document, numlinea) "
+        Sql = Sql & " VALUES (" & CadValues & tipoMov & ", '" & "DFI" & "', " & DBSet(Cantidad, "N") & ", " & DBSet(vImporte, "N") & ", 0,'" '--monica he quitado el trabajador  & Val(txtCodigo(21).Text) & ", '"
+        Sql = Sql & LetraSerie & "', " & NumMovim & ", " & NumLinea & ")"
+        conn.Execute Sql
         
         If Err.Number <> 0 Then
              'Hay error , almacenamos y salimos
@@ -6413,7 +6412,7 @@ End Function
 
 Private Function ListaArtActivos(cadWhere As String, FechaIn As String) As String
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim Lista As String
 'Devuelve una cadena con la concatenacion de todos los articulos que
 'no debe seleccionar ya que si tienen movimientos con fecha posterior
@@ -6422,13 +6421,13 @@ Dim Lista As String
 
     Lista = "["
     
-    SQL = "SELECT distinct smoval.codartic from smoval "
-    If InStr(cadWhere, "sartic") > 0 Then SQL = SQL & " INNER JOIN sartic ON smoval.codartic=sartic.codartic "
-    SQL = SQL & " WHERE " & Replace(cadWhere, "salmac", "smoval")
-    If cadWhere <> "" Then SQL = SQL & " AND "
-    SQL = SQL & " fechamov>='" & Format(FechaIn, FormatoFecha) & "' "
+    Sql = "SELECT distinct smoval.codartic from smoval "
+    If InStr(cadWhere, "sartic") > 0 Then Sql = Sql & " INNER JOIN sartic ON smoval.codartic=sartic.codartic "
+    Sql = Sql & " WHERE " & Replace(cadWhere, "salmac", "smoval")
+    If cadWhere <> "" Then Sql = Sql & " AND "
+    Sql = Sql & " fechamov>='" & Format(FechaIn, FormatoFecha) & "' "
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not Rs.EOF
 '        lista = lista & """" & RS.Fields(0).Value & """"
         Lista = Lista & DBSet(Rs.Fields(0).Value, "T")
@@ -6444,9 +6443,9 @@ End Function
 
 
 Private Sub ActualizarImprimir()
-Dim i As Long
+Dim I As Long
 Dim Desde As Long, Hasta As Long
-Dim SQL As String
+Dim Sql As String
 
     Select Case OpcionListado
     Case 7  'TRASPASO ALMACEN
@@ -6454,11 +6453,11 @@ Dim SQL As String
         'Desde=-1 si estamos en Historico ya que aqui no se introducen valores Desde/Hasta
             If Trim(txtCodigo(3).Text) <> "" Then Desde = CLng(txtCodigo(3).Text)
             If Trim(txtCodigo(4).Text) <> "" Then Hasta = CLng(txtCodigo(4).Text)
-            For i = Desde To Hasta
-                SQL = "UPDATE scatra SET situacio=1" 'Impreso
-                SQL = SQL & " WHERE codtrasp=" & i
-                conn.Execute SQL
-            Next i
+            For I = Desde To Hasta
+                Sql = "UPDATE scatra SET situacio=1" 'Impreso
+                Sql = Sql & " WHERE codtrasp=" & I
+                conn.Execute Sql
+            Next I
         End If
         
     Case 8  'MOVIMIENTO ALMACEN
@@ -6466,11 +6465,11 @@ Dim SQL As String
            'Desde=-1 si estamos en Historico ya que aqui no se introducen valores Desde/Hasta
            If Trim(txtCodigo(3).Text) <> "" Then Desde = CLng(txtCodigo(3).Text)
            If Trim(txtCodigo(4).Text) <> "" Then Hasta = CLng(txtCodigo(4).Text)
-           For i = Desde To Hasta
-                SQL = "UPDATE scamov SET situacio=1"
-                SQL = SQL & " WHERE codmovim=" & i
-                conn.Execute SQL
-           Next i
+           For I = Desde To Hasta
+                Sql = "UPDATE scamov SET situacio=1"
+                Sql = Sql & " WHERE codmovim=" & I
+                conn.Execute Sql
+           Next I
         End If
         
     Case 10  'MOVIMIENTO DE SERVICIOS DE ALMACEN
@@ -6478,11 +6477,11 @@ Dim SQL As String
            'Desde=-1 si estamos en Historico ya que aqui no se introducen valores Desde/Hasta
            If Trim(txtCodigo(3).Text) <> "" Then Desde = CLng(txtCodigo(3).Text)
            If Trim(txtCodigo(4).Text) <> "" Then Hasta = CLng(txtCodigo(4).Text)
-           For i = Desde To Hasta
-                SQL = "UPDATE scaser SET situacio=1"
-                SQL = SQL & " WHERE codservi=" & i
-                conn.Execute SQL
-           Next i
+           For I = Desde To Hasta
+                Sql = "UPDATE scaser SET situacio=1"
+                Sql = Sql & " WHERE codservi=" & I
+                conn.Execute Sql
+           Next I
         End If
     
     End Select
@@ -6500,21 +6499,21 @@ Private Sub InicializarVbles()
 End Sub
 
 
-Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
+Private Function PonerDesdeHasta(campo As String, tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
 Dim cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
-    If Tipo <> "F" Then
+    If tipo <> "F" Then
         'Fecha para Crystal Report
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
         If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
     End If
     
@@ -6668,24 +6667,24 @@ End Function
 
 Private Sub ContabilizarFacturas(cadTABLA As String, cadWhere As String)
 'Contabiliza Facturas de Clientes o de Proveedores
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
 Dim tmpErrores As Boolean 'Indica si se creo correctamente la tabla de errores
 Dim CCoste As String
 
     If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
-        SQL = "VENCON" 'contabilizar facturas de venta
+        Sql = "VENCON" 'contabilizar facturas de venta
     Else
         If cadTABLA = "scafpc" Then
-            SQL = "COMCON" 'contabilizar facturas de compra
+            Sql = "COMCON" 'contabilizar facturas de compra
         Else
-            SQL = "TRACON" 'contabilizar facturas de trasnporte
+            Sql = "TRACON" 'contabilizar facturas de trasnporte
         End If
     End If
     
     'Bloquear para que nadie mas pueda contabilizar
-    DesBloqueoManual (SQL)
-    If Not BloqueoManual(SQL, "1") Then
+    DesBloqueoManual (Sql)
+    If Not BloqueoManual(Sql, "1") Then
         MsgBox "No se pueden Contabilizar Facturas. Hay otro usuario contabilizando.", vbExclamation
         Screen.MousePointer = vbDefault
         Exit Sub
@@ -6713,14 +6712,14 @@ Dim CCoste As String
     'comprobar si existen en Ariagro facturas anteriores al periodo solicitado
     'sin contabilizar
     If Me.txtCodigo(31).Text <> "" Then 'anteriores a fechadesde
-        SQL = "SELECT COUNT(*) FROM " & cadTABLA
+        Sql = "SELECT COUNT(*) FROM " & cadTABLA
         If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
-            SQL = SQL & " WHERE fecfactu <"
+            Sql = Sql & " WHERE fecfactu <"
         ElseIf cadTABLA = "scafpc" Or cadTABLA = "tcafpc" Then
-            SQL = SQL & " WHERE fecrecep <"
+            Sql = Sql & " WHERE fecrecep <"
         End If
-        SQL = SQL & DBSet(txtCodigo(31), "F") & " AND intconta=0 "
-        If RegistrosAListar(SQL) > 0 Then
+        Sql = Sql & DBSet(txtCodigo(31), "F") & " AND intconta=0 "
+        If RegistrosAListar(Sql) > 0 Then
             MsgBox "Hay Facturas anteriores sin contabilizar.", vbExclamation
             Exit Sub
         End If
@@ -6749,19 +6748,19 @@ Dim CCoste As String
 
     'Laura: 11/10/2006 bloquear los registros q vamos a contabilizar
 '    TerminaBloquear
-    SQL = cadTABLA & " INNER JOIN tmpFactu ON " & cadTABLA
+    Sql = cadTABLA & " INNER JOIN tmpFactu ON " & cadTABLA
     If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
-        SQL = SQL & ".codtipom=tmpFactu.codtipom AND "
+        Sql = Sql & ".codtipom=tmpFactu.codtipom AND "
     Else
         If cadTABLA = "scafpc" Then
-            SQL = SQL & ".codprove=tmpFactu.codprove AND "
+            Sql = Sql & ".codprove=tmpFactu.codprove AND "
         Else
-            SQL = SQL & ".codtrans=tmpFactu.codtrans AND "
+            Sql = Sql & ".codtrans=tmpFactu.codtrans AND "
         End If
     End If
     
-    SQL = SQL & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
-    If Not BloqueaRegistro(SQL, cadWhere) Then
+    Sql = Sql & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
+    If Not BloqueaRegistro(Sql, cadWhere) Then
         MsgBox "No se pueden Contabilizar Facturas. Hay registros bloqueados.", vbExclamation
         Screen.MousePointer = vbDefault
         Exit Sub
@@ -6796,8 +6795,8 @@ Dim CCoste As String
     '-----------------------------------------------------------------------
     If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
         Me.lblProgess(1).Caption = "Comprobando Nº Facturas en contabilidad ..."
-        SQL = "anofaccl>=" & Year(txtCodigo(31).Text) & " AND anofaccl<= " & Year(txtCodigo(32).Text)
-        b = ComprobarNumFacturas_new(cadTABLA, SQL)
+        Sql = "anofaccl>=" & Year(txtCodigo(31).Text) & " AND anofaccl<= " & Year(txtCodigo(32).Text)
+        b = ComprobarNumFacturas_new(cadTABLA, Sql)
     End If
     IncrementarProgres Me.ProgressBar1, 20
     Me.Refresh
@@ -6990,10 +6989,10 @@ End Sub
 
 
 Private Function PasarFacturasAContab(cadTABLA As String, CCoste As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim b As Boolean
-Dim i As Integer
+Dim I As Integer
 Dim NumFactu As Integer
 Dim Codigo1 As String
 
@@ -7002,8 +7001,8 @@ Dim Codigo1 As String
     PasarFacturasAContab = False
 
     '---- Obtener el total de Facturas a Insertar en la contabilidad
-    SQL = "SELECT count(*) "
-    SQL = SQL & " FROM " & cadTABLA & " INNER JOIN tmpFactu "
+    Sql = "SELECT count(*) "
+    Sql = Sql & " FROM " & cadTABLA & " INNER JOIN tmpFactu "
     If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
         Codigo1 = "codtipom"
     Else
@@ -7013,11 +7012,11 @@ Dim Codigo1 As String
             Codigo1 = "codtrans"
         End If
     End If
-    SQL = SQL & " ON " & cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1
-    SQL = SQL & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
+    Sql = Sql & " ON " & cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1
+    Sql = Sql & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
 
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not Rs.EOF Then
         NumFactu = Rs.Fields(0)
     Else
@@ -7031,8 +7030,8 @@ Dim Codigo1 As String
     '-----------------------------------------------------------
     ' Mosrtaremos para cada factura de PROVEEDOR
     ' que numregis le ha asignado
-    SQL = "DELETE FROM tmpinformes WHERE codusu = " & vUsu.codigo
-    conn.Execute SQL
+    Sql = "DELETE FROM tmpinformes WHERE codusu = " & vUsu.codigo
+    conn.Execute Sql
 
 
     Set cContaFra = New cContabilizarFacturas
@@ -7040,10 +7039,10 @@ Dim Codigo1 As String
     If Not cContaFra.EstablecerValoresInciales(ConnConta) Then
         'NO ha establcedio los valores de la conta.  Le dejaremos seguir, avisando que
         ' obviamente, no va a contabilizar las FRAS
-        SQL = "Si continua, las facturas se insertaran en el registro, pero no serán contabilizadas" & vbCrLf
-        SQL = SQL & "en este momento. Deberán ser contabilizadas desde el ARICONTA" & vbCrLf & vbCrLf
-        SQL = SQL & Space(50) & "¿Continuar?"
-        If MsgBox(SQL, vbQuestion + vbYesNoCancel) <> vbYes Then Exit Function
+        Sql = "Si continua, las facturas se insertaran en el registro, pero no serán contabilizadas" & vbCrLf
+        Sql = Sql & "en este momento. Deberán ser contabilizadas desde el ARICONTA" & vbCrLf & vbCrLf
+        Sql = Sql & Space(50) & "¿Continuar?"
+        If MsgBox(Sql, vbQuestion + vbYesNoCancel) <> vbYes Then Exit Function
     End If
 
 
@@ -7054,29 +7053,29 @@ Dim Codigo1 As String
         CargarProgres Me.ProgressBar1, NumFactu
 
         'seleccinar todas las facturas que hemos insertado en la temporal (las que vamos a contabilizar)
-        SQL = "SELECT * "
-        SQL = SQL & " FROM tmpFactu "
+        Sql = "SELECT * "
+        Sql = Sql & " FROM tmpFactu "
 
         Set Rs = New ADODB.Recordset
-        Rs.Open SQL, conn, adOpenStatic, adLockPessimistic, adCmdText
-        i = 1
+        Rs.Open Sql, conn, adOpenStatic, adLockPessimistic, adCmdText
+        I = 1
 
         b = True
         'pasar a contabilidad cada una de las facturas seleccionadas
         While Not Rs.EOF
             If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then
-                SQL = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "T") & " and numfactu=" & Rs!NumFactu
-                SQL = SQL & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
-                If PasarFactura(SQL, CCoste, txtCodigo(0).Text, cadTABLA, cContaFra) = False And b Then b = False
+                Sql = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "T") & " and numfactu=" & Rs!NumFactu
+                Sql = Sql & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
+                If PasarFactura(Sql, CCoste, txtCodigo(0).Text, cadTABLA, cContaFra) = False And b Then b = False
             Else
                 If cadTABLA = "scafpc" Then
-                    SQL = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "N") & " and numfactu=" & DBSet(Rs!NumFactu, "T")
-                    SQL = SQL & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
-                    If PasarFacturaProv(SQL, CCoste, Orden2, cContaFra) = False And b Then b = False
+                    Sql = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "N") & " and numfactu=" & DBSet(Rs!NumFactu, "T")
+                    Sql = Sql & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
+                    If PasarFacturaProv(Sql, CCoste, Orden2, cContaFra) = False And b Then b = False
                 Else
-                    SQL = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "N") & " and numfactu=" & DBSet(Rs!NumFactu, "T")
-                    SQL = SQL & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
-                    If PasarFacturaTrans(SQL, CCoste, Orden2, cContaFra) = False And b Then b = False
+                    Sql = cadTABLA & "." & Codigo1 & "=" & DBSet(Rs.Fields(0), "N") & " and numfactu=" & DBSet(Rs!NumFactu, "T")
+                    Sql = Sql & " and fecfactu=" & DBSet(Rs!FecFactu, "F")
+                    If PasarFacturaTrans(Sql, CCoste, Orden2, cContaFra) = False And b Then b = False
                 End If
             End If
 
@@ -7084,8 +7083,8 @@ Dim Codigo1 As String
             'Al pasar cada factura al hacer el commit desbloqueamos los registros
             'que teniamos bloqueados y los volvemos a bloquear
             'Laura: 11/10/2006 bloquear los registros q vamos a contabilizar
-            SQL = cadTABLA & " INNER JOIN tmpFactu ON " & cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1 & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
-            If Not BloqueaRegistro(SQL, cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1 & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu") Then
+            Sql = cadTABLA & " INNER JOIN tmpFactu ON " & cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1 & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu "
+            If Not BloqueaRegistro(Sql, cadTABLA & "." & Codigo1 & "=tmpFactu." & Codigo1 & " AND " & cadTABLA & ".numfactu=tmpFactu.numfactu AND " & cadTABLA & ".fecfactu=tmpFactu.fecfactu") Then
 '                MsgBox "No se pueden Contabilizar Facturas. Hay registros bloqueados.", vbExclamation
 '                Screen.MousePointer = vbDefault
 '                Exit Sub
@@ -7093,9 +7092,9 @@ Dim Codigo1 As String
             '----
 
             IncrementarProgres Me.ProgressBar1, 1
-            Me.lblProgess(1).Caption = "Insertando Facturas en Contabilidad...   (" & i & " de " & NumFactu & ")"
+            Me.lblProgess(1).Caption = "Insertando Facturas en Contabilidad...   (" & I & " de " & NumFactu & ")"
             Me.Refresh
-            i = i + 1
+            I = I + 1
             Rs.MoveNext
         Wend
 
@@ -7306,36 +7305,36 @@ Private Sub ListadosCompras(H As Integer, W As Integer)
 End Sub
 
 Private Sub CargarIconos()
-Dim i As Integer
+Dim I As Integer
     
-    For i = 1 To 4
-        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 1 To 4
+        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
 
-    For i = 0 To 5
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 8 To 17
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 18 To 22
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 23 To 35
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 63 To 66
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 87 To 87
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 89 To 90
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 98 To 98
-        Me.imgBuscarG(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 0 To 5
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 8 To 17
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 18 To 22
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 23 To 35
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 63 To 66
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 87 To 87
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 89 To 90
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 98 To 98
+        Me.imgBuscarG(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
     
 
 End Sub
@@ -7343,7 +7342,7 @@ End Sub
 
 '
 Private Function CargarTablaTemporal(vWhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim Rs As ADODB.Recordset
 Dim SqlValues As String
@@ -7353,16 +7352,16 @@ Dim SqlValues As String
     
     CargarTablaTemporal = False
 
-    SQL = "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    conn.Execute Sql
 
-    SQL = "SELECT `smoval`.`fechamov`, `smoval`.`tipomovi`, `sartic`.`codfamia`, `sfamia`.`nomfamia`, `smoval`.`detamovi`, `smoval`.`cantidad`, `smoval`.`codartic`, `sartic`.`nomartic`, `smoval`.`codigope`, `smoval`.`impormov`, `smoval`.`document` "
-    SQL = SQL & " FROM   (`smoval` `smoval` INNER JOIN `sartic` `sartic` ON `smoval`.`codartic`=`sartic`.`codartic`) INNER JOIN `sfamia` `sfamia` ON `sartic`.`codfamia`=`sfamia`.`codfamia` "
-    If vWhere <> "" Then SQL = SQL & " where " & vWhere
-    SQL = SQL & " ORDER BY `smoval`.`detamovi`, `smoval`.`codigope`, `sartic`.`codfamia`, `smoval`.`codartic`, `smoval`.`fechamov` DESC"
+    Sql = "SELECT `smoval`.`fechamov`, `smoval`.`tipomovi`, `sartic`.`codfamia`, `sfamia`.`nomfamia`, `smoval`.`detamovi`, `smoval`.`cantidad`, `smoval`.`codartic`, `sartic`.`nomartic`, `smoval`.`codigope`, `smoval`.`impormov`, `smoval`.`document` "
+    Sql = Sql & " FROM   (`smoval` `smoval` INNER JOIN `sartic` `sartic` ON `smoval`.`codartic`=`sartic`.`codartic`) INNER JOIN `sfamia` `sfamia` ON `sartic`.`codfamia`=`sfamia`.`codfamia` "
+    If vWhere <> "" Then Sql = Sql & " where " & vWhere
+    Sql = Sql & " ORDER BY `smoval`.`detamovi`, `smoval`.`codigope`, `sartic`.`codfamia`, `smoval`.`codartic`, `smoval`.`fechamov` DESC"
 
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     SqlValues = ""
     While Not Rs.EOF
@@ -7385,9 +7384,9 @@ Dim SqlValues As String
     If SqlValues <> "" Then
         SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1)
     
-        SQL = "insert into tmpinformes (codusu, fecha1, campo1, importe4, nombre1, importe1, nombre2, codigo1, importe2, importe3, campo2) values "
+        Sql = "insert into tmpinformes (codusu, fecha1, campo1, importe4, nombre1, importe1, nombre2, codigo1, importe2, importe3, campo2) values "
     
-        conn.Execute SQL & SqlValues
+        conn.Execute Sql & SqlValues
     End If
     
     CargarTablaTemporal = True
@@ -7551,9 +7550,9 @@ End Function
 
 '
 Private Function RellenarTablaTemporalAcum(vWhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
-Dim sql2 As String
+Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim SqlValues As String
 
@@ -7581,11 +7580,11 @@ Dim Entro As Boolean
     DoEvents
 
 
-    SQL = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
-    SQL = SQL & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
+    Sql = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    Sql = Sql & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         CliSocAnt = DBLet(Rs!campo2, "N")
@@ -7599,16 +7598,16 @@ Dim Entro As Boolean
         DetaMovAnt = DBLet(Rs!nombre1, "T")
         
 '         Insertar movimiento de inicio
-        sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
-        sql2 = sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
-        sql2 = sql2 & " and codartic = " & DBSet(ArticAnt, "T")
-        sql2 = sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
-        sql2 = sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
+        Sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
+        Sql2 = Sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
+        Sql2 = Sql2 & " and codartic = " & DBSet(ArticAnt, "T")
+        Sql2 = Sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
+        Sql2 = Sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
         
-        If txtCodigo(9).Text <> "" Then sql2 = sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
+        If txtCodigo(9).Text <> "" Then Sql2 = Sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
         
 
-        Acumulado = DevuelveValor(sql2)
+        Acumulado = DevuelveValor(Sql2)
         Precio = PonerPrecio(ArticAnt, CStr(ClienteAnt))
         Importe = Round2(Acumulado * Precio, 2)
 
@@ -7618,25 +7617,25 @@ Dim Entro As Boolean
             FechaIni = DateAdd("d", -1, FechaAnt)
         End If
 
-        sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ("
-        sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-        sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(FechaIni, "F") & ","
-        sql2 = sql2 & DBSet(Rs!nombre1, "T") & ","
-        sql2 = sql2 & DBSet(Acumulado, "N") & ","
-        sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+        Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ("
+        Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+        Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(FechaIni, "F") & ","
+        Sql2 = Sql2 & DBSet(Rs!nombre1, "T") & ","
+        Sql2 = Sql2 & DBSet(Acumulado, "N") & ","
+        Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
 
-        conn.Execute sql2
+        conn.Execute Sql2
         
         FechaIni = FechaIni + 1
         
         While FechaIni < DBLet(Rs!fecha1) And Precio <> 0
-            sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
-            sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-            sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-            sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-            sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+            Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
+            Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+            Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+            Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+            Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
 
-            conn.Execute sql2
+            conn.Execute Sql2
 
             FechaIni = FechaIni + 1
         Wend
@@ -7653,13 +7652,13 @@ Dim Entro As Boolean
             If txtCodigo(10).Text <> "" Then
                 FechaAnt = FechaAnt + 1
                 While FechaAnt <= txtCodigo(10).Text And Precio <> 0
-                    sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ("
-                    sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                    sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
-                    sql2 = sql2 & DBSet(FechaAnt, "F") & "," & DBSet(DetaMovAnt, "T") & "," & DBSet(Acumulado, "N") & ","
-                    sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+                    Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ("
+                    Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                    Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
+                    Sql2 = Sql2 & DBSet(FechaAnt, "F") & "," & DBSet(DetaMovAnt, "T") & "," & DBSet(Acumulado, "N") & ","
+                    Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
             
-                    conn.Execute sql2
+                    conn.Execute Sql2
                     
                     FechaAnt = FechaAnt + 1
                 Wend
@@ -7674,14 +7673,14 @@ Dim Entro As Boolean
             DetaMovAnt = DBLet(Rs!nombre1, "T")
             
             'Insertar movimiento de inicio
-            sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
-            sql2 = sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
-            sql2 = sql2 & " and codartic = " & DBSet(ArticAnt, "T")
-            sql2 = sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
-            sql2 = sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
-            If txtCodigo(9).Text <> "" Then sql2 = sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
+            Sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
+            Sql2 = Sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
+            Sql2 = Sql2 & " and codartic = " & DBSet(ArticAnt, "T")
+            Sql2 = Sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
+            Sql2 = Sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
+            If txtCodigo(9).Text <> "" Then Sql2 = Sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
     
-            Acumulado = DevuelveValor(sql2)
+            Acumulado = DevuelveValor(Sql2)
             Precio = PonerPrecio(ArticAnt, CStr(ClienteAnt))
             Importe = Round2(Acumulado * Precio, 2)
     
@@ -7691,24 +7690,24 @@ Dim Entro As Boolean
                 FechaIni = DateAdd("d", -1, FechaAnt)
             End If
     
-            sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
-            sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-            sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-            sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-            sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+            Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
+            Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+            Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+            Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+            Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
     
-            conn.Execute sql2
+            conn.Execute Sql2
             
             FechaIni = FechaIni + 1
             While FechaIni < DBLet(Rs!fecha1)
                 If Precio <> 0 Then
-                    sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
-                    sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                    sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-                    sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-                    sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+                    Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
+                    Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                    Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+                    Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+                    Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
     
-                    conn.Execute sql2
+                    conn.Execute Sql2
                 End If
                 FechaIni = FechaIni + 1
             Wend
@@ -7726,19 +7725,19 @@ Dim Entro As Boolean
             Precio = PonerPrecio(ArticAnt, CStr(Rs!Codigo1))
             Importe = Round2(Acumulado * Precio, 2) ' ClienteAnt)), 2)
             
-            sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
-            sql2 = sql2 & ", importe2 = " & DBSet(Importe, "N")
-            sql2 = sql2 & ", precio1 = " & DBSet(Precio, "N")
-            sql2 = sql2 & " where codusu = " & vUsu.codigo
-            sql2 = sql2 & " and fecha1 = " & DBSet(FechaIni, "F")
-            sql2 = sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
-            sql2 = sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
-            sql2 = sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
-            sql2 = sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
-            sql2 = sql2 & " and campo1 = " & DBSet(Rs!campo1, "N") 'DBSet(TipoMAnt, "N")
-            sql2 = sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
+            Sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
+            Sql2 = Sql2 & ", importe2 = " & DBSet(Importe, "N")
+            Sql2 = Sql2 & ", precio1 = " & DBSet(Precio, "N")
+            Sql2 = Sql2 & " where codusu = " & vUsu.codigo
+            Sql2 = Sql2 & " and fecha1 = " & DBSet(FechaIni, "F")
+            Sql2 = Sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
+            Sql2 = Sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
+            Sql2 = Sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
+            Sql2 = Sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
+            Sql2 = Sql2 & " and campo1 = " & DBSet(Rs!campo1, "N") 'DBSet(TipoMAnt, "N")
+            Sql2 = Sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
         
-            conn.Execute sql2
+            conn.Execute Sql2
             
             FechaIni = FechaIni + 1
         Else
@@ -7750,13 +7749,13 @@ Dim Entro As Boolean
         While FechaIni < DBLet(Rs!fecha1)
             ' solo si tiene importe el movimiento
             If DBLet(Importe, "N") <> 0 Then
-                sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ( "
-                sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
-                sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Rs!nombre1, "F") & "," & DBSet(Acumulado, "N") & ","
-                sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+                Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1) values ( "
+                Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
+                Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Rs!nombre1, "F") & "," & DBSet(Acumulado, "N") & ","
+                Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
                 
-                conn.Execute sql2
+                conn.Execute Sql2
             End If
             
             FechaIni = FechaIni + 1
@@ -7775,19 +7774,19 @@ Dim Entro As Boolean
                 Precio = PonerPrecio(ArticAnt, CStr(Rs!Codigo1))
                 Importe = Round2(Acumulado * Precio, 2) ' ClienteAnt)), 2)
                 
-                sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
-                sql2 = sql2 & ", importe2 = " & DBSet(Importe, "N")
-                sql2 = sql2 & ", precio1 = " & DBSet(Precio, "N")
-                sql2 = sql2 & " where codusu = " & vUsu.codigo
-                sql2 = sql2 & " and fecha1 = " & DBSet(FechaIni, "F")
-                sql2 = sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
-                sql2 = sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
-                sql2 = sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
-                sql2 = sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
-                sql2 = sql2 & " and campo1 = " & DBSet(Rs!campo1, "N") 'DBSet(TipoMAnt, "N")
-                sql2 = sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
+                Sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
+                Sql2 = Sql2 & ", importe2 = " & DBSet(Importe, "N")
+                Sql2 = Sql2 & ", precio1 = " & DBSet(Precio, "N")
+                Sql2 = Sql2 & " where codusu = " & vUsu.codigo
+                Sql2 = Sql2 & " and fecha1 = " & DBSet(FechaIni, "F")
+                Sql2 = Sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
+                Sql2 = Sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
+                Sql2 = Sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
+                Sql2 = Sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
+                Sql2 = Sql2 & " and campo1 = " & DBSet(Rs!campo1, "N") 'DBSet(TipoMAnt, "N")
+                Sql2 = Sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
             
-                conn.Execute sql2
+                conn.Execute Sql2
                 
             End If
         End If
@@ -7805,13 +7804,13 @@ Dim Entro As Boolean
     If txtCodigo(10).Text <> "" Then
         FechaAnt = FechaAnt + 1
         While FechaAnt <= txtCodigo(10).Text And Importe <> 0
-            sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
-            sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-            sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-            sql2 = sql2 & DBSet(FechaAnt, "F") & "," & DBSet(Acumulado, "N") & ","
-            sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
+            Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1) values ("
+            Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+            Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+            Sql2 = Sql2 & DBSet(FechaAnt, "F") & "," & DBSet(Acumulado, "N") & ","
+            Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ")"
     
-            conn.Execute sql2
+            conn.Execute Sql2
             
             FechaAnt = FechaAnt + 1
         Wend
@@ -7834,19 +7833,19 @@ eRellenarTablaTemporalAcum:
 End Function
 
 Private Function PonerPrecio(articulo As String, Cliente As String) As Currency
-Dim SQL As String
+Dim Sql As String
 Dim Precio As Currency
 
     On Error Resume Next
 
-    SQL = "select precioar from clientes_precio where codclien =  " & DBSet(Cliente, "N")
-    SQL = SQL & " and codartic = " & DBSet(articulo, "T")
+    Sql = "select precioar from clientes_precio where codclien =  " & DBSet(Cliente, "N")
+    Sql = Sql & " and codartic = " & DBSet(articulo, "T")
     
-    If TotalRegistrosConsulta(SQL) = 0 Then
-        SQL = "select preciove from sartic where codartic = " & DBSet(articulo, "T")
+    If TotalRegistrosConsulta(Sql) = 0 Then
+        Sql = "select preciove from sartic where codartic = " & DBSet(articulo, "T")
     End If
     
-    Precio = DevuelveValor(SQL)
+    Precio = DevuelveValor(Sql)
     
     PonerPrecio = Precio
 
@@ -7855,9 +7854,9 @@ End Function
 
 
 Private Function RellenarTablaTemporalAcum2(vWhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
-Dim sql2 As String
+Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim SqlValues As String
 
@@ -7885,11 +7884,11 @@ Dim Entro As Boolean
     DoEvents
 
 
-    SQL = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
-    SQL = SQL & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
+    Sql = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    Sql = Sql & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         CliSocAnt = DBLet(Rs!campo2, "N")
@@ -7903,16 +7902,16 @@ Dim Entro As Boolean
         DetaMovAnt = DBLet(Rs!nombre1, "T")
         
 '         Insertar movimiento de inicio
-        sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
-        sql2 = sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
-        sql2 = sql2 & " and codartic = " & DBSet(ArticAnt, "T")
-        sql2 = sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
-        sql2 = sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
+        Sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
+        Sql2 = Sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
+        Sql2 = Sql2 & " and codartic = " & DBSet(ArticAnt, "T")
+        Sql2 = Sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
+        Sql2 = Sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
         
-        If txtCodigo(9).Text <> "" Then sql2 = sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
+        If txtCodigo(9).Text <> "" Then Sql2 = Sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
         
 
-        Acumulado = DevuelveValor(sql2)
+        Acumulado = DevuelveValor(Sql2)
         Precio = PonerPrecio(ArticAnt, CStr(ClienteAnt))
         Importe = Round2(Acumulado * Precio, 2)
 
@@ -7922,26 +7921,26 @@ Dim Entro As Boolean
             FechaIni = DateAdd("d", -1, FechaAnt)
         End If
 
-        sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ("
-        sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-        sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(FechaIni, "F") & ","
-        sql2 = sql2 & DBSet(Rs!nombre1, "T") & ","
-        sql2 = sql2 & DBSet(Acumulado, "N") & ","
-        sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+        Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ("
+        Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+        Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(FechaIni, "F") & ","
+        Sql2 = Sql2 & DBSet(Rs!nombre1, "T") & ","
+        Sql2 = Sql2 & DBSet(Acumulado, "N") & ","
+        Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
 
-        conn.Execute sql2
+        conn.Execute Sql2
         
         FechaIni = FechaIni + 1
         
         While FechaIni < DBLet(Rs!fecha1)
             If Precio <> 0 Then
-                sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
-                sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-                sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-                sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+                Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
+                Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+                Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+                Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
     
-                conn.Execute sql2
+                conn.Execute Sql2
             End If
             FechaIni = FechaIni + 1
         Wend
@@ -7954,13 +7953,13 @@ Dim Entro As Boolean
             ' falta insertar los restantes movimientos hasta la fecha fin
             If txtCodigo(10).Text <> "" Then
                 While FechaIni <= txtCodigo(10).Text
-                    sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ("
-                    sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                    sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
-                    sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(DetaMovAnt, "T") & "," & DBSet(Acumulado, "N") & ","
-                    sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+                    Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ("
+                    Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                    Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
+                    Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(DetaMovAnt, "T") & "," & DBSet(Acumulado, "N") & ","
+                    Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
             
-                    conn.Execute sql2
+                    conn.Execute Sql2
                     
                     FechaIni = FechaIni + 1
                 Wend
@@ -7974,14 +7973,14 @@ Dim Entro As Boolean
             DetaMovAnt = DBLet(Rs!nombre1, "T")
             
             'Insertar movimiento de inicio
-            sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
-            sql2 = sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
-            sql2 = sql2 & " and codartic = " & DBSet(ArticAnt, "T")
-            sql2 = sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
-            sql2 = sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
-            If txtCodigo(9).Text <> "" Then sql2 = sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
+            Sql2 = "select sum(if(tipomovi = 1, cantidad,0)) - sum(if(tipomovi = 0,cantidad,0)) "
+            Sql2 = Sql2 & " from smoval where codigope = " & DBSet(ClienteAnt, "N")
+            Sql2 = Sql2 & " and codartic = " & DBSet(ArticAnt, "T")
+            Sql2 = Sql2 & " and detamovi = " & DBSet(Rs!nombre1, "T")
+            Sql2 = Sql2 & " and fechamov < " & DBSet(Rs!fecha1, "F")
+            If txtCodigo(9).Text <> "" Then Sql2 = Sql2 & " and fechamov < " & DBSet(txtCodigo(9).Text, "F")
     
-            Acumulado = DevuelveValor(sql2)
+            Acumulado = DevuelveValor(Sql2)
             Precio = PonerPrecio(ArticAnt, CStr(ClienteAnt))
             Importe = Round2(Acumulado * Precio, 2)
     
@@ -7991,24 +7990,24 @@ Dim Entro As Boolean
                 FechaIni = DateAdd("d", -1, FechaAnt)
             End If
     
-            sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
-            sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-            sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-            sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-            sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+            Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
+            Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+            Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+            Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+            Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
     
-            conn.Execute sql2
+            conn.Execute Sql2
             
             FechaIni = FechaIni + 1
             While FechaIni < DBLet(Rs!fecha1)
                 If Precio <> 0 Then
-                    sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
-                    sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                    sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-                    sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-                    sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+                    Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
+                    Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                    Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+                    Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+                    Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
     
-                    conn.Execute sql2
+                    conn.Execute Sql2
                 End If
                 FechaIni = FechaIni + 1
             Wend
@@ -8023,13 +8022,13 @@ Dim Entro As Boolean
             End If
         Else
             While FechaIni < DBLet(Rs!fecha1)
-                sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ( "
-                sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-                sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
-                sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Rs!nombre1, "F") & "," & DBSet(Acumulado, "N") & ","
-                sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+                Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, fecha1, nombre1, importeb1, importe2, precio1, importe3) values ( "
+                Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+                Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & ","
+                Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Rs!nombre1, "F") & "," & DBSet(Acumulado, "N") & ","
+                Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
                 
-                conn.Execute sql2
+                conn.Execute Sql2
                 
                 FechaIni = FechaIni + 1
             Wend
@@ -8042,13 +8041,13 @@ Dim Entro As Boolean
     If txtCodigo(10).Text <> "" Then
         FechaIni = FechaIni + 1
         While FechaIni <= txtCodigo(10).Text And Importe <> 0
-            sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
-            sql2 = sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
-            sql2 = sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
-            sql2 = sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
-            sql2 = sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
+            Sql2 = "insert into tmpinformes (codusu, campo2, codigo1, importe4, nombre2, nombre1, fecha1,importeb1, importe2, precio1, importe3) values ("
+            Sql2 = Sql2 & vUsu.codigo & "," & DBSet(CliSocAnt, "N") & "," & DBSet(ClienteAnt, "N") & ","
+            Sql2 = Sql2 & DBSet(FamiliaAnt, "N") & "," & DBSet(ArticAnt, "T") & "," & DBSet(DetaMovAnt, "T") & ","
+            Sql2 = Sql2 & DBSet(FechaIni, "F") & "," & DBSet(Acumulado, "N") & ","
+            Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Precio, "N") & ",0)"
     
-            conn.Execute sql2
+            conn.Execute Sql2
             
             FechaIni = FechaIni + 1
         Wend
@@ -8057,11 +8056,11 @@ Dim Entro As Boolean
     Set Rs = Nothing
     
     ' recorremos el recordset unicamente con el calculo del acumulado
-    SQL = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
-    SQL = SQL & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
+    Sql = "select * from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    Sql = Sql & " order by campo2, codigo1, importe4, nombre2, fecha1, importe3 "
         
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         CliSocAnt = DBLet(Rs!campo2, "N")
@@ -8094,18 +8093,18 @@ Dim Entro As Boolean
         Precio = PonerPrecio(ArticAnt, CStr(Rs!Codigo1))
         Importe = Round2(Acumulado * Precio, 2) ' ClienteAnt)), 2)
         
-        sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
-        sql2 = sql2 & ", importe2 = " & DBSet(Importe, "N")
-        sql2 = sql2 & ", precio1 = " & DBSet(Precio, "N")
-        sql2 = sql2 & " where codusu = " & vUsu.codigo
-        sql2 = sql2 & " and fecha1 = " & DBSet(Rs!fecha1, "F")
-        sql2 = sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
-        sql2 = sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
-        sql2 = sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
-        sql2 = sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
-        sql2 = sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
+        Sql2 = "update tmpinformes set importeb1 = " & DBSet(Acumulado, "N")
+        Sql2 = Sql2 & ", importe2 = " & DBSet(Importe, "N")
+        Sql2 = Sql2 & ", precio1 = " & DBSet(Precio, "N")
+        Sql2 = Sql2 & " where codusu = " & vUsu.codigo
+        Sql2 = Sql2 & " and fecha1 = " & DBSet(Rs!fecha1, "F")
+        Sql2 = Sql2 & " and campo2 = " & DBSet(Rs!campo2, "N") 'DBSet(CliSocAnt, "N")
+        Sql2 = Sql2 & " and codigo1 = " & DBSet(Rs!Codigo1, "N") 'DBSet(ClienteAnt, "N")
+        Sql2 = Sql2 & " and importe4 = " & DBSet(Rs!importe4, "N") 'DBSet(FamiliaAnt, "N")
+        Sql2 = Sql2 & " and nombre2 = " & DBSet(Rs!Nombre2, "T") 'DBSet(ArticAnt, "T")
+        Sql2 = Sql2 & " and importe3 = " & DBSet(Rs!importe3, "N") 'DBSet(AlbarAnt, "N")
     
-        conn.Execute sql2
+        conn.Execute Sql2
     
         Rs.MoveNext
     Wend
