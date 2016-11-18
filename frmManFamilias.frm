@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmManFamilias 
    BorderStyle     =   3  'Fixed Dialog
@@ -714,7 +714,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim CadB As String
+Dim cadB As String
 
 Private Sub cmbAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
@@ -778,7 +778,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     PrimeraVez = True
     
@@ -808,9 +808,9 @@ Dim i As Integer
     
     
     'cargar IMAGES de busqueda
-    For i = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
     
     LimpiarCampos   'Neteja els camps TextBox
     
@@ -847,10 +847,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(frameAux As String)
+Private Sub LimpiarCamposLin(FrameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -861,7 +861,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, NumReg As Byte
+Dim I As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -937,7 +937,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Actives unes Opcions de Menú i Toolbar según el modo en que estem
 Dim b As Boolean, bAux As Boolean
-Dim i As Byte
+Dim I As Byte
     
     'Barra de CAPÇALERA
     '------------------------------------------
@@ -987,12 +987,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        CadB = ""
+        cadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadB = Aux
+        cadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -1072,7 +1072,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub BotonBuscar()
-Dim i As Integer
+Dim I As Integer
 ' ***** Si la clau primaria de la capçalera no es Text1(0), canviar-ho en <=== *****
     If Modo <> 1 Then
         LimpiarCampos
@@ -1092,12 +1092,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    CadB = ObtenerBusqueda2(Me, 1)
+    cadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -1106,7 +1106,7 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
     Dim cad As String
         
     'Cridem al form
@@ -1121,8 +1121,8 @@ Private Sub MandaBusquedaPrevia(CadB As String)
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = NombreTabla
-        frmB.vSQL = CadB
+        frmB.vtabla = NombreTabla
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|3|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Familias de Artículos" ' ***** repasa açò: títol de BuscaGrid *****
@@ -1144,8 +1144,8 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim cad As String
 Dim Aux As String
-Dim i As Integer
-Dim J As Integer
+Dim I As Integer
+Dim j As Integer
 
     If Data1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
@@ -1153,16 +1153,16 @@ Dim J As Integer
     End If
     
     cad = ""
-    i = 0
+    I = 0
     Do
-        J = i + 1
-        i = InStr(J, DatosADevolverBusqueda, "|")
-        If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, i - J)
-            J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+        j = I + 1
+        I = InStr(j, DatosADevolverBusqueda, "|")
+        If I > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, j, I - j)
+            j = Val(Aux)
+            cad = cad & Text1(j).Text & "|"
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -1197,7 +1197,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    CadB = ""
+    cadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -1257,7 +1257,7 @@ Dim cad As String
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        If Not eliminar Then
+        If Not Eliminar Then
             Screen.MousePointer = vbDefault
             Exit Sub
         ElseIf SituarDataTrasEliminar(Data1, NumRegElim) Then
@@ -1275,8 +1275,8 @@ EEliminar:
 End Sub
 
 Private Sub PonerCampos()
-Dim i As Integer
-Dim codPobla As String, desPobla As String
+Dim I As Integer
+Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -1292,7 +1292,11 @@ Dim CPostal As String, desProvi As String, desPais As String
         Text2(6).Text = PonerNombreCuenta(Text1(6), Modo)
         Text2(7).Text = PonerNombreCuenta(Text1(7), Modo)
         
-        Text2(8).Text = PonerNombreDeCod(Text1(8), "cabccost", "nomccost", "codccost", "T", cConta)
+        If vParamAplic.ContabilidadNueva Then
+            Text2(8).Text = PonerNombreDeCod(Text1(8), "ccoste", "nomccost", "codccost", "T", cConta)
+        Else
+            Text2(8).Text = PonerNombreDeCod(Text1(8), "cabccost", "nomccost", "codccost", "T", cConta)
+        End If
     End If
     ' ********************************************************************************
     
@@ -1304,7 +1308,7 @@ Dim CPostal As String, desProvi As String, desPais As String
 End Sub
 
 Private Sub cmdCancelar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim V
 
     Select Case Modo
@@ -1348,7 +1352,11 @@ Dim Sql As String
     
     If b Then
         If vEmpresa.TieneAnalitica Then 'hay contab. analitica
-             Sql = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", Text1(8), "T")
+             If vParamAplic.ContabilidadNueva Then
+                Sql = DevuelveDesdeBDNew(cConta, "ccoste", "codccost", "codccost", Text1(8), "T")
+             Else
+                Sql = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", Text1(8), "T")
+             End If
              If Sql = "" Then
                 MsgBox "No existe el Centro de Coste. Reintroduzca.", vbExclamation
                 PonerFoco Text1(8)
@@ -1380,7 +1388,7 @@ Dim cad As String, Indicador As String
     End If
 End Sub
 
-Private Function eliminar() As Boolean
+Private Function Eliminar() As Boolean
 Dim vWhere As String
 
     On Error GoTo FinEliminar
@@ -1396,10 +1404,10 @@ FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar"
         conn.RollbackTrans
-        eliminar = False
+        Eliminar = False
     Else
         conn.CommitTrans
-        eliminar = True
+        Eliminar = True
     End If
 End Function
 
@@ -1546,9 +1554,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "cadenas"
         .Informe2 = "rManFamilias.rpt"
-        If CadB <> "" Then
+        If cadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(CadB)
+            .cadRegSelec = SQL2SF(cadB)
         Else
             .cadRegSelec = ""
         End If
@@ -1559,7 +1567,7 @@ Private Sub printNou()
         .cadTodosReg = ""
         '.cadTodosReg = "{itinerar.codempre} = " & codEmpre
         ' *** repasar si li pose ordre o no ****
-        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomEmpre & "'|pOrden={sfamia.codfamia}|"
+        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|pOrden={sfamia.codfamia}|"
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|"
         ' *** posar el nº de paràmetres que he posat en OtrosParametros2 ***
         '.NumeroParametros2 = 1

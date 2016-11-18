@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasFactAlbEnv 
    BorderStyle     =   3  'Fixed Dialog
@@ -1158,7 +1158,7 @@ Dim CambiamosConta As Boolean
         'Mostrar los Albaranes que no se van a Facturar
         cadSQL = Replace(cadSQL, "count(*)", "scaalb.codtipom,scaalb.numalbar,scaalb.fechaalb,scaalb.codclien,clientes.nomclien")
         frmMensajes.OpcionMensaje = 12
-        frmMensajes.cadWHERE = cadSQL
+        frmMensajes.cadWhere = cadSQL
         frmMensajes.Show vbModal
         If frmMensajes.vCampos = "0" Then Exit Sub
     End If
@@ -1347,14 +1347,14 @@ Dim indice As Integer
     
         If chkResumenForpa.Value = 1 Then
             'VAMOS A MOSTRAR LA HOJA RESUMEN DE FORMAS DE PAGO
-            conn.Execute "DELETE FROM tmpinformes where codusu =" & vUsu.Codigo
+            conn.Execute "DELETE FROM tmpinformes where codusu =" & vUsu.codigo
         
             If Me.OptDetalle(0).Value Then
-                Titulo = "SELECT scaalb.codforpa, sum(slialb.importel)," & vUsu.Codigo
+                Titulo = "SELECT scaalb.codforpa, sum(slialb.importel)," & vUsu.codigo
                 Titulo = Titulo & " FROM   ((scaalb scaalb INNER JOIN sclien sclien ON scaalb.codclien=sclien.codclien) INNER JOIN slialb slialb ON (scaalb.codtipom=slialb.codtipom) AND (scaalb.numalbar=slialb.numalbar)) INNER JOIN starif starif ON sclien.codtarif=starif.codlista"
             
             Else
-                Titulo = "SELECT  codforpa ,sum(slialb.importel)," & vUsu.Codigo
+                Titulo = "SELECT  codforpa ,sum(slialb.importel)," & vUsu.codigo
                 Titulo = Titulo & " FROM   slialb slialb INNER JOIN scaalb scaalb ON (slialb.codtipom=scaalb.codtipom) AND (slialb.numalbar=scaalb.numalbar)"
             End If
     
@@ -1377,7 +1377,7 @@ Dim indice As Integer
             nomRPT = "rFacPrevFactResum.rpt"
         End If
         
-        cad = "pCodUsu=" & vUsu.Codigo & "|"
+        cad = "pCodUsu=" & vUsu.codigo & "|"
         cadParam = cadParam & cad
         numParam = numParam + 1
         
@@ -1394,11 +1394,11 @@ Dim indice As Integer
         
         
         On Error GoTo EPreFact
-        cad = "delete from tmpstockfec where codusu=" & vUsu.Codigo
+        cad = "delete from tmpstockfec where codusu=" & vUsu.codigo
         conn.Execute cad
         
         'Insertar total bonificaciones por cliente,articulo en una TEMPORAL
-        cad = "SELECT " & vUsu.Codigo & " as codusu,  slialb.codartic,scaalb.codclien,sum(slialb.cantidad) as stock "
+        cad = "SELECT " & vUsu.codigo & " as codusu,  slialb.codartic,scaalb.codclien,sum(slialb.cantidad) as stock "
         cad = cad & "FROM (((scaalb INNER JOIN slialb ON scaalb.codtipom=slialb.codtipom and scaalb.numalbar=slialb.numalbar) "
         cad = cad & " INNER JOIN sbonif ON slialb.codartic=sbonif.codartic ) "
         cad = cad & " INNER JOIN sclien ON scaalb.codclien=sclien.codclien) "
@@ -1412,7 +1412,7 @@ Dim indice As Integer
     End If
     
     If b And (CodClien <> "ALV" And CodClien <> "AL1") Then 'OpcionListado = 50 'NO Imprime, mostrar resultado en pantalla
-        frmMensajes.cadWHERE = cadSelect
+        frmMensajes.cadWhere = cadSelect
         frmMensajes.vCampos = cadParam
         frmMensajes.OpcionMensaje = 6 'Prefacturacion Albaranes
         frmMensajes.Show vbModal
@@ -1421,7 +1421,7 @@ Dim indice As Integer
     End If
     
     If OpcionListado = 50 And (CodClien = "ALV" Or CodClien = "AL1") Then
-        cad = "delete from tmpstockfec where codusu=" & vUsu.Codigo
+        cad = "delete from tmpstockfec where codusu=" & vUsu.codigo
         conn.Execute cad
     End If
 EPreFact:
@@ -1453,7 +1453,7 @@ End Sub
 
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
-Dim i As Integer
+Dim I As Integer
 Dim indFrame As Single
 
     'Icono del formulario
@@ -1467,12 +1467,12 @@ Dim indFrame As Single
     Me.FrameFacturar.visible = False
     
     
-    For i = 14 To 17
-        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
-    For i = 20 To 23
-        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 14 To 17
+        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
+    For I = 20 To 23
+        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
 
     CommitConexion
     
@@ -1499,7 +1499,7 @@ Dim indFrame As Single
     
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.CmdCancel(indFrame).Cancel = True
+    Me.cmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
         
@@ -1676,7 +1676,7 @@ End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim devuelve As String
-Dim codCampo As String, NomCampo As String
+Dim codCampo As String, nomCampo As String
 Dim Tabla As String
       
     Select Case Index
@@ -1699,10 +1699,10 @@ Dim Tabla As String
 
         Case 28, 29, 40, 41 'Cod. CLIENTE
             If PonerFormatoEntero(txtCodigo(Index)) Then
-                NomCampo = "nomclien"
+                nomCampo = "nomclien"
                 Tabla = "clientes"
                 codCampo = "codclien"
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, NomCampo, codCampo, "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo, "N")
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000000")
             Else
                 txtNombre(Index).Text = ""
@@ -1710,7 +1710,7 @@ Dim Tabla As String
             
         Case 30, 31, 42, 43 'Cod. Formas de PAGO
             If PonerFormatoEntero(txtCodigo(Index)) Then
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "sforpa", "nomforpa", "codforpa", "N")
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "forpago", "nomforpa", "codforpa", "N")
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
             Else
                 txtNombre(Index).Text = ""
@@ -1731,7 +1731,7 @@ Dim cad As String
     If OpcionListado = 51 Then 'Inf. Incum. plazos entrega
         H = 5300
         Me.cmdAceptarPreFac.Top = 4600
-        Me.CmdCancel(5).Top = Me.cmdAceptarPreFac.Top
+        Me.cmdCancel(5).Top = Me.cmdAceptarPreFac.Top
     End If
     W = 7040
     'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
@@ -1812,14 +1812,14 @@ On Error Resume Next
 End Function
 
 
-Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
+Private Function PonerDesdeHasta(campo As String, tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
-    If Tipo <> "F" Then
+    If tipo <> "F" Then
         If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
     End If
     If devuelve <> "" Then

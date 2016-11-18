@@ -430,7 +430,7 @@ Public CodigoActual As String
 Public DeConsulta As Boolean
 
 Private CadenaConsulta As String
-Private CadB As String
+Private cadB As String
 
 Private WithEvents frmCtas As frmCtasConta 'cuentas contables
 Attribute frmCtas.VB_VarHelpID = -1
@@ -515,7 +515,7 @@ Private Sub BotonAnyadir()
     Dim anc As Single
     
     CargaGrid 'primer de tot carregue tot el grid
-    CadB = ""
+    cadB = ""
     '******************** canviar taula i camp **************************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
         NumF = NuevoCodigo
@@ -546,7 +546,7 @@ Private Sub BotonAnyadir()
 End Sub
 
 Private Sub BotonVerTodos()
-    CadB = ""
+    cadB = ""
     CargaGrid ""
     PonerModo 2
 End Sub
@@ -651,7 +651,7 @@ Dim temp As Boolean
             Sql = "Delete from forpago where codforpa=" & adodc1.Recordset!Codforpa
         End If
         conn.Execute Sql
-        CargaGrid CadB
+        CargaGrid cadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
 '            lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -684,9 +684,9 @@ Private Sub cmdAceptar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            CadB = ObtenerBusqueda(Me)
-            If CadB <> "" Then
-                CargaGrid CadB
+            cadB = ObtenerBusqueda(Me)
+            If cadB <> "" Then
+                CargaGrid cadB
                 PonerModo 2
 '                lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
                 PonerFocoGrid Me.DataGrid1
@@ -708,7 +708,7 @@ Private Sub cmdAceptar_Click()
                     Else
                         BotonAnyadir
                     End If
-                    CadB = ""
+                    cadB = ""
                 End If
             End If
             
@@ -720,7 +720,7 @@ Private Sub cmdAceptar_Click()
                     TerminaBloquear
                     I = adodc1.Recordset.Fields(0)
                     PonerModo 2
-                    CargaGrid CadB
+                    CargaGrid cadB
                     adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
                     PonerFocoGrid Me.DataGrid1
                 End If
@@ -733,7 +733,7 @@ Private Sub cmdCancelar_Click()
     
     Select Case Modo
         Case 1 'búsqueda
-            CargaGrid CadB
+            CargaGrid cadB
         Case 3 'insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
@@ -845,7 +845,7 @@ Private Sub Form_Load()
     CadenaConsulta = CadenaConsulta & " WHERE 1 = 1 "
     '************************************************************************
     
-    CadB = ""
+    cadB = ""
     CargaGrid
     
 '    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
@@ -1047,7 +1047,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If CadB = "" Then
+        If cadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg
@@ -1059,9 +1059,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "forpago"
         .Informe2 = "rManFpago.rpt"
-        If CadB <> "" Then
+        If cadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(CadB)
+            .cadRegSelec = SQL2SF(cadB)
         Else
             .cadRegSelec = ""
         End If
@@ -1098,7 +1098,7 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
@@ -1134,7 +1134,7 @@ Dim Sql As String
     ConnConta.BeginTrans
     
     If vParamAplic.ContabilidadNueva Then
-        Sql = DevuelveDesdeBDNew(cConta, "sforpa", "nomforpa", "codforpa", txtAux(0).Text, "N")
+        Sql = DevuelveDesdeBDNew(cConta, "formapago", "nomforpa", "codforpa", txtAux(0).Text, "N")
         If Sql = "" Then
             Sql = "insert into formapago (codforpa, nomforpa, tipforpa, numerove, primerve, restoven) values (" & DBSet(txtAux(0).Text, "N") & ","
             Sql = Sql & DBSet(txtAux(1).Text, "T") & "," & DBSet(Combo1(0).ItemData(Combo1(0).ListIndex), "N") & ","

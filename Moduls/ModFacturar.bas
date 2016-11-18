@@ -13,7 +13,7 @@ Private MesFactu As String 'mes a facturar para Mantenimientos
 Private TipCoMan As String 'tipo de contrato del mantenimiento
 
 'Variables comunes en Albaranes para la cabecera de la FACTURA
-Private letraser As String
+Private LetraSer As String
 
 Private TipoAlb As String
 Private TipoFac As String
@@ -381,13 +381,13 @@ Dim Conta2 As Long
 '            vFactu.Agente = vClien.Agente
             'forma de pago del mantenimiento
             vFactu.ForPago = RSmto!Codforpa
-            vFactu.TipForPago = DevuelveDesdeBDNew(cAgro, "sforpa", "tipforpa", "codforpa", RSmto!Codforpa, "N")
+            vFactu.TipForPago = DevuelveDesdeBDNew(cAgro, "forpago", "tipforpa", "codforpa", RSmto!Codforpa, "N")
 
             vFactu.DtoGnral = 0
             vFactu.DtoPPago = 0
             vFactu.Banco = DBLet(vClien.Banco, "N")
             vFactu.Sucursal = DBLet(vClien.Sucursal, "N")
-            vFactu.Digcontrol = DBLet(vClien.Digcontrol, "T")
+            vFactu.DigControl = DBLet(vClien.DigControl, "T")
             vFactu.CuentaBan = DBLet(vClien.CuentaBan, "T")
 
             vFactu.Observacion = DBLet(RSmto!concefac, "T")
@@ -561,7 +561,7 @@ EElimVen:
 End Function
 
 
-Public Function TraspasoAlbaranesFacturas(cadSQL As String, cadWHERE As String, FechaFact As String, banPr As String, ByRef PBar1 As ProgressBar, ByRef LblBar As label, ImprimeLasFacturasGeneradas As Boolean, ByRef vTipoM As String, TextosCSB As String) As Boolean
+Public Function TraspasoAlbaranesFacturas(cadSQL As String, cadWhere As String, FechaFact As String, banPr As String, ByRef PBar1 As ProgressBar, ByRef LblBar As label, ImprimeLasFacturasGeneradas As Boolean, ByRef vTipoM As String, TextosCSB As String) As Boolean
 'IN -> cadSQL: cadena para seleccion de los Albaranes que vamos a Facturar
 '      FechaFact: Fecha de la Factura
 '      BanPr: Cod. de Banco Propio
@@ -612,7 +612,7 @@ Dim PgbVisible As Boolean
     'Bloqueamos todos los albaranes que vamos a facturar (cabeceras y lineas)
     'Nota: esta bloqueando tambien los registros de la tabla clientes: sclien correspondientes
     Sql = " (scaalb INNER JOIN clientes ON scaalb.codclien=clientes.codclien ) INNER JOIN slialb ON scaalb.numalbar=slialb.numalbar "
-    If Not BloqueaRegistro(Sql, cadWHERE) Then
+    If Not BloqueaRegistro(Sql, cadWhere) Then
         Screen.MousePointer = vbDefault
         'comprobamos que no haya nadie facturando
         DesBloqueoManual ("VENFAC")
@@ -706,18 +706,18 @@ Dim PgbVisible As Boolean
             End If
             'Generar una Factura nueva
             vFactuVta.Cliente = RsAlb!CodClien
-            vFactuVta.NombreClien = RsAlb!nomclien
+            vFactuVta.NombreClien = RsAlb!Nomclien
             vFactuVta.DomicilioClien = DBLet(RsAlb!domclien, "T")
-            vFactuVta.CPostal = DBLet(RsAlb!codPobla, "T")
+            vFactuVta.CPostal = DBLet(RsAlb!codpobla, "T")
             vFactuVta.Poblacion = DBLet(RsAlb!pobclien, "T")
             vFactuVta.Provincia = DBLet(RsAlb!proclien, "T")
             vFactuVta.NIF = DBLet(RsAlb!cifclien, "T")
             vFactuVta.Telefono = DBLet(RsAlb!telclie1, "T")
             vFactuVta.ForPago = RsAlb!Codforpa
             vFactuVta.TipForPago = DevuelveDesdeBDNew(cAgro, "forpago", "tipoforp", "codforpa", RsAlb!Codforpa, "N")
-            cadW = "  scaalb.numalbar IN (" & RsAlb!numalbar
+            cadW = "  scaalb.numalbar IN (" & RsAlb!NumAlbar
         Else
-            cadW = cadW & ", " & RsAlb!numalbar
+            cadW = cadW & ", " & RsAlb!NumAlbar
         End If
     
         'Guardamos datos del registro anterior
@@ -750,7 +750,7 @@ Dim PgbVisible As Boolean
         espera 0.2
     End If
     
-    TipoFac = vFactuVta.CodTipoM
+    TipoFac = vFactuVta.codTipoM
     Set vFactuVta = Nothing
     TraspasoAlbaranesFacturas = True
     

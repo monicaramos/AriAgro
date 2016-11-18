@@ -525,7 +525,7 @@ Dim Sql As String
     Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
 
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     If Rs.EOF Then
         LeerDatos = False
@@ -590,7 +590,7 @@ Dim cadValuesAux As String 'para insertar en svenci
 Dim CadValues2 As String, CadValuesAux2 As String 'para insertar en conta.scobro
 Dim FecVenci As Date, FecVenci1 As Date
 Dim ImpVenci As Single
-Dim i As Byte
+Dim I As Byte
 
     On Error GoTo EInsertarTesoreria
 
@@ -601,7 +601,7 @@ Dim i As Byte
     'Obtener el Nº de Vencimientos de la forma de pago
     Sql = "SELECT numerove, primerve, restoven FROM forpago WHERE codforpa=" & ForPago
     Set rsVenci = New ADODB.Recordset
-    rsVenci.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    rsVenci.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not rsVenci.EOF Then
         If rsVenci!numerove > 0 Then
@@ -610,7 +610,7 @@ Dim i As Byte
             Sql = Sql & " FROM sparam "
             Sql = Sql & " WHERE codparam=1"
             Set Rs = New ADODB.Recordset
-            Rs.Open Sql, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
             If Not Rs.EOF Then
                'vamos creando la cadena para insertar en spagosp de la CONTA
@@ -618,7 +618,7 @@ Dim i As Byte
               
               'Primer Vencimiento
               '------------------------------------------------------------
-              i = 1
+              I = 1
               'FECHA VTO
               FecVenci = CDate(FecFactu)
               '=== Modificado: Laura 23/01/2007
@@ -634,7 +634,7 @@ Dim i As Byte
                   FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
               End If
              
-              CadValues2 = CadValuesAux2 & i
+              CadValues2 = CadValuesAux2 & I
               CadValues2 = CadValues2 & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
                 
               'IMPORTE del Vencimiento
@@ -671,7 +671,7 @@ Dim i As Byte
 
               'Resto Vencimientos
               '--------------------------------------------------------------------
-              For i = 2 To rsVenci!numerove
+              For I = 2 To rsVenci!numerove
                  'FECHA Resto Vencimientos
                   '==== Modificado: Laura 23/01/2007
                   'FecVenci = FecVenci + DBSet(rsVenci!restoven, "N")
@@ -686,7 +686,7 @@ Dim i As Byte
                         FecVenci1 = ComprobarMesNoGira(FecVenci1, DBSet(Rs!mesnogir, "N"), DBSet(0, "N"), Rs!DiaPago1, Rs!DiaPago2, Rs!DiaPago3)
                   End If
 
-                  CadValues2 = CadValues2 & ", " & CadValuesAux2 & i & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
+                  CadValues2 = CadValues2 & ", " & CadValuesAux2 & I & ", " & ForPago & ", '" & Format(FecVenci1, FormatoFecha) & "', "
 
                   'IMPORTE Resto de Vendimientos
                   ImpVenci = Round(TotalFac / rsVenci!numerove, 2)
@@ -706,7 +706,7 @@ Dim i As Byte
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
                   Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
                   CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "')"
-              Next i
+              Next I
             End If
         End If
         Rs.Close
@@ -722,29 +722,42 @@ Dim i As Byte
         'forma de pago de la factura. Sino existe insertarla
 
         'vemos si existe en la conta
-        CadValuesAux2 = DevuelveDesdeBDNew(cConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        If vParamAplic.ContabilidadNueva Then
+            CadValuesAux2 = DevuelveDesdeBDNew(cConta, "formapago", "codforpa", "codforpa", ForPago, "N")
+        Else
+            CadValuesAux2 = DevuelveDesdeBDNew(cConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        End If
         'si no existe la forma de pago en conta, insertamos la de ariges
         If CadValuesAux2 = "" Then
             cadValuesAux = "tipoforp"
-            CadValuesAux2 = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
-            'insertamos e sforpa de la CONTA
-            Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
-            Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            If vParamAplic.ContabilidadNueva Then
+                CadValuesAux2 = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
+                'insertamos e sforpa de la CONTA
+                Sql = "INSERT INTO formapago(codforpa,nomforpa,tipforpa)"
+                Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            Else
+                CadValuesAux2 = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
+                'insertamos e sforpa de la CONTA
+                Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+                Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            End If
             ConnConta.Execute Sql
         End If
 
         'Insertamos en la tabla spagop de la CONTA
         'SQL = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1) "
         'David. Cuenta bancaria y descripcion textos
-        Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba," 'text1csb,text2csb) "
-        '[Monica]22/11/2013:Tema iban
-        If vEmpresa.HayNorma19_34Nueva = 1 Then
-            Sql = Sql & "iban,text1csb,text2csb) "
-        Else
-            Sql = Sql & "text1csb,text2csb) "
+        If Not vParamAplic.ContabilidadNueva Then
+            Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba," 'text1csb,text2csb) "
+            '[Monica]22/11/2013:Tema iban
+            If vEmpresa.HayNorma19_34Nueva = 1 Then
+                Sql = Sql & "iban,text1csb,text2csb) "
+            Else
+                Sql = Sql & "text1csb,text2csb) "
+            End If
+            Sql = Sql & " VALUES " & CadValues2
+            ConnConta.Execute Sql
         End If
-        Sql = Sql & " VALUES " & CadValues2
-        ConnConta.Execute Sql
     End If
 
     b = True
@@ -768,7 +781,7 @@ Dim MenError As String
     On Error GoTo ETraspasoAlbFac
     TraspasoAlbaranesAFactura = False
     
-    Conn.BeginTrans
+    conn.BeginTrans
     If vParamAplic.NumeroConta <> 0 Then ConnConta.BeginTrans
     
     
@@ -806,12 +819,12 @@ Dim MenError As String
     End If
 
      If b Then
-        Conn.CommitTrans
+        conn.CommitTrans
         If vParamAplic.NumeroConta <> 0 Then ConnConta.CommitTrans
         TraspasoAlbaranesAFactura = True
         MsgBox "La Factura de los Albaranes seleccionados se generó correctamente.", vbInformation
     Else
-        Conn.RollbackTrans
+        conn.RollbackTrans
         If vParamAplic.NumeroConta <> 0 Then ConnConta.RollbackTrans
         TraspasoAlbaranesAFactura = False
         MsgBox "ATENCIÓN:" & vbCrLf & "La Factura NO se generó correctamente!!!." & vbCrLf & MenError, vbInformation
@@ -823,7 +836,7 @@ Dim MenError As String
 ETraspasoAlbFac:
     If Err.Number <> 0 Then
 '        b = False
-        Conn.RollbackTrans
+        conn.RollbackTrans
         If vParamAplic.NumeroConta <> 0 Then ConnConta.RollbackTrans
         TraspasoAlbaranesAFactura = False
         MuestraError Err.Number, "Pasando Albaranes a Factura.(Recepción)", Err.Description
@@ -920,7 +933,7 @@ Dim Nulo3 As String
     Sql = Sql & DBSet(TotalFac, "N", "N") & ",0,"
     Sql = Sql & DBSet(mConcepto, "T", "S") & ")"
     
-    Conn.Execute Sql
+    conn.Execute Sql
     Set vProve = Nothing
     InsertarCabeceraFactu = True
 
@@ -945,7 +958,7 @@ Dim Sql As String
     Sql = "INSERT INTO scafpa (codprove,numfactu,fecfactu,numalbar,fechaalb,numpedpr,fecpedpr,observa1,observa2,observa3,observa4,observa5) "
     Sql = Sql & " SELECT " & Proveedor & " as codprove," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " numalbar,fechaalb,numpedpr,fecpedpr,observa1,observa2,observa3,observa4,observa5 "
     Sql = Sql & " FROM scaalp WHERE " & cadSQL
-    Conn.Execute Sql
+    conn.Execute Sql
 
     InsertarCabAlbaranesFactu = True
     
@@ -968,7 +981,7 @@ Dim Sql As String
     Sql = "INSERT INTO slifpc (codprove,numfactu,fecfactu,numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel) "
     Sql = Sql & " SELECT " & Proveedor & " as codprove," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " numalbar,numlinea,codalmac,codartic,nomartic,ampliaci,cantidad,precioar,dtoline1,dtoline2,importel "
     Sql = Sql & " FROM slialp WHERE " & Replace(cadSQL, "scaalp", "slialp")
-    Conn.Execute Sql
+    conn.Execute Sql
 
     InsertarLineasFactu = True
     
@@ -993,12 +1006,12 @@ Dim Sql As String
     'ELiminar lineas
     Sql = "DELETE FROM slialp "
     Sql = Sql & " WHERE " & Replace(cadSQL, "scaalp", "slialp")
-    Conn.Execute Sql
+    conn.Execute Sql
     
     'Eliminar Cabeceras Albaranes
     Sql = "DELETE FROM scaalp "
     Sql = Sql & " WHERE " & cadSQL
-    Conn.Execute Sql
+    conn.Execute Sql
         
     EliminarAlbaranes = True
     Exit Function
@@ -1010,12 +1023,12 @@ End Function
 
 
 
-Public Function CalcularDatosFactura(cadWHERE As String, NomTabla As String, NomTablaLin As String) As Boolean
+Public Function CalcularDatosFactura(cadWhere As String, NomTabla As String, NomTablaLin As String) As Boolean
 'cadWhere: cad para la where de la SQL que selecciona las lineas del albaran o la factura
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
 Dim Rs As ADODB.Recordset
-Dim i As Integer
+Dim I As Integer
 
 Dim Sql As String
 Dim cadAux As String
@@ -1032,18 +1045,18 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
     On Error GoTo ECalcular
 
    
-    cadWHERE = Replace(cadWHERE, NomTabla, NomTablaLin)
+    cadWhere = Replace(cadWhere, NomTabla, NomTablaLin)
     Sql = "SELECT " & "sartic.codigiva,sum(importel) as bruto"
     Sql = Sql & " FROM " & NomTablaLin & " LEFT OUTER JOIN sartic ON " & NomTablaLin & ".codartic=sartic.codartic"
-    Sql = Sql & " WHERE " & cadWHERE
+    Sql = Sql & " WHERE " & cadWhere
     Sql = Sql & " GROUP BY codigiva "
     Sql = Sql & " ORDER BY codigiva "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     TotBruto = 0
-    i = 1
+    I = 1
     While Not Rs.EOF
         'Aqui vamos acumulando la suma del importe bruto de las lineas
         TotBruto = TotBruto + Rs!Bruto
@@ -1089,7 +1102,7 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
         TotImpIVA = TotImpIVA + ImpIVA
         
         
-        Select Case i
+        Select Case I
             Case 1  'IVA 1
                 TipoIVA1 = Rs!Codigiva
                 
@@ -1120,7 +1133,7 @@ Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
                 'Importe total con IVA
                 ImpIVA3 = ImpIVA
         End Select
-        i = i + 1
+        I = I + 1
         Rs.MoveNext
     Wend
     
@@ -1177,7 +1190,7 @@ Dim Sql As String
     
     Sql = "UPDATE scafpc SET intconta=1 "
     Sql = Sql & " WHERE codprove=" & Me.Proveedor & " AND numfactu=" & DBSet(Me.NumFactu, "T") & " AND fecfactu=" & DBSet(Me.FecFactu, "F")
-    Conn.Execute Sql
+    conn.Execute Sql
     
     MarcarContabilizada = True
     Exit Function

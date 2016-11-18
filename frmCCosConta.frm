@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCCosConta 
@@ -368,7 +368,7 @@ Public NumDigit As Byte
 
 
 Private CadenaConsulta As String
-Private CadB As String
+Private cadB As String
 
 Dim Modo As Byte
 '----------- MODOS ----------------------------
@@ -457,8 +457,8 @@ End Sub
 
 
 Private Sub BotonVerTodos()
-    CadB = ""
-    CargaGrid CadB
+    cadB = ""
+    CargaGrid cadB
     PonerModo 2
 End Sub
 
@@ -487,10 +487,10 @@ End Sub
 Private Sub cmdAceptar_Click()
     Select Case Modo
         Case 1  'BUSQUEDA
-            CadB = ObtenerBusqueda(Me)
-            If CadB <> "" Then
+            cadB = ObtenerBusqueda(Me)
+            If cadB <> "" Then
                 PonerModo 2
-                CargaGrid CadB
+                CargaGrid cadB
                 PonerFocoGrid Me.DataGrid1
             End If
     End Select
@@ -502,8 +502,8 @@ Private Sub cmdCancelar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            If CadB <> "" Then
-                CargaGrid CadB
+            If cadB <> "" Then
+                CargaGrid cadB
             Else
                 CargaGrid
 '                lblIndicador.Caption = ""
@@ -517,7 +517,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 Dim cad As String
-Dim i As Integer
+Dim I As Integer
 Dim j As Integer
 Dim Aux As String
 
@@ -526,16 +526,16 @@ Dim Aux As String
         Exit Sub
     End If
     cad = ""
-    i = 0
+    I = 0
     Do
-        j = i + 1
-        i = InStr(j, DatosADevolverBusqueda, "|")
-        If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, j, i - j)
+        j = I + 1
+        I = InStr(j, DatosADevolverBusqueda, "|")
+        If I > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, j, I - j)
             j = Val(Aux)
             cad = cad & adodc1.Recordset.Fields(j) & "|"
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -596,11 +596,15 @@ Private Sub Form_Load()
       
 '    PonerOpcionesMenu  'En funcion del usuario
     '****************** canviar la consulta *********************************+
-    CadenaConsulta = "Select codccost, nomccost from cabccost "
+    If vParamAplic.ContabilidadNueva Then
+        CadenaConsulta = "Select codccost, nomccost from ccoste "
+    Else
+        CadenaConsulta = "Select codccost, nomccost from cabccost "
+    End If
     '************************************************************************
     
-    CadB = ""
-    CargaGrid CadB
+    cadB = ""
+    CargaGrid cadB
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -642,19 +646,19 @@ End Sub
 
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim sql As String, tots As String
+    Dim Sql As String, tots As String
     
     adodc1.ConnectionString = ConnConta 'BD de la Contabilidad
     If vSQL <> "" Then
-        sql = CadenaConsulta & " WHERE " & vSQL
+        Sql = CadenaConsulta & " WHERE " & vSQL
     Else
-        sql = CadenaConsulta
+        Sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    sql = sql & " ORDER BY codccost"
+    Sql = Sql & " ORDER BY codccost"
     '**************************************************************++
     
-    adodc1.RecordSource = sql
+    adodc1.RecordSource = Sql
     adodc1.CursorType = adOpenDynamic
     adodc1.LockType = adLockOptimistic
     adodc1.Refresh
@@ -709,7 +713,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If CadB = "" Then
+        If cadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg

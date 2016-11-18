@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmVerErrores 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Errores en Albaranes"
@@ -135,9 +135,9 @@ Dim ItmX As ListItem
 
     
     Sql = "SELECT numalbar,fecalbar,nomsocio "
-    Sql = Sql & " FROM scaalb, ssocio, sforpa "
-    Sql = Sql & " WHERE scaalb.codsocio = ssocio.codsocio AND scaalb.codforpa = sforpa.codforpa"
-    Sql = Sql & " AND scaalb.codsocio = 0 AND sforpa.tipforpa = 4"
+    Sql = Sql & " FROM scaalb, ssocio, forpago "
+    Sql = Sql & " WHERE scaalb.codsocio = ssocio.codsocio AND scaalb.codforpa = forpago.codforpa"
+    Sql = Sql & " AND scaalb.codsocio = 0 AND forpago.tipforpa = 4"
     Sql = Sql & " ORDER BY numalbar "
     
     

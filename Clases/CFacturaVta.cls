@@ -105,7 +105,7 @@ Dim TotalKm As Integer
 Dim PrecioKm As Currency
 Dim ImporteL As Currency
 Dim Ampliacion As String  'ampliacion de la linea: "Dia,Dia,Dia..." de los albaranes con desplazamiento
-Dim codArtic As String
+Dim CodArtic As String
 Dim despIVA As Integer 'tipo de IVA del articulo para desplazamientos
 '------------------------------------------------------------------
 
@@ -695,7 +695,7 @@ Dim Sql As String
         mFecFactu = CStr(Rs!FecFactu)
         mCodClien = CStr(Rs!CodClien)
         ForPago = CStr(Rs!Codforpa)
-        TipForPago = DevuelveDesdeBDNew(cAgro, "sforpa", "tipforpa", "codforpa", ForPago, "N")
+        TipForPago = DevuelveDesdeBDNew(cAgro, "forpago", "tipforpa", "codforpa", ForPago, "N")
         mCodbanco = CStr(DBLet(Rs!codbanco, "N"))
         mCodsucur = CStr(DBLet(Rs!codsucur, "N"))
         mDigContr = DBLet(Rs!digcontr, "T")
@@ -785,7 +785,7 @@ Dim I As Byte
     textcsb33 = "'FACTURA: " & LetraSerie & "-" & Format(NumFactu, "0000000") & " de Fecha " & Format(FecFactu, "dd,mm,yyyy") & "'"
 
     'Obtener el Nº de Vencimientos de la forma de pago
-    Sql = "SELECT numerove, primerve, restoven FROM sforpa WHERE codforpa=" & ForPago
+    Sql = "SELECT numerove, primerve, restoven FROM forpago WHERE codforpa=" & ForPago
     Set rsVenci = New ADODB.Recordset
     rsVenci.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
@@ -1232,7 +1232,7 @@ Dim TotalFac As Currency
 
 Dim IvaAnt As Integer
 
-Dim cadWHERE As String
+Dim cadWhere As String
 Dim cadWhere1 As String
     
 Dim Nulo2 As String
@@ -1274,15 +1274,15 @@ Dim Nulo3 As String
     TotalFac = 0
 
     'Agrupar el importe bruto por tipos de iva
-    cadWHERE = "facturas.codtipom = " & DBSet(codTipoM, "T") & " and facturas.numfactu = " & DBSet(NumFactu, "N") & " and facturas.fecfactu = " & DBSet(FecFactu, "F")
-    cadWhere1 = Replace(cadWHERE, "facturas", "facturas_variedad")
+    cadWhere = "facturas.codtipom = " & DBSet(codTipoM, "T") & " and facturas.numfactu = " & DBSet(NumFactu, "N") & " and facturas.fecfactu = " & DBSet(FecFactu, "F")
+    cadWhere1 = Replace(cadWhere, "facturas", "facturas_variedad")
     
     Sql = "SELECT facturas_variedad.codigiva, sum(imporbru) as bruto, sum(impornet) as neto"
     Sql = Sql & " FROM facturas_variedad "
     Sql = Sql & " WHERE " & cadWhere1
     Sql = Sql & " GROUP BY 1 "
     Sql = Sql & " UNION "
-    cadWhere1 = Replace(cadWHERE, "facturas", "facturas_envases")
+    cadWhere1 = Replace(cadWhere, "facturas", "facturas_envases")
     Sql = Sql & "SELECT facturas_envases.codigiva, sum(importel) as bruto, sum(importel) as neto"
     Sql = Sql & " FROM facturas_envases "
     Sql = Sql & " WHERE " & cadWhere1
@@ -1290,7 +1290,7 @@ Dim Nulo3 As String
 '[Monica]25/10/2011: añadido que descuente las facturas a cuenta
 '    sql = sql & " ORDER BY 1 "
     Sql = Sql & " UNION "
-    cadWhere1 = Replace(cadWHERE, "facturas", "facturas_acuenta")
+    cadWhere1 = Replace(cadWhere, "facturas", "facturas_acuenta")
     Sql = Sql & "SELECT facturas.codiiva1 as codigiva, sum(brutofac * (-1)) as bruto, sum(brutofac * (-1)) as neto"
     Sql = Sql & " FROM facturas_acuenta, facturas "
     Sql = Sql & " WHERE " & cadWhere1
@@ -1526,7 +1526,7 @@ Dim Nulo3 As String
     Sql = Sql & ",brutofac = " & DBSet(TotBruto, "N")
     Sql = Sql & ",impordto = " & DBSet(Round2(TotBruto - TotNeto, 2), "N")
     Sql = Sql & ",totalfac = " & DBSet(TotalFac, "N")
-    Sql = Sql & " where " & cadWHERE
+    Sql = Sql & " where " & cadWhere
     
     conn.Execute Sql
 
@@ -2038,7 +2038,7 @@ Dim Sql As String
     'si no existe la forma de pago en conta, insertamos la de ariges
     If cadAux = "" Then
         cadAux2 = "tipforpa"
-        cadAux = DevuelveDesdeBDNew(cAgro, "sforpa", "nomforpa", "codforpa", nForPa, "N", cadAux2)
+        cadAux = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", nForPa, "N", cadAux2)
         If cadAux <> "" Then
             'insertamos e sforpa de la CONTA
             If vParamAplic.ContabilidadNueva Then
@@ -2135,7 +2135,7 @@ Dim Rdc As Long
         Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
         Sql2 = Sql2 & " and numfactu = " & DBSet(NumFactu, "N")
         Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-        Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+        Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
     
         conn.Execute Sql2
     
@@ -2826,7 +2826,7 @@ Dim TotalFac As Currency
 
 Dim IvaAnt As Integer
 
-Dim cadWHERE As String
+Dim cadWhere As String
 Dim cadWhere1 As String
     
 Dim Nulo2 As String
@@ -2868,15 +2868,15 @@ Dim Nulo3 As String
     TotalFac = 0
 
     'Agrupar el importe bruto por tipos de iva
-    cadWHERE = "facturassocio.codtipom = " & DBSet(codTipoM, "T") & " and facturassocio.numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
-    cadWhere1 = Replace(cadWHERE, "facturassocio", "facturassocio_variedad")
+    cadWhere = "facturassocio.codtipom = " & DBSet(codTipoM, "T") & " and facturassocio.numfactu = " & DBSet(NumFactu, "N") & " and fecfactu = " & DBSet(FecFactu, "F")
+    cadWhere1 = Replace(cadWhere, "facturassocio", "facturassocio_variedad")
     
     Sql = "SELECT facturassocio_variedad.codigiva, sum(imporbru) as bruto, sum(impornet) as neto"
     Sql = Sql & " FROM facturassocio_variedad "
     Sql = Sql & " WHERE " & cadWhere1
     Sql = Sql & " GROUP BY 1 "
     Sql = Sql & " UNION "
-    cadWhere1 = Replace(cadWHERE, "facturassocio", "facturassocio_envases")
+    cadWhere1 = Replace(cadWhere, "facturassocio", "facturassocio_envases")
     Sql = Sql & "SELECT facturassocio_envases.codigiva, sum(importel) as bruto, sum(importel) as neto"
     Sql = Sql & " FROM facturassocio_envases "
     Sql = Sql & " WHERE " & cadWhere1
@@ -3103,7 +3103,7 @@ Dim Nulo3 As String
     Sql = Sql & ",brutofac = " & DBSet(TotBruto, "N")
     Sql = Sql & ",impordto = " & DBSet(Round2(TotBruto - TotNeto, 2), "N")
     Sql = Sql & ",totalfac = " & DBSet(TotalFac, "N")
-    Sql = Sql & " where " & cadWHERE
+    Sql = Sql & " where " & cadWhere
     
     conn.Execute Sql
 
@@ -3178,7 +3178,7 @@ Dim Rdc As Long
         Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
         Sql2 = Sql2 & " and numfactu = " & DBSet(NumFactu, "N")
         Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
-        Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+        Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
     
         conn.Execute Sql2
     
@@ -3201,7 +3201,7 @@ End Function
 '[Monica]25/10/2011: Añadido
 Private Function DescontarFacturasACuenta(TipoM As String, Factu As String, fecFac As String, Cliente As String) As Boolean
 Dim Sql As String
-Dim cadWHERE As String
+Dim cadWhere As String
 
 
     On Error GoTo eDescontarFacturasACuenta
@@ -3210,18 +3210,18 @@ Dim cadWHERE As String
 
 
     Sql = "select codtipom, numfactu, fecfactu, totalfac from facturas "
-    cadWHERE = "where codtipom = 'EAC' and codclien = " & DBSet(Cliente, "N")
-    cadWHERE = cadWHERE & " and (codtipom, numfactu, fecfactu) not in (select codtipomcta, numfactucta, fecfactucta from facturas_acuenta) "
+    cadWhere = "where codtipom = 'EAC' and codclien = " & DBSet(Cliente, "N")
+    cadWhere = cadWhere & " and (codtipom, numfactu, fecfactu) not in (select codtipomcta, numfactucta, fecfactucta from facturas_acuenta) "
 '    cadWHERE = cadWHERE & " where codclien = " & DBSet(Cliente, "N") & " and codtipom = 'EAC')"
     
-    Sql = Sql & cadWHERE
+    Sql = Sql & cadWhere
     
     If TotalRegistrosConsulta(Sql) <> 0 Then
         
         Set frmMens = New frmMensajes
         
         frmMens.OpcionMensaje = 22
-        frmMens.cadWHERE = cadWHERE
+        frmMens.cadWhere = cadWhere
         
         frmMens.Show vbModal
         
@@ -3288,7 +3288,7 @@ Dim Mens As String
     While Not Rs.EOF And b
     
         Mens = "Insertar Calibres"
-        If b Then b = InsertarModificarCalibres(True, codTipoM, NumFactu, FecFactu, CStr(DBLet(Rs!numlinea, "N")), CStr(DBLet(Rs!NumAlbar, "N")), CStr(DBLet(Rs!numlinealbar, "N")), CStr(DBLet(Rs!cantreal, "N")), CStr(DBLet(Rs!Unidades, "N")), CStr(DBLet(Rs!imporbru, "N")), CStr(DBLet(Rs!impornet, "N")), Mens)
+        If b Then b = InsertarModificarCalibres(True, codTipoM, NumFactu, FecFactu, CStr(DBLet(Rs!NumLinea, "N")), CStr(DBLet(Rs!NumAlbar, "N")), CStr(DBLet(Rs!numlinealbar, "N")), CStr(DBLet(Rs!cantreal, "N")), CStr(DBLet(Rs!Unidades, "N")), CStr(DBLet(Rs!imporbru, "N")), CStr(DBLet(Rs!impornet, "N")), Mens)
 
         NumF = NumF + 1
         

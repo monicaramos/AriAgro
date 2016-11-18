@@ -680,7 +680,7 @@ Dim Sql As String
         mFecFactu = CStr(Rs!FecFactu)
         mCodClien = CStr(Rs!CodClien)
         ForPago = CStr(Rs!Codforpa)
-        TipForPago = DevuelveDesdeBDNew(cAgro, "sforpa", "tipforpa", "codforpa", ForPago, "N")
+        TipForPago = DevuelveDesdeBDNew(cAgro, "forpago", "tipforpa", "codforpa", ForPago, "N")
         mCodbanco = CStr(DBLet(Rs!codbanco, "N"))
         mCodsucur = CStr(DBLet(Rs!codsucur, "N"))
         mDigContr = DBLet(Rs!digcontr, "T")
@@ -771,7 +771,7 @@ Dim vvIban As String
     textcsb33 = "'FACTURA: " & LetraSerie & "-" & Format(NumFactu, "0000000") & " de Fecha " & Format(FecFactu, "dd,mm,yyyy") & "'"
 
     'Obtener el Nº de Vencimientos de la forma de pago
-    Sql = "SELECT numerove, primerve, restoven FROM sforpa WHERE codforpa=" & ForPago
+    Sql = "SELECT numerove, primerve, restoven FROM forpago WHERE codforpa=" & ForPago
     Set rsVenci = New ADODB.Recordset
     rsVenci.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
@@ -2642,7 +2642,7 @@ Dim Sql As String
     'si no existe la forma de pago en conta, insertamos la de ariges
     If cadAux = "" Then
         cadAux2 = "tipforpa"
-        cadAux = DevuelveDesdeBDNew(cAgro, "sforpa", "nomforpa", "codforpa", nForPa, "N", cadAux2)
+        cadAux = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", nForPa, "N", cadAux2)
         If cadAux <> "" Then
             'insertamos e sforpa de la CONTA
             If vParamAplic.ContabilidadNueva Then

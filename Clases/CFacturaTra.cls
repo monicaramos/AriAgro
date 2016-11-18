@@ -777,14 +777,24 @@ Dim I As Byte
         'forma de pago de la factura. Sino existe insertarla
 
         'vemos si existe en la conta
-        CadValuesAux2 = DevuelveDesdeBDNew(cConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        If vParamAplic.ContabilidadNueva Then
+            CadValuesAux2 = DevuelveDesdeBDNew(cConta, "formapago", "codforpa", "codforpa", ForPago, "N")
+        Else
+            CadValuesAux2 = DevuelveDesdeBDNew(cConta, "sforpa", "codforpa", "codforpa", ForPago, "N")
+        End If
         'si no existe la forma de pago en conta, insertamos la de ariges
         If CadValuesAux2 = "" Then
             cadValuesAux = "tipoforp"
             CadValuesAux2 = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", ForPago, "N", cadValuesAux)
-            'insertamos e sforpa de la CONTA
-            Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
-            Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            If vParamAplic.ContabilidadNueva Then
+                'insertamos e sforpa de la CONTA
+                Sql = "INSERT INTO formapago(codforpa,nomforpa,tipforpa)"
+                Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            Else
+                'insertamos e sforpa de la CONTA
+                Sql = "INSERT INTO sforpa(codforpa,nomforpa,tipforpa)"
+                Sql = Sql & " VALUES(" & ForPago & ", " & DBSet(CadValuesAux2, "T") & ", " & cadValuesAux & ")"
+            End If
             ConnConta.Execute Sql
         End If
 

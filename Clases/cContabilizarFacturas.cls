@@ -112,13 +112,24 @@ Public Property Get RealizarContabilizacion() As Boolean
      RealizarContabilizacion = mvarRealizarContabilizacion
 End Property
 
+Public Property Let NumeroFactura(ByVal vData As Long)
+     mvarNumeroFactura = vData
+End Property
+
 Public Property Get NumeroFactura() As Long
      NumeroFactura = mvarNumeroFactura
 End Property
 
+Public Property Let Anofac(ByVal vData As Integer)
+     mvarAnofac = vData
+End Property
 
 Public Property Get Anofac() As Integer
      Anofac = mvarAnofac
+End Property
+
+Public Property Let Serie(ByVal vData As String)
+      mvarSerie = vData
 End Property
 
 
@@ -338,7 +349,7 @@ Dim Cliente As String
     Sql = Sql & ") VALUES ("
     Sql = Sql & DiarioFacturas & ",'" & Format(FechaAsi, FormatoFecha) & "'," & NumAsiento
     Sql = Sql & "," & DBSet(Observaciones, "T", "S")
-    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vSesion.Login, "T") & ",'Arigasol'"
+    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'Ariagro'"
     miConexion.Execute Sql & ")"
     
     'Lineas fijas, es decir la linea de cliente, importes y tal y tal
@@ -771,7 +782,7 @@ Dim Importe As Currency
     Sql = Sql & DiarioFacturas & ",'" & Format(FechaAsi, FormatoFecha) & "'," & NumAsiento
     cad = Observaciones & vbCrLf & "Factura interna: " & Format(RCab!NumFactu, "00000") & " - " & RCab!FecFactu
     Sql = Sql & "," & DBSet(cad, "T", "S")
-    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vSesion.Login, "T") & ",'ARIAGRO'"
+    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'ARIAGRO'"
     miConexion.Execute Sql & ")"
     cad = ""
     'Lineas fijas, es decir la linea de cliente, importes y tal y tal
@@ -1043,7 +1054,7 @@ Dim NoSumaIVA As Boolean
     Sql = Sql & ") VALUES ("
     Sql = Sql & DiarioFacturas & ",'" & Format(FechaAsi, FormatoFecha) & "'," & NumAsiento
     Sql = Sql & "," & DBSet(Observaciones, "T", "S")
-    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vSesion.Login, "T") & ",'ARIAGRO'"
+    If vParamAplic.ContabilidadNueva Then Sql = Sql & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'ARIAGRO'"
     Sql = Sql & ")"
     miConexion.Execute Sql
     
@@ -1816,7 +1827,11 @@ Private Function CalcularLineasYSaldosFacturas(Integrar As Boolean) As String
     '       ANALITICA
     Sql = "SELECT hlinapu.timporteD AS SD, hlinapu.timporteH AS SH, hlinapu.codmacta,"
     Sql = Sql & " hlinapu.fechaent, hlinapu.numdiari, hlinapu.numasien, hlinapu.codccost,idsubcos"
-    Sql = Sql & " From hlinapu,cabccost WHERE cabccost.codccost=hlinapu.codccost"
+    If vParamAplic.ContabilidadNueva Then
+        Sql = Sql & " From hlinapu,ccoste WHERE ccoste.codccost=hlinapu.codccost"
+    Else
+        Sql = Sql & " From hlinapu,cabccost WHERE cabccost.codccost=hlinapu.codccost"
+    End If
     Sql = Sql & " AND hlinapu.numdiari =" & DiarioFacturas
     Sql = Sql & " AND hlinapu.fechaent='" & FechaAsi & "'"
     Sql = Sql & " AND hlinapu.numasien=" & NumAsiento
@@ -2227,98 +2242,5 @@ Dim EjercicioActual As Boolean
 EPreComprobacionNumeroAsiento:
     MsgBox "Precomprobar ARICONTA." & vbCrLf & Err.Description, vbExclamation
 End Function
-
-
-
-'-------------------------------------------------------------------------------------
-'-------------------------------------------------------------------------------------
-'
-'   Eliminar factura cliente en contabilidad
-'
-'-------------------------------------------------------------------------------------
-'-------------------------------------------------------------------------------------
-Public Function EliminarFRACLIcontab(EliminaElCobro As Boolean, FechaFac As Date) As Boolean
-Dim RF As ADODB.Recordset
-Dim Sql As String
-Dim Existe As Boolean
-
-    On Error GoTo EEliminarFRACLIcontab
-    EliminarFRACLIcontab = False
-    
-    
-    
-  
-    
-
-    
-    'cobros
-    If EliminaElCobro Then
-        Sql = " numserie='" & Serie & "' AND codfaccl=" & NumeroFactura
-        Sql = Sql & " AND fecfaccl='" & Format(FechaFac, FormatoFecha) & "'"
-        miConexion.Execute "Delete from scobro WHERE " & Sql
-    End If
-    
-    Set RF = New ADODB.Recordset
-    Sql = "SELECT numasien,fechaent,numdiari,codfaccl FROM cabfact"
-    Sql = Sql & " WHERE numserie='" & Serie
-    Sql = Sql & "' AND codfaccl= " & NumeroFactura
-    Sql = Sql & " AND anofaccl= " & Anofac
-    RF.Open Sql, miConexion, adOpenForwardOnly, adLockPessimistic, adCmdText
-    DiarioFacturas = -1
-    Existe = False
-    If Not RF.EOF Then
-        Existe = True
-        If Not IsNull(RF!numdiari) Then
-            DiarioFacturas = RF!numdiari
-            FechaAsi = RF!FechaEnt
-            NumAsiento = RF!numasien
-        End If
-    End If
-    RF.Close
-    
-    If Existe Then
-    
-    
-        If DiarioFacturas > 0 Then
-            'OK. HAY que eliminar el apunte
-    
-            Sql = CalcularLineasYSaldosFacturas(False)
-            If Sql <> "" Then
-                MsgBox Sql, vbExclamation
-                Exit Function
-            End If
-            
-            Sql = " WHERE numdiari= " & DiarioFacturas
-            Sql = Sql & " AND fechaent='" & Format(FechaAsi, FormatoFecha) & "'"
-            Sql = Sql & " AND numasien=" & NumAsiento
-            
-            miConexion.Execute "DELETE FROM hlinapu " & Sql
-            miConexion.Execute "DELETE FROM hcabapu " & Sql
-        End If
-    
-    
-    
-    
-        Sql = " numserie='" & Serie & "' AND codfaccl=" & NumeroFactura
-        Sql = Sql & " AND anofaccl = " & Anofac
-
-        'Lineas
-        miConexion.Execute "Delete from linfact WHERE " & Sql
-
-        'cabecera
-        miConexion.Execute "Delete from cabfact WHERE " & Sql
-
-        
-    End If
-    
-    EliminarFRACLIcontab = True
-    Exit Function
-EEliminarFRACLIcontab:
-    MuestraError Err.Number, "Eliminar FRACLI contab"
-End Function
-
-
-
-
 
 
