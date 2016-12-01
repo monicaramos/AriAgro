@@ -187,12 +187,12 @@ On Error GoTo EComprobarLetra
 '            SQL = "letraser"
 '            devuelve = DevuelveDesdeBDNew(cAgro, "stipom", "codtipom", "codtipom", Rs!codTipoM, "T", SQL)
 '++monica:10/02/2009
-            Sql = ObtenerLetraSerie(Rs!codTipoM)
-            devuelve = DBLet(Rs!codTipoM, "T")
+            Sql = ObtenerLetraSerie(Rs!CodTipoM)
+            devuelve = DBLet(Rs!CodTipoM, "T")
 '++
             If devuelve = "" Then
                 b = False
-                cad = Rs!codTipoM & " en BD de Ariagro."
+                cad = Rs!CodTipoM & " en BD de Ariagro."
             ElseIf Sql <> "" Then
                 'comprobar que todas las letras serie existen en la contabilidad
                 devuelve = "tiporegi= " & DBSet(Sql, "T")
@@ -204,7 +204,7 @@ On Error GoTo EComprobarLetra
                     cad = Sql & " en BD de Contabilidad."
                 End If
             End If
-            If b Then cad = cad & DBSet(Rs!codTipoM, "T") & ","
+            If b Then cad = cad & DBSet(Rs!CodTipoM, "T") & ","
             Rs.MoveNext
         Wend
         Rs.Close
@@ -1684,7 +1684,7 @@ Dim numNivel As String
 Dim NumDigit As String
 Dim NumDigitAnt As String
 Dim NumDigit3 As String
-Dim tipo As Byte
+Dim Tipo As Byte
 Dim TipoFact As String
 
     On Error GoTo EInLinea
@@ -1934,8 +1934,8 @@ Dim TipoFact As String
 
             'FACTURAS DE TRANSPORTE O DE COMISION
             Sql = "select tipo from tcafpc where " & cadWhere
-            tipo = DevuelveValor(Sql) ' 0=transportista 1=comisionista
-            Select Case tipo
+            Tipo = DevuelveValor(Sql) ' 0=transportista 1=comisionista
+            Select Case Tipo
                 Case 0 ' Transportista
         '++monica: si tipomercado = 1(exportacion) cogemos  variedades.ctatraexporta
         '          si tipomercado <> 1 (distinto de exportacion) cogemos  variedades.ctatrainterior
@@ -2125,7 +2125,7 @@ Dim numNivel As String
 Dim NumDigit As String
 Dim NumDigitAnt As String
 Dim NumDigit3 As String
-Dim tipo As Byte
+Dim Tipo As Byte
 Dim TipoFact As String
 
 Dim NumeroIVA As Byte
@@ -2412,8 +2412,8 @@ Dim ImpREC As Currency
 
             'FACTURAS DE TRANSPORTE O DE COMISION
             Sql = "select tipo from tcafpc where " & cadWhere
-            tipo = DevuelveValor(Sql) ' 0=transportista 1=comisionista
-            Select Case tipo
+            Tipo = DevuelveValor(Sql) ' 0=transportista 1=comisionista
+            Select Case Tipo
                 Case 0 ' Transportista
         '++monica: si tipomercado = 1(exportacion) cogemos  variedades.ctatraexporta
         '          si tipomercado <> 1 (distinto de exportacion) cogemos  variedades.ctatrainterior
@@ -3063,7 +3063,7 @@ Private Function InsertarCabFactTrans(cadWhere As String, cadErr As String, ByRe
 '(OUT) AnyoFacPr: aqui devolvemos el año de fecha recepcion para insertarlo en las lineas de factura de proveedor de la conta
 Dim Sql As String
 Dim Sql5 As String
-Dim tipo As Byte
+Dim Tipo As Byte
 Dim Rs As ADODB.Recordset
 Dim cad As String
 Dim Nulo2 As String
@@ -3206,9 +3206,9 @@ Dim CadenaInsertFaclin2     As String
                 Sql = Sql & ValorNulo & ","
             Else
                 Sql5 = "select tipo from tcafpc where " & cadWhere
-                tipo = DevuelveValor(Sql5) ' 0=transportista 1=comisionista
+                Tipo = DevuelveValor(Sql5) ' 0=transportista 1=comisionista
             
-                Select Case tipo
+                Select Case Tipo
                     Case 0 ' tranportista
                         Sql = Sql & DBSet(vParamAplic.CtaTraReten, "T") & ","
                     Case 1 ' comisionista
@@ -3291,7 +3291,7 @@ Dim PorcIva As String
 
 Dim Rsx7 As ADODB.Recordset
 Dim Sql7 As String
-Dim CADENA As String
+Dim cadena As String
 
 Dim CadRegistro As String
 Dim CadRegistro1 As String
@@ -3326,10 +3326,10 @@ Dim ImporteACompensar As Currency
 '--monica: 10/02/2009 stipom
 '            LetraSer = DevuelveDesdeBDNew(cAgro, "stipom", "letraser", "codtipom", Rsx!codTipoM, "T")
 '++monica: 10/02/2009 stipom
-            LetraSer = ObtenerLetraSerie(Rsx!codTipoM)
+            LetraSer = ObtenerLetraSerie(Rsx!CodTipoM)
             
             'insertamos tantos cobros como vtos haya en la forma de pago (hacemos lo que deberia)
-            If DBLet(Rs4!ctrolcobroalb) = 0 Or DBLet(Rsx!codTipoM, "T") = "EAC" Then
+            If DBLet(Rs4!ctrolcobroalb) = 0 Or DBLet(Rsx!CodTipoM, "T") = "EAC" Then
                 
                 text33csb = "'Factura:" & DBLet(LetraSer, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
                 'text41csb = "de " & DBSet(Rsx!TotalFac, "N")
@@ -3543,14 +3543,14 @@ Dim ImporteACompensar As Currency
                         CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
                     End If
                         
-                    If DBLet(Rsx7!tipo, "N") = 0 Then
-                        CadValues2 = CadValues2 & "'IVA VARIEDAD'," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!NumLinea, "N"), "000"), "T")
+                    If DBLet(Rsx7!Tipo, "N") = 0 Then
+                        CadValues2 = CadValues2 & "'IVA VARIEDAD'," & DBSet(Format(DBLet(Rsx7!numalbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinea, "N"), "000"), "T")
                     Else
                         '[Monica]11/02/2013: metemos en la referencia el nro de albaran que hayan metido
                         If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
-                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(DBLet(Rsx7!NumAlbar, "N"), "T") & "," & ValorNulo
+                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(DBLet(Rsx7!numalbar, "N"), "T") & "," & ValorNulo
                         Else
-                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(Format(DBLet(Rsx7!NumLinea, "N"), "000"), "T") & "," & ValorNulo
+                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(Format(DBLet(Rsx7!numlinea, "N"), "000"), "T") & "," & ValorNulo
                         End If
                     End If
                     
@@ -3689,19 +3689,19 @@ Dim ImporteACompensar As Currency
                         
                         ' [Monica]13/01/2011: por Picassent si se lo indicamos introducimos la referencia de linea de albaran
                         If vParamAplic.PaseRefLineaAlb Then
-                            If DBLet(Trim(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!NumAlbar, "T")), "T") <> "" Then ' si tiene valor la referencia de linea
+                            If DBLet(Trim(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!numalbar, "T")), "T") <> "" Then ' si tiene valor la referencia de linea
                                 ' referencia, referencia1, referencia2
-                                CADENA = DBSet(Trim(DBLet(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!NumAlbar, "T"), "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                                cadena = DBSet(Trim(DBLet(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!numalbar, "T"), "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!numalbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                             Else ' si no la referencia de la cabecera
-                                CADENA = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                                cadena = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!numalbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!numalbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                             End If
                         Else
                         ' [Monica] 13/01/2010 hasta aqui
                             ' referencia, referencia1, referencia2
-                            CADENA = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                            cadena = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!numalbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!numalbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                         End If
                         
-                        CadValues2 = CadValues2 & CADENA '& "),"
+                        CadValues2 = CadValues2 & cadena '& "),"
                         
                         If vParamAplic.ContabilidadNueva Then
                             CadValues2 = CadValues2 & DBSet(Rs4!Nomclien, "T") & "," & DBSet(Rs4!domclien, "T") & "," & DBSet(Rs4!pobclien, "T") & "," & DBSet(Rs4!codpobla, "T") & "," & DBSet(Rs4!proclien, "T") & "," & DBSet(Rs4!cifclien, "T") & ",'ES'"
@@ -3810,7 +3810,7 @@ Dim PorcIva As String
 
 Dim Rsx7 As ADODB.Recordset
 Dim Sql7 As String
-Dim CADENA As String
+Dim cadena As String
 
 Dim CadRegistro As String
 Dim CadRegistro1 As String
@@ -3843,7 +3843,7 @@ Dim SeccionHorto As Integer
         
         If Not Rs4.EOF Then
             LetraSer = ""
-            LetraSer = ObtenerLetraSerie(Rsx!codTipoM)
+            LetraSer = ObtenerLetraSerie(Rsx!CodTipoM)
             
             text33csb = "'Factura:" & DBLet(LetraSer, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
             'text41csb = "de " & DBSet(Rsx!TotalFac, "N")
@@ -3890,7 +3890,7 @@ Dim SeccionHorto As Integer
                     
                         CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                         CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                        CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
+                        CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
                         CadValues2 = CadValues2 & "),"
                     
                     Else
@@ -3924,7 +3924,7 @@ Dim SeccionHorto As Integer
                         
                             CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                             CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                            CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
+                            CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
                             CadValues2 = CadValues2 & "),"
                         
                         Else
@@ -4186,7 +4186,7 @@ Dim Nulo3 As String
     
     If vParamAplic.ContabilidadNueva Then
         cad = Format(Diario, "00") & ", " & DBSet(fecha, "F") & "," & Format(Asiento, "000000") & ","
-        cad = cad & DBSet(Obs, "T") & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'ARIAGRO'"
+        cad = cad & DBSet(Obs, "T") & "," & DBSet(Now, "FH") & "," & DBSet(vUsu.Login, "T") & ",'ARIAGRO COMERCIAL'"
         
         cad = "(" & cad & ")"
     
