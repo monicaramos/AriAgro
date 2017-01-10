@@ -25,6 +25,10 @@ Private mvarhanegada As Single 'copia local
 Private mvarpoligono As Integer 'copia local
 'variables locales para almacenar los valores de las propiedades
 Private mvarnumarbol As Integer 'copia local
+
+Private mvarTipoProdu As Long 'copia local
+
+
 Public Property Let numarbol(ByVal vData As Integer)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.numarbol = 5
@@ -57,6 +61,11 @@ Public Function GenXML() As String
     mXML = mXML & "<FIELD attrname=""hanegada"" fieldtype=""r8"" />"
     mXML = mXML & "<FIELD attrname=""numarbol"" fieldtype=""i2"" />"
     mXML = mXML & "<FIELD attrname=""poligono"" fieldtype=""i2"" />"
+    
+    If vParamAplic.Cooperativa = 16 Then
+        mXML = mXML & "<FIELD attrname=""tipoproduccion"" fieldtype=""i2"" />"
+    End If
+    
     mXML = mXML & "</FIELDS>"
     mXML = mXML & "</METADATA>"
     mXML = mXML & "<ROWDATA>"
@@ -69,6 +78,13 @@ Public Function GenXML() As String
             mXML = mXML & "hanegada=""" & CStr(mvarhanegada) & """ "
             mXML = mXML & "numarbol=""" & CStr(mvarnumarbol) & """ "
             mXML = mXML & "poligono=""" & CStr(mvarpoligono) & """ "
+            
+            If vParamAplic.Cooperativa = 16 Then
+                mXML = mXML & "tipoproducion=""" & CStr(mvarTipoProdu) & """ "
+            End If
+            
+            
+            
         mXML = mXML & " />"
     mXML = mXML & "</ROWDATA>"
     mXML = mXML & "</DATAPACKET>"
@@ -150,32 +166,44 @@ End Property
 
 
 
-Public Property Let codcampo(ByVal vData As Long)
+Public Property Let codCampo(ByVal vData As Long)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.codcampo = 5
     mvarcodcampo = vData
 End Property
 
 
-Public Property Get codcampo() As Long
+Public Property Get codCampo() As Long
 'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
 'Syntax: Debug.Print X.codcampo
-    codcampo = mvarcodcampo
+    codCampo = mvarcodcampo
 End Property
 
 
 
-Public Property Let codsocio(ByVal vData As Long)
+Public Property Let CodSocio(ByVal vData As Long)
 'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
 'Syntax: X.codsocio = 5
     mvarcodsocio = vData
 End Property
 
 
-Public Property Get codsocio() As Long
+Public Property Get CodSocio() As Long
 'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
 'Syntax: Debug.Print X.codsocio
-    codsocio = mvarcodsocio
+    CodSocio = mvarcodsocio
+End Property
+
+Public Property Let TipoProdu(ByVal vData As Long)
+'se usa al asignar un valor a la propiedad, en la parte izquierda de una asignación.
+'Syntax: X.codsocio = 5
+    mvarTipoProdu = vData
+End Property
+
+Public Property Get TipoProdu() As Long
+'se usa al recuperar un valor de una propiedad, en la parte derecha de una asignación.
+'Syntax: Debug.Print X.codsocio
+    TipoProdu = mvarTipoProdu
 End Property
 
 
