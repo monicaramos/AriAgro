@@ -69,7 +69,7 @@ Sub CargarUnCampo(codCampo As Long, Tipo As String, Optional OldCadena As String
         cmp.poligono = Rs!poligono
         
         If vParamAplic.Cooperativa = 16 Then
-            cmp.TipoProdu = Rs!codigoggap
+            cmp.TipoProdu = DBLet(Rs!codigoggap, "N")
         End If
         
         
