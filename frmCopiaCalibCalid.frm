@@ -231,16 +231,16 @@ End Sub
 
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
-Dim i As Integer
+Dim I As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
     PrimeraVez = True
     limpiar Me
 
-    For i = 27 To 27
-        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 27 To 27
+        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
 
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
@@ -291,7 +291,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim tabla As String
+Dim Tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -320,7 +320,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 End Sub
 
 Private Function DatosOk() As Boolean
-Dim i As Integer
+Dim I As Integer
 
     DatosOk = False
     If txtCodigo(70).Text = "" Then
@@ -446,10 +446,10 @@ Dim Rs As ADODB.Recordset
                         
                     Else
                         ' copiamos
-                        Sql3 = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec,eurrecsoc,eurreccop,seaplicabonif) select " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec,eurrecsoc,eurreccoop,seaplicabonif) select " & DBSet(txtCodigo(70).Text, "N")
                         Sql3 = Sql3 & ",codcalid, nomcalid, nomcalab, tipcalid, tipcalid1, nomcalibrador1,"
                         '[Monica]27/01/2016: nueva columna de si se aplica bonificacion
-                        Sql3 = Sql3 & "nomcalibrador2, gastosrec,eurrecsoc,eurreccop,seaplicabonif from rcalidad "
+                        Sql3 = Sql3 & "nomcalibrador2, gastosrec,eurrecsoc,eurreccoop,seaplicabonif from rcalidad "
                         Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
                         Sql3 = Sql3 & " and codcalid = " & DBSet(Rs!codcalid, "N")
                     
