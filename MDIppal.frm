@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.MDIForm MDIppal 
    BackColor       =   &H8000000C&
    Caption         =   "Ariagro - Gestión Comercial"
@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:16"
+            TextSave        =   "11:27"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -577,6 +577,10 @@ Begin VB.MDIForm MDIppal
    End
    Begin VB.Menu mnGesVtas 
       Caption         =   "&Palets-Pedidos-Albaranes"
+      Begin VB.Menu mnComGV_Palets 
+         Caption         =   "&Carga Automática Palets"
+         Index           =   1
+      End
       Begin VB.Menu mnComGV_PalPed 
          Caption         =   "&Palets"
          Index           =   1
@@ -1151,6 +1155,10 @@ Private Sub mnComGV_Facturas_Click(Index As Integer)
     SubmnC_GV_Facturas_Click (Index)
 End Sub
 
+Private Sub mnComGV_Palets_Click(Index As Integer)
+    SubmnC_GV_Palets_Click (Index)
+End Sub
+
 Private Sub mnComGV_PalPed_Click(Index As Integer)
     SubmnC_GV_PalPed_Click (Index)
 End Sub
@@ -1332,14 +1340,14 @@ End Sub
 ' añadida esta parte para la personalizacion de menus
 
 Private Sub LeerEditorMenus()
-Dim SQL As String
+Dim sql As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     TieneEditorDeMenus = False
-    SQL = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
+    sql = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If Not IsNull(miRsAux.Fields(0)) Then
             If miRsAux.Fields(0) > 0 Then TieneEditorDeMenus = True
@@ -1358,33 +1366,33 @@ End Sub
 
 Private Sub PoneMenusDelEditor()
 Dim T As Control
-Dim SQL As String
+Dim sql As String
 Dim C As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     
-    SQL = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.codigo - vUsu.DevuelveAumentoPC), 3))
+    sql = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.codigo - vUsu.DevuelveAumentoPC), 3))
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    SQL = ""
+    miRsAux.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    sql = ""
 
     While Not miRsAux.EOF
         If Not IsNull(miRsAux.Fields(3)) Then
-            SQL = SQL & miRsAux.Fields(3) & "·"
+            sql = sql & miRsAux.Fields(3) & "·"
         End If
         miRsAux.MoveNext
     Wend
     miRsAux.Close
         
    
-    If SQL <> "" Then
-        SQL = "·" & SQL
+    If sql <> "" Then
+        sql = "·" & sql
         For Each T In Me.Controls
             If TypeOf T Is menu Then
                 C = DevuelveCadenaMenu(T)
                 C = "·" & C & "·"
-                If InStr(1, SQL, C) > 0 Then T.visible = False
+                If InStr(1, sql, C) > 0 Then T.visible = False
            
             End If
         Next

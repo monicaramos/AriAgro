@@ -5,8 +5,8 @@ Dim DeTransporte As Boolean
 Dim DeServicios As Boolean
 Dim frmBas As frmBasico
 
-Private Sub Construc(Nom As String)
-    MsgBox Nom & ": en construcció..."
+Private Sub Construc(nom As String)
+    MsgBox nom & ": en construcció..."
 End Sub
 
 ' ******* DATOS BASICOS *********
@@ -282,8 +282,21 @@ Public Sub SubmnC_GM_EstCom_Click(Index As Integer)
     End Select
 End Sub
 
+
+' *******  GESTION DE VENTAS  *********
+' *******  CARGA AUTOMATICA PALETS *********
+
+Public Sub SubmnC_GV_Palets_Click(Index As Integer)
+    Select Case Index
+        Case 1: AbrirListado (1) 'Creacion automatica de palets
+    End Select
+End Sub
+
+
 ' *******  GESTION DE VENTAS  *********
 ' *******  PALETS Y PEDIDOS  *********
+
+
 
 Public Sub SubmnC_GV_PalPed_Click(Index As Integer)
     Select Case Index
@@ -302,10 +315,10 @@ Public Sub SubmnC_GV_PalPed_Click(Index As Integer)
                  frmImpAridoc.Show vbModal 'vbModalConstruc("Integracion aridoc")
         Case 15: Select Case vParamAplic.Cooperativa
                     Case 1 ' Valsur
-                        frmTrazabilidad.Opcionlistado = 0
+                        frmTrazabilidad.OpcionListado = 0
                         frmTrazabilidad.Show vbModal 'traspaso de trazabilidad
                     Case 5 ' Castelduc
-                        frmTrazabilidad.Opcionlistado = 1
+                        frmTrazabilidad.OpcionListado = 1
                         frmTrazabilidad.Show vbModal 'traspaso de trazabilidad
                  End Select
     End Select
@@ -325,7 +338,7 @@ End Sub
 
 Public Sub SubmnC_GV_FactAlbEnv_Click()
 '    Construc ("Facturacion Albaranes Envases") 'frmVtasAlbEnvases.Show vbModal ' Informes de Gestion de Ventas Gráficos
-    frmVtasFactAlbEnv.Opcionlistado = 52 'facturacion de albaranes
+    frmVtasFactAlbEnv.OpcionListado = 52 'facturacion de albaranes
     frmVtasFactAlbEnv.Show vbModal
 End Sub
 
@@ -373,9 +386,9 @@ End Sub
 Public Sub SubmnC_GV_Incidencias_Click(Index As Integer)
     Select Case Index
         Case 1
-            frmVtasListIncid.Opcionlistado = 0  ' Informe de incidencias
+            frmVtasListIncid.OpcionListado = 0  ' Informe de incidencias
         Case 2
-            frmVtasListIncid.Opcionlistado = 1  ' Informe de categorias
+            frmVtasListIncid.OpcionListado = 1  ' Informe de categorias
     End Select
     frmVtasListIncid.Show vbModal
 End Sub
@@ -386,7 +399,7 @@ End Sub
 Public Sub SubmnC_GV_Traza_Click(Index As Integer)
     Select Case Index
         Case 1
-            frmVtasListTraza.Opcionlistado = 0  ' Informe de trazabilidad
+            frmVtasListTraza.OpcionListado = 0  ' Informe de trazabilidad
             frmVtasListTraza.Show vbModal
     End Select
 End Sub
@@ -417,7 +430,7 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         
         Case 11: Screen.MousePointer = vbHourglass 'frmVtasIntConta.Show vbModal ' Integracion contable
 '                frmListado2.OptClientes = True
-                frmListado2.Opcionlistado = 223
+                frmListado2.OpcionListado = 223
                 frmListado2.Show vbModal
                 Screen.MousePointer = vbDefault
         Case 12: frmImpAridoc.Tipo = 1 ' Integracion de aridoc: Facturas de venta
@@ -431,7 +444,7 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         
         Case 17: frmVtasAlbSocios.Show vbModal ' albaranes de venta a socios
         Case 18: frmVtasFactSocios.Show vbModal ' facturas de venta a socios
-        Case 19: frmListado2.Opcionlistado = 223
+        Case 19: frmListado2.OpcionListado = 223
                  frmListado2.CadTag = "A"
                  frmListado2.Show vbModal
     End Select
@@ -473,24 +486,24 @@ Public Sub SubmnC_GV_CCostes_Click(Index As Integer)
                 frmCCCostesMes.Show vbModal
                 
         Case 7: 'procesar fichajes
-                frmCCListados.Opcionlistado = 2
+                frmCCListados.OpcionListado = 2
                 frmCCListados.Show vbModal
         
         Case 8: 'mantenimiento de fichajes
                 frmCCFichajesTrab.Show vbModal
                 
         Case 9: 'carga automatica de lineas de confeccion
-                frmCCListados.Opcionlistado = 1
+                frmCCListados.OpcionListado = 1
                 frmCCListados.Show vbModal
                 
         Case 10: frmCCOrdenConfeccion.Show vbModal ' Ordenes de confeccion
         
         Case 11: frmCCCostesDiarios.Show vbModal ' Costes diarios
         
-        Case 12: frmCCListados.Opcionlistado = 0
+        Case 12: frmCCListados.OpcionListado = 0
                  frmCCListados.Show vbModal ' Informe de Costes diarios
 
-        Case 13: frmCCListados.Opcionlistado = 6
+        Case 13: frmCCListados.OpcionListado = 6
                  frmCCListados.Show vbModal ' busqueda de cadena en ficheros
 
     End Select
@@ -544,7 +557,7 @@ Public Sub AbrirListado2(numero As Integer)
     Screen.MousePointer = vbHourglass
     
     frmListado2.DeServicios = DeServicios
-    frmListado2.Opcionlistado = numero
+    frmListado2.OpcionListado = numero
     frmListado2.OptProve = (Not DeTransporte)
     DeTransporte = False
     
@@ -612,7 +625,7 @@ Private Sub AbrirFormularioAreasCC()
     frmBas.Tag2 = "Descripción|T|N|||ccareas|nomarea|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 50
-    frmBas.tabla = "ccareas"
+    frmBas.Tabla = "ccareas"
     frmBas.CampoCP = "codarea"
     frmBas.Report = "rManCCAreas.rpt"
     frmBas.Caption = "Áreas"
@@ -635,7 +648,7 @@ Private Sub AbrirFormularioZonasCC()
     frmBas.Tag2 = "Descripción|T|N|||cczonas|nomzona|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 30
-    frmBas.tabla = "cczonas"
+    frmBas.Tabla = "cczonas"
     frmBas.CampoCP = "codzona"
     frmBas.Report = "rManCCZonas.rpt"
     frmBas.Caption = "Zonas"
@@ -657,7 +670,7 @@ Private Sub AbrirFormularioLineasCC()
     frmBas.Tag2 = "Descripción|T|N|||cclinconf|nomlinconf|||"
     frmBas.Maxlen1 = 2
     frmBas.Maxlen2 = 40
-    frmBas.tabla = "cclinconf"
+    frmBas.Tabla = "cclinconf"
     frmBas.CampoCP = "codlinconf"
     frmBas.Report = "rManCCLineasConf.rpt"
     frmBas.Caption = "Lineas de Confección"
