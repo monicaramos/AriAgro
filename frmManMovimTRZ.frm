@@ -2,14 +2,14 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Begin VB.Form frmManCodEAN 
+Begin VB.Form frmManMovimTRZ 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Códigos EAN"
+   Caption         =   "Reparto Albaranes"
    ClientHeight    =   5925
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   13185
-   Icon            =   "frmManCodEAN.frx":0000
+   Icon            =   "frmManMovimTRZ.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
@@ -21,12 +21,24 @@ Begin VB.Form frmManCodEAN
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       Height          =   290
+      Index           =   5
+      Left            =   7230
+      MaxLength       =   8
+      TabIndex        =   16
+      Tag             =   "Kilos|N|N|||trzmovim|kilos|###,##00||"
+      Top             =   4920
+      Width           =   945
+   End
+   Begin VB.TextBox txtAux 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   290
       Index           =   4
-      Left            =   9855
+      Left            =   0
       MaxLength       =   8
       TabIndex        =   4
-      Tag             =   "Ref.Cliente|N|N|||codigoean|refclien|#######0||"
-      Top             =   4905
+      Tag             =   "Codigo|N|N|||trzmovim|codigo|00000000|S|"
+      Top             =   4920
       Width           =   945
    End
    Begin VB.CommandButton btnBuscar 
@@ -34,11 +46,11 @@ Begin VB.Form frmManCodEAN
       Caption         =   "+"
       Height          =   300
       Index           =   2
-      Left            =   6705
+      Left            =   4980
       MaskColor       =   &H00000000&
-      TabIndex        =   18
+      TabIndex        =   15
       ToolTipText     =   "Buscar variedad"
-      Top             =   4905
+      Top             =   4920
       Visible         =   0   'False
       Width           =   195
    End
@@ -49,9 +61,9 @@ Begin VB.Form frmManCodEAN
       Enabled         =   0   'False
       Height          =   285
       Index           =   2
-      Left            =   6930
-      TabIndex        =   17
-      Top             =   4905
+      Left            =   5280
+      TabIndex        =   14
+      Top             =   4920
       Visible         =   0   'False
       Width           =   1815
    End
@@ -62,72 +74,33 @@ Begin VB.Form frmManCodEAN
       Index           =   1
       Left            =   4005
       MaskColor       =   &H00000000&
-      TabIndex        =   16
-      ToolTipText     =   "Buscar forfait"
+      TabIndex        =   13
+      ToolTipText     =   "Buscar fecha"
       Top             =   4905
       Visible         =   0   'False
       Width           =   195
-   End
-   Begin VB.TextBox txtAux2 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000018&
-      BorderStyle     =   0  'None
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   0
-      Left            =   1170
-      TabIndex        =   15
-      Top             =   4905
-      Visible         =   0   'False
-      Width           =   1815
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   3
-      Left            =   8820
+      Left            =   1980
       MaxLength       =   13
       TabIndex        =   3
-      Tag             =   "Código EAN|T|N|||codigoean|codigoean|||"
-      Top             =   4905
+      Tag             =   "Numero Albaran|N|N|||trzmovim|numalbar|000000||"
+      Top             =   4890
       Width           =   945
-   End
-   Begin VB.TextBox txtAux2 
-      Appearance      =   0  'Flat
-      BackColor       =   &H80000018&
-      BorderStyle     =   0  'None
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   1
-      Left            =   4230
-      TabIndex        =   14
-      Top             =   4905
-      Visible         =   0   'False
-      Width           =   1815
-   End
-   Begin VB.CommandButton btnBuscar 
-      Appearance      =   0  'Flat
-      Caption         =   "+"
-      Height          =   300
-      Index           =   0
-      Left            =   915
-      MaskColor       =   &H00000000&
-      TabIndex        =   13
-      ToolTipText     =   "Buscar cliente"
-      Top             =   4905
-      Visible         =   0   'False
-      Width           =   195
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   2
-      Left            =   6075
+      Left            =   4410
       MaxLength       =   4
       TabIndex        =   2
-      Tag             =   "Variedad|N|N|0|9999|codigoean|codvarie|0000|S|"
+      Tag             =   "Variedad|N|N|0|999999|trzmovim|codvarie|000000|S|"
       Top             =   4905
       Width           =   540
    End
@@ -155,11 +128,11 @@ Begin VB.Form frmManCodEAN
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   1
-      Left            =   3060
+      Left            =   3120
       MaxLength       =   16
       TabIndex        =   1
-      Tag             =   "Código Forfaits|T|N|||codigoean|codforfait||S|"
-      Top             =   4905
+      Tag             =   "Fecha|F|N|||trzmovim|fecha|dd/mm/yyyy||"
+      Top             =   4890
       Width           =   900
    End
    Begin VB.TextBox txtAux 
@@ -168,15 +141,15 @@ Begin VB.Form frmManCodEAN
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   0
-      Left            =   60
+      Left            =   1050
       MaxLength       =   6
       TabIndex        =   0
-      Tag             =   "Codigo EAN|N|N|0|999999|codigoean|codclien|000000|S|"
-      Top             =   4920
+      Tag             =   "Nro Palet|N|N|0|999999|trzmovim|numpalet|000000||"
+      Top             =   4890
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmManCodEAN.frx":000C
+      Bindings        =   "frmManMovimTRZ.frx":000C
       Height          =   4410
       Left            =   120
       TabIndex        =   9
@@ -442,7 +415,7 @@ Begin VB.Form frmManCodEAN
       End
    End
 End
-Attribute VB_Name = "frmManCodEAN"
+Attribute VB_Name = "frmManMovimTRZ"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
@@ -495,10 +468,6 @@ Public DeConsulta As Boolean
 Private CadenaConsulta As String
 Private cadB As String
 
-Private WithEvents frmCli As frmClientes 'clientes
-Attribute frmCli.VB_VarHelpID = -1
-Private WithEvents frmFor As frmManForfaits 'forfaits
-Attribute frmFor.VB_VarHelpID = -1
 Private WithEvents frmVar As frmManVariedad 'variedades
 Attribute frmVar.VB_VarHelpID = -1
 
@@ -538,7 +507,7 @@ Dim b As Boolean
         btnBuscar(i).visible = Not b
     Next i
     
-    CmdAceptar.visible = Not b
+    cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
     DataGrid1.Enabled = b
     
@@ -550,12 +519,12 @@ Dim b As Boolean
     PonerOpcionesMenu  'En funcion del usuario
     
     'Si estamos modo Modificar bloquear clave primaria
-    BloquearTxt txtAux(0), (Modo = 4)
-    BloquearTxt txtAux(1), (Modo = 4)
-    BloquearTxt txtAux(2), (Modo = 4)
-    BloquearBtn Me.btnBuscar(0), (Modo = 4)
-    BloquearBtn Me.btnBuscar(1), (Modo = 4)
-    BloquearBtn Me.btnBuscar(2), (Modo = 4)
+'    BloquearTxt txtAux(0), (Modo = 4)
+'    BloquearTxt txtAux(1), (Modo = 4)
+'    BloquearTxt txtAux(2), (Modo = 4)
+'    BloquearBtn Me.btnBuscar(0), (Modo = 4)
+'    BloquearBtn Me.btnBuscar(1), (Modo = 4)
+'    BloquearBtn Me.btnBuscar(2), (Modo = 4)
     
 End Sub
 
@@ -713,18 +682,16 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*************** canviar els noms i el DELETE **********************************
-    Sql = "¿Seguro que desea eliminar el Código EAN?"
-    Sql = Sql & vbCrLf & "Cliente:    " & adodc1.Recordset.Fields(0) & " - " & adodc1.Recordset.Fields(1)
-    Sql = Sql & vbCrLf & "Forfait:    " & adodc1.Recordset.Fields(2) & " - " & adodc1.Recordset.Fields(3)
+    Sql = "¿Seguro que desea eliminar el Movimiento?"
+    Sql = Sql & vbCrLf & "Codigo:    " & adodc1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & "Palet:    " & adodc1.Recordset.Fields(1)
     Sql = Sql & vbCrLf & "Variedad:   " & adodc1.Recordset.Fields(4) & " - " & adodc1.Recordset.Fields(5)
-    Sql = Sql & vbCrLf & "Código EAN: " & adodc1.Recordset.Fields(6)
+    Sql = Sql & vbCrLf & "Fecha: " & adodc1.Recordset.Fields(3)
     
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from codigoean where codclien= " & adodc1.Recordset!CodClien
-        Sql = Sql & " and codforfait = " & adodc1.Recordset!codforfait
-        Sql = Sql & " and codvarie = " & adodc1.Recordset!codvarie
+        Sql = "Delete from trzmovim where codigo= " & adodc1.Recordset.Fields(0)
         
         
         conn.Execute Sql
@@ -760,24 +727,8 @@ Private Sub btnBuscar_Click(Index As Integer)
  TerminaBloquear
     
     Select Case Index
-        Case 0 'clientes
-            indice = Index
-            Set frmCli = New frmClientes
-            frmCli.DatosADevolverBusqueda = "0|2|"
-'            frmCli.CodigoActual = txtAux(indice).Text
-            frmCli.Show vbModal
-            Set frmCli = Nothing
-            PonerFoco txtAux(indice)
-    
-        Case 1 'forfaits
-            indice = Index
-            Set frmFor = New frmManForfaits
-            frmFor.DatosADevolverBusqueda = "0|1|"
-            frmFor.CodigoActual = txtAux(indice).Text
-            frmFor.Show vbModal
-            Set frmFor = Nothing
-            PonerFoco txtAux(indice)
-    
+        Case 1 ' fecha
+        
         Case 2 'variedades
             indice = Index
             Set frmVar = New frmManVariedad
@@ -948,12 +899,10 @@ Private Sub Form_Load()
     
     
     '****************** canviar la consulta *********************************+
-    CadenaConsulta = "SELECT codigoean.codclien, clientes.nomclien, codigoean.codforfait, forfaits.nomconfe, "
-    CadenaConsulta = CadenaConsulta & "codigoean.codvarie, variedades.nomvarie, codigoean.codigoean, codigoean.refclien "
-    CadenaConsulta = CadenaConsulta & " FROM codigoean, clientes, forfaits, variedades "
-    CadenaConsulta = CadenaConsulta & " WHERE codigoean.codclien = clientes.codclien  "
-    CadenaConsulta = CadenaConsulta & " and codigoean.codforfait = forfaits.codforfait "
-    CadenaConsulta = CadenaConsulta & " and codigoean.codvarie = variedades.codvarie "
+    CadenaConsulta = "SELECT trzmovim.codigo, trzmovim.numpalet, trzmovim.numalbar, trzmovim.fecha, trzmovim.variedad, variedades.nomvarie, "
+    CadenaConsulta = CadenaConsulta & "trzmovim.kilos "
+    CadenaConsulta = CadenaConsulta & " FROM trzmovim, variedades "
+    CadenaConsulta = CadenaConsulta & " WHERE trzmovim.codvarie = variedades.codvarie "
     '************************************************************************
     
     cadB = ""
@@ -972,18 +921,6 @@ Private Sub Form_Unload(Cancel As Integer)
     Screen.MousePointer = vbDefault
 End Sub
 
-Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-'Clientes
-    txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codclien
-    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre cliente
-End Sub
-
-
-Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
-'forfaits
-    txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
-    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre
-End Sub
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Variedades
@@ -1064,16 +1001,15 @@ Private Sub CargaGrid(Optional vSql As String)
         Sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    Sql = Sql & " ORDER BY codigoean.codclien, codigoean.codforfait, codigoean.codvarie"
+    Sql = Sql & " ORDER BY trzmovim.codigo "
     '**************************************************************++
     
     CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Cliente|800|;S|btnBuscar(0)|B|||;S|txtAux2(0)|T|Nombre|2600|;"
-    tots = tots & "S|txtAux(1)|T|Forfait|1750|;S|btnBuscar(1)|B|||;S|txtAux2(1)|T|Descripción|2100|;"
+    tots = "N|txtAux(0)|T|Codigo|1200|;"
+    tots = tots & "S|txtAux(0)|T|Palet|1750|;S|txtAux(3)|T|Albaran|1400|;S|txtAux(3)|T|Fecha|1200|;S|btnBuscar(1)|B|||;"
     tots = tots & "S|txtAux(2)|T|Var.|600|;S|btnBuscar(2)|B|||;S|txtAux2(2)|T|Nombre Variedad|2100|;"
-    tots = tots & "S|txtAux(3)|T|Código EAN|1400|;S|txtAux(4)|T|Ref.Cli.|900|;"
     
     arregla tots, DataGrid1, Me
     

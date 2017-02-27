@@ -2082,7 +2082,7 @@ Dim Sql As String
     If TotalRegistros(Sql) = 0 Then
         MsgBox "No se ha realizado ningún volcado esa fecha.", vbExclamation
     Else
-        If CargarPaletsConfeccionados(Sql) Then
+        If ProcesoCarga(Sql) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
         End If
     End If
@@ -2090,57 +2090,207 @@ Dim Sql As String
 
 End Sub
 
-Private Function CargarPaletsConfeccionados(vSql As String) As Boolean
+Private Function ProcesoCarga(vSql As String) As Boolean
+Dim vMens As String
+
+    On Error GoTo eProcesoCarga
+    
+    conn.BeginTrans
+    
+    vMens = ""
+    If CargarPaletsConfeccionados(vSql, vMens) Then
+        If RepartoAlbaranes(vMens) Then
+            conn.CommitTrans
+            Exit Function
+        End If
+    End If
+    
+eProcesoCarga:
+    conn.RollbackTrans
+    MuestraError Err.Number, vMens
+End Function
+
+Private Function RepartoAlbaranes(vMens As String) As Boolean
+Dim Sql As String
+Dim Sql2 As String
+Dim Rs As ADODB.Recordset
+Dim Rs2 As ADODB.Recordset
+Dim Salir As Boolean
+Dim KilosVar As Long
+Dim NumLinea As Integer
+Dim Resto As Long
+
+    On Error GoTo eRepartoAlbaranes
+
+    RepartoAlbaranes = False
+
+    ' para todos los albaranes que han salido repartimos
+    Sql = "select albaran.numalbar, codvarie, sum(numcajas), sum(pesoneto) pesoneto from albaranes_variedad inner join albaran on albaran_variedad.numalbar = albaran.numalbar "
+    Sql = Sql & " where albaran.fecalbar = " & DBSet(txtCodigo(30).Text, "F")
+    Sql = Sql & " group by 1,2 "
+    Sql = Sql & " order by 1,2 "
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    While Not Rs.EOF
+        Sql2 = "select sum(kilos) from trzmovim where numalbar = 0 and codvarie = " & DBSet(Rs!codvarie, "N")
+        
+        KilosVar = DBLet(Rs!Pesoneto)
+        If DevuelveValor(Sql2) < DBLet(Rs!Pesoneto) Then
+            MsgBox "No hay suficiente existencias de la variedad " & DBLet(Rs!codvarie), vbExclamation
+            Exit Function
+        Else
+            Sql2 = "select * from trzmovim where numalbar = 0 and codvarie = " & DBSet(Rs!codvarie, "N")
+            Sql2 = Sql2 & " order by fecha desc "
+            
+            Set Rs2 = New ADODB.Recordset
+            Rs2.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            
+            Salir = False
+            
+            NumLinea = DevuelveValor("select coalesce(numlinea, 0) + 1 from albaran_palets where numalbar = " & DBSet(Rs!numalbar, "N"))
+            
+            While Not Rs2.EOF And Not Salir
+                Sql = "insert into albaran_palets (numalbar, numlinea, numpalet) values ("
+                Sql = Sql & DBSet(Rs!numalbar, "N") & "," & DBSet(NumLinea, "N") & "," & DBSet(Rs2!numpalet, "N") & ")"
+                
+                conn.Execute Sql
+            
+                If DBLet(Rs2!Kilos) <= KilosVar Then
+                    
+                    KilosVar = KilosVar - DBLet(Rs2!Kilos)
+                    
+                    Sql = "update trzmovim set numalbar = " & DBSet(Rs!numalbar, "N")
+                    Sql = Sql & " where codigo = " & DBSet(Rs2!codigo, "N")
+                    
+                    conn.Execute Sql
+                Else
+                    Resto = DBLet(Rs2!Kilos) - KilosVar
+                
+                    Sql = "update trzmovim set numalbar = " & DBSet(Rs!numalbar, "N")
+                    Sql = Sql & ", kilos =  " & DBSet(Rs!Kilos, "N")
+                    Sql = Sql & " where codigo = " & DBSet(Rs2!codigo, "N")
+                
+                    conn.Execute Sql
+                    
+                    ' insertamos una linea con la diferencia que nos queda
+                    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
+                    vCodigo = vCodigo + 1
+                    
+                    Sql = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
+                    Sql = Sql & "(" & DBSet(vCodigo, "N") & "," & DBSet(Rs2!numpalet, "N") & ",0," & DBSet(Rs2!fecha, "F") & "," & DBSet(Rs!codvarie, "N") & ","
+                    Sql = Sql & DBSet(Resto, "N") & ")"
+                    
+                    conn.Execute Sql
+                    
+                    Salir = True
+                End If
+        
+                Rs2.MoveNext
+            Wend
+            
+            Set Rs2 = Nothing
+            
+        End If
+        
+    Wend
+    Set Rs = Nothing
+    
+    RepartoAlbaranes = True
+    Exit Function
+    
+eRepartoAlbaranes:
+    vMens = "Reparto de Albaranes"
+    
+End Function
+
+
+Private Function CargarPaletsConfeccionados(vSql As String, vMens As String) As Boolean
 Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim Rs1 As ADODB.Recordset
-Dim SqlInsert As String
+Dim SQLInsert As String
+Dim SqlInsert2 As String
+Dim SqlInsert3 As String
 Dim SqlValues As String
 Dim NroPalet As Long
+Dim Marca As Integer
+Dim Forfait As String
+Dim Calibre As Integer
+Dim vCodigo As Long
 
     On Error GoTo eCargarPaletsConfeccionados
 
-
     CargarPaletsConfeccionados = False
+    
 
     NroPalet = DevuelveValor("select max(numpalet) from palets")
     NroPalet = NroPalet + 1
     
-    SqlInsert = "insert into palets (numpalet,fechaini,horaini,fechafin,horafin,codpalet,linconfe,tipmercan,"
-    SqlInsert = SqlInsert & "fechaconf,horaiconf,horafconf,codlinconf,intorden,linentrada,linsalida,idpalet) values "
+    SQLInsert = "insert into palets (numpalet,fechaini,horaini,fechafin,horafin,codpalet,linconfe,tipmercan,"
+    SQLInsert = SQLInsert & "fechaconf,horaiconf,horafconf,codlinconf,intorden,linentrada,linsalida,idpalet) values "
     
+    SqlInsert2 = "insert into palets_variedad (numpalet,numlinea,codvarie,codvarco,codmarca,codforfait,pesobrut,pesoneto,numcajas) values "
+    
+    SqlInsert3 = "insert into palets_calibre (numpalet,numlinea,numline1,codvarie,codcalib,numcajas) values "
+    
+    Marca = DevuelveValor("select min(codmarca) from marcas")
+    Forfait = DevuelveValor("select min(codforfait) from forfaits")
+    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
     
     Set Rs = New ADODB.Recordset
     Rs.Open vSql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    sqlInsert1 = "insert into palets_variedad(numpalet,numlinea,codvarie,codvarco,codmarca,codforfait,pesobrut,pesoneto,numcajas) values "
     While Not Rs.EOF
     
+        Calibre = DevuelveValor("select min(codcalib) from calibres where codvarie = " & DBSet(Rs!codvarie, "N"))
     
         SqlValues = "(" & DBSet(NroPalet, "N") & "," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ","
         SqlValues = SqlValues & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ",1,1,0,"
         SqlValues = SqlValues & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ",1,1,1,1,"
         SqlValues = SqlValues & DBSet(Rs!idpalet, "N") & ")"
     
-        conn.Execute SqlInsert & SqlValues
+        conn.Execute SQLInsert & SqlValues
     
         Sql = "select * from trzpalets where idpalet = " & DBSet(Rs!idpalet, "N")
         
         Set Rs1 = New ADODB.Recordset
         Rs1.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
-        SqlValues = ""
-    
-    
+        If Not Rs1.EOF Then
+            'palets_variedad
+            SqlValues = "(" & DBSet(NroPalet, "N") & ",1," & DBSet(Rs1!codvarie, "N") & "," & DBSet(Rs1!codvarie, "N") & "," & DBSet(Marca, "N") & ","
+            SqlValues = SqlValues & DBSet(Forfait, "T") & "," & DBSet(Rs1!numkilos, "N") & "," & DBSet(Rs1!numkilos, "N") & "," & DBSet(Rs1!numcajones, "N") & ")"
+            
+            conn.Execute SqlInsert2 & SqlValues
+            
+            'palets_calibre
+            SqlValues = "(" & DBSet(NroPalet, "N") & ",1,1," & DBSet(Rs1!codvarie, "N") & "," & DBSet(Calibre, "N") & "," & DBSet(Rs1!numcajones, "N") & ")"
+            
+            conn.Execute SqlInsert2 & SqlValues
+        End If
+        
+        ' metemos en la tabla de movimientos de traza
+        vCodigo = vCodigo + 1
+        
+        Sql = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
+        Sql = Sql & "(" & DBSet(vCodigo, "N") & "," & DBSet(NroPalet, "N") & ",0," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(Rs1!codvarie, "N") & ","
+        Sql = Sql & DBSet(Rs1!numkilos, "N") & ")"
+        
+        conn.Execute Sql
+        
+        Set Rs1 = Nothing
         Rs.MoveNext
     Wend
     Set Rs = Nothing
 
     CargarPaletsConfeccionados = True
+    
     Exit Function
 
 eCargarPaletsConfeccionados:
-    MuestraError Err.Number, "Cargar Palets Confeccionados", Err.Description
+    vMens = "Cargar Palets Confeccionados:" & vbCrLf & Err.Description
 End Function
 
 
@@ -2747,7 +2897,7 @@ Dim List As Collection
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.cmdCancel(indFrame).Cancel = True
+    Me.CmdCancel(indFrame).Cancel = True
     Me.Width = w + 70
     Me.Height = h + 350
 End Sub
@@ -2985,14 +3135,14 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 
 End Sub
 
-Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgBuscar_Click (Indice)
+    imgBuscar_Click (indice)
 End Sub
 
-Private Sub KEYFecha(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgFecha_Click (Indice)
+    imgFecha_Click (indice)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
@@ -3354,8 +3504,8 @@ Dim nomCampo As String
 
 End Function
 
-Private Sub AbrirFrmDestinos(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmDestinos(indice As Integer)
+    indCodigo = indice
     Set frmDes = New frmDestCli
     frmDes.DatosADevolverBusqueda = "0|1|"
 '    frmDes.DeConsulta = True
@@ -3367,8 +3517,8 @@ End Sub
 
 
 
-Private Sub AbrirFrmProveedores(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmProveedores(indice As Integer)
+    indCodigo = indice
     Set frmPro = New frmManProve
     frmPro.DatosADevolverBusqueda = "0|1|"
     frmPro.DeConsulta = True
@@ -3377,8 +3527,8 @@ Private Sub AbrirFrmProveedores(Indice As Integer)
     Set frmPro = Nothing
 End Sub
 
-Private Sub AbrirFrmProductos(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmProductos(indice As Integer)
+    indCodigo = indice
     Set frmProd = New frmManProductos
     frmProd.DatosADevolverBusqueda = "0|1|"
     frmProd.DeConsulta = True
@@ -3388,64 +3538,64 @@ Private Sub AbrirFrmProductos(Indice As Integer)
 End Sub
 
 
-Private Sub AbrirFrmClientes(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmClientes(indice As Integer)
+    indCodigo = indice
     Set frmCli = New frmClientes
     frmCli.DatosADevolverBusqueda = "0|2|"
     frmCli.Show vbModal
     Set frmCli = Nothing
 End Sub
 
-Private Sub AbrirFrmVariedades(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmVariedades(indice As Integer)
+    indCodigo = indice
     Set frmVar = New frmManVariedad
     frmVar.DatosADevolverBusqueda = "0|1|"
     frmVar.Show vbModal
     Set frmVar = Nothing
 End Sub
 
-Private Sub AbrirFrmCalibres(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmCalibres(indice As Integer)
+    indCodigo = indice
     Set frmCal = New frmManCalibres
     frmCal.DatosADevolverBusqueda = "2|3|"
     frmCal.Show vbModal
     Set frmCal = Nothing
 End Sub
 
-Private Sub AbrirFrmTipEnvases(Indice As Integer)
-    indCodigo = Indice
+Private Sub AbrirFrmTipEnvases(indice As Integer)
+    indCodigo = indice
     Set frmTArt = New frmManTipArtic
     frmTArt.DatosADevolverBusqueda = "0|1|"
     frmTArt.Show vbModal
     Set frmTArt = Nothing
 End Sub
 
-Private Sub AbrirFrmManTraba(Indice As Integer)
-    indCodigo = Indice + 4
+Private Sub AbrirFrmManTraba(indice As Integer)
+    indCodigo = indice + 4
     Set frmTra = New frmManTraba
     frmTra.DatosADevolverBusqueda = "0|2|"
     frmTra.Show vbModal
     Set frmTra = Nothing
 End Sub
 
-Private Sub AbrirFrmManArtic(Indice As Integer)
-    indCodigo = Indice + 4
+Private Sub AbrirFrmManArtic(indice As Integer)
+    indCodigo = indice + 4
     Set frmArt = New frmManArtic
     frmArt.DatosADevolverBusqueda = "0|1|"
     frmArt.Show vbModal
     Set frmArt = Nothing
 End Sub
 
-Private Sub AbrirFrmManClien(Indice As Integer)
-    indCodigo = Indice + 4
+Private Sub AbrirFrmManClien(indice As Integer)
+    indCodigo = indice + 4
     Set frmCli = New frmClientes
     frmCli.DatosADevolverBusqueda = "0|2|"
     frmCli.Show vbModal
     Set frmCli = Nothing
 End Sub
 
-Private Sub AbrirFrmManAlmac(Indice As Integer)
-    indCodigo = Indice + 4
+Private Sub AbrirFrmManAlmac(indice As Integer)
+    indCodigo = indice + 4
     Set frmAlm = New frmManAlmProp
     frmAlm.DatosADevolverBusqueda = "0|1|"
     frmAlm.Show vbModal

@@ -244,6 +244,7 @@ Form=frmBD.frm
 Form=frmVtasListDif.frm
 Class=cContabilizarFacturas; Clases\cContabilizarFacturas.cls
 Form=frmVtasRecFactTrans2.frm
+Form=frmManMovimTRZ.frm
 IconForm="MDIppal"
 Startup="Sub Main"
 HelpFile=""
