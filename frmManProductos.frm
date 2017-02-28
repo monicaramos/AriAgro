@@ -41,7 +41,6 @@ Begin VB.Form frmManProductos
       _ExtentY        =   5636
       _Version        =   393216
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       ForeColor       =   12582912
@@ -56,12 +55,13 @@ Begin VB.Form frmManProductos
       EndProperty
       TabCaption(0)   =   "Insecticidas"
       TabPicture(0)   =   "frmManProductos.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "FrameAux0"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Herbicidas"
       TabPicture(1)   =   "frmManProductos.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FrameAux1"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
@@ -78,7 +78,7 @@ Begin VB.Form frmManProductos
          EndProperty
          ForeColor       =   &H00C00000&
          Height          =   2520
-         Left            =   90
+         Left            =   -74910
          TabIndex        =   30
          Top             =   390
          Width           =   9055
@@ -346,7 +346,7 @@ Begin VB.Form frmManProductos
          EndProperty
          ForeColor       =   &H00C00000&
          Height          =   2520
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   19
          Top             =   390
          Width           =   9085
@@ -1090,7 +1090,7 @@ Dim Modo As Byte
 '--------------------------------------------------
 Dim PrimeraVez As Boolean
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim I As Integer
+Dim i As Integer
 
 Private BuscaChekc As String
 
@@ -1118,9 +1118,9 @@ Dim b As Boolean
     
     BuscaChekc = ""
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = Not b And (Modo <> 5)
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = Not b And (Modo <> 5)
+    Next i
     
     txtAux2(2).visible = Not b And (Modo <> 5)
     btnBuscar(0).visible = Not b And (Modo <> 5)
@@ -1171,15 +1171,15 @@ Dim bAux As Boolean
     Me.mnImprimir.Enabled = b
     
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
-    For I = 0 To ToolAux.Count - 1
-        If Not Me.AdoAux(I).Recordset Is Nothing Then
-            ToolAux(I).Buttons(1).Enabled = b
-            If b Then bAux = (b And Me.AdoAux(I).Recordset.RecordCount > 0)
-            ToolAux(I).Buttons(2).Enabled = bAux
-            ToolAux(I).Buttons(3).Enabled = bAux
-            ToolAux(I).Buttons(4).Enabled = b
+    For i = 0 To ToolAux.Count - 1
+        If Not Me.AdoAux(i).Recordset Is Nothing Then
+            ToolAux(i).Buttons(1).Enabled = b
+            If b Then bAux = (b And Me.AdoAux(i).Recordset.RecordCount > 0)
+            ToolAux(i).Buttons(2).Enabled = bAux
+            ToolAux(i).Buttons(3).Enabled = bAux
+            ToolAux(i).Buttons(4).Enabled = b
         End If
-    Next I
+    Next i
     
     
     
@@ -1215,9 +1215,9 @@ Private Sub BotonAnyadir()
     End If
     txtAux(0).Text = NumF
     FormateaCampo txtAux(0)
-    For I = 1 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 1 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     txtAux2(2).Text = ""
     chkAux(0).Value = 0
 
@@ -1245,18 +1245,18 @@ Private Sub BotonBuscar()
     
     '*******************************************************************************
     'Buscar
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
     chkAux(0).Value = 0
     
-    For I = 0 To txtAux1.Count - 1
-        txtAux1(I).Text = ""
-    Next I
+    For i = 0 To txtAux1.Count - 1
+        txtAux1(i).Text = ""
+    Next i
     
-    For I = 0 To txtAux3.Count - 1
-        txtAux3(I).Text = ""
-    Next I
+    For i = 0 To txtAux3.Count - 1
+        txtAux3(i).Text = ""
+    Next i
     
     
     LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
@@ -1265,13 +1265,13 @@ End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -1309,9 +1309,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Top = alto
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Top = alto
+    Next i
     
     ' ### [Monica] 12/09/2006
     txtAux2(2).Top = alto
@@ -1350,7 +1350,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim Sql As String
+Dim sql As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -1366,24 +1366,24 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*************** canviar els noms i el DELETE **********************************
-    Sql = "¿Seguro que desea eliminar el Producto?"
-    Sql = Sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
-    Sql = Sql & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
+    sql = "¿Seguro que desea eliminar el Producto?"
+    sql = sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
+    sql = sql & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
     
-    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
         
         CargarUnProducto CLng(adodc1.Recordset!codprodu), "D"
         
-        Sql = "Delete from productos_herb where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute Sql
+        sql = "Delete from productos_herb where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute sql
         
-        Sql = "Delete from productos_insec where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute Sql
+        sql = "Delete from productos_insec where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute sql
         
-        Sql = "Delete from productos where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute Sql
+        sql = "Delete from productos where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute sql
         
         
         CargaGrid cadB
@@ -1451,7 +1451,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-    Dim I As Integer
+    Dim i As Integer
 
     Select Case Modo
         Case 1 'BUSQUEDA
@@ -1487,7 +1487,7 @@ Private Sub cmdAceptar_Click()
                 If ModificaDesdeFormulario(Me) Then
                     CargarUnProducto CLng(txtAux(0)), "U"
                     TerminaBloquear
-                    I = adodc1.Recordset.Fields(0)
+                    i = adodc1.Recordset.Fields(0)
                     PonerModo 2
                     CargaGrid cadB
 '                    If CadB <> "" Then
@@ -1497,7 +1497,7 @@ Private Sub cmdAceptar_Click()
 '                        CargaGrid
 '                        lblIndicador.Caption = ""
 '                    End If
-                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
+                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
                     PonerFocoGrid Me.DataGrid1
                 End If
             End If
@@ -1581,8 +1581,8 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 Dim cad As String
-Dim I As Integer
-Dim j As Integer
+Dim i As Integer
+Dim J As Integer
 Dim Aux As String
 
     If adodc1.Recordset.EOF Then
@@ -1590,16 +1590,16 @@ Dim Aux As String
         Exit Sub
     End If
     cad = ""
-    I = 0
+    i = 0
     Do
-        j = I + 1
-        I = InStr(j, DatosADevolverBusqueda, "|")
-        If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, j, I - j)
-            j = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(j) & "|"
+        J = i + 1
+        i = InStr(J, DatosADevolverBusqueda, "|")
+        If i > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, i - J)
+            J = Val(Aux)
+            cad = cad & adodc1.Recordset.Fields(J) & "|"
         End If
-    Loop Until I = 0
+    Loop Until i = 0
     RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
@@ -1661,8 +1661,8 @@ Private Sub Form_Load()
 
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
-    For I = 0 To ToolAux.Count - 1
-        With Me.ToolAux(I)
+    For i = 0 To ToolAux.Count - 1
+        With Me.ToolAux(i)
             .HotImageList = frmPpal.imgListComun_OM16
             .DisabledImageList = frmPpal.imgListComun_BN16
             .ImageList = frmPpal.imgListComun16
@@ -1671,7 +1671,7 @@ Private Sub Form_Load()
             .Buttons(3).Image = 5   'Borrar
             .Buttons(4).Image = 19   'Insertar linea
         End With
-    Next I
+    Next i
     ' ***********************************
 
 
@@ -1814,20 +1814,20 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim Sql As String
+    Dim sql As String
     Dim tots As String
     
 '    adodc1.ConnectionString = Conn
     If vSQL <> "" Then
-        Sql = CadenaConsulta & " AND " & vSQL
+        sql = CadenaConsulta & " AND " & vSQL
     Else
-        Sql = CadenaConsulta
+        sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    Sql = Sql & " ORDER BY productos.codprodu"
+    sql = sql & " ORDER BY productos.codprodu"
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Cód.|500|;S|txtAux(1)|T|Descripción|2100|;"
@@ -1850,7 +1850,7 @@ End Sub
 
 Private Sub CargaGridAux(Index As Integer, enlaza As Boolean)
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim tots As String
 
     On Error GoTo ECarga
@@ -1981,7 +1981,7 @@ End Sub
 Private Function DatosOk() As Boolean
 'Dim Datos As String
 Dim b As Boolean
-Dim Sql As String
+Dim sql As String
 Dim Mens As String
 
 
@@ -2097,39 +2097,39 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim Sql As String
+Dim sql As String
 Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'insecticidas
-            Sql = "SELECT productos_insec.codprodu, productos_insec.numlinea, productos_insec.matactiva, productos_insec.nombre,"
-            Sql = Sql & " productos_insec.dosis, productos_insec.plagas, productos_insec.psdias, "
-            Sql = Sql & " productos_insec.cultivoaut "
-            Sql = Sql & " FROM productos_insec "
+            sql = "SELECT productos_insec.codprodu, productos_insec.numlinea, productos_insec.matactiva, productos_insec.nombre,"
+            sql = sql & " productos_insec.dosis, productos_insec.plagas, productos_insec.psdias, "
+            sql = sql & " productos_insec.cultivoaut "
+            sql = sql & " FROM productos_insec "
             If enlaza Then
-                Sql = Sql & ObtenerWhereCab(True)
+                sql = sql & ObtenerWhereCab(True)
             Else
-                Sql = Sql & " WHERE productos_insec.codprodu = '-1'"
+                sql = sql & " WHERE productos_insec.codprodu = '-1'"
             End If
-            Sql = Sql & " ORDER BY productos_insec.numlinea"
+            sql = sql & " ORDER BY productos_insec.numlinea"
                
         Case 1 'herbicidas
-            Sql = "SELECT productos_herb.codprodu, productos_herb.numlinea, productos_herb.matactiva, productos_herb.nombre,"
-            Sql = Sql & " productos_herb.dosis, productos_herb.plagas, "
-            Sql = Sql & " productos_herb.eshelicida,IF(eshelicida=1,'*','') as deshelicida "
-            Sql = Sql & " FROM productos_herb "
+            sql = "SELECT productos_herb.codprodu, productos_herb.numlinea, productos_herb.matactiva, productos_herb.nombre,"
+            sql = sql & " productos_herb.dosis, productos_herb.plagas, "
+            sql = sql & " productos_herb.eshelicida,IF(eshelicida=1,'*','') as deshelicida "
+            sql = sql & " FROM productos_herb "
             If enlaza Then
-                Sql = Sql & ObtenerWhereCab(True)
+                sql = sql & ObtenerWhereCab(True)
             Else
-                Sql = Sql & " WHERE productos_herb.codprodu = '-1'"
+                sql = sql & " WHERE productos_herb.codprodu = '-1'"
             End If
-            Sql = Sql & " ORDER BY productos_herb.numlinea"
+            sql = sql & " ORDER BY productos_herb.numlinea"
             
     End Select
     
-    MontaSQLCarga = Sql
+    MontaSQLCarga = sql
 End Function
 
 Private Function ObtenerWhereCab(conW As Boolean) As String
@@ -2147,7 +2147,7 @@ Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vtabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -2233,7 +2233,7 @@ Private Sub BotonIntercalarLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vtabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -2257,7 +2257,7 @@ Dim I As Integer
 '    Set frmMens = Nothing
     
     
-    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!NumLinea)
+    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!numlinea)
        
     NumTabMto = Index
     PonerModo 5, Index
@@ -2321,8 +2321,8 @@ End Sub
 
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
-    Dim I As Integer
-    Dim j As Integer
+    Dim i As Integer
+    Dim J As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
@@ -2355,8 +2355,8 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         Case 0, 1 ' *** pose els index de llínies que tenen datagrid (en o sense tab) ***
             If DataGridAux(Index).Bookmark < DataGridAux(Index).FirstRow Or DataGridAux(Index).Bookmark > (DataGridAux(Index).FirstRow + DataGridAux(Index).VisibleRows - 1) Then
-                I = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
-                DataGridAux(Index).Scroll 0, I
+                i = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
+                DataGridAux(Index).Scroll 0, i
                 DataGridAux(Index).Refresh
             End If
               
@@ -2371,21 +2371,21 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 ' insecticidas
-            For j = 0 To 6
-                txtAux1(j).Text = DataGridAux(Index).Columns(j).Text
-            Next j
+            For J = 0 To 6
+                txtAux1(J).Text = DataGridAux(Index).Columns(J).Text
+            Next J
             BloquearTxt txtAux(0), True
             BloquearTxt txtAux(3), True
             
             BloquearbtnBuscar Me, Modo, ModoLineas, "FrameAux0"
             
         Case 1 ' herbicidas
-            For j = 0 To 5
-                txtAux3(j).Text = DataGridAux(Index).Columns(j).Text
-            Next j
-            For I = 9 To 9
-                BloquearTxt txtAux(I), True
-            Next I
+            For J = 0 To 5
+                txtAux3(J).Text = DataGridAux(Index).Columns(J).Text
+            Next J
+            For i = 9 To 9
+                BloquearTxt txtAux(i), True
+            Next i
             BloquearbtnBuscar Me, Modo, ModoLineas, "FrameAux1"
             
     End Select
@@ -2404,7 +2404,7 @@ End Sub
 
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim Sql As String
+Dim sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -2443,21 +2443,21 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'insecticidas
-            Sql = "¿Seguro que desea el insecticida?"
-            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
-            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+            sql = "¿Seguro que desea el insecticida?"
+            sql = sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
+            If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                Sql = "DELETE FROM productos_insec "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                sql = "DELETE FROM productos_insec "
+                sql = sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
             End If
             
         Case 1 'herbicidas
-            Sql = "¿Seguro que desea el herbicida?"
-            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
-            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+            sql = "¿Seguro que desea el herbicida?"
+            sql = sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
+            If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                Sql = "DELETE FROM productos_herb "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                sql = "DELETE FROM productos_herb "
+                sql = sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
             End If
             
     End Select
@@ -2465,7 +2465,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute Sql
+        conn.Execute sql
         
         EliminarEnProductosGrupo CadenaProductos, CByte(Index)
         
@@ -2573,13 +2573,13 @@ EInsertarLinea:
 End Sub
 
 
-Private Function InsertarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
+Private Function InsertarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim Sql As String
-Dim Rs As ADODB.Recordset
+Dim sql As String
+Dim RS As ADODB.Recordset
 Dim SqlValues As String
-Dim I As Integer
+Dim i As Integer
 Dim SQLinsert As String
 
 
@@ -2592,40 +2592,40 @@ Dim SQLinsert As String
         InsertarEnProductosGrupo = True
         Exit Function
     Else
-        Sql = "select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & adodc1.Recordset!codprodu
+        sql = "select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & adodc1.Recordset!codprodu
     End If
-    Set Rs = New ADODB.Recordset
+    Set RS = New ADODB.Recordset
     
     SqlValues = ""
     
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not Rs.EOF
-        SqlValues = SqlValues & "(" & DBSet(Rs!codprodu, "N") & ","
-        If tipo = 0 Then
-            For I = 1 To 6
-                If I = 1 Or I = 6 Then
-                    SqlValues = SqlValues & DBSet(txtAux1(I).Text, "N") & ","
+    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not RS.EOF
+        SqlValues = SqlValues & "(" & DBSet(RS!codprodu, "N") & ","
+        If Tipo = 0 Then
+            For i = 1 To 6
+                If i = 1 Or i = 6 Then
+                    SqlValues = SqlValues & DBSet(txtAux1(i).Text, "N") & ","
                 Else
-                    SqlValues = SqlValues & DBSet(txtAux1(I).Text, "T") & ","
+                    SqlValues = SqlValues & DBSet(txtAux1(i).Text, "T") & ","
                 End If
-            Next I
+            Next i
         Else
-            For I = 1 To 5
-                If I = 1 Then
-                    SqlValues = SqlValues & DBSet(txtAux3(I).Text, "N") & ","
+            For i = 1 To 5
+                If i = 1 Then
+                    SqlValues = SqlValues & DBSet(txtAux3(i).Text, "N") & ","
                 Else
-                    SqlValues = SqlValues & DBSet(txtAux3(I).Text, "T") & ","
+                    SqlValues = SqlValues & DBSet(txtAux3(i).Text, "T") & ","
                 End If
-            Next I
+            Next i
             SqlValues = SqlValues & DBSet(Me.chkAux1(0).Value, "N") & ","
         End If
         SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1) & "),"
-        Rs.MoveNext
+        RS.MoveNext
     Wend
-    Set Rs = Nothing
+    Set RS = Nothing
 
     If SqlValues <> "" Then
-        If tipo = 0 Then
+        If Tipo = 0 Then
             SQLinsert = "insert into productos_insec (codprodu,numlinea,matactiva,nombre,dosis,plagas,psdias,cultivoaut) values "
         Else
             SQLinsert = "insert into productos_herb (codprodu,numlinea,matactiva,nombre,dosis,plagas,eshelicida) values "
@@ -2641,11 +2641,11 @@ eInsertarEnProductosGrupo:
 End Function
 
 
-Private Function ModificarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
+Private Function ModificarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim Sql As String
-Dim Rs As ADODB.Recordset
+Dim sql As String
+Dim RS As ADODB.Recordset
 
     On Error GoTo eModificarEnProductosGrupo
 
@@ -2656,26 +2656,26 @@ Dim Rs As ADODB.Recordset
 
 '    If CADENA = "" Then Exit Function
 
-    If tipo = 0 Then
-        Sql = "update productos_insec set "
-        Sql = Sql & "matactiva = " & DBSet(txtAux1(2).Text, "T")
-        Sql = Sql & ",nombre = " & DBSet(txtAux1(3).Text, "T")
-        Sql = Sql & ",dosis = " & DBSet(txtAux1(4).Text, "T")
-        Sql = Sql & ",plagas = " & DBSet(txtAux1(5).Text, "T")
-        Sql = Sql & ",psdias = " & DBSet(txtAux1(6).Text, "N")
-        Sql = Sql & ",cultivoaut = " & DBSet(txtAux1(7).Text, "T")
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux1(1).Text, "N")
+    If Tipo = 0 Then
+        sql = "update productos_insec set "
+        sql = sql & "matactiva = " & DBSet(txtAux1(2).Text, "T")
+        sql = sql & ",nombre = " & DBSet(txtAux1(3).Text, "T")
+        sql = sql & ",dosis = " & DBSet(txtAux1(4).Text, "T")
+        sql = sql & ",plagas = " & DBSet(txtAux1(5).Text, "T")
+        sql = sql & ",psdias = " & DBSet(txtAux1(6).Text, "N")
+        sql = sql & ",cultivoaut = " & DBSet(txtAux1(7).Text, "T")
+        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux1(1).Text, "N")
     Else
-        Sql = "update productos_herb set "
-        Sql = Sql & "matactiva = " & DBSet(txtAux3(2).Text, "T")
-        Sql = Sql & ",nombre = " & DBSet(txtAux3(3).Text, "T")
-        Sql = Sql & ",dosis = " & DBSet(txtAux3(4).Text, "T")
-        Sql = Sql & ",plagas = " & DBSet(txtAux3(5).Text, "T")
-        Sql = Sql & ",eshelicida = " & DBSet(chkAux1(0).Value, "N")
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux3(1).Text, "N")
+        sql = "update productos_herb set "
+        sql = sql & "matactiva = " & DBSet(txtAux3(2).Text, "T")
+        sql = sql & ",nombre = " & DBSet(txtAux3(3).Text, "T")
+        sql = sql & ",dosis = " & DBSet(txtAux3(4).Text, "T")
+        sql = sql & ",plagas = " & DBSet(txtAux3(5).Text, "T")
+        sql = sql & ",eshelicida = " & DBSet(chkAux1(0).Value, "N")
+        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux3(1).Text, "N")
     End If
             
-    conn.Execute Sql
+    conn.Execute sql
     Exit Function
     
 eModificarEnProductosGrupo:
@@ -2684,11 +2684,11 @@ eModificarEnProductosGrupo:
 End Function
 
 
-Private Function EliminarEnProductosGrupo(CADENA As String, tipo As Byte) As Boolean
+Private Function EliminarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim Sql As String
-Dim Rs As ADODB.Recordset
+Dim sql As String
+Dim RS As ADODB.Recordset
 
     On Error GoTo eModificarEnProductosGrupo
 
@@ -2696,15 +2696,15 @@ Dim Rs As ADODB.Recordset
     
     If EsKaki(adodc1.Recordset!codprodu) Then Exit Function
 
-    If tipo = 0 Then
-        Sql = "delete from productos_insec "
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!NumLinea
+    If Tipo = 0 Then
+        sql = "delete from productos_insec "
+        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!numlinea
     Else
-        Sql = "delete from productos_herb "
-        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!NumLinea
+        sql = "delete from productos_herb "
+        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!numlinea
     End If
             
-    conn.Execute Sql
+    conn.Execute sql
     Exit Function
     
 eModificarEnProductosGrupo:
@@ -2781,8 +2781,8 @@ Private Sub LimpiarCampos()
 End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
-Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim RS As ADODB.Recordset
+Dim sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -2840,7 +2840,7 @@ EEPonerBusq:
 End Sub
 
 Private Sub PonerCampos()
-Dim I As Integer
+Dim i As Integer
 Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
@@ -2848,15 +2848,15 @@ Dim CPostal As String, desProvi As String, desPais As String
     
     ' *** si n'hi han llínies en datagrids ***
     'For i = 0 To DataGridAux.Count - 1
-    For I = 0 To 1
-        If AdoAux(I).Recordset Is Nothing Then
-            CargaGridAux I, False
+    For i = 0 To 1
+        If AdoAux(i).Recordset Is Nothing Then
+            CargaGridAux i, False
         Else
-            CargaGridAux I, True
+            CargaGridAux i, True
         End If
-        If Not AdoAux(I).Recordset.EOF Then _
-            PonerCamposForma2 Me, AdoAux(I), 2, "FrameAux" & I
-    Next I
+        If Not AdoAux(i).Recordset.EOF Then _
+            PonerCamposForma2 Me, AdoAux(i), 2, "FrameAux" & i
+    Next i
 
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Me.adodc1.Recordset.AbsolutePosition & " de " & adodc1.Recordset.RecordCount
@@ -2866,12 +2866,12 @@ Dim CPostal As String, desProvi As String, desPais As String
 End Sub
 
 Private Function EsKaki(Producto As String) As Boolean
-Dim Sql As String
+Dim sql As String
 
     EsKaki = False
     
-    Sql = "select codprodukaki from rparam"
-    Kaki = DevuelveValor(Sql)
+    sql = "select codprodukaki from rparam"
+    Kaki = DevuelveValor(sql)
     If Kaki <> 0 Then
         EsKaki = (Kaki = CLng(Producto))
     End If

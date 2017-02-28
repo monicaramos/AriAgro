@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:27"
+            TextSave        =   "11:44"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -579,7 +579,9 @@ Begin VB.MDIForm MDIppal
       Caption         =   "&Palets-Pedidos-Albaranes"
       Begin VB.Menu mnComGV_Palets 
          Caption         =   "&Carga Automática Palets"
+         Enabled         =   0   'False
          Index           =   1
+         Visible         =   0   'False
       End
       Begin VB.Menu mnComGV_PalPed 
          Caption         =   "&Palets"

@@ -288,7 +288,8 @@ End Sub
 
 Public Sub SubmnC_GV_Palets_Click(Index As Integer)
     Select Case Index
-        Case 1: AbrirListado (1) 'Creacion automatica de palets
+        Case 1: frmManMovimTRZ.Show vbModal
+        'AbrirListado (1) 'Creacion automatica de palets
     End Select
 End Sub
 

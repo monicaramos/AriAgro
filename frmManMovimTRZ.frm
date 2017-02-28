@@ -8,13 +8,13 @@ Begin VB.Form frmManMovimTRZ
    ClientHeight    =   5925
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13185
+   ClientWidth     =   10860
    Icon            =   "frmManMovimTRZ.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5925
-   ScaleWidth      =   13185
+   ScaleWidth      =   10860
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox txtAux 
@@ -22,23 +22,11 @@ Begin VB.Form frmManMovimTRZ
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   5
-      Left            =   7230
+      Left            =   7290
       MaxLength       =   8
       TabIndex        =   16
       Tag             =   "Kilos|N|N|||trzmovim|kilos|###,##00||"
-      Top             =   4920
-      Width           =   945
-   End
-   Begin VB.TextBox txtAux 
-      Appearance      =   0  'Flat
-      BorderStyle     =   0  'None
-      Height          =   290
-      Index           =   4
-      Left            =   0
-      MaxLength       =   8
-      TabIndex        =   4
-      Tag             =   "Codigo|N|N|||trzmovim|codigo|00000000|S|"
-      Top             =   4920
+      Top             =   4560
       Width           =   945
    End
    Begin VB.CommandButton btnBuscar 
@@ -46,11 +34,11 @@ Begin VB.Form frmManMovimTRZ
       Caption         =   "+"
       Height          =   300
       Index           =   2
-      Left            =   4980
+      Left            =   5040
       MaskColor       =   &H00000000&
       TabIndex        =   15
       ToolTipText     =   "Buscar variedad"
-      Top             =   4920
+      Top             =   4530
       Visible         =   0   'False
       Width           =   195
    End
@@ -61,9 +49,9 @@ Begin VB.Form frmManMovimTRZ
       Enabled         =   0   'False
       Height          =   285
       Index           =   2
-      Left            =   5280
+      Left            =   5310
       TabIndex        =   14
-      Top             =   4920
+      Top             =   4560
       Visible         =   0   'False
       Width           =   1815
    End
@@ -72,11 +60,11 @@ Begin VB.Form frmManMovimTRZ
       Caption         =   "+"
       Height          =   300
       Index           =   1
-      Left            =   4005
+      Left            =   4080
       MaskColor       =   &H00000000&
       TabIndex        =   13
       ToolTipText     =   "Buscar fecha"
-      Top             =   4905
+      Top             =   4560
       Visible         =   0   'False
       Width           =   195
    End
@@ -85,11 +73,11 @@ Begin VB.Form frmManMovimTRZ
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   3
-      Left            =   1980
+      Left            =   1950
       MaxLength       =   13
       TabIndex        =   3
       Tag             =   "Numero Albaran|N|N|||trzmovim|numalbar|000000||"
-      Top             =   4890
+      Top             =   4530
       Width           =   945
    End
    Begin VB.TextBox txtAux 
@@ -101,15 +89,15 @@ Begin VB.Form frmManMovimTRZ
       MaxLength       =   4
       TabIndex        =   2
       Tag             =   "Variedad|N|N|0|999999|trzmovim|codvarie|000000|S|"
-      Top             =   4905
+      Top             =   4560
       Width           =   540
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
       Height          =   375
-      Left            =   10680
+      Left            =   8430
       TabIndex        =   5
-      Top             =   5280
+      Top             =   5220
       Visible         =   0   'False
       Width           =   1035
    End
@@ -117,9 +105,9 @@ Begin VB.Form frmManMovimTRZ
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
       Height          =   375
-      Left            =   11850
+      Left            =   9630
       TabIndex        =   6
-      Top             =   5280
+      Top             =   5220
       Visible         =   0   'False
       Width           =   1095
    End
@@ -128,11 +116,11 @@ Begin VB.Form frmManMovimTRZ
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   1
-      Left            =   3120
+      Left            =   3060
       MaxLength       =   16
       TabIndex        =   1
       Tag             =   "Fecha|F|N|||trzmovim|fecha|dd/mm/yyyy||"
-      Top             =   4890
+      Top             =   4530
       Width           =   900
    End
    Begin VB.TextBox txtAux 
@@ -141,11 +129,11 @@ Begin VB.Form frmManMovimTRZ
       BorderStyle     =   0  'None
       Height          =   290
       Index           =   0
-      Left            =   1050
+      Left            =   990
       MaxLength       =   6
       TabIndex        =   0
       Tag             =   "Nro Palet|N|N|0|999999|trzmovim|numpalet|000000||"
-      Top             =   4890
+      Top             =   4530
       Width           =   800
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
@@ -154,8 +142,8 @@ Begin VB.Form frmManMovimTRZ
       Left            =   120
       TabIndex        =   9
       Top             =   540
-      Width           =   12840
-      _ExtentX        =   22648
+      Width           =   10590
+      _ExtentX        =   18680
       _ExtentY        =   7779
       _Version        =   393216
       AllowUpdate     =   0   'False
@@ -221,9 +209,9 @@ Begin VB.Form frmManMovimTRZ
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
       Height          =   375
-      Left            =   11820
+      Left            =   9600
       TabIndex        =   12
-      Top             =   5310
+      Top             =   5220
       Visible         =   0   'False
       Width           =   1095
    End
@@ -306,8 +294,8 @@ Begin VB.Form frmManMovimTRZ
       Left            =   0
       TabIndex        =   10
       Top             =   0
-      Width           =   13185
-      _ExtentX        =   23257
+      Width           =   10860
+      _ExtentX        =   19156
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -371,6 +359,18 @@ Begin VB.Form frmManMovimTRZ
          Visible         =   0   'False
          Width           =   1215
       End
+   End
+   Begin VB.TextBox txtAux 
+      Appearance      =   0  'Flat
+      BorderStyle     =   0  'None
+      Height          =   290
+      Index           =   4
+      Left            =   210
+      MaxLength       =   10
+      TabIndex        =   4
+      Tag             =   "Codigo|N|N|||trzmovim|codigo|00000000|S|"
+      Top             =   4560
+      Width           =   945
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
@@ -470,6 +470,8 @@ Private cadB As String
 
 Private WithEvents frmVar As frmManVariedad 'variedades
 Attribute frmVar.VB_VarHelpID = -1
+Private WithEvents frmC As frmCal 'calendario fecha
+Attribute frmC.VB_VarHelpID = -1
 
 
 Dim Modo As Byte
@@ -500,12 +502,9 @@ Dim b As Boolean
     For i = 0 To txtAux.Count - 1
         txtAux(i).visible = Not b
     Next i
-    For i = 0 To txtAux2.Count - 1
-        txtAux2(i).visible = Not b
-    Next i
-    For i = 0 To btnBuscar.Count - 1
-        btnBuscar(i).visible = Not b
-    Next i
+    txtAux2(2).visible = Not b
+    btnBuscar(1).visible = Not b
+    btnBuscar(2).visible = Not b
     
     cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
@@ -517,14 +516,6 @@ Dim b As Boolean
     PonerLongCampos
     PonerModoOpcionesMenu 'Activar/Desact botones de menu segun Modo
     PonerOpcionesMenu  'En funcion del usuario
-    
-    'Si estamos modo Modificar bloquear clave primaria
-'    BloquearTxt txtAux(0), (Modo = 4)
-'    BloquearTxt txtAux(1), (Modo = 4)
-'    BloquearTxt txtAux(2), (Modo = 4)
-'    BloquearBtn Me.btnBuscar(0), (Modo = 4)
-'    BloquearBtn Me.btnBuscar(1), (Modo = 4)
-'    BloquearBtn Me.btnBuscar(2), (Modo = 4)
     
 End Sub
 
@@ -564,13 +555,13 @@ Private Sub BotonAnyadir()
     
     CargaGrid 'primer de tot carregue tot el grid
     cadB = ""
-'    '******************** canviar taula i camp **************************
-'    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
-'        NumF = NuevoCodigo
-'    Else
-'        NumF = SugerirCodigoSiguienteStr("productos", "codprodu")
-'    End If
-'    '********************************************************************
+    '******************** canviar taula i camp **************************
+    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
+        NumF = NuevoCodigo
+    Else
+        NumF = SugerirCodigoSiguienteStr("trzmovim", "codigo")
+    End If
+    '********************************************************************
     'Situamos el grid al final
     AnyadirLinea DataGrid1, adodc1
          
@@ -583,10 +574,8 @@ Private Sub BotonAnyadir()
     For i = 0 To txtAux.Count - 1
         txtAux(i).Text = ""
     Next i
-    For i = 0 To txtAux2.Count - 1
-        txtAux2(i).Text = ""
-    Next i
-
+    txtAux2(2).Text = ""
+    txtAux(4).Text = NumF
     LLamaLineas anc, 3 'Pone el form en Modo=3, Insertar
        
     'Ponemos el foco
@@ -656,18 +645,15 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     
     'Fijamos el ancho
     For i = 0 To txtAux.Count - 1
-        txtAux(i).Top = alto
+        If i <> 4 Then txtAux(i).Top = alto
     Next i
-    For i = 0 To txtAux2.Count - 1
-        txtAux2(i).Top = alto
-    Next i
-    For i = 0 To btnBuscar.Count - 1
-        btnBuscar(i).Top = alto - 15
-    Next i
+    txtAux2(2).Top = alto
+    btnBuscar(1).Top = alto - 15
+    btnBuscar(2).Top = alto - 15
 End Sub
 
 Private Sub BotonEliminar()
-Dim Sql As String
+Dim sql As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -682,19 +668,19 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*************** canviar els noms i el DELETE **********************************
-    Sql = "¿Seguro que desea eliminar el Movimiento?"
-    Sql = Sql & vbCrLf & "Codigo:    " & adodc1.Recordset.Fields(0)
-    Sql = Sql & vbCrLf & "Palet:    " & adodc1.Recordset.Fields(1)
-    Sql = Sql & vbCrLf & "Variedad:   " & adodc1.Recordset.Fields(4) & " - " & adodc1.Recordset.Fields(5)
-    Sql = Sql & vbCrLf & "Fecha: " & adodc1.Recordset.Fields(3)
+    sql = "¿Seguro que desea eliminar el Movimiento?"
+    sql = sql & vbCrLf & "Codigo:    " & adodc1.Recordset.Fields(0)
+    sql = sql & vbCrLf & "Palet:    " & adodc1.Recordset.Fields(1)
+    sql = sql & vbCrLf & "Variedad:   " & adodc1.Recordset.Fields(4) & " - " & adodc1.Recordset.Fields(5)
+    sql = sql & vbCrLf & "Fecha: " & adodc1.Recordset.Fields(3)
     
-    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from trzmovim where codigo= " & adodc1.Recordset.Fields(0)
+        sql = "Delete from trzmovim where codigo= " & adodc1.Recordset.Fields(0)
         
         
-        conn.Execute Sql
+        conn.Execute sql
         CargaGrid cadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
@@ -724,10 +710,48 @@ Private Sub PonerLongCampos()
 End Sub
 
 Private Sub btnBuscar_Click(Index As Integer)
+Dim esq As Long
+Dim dalt As Long
+Dim menu As Long
+Dim obj As Object
+ 
+ 
  TerminaBloquear
     
     Select Case Index
         Case 1 ' fecha
+        
+            Set frmC = New frmCal
+            
+            esq = btnBuscar(Index).Left
+            dalt = btnBuscar(Index).Top
+                
+            Set obj = btnBuscar(Index).Container
+              
+              While btnBuscar(Index).Parent.Name <> obj.Name
+                    esq = esq + obj.Left
+                    dalt = dalt + obj.Top
+                    Set obj = obj.Container
+              Wend
+            
+            menu = Me.Height - Me.ScaleHeight 'ací tinc el heigth del menú i de la toolbar
+        
+            frmC.Left = esq + btnBuscar(Index).Parent.Left + 30
+            frmC.Top = dalt + btnBuscar(Index).Parent.Top + btnBuscar(Index).Height + menu - 40
+        
+            btnBuscar(1).Tag = Index '<===
+            ' *** repasar si el camp es txtAux o Text1 ***
+            If txtAux(Index).Text <> "" Then frmC.NovaData = txtAux(Index).Text
+            ' ********************************************
+        
+            frmC.Show vbModal
+            Set frmC = Nothing
+            ' *** repasar si el camp es txtAux o Text1 ***
+            PonerFoco txtAux(1) '<===
+            ' *********************
+                
+        
+        
         
         Case 2 'variedades
             indice = Index
@@ -899,7 +923,7 @@ Private Sub Form_Load()
     
     
     '****************** canviar la consulta *********************************+
-    CadenaConsulta = "SELECT trzmovim.codigo, trzmovim.numpalet, trzmovim.numalbar, trzmovim.fecha, trzmovim.variedad, variedades.nomvarie, "
+    CadenaConsulta = "SELECT trzmovim.codigo, trzmovim.numpalet, trzmovim.numalbar, trzmovim.fecha, trzmovim.codvarie, variedades.nomvarie, "
     CadenaConsulta = CadenaConsulta & "trzmovim.kilos "
     CadenaConsulta = CadenaConsulta & " FROM trzmovim, variedades "
     CadenaConsulta = CadenaConsulta & " WHERE trzmovim.codvarie = variedades.codvarie "
@@ -927,7 +951,11 @@ Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
     txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvarie
     txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre variedad
 End Sub
-
+Private Sub frmC_Selec(vFecha As Date)
+    ' *** repasar si el camp es txtAux o Text1 ***
+    txtAux(1).Text = Format(vFecha, "dd/mm/yyyy")  '<===
+    ' ********************************************
+End Sub
 Private Sub mnBuscar_Click()
     BotonBuscar
 End Sub
@@ -990,26 +1018,27 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     End Select
 End Sub
 
-Private Sub CargaGrid(Optional vSql As String)
-    Dim Sql As String
+Private Sub CargaGrid(Optional vSQL As String)
+    Dim sql As String
     Dim tots As String
     
 '    adodc1.ConnectionString = Conn
-    If vSql <> "" Then
-        Sql = CadenaConsulta & " AND " & vSql
+    If vSQL <> "" Then
+        sql = CadenaConsulta & " AND " & vSQL
     Else
-        Sql = CadenaConsulta
+        sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    Sql = Sql & " ORDER BY trzmovim.codigo "
+    sql = sql & " ORDER BY trzmovim.codigo "
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "N|txtAux(0)|T|Codigo|1200|;"
-    tots = tots & "S|txtAux(0)|T|Palet|1750|;S|txtAux(3)|T|Albaran|1400|;S|txtAux(3)|T|Fecha|1200|;S|btnBuscar(1)|B|||;"
-    tots = tots & "S|txtAux(2)|T|Var.|600|;S|btnBuscar(2)|B|||;S|txtAux2(2)|T|Nombre Variedad|2100|;"
+    tots = tots & "S|txtAux(0)|T|Palet|1250|;S|txtAux(3)|T|Albaran|1200|;S|txtAux(1)|T|Fecha|1200|;S|btnBuscar(1)|B|||;"
+    tots = tots & "S|txtAux(2)|T|Variedad|1000|;S|btnBuscar(2)|B|||;S|txtAux2(2)|T|Nombre Variedad|2500|;"
+    tots = tots & "S|txtAux(5)|T|Kilos|1500|;"
     
     arregla tots, DataGrid1, Me
     
@@ -1018,7 +1047,7 @@ Private Sub CargaGrid(Optional vSql As String)
     DataGrid1.Columns(2).Alignment = dbgLeft
     DataGrid1.Columns(4).Alignment = dbgLeft
     DataGrid1.Columns(6).Alignment = dbgLeft
-    DataGrid1.Columns(7).Alignment = dbgLeft
+'    DataGrid1.Columns(7).Alignment = dbgLeft
 '   DataGrid1.Columns(2).Alignment = dbgRight
 End Sub
 
@@ -1033,49 +1062,11 @@ Dim cadMen As String
     If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
     
     Select Case Index
-'        Case 0
-'            PonerFormatoEntero txtAux(Index)
+        Case 0, 3, 4, 5
+            PonerFormatoEntero txtAux(Index)
         
-        Case 0 'codigo de cliente
-            If PonerFormatoEntero(txtAux(Index)) Then
-                txtAux2(Index).Text = PonerNombreDeCod(txtAux(Index), "clientes", "nomclien")
-                If txtAux2(Index).Text = "" Then
-                    cadMen = "No existe el Cliente: " & txtAux(Index).Text & vbCrLf
-                    cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
-                    If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
-                        Set frmCli = New frmClientes
-                        frmCli.DatosADevolverBusqueda = "0|1|"
-                        txtAux(Index).Text = ""
-                        TerminaBloquear
-                        frmCli.Show vbModal
-                        Set frmCli = Nothing
-                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, adodc1, 1
-                    Else
-                        txtAux(Index).Text = ""
-                    End If
-                    PonerFoco txtAux(Index)
-                End If
-            End If
-        
-        Case 1 'codigo de forfait
-            If txtAux(Index).Text = "" Then Exit Sub
-            txtAux2(Index).Text = PonerNombreDeCod(txtAux(Index), "forfaits", "nomconfe", "codforfait", "T")
-            If txtAux2(Index).Text = "" Then
-                cadMen = "No existe el Envase : " & txtAux(Index).Text & vbCrLf
-                cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
-                If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
-                    Set frmFor = New frmManForfaits
-                    frmFor.DatosADevolverBusqueda = "0|1|"
-                    txtAux(Index).Text = ""
-                    TerminaBloquear
-                    frmFor.Show vbModal
-                    Set frmFor = Nothing
-                    If Modo = 4 Then BLOQUEADesdeFormulario2 Me, adodc1, 1
-                Else
-                    txtAux(Index).Text = ""
-                End If
-                PonerFoco txtAux(Index)
-            End If
+        Case 1 'fecha
+            PonerFormatoFecha txtAux(Index)
             
         Case 2 'codigo de variedad
             If PonerFormatoEntero(txtAux(Index)) Then
@@ -1098,11 +1089,6 @@ Dim cadMen As String
                 End If
             End If
             
-        Case 3 'codigo ean asociado
-            txtAux(Index).Text = UCase(txtAux(Index).Text)
-            
-        Case 4 'referencia cliente
-            PonerFormatoEntero txtAux(Index)
     End Select
     
 End Sub
@@ -1110,7 +1096,7 @@ End Sub
 Private Function DatosOk() As Boolean
 'Dim Datos As String
 Dim b As Boolean
-Dim Sql As String
+Dim sql As String
 Dim Mens As String
 
 
@@ -1118,9 +1104,9 @@ Dim Mens As String
     If Not b Then Exit Function
     
     If Modo = 3 Then   'Estamos insertando
-         Sql = ""
-         Sql = DevuelveDesdeBDNew(cAgro, "codigoean", "codclien", "codclien", txtAux(0).Text, "N", , "codforfait", txtAux(1), "T", "codvarie", txtAux(2), "N")
-         If Sql <> "" Then
+         sql = ""
+         sql = DevuelveDesdeBDNew(cAgro, "codigoean", "codclien", "codclien", txtAux(0).Text, "N", , "codforfait", txtAux(1), "T", "codvarie", txtAux(2), "N")
+         If sql <> "" Then
             MsgBox "Código Ean existente para el cliente, forfait y variedad. Revise.", vbExclamation
             b = False
          End If
