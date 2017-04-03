@@ -259,7 +259,7 @@ Public NumCod As String 'Variedad origen
 
 Public CadTag As String 'Cadena con el Tag del campo que se va a poner en D/H en los listados
                         'Se necesita si el tipo de codigo es texto
-Public OpcionListado As Long
+Public Opcionlistado As Long
 ' 0- Carga de los registros de facturas_calibre
 ' 1- Modificacion del codigo de socio en alzira segun una tabla (socio 8003)
 
@@ -292,39 +292,38 @@ Private Function CargarFacturasCalibres()
 Dim sql As String
 Dim Sql2 As String
 Dim Mens As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim b As Boolean
-Dim cadWhere As String
+Dim cadWHERE As String
 
     On Error GoTo eCargarFacturasCalibres
     
-    sql = "select * from facturas_variedad  order by codtipom , numfactu, fecfactu"
+    sql = "select * from facturas_variedad order by codtipom , numfactu, fecfactu"
     
     conn.BeginTrans
     
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     b = True
     
     
-    While Not RS.EOF And b
+    While Not Rs.EOF And b
         Mens = "Insertar Calibres"
         
-        Label2(2).Caption = "Procesando Factura: " & DBLet(RS!CodTipoM, "T") & "-" & CStr(DBLet(RS!NumFactu, "N")) & " de " & CStr(DBLet(RS!FecFactu, "F"))
+        Label2(2).Caption = "Procesando Factura: " & DBLet(Rs!codTipoM, "T") & "-" & CStr(DBLet(Rs!NumFactu, "N")) & " de " & CStr(DBLet(Rs!FecFactu, "F"))
         DoEvents
         
-        b = InsertarModificarCalibres(True, DBLet(RS!CodTipoM, "T"), CStr(DBLet(RS!NumFactu, "N")), CStr(DBLet(RS!FecFactu, "F")), CStr(DBLet(RS!numlinea, "N")), CStr(DBLet(RS!numalbar, "N")), CStr(DBLet(RS!numlinealbar, "N")), CStr(DBLet(RS!cantreal, "N")), CStr(DBLet(RS!Unidades, "N")), CStr(DBLet(RS!imporbru, "N")), CStr(DBLet(RS!impornet, "N")), Mens, CStr(DBLet(RS!cantfact, "N")))
+        b = InsertarModificarCalibres(True, DBLet(Rs!codTipoM, "T"), CStr(DBLet(Rs!NumFactu, "N")), CStr(DBLet(Rs!FecFactu, "F")), CStr(DBLet(Rs!numlinea, "N")), CStr(DBLet(Rs!NumAlbar, "N")), CStr(DBLet(Rs!numlinealbar, "N")), CStr(DBLet(Rs!cantreal, "N")), CStr(DBLet(Rs!Unidades, "N")), CStr(DBLet(Rs!imporbru, "N")), CStr(DBLet(Rs!impornet, "N")), Mens, CStr(DBLet(Rs!cantfact, "N")))
         
         If Check2.Value Then
-            cadWhere = "facturas.codtipom = " & DBSet(RS!CodTipoM, "T") & " and facturas.numfactu = " & DBSet(RS!NumFactu, "N") & " and facturas.fecfactu = " & DBSet(RS!FecFactu, "F")
-            If b Then b = CalcularDatosFacturaVenta(cadWhere)
+            cadWHERE = "facturas.codtipom = " & DBSet(Rs!codTipoM, "T") & " and facturas.numfactu = " & DBSet(Rs!NumFactu, "N") & " and facturas.fecfactu = " & DBSet(Rs!FecFactu, "F")
+            If b Then b = CalcularDatosFacturaVenta(cadWHERE)
         End If
-        
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
 
 eCargarFacturasCalibres:
     If Err.Number <> 0 Then
@@ -340,6 +339,314 @@ eCargarFacturasCalibres:
     End If
 End Function
 
+Private Function InsertarModificarCalibres(Insertar As Boolean, codTipoM As String, Factura As String, FecFactu As String, numlinea As String, Albaran As String, NumlineaAlb As String, TCantReal As String, TUnidades As String, TImpBruto As String, TImpNeto As String, MenError As String, TCantFact As String) As Boolean
+' Insertar : = true : insertamos todas las lineas en facturas_calibre del albaran prorrateando
+'            = false: venimos de modificar lineas en facturas_variedad prorrateamos lineas de facturas_calibre segun los cambios que hay en facturas_variedad
+Dim Rs As ADODB.Recordset
+Dim sql As String
+Dim Sql2 As String
+Dim vImpDto As Currency
+Dim vDto1 As Currency
+Dim vDto2 As Currency
+Dim vImpNeto As Currency
+Dim vImpBruto As Currency
+Dim vPrecNeto As Currency
+Dim vPrecBruto As Currency
+
+Dim TipoDto As String
+Dim ImpDto As String
+Dim Cliente As String
+Dim Rdo As Long
+
+Dim ImpBrutoAc As Currency
+Dim ImpNetoAc As Currency
+
+Dim Diferencia As Currency
+Dim Diferencia1 As Currency
+
+Dim UltimaLinea As Currency
+Dim TipoFactFor As Byte
+
+Dim vHayReg As Byte
+Dim KilosCaja As Currency
+
+    On Error GoTo eInsertarModificarCalibres
+
+
+    KilosCaja = DevuelveValor("select kiloscaj from forfaits inner join albaran_variedad on forfaits.codforfait = albaran_variedad.codforfait where albaran_variedad.numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(NumlineaAlb, "N"))
+
+    ' Si venimos de insertar una linea de factura, insertamos automaticamente todas las lineas de calibre prorrateando
+    If Insertar Then
+        ' Primero insertamos con los precios e importes a cero
+        
+'        sql = "insert into facturas_calibre (codtipom,numfactu,fecfactu,numlinea,numline1,numalbar,numlinealbar,numline1albar,cantreal,cantfact,"
+'        sql = sql & " precibru,precinet,dtocom1,dtocom2,imporbru,impornet,unidades) "
+'        sql = sql & " select " & DBSet(CodTipoM, "T") & "," & DBSet(Factura, "N") & "," & DBSet(FecFactu, "F") & ","
+'        sql = sql & DBSet(numlinea, "N") & ",numline1," & DBSet(Albaran, "N") & "," & DBSet(NumlineaAlb, "N") & ",numline1,"
+'        sql = sql & " pesoneto, round(numcajas * " & DBSet(KilosCaja, "N") & ",2), 0,0,0,0,0,0,unidades "
+'        sql = sql & " from albaran_calibre where numalbar = " & DBSet(Albaran, "N")
+'        sql = sql & " and numlinea = " & DBSet(NumlineaAlb, "N")
+'        sql = sql & " order by numline1 "
+'
+'        conn.Execute sql
+        
+        'prorrateamos las cantidades con respecto al peso neto
+        Dim TPesoNeto As String
+        Dim vCantReal As String
+        Dim vCantFact As String
+        Dim CantRealAc As Currency
+        Dim CantFactAc As Currency
+        Dim Linea1 As Long
+        
+        sql = " select " & DBSet(codTipoM, "T") & "," & DBSet(Factura, "N") & "," & DBSet(FecFactu, "F") & ","
+        sql = sql & DBSet(numlinea, "N") & ",numline1," & DBSet(Albaran, "N") & "," & DBSet(NumlineaAlb, "N") & ",numline1,"
+        sql = sql & " pesoneto, numcajas, 0,0,0,0,0,0,unidades "
+        sql = sql & " from albaran_calibre where numalbar = " & DBSet(Albaran, "N")
+        sql = sql & " and numlinea = " & DBSet(NumlineaAlb, "N")
+        sql = sql & " order by numline1 "
+        
+        Set Rs = New ADODB.Recordset
+        Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        While Not Rs.EOF
+            TPesoNeto = DevuelveValor("select sum(pesoneto) from albaran_calibre where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(NumlineaAlb, "N"))
+            vCantReal = 0
+            vCantFact = 0
+            If TPesoNeto <> 0 Then
+                vCantReal = Round2(TCantReal * DBLet(Rs!Pesoneto, "N") / TPesoNeto, 0)
+                vCantFact = Round2(TCantFact * DBLet(Rs!Pesoneto, "N") / TPesoNeto, 0)
+                
+                CantRealAc = CantRealAc + vCantReal
+                CantFactAc = CantFactAc + vCantFact
+            End If
+        
+            sql = "insert into facturas_calibre (codtipom,numfactu,fecfactu,numlinea,numline1,numalbar,numlinealbar,numline1albar,cantreal,cantfact,"
+            sql = sql & " precibru,precinet,dtocom1,dtocom2,imporbru,impornet,unidades)  values ("
+            sql = sql & DBSet(codTipoM, "T") & "," & DBSet(Factura, "N") & "," & DBSet(FecFactu, "F") & ","
+            sql = sql & DBSet(numlinea, "N") & "," & DBSet(Rs!numline1, "N") & "," & DBSet(Albaran, "N") & "," & DBSet(NumlineaAlb, "N") & "," & DBSet(Rs!numline1, "N") & ","
+            sql = sql & DBSet(vCantReal, "N") & "," & DBSet(vCantFact, "N") & ",0,0,0,0,0,0," & DBSet(Rs!Unidades, "N") & ")"
+    
+            Linea1 = DBLet(Rs!numline1, "N")
+            
+            conn.Execute sql
+        
+        
+            Rs.MoveNext
+        Wend
+        Set Rs = Nothing
+        
+        ' en caso de que hayan descuadres
+        Dim DiferenciaReal As Currency
+        Dim DiferenciaFact As Currency
+        
+        DiferenciaReal = TCantReal - CantRealAc
+        DiferenciaFact = TCantFact - CantFactAc
+        If CantRealAc <> TCantReal Or CantFactAc <> TCantFact Then
+            sql = "update facturas_calibre set cantreal = cantreal + " & DBSet(DiferenciaReal, "N") & ","
+            sql = sql & " cantfact = cantfact + " & DBSet(DiferenciaFact, "N")
+            sql = sql & " where codtipom = " & DBSet(codTipoM, "T") & " and numfactu = " & DBSet(Factura, "N")
+            sql = sql & " and numlinea = " & DBSet(numlinea, "N")
+            sql = sql & " and numline1 = " & DBSet(Linea1, "N")
+        
+            conn.Execute sql
+        End If
+
+        
+    End If
+    
+    ' Prorrateamos TODO con respecto a los kilos
+    sql = "select * from facturas_calibre where codtipom = " & DBSet(codTipoM, "T") & " and numfactu = " & DBSet(Factura, "N")
+    sql = sql & " and fecfactu = " & DBSet(FecFactu, "F") & " and numlinea = " & DBSet(numlinea, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    
+    sql = ""
+    sql = DevuelveDesdeBDNew(cAgro, "facturas", "impdtoc", "codtipom", codTipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
+    vImpDto = ComprobarCero(sql)
+    
+    sql = ""
+    sql = DevuelveDesdeBDNew(cAgro, "facturas", "dtocom1", "codtipom", codTipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
+    vDto1 = ComprobarCero(sql)
+    
+    sql = ""
+    sql = DevuelveDesdeBDNew(cAgro, "facturas", "dtocom2", "codtipom", codTipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
+    vDto2 = ComprobarCero(sql)
+    
+    '++monica:030608:traemos el redondeo del precio
+    sql = ""
+    sql = DevuelveDesdeBDNew(cAgro, "facturas", "codclien", "codtipom", codTipoM, "T", , "numfactu", Factura, "N", "fecfactu", FecFactu, "F")
+    Cliente = ComprobarCero(sql)
+    sql = ""
+    sql = DevuelveDesdeBDNew(cAgro, "clientes", "nrodecprec", "codclien", Cliente, "N")
+    Rdo = ComprobarCero(sql)
+    
+    Dim vPrecio As Currency
+    Dim Rdo1 As Integer
+    Dim Rdo2 As Integer
+    vPrecio = DevuelveValor("select precinet from facturas_variedad where codtipom = " & DBSet(codTipoM, "T") & " and numfactu = " & DBSet(Factura, "N") & " and fecfactu = " & DBSet(FecFactu, "F") & " and numlinea = " & DBSet(numlinea, "N"))
+    
+    Rdo1 = 4
+    If (vPrecio * 10) - Int(vPrecio * 10) <> 0 Then Rdo1 = 2
+    If (vPrecio * 100) - Int(vPrecio * 100) <> 0 Then Rdo1 = 3
+    If (vPrecio * 1000) - Int(vPrecio * 1000) <> 0 Then Rdo1 = 4
+    
+    vPrecio = DevuelveValor("select precibru from facturas_variedad where codtipom = " & DBSet(codTipoM, "T") & " and numfactu = " & DBSet(Factura, "N") & " and fecfactu = " & DBSet(FecFactu, "F") & " and numlinea = " & DBSet(numlinea, "N"))
+    
+    Rdo2 = 4
+    If (vPrecio * 10) - Int(vPrecio * 10) <> 0 Then Rdo2 = 2
+    If (vPrecio * 100) - Int(vPrecio * 100) <> 0 Then Rdo2 = 3
+    If (vPrecio * 1000) - Int(vPrecio * 1000) <> 0 Then Rdo2 = 4
+    
+    
+    If Rdo1 > Rdo2 Then
+        Rdo = Rdo1
+    Else
+        Rdo = Rdo2
+    End If
+    
+    vHayReg = 0
+    
+    
+    ImpBrutoAc = 0
+    ImpNetoAc = 0
+    
+    While Not Rs.EOF
+        vHayReg = 1
+        
+        TipoDto = DevuelveDesdeBDNew(cAgro, "clientes", "tipodtos", "codclien", Cliente, "N")
+        If TipoFacturarForfaits(CStr(Albaran), CStr(NumlineaAlb)) = 1 Then 'kilos
+            TipoFactFor = 1
+            
+            vImpBruto = Round2(TImpBruto * DBLet(Rs!cantreal, "N") / TCantReal, 2)
+            
+            ImpBrutoAc = ImpBrutoAc + vImpBruto
+            
+            vImpNeto = Round2(TImpNeto * DBLet(Rs!cantreal, "N") / TCantReal, 2)
+            
+            
+            ImpNetoAc = ImpNetoAc + vImpNeto
+                
+            '[Monica]24/11/2011: si las unidades son 0 no hay division
+            'precio neto
+            vPrecNeto = 0
+            vPrecBruto = 0
+            If DBLet(Rs!cantreal, "N") <> 0 Then
+                vPrecNeto = Round2(vImpNeto / DBLet(Rs!cantreal, "N"), Rdo)
+                vPrecBruto = Round2(vImpBruto / DBLet(Rs!cantreal, "N"), Rdo)
+            End If
+            '++monica:040608 : solo si redondeo <> 4
+'            If Rdo = 2 Or Rdo = 3 Then
+'                vImpNeto = Round2(vPrecNeto * DBLet(Rs!cantreal, "N"), 2)
+'                vImpBruto = Round2(vPrecBruto * DBLet(Rs!cantreal, "N"), 2)
+'            End If
+            
+        Else 'unidades
+            TipoFactFor = 0
+'            ImpDto = CalcularImporteDto(DBLet(Rs!Unidades, "N"), DBLet(Rs!precibru, "N"), TipoM, Factura, FecFactu, CStr(vImpDto), True)
+'            vImpNeto = CalcularImporteFClien(DBLet(Rs!Unidades, "N"), DBLet(Rs!precibru, "N"), CStr(vDto1), CStr(vDto2), CByte(TipoDto), CStr(ImpDto), DBLet(Rs!imporbru, "N"))
+
+            vImpBruto = 0
+            If TUnidades <> 0 Then
+                vImpBruto = Round2(TImpBruto * DBLet(Rs!Unidades, "N") / TUnidades, 2)
+            End If
+            ImpBrutoAc = ImpBrutoAc + vImpBruto
+            
+            vImpNeto = 0
+            If TUnidades <> 0 Then
+                vImpNeto = Round2(TImpNeto * DBLet(Rs!Unidades, "N") / TUnidades, 2)
+            End If
+            ImpNetoAc = ImpNetoAc + vImpNeto
+            
+            '[Monica]24/11/2011: si las unidades son 0 no hay division
+            'precio neto
+            vPrecNeto = 0
+            vPrecBruto = 0
+            If DBLet(Rs!Unidades, "N") <> 0 Then
+                vPrecNeto = Round2(vImpNeto / DBLet(Rs!Unidades, "N"), Rdo)
+                vPrecBruto = Round2(vImpBruto / DBLet(Rs!Unidades, "N"), Rdo)
+            End If
+            
+            '++monica:040608
+            If Rdo = 2 Or Rdo = 3 Then
+                vImpNeto = Round2(vPrecNeto * DBLet(Rs!Unidades, "N"), 2)
+                vImpBruto = Round2(vPrecBruto * DBLet(Rs!Unidades, "N"), 2)
+            End If
+            
+        End If
+        
+        
+        Sql2 = "update facturas_calibre set "
+        Sql2 = Sql2 & "precibru = " & DBSet(vPrecBruto, "N")
+        Sql2 = Sql2 & ",precinet = " & DBSet(vPrecNeto, "N")
+        Sql2 = Sql2 & ",imporbru = " & DBSet(vImpBruto, "N")
+        Sql2 = Sql2 & ",impornet = " & DBSet(vImpNeto, "N")
+        Sql2 = Sql2 & ",dtocom1 = " & DBSet(vDto1, "N")
+        Sql2 = Sql2 & ",dtocom2 = " & DBSet(vDto2, "N")
+        Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
+        Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
+        Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
+        Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
+        Sql2 = Sql2 & " and numline1 = " & DBSet(Rs!numline1, "N")
+    
+        conn.Execute Sql2
+    
+        UltimaLinea = DBLet(Rs!numline1, "N")
+    
+        Rs.MoveNext
+    Wend
+    
+    Rs.Close
+    
+    '[Monica]16/09/2011: si no coincide la suma con los totales redondeamos en la ultima linea
+    If vHayReg = 1 Then
+        If ImpBrutoAc <> TImpBruto Or ImpNetoAc <> TImpNeto Then
+            Diferencia = TImpBruto - ImpBrutoAc
+            Diferencia1 = TImpNeto - ImpNetoAc
+            
+            Sql2 = "update facturas_calibre set impornet = impornet + " & DBSet(Diferencia1, "N")
+            Sql2 = Sql2 & ", imporbru = imporbru + " & DBSet(Diferencia, "N")
+            Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
+            Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
+            Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
+            Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
+            Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
+        
+            conn.Execute Sql2
+    
+            If TipoFactFor = 1 Then 'kilos
+                Sql2 = "update facturas_calibre set precinet = round(impornet / cantreal, " & DBSet(Rdo, "N") & ") "
+                Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
+                Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
+                Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
+                Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
+                Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
+            
+                conn.Execute Sql2
+            Else 'unidades
+                'precio neto
+                Sql2 = "update facturas_calibre set precinet = round(impornet / unidades, " & DBSet(Rdo, "N") & ") "
+                Sql2 = Sql2 & " where codtipom = " & DBSet(codTipoM, "T")
+                Sql2 = Sql2 & " and numfactu = " & DBSet(Factura, "N")
+                Sql2 = Sql2 & " and fecfactu = " & DBSet(FecFactu, "F")
+                Sql2 = Sql2 & " and numlinea = " & DBSet(numlinea, "N")
+                Sql2 = Sql2 & " and numline1 = " & DBSet(UltimaLinea, "N")
+            
+                conn.Execute Sql2
+            End If
+        End If
+    End If
+    
+    Set Rs = Nothing
+    
+    InsertarModificarCalibres = True
+    Exit Function
+
+eInsertarModificarCalibres:
+    If Err.Number <> 0 Then
+        MenError = MenError & vbCrLf & Err.Description
+        InsertarModificarCalibres = False
+    End If
+End Function
 
 'Private Function InsertarModificarCalibres(Insertar As Boolean, CodTipoM As String, Factura As String, FecFactu As String, numlinea As String, Albaran As String, NumlineaAlb As String, TCantReal As String, TUnidades As String, TImpBruto As String, TImpNeto As String, TCantFact As String, MenError As String) As Boolean
 '' Insertar : = true : insertamos todas las lineas en facturas_calibre del albaran prorrateando
@@ -674,7 +981,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -734,7 +1041,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -786,7 +1093,7 @@ Private Function ActualizarRegistros() As Boolean
 Dim sql As String
 Dim Sql2 As String
 Dim Sql3 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eActualizarRegistros
 
@@ -798,13 +1105,13 @@ Dim RS As ADODB.Recordset
             If Opcion(0).Value Then ' copiar
                 sql = "select * from calibres where codvarie = " & DBSet(NumCod, "N")
                 
-                Set RS = New ADODB.Recordset
-                RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Set Rs = New ADODB.Recordset
+                Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
-                If Not RS.EOF Then RS.MoveFirst
-                While Not RS.EOF
+                If Not Rs.EOF Then Rs.MoveFirst
+                While Not Rs.EOF
                     Sql2 = "select count(*) from calibres where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                    Sql2 = Sql2 & " and codcalib = " & DBSet(RS!codcalib, "N")
+                    Sql2 = Sql2 & " and codcalib = " & DBSet(Rs!codcalib, "N")
                     
                     If TotalRegistros(Sql2) > 0 Then
                         ' updateamos
@@ -812,8 +1119,8 @@ Dim RS As ADODB.Recordset
                         Sql3 = Sql3 & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
                         Sql3 = Sql3 & " where fuente.codvarie = " & DBSet(NumCod, "N")
                         Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                        Sql3 = Sql3 & " and fuente.codcalib = " & DBSet(RS!codcalib, "N")
-                        Sql3 = Sql3 & " and destino.codcalib = " & DBSet(RS!codcalib, "N")
+                        Sql3 = Sql3 & " and fuente.codcalib = " & DBSet(Rs!codcalib, "N")
+                        Sql3 = Sql3 & " and destino.codcalib = " & DBSet(Rs!codcalib, "N")
                 
                         conn.Execute Sql3
                     Else
@@ -821,15 +1128,15 @@ Dim RS As ADODB.Recordset
                         Sql3 = "insert into calibres select " & DBSet(txtCodigo(70).Text, "N")
                         Sql3 = Sql3 & ",codcalib, nomcalib, nomcalab, calbaneco from calibres "
                         Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
-                        Sql3 = Sql3 & " and codcalib = " & DBSet(RS!codcalib, "N")
+                        Sql3 = Sql3 & " and codcalib = " & DBSet(Rs!codcalib, "N")
         
                         conn.Execute Sql3
                     End If
                     
-                    RS.MoveNext
+                    Rs.MoveNext
                 Wend
                 
-                Set RS = Nothing
+                Set Rs = Nothing
                 
 '                Sql = "delete from calibres where codvarie = " & DBSet(txtCodigo(70).Text, "N")
 '                Conn.Execute Sql
@@ -859,13 +1166,13 @@ Dim RS As ADODB.Recordset
             If Opcion(0).Value Then ' copiar
                 sql = "select * from rcalidad where codvarie = " & DBSet(NumCod, "N")
                 
-                Set RS = New ADODB.Recordset
-                RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Set Rs = New ADODB.Recordset
+                Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
-                If Not RS.EOF Then RS.MoveFirst
-                While Not RS.EOF
+                If Not Rs.EOF Then Rs.MoveFirst
+                While Not Rs.EOF
                     Sql2 = "select count(*) from rcalidad where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                    Sql2 = Sql2 & " and codcalid = " & DBSet(RS!codcalid, "N")
+                    Sql2 = Sql2 & " and codcalid = " & DBSet(Rs!codcalid, "N")
                     
                     If TotalRegistros(Sql2) > 0 Then
                         ' actualizamos
@@ -877,8 +1184,8 @@ Dim RS As ADODB.Recordset
                         Sql3 = Sql3 & " destino.gastosrec = fuente.gastosrec "
                         Sql3 = Sql3 & " where fuente.codvarie = " & DBSet(NumCod, "N")
                         Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                        Sql3 = Sql3 & " and fuente.codcalid = " & DBSet(RS!codcalid, "N")
-                        Sql3 = Sql3 & " and destino.codcalid = " & DBSet(RS!codcalid, "N")
+                        Sql3 = Sql3 & " and fuente.codcalid = " & DBSet(Rs!codcalid, "N")
+                        Sql3 = Sql3 & " and destino.codcalid = " & DBSet(Rs!codcalid, "N")
                         
                         conn.Execute Sql3
                         
@@ -888,14 +1195,14 @@ Dim RS As ADODB.Recordset
                         Sql3 = Sql3 & ",codcalid, nomcalid, nomcalab, tipcalid, tipcalid1, nomcalibrador1,"
                         Sql3 = Sql3 & "nomcalibrador2, gastosrec from rcalidad "
                         Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
-                        Sql3 = Sql3 & " and codcalid = " & DBSet(RS!codcalid, "N")
+                        Sql3 = Sql3 & " and codcalid = " & DBSet(Rs!codcalid, "N")
                     
                         conn.Execute Sql3
                         
                     End If
-                    RS.MoveNext
+                    Rs.MoveNext
                 Wend
-                Set RS = Nothing
+                Set Rs = Nothing
 
 
 '                Sql = "delete from rcalidad where codvarie = " & DBSet(txtCodigo(70).Text, "N")
@@ -937,11 +1244,11 @@ eActualizarRegistros:
 End Function
 
 
-Private Function CalcularDatosFacturaVenta(cadWhere As String) As Boolean
+Private Function CalcularDatosFacturaVenta(cadWHERE As String) As Boolean
 'cadWhere: cad para la where de la SQL que selecciona las lineas del albaran o la factura
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim i As Integer
 
 Dim sql As String
@@ -996,7 +1303,7 @@ Dim ImpDto2 As Currency
 Dim TotalFac As Currency
 
 Dim IvaAnt As Integer
-Dim cadWhere1 As String
+Dim cadwhere1 As String
     
 Dim Nulo2 As String
 Dim Nulo3 As String
@@ -1037,30 +1344,30 @@ Dim TipIvaC As Integer
     TotalFac = 0
 
     'Agrupar el importe bruto por tipos de iva
-    cadWhere1 = Replace(cadWhere, "facturas", "facturas_variedad")
+    cadwhere1 = Replace(cadWHERE, "facturas", "facturas_variedad")
     sql = "SELECT facturas_variedad.codigiva, sum(imporbru) as bruto, sum(impornet) as neto"
     sql = sql & " FROM facturas_variedad "
-    sql = sql & " WHERE " & cadWhere1
+    sql = sql & " WHERE " & cadwhere1
     sql = sql & " GROUP BY 1 "
     sql = sql & " UNION "
-    cadWhere1 = Replace(cadWhere, "facturas", "facturas_envases")
+    cadwhere1 = Replace(cadWHERE, "facturas", "facturas_envases")
     sql = sql & "SELECT facturas_envases.codigiva, sum(importel) as bruto, sum(importel) as neto"
     sql = sql & " FROM facturas_envases "
-    sql = sql & " WHERE " & cadWhere1
+    sql = sql & " WHERE " & cadwhere1
     sql = sql & " GROUP BY 1 "
     sql = sql & " UNION "
-    cadWhere1 = Replace(cadWhere, "facturas", "facturas_acuenta")
+    cadwhere1 = Replace(cadWHERE, "facturas", "facturas_acuenta")
     sql = sql & "SELECT facturas.codiiva1 as codigiva, sum(brutofac * (-1)) as bruto, sum(brutofac * (-1)) as neto"
     sql = sql & " FROM facturas_acuenta, facturas "
-    sql = sql & " WHERE " & cadWhere1
+    sql = sql & " WHERE " & cadwhere1
     sql = sql & " and facturas.codtipom = facturas_acuenta.codtipomcta "
     sql = sql & " and facturas.numfactu = facturas_acuenta.numfactucta "
     sql = sql & " and facturas.fecfactu = facturas_acuenta.fecfactucta "
     sql = sql & " GROUP BY 1 "
     sql = sql & " ORDER BY 1 "
 
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
     TotBruto = 0
     TotNeto = 0
@@ -1069,11 +1376,11 @@ Dim TipIvaC As Integer
     vNeto = 0
     i = 1
 
-    If Not RS.EOF Then RS.MoveFirst
-    IvaAnt = RS.Fields(0).Value
-    While Not RS.EOF
+    If Not Rs.EOF Then Rs.MoveFirst
+    IvaAnt = Rs.Fields(0).Value
+    While Not Rs.EOF
         
-        If IvaAnt <> RS.Fields(0).Value Then
+        If IvaAnt <> Rs.Fields(0).Value Then
             TotBruto = TotBruto + vBruto
             TotNeto = TotNeto + vNeto
             ImpBImIVA = vNeto
@@ -1089,7 +1396,7 @@ Dim TipIvaC As Integer
             'los vamos acumulando
             TotImpIVA = TotImpIVA + impiva
 
-            TipIvaC = DevuelveValor("select tipoivac from facturas where " & cadWhere)
+            TipIvaC = DevuelveValor("select tipoivac from facturas where " & cadWHERE)
  
 
             If CInt(TipIvaC) = 2 Then
@@ -1156,19 +1463,19 @@ Dim TipIvaC As Integer
             
             
             i = i + 1
-            IvaAnt = RS.Fields(0).Value
-            vBruto = DBLet(RS.Fields(1).Value, "N")
-            vNeto = DBLet(RS.Fields(2).Value, "N")
+            IvaAnt = Rs.Fields(0).Value
+            vBruto = DBLet(Rs.Fields(1).Value, "N")
+            vNeto = DBLet(Rs.Fields(2).Value, "N")
         Else
-            vBruto = vBruto + DBLet(RS.Fields(1).Value, "N")
-            vNeto = vNeto + DBLet(RS.Fields(2).Value, "N")
+            vBruto = vBruto + DBLet(Rs.Fields(1).Value, "N")
+            vNeto = vNeto + DBLet(Rs.Fields(2).Value, "N")
         End If
         
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 
     ' ULTIMO REGISTRO
     TotBruto = TotBruto + vBruto
@@ -1186,7 +1493,7 @@ Dim TipIvaC As Integer
     'los vamos acumulando
     TotImpIVA = TotImpIVA + impiva
     
-    TipIvaC = DevuelveValor("select tipoivac from facturas where " & cadWhere)
+    TipIvaC = DevuelveValor("select tipoivac from facturas where " & cadWHERE)
    
     If CInt(TipIvaC) = 2 Then
         'Obtener el % de RECARGO
@@ -1283,7 +1590,7 @@ Dim TipIvaC As Integer
     sql = sql & ",brutofac = " & DBSet(TotBruto, "N")
     sql = sql & ",impordto = " & DBSet(Round2(TotBruto - TotNeto, 2), "N")
     sql = sql & ",totalfac = " & DBSet(TotalFac, "N")
-    sql = sql & " where " & cadWhere
+    sql = sql & " where " & cadWHERE
     
     conn.Execute sql
 

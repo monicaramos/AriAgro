@@ -1947,7 +1947,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public OpcionListado As Byte
+Public Opcionlistado As Byte
     '==== Listados BASICOS ====
     '=============================
     ' 10 .- Listado de Clientes
@@ -2001,7 +2001,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -2010,8 +2010,8 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim tabla As String
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -2113,12 +2113,13 @@ End Function
 Private Function RepartoAlbaranes(vMens As String) As Boolean
 Dim sql As String
 Dim Sql2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim Salir As Boolean
 Dim KilosVar As Long
 Dim numlinea As Integer
 Dim resto As Long
+Dim vCodigo As Long
 
     On Error GoTo eRepartoAlbaranes
 
@@ -2130,18 +2131,18 @@ Dim resto As Long
     sql = sql & " group by 1,2 "
     sql = sql & " order by 1,2 "
     
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
-        Sql2 = "select sum(kilos) from trzmovim where numalbar = 0 and codvarie = " & DBSet(RS!codvarie, "N")
+    While Not Rs.EOF
+        Sql2 = "select sum(kilos) from trzmovim where numalbar = 0 and codvarie = " & DBSet(Rs!codvarie, "N")
         
-        KilosVar = DBLet(RS!Pesoneto)
-        If DevuelveValor(Sql2) < DBLet(RS!Pesoneto) Then
-            MsgBox "No hay suficiente existencias de la variedad " & DBLet(RS!codvarie), vbExclamation
+        KilosVar = DBLet(Rs!Pesoneto)
+        If DevuelveValor(Sql2) < DBLet(Rs!Pesoneto) Then
+            MsgBox "No hay suficiente existencias de la variedad " & DBLet(Rs!codvarie), vbExclamation
             Exit Function
         Else
-            Sql2 = "select * from trzmovim where numalbar = 0 and codvarie = " & DBSet(RS!codvarie, "N")
+            Sql2 = "select * from trzmovim where numalbar = 0 and codvarie = " & DBSet(Rs!codvarie, "N")
             Sql2 = Sql2 & " order by fecha desc "
             
             Set Rs2 = New ADODB.Recordset
@@ -2149,11 +2150,11 @@ Dim resto As Long
             
             Salir = False
             
-            numlinea = DevuelveValor("select coalesce(numlinea, 0) + 1 from albaran_palets where numalbar = " & DBSet(RS!numalbar, "N"))
+            numlinea = DevuelveValor("select coalesce(numlinea, 0) + 1 from albaran_palets where numalbar = " & DBSet(Rs!NumAlbar, "N"))
             
             While Not Rs2.EOF And Not Salir
                 sql = "insert into albaran_palets (numalbar, numlinea, numpalet) values ("
-                sql = sql & DBSet(RS!numalbar, "N") & "," & DBSet(numlinea, "N") & "," & DBSet(Rs2!numpalet, "N") & ")"
+                sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(numlinea, "N") & "," & DBSet(Rs2!numpalet, "N") & ")"
                 
                 conn.Execute sql
             
@@ -2161,25 +2162,25 @@ Dim resto As Long
                     
                     KilosVar = KilosVar - DBLet(Rs2!Kilos)
                     
-                    sql = "update trzmovim set numalbar = " & DBSet(RS!numalbar, "N")
-                    sql = sql & " where codigo = " & DBSet(Rs2!codigo, "N")
+                    sql = "update trzmovim set numalbar = " & DBSet(Rs!NumAlbar, "N")
+                    sql = sql & " where codigo = " & DBSet(Rs2!Codigo, "N")
                     
                     conn.Execute sql
                 Else
                     resto = DBLet(Rs2!Kilos) - KilosVar
                 
-                    sql = "update trzmovim set numalbar = " & DBSet(RS!numalbar, "N")
-                    sql = sql & ", kilos =  " & DBSet(RS!Kilos, "N")
-                    sql = sql & " where codigo = " & DBSet(Rs2!codigo, "N")
+                    sql = "update trzmovim set numalbar = " & DBSet(Rs!NumAlbar, "N")
+                    sql = sql & ", kilos =  " & DBSet(Rs!Kilos, "N")
+                    sql = sql & " where codigo = " & DBSet(Rs2!Codigo, "N")
                 
                     conn.Execute sql
                     
                     ' insertamos una linea con la diferencia que nos queda
-                    vcodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
-                    vcodigo = vcodigo + 1
+                    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
+                    vCodigo = vCodigo + 1
                     
                     sql = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
-                    sql = sql & "(" & DBSet(vcodigo, "N") & "," & DBSet(Rs2!numpalet, "N") & ",0," & DBSet(Rs2!fecha, "F") & "," & DBSet(RS!codvarie, "N") & ","
+                    sql = sql & "(" & DBSet(vCodigo, "N") & "," & DBSet(Rs2!numpalet, "N") & ",0," & DBSet(Rs2!fecha, "F") & "," & DBSet(Rs!codvarie, "N") & ","
                     sql = sql & DBSet(resto, "N") & ")"
                     
                     conn.Execute sql
@@ -2195,7 +2196,7 @@ Dim resto As Long
         End If
         
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
     
     RepartoAlbaranes = True
     Exit Function
@@ -2208,7 +2209,7 @@ End Function
 
 Private Function CargarPaletsConfeccionados(vSQL As String, vMens As String) As Boolean
 Dim sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Rs1 As ADODB.Recordset
 Dim SQLinsert As String
 Dim SqlInsert2 As String
@@ -2218,7 +2219,7 @@ Dim NroPalet As Long
 Dim Marca As Integer
 Dim Forfait As String
 Dim Calibre As Integer
-Dim vcodigo As Long
+Dim vCodigo As Long
 
     On Error GoTo eCargarPaletsConfeccionados
 
@@ -2237,23 +2238,23 @@ Dim vcodigo As Long
     
     Marca = DevuelveValor("select min(codmarca) from marcas")
     Forfait = DevuelveValor("select min(codforfait) from forfaits")
-    vcodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
+    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
     
-    Set RS = New ADODB.Recordset
-    RS.Open vSQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open vSQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    While Not RS.EOF
+    While Not Rs.EOF
     
-        Calibre = DevuelveValor("select min(codcalib) from calibres where codvarie = " & DBSet(RS!codvarie, "N"))
+        Calibre = DevuelveValor("select min(codcalib) from calibres where codvarie = " & DBSet(Rs!codvarie, "N"))
     
         SqlValues = "(" & DBSet(NroPalet, "N") & "," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ","
         SqlValues = SqlValues & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ",1,1,0,"
         SqlValues = SqlValues & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(txtCodigo(30).Text & " 00:00:00", "FH") & ",1,1,1,1,"
-        SqlValues = SqlValues & DBSet(RS!idpalet, "N") & ")"
+        SqlValues = SqlValues & DBSet(Rs!idpalet, "N") & ")"
     
         conn.Execute SQLinsert & SqlValues
     
-        sql = "select * from trzpalets where idpalet = " & DBSet(RS!idpalet, "N")
+        sql = "select * from trzpalets where idpalet = " & DBSet(Rs!idpalet, "N")
         
         Set Rs1 = New ADODB.Recordset
         Rs1.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2272,18 +2273,18 @@ Dim vcodigo As Long
         End If
         
         ' metemos en la tabla de movimientos de traza
-        vcodigo = vcodigo + 1
+        vCodigo = vCodigo + 1
         
         sql = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
-        sql = sql & "(" & DBSet(vcodigo, "N") & "," & DBSet(NroPalet, "N") & ",0," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(Rs1!codvarie, "N") & ","
+        sql = sql & "(" & DBSet(vCodigo, "N") & "," & DBSet(NroPalet, "N") & ",0," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(Rs1!codvarie, "N") & ","
         sql = sql & DBSet(Rs1!numkilos, "N") & ")"
         
         conn.Execute sql
         
         Set Rs1 = Nothing
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
 
     CargarPaletsConfeccionados = True
     
@@ -2320,7 +2321,7 @@ Dim vSqlDestino As String
             nHasta = txtNombre(7).Text
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{" & Tabla & ".codprodu}"
+                Codigo = "{" & tabla & ".codprodu}"
                 TipCod = "N"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHProducto= """) Then Exit Sub
             End If
@@ -2332,7 +2333,7 @@ Dim vSqlDestino As String
             nHasta = txtNombre(1).Text
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{" & Tabla & ".codvarie}"
+                Codigo = "{" & tabla & ".codvarie}"
                 TipCod = "N"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHVariedad= """) Then Exit Sub
             End If
@@ -2364,7 +2365,7 @@ Dim vSqlDestino As String
             nHasta = txtNombre(9).Text
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{" & Tabla & ".codvarie}"
+                Codigo = "{" & tabla & ".codvarie}"
                 TipCod = "N"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHVariedad= """) Then Exit Sub
             End If
@@ -2376,7 +2377,7 @@ Dim vSqlDestino As String
             nHasta = txtNombre(11).Text
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{" & Tabla & ".codcalib}"
+                Codigo = "{" & tabla & ".codcalib}"
                 TipCod = "N"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCalibre= """) Then Exit Sub
             End If
@@ -2407,7 +2408,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(13).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{sartic.codtipar}"
+                    Codigo = "{sartic.codtipar}"
                     TipCod = "T"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHTipo=""") Then Exit Sub
                 End If
@@ -2419,7 +2420,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(21).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.codartic}"
+                    Codigo = "{albaran_envase.codartic}"
                     TipCod = "T"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHArticulo=""") Then Exit Sub
                 End If
@@ -2431,7 +2432,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(23).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.codclien}"
+                    Codigo = "{albaran_envase.codclien}"
                     TipCod = "N"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente=""") Then Exit Sub
                 End If
@@ -2447,7 +2448,7 @@ Dim vSqlDestino As String
             
                     frmMensDestino.OpcionMensaje = 21
                     frmMensDestino.Label5 = "Destinos"
-                    frmMensDestino.cadWhere = vSqlDestino & " and destinos.codclien = " & txtCodigo(22).Text
+                    frmMensDestino.cadWHERE = vSqlDestino & " and destinos.codclien = " & txtCodigo(22).Text
                     frmMensDestino.Show vbModal
             
                     Set frmMensDestino = Nothing
@@ -2459,7 +2460,7 @@ Dim vSqlDestino As String
                 cHasta = Trim(txtCodigo(15).Text)
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.fechamov}"
+                    Codigo = "{albaran_envase.fechamov}"
                     TipCod = "F"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHFecha=""") Then Exit Sub
                 End If
@@ -2499,8 +2500,8 @@ Dim vSqlDestino As String
                     ' tenemos que insertar en tmpenvasesret los albaranes que sean: solo los que tienen saldo
                     ' o todos.
                     If CargarTablaTemporal2 Then
-                        If HayRegParaInforme("tmpinformes", "codusu= " & vUsu.codigo) Then
-                            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+                        If HayRegParaInforme("tmpinformes", "codusu= " & vUsu.Codigo) Then
+                            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
                             
                             cadParam = Replace(cadParam, "{albaran_envase.codclien}", "{tmpinformes.codigo1}")
                             cadParam = Replace(cadParam, "{albaran_envase.codartic}", "{tmpinformes.nombre1}")
@@ -2517,8 +2518,8 @@ Dim vSqlDestino As String
                 cadTitulo = "Informe de Movimientos de Envases"
                 ConSubInforme = True
                 
-                Tabla = "(albaran_envase INNER JOIN sartic on albaran_envase.codartic = sartic.codartic)"
-                Tabla = Tabla & " INNER JOIN stipar on sartic.codtipar = stipar.codtipar "
+                tabla = "(albaran_envase INNER JOIN sartic on albaran_envase.codartic = sartic.codartic)"
+                tabla = tabla & " INNER JOIN stipar on sartic.codtipar = stipar.codtipar "
             Else
             '******************************************************
             ' SACAMOS LOS REGISTROS DE LAS TABLAS: ALBARAN_ENVASE Y SMOVAL
@@ -2534,7 +2535,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(13).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{sartic.codtipar}"
+                    Codigo = "{sartic.codtipar}"
                     TipCod = "T"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHTipo=""") Then Exit Sub
                 End If
@@ -2546,7 +2547,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(21).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.codartic}"
+                    Codigo = "{albaran_envase.codartic}"
                     TipCod = "T"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHArticulo=""") Then Exit Sub
                 End If
@@ -2558,7 +2559,7 @@ Dim vSqlDestino As String
                 nHasta = txtNombre(23).Text
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.codclien}"
+                    Codigo = "{albaran_envase.codclien}"
                     TipCod = "N"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente=""") Then Exit Sub
                 End If
@@ -2574,7 +2575,7 @@ Dim vSqlDestino As String
             
                     frmMensDestino.OpcionMensaje = 21
                     frmMensDestino.Label5 = "Destinos"
-                    frmMensDestino.cadWhere = vSqlDestino & " and destinos.codclien = " & txtCodigo(22).Text
+                    frmMensDestino.cadWHERE = vSqlDestino & " and destinos.codclien = " & txtCodigo(22).Text
                     frmMensDestino.Show vbModal
             
                     Set frmMensDestino = Nothing
@@ -2585,7 +2586,7 @@ Dim vSqlDestino As String
                 cHasta = Trim(txtCodigo(15).Text)
                 If Not (cDesde = "" And cHasta = "") Then
                     'Cadena para seleccion Desde y Hasta
-                    codigo = "{albaran_envase.fechamov}"
+                    Codigo = "{albaran_envase.fechamov}"
                     TipCod = "F"
                     If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHFecha=""") Then Exit Sub
                 End If
@@ -2601,8 +2602,8 @@ Dim vSqlDestino As String
                     cadNombreRPT = nomDocu '  "rMovEnvasesRetCompras.rpt"
                     cadTitulo = "Informe de Movimientos de Envases"
                     
-                    If HayRegParaInforme("tmpenvasesret", "codusu= " & vUsu.codigo) Then
-                        cadFormula = "{tmpenvasesret.codusu} = " & vUsu.codigo
+                    If HayRegParaInforme("tmpenvasesret", "codusu= " & vUsu.Codigo) Then
+                        cadFormula = "{tmpenvasesret.codusu} = " & vUsu.Codigo
                         LlamarImprimir
                     End If
                 End If
@@ -2617,7 +2618,7 @@ Dim vSqlDestino As String
             nHasta = txtNombre(19).Text
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{horas.codtraba}"
+                Codigo = "{horas.codtraba}"
                 TipCod = "N"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHTrabajador=""") Then Exit Sub
             End If
@@ -2627,7 +2628,7 @@ Dim vSqlDestino As String
             cHasta = Trim(txtCodigo(17).Text)
             If Not (cDesde = "" And cHasta = "") Then
                 'Cadena para seleccion Desde y Hasta
-                codigo = "{horas.fechahora}"
+                Codigo = "{horas.fechahora}"
                 TipCod = "F"
                 If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHFecha=""") Then Exit Sub
             End If
@@ -2642,7 +2643,7 @@ Dim vSqlDestino As String
     End Select
     
     'Comprobar si hay registros a Mostrar antes de abrir el Informe
-    If HayRegParaInforme(Tabla, cadSelect) Then
+    If HayRegParaInforme(tabla, cadselect) Then
         LlamarImprimir
     End If
 
@@ -2671,10 +2672,10 @@ Dim numOp As Byte
     nHasta = txtNombre(5).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        If OpcionListado = 10 Then
-            codigo = "{" & Tabla & ".codclien}"
-        ElseIf OpcionListado = 14 Then
-            codigo = "{" & Tabla & ".gruprove}"
+        If Opcionlistado = 10 Then
+            Codigo = "{" & tabla & ".codclien}"
+        ElseIf Opcionlistado = 14 Then
+            Codigo = "{" & tabla & ".gruprove}"
         End If
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
@@ -2688,7 +2689,7 @@ Dim numOp As Byte
     numOp = PonerOrden(ListView1(0).SelectedItem.Text)
 
     'Comprobar si hay registros a Mostrar antes de abrir el Informe
-    If HayRegParaInforme(Tabla, cadSelect) Then
+    If HayRegParaInforme(tabla, cadselect) Then
         cadNombreRPT = "rManClien.rpt"
         cadTitulo = "Listado de Clientes " & Tipo
         cadParam = cadParam & "pTipo= """ & Tipo & """|"
@@ -2720,7 +2721,7 @@ Dim numOp As Byte
     nHasta = txtNombre(3).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & Tabla & ".codprove}"
+        Codigo = "{" & tabla & ".codprove}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHProveedor= """) Then Exit Sub
     End If
@@ -2733,7 +2734,7 @@ Dim numOp As Byte
     numOp = PonerOrden(ListView1(2).SelectedItem.Text)
 
     'Comprobar si hay registros a Mostrar antes de abrir el Informe
-    If HayRegParaInforme(Tabla, cadSelect) Then
+    If HayRegParaInforme(tabla, cadselect) Then
         cadNombreRPT = "rManProve.rpt"
         cadTitulo = "Listado de Proveedores " & Tipo
         cadParam = cadParam & "pTipo= """ & Tipo & """|"
@@ -2768,7 +2769,7 @@ End Sub
 Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
-        Select Case OpcionListado
+        Select Case Opcionlistado
             Case 10 ' Listado de Clientes
                 PonerFoco txtCodigo(4)
                 
@@ -2796,7 +2797,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 
     PrimeraVez = True
@@ -2804,12 +2805,12 @@ Dim List As Collection
 
     'IMAGES para busqueda
     Set List = New Collection
-    For h = 24 To 27
-        List.Add h
-    Next h
-    For h = 1 To 10
-        List.Add h
-    Next h
+    For H = 24 To 27
+        List.Add H
+    Next H
+    For H = 1 To 10
+        List.Add H
+    Next H
     List.Add 12
     List.Add 13
     List.Add 14
@@ -2818,9 +2819,9 @@ Dim List As Collection
     List.Add 19
     
     
-    For h = 0 To imgBuscar.Count - 1
-        Me.imgBuscar(h).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next h
+    For H = 0 To imgBuscar.Count - 1
+        Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next H
      
     Set List = Nothing
 
@@ -2837,69 +2838,69 @@ Dim List As Collection
     '###Descomentar
 '    CommitConexion
     
-    Select Case OpcionListado
+    Select Case Opcionlistado
     Case 1 ' Creacion de palets de forma automática
-        FrameCreacionPaletsVisible True, h, w
+        FrameCreacionPaletsVisible True, H, W
         indFrame = 0
-        Tabla = "albaran_envase"
+        tabla = "albaran_envase"
     
     'LISTADOS DE MANTENIMIENTOS BASICOS
     '---------------------
     Case 10 '10: Listado de Clientes
-        FrameClienteVisible True, h, w
+        FrameClienteVisible True, H, W
         CargarListViewOrden (0)
         Me.lbltitulo2.Caption = "Informe de Clientes"
         Me.Label2(3).Caption = "Cliente"
         indFrame = 2
-        Tabla = "clientes"
+        tabla = "clientes"
     
     Case 11 ' Listado de Proveedores
-        FrameProveedoresVisible True, h, w
+        FrameProveedoresVisible True, H, W
         CargarListViewOrden (2)
         Me.lbltitulo2.Caption = "Informe de Provedores"
         Me.Label2(3).Caption = "Proveedores"
         indFrame = 0
-        Tabla = "proveedor"
+        tabla = "proveedor"
     
     Case 12 ' Listado de Variedades
-        FrameVariedadesVisible True, h, w
+        FrameVariedadesVisible True, H, W
         CargarListViewOrden (1)
         Me.lbltitulo2.Caption = "Informe de Variedades"
         Me.Label2(3).Caption = "Variedades"
         indFrame = 0
-        Tabla = "variedades"
+        tabla = "variedades"
     
     Case 13 ' Listado de Calibres
-        FrameCalibresVisible True, h, w
+        FrameCalibresVisible True, H, W
         Opcion(0).Value = True
         CargarListViewOrden (3)
         Me.lbltitulo2.Caption = "Informe de Calibres"
         Me.Label2(3).Caption = "Calibres"
         indFrame = 0
-        Tabla = "calibres"
+        tabla = "calibres"
         
     Case 14 ' Informe de Movimientos de envases
-        FrameMovimientosVisible True, h, w
+        FrameMovimientosVisible True, H, W
         indFrame = 0
-        Tabla = "albaran_envase"
+        tabla = "albaran_envase"
         
     Case 15 ' Informe de Horas Trabajadas
-        FrameHorasTrabajadasVisible True, h, w
+        FrameHorasTrabajadasVisible True, H, W
         CargarListViewOrden (4)
         indFrame = 0
-        Tabla = "horas"
+        tabla = "horas"
         
     Case 16 ' Proceso de Calculo de Horas Productivas
-        FrameCalculoHorasProductivasVisible True, h, w
+        FrameCalculoHorasProductivasVisible True, H, W
         CargarListViewOrden (4)
         indFrame = 0
-        Tabla = "horas"
+        tabla = "horas"
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.CmdCancel(indFrame).Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.cmdCancel(indFrame).Cancel = True
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 
@@ -2950,7 +2951,7 @@ Private Sub frmMensDestino_DatoSeleccionado(CadenaSeleccion As String)
 Dim sql As String
 Dim Sql2 As String
 Dim SqlAlb As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
 
 
@@ -2959,16 +2960,16 @@ Dim RS As ADODB.Recordset
         SqlAlb = "select distinct numalbar from albaran where coddesti in (" & CadenaSeleccion & ") and codclien = " & DBSet(txtCodigo(22).Text, "N")
         SqlAlb = SqlAlb & " order by 1 "
         
-        Set RS = New ADODB.Recordset
-        RS.Open SqlAlb, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Set Rs = New ADODB.Recordset
+        Rs.Open SqlAlb, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
         albaranes = ""
-        While Not RS.EOF
-            albaranes = albaranes & DBSet(RS!numalbar, "N") & ","
+        While Not Rs.EOF
+            albaranes = albaranes & DBSet(Rs!NumAlbar, "N") & ","
             
-            RS.MoveNext
+            Rs.MoveNext
         Wend
-        Set RS = Nothing
+        Set Rs = Nothing
         
         If albaranes <> "" Then
             albaranes = Mid(albaranes, 1, Len(albaranes) - 1)
@@ -2977,7 +2978,7 @@ Dim RS As ADODB.Recordset
         Else
             sql = " {albaran_envase.numalbar} = -1 "
         End If
-        If Not AnyadirAFormula(cadSelect, sql) Then Exit Sub
+        If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
         If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
    
    End If
@@ -3245,7 +3246,7 @@ Dim cad As String, cadTipo As String 'tipo cliente
 End Sub
 
 
-Private Sub FrameClienteVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameClienteVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el listado de clientes
     Me.FrameClientes.visible = visible
     If visible = True Then
@@ -3253,94 +3254,94 @@ Private Sub FrameClienteVisible(visible As Boolean, ByRef h As Integer, ByRef w 
         Me.FrameClientes.Left = 0
         Me.FrameClientes.Height = 3420
         Me.FrameClientes.Width = 8600
-        w = Me.FrameClientes.Width
-        h = Me.FrameClientes.Height
+        W = Me.FrameClientes.Width
+        H = Me.FrameClientes.Height
     End If
 End Sub
 
-Private Sub FrameProveedoresVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameProveedoresVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameProveedores.visible = visible
     If visible = True Then
         Me.FrameProveedores.Top = -90
         Me.FrameProveedores.Left = 0
         Me.FrameProveedores.Height = 3420
         Me.FrameProveedores.Width = 8600
-        w = Me.FrameProveedores.Width
-        h = Me.FrameProveedores.Height
+        W = Me.FrameProveedores.Width
+        H = Me.FrameProveedores.Height
     End If
 End Sub
 
-Private Sub FrameVariedadesVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameVariedadesVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameVariedades.visible = visible
     If visible = True Then
         Me.FrameVariedades.Top = -90
         Me.FrameVariedades.Left = 0
         Me.FrameVariedades.Height = 4820
         Me.FrameVariedades.Width = 8600
-        w = Me.FrameVariedades.Width
-        h = Me.FrameVariedades.Height
+        W = Me.FrameVariedades.Width
+        H = Me.FrameVariedades.Height
     End If
 End Sub
 
-Private Sub FrameCalibresVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCalibresVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCalibres.visible = visible
     If visible = True Then
         Me.FrameCalibres.Top = -90
         Me.FrameCalibres.Left = 0
         Me.FrameCalibres.Height = 4820
         Me.FrameCalibres.Width = 6600
-        w = Me.FrameCalibres.Width
-        h = Me.FrameCalibres.Height
+        W = Me.FrameCalibres.Width
+        H = Me.FrameCalibres.Height
     End If
 End Sub
 
-Private Sub FrameMovimientosVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameMovimientosVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameMovimientoEnvases.visible = visible
     If visible = True Then
         Me.FrameMovimientoEnvases.Top = -90
         Me.FrameMovimientoEnvases.Left = 0
         Me.FrameMovimientoEnvases.Height = 7545
         Me.FrameMovimientoEnvases.Width = 6840
-        w = Me.FrameMovimientoEnvases.Width
-        h = Me.FrameMovimientoEnvases.Height
+        W = Me.FrameMovimientoEnvases.Width
+        H = Me.FrameMovimientoEnvases.Height
     End If
 End Sub
 
-Private Sub FrameCreacionPaletsVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCreacionPaletsVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCreacionPalets.visible = visible
     If visible = True Then
         Me.FrameCreacionPalets.Top = -90
         Me.FrameCreacionPalets.Left = 0
         Me.FrameCreacionPalets.Height = 3525
         Me.FrameCreacionPalets.Width = 5835
-        w = Me.FrameCreacionPalets.Width
-        h = Me.FrameCreacionPalets.Height
+        W = Me.FrameCreacionPalets.Width
+        H = Me.FrameCreacionPalets.Height
     End If
 End Sub
 
 
 
-Private Sub FrameHorasTrabajadasVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameHorasTrabajadasVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameHorasTrabajadas.visible = visible
     If visible = True Then
         Me.FrameHorasTrabajadas.Top = -90
         Me.FrameHorasTrabajadas.Left = 0
         Me.FrameHorasTrabajadas.Height = 4455
         Me.FrameHorasTrabajadas.Width = 7425
-        w = Me.FrameHorasTrabajadas.Width
-        h = Me.FrameHorasTrabajadas.Height
+        W = Me.FrameHorasTrabajadas.Width
+        H = Me.FrameHorasTrabajadas.Height
     End If
 End Sub
 
-Private Sub FrameCalculoHorasProductivasVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCalculoHorasProductivasVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCalculoHorasProductivas.visible = visible
     If visible = True Then
         Me.FrameCalculoHorasProductivas.Top = -90
         Me.FrameCalculoHorasProductivas.Left = 0
         Me.FrameCalculoHorasProductivas.Height = 3525
         Me.FrameCalculoHorasProductivas.Width = 5835
-        w = Me.FrameCalculoHorasProductivas.Width
-        h = Me.FrameCalculoHorasProductivas.Height
+        W = Me.FrameCalculoHorasProductivas.Width
+        H = Me.FrameCalculoHorasProductivas.Height
     End If
 End Sub
 
@@ -3383,7 +3384,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -3399,15 +3400,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -3429,7 +3430,7 @@ Private Sub LlamarImprimir()
         .NombreRPT = cadNombreRPT
         .EnvioEMail = False
         .ConSubInforme = ConSubInforme
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Show vbModal
     End With
 End Sub
@@ -3445,26 +3446,26 @@ Dim nomCampo As String
     Select Case cadgrupo
         'Informe de variedades
         Case "Clase"
-            cadParam = cadParam & campo & "{" & Tabla & ".codclase}" & "|"
+            cadParam = cadParam & campo & "{" & tabla & ".codclase}" & "|"
             cadParam = cadParam & nomCampo & " {" & "clases" & ".nomclase}" & "|"
             cadParam = cadParam & "pTitulo1" & "=""Producto""" & "|"
             numParam = numParam + 3
             
         Case "Producto"
-            cadParam = cadParam & campo & "{" & Tabla & ".codprodu}" & "|"
+            cadParam = cadParam & campo & "{" & tabla & ".codprodu}" & "|"
             cadParam = cadParam & nomCampo & " {" & "productos" & ".nomprodu}" & "|"
             cadParam = cadParam & "pTitulo1" & "=""Clase""" & "|"
             numParam = numParam + 3
 
         'Informe de calibres
         Case "Variedad"
-            cadParam = cadParam & campo & "{" & Tabla & ".codvarie}" & "|"
+            cadParam = cadParam & campo & "{" & tabla & ".codvarie}" & "|"
             cadParam = cadParam & nomCampo & " {" & "variedades" & ".nomvarie}" & "|"
             cadParam = cadParam & "pTitulo1" & "=""Variedad""" & "|"
             numParam = numParam + 3
             
         Case "Calibre"
-            cadParam = cadParam & campo & "{" & Tabla & ".codcalib}" & "|"
+            cadParam = cadParam & campo & "{" & tabla & ".codcalib}" & "|"
             cadParam = cadParam & nomCampo & " {" & "calibres" & ".nomcalib}" & "|"
             cadParam = cadParam & "pTitulo1" & "=""Calibre""" & "|"
             numParam = numParam + 3
@@ -3481,8 +3482,8 @@ Dim nomCampo As String
 
     Select Case cadgrupo
         Case "Codigo"
-            cadParam = cadParam & "Orden" & "= {" & Tabla
-            Select Case OpcionListado
+            cadParam = cadParam & "Orden" & "= {" & tabla
+            Select Case Opcionlistado
                 Case 10
                     cadParam = cadParam & ".codclien}|"
                 Case 11
@@ -3490,8 +3491,8 @@ Dim nomCampo As String
             End Select
             Tipo = "Código"
         Case "Alfabético"
-            cadParam = cadParam & "Orden" & "= {" & Tabla
-            Select Case OpcionListado
+            cadParam = cadParam & "Orden" & "= {" & tabla
+            Select Case Opcionlistado
                 Case 10
                     cadParam = cadParam & ".nomclien}|"
                 Case 11
@@ -3605,13 +3606,13 @@ End Sub
 Private Function CargarTablaTemporal() As Boolean
 Dim sql As String
 Dim SQL1 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eCargarTablaTemporal
     
     CargarTablaTemporal = False
 
-    sql = "delete from tmpenvasesret where codusu = " & DBSet(vUsu.codigo, "N")
+    sql = "delete from tmpenvasesret where codusu = " & DBSet(vUsu.Codigo, "N")
     conn.Execute sql
 
 'select albaran_envase.codartic, albaran_envase.fechamov
@@ -3623,7 +3624,7 @@ Dim RS As ADODB.Recordset
 'Where stipar.esretornable = 1
 
     '[Monica]11/06/2014: agrupamos la cantidad
-    sql = "select " & vUsu.codigo & ", albaran_envase.codartic, albaran_envase.fechamov, sum(albaran_envase.cantidad) cantidad, albaran_envase.tipomovi, albaran_envase.numalbar, "
+    sql = "select " & vUsu.Codigo & ", albaran_envase.codartic, albaran_envase.fechamov, sum(albaran_envase.cantidad) cantidad, albaran_envase.tipomovi, albaran_envase.numalbar, "
     sql = sql & " albaran_envase.codclien, clientes.nomclien, " & DBSet(vParamAplic.CodTipomAlb, "T") 'DBSet("ALV", "T")
     sql = sql & " from ((albaran_envase inner join sartic on albaran_envase.codartic = sartic.codartic) inner join stipar on sartic.codtipar = stipar.codtipar) "
     sql = sql & " inner join clientes on albaran_envase.codclien = clientes.codclien "
@@ -3649,7 +3650,7 @@ Dim RS As ADODB.Recordset
 
     sql = sql & " union "
     
-    sql = sql & "select " & vUsu.codigo & ", smoval.codartic, smoval.fechamov, sum(smoval.cantidad) cantidad, smoval.tipomovi, smoval.document, "
+    sql = sql & "select " & vUsu.Codigo & ", smoval.codartic, smoval.fechamov, sum(smoval.cantidad) cantidad, smoval.tipomovi, smoval.document, "
     sql = sql & " smoval.codigope, proveedor.nomprove, " & DBSet("ALC", "T")
     sql = sql & " from ((smoval inner join sartic on smoval.codartic = sartic.codartic "
     '[Monica]22/11/2010:faltaba añadir que sean las compras
@@ -3688,7 +3689,7 @@ Private Function CargarTablaTemporal2() As Boolean
 Dim sql As String
 Dim SQL1 As String
 Dim Sql2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Entradas As Long
 Dim Salidas As Long
 Dim Saldo As Long
@@ -3699,7 +3700,7 @@ Dim Saldo As Long
 
     Screen.MousePointer = vbHourglass
     
-    sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
     conn.Execute sql
 
     sql = "select  albaran_envase.codartic, albaran_envase.fechamov, albaran_envase.numalbar, albaran_envase.codclien  "
@@ -3726,17 +3727,17 @@ Dim Saldo As Long
     sql = sql & " order by 1,2,3,4 "
     
     
-    Set RS = New ADODB.Recordset
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Sql2 = ""
     
-    While Not RS.EOF
+    While Not Rs.EOF
         ' para cada registro que hay de entrada y que hay de salida : calculo el saldo
-        sql = "select sum(albaran_envase.cantidad) from albaran_envase where codartic = " & DBSet(RS.Fields(0).Value, "T")
-        sql = sql & " and fechamov = " & DBSet(RS.Fields(1).Value, "F")
-        sql = sql & " and numalbar = " & DBSet(RS.Fields(2).Value, "N")
-        sql = sql & " and codclien = " & DBSet(RS.Fields(3).Value, "N")
+        sql = "select sum(albaran_envase.cantidad) from albaran_envase where codartic = " & DBSet(Rs.Fields(0).Value, "T")
+        sql = sql & " and fechamov = " & DBSet(Rs.Fields(1).Value, "F")
+        sql = sql & " and numalbar = " & DBSet(Rs.Fields(2).Value, "N")
+        sql = sql & " and codclien = " & DBSet(Rs.Fields(3).Value, "N")
         
         Entradas = DevuelveValor(sql & " and tipomovi = 1 ")
         Salidas = DevuelveValor(sql & " and tipomovi = 0 ")
@@ -3744,17 +3745,17 @@ Dim Saldo As Long
         Saldo = Entradas - Salidas
         
         If Check5 = 0 Or (Check5 = 1 And Saldo <> 0) Then
-            Sql2 = Sql2 & "(" & vUsu.codigo & ", " & DBSet(RS.Fields(0).Value, "T") & "," & DBSet(RS.Fields(1).Value, "F") & ","
-            Sql2 = Sql2 & DBSet(RS.Fields(2).Value, "N") & ","
-            Sql2 = Sql2 & DBSet(RS.Fields(3).Value, "N") & ","
+            Sql2 = Sql2 & "(" & vUsu.Codigo & ", " & DBSet(Rs.Fields(0).Value, "T") & "," & DBSet(Rs.Fields(1).Value, "F") & ","
+            Sql2 = Sql2 & DBSet(Rs.Fields(2).Value, "N") & ","
+            Sql2 = Sql2 & DBSet(Rs.Fields(3).Value, "N") & ","
             Sql2 = Sql2 & DBSet(Entradas, "N") & "," & DBSet(Salidas, "N") & ","
             Sql2 = Sql2 & DBSet(Saldo, "N") & "),"
         End If
     
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    Set RS = Nothing
+    Set Rs = Nothing
     
     'quitamos la ultima coma
     If Sql2 <> "" Then
@@ -3776,7 +3777,7 @@ eCargarTablaTemporal2:
 End Function
 
 Private Function CalculoHorasProductivas() As Boolean
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim sql As String
 Dim SQL1 As String
 
