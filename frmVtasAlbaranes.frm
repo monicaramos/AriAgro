@@ -247,7 +247,6 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   780
             Index           =   15
             Left            =   6225
-            MaxLength       =   200
             MultiLine       =   -1  'True
             ScrollBars      =   2  'Vertical
             TabIndex        =   21
@@ -7502,22 +7501,22 @@ End Sub
 
 Private Sub InsertarLinea(Index As Integer)
 'Inserta registre en les taules de Llínies
-Dim nomFrame As String
+Dim nomframe As String
 Dim b As Boolean
 
     On Error Resume Next
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
     Select Case Index
-        Case 1: nomFrame = "FrameAux0" 'envases
-        Case 2: nomFrame = "FrameAux1" 'costes
-        Case 3: nomFrame = "FrameAux2" 'palets
+        Case 1: nomframe = "FrameAux0" 'envases
+        Case 2: nomframe = "FrameAux1" 'costes
+        Case 3: nomframe = "FrameAux2" 'palets
     End Select
     ' ***************************************************************
     
-    If DatosOkLlin(nomFrame) Then
+    If DatosOkLlin(nomframe) Then
         TerminaBloquear
-        If InsertarDesdeForm2(Me, 2, nomFrame) Then
+        If InsertarDesdeForm2(Me, 2, nomframe) Then
             ' *** si n'hi ha que fer alguna cosa abas d'insertar
             If NumTabMto = 0 Then
 'yo                'si ha seleccionat "cuenta principal", actualise totes les atres a "no"
@@ -7643,21 +7642,21 @@ End Sub
 
 Private Sub ModificarLinea()
 'Modifica registre en les taules de Llínies
-Dim nomFrame As String
+Dim nomframe As String
 Dim V As Integer
 Dim cad As String
     On Error Resume Next
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
     Select Case NumTabMto
-        Case 1: nomFrame = "FrameAux0" 'envases
-        Case 3: nomFrame = "FrameAux2" 'palets
+        Case 1: nomframe = "FrameAux0" 'envases
+        Case 3: nomframe = "FrameAux2" 'palets
     End Select
     ' **************************************************************
 
-    If DatosOkLlin(nomFrame) Then
+    If DatosOkLlin(nomframe) Then
         TerminaBloquear
-        If ModificaDesdeFormulario2(Me, 2, nomFrame) Then
+        If ModificaDesdeFormulario2(Me, 2, nomframe) Then
             ' *** si cal que fer alguna cosa abas d'insertar ***
             If NumTabMto = 0 Then
 'yo                'si ha seleccionat "cuenta principal", actualise totes les atres a "no"
@@ -7728,7 +7727,7 @@ Dim cad As String
 '    End If
 End Sub
 
-Private Function DatosOkLlin(nomFrame As String) As Boolean
+Private Function DatosOkLlin(nomframe As String) As Boolean
 Dim Rs As ADODB.Recordset
 Dim sql As String
 Dim b As Boolean
@@ -7743,7 +7742,7 @@ Dim vFact As Byte, vDocum As Byte
     Mens = ""
     DatosOkLlin = False
 
-    b = CompForm2(Me, 2, nomFrame) 'Comprovar formato datos ok
+    b = CompForm2(Me, 2, nomframe) 'Comprovar formato datos ok
     If Not b Then Exit Function
 '
 '    ' *** si cal fer atres comprovacions a les llínies (en o sense tab) ***
