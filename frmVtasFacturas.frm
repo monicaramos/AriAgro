@@ -5325,7 +5325,8 @@ Dim sql As String
             If enlaza Then
                 sql = sql & " and " & Replace(ObtenerWhereCP(False), "facturas", "facturas_variedad")
             Else
-                sql = sql & " and numfactu = -1"
+                '[Monica]19/04/2017: cambio de condicion por rapidez
+                sql = sql & " and numfactu is null " '= -1"
             End If
             sql = sql & " ORDER BY codtipom,numfactu,fecfactu,numlinea"
                     
@@ -5339,7 +5340,8 @@ Dim sql As String
             If enlaza Then
                 sql = sql & " and " & Replace(ObtenerWhereCP(False), "facturas", "facturas_envases")
             Else
-                sql = sql & " and numfactu = -1"
+                '[Monica]19/04/2017: cambio de condicion por rapidez
+                sql = sql & " and numfactu is null " ' = -1"
             End If
             sql = sql & " ORDER BY codtipom,numfactu,fecfactu,numlinea"
     
@@ -5355,7 +5357,8 @@ Dim sql As String
             If enlaza Then
                 sql = sql & " and " & Replace(ObtenerWhereCP(False), "facturas", "facturas_acuenta")
             Else
-                sql = sql & " and facturas_acuenta.numfactu = -1"
+                '[Monica]19/04/2017: cambio de condicion por rapidez
+                sql = sql & " and facturas_acuenta.numfactu is null " '= -1"
             End If
             sql = sql & " ORDER BY facturas_acuenta.codtipom,facturas_acuenta.numfactu,facturas_acuenta.fecfactu,facturas_acuenta.codtipomcta,facturas_acuenta.numfactucta,facturas_acuenta.fecfactucta"
     
