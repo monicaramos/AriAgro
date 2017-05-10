@@ -1286,28 +1286,28 @@ Dim sql As String
     
     '$$$
     'Insertar en la conta Cabecera Factura
-    cadMen = "Insertando Cab. Factura: " & cadMen
     b = InsertarCabFact(cTabla, cadWHERE, cadMen, vContaFra)
+    cadMen = "Insertando Cab. Factura: " & cadMen
     
     If b Then
         CCoste = CodCCost
         'Insertar lineas de Factura en la Conta
-        cadMen = "Insertando Lin. Factura: " & cadMen
         If vParamAplic.ContabilidadNueva Then
             b = InsertarLinFact_newContaNueva(cTabla, cadWHERE, cadMen)
         Else
             b = InsertarLinFact_new(cTabla, cadWHERE, cadMen)
         End If
+        cadMen = "Insertando Lin. Factura: " & cadMen
 
         '++monica:añadida la parte de insertar en tesoreria
         If b Then
-            cadMen = "Insertando en Tesoreria: " & cadMen
             Select Case cTabla
                 Case "facturas"
                     b = InsertarEnTesoreriaNewFac(cadWHERE, CtaBan, cadMen)
                 Case "facturassocio"
                     b = InsertarEnTesoreriaNewFacSoc(cadWHERE, CtaBan, cadMen)
             End Select
+            cadMen = "Insertando en Tesoreria: " & cadMen
         End If
         
         '++
@@ -1317,8 +1317,8 @@ Dim sql As String
             If vParamAplic.ContabilidadNueva Then vContaFra.AnyadeElError vContaFra.IntegraLaFacturaCliente(vContaFra.NumeroFactura, vContaFra.Anofac, vContaFra.Serie)
         
             'Poner intconta=1 en ariagro.facturas
-            cadMen = "Actualizando Factura: " & cadMen
             b = ActualizarCabFact(cTabla, cadWHERE, cadMen)
+            cadMen = "Actualizando Factura: " & cadMen
         End If
     End If
     
@@ -2545,35 +2545,6 @@ Dim ImpREC As Currency
         End If
         
         vBaseIva(NumeroIVA) = vBaseIva(NumeroIVA) - ImpLinea   'Para ajustar el importe y que no haya descuadre
-        HayQueAjustar = False
-        If vBaseIva(NumeroIVA) <> 0 Then
-            'falta importe.
-            'Puede ser que hayan mas lineas, o haya descuadre. Como esta ordenado por tipo de iva
-            Rs.MoveNext
-            If Rs.EOF Then
-                'No hay mas lineas
-                'Hay que ajustar SI o SI
-                HayQueAjustar = True
-            Else
-                'Si que hay mas lineas.
-                'Son del mismo tipo de IVA
-                If Rs!Codigiva <> vTipoIva(0) Then
-                    'NO es el mismo tipo de IVA
-                    'Hay que ajustar
-                    HayQueAjustar = True
-                End If
-            End If
-            Rs.MovePrevious
-        End If
-        
-        sql = sql & "," & vTipoIva(NumeroIVA) & "," & DBSet(vPorcIva(NumeroIVA), "N") & "," & DBSet(vPorcRec(NumeroIVA), "N", "S") & ","
-        
-        If HayQueAjustar Then
-            Stop
-        Else
-        
-        End If
-
         
         'Caluclo el importe de IVA y el de recargo de equivalencia
         ImpImva = vPorcIva(NumeroIVA) / 100
@@ -2586,6 +2557,51 @@ Dim ImpREC As Currency
         End If
         vImpIva(NumeroIVA) = vImpIva(NumeroIVA) - ImpImva
         vImpRec(NumeroIVA) = vImpRec(NumeroIVA) - ImpREC
+        
+        
+        HayQueAjustar = False
+        If vBaseIva(NumeroIVA) <> 0 Then
+            'falta importe.
+            'Puede ser que hayan mas lineas, o haya descuadre. Como esta ordenado por tipo de iva
+            Rs.MoveNext
+            If Rs.EOF Then
+                'No hay mas lineas
+                'Hay que ajustar SI o SI
+                HayQueAjustar = True
+            Else
+                'Si que hay mas lineas.
+                'Son del mismo tipo de IVA
+                If Rs!Codigiva <> vTipoIva(NumeroIVA) Then
+                    'NO es el mismo tipo de IVA
+                    'Hay que ajustar
+                    HayQueAjustar = True
+                End If
+            End If
+            Rs.MovePrevious
+        End If
+        
+        sql = sql & "," & vTipoIva(NumeroIVA) & "," & DBSet(vPorcIva(NumeroIVA), "N") & "," & DBSet(vPorcRec(NumeroIVA), "N", "S") & ","
+        
+        If HayQueAjustar Then
+            
+            If vBaseIva(NumeroIVA) <> 0 Then ImpLinea = ImpLinea + vBaseIva(NumeroIVA)
+            If vImpIva(NumeroIVA) <> 0 Then ImpImva = ImpImva + vImpIva(NumeroIVA)
+            If vImpRec(NumeroIVA) <> 0 Then ImpREC = ImpREC + vImpRec(NumeroIVA)
+            
+        End If
+
+        
+'        'Caluclo el importe de IVA y el de recargo de equivalencia
+'        ImpImva = vPorcIva(NumeroIVA) / 100
+'        ImpImva = Round2(ImpLinea * ImpImva, 2)
+'        If vPorcRec(NumeroIVA) = 0 Then
+'            ImpREC = 0
+'        Else
+'            ImpREC = vPorcRec(NumeroIVA) / 100
+'            ImpREC = Round2(ImpLinea * ImpREC, 2)
+'        End If
+'        vImpIva(NumeroIVA) = vImpIva(NumeroIVA) - ImpImva
+'        vImpRec(NumeroIVA) = vImpRec(NumeroIVA) - ImpREC
         
         
         ' baseimpo , impoiva, imporec, aplicret, CodCCost
@@ -2609,29 +2625,6 @@ Dim ImpREC As Currency
     Set Rs = Nothing
     
     
-'    'comprtobar que la suma de los importes de las lineas insertadas suman la BImponible
-'    'de la factura
-'    If totimp <> BaseImp Then
-''        MsgBox "FALTA cuadrar bases imponibles!!!!!!!!!"
-'        'en SQL esta la ult linea introducida
-'        totimp = BaseImp - totimp
-'        totimp = ImpLinea + totimp '(+- diferencia)
-'        Sql2 = Sql2 & DBSet(totimp, "N") & ","
-'        If CCoste = "" Or CCoste = ValorNulo Then
-'            Sql2 = Sql2 & ValorNulo
-'        Else
-'            Sql2 = Sql2 & DBSet(CCoste, "T")
-'        End If
-'        If SQLaux <> "" Then 'hay mas de una linea
-'            cad = SQLaux & "(" & Sql2 & ")" & ","
-'        Else 'solo una linea
-'            cad = "(" & Sql2 & ")" & ","
-'        End If
-'
-''        Aux = Replace(SQL, DBSet(ImpLinea, "N"), DBSet(TotImp, "N"))
-''        cad = Replace(cad, SQL, Aux)
-'    End If
-
 
     'Insertar en la contabilidad
     If cad <> "" Then
