@@ -4035,7 +4035,7 @@ Dim Total As Currency
         If vParamAplic.ContabilidadNueva Then
         
             sql = "select distinct * from tmpinformes, ariconta" & vParamAplic.NumeroConta & ".cobros cc "
-            sql = sql & " where codusu = " & vUsu.Codigo
+            sql = sql & " where tmpinformes.codusu = " & vUsu.Codigo
             sql = sql & " and tmpinformes.nombre1 = cc.numserie "
             sql = sql & " and tmpinformes.importe1 = cc.numfactu "
             sql = sql & " and tmpinformes.fecha1 = cc.fecfactu "
@@ -4077,7 +4077,6 @@ Dim Total As Currency
                 Conceptod = DevuelveDesdeBDNew(cConta, "stipoformapago", "condecli", "tipoformapago", tipoF, "N", Conceptoh)
             End If
             
-            
             Amplia = Trim(DevuelveDesdeBDNew(cConta, "conceptos", "nomconce", "codconce", CStr(Conceptod), "N"))
             ampliaciond = Amplia & " " & Format(Rs!referencia1, "0000000") & "-" & DBLet(Rs!referencia2)
             
@@ -4102,6 +4101,11 @@ Dim Total As Currency
                 cad = cad & ValorNulo & "," & ValorNulo & "," & DBSet(CtaContra, "T") & "," & ValorNulo & ",0"
             
                 ImporteD = ImporteD + CCur(DBLet(Rs!ImpVenci, "N") * (-1))
+            End If
+            
+            ' como pasan a estar cobrados se tienen que grabar la serie, factura y fechafactu
+            If vParamAplic.ContabilidadNueva Then
+                cad = cad & "," & DBSet(Rs!numSerie, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F")
             End If
             
             cad = "(" & cad & ")"
@@ -4144,7 +4148,7 @@ Dim Total As Currency
             cadMen = "Insertando Lin. Asiento: " & i
         End If
         
-        If b Then b = EliminarCobros(cadMen)
+        If b Then b = EliminarCobros(cadMen, FecEnt)
         If b Then b = MarcarRegistros(cadMen)
         
         Set Mc = Nothing
@@ -4233,7 +4237,7 @@ Dim totimp As Currency, ImpLinea As Currency
 
     If vParamAplic.ContabilidadNueva Then
         sql = "INSERT INTO hlinapu (numdiari, fechaent, numasien, linliapu, codmacta, numdocum, codconce, "
-        sql = sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada) "
+        sql = sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada, numserie, numfaccl, fecfactu) "
         sql = sql & " VALUES " & cad
     
     Else
@@ -4256,7 +4260,7 @@ End Function
 
 
 
-Private Function EliminarCobros(cadErr As String) As Boolean
+Private Function EliminarCobros(cadErr As String, FechaCobro As String) As Boolean
 
 Dim Rs As ADODB.Recordset
 Dim Aux As String
@@ -4268,8 +4272,15 @@ Dim totimp As Currency, ImpLinea As Currency
 
     If vParamAplic.ContabilidadNueva Then
     
-        sql = "DELETE FROM ariconta" & vParamAplic.NumeroConta & ".cobros where (numserie,numfactu,fecfactu,numorden) in "
-        sql = sql & " (select nombre1, importe1, fecha1, importe2 from tmpinformes where codusu = " & vUsu.Codigo & ")"
+'        sql = "DELETE FROM ariconta" & vParamAplic.NumeroConta & ".cobros where (numserie,numfactu,fecfactu,numorden) in "
+'        sql = sql & " (select nombre1, importe1, fecha1, importe2 from tmpinformes where codusu = " & vUsu.Codigo & ")"
+        
+        sql = "update ariconta" & vParamAplic.NumeroConta & ".cobros set "
+        sql = sql & " impcobro = impvenci + coalesce(gastos,0) "
+        sql = sql & ",fecultco = " & DBSet(FechaCobro, "F")
+        sql = sql & ",situacion = 1"
+        sql = sql & " where (numserie,numfactu,fecfactu,numorden) in "
+        sql = sql & " (select nombre1, importe1, fecha1, importe2 from tmpinformes where codusu = " & vUsu.Codigo & ")"""
     
     Else
  
