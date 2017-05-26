@@ -344,15 +344,15 @@ Dim b As Boolean
         b = True
         While Not Rs.EOF And b
             If vParamAplic.ContabilidadNueva Then
-                sql = "(numserie= " & DBSet(Rs!letraser, "T") & " AND numfactu=" & DBSet(Rs!NumFactu, "N") & " AND anofactu=" & Year(Rs!FecFactu) & ")"
+                sql = "(numserie= " & DBSet(Rs!LetraSer, "T") & " AND numfactu=" & DBSet(Rs!NumFactu, "N") & " AND anofactu=" & Year(Rs!FecFactu) & ")"
             Else
-                sql = "(numserie= " & DBSet(Rs!letraser, "T") & " AND codfaccl=" & DBSet(Rs!NumFactu, "N") & " AND anofaccl=" & Year(Rs!FecFactu) & ")"
+                sql = "(numserie= " & DBSet(Rs!LetraSer, "T") & " AND codfaccl=" & DBSet(Rs!NumFactu, "N") & " AND anofaccl=" & Year(Rs!FecFactu) & ")"
             End If
 '            If SituarRSetMULTI(RSconta, SQL) Then
             sql = SQLconta & sql
             If RegistrosAListar(sql, cConta) Then
                 b = False
-                sql = "          Letra Serie: " & DBSet(Rs!letraser, "T") & vbCrLf
+                sql = "          Letra Serie: " & DBSet(Rs!LetraSer, "T") & vbCrLf
                 sql = sql & "          Nº Fac.: " & Format(Rs!NumFactu, "0000000") & vbCrLf
                 sql = sql & "          Fecha: " & Rs!FecFactu
             End If
@@ -1397,7 +1397,7 @@ Dim CadenaInsertFaclin2 As String
     
         vContaFra.NumeroFactura = DBLet(Rs!NumFactu)
         vContaFra.Anofac = Year(DBLet(Rs!FecFactu))
-        vContaFra.Serie = DBLet(Rs!letraser)
+        vContaFra.Serie = DBLet(Rs!LetraSer)
     
     
         'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
@@ -1419,11 +1419,11 @@ Dim CadenaInsertFaclin2 As String
         
         If vParamAplic.ContabilidadNueva Then
             sql = ""
-            sql = DBSet(Rs!letraser, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F") & "," & DBSet(Rs!Codmacta, "T") & "," & Year(Rs!FecFactu) & ",'FACTURACION',"
+            sql = DBSet(Rs!LetraSer, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F") & "," & DBSet(Rs!Codmacta, "T") & "," & Year(Rs!FecFactu) & ",'FACTURACION',"
             
             ' para el caso de las rectificativas
             Dim vTipM As String
-            vTipM = DevuelveValor("select codtipom from stipom where letraser = " & DBSet(Rs!letraser, "T"))
+            vTipM = DevuelveValor("select codtipom from stipom where letraser = " & DBSet(Rs!LetraSer, "T"))
             If vTipM = "FAR" Then
                 sql = sql & "'D',"
             Else
@@ -1439,7 +1439,7 @@ Dim CadenaInsertFaclin2 As String
             cad = "(" & sql & ")"
         Else
             sql = ""
-            sql = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & DBSet(Rs!Codmacta, "T") & "," & Year(Rs!FecFactu) & "," & ValorNulo & ","
+            sql = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & DBSet(Rs!Codmacta, "T") & "," & Year(Rs!FecFactu) & "," & ValorNulo & ","
             sql = sql & DBSet(Rs!baseimp1, "N") & "," & DBSet(Rs!baseimp2, "N", "S") & "," & DBSet(Rs!baseimp3, "N", "S") & "," & DBSet(Rs!porciva1, "N") & "," & DBSet(Rs!porciva2, "N", "S") & "," & DBSet(Rs!porciva3, "N", "S") & ","
             sql = sql & DBSet(Rs!porcrec1, "N", "S") & "," & DBSet(Rs!porcrec2, "N", "S") & "," & DBSet(Rs!porcrec3, "N", "S") & "," & DBSet(Rs!impoiva1, "N", "N") & "," & DBSet(Rs!impoiva2, "N", "S") & "," & DBSet(Rs!impoiva3, "N", "S") & ","
             sql = sql & DBSet(Rs!imporec1, "N", "S") & "," & DBSet(Rs!imporec2, "N", "S") & "," & DBSet(Rs!imporec3, "N", "S") & ","
@@ -1465,7 +1465,7 @@ Dim CadenaInsertFaclin2 As String
         
         'numlinea,baseimpo,codigiva,porciva,porcrec,impoiva,imporec)
         'IVA 1, siempre existe
-        Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
+        Sql2 = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
         Sql2 = Sql2 & "1," & DBSet(Rs!baseimp1, "N") & "," & Rs!codiiva1 & "," & DBSet(Rs!porciva1, "N") & ","
         Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva1, "N") & "," & ValorNulo
         CadenaInsertFaclin2 = CadenaInsertFaclin2 & "(" & Sql2 & ")"
@@ -1481,7 +1481,7 @@ Dim CadenaInsertFaclin2 As String
         vTipoIva(1) = 0: vTipoIva(2) = 0
         
         If Not IsNull(Rs!porciva2) Then
-            Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
+            Sql2 = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
             Sql2 = Sql2 & "2," & DBSet(Rs!baseimp2, "N") & "," & Rs!codiiva2 & "," & DBSet(Rs!porciva2, "N") & ","
             Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva2, "N") & "," & ValorNulo
             CadenaInsertFaclin2 = CadenaInsertFaclin2 & " , (" & Sql2 & ")"
@@ -1493,7 +1493,7 @@ Dim CadenaInsertFaclin2 As String
             vBaseIva(1) = Rs!baseimp2
         End If
         If Not IsNull(Rs!porciva3) Then
-            Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
+            Sql2 = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
             Sql2 = Sql2 & "3," & DBSet(Rs!baseimp3, "N") & "," & Rs!codiiva3 & "," & DBSet(Rs!porciva3, "N") & ","
             Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva3, "N") & "," & ValorNulo
             CadenaInsertFaclin2 = CadenaInsertFaclin2 & " , (" & Sql2 & ")"
@@ -1588,7 +1588,7 @@ Dim totimp As Currency, ImpLinea As Currency
         sql = ""
         Sql2 = ""
         If cadTABLA = "scafac" Then
-            sql = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
+            sql = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
             If Not conCtaAlt Then 'cliente no tiene cuenta alternativa
                 If ImpLinea >= 0 Then
                     sql = sql & DBSet(Rs!ctaventa, "T")
@@ -2010,7 +2010,7 @@ Dim TipoFact As String
         Sql2 = ""
         
         If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then 'VENTAS a clientes
-            sql = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
+            sql = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
             sql = sql & DBSet(Rs!Cuenta, "T")
 '            If Not conCtaAlt Then 'cliente no tiene cuenta alternativa
 '                If ImpLinea >= 0 Then
@@ -2441,12 +2441,12 @@ Dim ImpREC As Currency
                     sql = sql & " albaran_variedad.numalbar = albaran.numalbar and "
                     sql = sql & " albaran_variedad.codvarie = variedades.codvarie and "
                     sql = sql & " albaran.codtimer = tipomer.codtimer "
-                    sql = sql & " and ariconta" & vParamAplic.NumeroConta & ".tiposiva = " & DBSet(vParamAplic.CodIvaTrans, "N")
+                    sql = sql & " and ariconta" & vParamAplic.NumeroConta & ".tiposiva.codigiva = " & DBSet(vParamAplic.CodIvaTrans, "N")
                     sql = sql & " group by 1,2,4,5,6,7 "
                     sql = sql & " union "
                     sql = sql & " select 2, codmacta as cuenta, importel as importe, '----' "
                     sql = sql & ", " & vParamAplic.CodIvaTrans & " codigiva, tiposiva.porceiva porciva, tiposiva.porcerec porcrec "
-                    sql = sql & " from tcafpv "
+                    sql = sql & " from tcafpv, ariconta" & vParamAplic.NumeroConta & ".tiposiva "
                     sql = sql & " where " & Replace(cadWHERE, "tcafpc", "tcafpv")
                     sql = sql & " and ariconta" & vParamAplic.NumeroConta & ".tiposiva.codigiva = " & DBSet(vParamAplic.CodIvaTrans, "N")
                     sql = sql & " group by 1,2,4,5,6,7 "
@@ -2470,6 +2470,10 @@ Dim ImpREC As Currency
                     sql = sql & " group by 1,2,4,5,6,7 "
                     sql = sql & " order by 1,2 "
             End Select
+            
+            Dim Sql7 As String
+            Sql7 = "select fecrecep from tcafpc where " & cadWHERE
+            FRecep = DevuelveValor(Sql7) '
     End Select
     
     
@@ -2480,6 +2484,8 @@ Dim ImpREC As Currency
     i = 1
     totimp = 0
     SQLaux = ""
+    
+    
     While Not Rs.EOF
         SQLaux = cad
         'calculamos la Base Imp del total del importe para cada cta cble ventas
@@ -2492,12 +2498,15 @@ Dim ImpREC As Currency
         '----
         totimp = totimp + ImpLinea
         
+        
+        
+        
         'concatenamos linea para insertar en la tabla de conta.linfact
         sql = ""
         Sql2 = ""
         
         If cadTABLA = "facturas" Or cadTABLA = "facturassocio" Then 'VENTAS a clientes
-            sql = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
+            sql = "'" & Rs!LetraSer & "'," & Rs!NumFactu & "," & Year(Rs!FecFactu) & "," & i & ","
             sql = sql & DBSet(Rs!Cuenta, "T") & ","
         Else
             If cadTABLA = "scafpc" Then 'COMPRAS
@@ -2560,7 +2569,7 @@ Dim ImpREC As Currency
         
         
         HayQueAjustar = False
-        If vBaseIva(NumeroIVA) <> 0 Then
+        If vBaseIva(NumeroIVA) <> 0 Or vImpIva(NumeroIVA) <> 0 Or vImpRec(NumeroIVA) <> 0 Then
             'falta importe.
             'Puede ser que hayan mas lineas, o haya descuadre. Como esta ordenado por tipo de iva
             Rs.MoveNext
@@ -3227,8 +3236,9 @@ Dim CadenaInsertFaclin2     As String
             If vParamAplic.ContabilidadNueva Then
                 sql = "INSERT INTO factpro(numserie,numregis,fecfactu,anofactu,fecharec,fecliqpr,numfactu,codmacta,observa,nommacta,"
                 sql = sql & "dirdatos,codpobla,despobla,desprovi,nifdatos,codpais,codforpa,codopera,codconce340,codintra,"
-                sql = sql & "totbases,totbasesret,totivas,totfacpr,retfacpr , trefacpr, cuereten, tiporeten)"
+                sql = sql & "totbases,totbasesret,totivas,totfacpr,retfacpr , trefacpr, cuereten, tiporeten) values "
             
+                ConnConta.Execute sql & cad
             
             Else
                 'Insertar en la contabilidad
@@ -3283,7 +3293,7 @@ Dim i As Long
 Dim DigConta As String
 Dim CC As String
 Dim vrefer As String
-Dim letraser As String
+Dim LetraSer As String
 Dim Rsx As ADODB.Recordset
 Dim FecVenci As Date
 Dim ImpVenci As Currency
@@ -3293,7 +3303,7 @@ Dim PorcIva As String
 
 Dim Rsx7 As ADODB.Recordset
 Dim Sql7 As String
-Dim CADENA As String
+Dim cadena As String
 
 Dim CadRegistro As String
 Dim CadRegistro1 As String
@@ -3324,16 +3334,16 @@ Dim ImporteACompensar As Currency
         Rs4.Open Sql4, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         If Not Rs4.EOF Then
-            letraser = ""
+            LetraSer = ""
 '--monica: 10/02/2009 stipom
 '            LetraSer = DevuelveDesdeBDNew(cAgro, "stipom", "letraser", "codtipom", Rsx!codTipoM, "T")
 '++monica: 10/02/2009 stipom
-            letraser = ObtenerLetraSerie(Rsx!codTipoM)
+            LetraSer = ObtenerLetraSerie(Rsx!codTipoM)
             
             'insertamos tantos cobros como vtos haya en la forma de pago (hacemos lo que deberia)
             If DBLet(Rs4!ctrolcobroalb) = 0 Or DBLet(Rsx!codTipoM, "T") = "EAC" Then
                 
-                text33csb = "'Factura:" & DBLet(letraser, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
+                text33csb = "'Factura:" & DBLet(LetraSer, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
                 'text41csb = "de " & DBSet(Rsx!TotalFac, "N")
                 
 '****no teniamos hecho lo del numero de vtos
@@ -3347,7 +3357,7 @@ Dim ImporteACompensar As Currency
                         
     '                   textcsb33 = "'FACTURA: " & LetraSerie & "-" & Format(NumFactu, "0000000") & " de Fecha " & Format(FecFactu, "dd,mm,yyyy") & "'"
                 
-                        CadValuesAux2 = "('" & letraser & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
+                        CadValuesAux2 = "('" & LetraSer & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
                         '-------- Primer Vencimiento
                         i = 1
                         'FECHA VTO
@@ -3468,10 +3478,10 @@ Dim ImporteACompensar As Currency
                 '             un registro por el total de envases
                 '             un registro por cada linea de factura_variedad (que son las lineas de albaran facturadas)
                 
-                text33csb = "'Factura:" & DBLet(letraser, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
+                text33csb = "'Factura:" & DBLet(LetraSer, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
                 'text41csb = "de " & DBSet(Rsx!TotalFac, "N")
             
-                CadValuesAux2 = "('" & letraser & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
+                CadValuesAux2 = "('" & LetraSer & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
                 CadValues2 = ""
                 
                 CC = DBLet(Rs4!digcontr, "T")
@@ -3546,13 +3556,13 @@ Dim ImporteACompensar As Currency
                     End If
                         
                     If DBLet(Rsx7!Tipo, "N") = 0 Then
-                        CadValues2 = CadValues2 & "'IVA VARIEDAD'," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinea, "N"), "000"), "T")
+                        CadValues2 = CadValues2 & "'IVA VARIEDAD'," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!NumLinea, "N"), "000"), "T")
                     Else
                         '[Monica]11/02/2013: metemos en la referencia el nro de albaran que hayan metido
                         If vParamAplic.Cooperativa = 2 Or vParamAplic.Cooperativa = 16 Then
                             CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(DBLet(Rsx7!NumAlbar, "N"), "T") & "," & ValorNulo
                         Else
-                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(Format(DBLet(Rsx7!numlinea, "N"), "000"), "T") & "," & ValorNulo
+                            CadValues2 = CadValues2 & "'IVA ENVASE'," & DBSet(Format(DBLet(Rsx7!NumLinea, "N"), "000"), "T") & "," & ValorNulo
                         End If
                     End If
                     
@@ -3693,17 +3703,17 @@ Dim ImporteACompensar As Currency
                         If vParamAplic.PaseRefLineaAlb Then
                             If DBLet(Trim(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!NumAlbar, "T")), "T") <> "" Then ' si tiene valor la referencia de linea
                                 ' referencia, referencia1, referencia2
-                                CADENA = DBSet(Trim(DBLet(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!NumAlbar, "T"), "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                                cadena = DBSet(Trim(DBLet(DevuelveDesdeBDNew(cAgro, "albaran_variedad", "referencia", "numalbar", Rsx7!NumAlbar, "T"), "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                             Else ' si no la referencia de la cabecera
-                                CADENA = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                                cadena = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                             End If
                         Else
                         ' [Monica] 13/01/2010 hasta aqui
                             ' referencia, referencia1, referencia2
-                            CADENA = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
+                            cadena = DBSet(Trim(DevuelveDesdeBDNew(cAgro, "albaran", "refclien", "numalbar", Rsx7!NumAlbar, "T")), "T") & "," & DBSet(Format(DBLet(Rsx7!NumAlbar, "N"), "0000000"), "T") & "," & DBSet(Format(DBLet(Rsx7!numlinealbar, "N"), "000"), "T")
                         End If
                         
-                        CadValues2 = CadValues2 & CADENA '& "),"
+                        CadValues2 = CadValues2 & cadena '& "),"
                         
                         If vParamAplic.ContabilidadNueva Then
                             CadValues2 = CadValues2 & "," & DBSet(Rs4!Nomclien, "T") & "," & DBSet(Rs4!domclien, "T") & "," & DBSet(Rs4!pobclien, "T") & "," & DBSet(Rs4!codPobla, "T") & "," & DBSet(Rs4!proclien, "T") & "," & DBSet(Rs4!cifClien, "T") & ",'ES'"
@@ -3754,7 +3764,7 @@ Dim ImporteACompensar As Currency
                     If ImporteACompensar <> 0 Then
                         If vParamAplic.ContabilidadNueva Then
                             sql = "update cobros set impvenci = impvenci + " & DBSet(ImporteACompensar, "N")
-                            sql = sql & " where numserie = " & DBSet(letraser, "T")
+                            sql = sql & " where numserie = " & DBSet(LetraSer, "T")
                             sql = sql & " and numfactu = " & DBSet(Rsx!NumFactu, "N")
                             sql = sql & " and fecfactu = " & DBSet(Rsx!FecFactu, "F")
                             sql = sql & " and numorden = " & DBSet(LineaAModificar, "N")
@@ -3763,7 +3773,7 @@ Dim ImporteACompensar As Currency
                         
                         Else
                             sql = "update scobro set impvenci = impvenci + " & DBSet(ImporteACompensar, "N")
-                            sql = sql & " where numserie = " & DBSet(letraser, "T")
+                            sql = sql & " where numserie = " & DBSet(LetraSer, "T")
                             sql = sql & " and codfaccl = " & DBSet(Rsx!NumFactu, "N")
                             sql = sql & " and fecfaccl = " & DBSet(Rsx!FecFactu, "F")
                             sql = sql & " and numorden = " & DBSet(LineaAModificar, "N")
@@ -3802,7 +3812,7 @@ Dim i As Byte
 Dim DigConta As String
 Dim CC As String
 Dim vrefer As String
-Dim letraser As String
+Dim LetraSer As String
 Dim Rsx As ADODB.Recordset
 Dim FecVenci As Date
 Dim ImpVenci As Currency
@@ -3812,7 +3822,7 @@ Dim PorcIva As String
 
 Dim Rsx7 As ADODB.Recordset
 Dim Sql7 As String
-Dim CADENA As String
+Dim cadena As String
 
 Dim CadRegistro As String
 Dim CadRegistro1 As String
@@ -3844,10 +3854,10 @@ Dim SeccionHorto As Integer
         Rs4.Open Sql4, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         If Not Rs4.EOF Then
-            letraser = ""
-            letraser = ObtenerLetraSerie(Rsx!codTipoM)
+            LetraSer = ""
+            LetraSer = ObtenerLetraSerie(Rsx!codTipoM)
             
-            text33csb = "'Factura:" & DBLet(letraser, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
+            text33csb = "'Factura:" & DBLet(LetraSer, "T") & "-" & DBLet(Rsx!NumFactu, "T") & " " & Format(DBLet(Rsx!FecFactu, "F"), "dd/mm/yy") & "'"
             'text41csb = "de " & DBSet(Rsx!TotalFac, "N")
             
             'Obtener el Nº de Vencimientos de la forma de pago
@@ -3860,7 +3870,7 @@ Dim SeccionHorto As Integer
                     
 '                   textcsb33 = "'FACTURA: " & LetraSerie & "-" & Format(NumFactu, "0000000") & " de Fecha " & Format(FecFactu, "dd,mm,yyyy") & "'"
             
-                    CadValuesAux2 = "('" & letraser & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
+                    CadValuesAux2 = "('" & LetraSer & "', " & DBSet(Rsx!NumFactu, "N") & ", " & DBSet(Rsx!FecFactu, "F") & ", "
                     '-------- Primer Vencimiento
                     i = 1
                     'FECHA VTO
@@ -4007,7 +4017,7 @@ Dim cad As String
 Dim FeFact As Date
 Dim cadMen As String
 
-Dim letraser As String
+Dim LetraSer As String
 Dim Concep As Integer
 Dim Amplia As String
 Dim tipoF As String
@@ -4064,13 +4074,13 @@ Dim Total As Currency
         
         While Not Rs.EOF And b
             If vParamAplic.ContabilidadNueva Then
-                numdocum = letraser & Format(Rs!NumFactu, "0000000")
+                numdocum = Rs!numSerie & Format(Rs!NumFactu, "0000000")
                 tipoF = DevuelveValor("select tipforpa from formapago where codforpa = " & DBSet(Rs!Codforpa, "N"))
                 
                 Conceptoh = "conhacli"
                 Conceptod = DevuelveDesdeBDNew(cConta, "tipofpago", "condecli", "tipoformapago", tipoF, "N", Conceptoh)
             Else
-                numdocum = letraser & Format(Rs!Codfaccl, "0000000")
+                numdocum = Rs!numSerie & Format(Rs!Codfaccl, "0000000")
                 tipoF = DevuelveValor("select tipoforp from forpago where codforpa = " & DBSet(Rs!Codforpa, "N"))
             
                 Conceptoh = "conhacli"
@@ -4105,7 +4115,7 @@ Dim Total As Currency
             
             ' como pasan a estar cobrados se tienen que grabar la serie, factura y fechafactu
             If vParamAplic.ContabilidadNueva Then
-                cad = cad & "," & DBSet(Rs!numSerie, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F")
+                cad = cad & "," & DBSet(Rs!numSerie, "T") & "," & DBSet(Rs!NumFactu, "N") & "," & DBSet(Rs!FecFactu, "F") & "," & DBSet(Rs!numorden, "N") & "," & DBSet(tipoF, "N")
             End If
             
             cad = "(" & cad & ")"
@@ -4140,6 +4150,11 @@ Dim Total As Currency
                 ' importe al haber en positivo, cambiamos el signo
                 cad = cad & DBSet(Conceptoh, "N") & "," & DBSet(ampliacionh, "T") & "," & ValorNulo & ","
                 cad = cad & DBSet(Total * (-1), "N") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0"
+            End If
+            
+            
+            If vParamAplic.ContabilidadNueva Then
+                cad = cad & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo
             End If
             
             cad = "(" & cad & ")"
@@ -4237,7 +4252,7 @@ Dim totimp As Currency, ImpLinea As Currency
 
     If vParamAplic.ContabilidadNueva Then
         sql = "INSERT INTO hlinapu (numdiari, fechaent, numasien, linliapu, codmacta, numdocum, codconce, "
-        sql = sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada, numserie, numfaccl, fecfactu) "
+        sql = sql & " ampconce, timporteD, timporteH, codccost, ctacontr, idcontab, punteada, numserie, numfaccl, fecfactu, numorden, tipforpa) "
         sql = sql & " VALUES " & cad
     
     Else
@@ -4280,7 +4295,7 @@ Dim totimp As Currency, ImpLinea As Currency
         sql = sql & ",fecultco = " & DBSet(FechaCobro, "F")
         sql = sql & ",situacion = 1"
         sql = sql & " where (numserie,numfactu,fecfactu,numorden) in "
-        sql = sql & " (select nombre1, importe1, fecha1, importe2 from tmpinformes where codusu = " & vUsu.Codigo & ")"""
+        sql = sql & " (select nombre1, importe1, fecha1, importe2 from tmpinformes where codusu = " & vUsu.Codigo & ")"
     
     Else
  

@@ -13,6 +13,11 @@ Begin VB.Form frmIdentifica
    ScaleWidth      =   7965
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Timer Timer1 
+      Interval        =   1000
+      Left            =   300
+      Top             =   3810
+   End
    Begin VB.TextBox Text1 
       Alignment       =   2  'Center
       Appearance      =   0  'Flat
@@ -56,6 +61,25 @@ Begin VB.Form frmIdentifica
       Text            =   "Text1"
       Top             =   4020
       Width           =   2655
+   End
+   Begin VB.Label Label3 
+      BackStyle       =   0  'Transparent
+      Caption         =   "label3"
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00FFFFFF&
+      Height          =   195
+      Left            =   300
+      TabIndex        =   6
+      Top             =   90
+      Width           =   7305
    End
    Begin VB.Label Label2 
       Caption         =   "Label2"
@@ -151,6 +175,7 @@ Option Explicit
 
 Dim PrimeraVez As Boolean
 Dim T1 As Single
+Dim vSegundos As Integer
 
 Private Sub Form_Activate()
     If PrimeraVez Then
@@ -168,6 +193,7 @@ Private Sub Form_Activate()
              Exit Sub
         End If
         
+         Me.Timer1.Enabled = True
          
          'Abrimos conexion para comprobar el usuario
          'Luego, en funcion del nivel de usuario que tenga cerraremos la conexion
@@ -215,6 +241,8 @@ Private Sub Form_Load()
     PrimeraVez = True
     CargaImagen
     Label2.Caption = "Ver. " & App.Major & "." & App.Minor & "." & App.Revision
+    vSegundos = 60
+    Label3.Caption = ""
 End Sub
 
 
@@ -234,13 +262,6 @@ End Sub
 Private Sub Form_Unload(Cancel As Integer)
     NumeroEmpresaMemorizar False
 End Sub
-
-
-
-
-
-
-
 
 
 Private Sub Text1_GotFocus(Index As Integer)
@@ -385,4 +406,14 @@ On Error GoTo ENumeroEmpresaMemorizar
     End If
 ENumeroEmpresaMemorizar:
     Err.Clear
+End Sub
+
+Private Sub Timer1_Timer()
+    'Label3 = "Si no entra en " & vSegundos & " segundos. La aplicación se cerrará."
+    
+    Label3 = "Si no hace login, la pantalla se cerrará automáticamente en " & " " & vSegundos & " segundos"
+    Me.Refresh
+    DoEvents
+    vSegundos = vSegundos - 1
+    If vSegundos = -1 Then Unload Me
 End Sub
