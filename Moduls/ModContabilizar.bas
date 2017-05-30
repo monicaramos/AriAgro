@@ -1424,17 +1424,28 @@ Dim CadenaInsertFaclin2 As String
             ' para el caso de las rectificativas
             Dim vTipM As String
             vTipM = DevuelveValor("select codtipom from stipom where letraser = " & DBSet(Rs!LetraSer, "T"))
-            If vTipM = "FAR" Then
-                sql = sql & "'D',"
+            
+            '[Monica]30/05/2017: para el caso de q sea una intracomunitaria de venta el tipo de intracomunitaria es E
+            If Intracom = 1 Then
+                sql = sql & "'P',1,'E',"
             Else
-                sql = sql & "'0',"
+                If vTipM = "FAR" Then
+                    sql = sql & "'D',"
+                Else
+                    sql = sql & "'0',"
+                End If
+                sql = sql & "0," & ValorNulo & ","
             End If
             
+            Dim LetraPais As String
             
-            sql = sql & "0," & DBSet(Rs!Codforpa, "N") & "," & DBSet(BaseImp, "N") & "," & ValorNulo & "," & DBSet(IvaImp, "N") & ","
+            LetraPais = DevuelveDesdeBDNew(cAgro, "paises", "letraspais", "codpaise", DBLet(Rs!codpaise, "N"), "N")
+            If LetraPais = "" Then LetraPais = "ES"
+            
+            sql = sql & DBSet(Rs!Codforpa, "N") & "," & DBSet(BaseImp, "N") & "," & ValorNulo & "," & DBSet(IvaImp, "N") & ","
             sql = sql & ValorNulo & "," & DBSet(Rs!TotalFac, "N") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0," & DBSet(Rs!FecFactu, "F") & ","
             sql = sql & DBSet(Rs!Nomclien, "T") & "," & DBSet(Rs!domclien, "T") & "," & DBSet(Rs!codPobla, "T") & "," & DBSet(Rs!pobclien, "T") & ","
-            sql = sql & DBSet(Rs!proclien, "T") & "," & DBSet(Rs!cifClien, "T") & ",'ES',1"
+            sql = sql & DBSet(Rs!proclien, "T") & "," & DBSet(Rs!cifClien, "T") & "," & DBSet(LetraPais, "T") & ",1"
             
             cad = "(" & sql & ")"
         Else
@@ -1454,7 +1465,7 @@ Dim CadenaInsertFaclin2 As String
     
     
     If vParamAplic.ContabilidadNueva Then
-        sql = "INSERT INTO factcli (numserie,numfactu,fecfactu,codmacta,anofactu,observa,codconce340,codopera,codforpa,totbases,totbasesret,totivas,"
+        sql = "INSERT INTO factcli (numserie,numfactu,fecfactu,codmacta,anofactu,observa,codconce340,codopera,codintra,codforpa,totbases,totbasesret,totivas,"
         sql = sql & "totrecargo,totfaccl, retfaccl,trefaccl,cuereten,tiporeten,fecliqcl,nommacta,dirdatos,codpobla,despobla, desprovi,nifdatos,"
         sql = sql & "codpais,codagente)"
         sql = sql & " VALUES " & cad
