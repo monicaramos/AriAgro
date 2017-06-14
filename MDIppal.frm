@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:44"
+            TextSave        =   "13:47"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1342,14 +1342,14 @@ End Sub
 ' añadida esta parte para la personalizacion de menus
 
 Private Sub LeerEditorMenus()
-Dim sql As String
+Dim SQL As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     TieneEditorDeMenus = False
-    sql = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
+    SQL = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If Not IsNull(miRsAux.Fields(0)) Then
             If miRsAux.Fields(0) > 0 Then TieneEditorDeMenus = True
@@ -1368,33 +1368,33 @@ End Sub
 
 Private Sub PoneMenusDelEditor()
 Dim T As Control
-Dim sql As String
+Dim SQL As String
 Dim C As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     
-    sql = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.codigo - vUsu.DevuelveAumentoPC), 3))
+    SQL = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.Codigo - vUsu.DevuelveAumentoPC), 3))
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    sql = ""
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    SQL = ""
 
     While Not miRsAux.EOF
         If Not IsNull(miRsAux.Fields(3)) Then
-            sql = sql & miRsAux.Fields(3) & "·"
+            SQL = SQL & miRsAux.Fields(3) & "·"
         End If
         miRsAux.MoveNext
     Wend
     miRsAux.Close
         
    
-    If sql <> "" Then
-        sql = "·" & sql
+    If SQL <> "" Then
+        SQL = "·" & SQL
         For Each T In Me.Controls
             If TypeOf T Is menu Then
                 C = DevuelveCadenaMenu(T)
                 C = "·" & C & "·"
-                If InStr(1, sql, C) > 0 Then T.visible = False
+                If InStr(1, SQL, C) > 0 Then T.visible = False
            
             End If
         Next
@@ -1544,7 +1544,7 @@ Public Sub mnCambioEmpresa_Click()
     End If
 
     'Borramos temporal
-    conn.Execute "Delete from zbloqueos where codusu = " & vUsu.codigo
+    conn.Execute "Delete from zbloqueos where codusu = " & vUsu.Codigo
 
 
     CadenaDesdeOtroForm = vUsu.Login & "|" & vUsu.PasswdPROPIO & "|"
@@ -1598,6 +1598,12 @@ Public Sub mnCambioEmpresa_Click()
         LeerNivelesEmpresa
     End If
     PonerDatosFormulario
+
+
+    If vParamAplic.ContabilidadNueva And (vUsu.Nivel = 0 Or vUsu.Nivel = 1) Then FrasPendientesContabilizar False
+
+
+
 
     'Ponemos primera vez a false
     PrimeraVez = True

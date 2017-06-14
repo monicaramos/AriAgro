@@ -988,11 +988,16 @@ Dim Nulo3 As String
     sql = sql & DBSet(BrutoFac, "N", "N") & ","
     sql = sql & DBSet(DtoPPago, "N", "N") & "," & DBSet(DtoGnral, "N", "N") & ","
     sql = sql & DBSet(ImpPPago, "N", "N") & "," & DBSet(ImpGnral, "N", "N") & ","
-    sql = sql & DBSet(BaseIVA1, "N", "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
+    
     Nulo2 = "N"
     Nulo3 = "N"
-    If BaseIVA2 = 0 Then Nulo2 = "S"
-    If BaseIVA3 = 0 Then Nulo3 = "S"
+'[Monica]09/06/2017: antes se comprobaba la base ahora es el tipo de iva
+'    If BaseIVA2 = 0 Then Nulo2 = "S"
+'    If BaseIVA3 = 0 Then Nulo3 = "S"
+    If TipoIVA2 = 0 Then Nulo2 = "S"
+    If TipoIVA3 = 0 Then Nulo3 = "S"
+    
+    sql = sql & DBSet(BaseIVA1, "N", "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
     sql = sql & DBSet(TipoIVA1, "N", "N") & "," & DBSet(TipoIVA2, "N", Nulo2) & "," & DBSet(TipoIVA3, "N", Nulo3) & ","
     sql = sql & DBSet(PorceIVA1, "N", "N") & "," & DBSet(PorceIVA2, "N", Nulo2) & "," & DBSet(PorceIVA3, "N", Nulo3) & ","
     sql = sql & DBSet(ImpIVA1, "N", "N") & "," & DBSet(ImpIVA2, "N", Nulo2) & "," & DBSet(ImpIVA3, "N", Nulo3) & ","

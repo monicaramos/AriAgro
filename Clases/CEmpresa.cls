@@ -62,9 +62,14 @@ Private mvarTieneAnalitica As Boolean
 
 Private SQL As String  'Para la sentencia
 Private Mens As String    'Para los mensajes
-Private RS As ADODB.Recordset
+Private Rs As ADODB.Recordset
 Private Rc As Byte
 
+
+
+Private mvarTieneSII As Boolean
+Private mvarSIIFechaInicio As Date
+Private mvarSIIDiasAviso As Byte
 
 
 
@@ -278,6 +283,24 @@ End Property
 
 
 
+'[Monica]09/06/2017: fecha de inicio y dias de aviso del sii
+Public Property Get TieneSII() As Boolean
+     TieneSII = mvarTieneSII
+End Property
+
+
+Public Property Get SIIDiasAviso() As Byte
+     SIIDiasAviso = mvarSIIDiasAviso
+End Property
+
+
+Public Property Get SIIFechaInicio() As Date
+     SIIFechaInicio = mvarSIIFechaInicio
+End Property
+
+
+
+
 '------------------------------------------------
 'FUNCIONES del modulo Cempresa
 '------------------------------------------------
@@ -296,7 +319,7 @@ Public Function Agregar() As Byte
     SQL = SQL & "," & DBSet(mvarNomresum, "T")
     SQL = SQL & ")"
 
-    Conn.Execute SQL
+    conn.Execute SQL
     Agregar = 0
     Exit Function
     
@@ -318,24 +341,24 @@ Public Function LeerDatos() As Byte
     On Error GoTo Err3
     SQL = "SELECT * FROM usuarios.empresasariagro WHERE ariagro='" & vUsu.CadenaConexion & "'"
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     
-    If RS.EOF Then
+    If Rs.EOF Then
         LeerDatos = 1
     Else
         Mens = "Datos basicos"
-        mvarCodempre = RS!codempre
-        mvarNomempre = RS!nomempre
-        mvarNomresum = DBLet(RS!nomresum)
-        mvarAriagro = DBLet(RS!Ariagro)
+        mvarCodempre = Rs!codempre
+        mvarNomempre = Rs!nomempre
+        mvarNomresum = DBLet(Rs!nomresum)
+        mvarAriagro = DBLet(Rs!Ariagro)
         Mens = "Datos de Gestión"
         LeerDatos = 0
     End If
 
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     Exit Function
 
 Err3:
@@ -343,7 +366,7 @@ Err3:
     Mens = Mens & "Número: " & Err.Number & vbCrLf
     Mens = Mens & "Descripción: " & Err.Description
     MsgBox Mens, vbExclamation
-    Set RS = Nothing
+    Set Rs = Nothing
     LeerDatos = 1
 End Function
 
@@ -361,55 +384,55 @@ Dim jj As Integer
     
     SQL = "SELECT * FROM empresa "
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, ConnConta, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     
-    If RS.EOF Then
+    If Rs.EOF Then
         LeerNiveles = 1
     Else
         Mens = "Datos basicos empresa en contabilidad."
-        mvarnumnivel = RS!numNivel
-        mvarnumdigi1 = RS!numdigi1
-        mvarnumdigi2 = DBLet(RS!numdigi2, "N")
-        mvarnumdigi3 = DBLet(RS!numdigi3, "N")
-        mvarnumdigi4 = DBLet(RS!numdigi4, "N")
-        mvarnumdigi5 = DBLet(RS!numdigi5, "N")
-        mvarnumdigi6 = DBLet(RS!numdigi6, "N")
-        mvarnumdigi7 = DBLet(RS!numdigi7, "N")
-        mvarnumdigi8 = DBLet(RS!numdigi8, "N")
-        mvarnumdigi9 = DBLet(RS!numdigi9, "N")
-        mvarnumdigi10 = DBLet(RS!numdigi10, "N")
+        mvarnumnivel = Rs!numNivel
+        mvarnumdigi1 = Rs!numdigi1
+        mvarnumdigi2 = DBLet(Rs!numdigi2, "N")
+        mvarnumdigi3 = DBLet(Rs!numdigi3, "N")
+        mvarnumdigi4 = DBLet(Rs!numdigi4, "N")
+        mvarnumdigi5 = DBLet(Rs!numdigi5, "N")
+        mvarnumdigi6 = DBLet(Rs!numdigi6, "N")
+        mvarnumdigi7 = DBLet(Rs!numdigi7, "N")
+        mvarnumdigi8 = DBLet(Rs!numdigi8, "N")
+        mvarnumdigi9 = DBLet(Rs!numdigi9, "N")
+        mvarnumdigi10 = DBLet(Rs!numdigi10, "N")
         'Fijamos la longitud maxima de digitos en ctas de ultimo nivel
         FijaLongitudMaxima
         LeerNiveles = 0
     End If
-    RS.Close
+    Rs.Close
     
     
     'Asigno los valores por defecto a las variables de fechaini y fechafin
     If LeerNiveles = 0 Then
         LeerNiveles = 2
         SQL = "Select * from parametros"
-        RS.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
-        If RS.EOF Then
+        Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Rs.EOF Then
             MsgBox "Fecha inicio y fin de ejercicio", vbExclamation
         Else
-            mvarFechaIni = RS!FechaIni
-            mvarFechaFin = RS!FechaFin
+            mvarFechaIni = Rs!FechaIni
+            mvarFechaFin = Rs!FechaFin
             
-            mvarTieneAnalitica = RS!autocoste = 1
+            mvarTieneAnalitica = Rs!Autocoste = 1
        
             '[Monica]29/08/2013: Cargamos la fecha de ultima liquidacion
             'Para establecer del ultimo dia liquidado
-            If DBLet(RS!periodos, "N") = 1 Then ' es mensual
-               J = DBLet(RS!perfactu, "N")
+            If DBLet(Rs!periodos, "N") = 1 Then ' es mensual
+               J = DBLet(Rs!perfactu, "N")
             Else
                 'Trimestral
-                J = DBLet(RS!perfactu, "N") * 3
+                J = DBLet(Rs!perfactu, "N") * 3
             End If
             If J = 0 Then J = 1
-            jj = DBLet(RS!Anofactu, "N")
+            jj = DBLet(Rs!Anofactu, "N")
             If jj = 0 Then jj = 1900
             
             mvarFechaUltIVA = "01/" & J & "/" & jj
@@ -417,15 +440,20 @@ Dim jj As Integer
             mvarFechaUltIVA = DateAdd("d", -1, mvarFechaUltIVA)  'menos un dia
        
        End If
-       RS.Close
+       Rs.Close
        
        '[Monica]20/11/2013: miramos lo del iban
        mvarNorma19_34Nueva = TieneNorma19_34Nueva
        
+       
+       '[Monica]09/06/2017: miramos si tiene el sii
+       mvarTieneSII = LeerSII
+       
+       
     End If
     
     
-    Set RS = Nothing
+    Set Rs = Nothing
     Exit Function
 
 Err3:
@@ -433,27 +461,57 @@ Err3:
     Mens = Mens & "Número: " & Err.Number & vbCrLf
     Mens = Mens & "Descripción: " & Err.Description
     MsgBox Mens, vbExclamation
-    Set RS = Nothing
+    Set Rs = Nothing
     LeerNiveles = 1
 End Function
 
 
+Private Function LeerSII() As Boolean
+Dim SQL As String
+
+    On Error Resume Next
+
+    SQL = "select SIIFechaInicio, SIIDiasAviso from parametros "
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    LeerSII = True
+    If Not Rs.EOF Then
+        If Not IsNull(Rs!SIIFechaInicio) Then
+            mvarSIIFechaInicio = CDate(Rs!SIIFechaInicio)
+        Else
+            mvarSIIFechaInicio = Rs!SIIFechaInicio
+        End If
+        mvarSIIDiasAviso = DBLet(Rs!SIIDiasAviso, "N")
+    End If
+    Rs.Close
+    Set Rs = Nothing
+
+    If Err.Number <> 0 Then
+        LeerSII = False
+        Err.Clear
+    End If
+End Function
+
+
+
 Private Function TieneNorma19_34Nueva() As Byte
 Dim SQL As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eTieneNorma19_34Nueva
 
     TieneNorma19_34Nueva = 0
 
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
 
     SQL = "select norma19_34Nueva from paramtesor"
-    RS.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
          
     TieneNorma19_34Nueva = 1
     
-    Set RS = Nothing
+    Set Rs = Nothing
     Exit Function
     
 eTieneNorma19_34Nueva:
@@ -472,7 +530,7 @@ Public Function ModificarDatos() As Byte
     SQL = "UPDATE usuarios.empresasariagro SET nomempre= '" & mvarNomempre
     SQL = SQL & "', nomresum= '" & mvarNomresum
     SQL = SQL & "' WHERE codempre=" & mvarCodempre
-    Conn.Execute SQL
+    conn.Execute SQL
     
     ModificarDatos = 0
     Exit Function
@@ -482,7 +540,7 @@ Err4:
     Mens = Mens & "Número: " & Err.Number & vbCrLf
     Mens = Mens & "Descripción: " & Err.Description
     MsgBox Mens, vbExclamation
-    RS.Close
+    Rs.Close
     ModificarDatos = 1
 End Function
 

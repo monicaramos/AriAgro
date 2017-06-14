@@ -566,7 +566,7 @@ Dim sql As String
         
         mNomTrans = DBLet(Rs!NomTrans, "T")
         mDomTrans = DBLet(Rs!domtrans, "T")
-        mCodpobla = DBLet(Rs!codPobla, "T")
+        mCodpobla = DBLet(Rs!codpobla, "T")
         mPobTrans = DBLet(Rs!pobtrans, "T")
         mProTrans = DBLet(Rs!protrans, "T")
         mNifTrans = DBLet(Rs!NIFTrans, "T")
@@ -1061,22 +1061,22 @@ Dim Linea As Currency
                     PortesLinea = Round2(DBLet(Rs1!Pesoneto, "N") * DBLet(Rs!portespag, "N") / NetoTotal, 2)
                     RestoPortes = RestoPortes - PortesLinea
                     
-                    Linea = DBLet(Rs1!numlinea, "N")
+                    Linea = DBLet(Rs1!NumLinea, "N")
                     
                     Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
-                    Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                    Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                     Sql3 = Sql3 & " and tipogasto = 2"
                     
                     If TotalRegistros(Sql3) = 0 Then
                         sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                        sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ",2," & ValorNulo & ","
+                        sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
                         sql = sql & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
                     
                     Else
                         sql = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
                         sql = sql & ", importes = importes + " & DBSet(PortesLinea, "N")
                         sql = sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                        sql = sql & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                        sql = sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                         sql = sql & " and tipogasto = 2"
                     
                     End If
@@ -1085,7 +1085,7 @@ Dim Linea As Currency
                 
                 
                     sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                    sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ","
+                    sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
                     sql = sql & DBSet(PortesLinea, "N") & ")"
                 
                     conn.Execute sql
@@ -1136,24 +1136,24 @@ Dim Linea As Currency
                 End If
                 
                 Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
-                Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                 Sql3 = Sql3 & " and tipogasto = 2"
                 
                 If TotalRegistros(Sql3) = 0 Then
                     sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                    sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ",2," & ValorNulo & ","
+                    sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
                     sql = sql & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
                 Else
                     sql = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
                     sql = sql & ", importes = importes + " & DBSet(PortesLinea, "N")
                     sql = sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                    sql = sql & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                    sql = sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                     sql = sql & " and tipogasto = 2"
                 End If
                 conn.Execute sql
                 
                 sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ","
+                sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
                 sql = sql & DBSet(PortesLinea, "N") & ")"
             
                 conn.Execute sql
@@ -1212,19 +1212,19 @@ Dim Linea As Currency
     
     While Not Rs.EOF
         Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
-        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
         Sql3 = Sql3 & " and tipogasto = 2"
         
         If TotalRegistros(Sql3) = 0 Then
             sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-            sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ",2," & ValorNulo & ","
+            sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",2," & ValorNulo & ","
             sql = sql & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
         
         Else
             sql = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
             sql = sql & ", importes = importes + " & DBSet(Rs!portespag, "N")
             sql = sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-            sql = sql & " and numlinea = " & DBSet(Rs!numlinea, "N")
+            sql = sql & " and numlinea = " & DBSet(Rs!NumLinea, "N")
             sql = sql & " and tipogasto = 2"
         
         End If
@@ -1232,7 +1232,7 @@ Dim Linea As Currency
         conn.Execute sql
     
         sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-        sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+        sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
         sql = sql & DBSet(Rs!portespag, "N") & ")"
     
         conn.Execute sql
@@ -1362,8 +1362,9 @@ Dim Nulo5 As String
     sql = sql & DBSet(BaseIVA1, "N", "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
     Nulo2 = "N"
     Nulo3 = "N"
-    If BaseIVA2 = 0 Then Nulo2 = "S"
-    If BaseIVA3 = 0 Then Nulo3 = "S"
+    '[Monica]09/06/2017: antes era baseiva2 y baseiva 3
+    If TipoIVA2 = 0 Then Nulo2 = "S"
+    If TipoIVA3 = 0 Then Nulo3 = "S"
     sql = sql & DBSet(TipoIVA1, "N", "N") & "," & DBSet(TipoIVA2, "N", Nulo2) & "," & DBSet(TipoIVA3, "N", Nulo3) & ","
     sql = sql & DBSet(PorceIVA1, "N", "N") & "," & DBSet(PorceIVA2, "N", Nulo2) & "," & DBSet(PorceIVA3, "N", Nulo3) & ","
     sql = sql & DBSet(ImpIVA1, "N", "N") & "," & DBSet(ImpIVA2, "N", Nulo2) & "," & DBSet(ImpIVA3, "N", Nulo3) & ","
@@ -1944,29 +1945,29 @@ Dim Linea As Currency
                     ComisionesLinea = Round2(DBLet(Rs1!Pesoneto, "N") * DBLet(Rs!comisionespag, "N") / NetoTotal, 2)
                     RestoComisiones = RestoComisiones - ComisionesLinea
                     
-                    Linea = DBLet(Rs1!numlinea, "N")
+                    Linea = DBLet(Rs1!NumLinea, "N")
                     
                     
                     Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
-                    Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                    Sql3 = Sql3 & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                     Sql3 = Sql3 & " and tipogasto = 3"
                     
                     If TotalRegistros(Sql3) = 0 Then
                         sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                        sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ",3," & ValorNulo & ","
+                        sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",3," & ValorNulo & ","
                         sql = sql & DBSet(ComisionesLinea, "N") & "," & DBSet(ComisionesLinea, "N") & ",1," & ValorNulo & ")"
                     Else
                         sql = "update albaran_costes set impcoste = impcoste + " & DBSet(ComisionesLinea, "N")
                         sql = sql & ", importes = importes + " & DBSet(ComisionesLinea, "N")
                         sql = sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                        sql = sql & " and numlinea = " & DBSet(Rs1!numlinea, "N")
+                        sql = sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
                         sql = sql & " and tipogasto = 3"
                     End If
                     
                     conn.Execute sql
                 
                     sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                    sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!numlinea, "N") & ","
+                    sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
                     sql = sql & DBSet(ComisionesLinea, "N") & ")"
                 
                     conn.Execute sql
@@ -2023,25 +2024,25 @@ Dim Linea As Currency
     
     While Not Rs.EOF
         Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
-        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
         Sql3 = Sql3 & " and tipogasto = 3"
         
         If TotalRegistros(Sql3) = 0 Then
             sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-            sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ",3," & ValorNulo & ","
+            sql = sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",3," & ValorNulo & ","
             sql = sql & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
         Else
             sql = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
             sql = sql & ", importes = importes + " & DBSet(Rs!portespag, "N")
             sql = sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-            sql = sql & " and numlinea = " & DBSet(Rs!numlinea, "N")
+            sql = sql & " and numlinea = " & DBSet(Rs!NumLinea, "N")
             sql = sql & " and tipogasto = 3"
         End If
         
         conn.Execute sql
     
         sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-        sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+        sql = sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
         sql = sql & DBSet(Rs!portespag, "N") & ")"
     
         conn.Execute sql

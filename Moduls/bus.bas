@@ -21,6 +21,10 @@ Public ConnAridoc As ADODB.Connection
 
 Public ConnMB As ADODB.Connection
 
+'Conexión a la BD Ariagro de la campaña anterior
+Public ConnCAnt As ADODB.Connection
+
+
 'Que conexion a base de datos se va a utilizar
 Public Const cAgro As Byte = 1 'trabajaremos con conn (conexion a BD Ariagro)
 Public Const cConta As Byte = 2 'trabajaremos con connConta (cxion a BD Contabilidad)
@@ -198,6 +202,9 @@ Public Sub Main()
         MDIppal.Show
      
      
+        If vParamAplic.ContabilidadNueva And (vUsu.Nivel = 0 Or vUsu.Nivel = 1) Then FrasPendientesContabilizar False
+     
+     
 '     'obric la conexio
 '    If AbrirConexionAriagro("root", "aritel") = False Then
 '        MsgBox "La aplicación no puede continuar sin acceso a los datos. ", vbCritical
@@ -211,6 +218,155 @@ Public Sub Main()
 '    frmIdentifica.Show
     
 End Sub
+
+
+Public Sub FrasPendientesContabilizar(EsRecoleccion As Boolean)
+Dim SQL As String
+Dim Sql2 As String
+Dim SqlBd As String
+Dim SQLinsert As String
+Dim RsBd As ADODB.Recordset
+Dim BBDD As String
+
+Dim frmMens As frmMensajes
+
+    On Error GoTo eFrasPendientesContabilizar
+
+
+    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
+        If vEmpresa.BDAriagro <> "ariagro" Then Exit Sub
+    Else
+        If vEmpresa.BDAriagro <> "ariagro1" Then Exit Sub
+    End If
+
+
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
+
+
+    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
+        BBDD = vEmpresa.BDAriagro
+    Else
+        BBDD = "ariagro1"
+    End If
+    
+    SQLinsert = "insert into " & BBDD & ".tmpinformes (codusu,nombre1,nombre2,nombre3,fecha1, text1) "
+
+
+        If EsRecoleccion Then
+    
+            SQL = " select " & vUsu.Codigo & ",'Facturas ADV' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".advfacturas where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Varias Cliente' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".fvarcabfact where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Varias Proveedor' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".fvarcabfactpro where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Socio' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rfactsoc where contabilizado = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Transportistas' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rfacttra where contabilizado = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Pozos' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rrecibpozos where contabilizado = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+    
+            conn.Execute SQLinsert & SQL
+            
+        Else
+        
+            SQL = " select " & vUsu.Codigo & ",'Facturas Cliente' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".facturas where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Cliente a Socios' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".facturassocio where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+                
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Proveedor' tipofact, codprove codtipom ,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".scafpc where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+            SQL = SQL & " union "
+            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Transportistas' tipofact, codtrans codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".tcafpc where intconta = 0 "
+            If vEmpresa.TieneSII Then
+                SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
+            End If
+    
+            conn.Execute SQLinsert & SQL
+            
+        End If
+        
+        
+        If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 And vParamAplic.Cooperativa <> 16 Then
+            
+            
+            Dim vCampAnt As CCampAnt
+            
+            Set vCampAnt = New CCampAnt
+            
+        ' si solo tenemos que buscar en la campaña anterior
+            If vCampAnt.Leer = 0 Then
+            
+                SqlBd = "SHOW DATABASES like 'ariagro%' "
+                Set RsBd = New ADODB.Recordset
+                RsBd.Open SqlBd, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                While Not RsBd.EOF
+    '               If Trim(DBLet(RsBd.Fields(0).Value)) <> vEmpresa.BDAriagro And Trim(DBLet(RsBd.Fields(0).Value)) <> "" And InStr(1, DBLet(RsBd.Fields(0).Value), "ariagroutil") = 0 Then
+                    If Trim(DBLet(RsBd.Fields(0).Value)) = vCampAnt.BaseDatos Then
+                    
+                        Sql2 = Replace(SQL, BBDD, DBLet(RsBd.Fields(0).Value))
+        
+                        conn.Execute SQLinsert & Sql2
+                    End If
+        
+                    RsBd.MoveNext
+                Wend
+        
+                Set RsBd = Nothing
+                
+            End If
+            
+            Set vCampAnt = Nothing
+    
+        End If
+    
+    SQL = "select codusu,nombre1,nombre2,nombre3,fecha1, text1 from tmpinformes where codusu = " & vUsu.Codigo & " order by 6,5 "
+    
+    If TotalRegistrosConsulta(SQL) > 0 Then
+        Set frmMens = New frmMensajes
+        
+        frmMens.OpcionMensaje = 30
+        frmMens.cadena = SQL
+        frmMens.Show vbModal
+    
+        Set frmMens = Nothing
+    End If
+    Exit Sub
+    
+eFrasPendientesContabilizar:
+    MuestraError Err.Number, "Facturas Pendientes de Integrar a Contabilidad", Err.Description
+End Sub
+
+
+
 
 Public Function ComprovaVersio() As Boolean
   
@@ -431,6 +587,12 @@ Public Function CerrarConexionMultibase()
    If Err.Number <> 0 Then Err.Clear
 End Function
 
+Public Function CerrarConexionCampAnterior()
+  'Cerramos la conexion con BD: Usuarios
+  On Error Resume Next
+   ConnCAnt.Close
+   If Err.Number <> 0 Then Err.Clear
+End Function
 
 Public Function LeerDatosEmpresa()
  'Crea instancia de la clase Cempresa con los valores en
@@ -454,7 +616,7 @@ Public Sub LeerParametros()
  
     'Parametros Generales
     Set vParam = New Cparametros
-    If vParam.leer() = 1 Then
+    If vParam.Leer() = 1 Then
         devuelve = "No se han podido cargar los Parámetros Generales.(empresas)" & vbCrLf
         MsgBox devuelve & " Debe configurar la aplicación.", vbExclamation
         Set vParam = Nothing
@@ -463,7 +625,7 @@ Public Sub LeerParametros()
     ' ### [Monica] 06/09/2006
     ' añadido
     Set vParamAplic = New CParamAplic
-    If vParamAplic.leer = 1 Then
+    If vParamAplic.Leer = 1 Then
         MsgBox "No se han podido cargar los Parámetros de la Aplicación(sparam). Debe configurar la aplicación.", vbExclamation
 
         Set vParamAplic = Nothing
@@ -520,7 +682,7 @@ End Function
 
     
 
-Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc As String)
+Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc As String)
     Dim cad As String
     Dim Aux As String
     
@@ -528,8 +690,8 @@ Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc
     'que se produzcan
     On Error Resume Next
     cad = "Se ha producido un error: " & vbCrLf
-    If CADENA <> "" Then
-        cad = cad & vbCrLf & CADENA & vbCrLf & vbCrLf
+    If cadena <> "" Then
+        cad = cad & vbCrLf & cadena & vbCrLf & vbCrLf
     End If
     'Numeros de errores que contolamos
     If conn.Errors.Count > 0 Then
@@ -701,43 +863,43 @@ Dim i As Integer
 End Function
 
 ' ### [Monica] 11/09/2006
-Public Function ImporteSinFormato(CADENA As String) As String
+Public Function ImporteSinFormato(cadena As String) As String
 Dim i As Integer
 'Quitamos puntos
 Do
-    i = InStr(1, CADENA, ".")
-    If i > 0 Then CADENA = Mid(CADENA, 1, i - 1) & Mid(CADENA, i + 1)
+    i = InStr(1, cadena, ".")
+    If i > 0 Then cadena = Mid(cadena, 1, i - 1) & Mid(cadena, i + 1)
 Loop Until i = 0
-ImporteSinFormato = TransformaPuntosComas(CADENA)
+ImporteSinFormato = TransformaPuntosComas(cadena)
 End Function
 
 
 
 'Cambia los puntos de los numeros decimales
 'por comas
-Public Function TransformaComasPuntos(CADENA As String) As String
+Public Function TransformaComasPuntos(cadena As String) As String
 Dim i As Integer
     Do
-        i = InStr(1, CADENA, ",")
+        i = InStr(1, cadena, ",")
         If i > 0 Then
-            CADENA = Mid(CADENA, 1, i - 1) & "." & Mid(CADENA, i + 1)
+            cadena = Mid(cadena, 1, i - 1) & "." & Mid(cadena, i + 1)
         End If
     Loop Until i = 0
-    TransformaComasPuntos = CADENA
+    TransformaComasPuntos = cadena
 End Function
 
 'Para los nombre que pueden tener ' . Para las comillas habra que hacer dentro otro INSTR
-Public Sub NombreSQL(ByRef CADENA As String)
-Dim j As Integer
+Public Sub NombreSQL(ByRef cadena As String)
+Dim J As Integer
 Dim i As Integer
 Dim Aux As String
-    j = 1
+    J = 1
     Do
-        i = InStr(j, CADENA, "'")
+        i = InStr(J, cadena, "'")
         If i > 0 Then
-            Aux = Mid(CADENA, 1, i - 1) & "\"
-            CADENA = Aux & Mid(CADENA, i)
-            j = i + 2
+            Aux = Mid(cadena, 1, i - 1) & "\"
+            cadena = Aux & Mid(cadena, i)
+            J = i + 2
         End If
     Loop Until i = 0
 End Sub
@@ -761,20 +923,20 @@ Dim cad As String
     End If
 End Function
 
-Public Function DevNombreSQL(CADENA As String) As String
-Dim j As Integer
+Public Function DevNombreSQL(cadena As String) As String
+Dim J As Integer
 Dim i As Integer
 Dim Aux As String
-    j = 1
+    J = 1
     Do
-        i = InStr(j, CADENA, "'")
+        i = InStr(J, cadena, "'")
         If i > 0 Then
-            Aux = Mid(CADENA, 1, i - 1) & "\"
-            CADENA = Aux & Mid(CADENA, i)
-            j = i + 2
+            Aux = Mid(cadena, 1, i - 1) & "\"
+            cadena = Aux & Mid(cadena, i)
+            J = i + 2
         End If
     Loop Until i = 0
-    DevNombreSQL = CADENA
+    DevNombreSQL = cadena
 End Function
 
 
@@ -1110,15 +1272,15 @@ Dim res As Boolean
         EsEntero = res
 End Function
 
-Public Function TransformaPuntosComas(CADENA As String) As String
+Public Function TransformaPuntosComas(cadena As String) As String
     Dim i As Integer
     Do
-        i = InStr(1, CADENA, ".")
+        i = InStr(1, cadena, ".")
         If i > 0 Then
-            CADENA = Mid(CADENA, 1, i - 1) & "," & Mid(CADENA, i + 1)
+            cadena = Mid(cadena, 1, i - 1) & "," & Mid(cadena, i + 1)
         End If
         Loop Until i = 0
-    TransformaPuntosComas = CADENA
+    TransformaPuntosComas = cadena
 End Function
 
 Public Sub InicializarFormatos()
@@ -1255,6 +1417,40 @@ EAbrirConexion:
     MuestraError Err.Number, "Abrir conexión.", Err.Description
 End Function
 
+
+Public Function AbrirConexionCampAnterior(BaseDatos As String) As Boolean
+Dim cad As String
+On Error GoTo EAbrirConexion
+
+    
+    AbrirConexionCampAnterior = False
+    Set ConnCAnt = Nothing
+    Set ConnCAnt = New Connection
+    'Conn.CursorLocation = adUseClient   'Si ponemos este hay opciones k no van ej select con rs!campo
+    ConnCAnt.CursorLocation = adUseServer   'Si ponemos esta alguns errores de Conn no se muestran correctamente
+                        
+'    cad = "DSN=vAriagro;DESC=MySQL ODBC 3.51 Driver DSN;DATABASE=" & BaseDatos & ";UID=" & vConfig.User & ";PASSWORD=" & vConfig.password & ";PORT=3306;OPTION=3;STMT=;"
+'    cad = cad & ";Persist Security Info=true"
+    
+    cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATABASE=" & BaseDatos & ";SERVER=" & vConfig.SERVER & ";"
+    cad = cad & ";UID=" & vConfig.User
+    cad = cad & ";PWD=" & vConfig.password
+'++monica: tema del vista
+    cad = cad & ";Persist Security Info=true"
+    
+    ConnCAnt.ConnectionString = cad
+    ConnCAnt.Open
+    ConnCAnt.Execute "Set AUTOCOMMIT = 1"
+    
+    AbrirConexionCampAnterior = True
+    Exit Function
+    
+EAbrirConexion:
+    MuestraError Err.Number, "Abrir conexión Campaña Anterior.", Err.Description
+End Function
+
+
+
 Public Function LeerEmpresaParametros()
         'Abrimos la empresa
         Set vEmpresa = New Cempresa
@@ -1326,7 +1522,7 @@ On Error Resume Next
     If NumRegElim = 0 Then
         CadenaDesdeOtroForm = ""
     Else
-        CadenaDesdeOtroForm = " WHERE codusu = " & vUsu.codigo
+        CadenaDesdeOtroForm = " WHERE codusu = " & vUsu.Codigo
     End If
     conn.Execute "Delete from zBloqueos " & CadenaDesdeOtroForm
     CadenaDesdeOtroForm = ""
@@ -1493,14 +1689,14 @@ End Function
 '            1: Inferior
 '            2: Superior
 
-Public Function EsFechaOKConta(Fecha As Date) As Byte
+Public Function EsFechaOKConta(fecha As Date) As Byte
 Dim F2 As Date
 
-    If vEmpresa.FechaIni > Fecha Then
+    If vEmpresa.FechaIni > fecha Then
         EsFechaOKConta = 1
     Else
         F2 = DateAdd("yyyy", 1, vEmpresa.FechaFin)
-        If Fecha > F2 Then
+        If fecha > F2 Then
             EsFechaOKConta = 2
         Else
             'OK. Dentro de los ejercicios contables

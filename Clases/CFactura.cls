@@ -1918,8 +1918,9 @@ Dim cad As String, cad2 As String
     sql = sql & DBSet(BaseIVA1, "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
     Nulo2 = "N"
     Nulo3 = "N"
-    If BaseIVA2 = 0 Then Nulo2 = "S"
-    If BaseIVA3 = 0 Then Nulo3 = "S"
+    '[Monica]09/06/2017: antes era baseiva2 y baseiva3
+    If TipoIVA2 = 0 Then Nulo2 = "S"
+    If TipoIVA3 = 0 Then Nulo3 = "S"
     sql = sql & DBSet(TipoIVA1, "N") & "," & DBSet(TipoIVA2, "N", Nulo2) & "," & DBSet(TipoIVA3, "N", Nulo3) & ","
     sql = sql & DBSet(PorceIVA1, "N") & "," & DBSet(PorceIVA2, "N", Nulo2) & "," & DBSet(PorceIVA3, "N", Nulo3) & ","
      
@@ -2338,7 +2339,7 @@ Dim vClien As CCliente
 Dim EsExcluyente As Boolean
 Dim Bonif1 As Currency, Bonif2 As Currency
 Dim Canti1 As Single, Canti2 As Single
-Dim numlinea As Integer
+Dim NumLinea As Integer
 
     CalcularBonificacion = False
     On Error GoTo EBonif
@@ -2370,7 +2371,7 @@ Dim numlinea As Integer
            
             Set Rs = New ADODB.Recordset
             Rs.Open sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-            numlinea = 1
+            NumLinea = 1
             
             While Not Rs.EOF 'para cada codartic
                 'Para cada linea de slialb a la que se le aplica bonificacion
@@ -2408,8 +2409,8 @@ Dim numlinea As Integer
                     End If
                     
                     If Bonif1 > 0 Then
-                        numlinea = numlinea + 1
-                        SQLBonif = SQLBonif & "('" & codTipoM & "'," & NumFactu & "," & DBSet(FecFactu, "F") & ",'',9999999," & numlinea & "," & AlmFactu & "," & DBSet(RSaux!codarti1, "T") & ","
+                        NumLinea = NumLinea + 1
+                        SQLBonif = SQLBonif & "('" & codTipoM & "'," & NumFactu & "," & DBSet(FecFactu, "F") & ",'',9999999," & NumLinea & "," & AlmFactu & "," & DBSet(RSaux!codarti1, "T") & ","
                         cadIVA = "codigiva"
                         sql = DevuelveDesdeBDNew(cAgro, "sartic", "nomartic", "codartic", RSaux!codarti1, "T", cadIVA)
                         SQLBonif = SQLBonif & DBSet(sql, "T") & ",''," & DBSet(Canti1, "N") & "," & DBSet(-Bonif1, "N") & ",0,0," & DBSet(0 - Round(Canti1 * Bonif1, 2), "N") & ",'M'),"
@@ -2427,8 +2428,8 @@ Dim numlinea As Integer
                     
                     If Bonif2 > 0 Then
 '                        SQL = "(codtipom='" & codTipoM & "' and numfactu=" & NumFactu & " and fecfactu=" & DBSet(FecFactu, "F") & " and codtipoa='' and numalbar=0)"
-                        numlinea = numlinea + 1
-                        SQLBonif = SQLBonif & "('" & codTipoM & "'," & NumFactu & "," & DBSet(FecFactu, "F") & ",'',9999999," & numlinea & "," & AlmFactu & "," & DBSet(RSaux!codArti2, "T") & ","
+                        NumLinea = NumLinea + 1
+                        SQLBonif = SQLBonif & "('" & codTipoM & "'," & NumFactu & "," & DBSet(FecFactu, "F") & ",'',9999999," & NumLinea & "," & AlmFactu & "," & DBSet(RSaux!codArti2, "T") & ","
                         sql = DevuelveDesdeBDNew(cAgro, "sartic", "nomartic", "codartic", RSaux!codArti2, "T")
                         SQLBonif = SQLBonif & DBSet(sql, "T") & ",''," & DBSet(Canti2, "N") & "," & DBSet(-Bonif2, "N") & ",0,0," & DBSet(0 - Round(Canti2 * Bonif2, 2), "N") & ",'M'),"
                         If IVABonif1 = 0 Or IVABonif1 = CByte(cadIVA) Then
