@@ -243,112 +243,112 @@ Dim frmMens As frmMensajes
     SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute SQL
 
-
     If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
         BBDD = vEmpresa.BDAriagro
     Else
         BBDD = "ariagro1"
     End If
     
-    SQLinsert = "insert into " & BBDD & ".tmpinformes (codusu,nombre1,nombre2,nombre3,fecha1, text1) "
+    SQLinsert = "insert into " & BBDD & ".tmpinformes (codusu, nombre1,codigo1,nombre2,fecha1, text1,nombre3,importe1) "
 
-
-        If EsRecoleccion Then
-    
-            SQL = " select " & vUsu.Codigo & ",'Facturas ADV' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".advfacturas where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Varias Cliente' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".fvarcabfact where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Varias Proveedor' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".fvarcabfactpro where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Socio' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rfactsoc where contabilizado = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Transportistas' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rfacttra where contabilizado = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Pozos' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".rrecibpozos where contabilizado = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-    
-            conn.Execute SQLinsert & SQL
-            
-        Else
+    If EsRecoleccion Then
         
-            SQL = " select " & vUsu.Codigo & ",'Facturas Cliente' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".facturas where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Cliente a Socios' tipofact, codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".facturassocio where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-                
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Proveedor' tipofact, codprove codtipom ,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".scafpc where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-            SQL = SQL & " union "
-            SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Transportistas' tipofact, codtrans codtipom,numfactu,fecfactu,'" & BBDD & "' aa from " & BBDD & ".tcafpc where intconta = 0 "
-            If vEmpresa.TieneSII Then
-                SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
-            End If
-    
-            conn.Execute SQLinsert & SQL
-            
+        SQL = " select " & vUsu.Codigo & ",'Facturas ADV' tipofact, 0, concat(advfacturas.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, nomsocio, totalfac  from " & BBDD & ".advfacturas where intconta = 0 "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Fras Varias Cliente' tipofact,1, concat(fvarcabfact.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, rsocios.nomsocio, totalfac from " & BBDD & ".fvarcabfact, " & BBDD & ".rsocios  where intconta = 0 and fvarcabfact.codsocio = rsocios.codsocio "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Fras Varias Cliente' tipofact,1, concat(fvarcabfact.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, clientes.nomclien, totalfac from " & BBDD & ".fvarcabfact, " & BBDD & ".clientes  where intconta = 0 and fvarcabfact.codclien = clientes.codclien "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
         End If
         
-        
-        If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 And vParamAplic.Cooperativa <> 16 Then
-            
-            
-            Dim vCampAnt As CCampAnt
-            
-            Set vCampAnt = New CCampAnt
-            
-        ' si solo tenemos que buscar en la campaña anterior
-            If vCampAnt.Leer = 0 Then
-            
-                SqlBd = "SHOW DATABASES like 'ariagro%' "
-                Set RsBd = New ADODB.Recordset
-                RsBd.Open SqlBd, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-                While Not RsBd.EOF
-    '               If Trim(DBLet(RsBd.Fields(0).Value)) <> vEmpresa.BDAriagro And Trim(DBLet(RsBd.Fields(0).Value)) <> "" And InStr(1, DBLet(RsBd.Fields(0).Value), "ariagroutil") = 0 Then
-                    If Trim(DBLet(RsBd.Fields(0).Value)) = vCampAnt.BaseDatos Then
-                    
-                        Sql2 = Replace(SQL, BBDD, DBLet(RsBd.Fields(0).Value))
-        
-                        conn.Execute SQLinsert & Sql2
-                    End If
-        
-                    RsBd.MoveNext
-                Wend
-        
-                Set RsBd = Nothing
-                
-            End If
-            
-            Set vCampAnt = Nothing
-    
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Fras Varias Proveedor' tipofact,2, concat(fvarcabfactpro.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, rsocios.nomsocio, totalfac from " & BBDD & ".fvarcabfactpro, " & BBDD & ".rsocios where intconta = 0 and fvarcabfactpro.codsocio = rsocios.codsocio "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
         End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Socio' tipofact,3, concat(rfactsoc.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, rsocios.nomsocio, totalfac from " & BBDD & ".rfactsoc, " & BBDD & ".rsocios where contabilizado = 0 and rfactsoc.codsocio = rsocios.codsocio"
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Fras Transportistas' tipofact,4, concat(codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, rtransporte.nomtrans, totalfac from " & BBDD & ".rfacttra, " & BBDD & ".rtransporte where contabilizado = 0 and rfacttra.codtrans = rtransporte.codtrans "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Pozos' tipofact,5, concat(rrecibpozos.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, rsocios.nomsocio, totalfact from " & BBDD & ".rrecibpozos, " & BBDD & ".rsocios where contabilizado = 0 and rrecibpozos.codsocio = rsocios.codsocio "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+
+        conn.Execute SQLinsert & SQL
     
-    SQL = "select codusu,nombre1,nombre2,nombre3,fecha1, text1 from tmpinformes where codusu = " & vUsu.Codigo & " order by 6,5 "
+    Else
+    
+        SQL = " select " & vUsu.Codigo & ",'Facturas Cliente' tipofact, 0,concat(facturas.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, nomclien, totalfac from " & BBDD & ".facturas, " & BBDD & ".clientes  where intconta = 0 and facturas.codclien = clientes.codclien "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Cliente a Socios' tipofact, 1,concat(facturassocio.codtipom,right(concat('0000000',numfactu),7)),fecfactu,'" & BBDD & "' aa, nomsocio, totalfac from " & BBDD & ".facturassocio, " & BBDD & ".rsocios where intconta = 0 and facturassocio.codsocio = rsocios.codsocio "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecfactu >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecfactu <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+            
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Proveedor' tipofact, 2,numfactu,fecfactu,'" & BBDD & "' aa, nomprove, totalfac  from " & BBDD & ".scafpc where intconta = 0 "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+        SQL = SQL & " union "
+        SQL = SQL & " select " & vUsu.Codigo & ",'Facturas Transportistas' tipofact,3, numfactu,fecfactu,'" & BBDD & "' aa, nomtrans, totalfac from " & BBDD & ".tcafpc where intconta = 0 "
+        If vEmpresa.TieneSII Then
+            SQL = SQL & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
+
+        conn.Execute SQLinsert & SQL
+        
+    End If
+    
+    
+    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 And vParamAplic.Cooperativa <> 16 Then
+        
+        Dim vCampAnt As CCampAnt
+        
+        Set vCampAnt = New CCampAnt
+        
+    ' si solo tenemos que buscar en la campaña anterior
+        If vCampAnt.Leer = 0 Then
+        
+            SqlBd = "SHOW DATABASES like 'ariagro%' "
+            Set RsBd = New ADODB.Recordset
+            RsBd.Open SqlBd, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            While Not RsBd.EOF
+'               If Trim(DBLet(RsBd.Fields(0).Value)) <> vEmpresa.BDAriagro And Trim(DBLet(RsBd.Fields(0).Value)) <> "" And InStr(1, DBLet(RsBd.Fields(0).Value), "ariagroutil") = 0 Then
+                If Trim(DBLet(RsBd.Fields(0).Value)) = vCampAnt.BaseDatos Then
+                
+                    Sql2 = Replace(SQL, BBDD, DBLet(RsBd.Fields(0).Value))
+    
+                    conn.Execute SQLinsert & Sql2
+                End If
+    
+                RsBd.MoveNext
+            Wend
+            Set RsBd = Nothing
+        End If
+        
+        Set vCampAnt = Nothing
+    End If
+    
+    SQL = "select codusu,nombre1,codigo1,nombre2,nombre3,fecha1,text1,importe1 from tmpinformes where codusu = " & vUsu.Codigo '& " order by 6,5 "
     
     If TotalRegistrosConsulta(SQL) > 0 Then
         Set frmMens = New frmMensajes
@@ -364,8 +364,6 @@ Dim frmMens As frmMensajes
 eFrasPendientesContabilizar:
     MuestraError Err.Number, "Facturas Pendientes de Integrar a Contabilidad", Err.Description
 End Sub
-
-
 
 
 Public Function ComprovaVersio() As Boolean

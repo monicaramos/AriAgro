@@ -186,7 +186,7 @@ Private Sub Form_Activate()
         
         'Vemos datos de ConfigAgro.ini
         Set vConfig = New Configuracion
-        If vConfig.leer = 1 Then
+        If vConfig.Leer = 1 Then
 
              MsgBox "MAL CONFIGURADO", vbCritical
              End
@@ -304,7 +304,7 @@ Dim OK As Byte
     'Validaremos el usuario y despues el password
     Set vUsu = New Usuario
     
-    If vUsu.leer(Text1(0).Text) = 0 Then
+    If vUsu.Leer(Text1(0).Text) = 0 Then
         'Con exito
         If vUsu.PasswdPROPIO = Text1(1).Text Then
             OK = 0
@@ -336,7 +336,7 @@ Dim OK As Byte
 End Sub
 
 Private Sub HacerAccionesBD()
-Dim sql As String
+Dim SQL As String
 
 
     
@@ -377,7 +377,7 @@ End Sub
 
 'Lo que haremos aqui es ver, o guardar, el ultimo numero de empresa
 'a la que ha entrado, y el usuario
-Private Sub NumeroEmpresaMemorizar(leer As Boolean)
+Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
 Dim NF As Integer
 Dim cad As String
 On Error GoTo ENumeroEmpresaMemorizar
@@ -385,7 +385,7 @@ On Error GoTo ENumeroEmpresaMemorizar
 
         
     cad = App.path & "\ultusuT.dat"
-    If leer Then
+    If Leer Then
         If Dir(cad) <> "" Then
             NF = FreeFile
             Open cad For Input As #NF
@@ -410,10 +410,11 @@ End Sub
 
 Private Sub Timer1_Timer()
     'Label3 = "Si no entra en " & vSegundos & " segundos. La aplicación se cerrará."
-    
-    Label3 = "Si no hace login, la pantalla se cerrará automáticamente en " & " " & vSegundos & " segundos"
-    Me.Refresh
-    DoEvents
+    If vSegundos < 50 Then
+        Label3 = "Si no hace login, la pantalla se cerrará automáticamente en " & " " & vSegundos & " segundos"
+        Me.Refresh
+        DoEvents
+    End If
     vSegundos = vSegundos - 1
     If vSegundos = -1 Then Unload Me
 End Sub
