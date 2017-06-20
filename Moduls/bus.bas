@@ -124,6 +124,11 @@ Public SeleccionadosTodos As Boolean
 Public Const SerieFraPro = "1"
 
 
+Public ResultadoFechaContaOK As Byte
+Public MensajeFechaOkConta As String
+
+
+
 
 'Inicio Aplicación
 Public Sub Main()
@@ -1700,6 +1705,28 @@ Dim F2 As Date
             'OK. Dentro de los ejercicios contables
             EsFechaOKConta = 0
         End If
+    End If
+    '[Monica]20/06/2017: de david
+    If EsFechaOKConta = 0 Then
+        'Si tiene SII
+        If vParamAplic.ContabilidadNueva Then
+            If vEmpresa.TieneSII Then
+                If DateDiff("d", fecha, Now) > vEmpresa.SIIDiasAviso Then
+                    MensajeFechaOkConta = "Fecha fuera de periodo de comunicación SII."
+                    'LLEVA SII y han trascurrido los dias
+                    If vUsu.Nivel = 0 Then
+                        If MsgBox(MensajeFechaOkConta & vbCrLf & "¿Continuar?", vbQuestion + vbYesNoCancel) <> vbYes Then
+                            EsFechaOKConta = 4
+                        End If
+                    Else
+                        'NO tienen nivel
+                        EsFechaOKConta = 5
+                    End If
+                End If
+            End If
+        End If
+    Else
+        MensajeFechaOkConta = "Fuera de ejercicios contables"
     End If
 
 End Function

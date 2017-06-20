@@ -1751,7 +1751,7 @@ End Sub
 Private Sub Text1_LostFocus(Index As Integer)
 Dim devuelve As String
 Dim cadMen As String
-Dim sql As String
+Dim SQL As String
 Dim Nregs As Long
 Dim vTipoMov As CTiposMov
         
@@ -1919,7 +1919,7 @@ Dim Desc As String, devuelve As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = tabla
+        frmB.vtabla = tabla
         frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
@@ -2127,7 +2127,7 @@ Private Function DatosOk() As Boolean
 'la cabecera del Pedido
 Dim b As Boolean
 Dim Serie As String
-Dim sql As String
+Dim SQL As String
 
     On Error GoTo EDatosOK
 
@@ -2148,9 +2148,9 @@ Dim sql As String
 '        End If
 
         'comprobamos que no exista ya la factura en la tabla facturas de ariagro
-        sql = ""
-        sql = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
-        If sql <> "" Then
+        SQL = ""
+        SQL = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
+        If SQL <> "" Then
             MsgBox "Factura ya existente. Reintroduzca.", vbExclamation
             PonerFoco Text1(0)
             b = False
@@ -2164,13 +2164,13 @@ Dim sql As String
         Serie = ObtenerLetraSerie(Text1(6).Text)
 '++
         If Serie <> "" Then
-            sql = ""
+            SQL = ""
             If vParamAplic.ContabilidadNueva Then
-                sql = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Mid(Text1(1).Text, 7, 4), "N")
+                SQL = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Mid(Text1(1).Text, 7, 4), "N")
             Else
-                sql = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", Text1(0).Text, "N", "fecfaccl", Mid(Text1(1).Text, 7, 4), "N")
+                SQL = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", Text1(0).Text, "N", "fecfaccl", Mid(Text1(1).Text, 7, 4), "N")
             End If
-            If sql <> "" Then
+            If SQL <> "" Then
                 MsgBox "Factura existente en contabilidad. Reintroduzca.", vbExclamation
                 PonerFoco Text1(0)
                 b = False
@@ -2180,6 +2180,17 @@ Dim sql As String
             b = False
         End If
         If Not b Then Exit Function
+        
+        
+        '[Monica]20/06/2017: control de fechas que antes no estaba
+        If vParamAplic.NumeroConta <> 0 Then
+            ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(1).Text))
+            If ResultadoFechaContaOK > 0 Then
+                If ResultadoFechaContaOK <> 4 Then MsgBox MensajeFechaOkConta, vbExclamation
+                Exit Function
+            End If
+        End If
+        
     End If
     
     DatosOk = b
@@ -2337,7 +2348,7 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim sql As String, LEtra As String, Sql2 As String
+Dim SQL As String, LEtra As String, Sql2 As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim Mens As String
@@ -2350,10 +2361,10 @@ Dim Mens As String
         
     'Eliminar en tablas de cabecera de albaran
     '------------------------------------------
-    sql = " " & ObtenerWhereCP(True)
+    SQL = " " & ObtenerWhereCP(True)
     
     'Cabecera de factura
-    conn.Execute "Delete from " & NombreTabla & sql
+    conn.Execute "Delete from " & NombreTabla & SQL
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
@@ -2400,13 +2411,13 @@ End Sub
 
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim sql As String
+Dim SQL As String
 
     On Error Resume Next
     
-    sql = "codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & DBSet(Text1(0).Text, "N") & " and fecfactu= " & DBSet(Text1(1).Text, "F")
-    If conWhere Then sql = " WHERE " & sql
-    ObtenerWhereCP = sql
+    SQL = "codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & DBSet(Text1(0).Text, "N") & " and fecfactu= " & DBSet(Text1(1).Text, "F")
+    If conWhere Then SQL = " WHERE " & SQL
+    ObtenerWhereCP = SQL
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -2511,7 +2522,7 @@ End Sub
 
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
-Dim sql As String
+Dim SQL As String
 Dim i As Byte
     
     Combo1(0).Clear
@@ -2556,18 +2567,18 @@ End Function
 
 Private Sub InsertarCabecera()
 Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim sql As String
+Dim SQL As String
 
     On Error GoTo EInsertarCab
     
     CodTipoMov = Text1(6).Text
     
     Set vTipoMov = New CTiposMov
-    If vTipoMov.leer(CodTipoMov) Then
+    If vTipoMov.Leer(CodTipoMov) Then
         Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-        sql = CadenaInsertarDesdeForm(Me)
-        If sql <> "" Then
-            If InsertarOferta(sql, vTipoMov) Then
+        SQL = CadenaInsertarDesdeForm(Me)
+        If SQL <> "" Then
+            If InsertarOferta(SQL, vTipoMov) Then
                 CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                 PonerCadenaBusqueda
                 PonerModo 2
@@ -2723,7 +2734,7 @@ Private Function CalcularDatosFacturaVenta() As Boolean
 Dim Rs As ADODB.Recordset
 Dim i As Integer
 
-Dim sql As String
+Dim SQL As String
 Dim cadAux As String
 Dim cadAux1 As String
 
@@ -2956,14 +2967,14 @@ End Function
 
 
 Private Function FacturaDescontada(TipoM As String, NumFact As Long, FecFact As Date) As Boolean
-Dim sql As String
+Dim SQL As String
     
     FacturaDescontada = False
     
-    sql = "select count(*) from facturas_acuenta where codtipomcta = " & DBSet(TipoM, "T")
-    sql = sql & " and numfactucta = " & DBSet(NumFact, "N")
-    sql = sql & " and fecfactucta = " & DBSet(FecFact, "F")
+    SQL = "select count(*) from facturas_acuenta where codtipomcta = " & DBSet(TipoM, "T")
+    SQL = SQL & " and numfactucta = " & DBSet(NumFact, "N")
+    SQL = SQL & " and fecfactucta = " & DBSet(FecFact, "F")
     
-    FacturaDescontada = (TotalRegistros(sql) <> 0)
+    FacturaDescontada = (TotalRegistros(SQL) <> 0)
 
 End Function

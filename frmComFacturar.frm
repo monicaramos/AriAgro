@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmComFacturar 
    BorderStyle     =   3  'Fixed Dialog
@@ -1019,7 +1019,7 @@ Dim i As Integer
     CadenaConsulta = "Select * from " & NombreTabla
     CadenaConsulta = CadenaConsulta & " where numfactu=-1"
     
-    Data1.ConnectionString = Conn
+    Data1.ConnectionString = conn
     Data1.RecordSource = CadenaConsulta
     Data1.Refresh
         
@@ -1061,19 +1061,19 @@ End Sub
 
 
 Private Sub frmF_Selec(vFecha As Date)
-Dim Indice As Byte
-    Indice = CByte(Me.imgFecha(0).Tag)
-    Text1(Indice).Text = Format(vFecha, "dd/mm/yyyy")
+Dim indice As Byte
+    indice = CByte(Me.imgFecha(0).Tag)
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub frmProv_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento de Proveedores
-Dim Indice As Byte
+Dim indice As Byte
     
-    Indice = 3
-    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Proveedor
-    FormateaCampo Text1(Indice)
-    Text2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom proveedor
+    indice = 3
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod Proveedor
+    FormateaCampo Text1(indice)
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom proveedor
 End Sub
 
 Private Sub frmTipIva_DatoSeleccionado(CadenaSeleccion As String)
@@ -1095,7 +1095,7 @@ End Sub
 
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
@@ -1106,7 +1106,7 @@ Dim Indice As Byte
             frmProv.DatosADevolverBusqueda = "0|"
             frmProv.Show vbModal
             Set frmProv = Nothing
-            Indice = 3
+            indice = 3
 '--monica
 '        Case 1 'Operador. Trabajador
 '            Indice = 4
@@ -1116,7 +1116,7 @@ Dim Indice As Byte
 '            Set frmT = Nothing
        
        Case 2 'Bancos Propios
-            Indice = 5
+            indice = 5
             Set frmBanPr = New frmManBanco
             frmBanPr.DatosADevolverBusqueda = "0|1|"
             frmBanPr.Show vbModal
@@ -1136,13 +1136,13 @@ Dim Indice As Byte
     
     End Select
     
-    PonerFoco Text1(Indice)
+    PonerFoco Text1(indice)
     Screen.MousePointer = vbDefault
 End Sub
 
 
 Private Sub imgFecha_Click(Index As Integer)
-Dim Indice As Byte
+Dim indice As Byte
 Dim esq As Long
 Dim dalt As Long
 Dim menu As Long
@@ -1170,16 +1170,16 @@ Dim obj As Object
    frmF.Top = dalt + imgFecha(Index).Parent.Top + imgFecha(Index).Height + menu - 40
    
    frmF.NovaData = Now
-   Indice = Index + 1
-   Me.imgFecha(0).Tag = Indice
+   indice = Index + 1
+   Me.imgFecha(0).Tag = indice
    
-   PonerFormatoFecha Text1(Indice)
-   If Text1(Indice).Text <> "" Then frmF.NovaData = CDate(Text1(Indice).Text)
+   PonerFormatoFecha Text1(indice)
+   If Text1(indice).Text <> "" Then frmF.NovaData = CDate(Text1(indice).Text)
 
    Screen.MousePointer = vbDefault
    frmF.Show vbModal
    Set frmF = Nothing
-   PonerFoco Text1(Indice)
+   PonerFoco Text1(indice)
 End Sub
 
 Private Sub ListView1_ItemCheck(ByVal item As MSComctlLib.ListItem)
@@ -1399,7 +1399,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, NumReg As Byte
+Dim i As Byte, Numreg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -1490,18 +1490,16 @@ Dim i As Byte
     End If
     
     'Comprobar que la fecha de RECEPCION esta dentro de los ejercicios contables
+    '[Monica]20/06/2017: como David
     If vParamAplic.NumeroConta <> 0 Then
-        i = EsFechaOKConta(CDate(Text1(2).Text))
-        If i > 0 Then
-            'If i = 1 Then
-                MsgBox "Fecha fuera ejercicios contables", vbExclamation
-                Exit Function
-           ' Else
-           '     cad = "La fecha es superior al ejercico contable siguiente. ¿Desea continuar?"
-           '     If MsgBox(cad, vbQuestion + vbYesNoCancel) <> vbYes Then Exit Function
-           ' End If
+        ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(2).Text))
+        If ResultadoFechaContaOK > 0 Then
+            If ResultadoFechaContaOK <> 4 Then MsgBox MensajeFechaOkConta, vbExclamation
+            Exit Function
         End If
     End If
+    
+    
     'comprobar que se han seleccionado lineas para facturar
     If cadWHERE = "" Then
         MsgBox "Debe seleccionar albaranes para facturar.", vbExclamation
@@ -1526,7 +1524,7 @@ Dim i As Byte
     cad = "select distinct (codforpa) from scaalp "
     cad = cad & " WHERE " & Replace(cadWHERE, "slialp", "scaalp")
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open cad, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     cad = miRsAux.Fields(0)
     miRsAux.Close
     
@@ -1534,7 +1532,7 @@ Dim i As Byte
     
     'Ahora buscamos el tipforpa del codforpa
     cad = "Select tipoforp from forpago where codforpa=" & cad
-    miRsAux.Open cad, Conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     i = 0
     If miRsAux.EOF Then
         MsgBox "Error en el TIPO de forma de pago", vbExclamation
@@ -1675,7 +1673,7 @@ Private Sub CargarAlbaranes()
 'Recupera de la BD y muestra en el Listview todos los albaranes de compra
 'que tiene el proveedor introducido.
 Dim SQL As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
 On Error GoTo ECargar
 
@@ -1693,25 +1691,25 @@ On Error GoTo ECargar
     SQL = SQL & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
     SQL = SQL & " ORDER BY scaalp.numalbar"
 
-    Set RS = New ADODB.Recordset
-    RS.Open SQL, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     InicializarListView
     
-    While Not RS.EOF
+    While Not Rs.EOF
         Set ItmX = ListView1.ListItems.Add()
-        ItmX.Text = RS!NumAlbar
-        ItmX.SubItems(1) = Format(RS!FechaAlb, "dd/mm/yyyy")
-        ItmX.SubItems(2) = Format(RS!Codforpa, "000")
-        ItmX.SubItems(3) = RS!nomforpa
-        ItmX.SubItems(4) = Format(RS!DtoPPago, "#0.00")
-        ItmX.SubItems(5) = Format(RS!DtoGnral, "#0.00")
-        ItmX.SubItems(6) = Format(RS!Bruto, "#,###,#0.00") '(RAFA/ALZIRA) 12092006
+        ItmX.Text = Rs!NumAlbar
+        ItmX.SubItems(1) = Format(Rs!FechaAlb, "dd/mm/yyyy")
+        ItmX.SubItems(2) = Format(Rs!Codforpa, "000")
+        ItmX.SubItems(3) = Rs!nomforpa
+        ItmX.SubItems(4) = Format(Rs!DtoPPago, "#0.00")
+        ItmX.SubItems(5) = Format(Rs!DtoGnral, "#0.00")
+        ItmX.SubItems(6) = Format(Rs!Bruto, "#,###,#0.00") '(RAFA/ALZIRA) 12092006
         'Sig
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
     ListView1.Enabled = True
 
@@ -1838,7 +1836,7 @@ Dim cadAux As String
 Dim TotalFactura As Currency
     
 Dim ImpBImIVA As Currency
-Dim ImpIVA As Currency
+Dim impiva As Currency
 Dim ImpIVA1 As Currency
 Dim ImpIVA2 As Currency
 Dim ImpIVA3 As Currency
@@ -1856,28 +1854,28 @@ Dim ImpIVA3 As Currency
         cadAux = Text1(13).Text
         ImpBImIVA = CCur(ImporteSinFormato(Text1(16).Text))
         If cadAux = "" Then cadAux = "0"
-        ImpIVA = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
+        impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
         
-        ImpIVA1 = ImpIVA
+        ImpIVA1 = impiva
         
         
         'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
         'los vamos acumulando
-        TotalFactura = TotalFactura + ImpBImIVA + ImpIVA
+        TotalFactura = TotalFactura + ImpBImIVA + impiva
     End If
     
     If Text1(17).Text <> "" Then
         cadAux = Text1(14).Text
         ImpBImIVA = CCur(ImporteSinFormato(Text1(17).Text))
         If cadAux = "" Then cadAux = "0"
-        ImpIVA = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
+        impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
         
-        ImpIVA2 = ImpIVA
+        ImpIVA2 = impiva
         
         
         'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
         'los vamos acumulando
-        TotalFactura = TotalFactura + ImpBImIVA + ImpIVA
+        TotalFactura = TotalFactura + ImpBImIVA + impiva
     End If
     
     
@@ -1885,14 +1883,14 @@ Dim ImpIVA3 As Currency
         cadAux = Text1(15).Text
         ImpBImIVA = CCur(ImporteSinFormato(Text1(18).Text))
         If cadAux = "" Then cadAux = "0"
-        ImpIVA = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
+        impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
         
-        ImpIVA3 = ImpIVA
+        ImpIVA3 = impiva
         
         
         'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
         'los vamos acumulando
-        TotalFactura = TotalFactura + ImpBImIVA + ImpIVA
+        TotalFactura = TotalFactura + ImpBImIVA + impiva
     End If
         
 '        Text1(6).Text = vFactu.BrutoFac
@@ -2071,7 +2069,7 @@ Private Sub RefrescarAlbaranes()
 Dim i As Integer
 Dim SQL As String
 Dim Itm As ListItem
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
 
     For i = 1 To ListView1.ListItems.Count
@@ -2083,15 +2081,15 @@ Dim RS As ADODB.Recordset
         SQL = SQL & " GROUP BY scaalp.numalbar, scaalp.fechaalb, scaalp.codforpa, scaalp.dtoppago,scaalp.dtognral "
         SQL = SQL & " ORDER BY scaalp.numalbar"
 
-        Set RS = New ADODB.Recordset
-        RS.Open SQL, Conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Set Rs = New ADODB.Recordset
+        Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
 
-        If Not RS.EOF Then 'Actualizamos los datos de este item en el list
-            ListView1.ListItems(i).SubItems(2) = RS!Codforpa
-            ListView1.ListItems(i).SubItems(3) = RS!nomforpa
-            ListView1.ListItems(i).SubItems(4) = RS!DtoPPago
-            ListView1.ListItems(i).SubItems(5) = RS!DtoGnral
-            ListView1.ListItems(i).SubItems(6) = RS!Bruto
+        If Not Rs.EOF Then 'Actualizamos los datos de este item en el list
+            ListView1.ListItems(i).SubItems(2) = Rs!Codforpa
+            ListView1.ListItems(i).SubItems(3) = Rs!nomforpa
+            ListView1.ListItems(i).SubItems(4) = Rs!DtoPPago
+            ListView1.ListItems(i).SubItems(5) = Rs!DtoGnral
+            ListView1.ListItems(i).SubItems(6) = Rs!Bruto
 
         End If
         
@@ -2100,8 +2098,8 @@ Dim RS As ADODB.Recordset
             ListView1_ItemCheck Itm
         End If
 
-        RS.Close
-        Set RS = Nothing
+        Rs.Close
+        Set Rs = Nothing
     Next i
     
     'recalcular el total de la factura
