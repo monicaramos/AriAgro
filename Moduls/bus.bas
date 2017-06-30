@@ -237,22 +237,16 @@ Dim frmMens As frmMensajes
 
     On Error GoTo eFrasPendientesContabilizar
 
-
-    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
-        If vEmpresa.BDAriagro <> "ariagro" Then Exit Sub
-    Else
-        If vEmpresa.BDAriagro <> "ariagro1" Then Exit Sub
-    End If
+'[Monica]29/06/2017. quitamos el control de campañas, en cada campaña miramos lo que hay
+'    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
+'        If vEmpresa.BDAriagro <> "ariagro" Then Exit Sub
+'    End If
 
 
     SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute SQL
 
-    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 Then
-        BBDD = vEmpresa.BDAriagro
-    Else
-        BBDD = "ariagro1"
-    End If
+    BBDD = vEmpresa.BDAriagro
     
     SQLinsert = "insert into " & BBDD & ".tmpinformes (codusu, nombre1,codigo1,nombre2,fecha1, text1,nombre3,importe1) "
 
@@ -323,35 +317,36 @@ Dim frmMens As frmMensajes
         
     End If
     
-    
-    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 And vParamAplic.Cooperativa <> 16 Then
-        
-        Dim vCampAnt As CCampAnt
-        
-        Set vCampAnt = New CCampAnt
-        
-    ' si solo tenemos que buscar en la campaña anterior
-        If vCampAnt.Leer = 0 Then
-        
-            SqlBd = "SHOW DATABASES like 'ariagro%' "
-            Set RsBd = New ADODB.Recordset
-            RsBd.Open SqlBd, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            While Not RsBd.EOF
-'               If Trim(DBLet(RsBd.Fields(0).Value)) <> vEmpresa.BDAriagro And Trim(DBLet(RsBd.Fields(0).Value)) <> "" And InStr(1, DBLet(RsBd.Fields(0).Value), "ariagroutil") = 0 Then
-                If Trim(DBLet(RsBd.Fields(0).Value)) = vCampAnt.BaseDatos Then
-                
-                    Sql2 = Replace(SQL, BBDD, DBLet(RsBd.Fields(0).Value))
-    
-                    conn.Execute SQLinsert & Sql2
-                End If
-    
-                RsBd.MoveNext
-            Wend
-            Set RsBd = Nothing
-        End If
-        
-        Set vCampAnt = Nothing
-    End If
+'[Monica]29/06/2017: quito lo de la campaña anterior
+'
+'    If vParamAplic.Cooperativa <> 12 And vParamAplic.Cooperativa <> 9 And vParamAplic.Cooperativa <> 14 And vParamAplic.Cooperativa <> 16 Then
+'
+'        Dim vCampAnt As CCampAnt
+'
+'        Set vCampAnt = New CCampAnt
+'
+'    ' si solo tenemos que buscar en la campaña anterior
+'        If vCampAnt.Leer = 0 Then
+'
+'            SqlBd = "SHOW DATABASES like 'ariagro%' "
+'            Set RsBd = New ADODB.Recordset
+'            RsBd.Open SqlBd, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'            While Not RsBd.EOF
+''               If Trim(DBLet(RsBd.Fields(0).Value)) <> vEmpresa.BDAriagro And Trim(DBLet(RsBd.Fields(0).Value)) <> "" And InStr(1, DBLet(RsBd.Fields(0).Value), "ariagroutil") = 0 Then
+'                If Trim(DBLet(RsBd.Fields(0).Value)) = vCampAnt.BaseDatos Then
+'
+'                    Sql2 = Replace(SQL, BBDD, DBLet(RsBd.Fields(0).Value))
+'
+'                    conn.Execute SQLinsert & Sql2
+'                End If
+'
+'                RsBd.MoveNext
+'            Wend
+'            Set RsBd = Nothing
+'        End If
+'
+'        Set vCampAnt = Nothing
+'    End If
     
     SQL = "select codusu,nombre1,codigo1,nombre2,nombre3,fecha1,text1,importe1 from tmpinformes where codusu = " & vUsu.Codigo '& " order by 6,5 "
     
@@ -359,7 +354,7 @@ Dim frmMens As frmMensajes
         Set frmMens = New frmMensajes
         
         frmMens.OpcionMensaje = 30
-        frmMens.cadena = SQL
+        frmMens.CADENA = SQL
         frmMens.Show vbModal
     
         Set frmMens = Nothing
@@ -685,7 +680,7 @@ End Function
 
     
 
-Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc As String)
+Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc As String)
     Dim cad As String
     Dim Aux As String
     
@@ -693,8 +688,8 @@ Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc
     'que se produzcan
     On Error Resume Next
     cad = "Se ha producido un error: " & vbCrLf
-    If cadena <> "" Then
-        cad = cad & vbCrLf & cadena & vbCrLf & vbCrLf
+    If CADENA <> "" Then
+        cad = cad & vbCrLf & CADENA & vbCrLf & vbCrLf
     End If
     'Numeros de errores que contolamos
     If conn.Errors.Count > 0 Then
@@ -866,42 +861,42 @@ Dim i As Integer
 End Function
 
 ' ### [Monica] 11/09/2006
-Public Function ImporteSinFormato(cadena As String) As String
+Public Function ImporteSinFormato(CADENA As String) As String
 Dim i As Integer
 'Quitamos puntos
 Do
-    i = InStr(1, cadena, ".")
-    If i > 0 Then cadena = Mid(cadena, 1, i - 1) & Mid(cadena, i + 1)
+    i = InStr(1, CADENA, ".")
+    If i > 0 Then CADENA = Mid(CADENA, 1, i - 1) & Mid(CADENA, i + 1)
 Loop Until i = 0
-ImporteSinFormato = TransformaPuntosComas(cadena)
+ImporteSinFormato = TransformaPuntosComas(CADENA)
 End Function
 
 
 
 'Cambia los puntos de los numeros decimales
 'por comas
-Public Function TransformaComasPuntos(cadena As String) As String
+Public Function TransformaComasPuntos(CADENA As String) As String
 Dim i As Integer
     Do
-        i = InStr(1, cadena, ",")
+        i = InStr(1, CADENA, ",")
         If i > 0 Then
-            cadena = Mid(cadena, 1, i - 1) & "." & Mid(cadena, i + 1)
+            CADENA = Mid(CADENA, 1, i - 1) & "." & Mid(CADENA, i + 1)
         End If
     Loop Until i = 0
-    TransformaComasPuntos = cadena
+    TransformaComasPuntos = CADENA
 End Function
 
 'Para los nombre que pueden tener ' . Para las comillas habra que hacer dentro otro INSTR
-Public Sub NombreSQL(ByRef cadena As String)
+Public Sub NombreSQL(ByRef CADENA As String)
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, cadena, "'")
+        i = InStr(J, CADENA, "'")
         If i > 0 Then
-            Aux = Mid(cadena, 1, i - 1) & "\"
-            cadena = Aux & Mid(cadena, i)
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
             J = i + 2
         End If
     Loop Until i = 0
@@ -926,20 +921,20 @@ Dim cad As String
     End If
 End Function
 
-Public Function DevNombreSQL(cadena As String) As String
+Public Function DevNombreSQL(CADENA As String) As String
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, cadena, "'")
+        i = InStr(J, CADENA, "'")
         If i > 0 Then
-            Aux = Mid(cadena, 1, i - 1) & "\"
-            cadena = Aux & Mid(cadena, i)
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
             J = i + 2
         End If
     Loop Until i = 0
-    DevNombreSQL = cadena
+    DevNombreSQL = CADENA
 End Function
 
 
@@ -1275,15 +1270,15 @@ Dim res As Boolean
         EsEntero = res
 End Function
 
-Public Function TransformaPuntosComas(cadena As String) As String
+Public Function TransformaPuntosComas(CADENA As String) As String
     Dim i As Integer
     Do
-        i = InStr(1, cadena, ".")
+        i = InStr(1, CADENA, ".")
         If i > 0 Then
-            cadena = Mid(cadena, 1, i - 1) & "," & Mid(cadena, i + 1)
+            CADENA = Mid(CADENA, 1, i - 1) & "," & Mid(CADENA, i + 1)
         End If
         Loop Until i = 0
-    TransformaPuntosComas = cadena
+    TransformaPuntosComas = CADENA
 End Function
 
 Public Sub InicializarFormatos()

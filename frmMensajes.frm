@@ -1690,7 +1690,7 @@ Public vCampos As String 'Articulo y cantidad Empipados para Nº de Series
                          'Tambien para pasar el nombre de la tabla de lineas (sliped, slirep,...)
                          'Dependiendo desde donde llamemos, de Pedidos o Reparaciones
 
-Public cadena As String
+Public CADENA As String
 '====================== VBLES LOCALES ================================
 
 Dim PulsadoSalir As Boolean 'Solo salir con el boton de Salir no con aspa del form
@@ -1698,7 +1698,7 @@ Dim PrimeraVez As Boolean
 
 'Para los Nº de Serie
 Dim TotalArray As Integer
-Dim codArtic() As String
+Dim CodArtic() As String
 Dim Cantidad() As Integer
 
 Dim IT As ListItem
@@ -1707,56 +1707,56 @@ Dim SQL As String
 Dim vAnt As Integer
 
 Private Sub CmdAcepCalib_Click()
-Dim cadena As String
+Dim CADENA As String
     'Cargo las facturas a cuenta que hay que descontar
-    cadena = ""
+    CADENA = ""
     
-    cadena = cadena & ListView9.SelectedItem.Text & "|" & ListView9.SelectedItem.SubItems(1) & "|" & ListView9.SelectedItem.SubItems(2) & "|" & ListView9.SelectedItem.SubItems(3) & "|" & ListView9.SelectedItem.SubItems(4) & "|" & ListView9.SelectedItem.SubItems(5) & "|" & ListView9.SelectedItem.SubItems(6) & "|"
+    CADENA = CADENA & ListView9.SelectedItem.Text & "|" & ListView9.SelectedItem.SubItems(1) & "|" & ListView9.SelectedItem.SubItems(2) & "|" & ListView9.SelectedItem.SubItems(3) & "|" & ListView9.SelectedItem.SubItems(4) & "|" & ListView9.SelectedItem.SubItems(5) & "|" & ListView9.SelectedItem.SubItems(6) & "|"
     
-    RaiseEvent DatoSeleccionado(cadena)
+    RaiseEvent DatoSeleccionado(CADENA)
     
     Unload Me
 End Sub
 
 Private Sub CmdAcepFrasAnecoop_Click()
-Dim cadena As String
+Dim CADENA As String
     'Cargo las facturas marcadas
-    cadena = ""
+    CADENA = ""
     
     For NumRegElim = 1 To ListView11.ListItems.Count
         If ListView11.ListItems(NumRegElim).Checked And ListView11.ListItems(NumRegElim).Tag = 1 Then
-            cadena = cadena & ListView11.ListItems(NumRegElim).Text & ","
+            CADENA = CADENA & ListView11.ListItems(NumRegElim).Text & ","
         End If
     Next NumRegElim
     
     ' quitamos la ultima coma
-    If cadena <> "" Then
-        cadena = Mid(cadena, 1, Len(cadena) - 1)
+    If CADENA <> "" Then
+        CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     End If
     
-    RaiseEvent DatoSeleccionado(cadena)
+    RaiseEvent DatoSeleccionado(CADENA)
     Unload Me
 
 End Sub
 
 Private Sub CmdAcepProductos_Click()
-Dim cadena As String
+Dim CADENA As String
     'Cargo las variedades marcadas
-    cadena = ""
+    CADENA = ""
     
     For NumRegElim = 1 To ListView10.ListItems.Count
         If ListView10.ListItems(NumRegElim).Checked Then
-            cadena = cadena & ListView10.ListItems(NumRegElim).Text & ","
+            CADENA = CADENA & ListView10.ListItems(NumRegElim).Text & ","
         Else
             SeleccionadosTodos = False
         End If
     Next NumRegElim
     ' quitamos la ultima coma
-    If cadena <> "" Then
-        cadena = Mid(cadena, 1, Len(cadena) - 1)
+    If CADENA <> "" Then
+        CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     End If
     
-    RaiseEvent DatoSeleccionado(cadena)
+    RaiseEvent DatoSeleccionado(CADENA)
     Unload Me
 
 End Sub
@@ -1768,20 +1768,20 @@ End Sub
 
 
 Private Sub CmdAceptarFactACta_Click()
-Dim cadena As String
+Dim CADENA As String
     'Cargo las facturas a cuenta que hay que descontar
-    cadena = ""
+    CADENA = ""
     For NumRegElim = 1 To ListView8.ListItems.Count
         If ListView8.ListItems(NumRegElim).Checked Then
-            cadena = cadena & "('" & ListView8.ListItems(NumRegElim).Text & "'," & ListView8.ListItems(NumRegElim).SubItems(1) & "," & DBSet(ListView8.ListItems(NumRegElim).SubItems(2), "F") & "),"
+            CADENA = CADENA & "('" & ListView8.ListItems(NumRegElim).Text & "'," & ListView8.ListItems(NumRegElim).SubItems(1) & "," & DBSet(ListView8.ListItems(NumRegElim).SubItems(2), "F") & "),"
         End If
     Next NumRegElim
     ' quitamos la ultima coma
-    If cadena <> "" Then
-        cadena = Mid(cadena, 1, Len(cadena) - 1)
+    If CADENA <> "" Then
+        CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     End If
     
-    RaiseEvent DatoSeleccionado(cadena)
+    RaiseEvent DatoSeleccionado(CADENA)
     Unload Me
 End Sub
 
@@ -1834,7 +1834,7 @@ Dim C1 As String * 10, c2 As String * 10, c3 As String * 10
         'devolverlos al form de Albaranes(facturacion)
         cad = ""
         For J = 0 To TotalArray
-            Articulo = codArtic(J)
+            Articulo = CodArtic(J)
             cad = cad & Articulo & "|"
             For i = 1 To ListView2.ListItems.Count
                 If ListView2.ListItems(i).Checked Then
@@ -1859,7 +1859,7 @@ Dim C1 As String * 10, c2 As String * 10, c3 As String * 10
                 Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Rs.Fields(0).Value >= Abs(Cantidad(J)) - Seleccionados Then
-                    MsgBox "Debe seleccionar " & Cantidad(J) & " Nº Series para el articulo " & codArtic(J), vbExclamation
+                    MsgBox "Debe seleccionar " & Cantidad(J) & " Nº Series para el articulo " & CodArtic(J), vbExclamation
                     Exit Sub
                 Else
                     'No hay Nº Serie y Pedirlos
@@ -1961,9 +1961,9 @@ End Sub
 
 
 Private Sub cmdacepVariedades_Click()
-Dim cadena As String
+Dim CADENA As String
     'Cargo las variedades marcadas
-    cadena = ""
+    CADENA = ""
     CategoriaValorNulo = False
     SeleccionadosTodos = True
     For NumRegElim = 1 To ListView7.ListItems.Count
@@ -1973,21 +1973,21 @@ Dim cadena As String
                     '[Monica]17/06/2013: solo para categorias que pueden ser null
                     CategoriaValorNulo = True
                 Else
-                    cadena = cadena & "'" & Trim(ListView7.ListItems(NumRegElim).Text) & "',"
+                    CADENA = CADENA & "'" & Trim(ListView7.ListItems(NumRegElim).Text) & "',"
                 End If
             Else
-                cadena = cadena & ListView7.ListItems(NumRegElim).Text & ","
+                CADENA = CADENA & ListView7.ListItems(NumRegElim).Text & ","
             End If
         Else
             SeleccionadosTodos = False
         End If
     Next NumRegElim
     ' quitamos la ultima coma
-    If cadena <> "" Then
-        cadena = Mid(cadena, 1, Len(cadena) - 1)
+    If CADENA <> "" Then
+        CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     End If
     
-    RaiseEvent DatoSeleccionado(cadena)
+    RaiseEvent DatoSeleccionado(CADENA)
     Unload Me
 End Sub
 
@@ -2238,9 +2238,6 @@ Private Sub cmdSelTodos_Click()
     Next i
 End Sub
 
-Private Sub Command1_Click()
-
-End Sub
 
 Private Sub Combo1_Click(Index As Integer)
    Select Case Index
@@ -2463,7 +2460,7 @@ On Error Resume Next
             H = 6000
             W = 8800
             PonerFrameVisible Me.FrameErrores, True, H, W
-            Me.text1.Text = vCampos
+            Me.Text1.Text = vCampos
             Me.Caption = "Errores"
         
         Case 14 'Muestra Empresas del sistema
@@ -3158,7 +3155,7 @@ Dim SQL As String
              ItmX.SubItems(1) = Format(Rs!NumAlbar, "0000000") 'Nº Albaran
              ItmX.SubItems(2) = Rs!NumLinea 'linea Albaran
              ItmX.SubItems(3) = Format(Rs!codAlmac, "000") 'cod almacen
-             ItmX.SubItems(4) = Rs!codArtic 'Cod Articulo
+             ItmX.SubItems(4) = Rs!CodArtic 'Cod Articulo
              ItmX.SubItems(5) = Rs!NomArtic 'Nombre del Articulo
              ItmX.SubItems(6) = Rs!Cantidad
              ItmX.SubItems(7) = Format(Rs!precioar, FormatoPrecio)
@@ -3399,7 +3396,7 @@ Dim i As Integer, J As Integer
     If TotalArray < 0 Then Exit Function
     
     'Las redimensionaremos
-    ReDim codArtic(TotalArray)
+    ReDim CodArtic(TotalArray)
     ReDim Cantidad(TotalArray)
     
     ObtenerTamanyosArray = True
@@ -3444,7 +3441,7 @@ Dim cad As String
         Grupo = Mid(Grupo, J + 1)
         J = 1
     End If
-    codArtic(Contador) = cad
+    CodArtic(Contador) = cad
     
     'Cantidad
     J = InStr(1, Grupo, "|")
@@ -3601,7 +3598,7 @@ Dim IT As ListItem
     TotalArray = 0
     While Not Rs.EOF
         Set IT = ListView3.ListItems.Add
-        IT.Tag = DevNombreSQL(Rs!codArtic)
+        IT.Tag = DevNombreSQL(Rs!CodArtic)
         IT.Text = Rs!NomArtic
         IT.SubItems(1) = Format(Rs!preciove, cadWHERE2)
         IT.SubItems(2) = Rs!nomfamia
@@ -3670,7 +3667,7 @@ Dim SoloImporteMenor As Boolean
     
     While Not Rs.EOF
         'Calculo los importes
-        lblIndicadorCorregir.Caption = Rs!codArtic
+        lblIndicadorCorregir.Caption = Rs!CodArtic
         lblIndicadorCorregir.Refresh
         
         margen = DBLet(Rs!margenart, "N") / 100
@@ -3712,7 +3709,7 @@ Dim SoloImporteMenor As Boolean
         
         If SQL <> "" Then
             Set IT = ListView4.ListItems.Add
-            IT.Tag = DevNombreSQL(Rs!codArtic)
+            IT.Tag = DevNombreSQL(Rs!CodArtic)
             IT.ToolTipText = IT.Tag
             IT.Text = IT.Tag
             IT.SubItems(1) = Rs!NomArtic
@@ -4373,7 +4370,7 @@ Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim IT As ListItem
 
-    SQL = cadena
+    SQL = CADENA
     
     Select Case Combo1(0).ListIndex
         Case 0 'todos
@@ -4381,7 +4378,7 @@ Dim IT As ListItem
         Case 1 ' clientes
             Sql2 = " and codigo1 = 0"
         Case 2 ' socios
-            Sql2 = " and codigol = 1"
+            Sql2 = " and codigo1 = 1"
         Case 3 ' proveedores
             Sql2 = " and codigo1 = 2"
         Case 4 ' transportistas
@@ -4396,12 +4393,13 @@ Dim IT As ListItem
     
     ListView22.ColumnHeaders.Clear
 
-    ListView22.ColumnHeaders.Add , , "Tipo Factura", 2600
+    ListView22.ColumnHeaders.Add , , "Tipo Factura", 3000 '2600
     ListView22.ColumnHeaders.Add , , "Fecha", 1400
     ListView22.ColumnHeaders.Add , , "Factura", 1500, 0
-    ListView22.ColumnHeaders.Add , , "Nombre", 3400, 0
-    ListView22.ColumnHeaders.Add , , "Importe", 1800, 1
-    ListView22.ColumnHeaders.Add , , "Campaña", 2100, 0
+    ListView22.ColumnHeaders.Add , , "Nombre", 4900, 0 '3400, 0
+    ListView22.ColumnHeaders.Add , , "Importe", 2000, 1 '1800, 1
+'[Monica]29/06/2017: quitamos la campaña
+'    ListView22.ColumnHeaders.Add , , "Campaña", 2100, 0
     
     ListView22.ListItems.Clear
     
@@ -4420,9 +4418,10 @@ Dim IT As ListItem
         IT.SubItems(4) = Format(DBLet(Rs!importe1, "N"), "###,###,##0.00")
         'IT.SubItems(5) = DBLet(Rs!Text1, "T")
         
-        '[Monica]13/06/2017: tenemos que sacar el nombre de campaña de usuarios
-        Sql2 = DevuelveDesdeBDNew(cAgro, "usuarios.empresasariagro", "nomempre", "ariagro", DBLet(Rs!text1, "T"), "T")
-        IT.SubItems(5) = Sql2
+'[Monica]29/06/2017: quitamos la campaña anterior
+'        '[Monica]13/06/2017: tenemos que sacar el nombre de campaña de usuarios
+'        Sql2 = DevuelveDesdeBDNew(cAgro, "usuarios.empresasariagro", "nomempre", "ariagro", DBLet(Rs!Text1, "T"), "T")
+'        IT.SubItems(5) = Sql2
         
         
         If vEmpresa.TieneSII Then
@@ -4432,7 +4431,8 @@ Dim IT As ListItem
                 IT.ListSubItems.item(2).ForeColor = vbRed
                 IT.ListSubItems.item(3).ForeColor = vbRed
                 IT.ListSubItems.item(4).ForeColor = vbRed
-                IT.ListSubItems.item(5).ForeColor = vbRed
+'[Monica]29/06/2017: quitamos la campaña
+'                IT.ListSubItems.item(5).ForeColor = vbRed
             End If
         End If
         
