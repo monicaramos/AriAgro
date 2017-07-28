@@ -1398,8 +1398,7 @@ Dim CadenaInsertFaclin2 As String
         vContaFra.NumeroFactura = DBLet(Rs!NumFactu)
         vContaFra.Anofac = Year(DBLet(Rs!FecFactu))
         vContaFra.Serie = DBLet(Rs!letraser)
-    
-    
+        
         'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
         DtoPPago = 0
         DtoGnral = 0
@@ -1427,12 +1426,25 @@ Dim CadenaInsertFaclin2 As String
             
             '[Monica]30/05/2017: para el caso de q sea una intracomunitaria de venta el tipo de intracomunitaria es E
             If Intracom = 1 Then
-                SQL = SQL & "'0',1,'E',"
+            
+                '[Monica]27/07/2017: antes estaba esto
+                'SQL = SQL & "'0',1,'E',"
+                If Not IsNull(Rs!porciva2) Then
+                    SQL = SQL & "'C',"
+                Else
+                    SQL = SQL & "'0',"
+                End If
+                SQL = SQL & "1,'E',"
             Else
                 If vTipM = "FAR" Then
                     SQL = SQL & "'D',"
                 Else
-                    SQL = SQL & "'0',"
+                    '[Monica]27/07/2017: antes si o si era 0
+                    If Not IsNull(Rs!porciva2) Then
+                        SQL = SQL & "'C',"
+                    Else
+                        SQL = SQL & "'0',"
+                    End If
                 End If
                 SQL = SQL & "0," & ValorNulo & ","
             End If
@@ -2815,6 +2827,10 @@ Dim Sql2 As String
             vCF.NumeroFactura = Mc.Contador
             vCF.Anofac = Year(DBLet(Rs!FecRecep))
             vvFecRecep = DBLet(Rs!FecRecep)
+        
+            '[Monica]27/07/2017
+            vCF.Observa = DBLet(Rs!confacpr)
+        
             
             'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
             DtoPPago = Rs!DtoPPago
@@ -3128,6 +3144,7 @@ Dim CadenaInsertFaclin2     As String
         If Mc.ConseguirContador("1", (Rs!FecRecep <= CDate(FechaFin) - 365), True) = 0 Then
             vCF.NumeroFactura = Mc.Contador
             vCF.Anofac = DBLet(Rs!anofacpr)
+        
         
         
             'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
@@ -3679,7 +3696,7 @@ Dim ImporteACompensar As Currency
                                 vvIban = MiFormat(DBLet(Rs4!Iban), "") & MiFormat(DBLet(Rs4!codbanco), "0000") & MiFormat(DBLet(Rs4!codsucur), "0000") & MiFormat(CC, "00") & MiFormat(DBLet(Rs4!cuentaba), "0000000000")
                                 
                                 CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ", "
-                                CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,'ENVASES'," & DBSet(Rsx7.Fields(1).Value, "T") & "," & ValorNulo  '& "),"
+                                CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,'ENVASES'," & DBSet(Rsx7.Fields(1).Value, "T") & "," & ValorNulo & ","  '& "),"
                                 CadValues2 = CadValues2 & DBSet(Rs4!Nomclien, "T") & "," & DBSet(Rs4!domclien, "T") & "," & DBSet(Rs4!pobclien, "T") & "," & DBSet(Rs4!codPobla, "T") & "," & DBSet(Rs4!proclien, "T") & "," & DBSet(Rs4!cifClien, "T") & ",'ES'"
                                 CadValues2 = CadValues2 & "),"
                             Else
