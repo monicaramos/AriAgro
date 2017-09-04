@@ -2247,9 +2247,9 @@ Dim ImpREC As Currency
                     SQL = SQL & " inner join ariconta" & vParamAplic.NumeroConta & ".tiposiva on ariconta" & vParamAplic.NumeroConta & ".tiposiva.codigiva = facturas_envases.codigiva"
                     SQL = SQL & " WHERE " & Replace(cadWHERE, "facturas", "facturas_envases")
                     If vEmpresa.TieneAnalitica Then
-                        SQL = SQL & " GROUP BY 5,7 " '& cadCampo, codccost
+                        SQL = SQL & " GROUP BY 5,7,8 " '& cadCampo, codccost
                     Else
-                        SQL = SQL & " GROUP BY 5 " '& cadCampo
+                        SQL = SQL & " GROUP BY 5,7 " '& cadCampo
                     End If
                     '[Monica]05/05/2015: la suma debe ser distinta de 0
                     SQL = SQL & " HAVING sum(importel) <> 0 "
@@ -2318,10 +2318,18 @@ Dim ImpREC As Currency
                         SQL = SQL & " GROUP BY 5,7,8 " '& cadCampo1, codccost, codigiva
                     Else
                         SQL = SQL & " GROUP BY 5,7 " '& cadCampo1, codigiva
+                        
                     End If
                     
                     '[Monica]05/05/2015: la suma debe ser distinta de 0
                     SQL = SQL & " HAVING (sum(baseimp1) * (-1)) <> 0 "
+    
+                    If vEmpresa.TieneAnalitica Then
+                        SQL = SQL & " ORDER BY 8,5,7 "
+                    Else
+                        SQL = SQL & " ORDER BY 7,5 "
+                    End If
+    
     
             End Select
         
@@ -2369,9 +2377,9 @@ Dim ImpREC As Currency
             SQL = SQL & " inner join ariconta" & vParamAplic.NumeroConta & ".tiposiva on ariconta" & vParamAplic.NumeroConta & ".tiposiva.codigiva = facturassocio_envases.codigiva "
             SQL = SQL & " WHERE " & Replace(cadWHERE, "facturassocio", "facturassocio_envases")
             If vEmpresa.TieneAnalitica Then
-                SQL = SQL & " GROUP BY 5,7 " '& cadCampo, codccost
+                SQL = SQL & " GROUP BY 5,7,8 " '& cadCampo, codccost
             Else
-                SQL = SQL & " GROUP BY 5 " '& cadCampo
+                SQL = SQL & " GROUP BY 5,7 " '& cadCampo
             End If
             SQL = SQL & "Union "
             
@@ -2393,9 +2401,12 @@ Dim ImpREC As Currency
             
             SQL = SQL & " WHERE " & Replace(cadWHERE, "facturassocio", "facturassocio_variedad")
             If vEmpresa.TieneAnalitica Then
-                SQL = SQL & " GROUP BY 5,7, 8 " '& cadCampo1, codccost, codigiva
+                SQL = SQL & " GROUP BY 5,7,8 " '& cadCampo1, codccost, codigiva
+                SQL = SQL & " ORDER BY 8,5,7 "
             Else
                 SQL = SQL & " GROUP BY 5,7 " '& cadCampo1, codigiva
+                SQL = SQL & " ORDER BY 7,5 "
+                
             End If
             
         
@@ -3949,7 +3960,7 @@ Dim SeccionHorto As Integer
                     
                         CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                         CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                        CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifsocio, "T") & ",'ES'"
+                        CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
                         CadValues2 = CadValues2 & "),"
                     
                     Else
@@ -3983,7 +3994,7 @@ Dim SeccionHorto As Integer
                         
                             CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                             CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                            CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifsocio, "T") & ",'ES'"
+                            CadValues2 = CadValues2 & DBSet(Rs4!NomSocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
                             CadValues2 = CadValues2 & "),"
                         
                         Else
