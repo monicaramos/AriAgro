@@ -1576,7 +1576,7 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
-    txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cuenta
+    txtaux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cuenta
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
@@ -2400,9 +2400,9 @@ On Error GoTo EPonerModo
                     
     Me.chkVistaPrevia.Enabled = (Modo <= 2)
     
-    For i = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(i), True
-        txtAux(i).visible = False
+    For i = 0 To txtaux.Count - 1
+        BloquearTxt txtaux(i), True
+        txtaux(i).visible = False
     Next i
         
     Me.FrameIntro.Enabled = (Modo = 3)
@@ -3292,25 +3292,25 @@ Dim i As Integer
             
             LLamaLineas Index, ModoLineas, anc
             
-            BloquearTxt txtAux(2), False
-            BloquearTxt txtAux(3), False
+            BloquearTxt txtaux(2), False
+            BloquearTxt txtaux(3), False
             
             Select Case Index
                 ' *** valor per defecte a l'insertar i formateig de tots els camps ***
                 Case 0 'cuentas
-                    For i = 0 To txtAux.Count - 1
-                        txtAux(i).Text = ""
+                    For i = 0 To txtaux.Count - 1
+                        txtaux(i).Text = ""
                     Next i
-                    txtAux(0).Text = vUsu.Codigo
-                    txtAux(1).Text = Text1(3).Text 'tranportista
-                    txtAux(4).Text = Text1(0).Text 'numfactu
-                    txtAux(5).Text = Text1(1).Text 'fecfactu
+                    txtaux(0).Text = vUsu.Codigo
+                    txtaux(1).Text = Text1(3).Text 'tranportista
+                    txtaux(4).Text = Text1(0).Text 'numfactu
+                    txtaux(5).Text = Text1(1).Text 'fecfactu
                     
                     For i = 2 To 3
-                        txtAux(i).Text = ""
+                        txtaux(i).Text = ""
                     Next i
                     Text2(2).Text = ""
-                    PonerFoco txtAux(2)
+                    PonerFoco txtaux(2)
                     
             End Select
     End Select
@@ -3357,16 +3357,16 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 'importes
-            txtAux(0).Text = DataGridAux(Index).Columns(0).Text
-            txtAux(1).Text = DataGridAux(Index).Columns(1).Text
-            txtAux(4).Text = DataGridAux(Index).Columns(2).Text
-            txtAux(5).Text = DataGridAux(Index).Columns(3).Text
-            txtAux(2).Text = DataGridAux(Index).Columns(4).Text
+            txtaux(0).Text = DataGridAux(Index).Columns(0).Text
+            txtaux(1).Text = DataGridAux(Index).Columns(1).Text
+            txtaux(4).Text = DataGridAux(Index).Columns(2).Text
+            txtaux(5).Text = DataGridAux(Index).Columns(3).Text
+            txtaux(2).Text = DataGridAux(Index).Columns(4).Text
             Text2(2).Text = DataGridAux(Index).Columns(5).Text
-            txtAux(3).Text = DataGridAux(Index).Columns(6).Text
+            txtaux(3).Text = DataGridAux(Index).Columns(6).Text
                        
-            BloquearTxt txtAux(2), True
-            BloquearTxt txtAux(3), False
+            BloquearTxt txtaux(2), True
+            BloquearTxt txtaux(3), False
     End Select
     
     LLamaLineas Index, ModoLineas, anc
@@ -3374,7 +3374,7 @@ Private Sub BotonModificarLinea(Index As Integer)
     ' *** foco al 1r camp visible de les llinies en grids que no siga PK (en o sense tab) ***
     Select Case Index
         Case 0 'importes
-            PonerFoco txtAux(3)
+            PonerFoco txtaux(3)
     End Select
     ' ***************************************************************************************
 End Sub
@@ -3403,15 +3403,15 @@ Dim tots As String
             DataGridAux(0).Columns(2).Alignment = dbgRight
         
             b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
-            BloquearTxt txtAux(2), Not b
-            BloquearTxt txtAux(3), Not b
+            BloquearTxt txtaux(2), Not b
+            BloquearTxt txtaux(3), Not b
 
             If (enlaza = True) And (Not AdoAux(Index).Recordset.EOF) Then 'per a que pose els valors de les arees de text la primera volta
 '                txtAux(2).Text = DataGridAux(Index).Columns(5).Text
 '                txtAux(3).Text = DataGridAux(Index).Columns(6).Text
             Else
-                txtAux(2).Text = ""
-                txtAux(3).Text = ""
+                txtaux(2).Text = ""
+                txtaux(3).Text = ""
             End If
             
     End Select
@@ -3448,11 +3448,21 @@ Dim tabla As String
         Case 0 'DESTINOS
             tabla = "tmpportesv"
             SQL = "SELECT tmpportesv.codusu, tmpportesv.codtrans, tmpportesv.numfactu, tmpportesv.fecfactu, tmpportesv.codmacta, "
-            SQL = SQL & " if(" & vParamAplic.NumeroConta & "=0,'',conta" & vParamAplic.NumeroConta & ".cuentas.nommacta), tmpportesv.importel"
-            SQL = SQL & " FROM " & tabla
-            If vParamAplic.NumeroConta <> 0 Then
-                SQL = SQL & ", conta" & vParamAplic.NumeroConta & ".cuentas "
+            If vParamAplic.ContabilidadNueva Then
+                SQL = SQL & " if(" & vParamAplic.NumeroConta & "=0,'',ariconta" & vParamAplic.NumeroConta & ".cuentas.nommacta), tmpportesv.importel"
+            Else
+                SQL = SQL & " if(" & vParamAplic.NumeroConta & "=0,'',conta" & vParamAplic.NumeroConta & ".cuentas.nommacta), tmpportesv.importel"
             End If
+            SQL = SQL & " FROM " & tabla
+            
+            If vParamAplic.NumeroConta <> 0 Then
+                If vParamAplic.ContabilidadNueva Then
+                    SQL = SQL & ", ariconta" & vParamAplic.NumeroConta & ".cuentas "
+                Else
+                    SQL = SQL & ", conta" & vParamAplic.NumeroConta & ".cuentas "
+                End If
+            End If
+            
             If enlaza Then
                 SQL = SQL & ObtenerWhereCab(True)
             Else
@@ -3460,7 +3470,11 @@ Dim tabla As String
             End If
             
             If vParamAplic.NumeroConta <> 0 Then
-                SQL = SQL & " and tmpportesv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta"
+                If vParamAplic.ContabilidadNueva Then
+                    SQL = SQL & " and tmpportesv.codmacta = ariconta" & vParamAplic.NumeroConta & ".cuentas.codmacta"
+                Else
+                    SQL = SQL & " and tmpportesv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta"
+                End If
             End If
             
             SQL = SQL & " ORDER BY " & tabla & ".codusu,  " & tabla & ".codmacta "
@@ -3582,7 +3596,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codusu=" & Val(txtAux(0).Text)
+    vWhere = vWhere & " codusu=" & Val(txtaux(0).Text)
     ' *******************************************************
     
     ObtenerWhereCab = vWhere
@@ -3657,10 +3671,10 @@ Dim b As Boolean
     b = (xModo = 1 Or xModo = 2) 'Insertar o Modificar Llínies
     Select Case Index
         Case 0 'destinos
-            txtAux(0).visible = False
+            txtaux(0).visible = False
             For jj = 1 To 3
-                txtAux(jj).visible = b
-                txtAux(jj).Top = alto
+                txtaux(jj).visible = b
+                txtaux(jj).Top = alto
             Next jj
             Me.btnBuscar(1).visible = b
             Me.btnBuscar(1).Enabled = (xModo = 1)
@@ -3849,7 +3863,7 @@ Dim vFact As Byte, vDocum As Byte
         'comprobar si existe ya el cod. del campo clave primaria
         SQL = "select * from tmpportesv where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Text1(3).Text, "N")
         SQL = SQL & " and numfactu = " & DBSet(Text1(0).Text, "T") & " and fecfactu = " & DBSet(Text1(1).Text, "F")
-        SQL = SQL & " and codmacta = " & DBSet(txtAux(2).Text, "T")
+        SQL = SQL & " and codmacta = " & DBSet(txtaux(2).Text, "T")
         If RegistrosAListar(SQL, cAgro) = 1 Then
             MsgBox "Ya existe la cuenta contable para la factura. Modifique.", vbExclamation
             b = False
@@ -3892,7 +3906,7 @@ Dim i As Byte
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFoco txtAux(Index), Modo
+    ConseguirFoco txtaux(Index), Modo
 End Sub
 
 Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -3910,18 +3924,18 @@ Dim Unidades As String
 Dim Cantidad As String
 
     'Quitar espacios en blanco
-    If Not PerderFocoGnralLineas(txtAux(Index), ModoLineas) Then Exit Sub
+    If Not PerderFocoGnralLineas(txtaux(Index), ModoLineas) Then Exit Sub
     
     Select Case Index
         Case 2 'Cta Contable
-            If txtAux(Index).Text = "" Then Exit Sub
-            Text2(2).Text = PonerNombreCuenta(txtAux(Index), Modo)
+            If txtaux(Index).Text = "" Then Exit Sub
+            Text2(2).Text = PonerNombreCuenta(txtaux(Index), Modo)
             If Text2(2).Text = "" Then
-                PonerFoco txtAux(Index)
+                PonerFoco txtaux(Index)
             End If
             
         Case 3 ' Importe
-            If txtAux(Index).Text <> "" Then PonerFormatoDecimal txtAux(Index), 1
+            If txtaux(Index).Text <> "" Then PonerFormatoDecimal txtaux(Index), 1
             
     End Select
 End Sub

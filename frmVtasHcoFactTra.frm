@@ -51,37 +51,37 @@ Begin VB.Form frmVtasHcoFactTra
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmVtasHcoFactTra.frx":0A2A
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label1(6)"
+      Tab(1).Control(0)=   "Text3(2)"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "FrameObserva"
+      Tab(1).Control(1)=   "txtAux3(1)"
       Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "DataGrid2"
+      Tab(1).Control(2)=   "txtAux3(0)"
       Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "DataGrid1"
+      Tab(1).Control(3)=   "txtAux(3)"
       Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "txtAux(7)"
+      Tab(1).Control(4)=   "txtAux(2)"
       Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(6)"
+      Tab(1).Control(5)=   "txtAux(1)"
       Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(5)"
+      Tab(1).Control(6)=   "txtAux(0)"
       Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux(4)"
+      Tab(1).Control(7)=   "cmdObserva"
       Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "cmdObserva"
+      Tab(1).Control(8)=   "txtAux(4)"
       Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(0)"
+      Tab(1).Control(9)=   "txtAux(5)"
       Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "txtAux(1)"
+      Tab(1).Control(10)=   "txtAux(6)"
       Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "txtAux(2)"
+      Tab(1).Control(11)=   "txtAux(7)"
       Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "txtAux(3)"
+      Tab(1).Control(12)=   "DataGrid1"
       Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "txtAux3(0)"
+      Tab(1).Control(13)=   "DataGrid2"
       Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "txtAux3(1)"
+      Tab(1).Control(14)=   "FrameObserva"
       Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text3(2)"
+      Tab(1).Control(15)=   "Label1(6)"
       Tab(1).Control(15).Enabled=   0   'False
       Tab(1).ControlCount=   16
       TabCaption(2)   =   "Portes Vuelta"
@@ -3904,8 +3904,13 @@ Dim SQL As String
             SQL = "SELECT codtrans,numfactu,fecfactu,numalbar, fechaalb, importel,observa1,observa2,observa3,observa4,observa5  "
             SQL = SQL & " FROM tcafpa " 'cabeceras albaranes de la factura
         Case 3
-            SQL = "SELECT codtrans,numfactu,fecfactu,tcafpv.codmacta,conta" & vParamAplic.NumeroConta & ".cuentas.nommacta, importel"
-            SQL = SQL & " FROM tcafpv, conta" & vParamAplic.NumeroConta & ".cuentas " 'cabeceras cuentas de portes de vuelta
+            SQL = "SELECT codtrans,numfactu,fecfactu, tcafpv.codmacta, cuentas.nommacta, importel"
+            '[Monica]19/09/2017: contabilidad nueva
+            If vParamAplic.ContabilidadNueva Then
+                SQL = SQL & " FROM tcafpv, ariconta" & vParamAplic.NumeroConta & ".cuentas " 'cabeceras cuentas de portes de vuelta
+            Else
+                SQL = SQL & " FROM tcafpv, conta" & vParamAplic.NumeroConta & ".cuentas " 'cabeceras cuentas de portes de vuelta
+            End If
     End Select
     
     If enlaza Then
@@ -3921,7 +3926,11 @@ Dim SQL As String
             SQL = SQL & " AND albaran_variedad.codforfait = forfaits.codforfait "
         End If
         If Opcion = 3 Then
-            SQL = SQL & " AND tcafpv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            If vParamAplic.ContabilidadNueva Then
+                SQL = SQL & " AND tcafpv.codmacta = ariconta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            Else
+                SQL = SQL & " AND tcafpv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            End If
         End If
     Else
         SQL = SQL & " WHERE numfactu = -1"
@@ -3934,7 +3943,11 @@ Dim SQL As String
             SQL = SQL & " AND albaran_variedad.codforfait = forfaits.codforfait "
         End If
         If Opcion = 3 Then
-            SQL = SQL & " AND tcafpv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            If vParamAplic.ContabilidadNueva Then
+                SQL = SQL & " AND tcafpv.codmacta = ariconta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            Else
+                SQL = SQL & " AND tcafpv.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            End If
         End If
     End If
     

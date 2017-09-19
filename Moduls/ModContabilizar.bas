@@ -3285,7 +3285,13 @@ Dim CadenaInsertFaclin2     As String
                 End Select
             End If
             
-            If vParamAplic.ContabilidadNueva Then SQL = SQL & "0"
+            If vParamAplic.ContabilidadNueva Then
+                If DBSet(Rs!trefacpr, "N", Nulo4) = ValorNulo Then
+                    SQL = SQL & "0"
+                Else
+                    SQL = SQL & "1"
+                End If
+            End If
             
             If Not vParamAplic.ContabilidadNueva Then SQL = SQL & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0"
             
