@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManPaises 
@@ -38,7 +38,7 @@ Begin VB.Form frmManPaises
       List            =   "frmManPaises.frx":000E
       Style           =   2  'Dropdown List
       TabIndex        =   3
-      Tag             =   "Restitucion|N|N|0|1|paises|restituc|||"
+      Tag             =   "Intrastad|N|N|0|1|paises|intrastad|||"
       Top             =   4905
       Width           =   735
    End
@@ -441,7 +441,7 @@ Public CodigoActual As String
 Public DeConsulta As Boolean
 
 Private CadenaConsulta As String
-Private CadB As String
+Private cadB As String
 
 Private WithEvents frmCtas As frmCtasConta 'cuentas contables
 Attribute frmCtas.VB_VarHelpID = -1
@@ -527,7 +527,7 @@ Private Sub BotonAnyadir()
     Dim anc As Single
     
     CargaGrid 'primer de tot carregue tot el grid
-    CadB = ""
+    cadB = ""
     '******************** canviar taula i camp **************************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
         NumF = NuevoCodigo
@@ -559,7 +559,7 @@ Private Sub BotonAnyadir()
 End Sub
 
 Private Sub BotonVerTodos()
-    CadB = ""
+    cadB = ""
     CargaGrid ""
     PonerModo 2
 End Sub
@@ -658,9 +658,9 @@ Dim temp As Boolean
     If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        SQL = "Delete from paises where codpaise=" & adodc1.Recordset!Codpaise
+        SQL = "Delete from paises where codpaise=" & adodc1.Recordset!codpaise
         conn.Execute SQL
-        CargaGrid CadB
+        CargaGrid cadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
 '            lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -693,9 +693,9 @@ Private Sub cmdAceptar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            CadB = ObtenerBusqueda(Me)
-            If CadB <> "" Then
-                CargaGrid CadB
+            cadB = ObtenerBusqueda(Me)
+            If cadB <> "" Then
+                CargaGrid cadB
                 PonerModo 2
 '                lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
                 PonerFocoGrid Me.DataGrid1
@@ -715,7 +715,7 @@ Private Sub cmdAceptar_Click()
                     Else
                         BotonAnyadir
                     End If
-                    CadB = ""
+                    cadB = ""
                 End If
             End If
             
@@ -725,7 +725,7 @@ Private Sub cmdAceptar_Click()
                     TerminaBloquear
                     i = adodc1.Recordset.Fields(0)
                     PonerModo 2
-                    CargaGrid CadB
+                    CargaGrid cadB
 '                    If CadB <> "" Then
 '                        CargaGrid CadB
 '                        lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -745,7 +745,7 @@ Private Sub cmdCancelar_Click()
     
     Select Case Modo
         Case 1 'búsqueda
-            CargaGrid CadB
+            CargaGrid cadB
         Case 3 'insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
@@ -767,7 +767,7 @@ Private Sub cmdCancelar_Click()
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim Cad As String
+Dim cad As String
 Dim i As Integer
 Dim J As Integer
 Dim Aux As String
@@ -776,7 +776,7 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    Cad = ""
+    cad = ""
     i = 0
     Do
         J = i + 1
@@ -784,10 +784,10 @@ Dim Aux As String
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
+            cad = cad & adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(Cad)
+    RaiseEvent DatoSeleccionado(cad)
     Unload Me
 End Sub
 
@@ -850,14 +850,14 @@ Private Sub Form_Load()
     '****************** canviar la consulta *********************************+
     CadenaConsulta = "SELECT paises.codpaise, paises.nompaise, paises.intracom, "
     CadenaConsulta = CadenaConsulta & "CASE paises.intracom WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
-    CadenaConsulta = CadenaConsulta & " paises.restituc, CASE paises.restituc WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
+    CadenaConsulta = CadenaConsulta & " paises.intrastad, CASE paises.intrastad WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
     CadenaConsulta = CadenaConsulta & " paises.nommoned, paises.simmoned, paises.letraspais "
     
     CadenaConsulta = CadenaConsulta & " FROM paises"
     CadenaConsulta = CadenaConsulta & " WHERE 1 = 1 "
     '************************************************************************
     
-    CadB = ""
+    cadB = ""
     CargaGrid
     
 '    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
@@ -954,8 +954,8 @@ Private Sub CargaGrid(Optional vSQL As String)
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Cód.|500|;S|txtAux(1)|T|Descripción|3100|;"
     tots = tots & "N||||0|;S|Combo1(0)|C|Intrac|600|;"
-    tots = tots & "N||||0|;S|Combo1(1)|C|Resti.|600|;"
-    tots = tots & "S|txtAux(2)|T|Moneda|1000|;S|txtAux(3)|T|Simb.|600|;S|txtAux(4)|T|Letras|600|;"
+    tots = tots & "N||||0|;S|Combo1(1)|C|Intrastad|850|;"
+    tots = tots & "S|txtAux(2)|T|Moneda|850|;S|txtAux(3)|T|Simb.|600|;S|txtAux(4)|T|Letras|600|;"
     
     arregla tots, DataGrid1, Me
     
@@ -999,9 +999,9 @@ Dim Mens As String
 End Function
 
 Private Sub CargaCombo()
-Dim Cad As String
+Dim cad As String
 Dim i As Byte
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error GoTo ErrCarga
     
@@ -1037,7 +1037,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If CadB = "" Then
+        If cadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg
@@ -1049,9 +1049,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "paises"
         .Informe2 = "rManPaises.rpt"
-        If CadB <> "" Then
+        If cadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(CadB)
+            .cadRegSelec = SQL2SF(cadB)
         Else
             .cadRegSelec = ""
         End If
@@ -1062,7 +1062,7 @@ Private Sub printNou()
         .cadTodosReg = ""
         '.cadTodosReg = "{itinerar.codempre} = " & codEmpre
         ' *** repasar si li pose ordre o no ****
-        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomEmpre & "'|pOrden={paises.codpaise}|"
+        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|pOrden={paises.codpaise}|"
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|"
         ' *** posar el nº de paràmetres que he posat en OtrosParametros2 ***
         '.NumeroParametros2 = 1
@@ -1088,7 +1088,7 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub

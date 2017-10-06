@@ -425,7 +425,7 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim I As Byte
+Dim i As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
@@ -435,7 +435,7 @@ InicializarVbles
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
      '======== FORMULA  ====================================
@@ -505,8 +505,8 @@ InicializarVbles
     cadTABLA = "(" & cadTABLA & ") INNER JOIN clientes ON albaran.codclien = clientes.codclien "
     cadTABLA = "(" & cadTABLA & ") INNER JOIN paises ON clientes.codpaise = paises.codpaise "
     
-    If Not AnyadirAFormula(cadFormula, "{paises.intracom} = 1") Then Exit Sub
-    If Not AnyadirAFormula(cadselect, "{paises.intracom} = 1") Then Exit Sub
+    If Not AnyadirAFormula(cadFormula, "({paises.intracom} = 1 or {paises.intrastad} = 1)") Then Exit Sub
+    If Not AnyadirAFormula(cadselect, "({paises.intracom} = 1 or {paises.intrastad} = 1)") Then Exit Sub
     
     If CargarTablaTemporal(cadTABLA, cadselect, cadSelect1) Then
         If HayRegParaInforme("tmpinformes", "{tmpinformes.codusu}=" & vUsu.Codigo) Then
@@ -825,7 +825,7 @@ End Sub
 
 
 Private Function CargarTablaTemporal(cadTABLA As String, cWhere As String, cWhere1 As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim Importe As Currency
@@ -835,25 +835,25 @@ Dim Sql2 As String
 
     CargarTablaTemporal = False
 
-    Sql = "delete from tmpinformes where codusu= " & vUsu.Codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu= " & vUsu.Codigo
+    conn.Execute SQL
     
     cadTABLA = QuitarCaracterACadena(cadTABLA, "{")
     cadTABLA = QuitarCaracterACadena(cadTABLA, "}")
-    Sql = "Select count(*) FROM " & QuitarCaracterACadena(cadTABLA, "_1")
+    SQL = "Select count(*) FROM " & QuitarCaracterACadena(cadTABLA, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        Sql = Sql & " WHERE " & cWhere
+        SQL = SQL & " WHERE " & cWhere
     End If
     
-    Sql = "select albaran_variedad.numalbar, albaran_variedad.numlinea from " & cadTABLA & " where " & cWhere
+    SQL = "select albaran_variedad.numalbar, albaran_variedad.numlinea from " & cadTABLA & " where " & cWhere
     
-    If cWhere1 <> "" Then Sql = Sql & " and (albaran_variedad.numalbar, albaran_variedad.numlinea) in (select numalbar, numlinealbar from facturas_variedad where " & cWhere1 & ")"
+    If cWhere1 <> "" Then SQL = SQL & " and (albaran_variedad.numalbar, albaran_variedad.numlinea) in (select numalbar, numlinealbar from facturas_variedad where " & cWhere1 & ")"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not Rs.EOF
         
         Sql2 = "select sum(impornet) from facturas_variedad where numalbar=" & DBLet(Rs.Fields(0).Value, "N")
