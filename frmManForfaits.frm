@@ -1,22 +1,34 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManForfaits 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Forfaits"
-   ClientHeight    =   7455
+   ClientHeight    =   7545
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13185
+   ClientWidth     =   13275
    Icon            =   "frmManForfaits.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7455
-   ScaleWidth      =   13185
+   ScaleHeight     =   7545
+   ScaleWidth      =   13275
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox Text3 
+      Alignment       =   1  'Right Justify
+      BackColor       =   &H00FFFFC0&
+      Enabled         =   0   'False
+      Height          =   285
+      Index           =   3
+      Left            =   9810
+      TabIndex        =   80
+      Text            =   "Text3"
+      Top             =   7020
+      Width           =   1035
+   End
    Begin VB.TextBox Text3 
       Alignment       =   1  'Right Justify
       BackColor       =   &H00FFFFC0&
@@ -1124,7 +1136,7 @@ Begin VB.Form frmManForfaits
       Index           =   0
       Left            =   240
       TabIndex        =   21
-      Top             =   6840
+      Top             =   6750
       Width           =   2865
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1151,7 +1163,7 @@ Begin VB.Form frmManForfaits
       Height          =   375
       Left            =   12075
       TabIndex        =   20
-      Top             =   6960
+      Top             =   7005
       Width           =   1035
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1159,7 +1171,7 @@ Begin VB.Form frmManForfaits
       Height          =   375
       Left            =   10950
       TabIndex        =   19
-      Top             =   6960
+      Top             =   7005
       Width           =   1035
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -1215,8 +1227,8 @@ Begin VB.Form frmManForfaits
       Left            =   0
       TabIndex        =   26
       Top             =   0
-      Width           =   13185
-      _ExtentX        =   23257
+      Width           =   13275
+      _ExtentX        =   23416
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1320,11 +1332,30 @@ Begin VB.Form frmManForfaits
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
       Height          =   375
-      Left            =   12090
+      Left            =   12045
       TabIndex        =   25
-      Top             =   6960
+      Top             =   7005
       Visible         =   0   'False
       Width           =   1035
+   End
+   Begin VB.Label Label11 
+      Caption         =   "Total por Kilo: "
+      BeginProperty Font 
+         Name            =   "Tahoma"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   700
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00800000&
+      Height          =   240
+      Index           =   3
+      Left            =   8370
+      TabIndex        =   79
+      Top             =   7065
+      Width           =   1410
    End
    Begin VB.Line Line1 
       X1              =   5895
@@ -1365,7 +1396,7 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00800000&
       Height          =   240
       Index           =   1
-      Left            =   9045
+      Left            =   8370
       TabIndex        =   71
       Top             =   6615
       Width           =   2400
@@ -1548,7 +1579,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim CadB As String
+Dim cadB As String
 
 Private Sub btnBuscar_Click(Index As Integer)
     TerminaBloquear
@@ -1775,10 +1806,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(FrameAux As String)
+Private Sub LimpiarCamposLin(frameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -1789,7 +1820,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, NumReg As Byte
+Dim i As Integer, Numreg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -1815,11 +1846,11 @@ Dim b As Boolean
     '=======================================
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    NumReg = 1
+    Numreg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
@@ -1979,44 +2010,44 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim Sql As String
-Dim Tabla As String
+Dim SQL As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'ENVASES
-            Sql = "SELECT forfaits_envases.codforfait, forfaits_envases.codartic, sartic.nomartic, "
-            Sql = Sql & " forfaits_envases.cantidad, "
+            SQL = "SELECT forfaits_envases.codforfait, forfaits_envases.codartic, sartic.nomartic, "
+            SQL = SQL & " forfaits_envases.cantidad, "
             If vParamAplic.TipoPrecio = 0 Then
-                Sql = Sql & "sartic.preciomp, round(forfaits_envases.cantidad*sartic.preciomp,4) "
+                SQL = SQL & "sartic.preciomp, round(forfaits_envases.cantidad*sartic.preciomp,4) "
             Else
-                Sql = Sql & "sartic.preciouc, round(forfaits_envases.cantidad*sartic.preciouc,4) "
+                SQL = SQL & "sartic.preciouc, round(forfaits_envases.cantidad*sartic.preciouc,4) "
             End If
             
-            Sql = Sql & ", forfaits_envases.numlinea FROM forfaits_envases, sartic "
+            SQL = SQL & ", forfaits_envases.numlinea FROM forfaits_envases, sartic "
             If enlaza Then
-                Sql = Sql & ObtenerWhereCab(True)
+                SQL = SQL & ObtenerWhereCab(True)
             Else
-                Sql = Sql & " WHERE forfaits_envases.codforfait = '-1'"
+                SQL = SQL & " WHERE forfaits_envases.codforfait = '-1'"
             End If
-            Sql = Sql & " and forfaits_envases.codartic = sartic.codartic"
-            Sql = Sql & " ORDER BY forfaits_envases.numlinea"
+            SQL = SQL & " and forfaits_envases.codartic = sartic.codartic"
+            SQL = SQL & " ORDER BY forfaits_envases.numlinea"
                
         Case 1 'COSTES
-            Sql = "SELECT forfaits_costes.codforfait, forfaits_costes.codcoste, nombcoste.denominacion ,forfaits_costes.importes "
-            Sql = Sql & " FROM forfaits_costes, nombcoste"
+            SQL = "SELECT forfaits_costes.codforfait, forfaits_costes.codcoste, nombcoste.denominacion ,forfaits_costes.importes "
+            SQL = SQL & " FROM forfaits_costes, nombcoste"
             If enlaza Then
-                Sql = Sql & ObtenerWhereCab(True)
+                SQL = SQL & ObtenerWhereCab(True)
             Else
-                Sql = Sql & " WHERE forfaits_costes.codforfait = '-1'"
+                SQL = SQL & " WHERE forfaits_costes.codforfait = '-1'"
             End If
-            Sql = Sql & " and forfaits_costes.codcoste = nombcoste.codcoste"
-            Sql = Sql & " ORDER BY forfaits_costes.codcoste"
+            SQL = SQL & " and forfaits_costes.codcoste = nombcoste.codcoste"
+            SQL = SQL & " ORDER BY forfaits_costes.codcoste"
             
     End Select
     
-    MontaSQLCarga = Sql
+    MontaSQLCarga = SQL
 End Function
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
@@ -2034,12 +2065,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        CadB = ""
+        cadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadB = Aux
+        cadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -2151,11 +2182,11 @@ Private Sub mnDuplicarConfec_Click()
     frmListConfeccion.Show vbModal
     Screen.MousePointer = vbDefault
     If Confeccion <> "" Then
-        CadB = "codforfait = " & DBSet(Confeccion, "T")
+        cadB = "codforfait = " & DBSet(Confeccion, "T")
         If chkVistaPrevia(0) = 1 Then
-            MandaBusquedaPrevia CadB
-        ElseIf CadB <> "" Then
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+            MandaBusquedaPrevia cadB
+        ElseIf cadB <> "" Then
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
             PonerCadenaBusqueda
         End If
         
@@ -2259,12 +2290,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    CadB = ObtenerBusqueda2(Me, 1)
+    cadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -2273,7 +2304,7 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
     Dim cad As String
         
     'Cridem al form
@@ -2291,7 +2322,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
         frmB.vCampos = cad
         cad = NombreTabla & " left join variedades on forfaits.codvarie = variedades.codvarie "
         frmB.vtabla = cad 'NombreTabla
-        frmB.vSQL = CadB
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
@@ -2366,7 +2397,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    CadB = ""
+    cadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -2441,7 +2472,7 @@ Dim cad As String
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
-        If Not eliminar Then
+        If Not Eliminar Then
             Screen.MousePointer = vbDefault
             Exit Sub
         ElseIf SituarDataTrasEliminar(Data1, NumRegElim) Then
@@ -2460,7 +2491,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim i As Integer
-Dim codpobla As String, despobla As String
+Dim codPobla As String, desPobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -2636,14 +2667,14 @@ Dim cad As String, Indicador As String
     End If
 End Sub
 
-Private Function eliminar() As Boolean
+Private Function Eliminar() As Boolean
 Dim vWhere As String
 
     On Error GoTo FinEliminar
 
     conn.BeginTrans
     ' ***** canviar el nom de la PK de la capçalera, repasar codEmpre *******
-    vWhere = " WHERE codforfait=" & DBSet(Data1.Recordset!Codforfait, "T")
+    vWhere = " WHERE codforfait=" & DBSet(Data1.Recordset!codforfait, "T")
         
     ' ***** elimina les llínies ****
     conn.Execute "DELETE FROM forfaits_envases " & vWhere
@@ -2657,10 +2688,10 @@ FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar"
         conn.RollbackTrans
-        eliminar = False
+        Eliminar = False
     Else
         conn.CommitTrans
-        eliminar = True
+        Eliminar = True
     End If
 End Function
 
@@ -2984,9 +3015,9 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim Sql As String
+Dim SQL As String
 Dim vWhere As String
-Dim eliminar As Boolean
+Dim Eliminar As Boolean
 
     On Error GoTo Error2
 
@@ -3003,7 +3034,7 @@ Dim eliminar As Boolean
     If AdoAux(Index).Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar(Index) Then Exit Sub
     NumTabMto = Index
-    eliminar = False
+    Eliminar = False
    
     vWhere = ObtenerWhereCab(True)
     
@@ -3011,29 +3042,29 @@ Dim eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'envases
-            Sql = "¿Seguro que desea eliminar el Envase?"
-            Sql = Sql & vbCrLf & "Envase: " & AdoAux(Index).Recordset!codArtic
-            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
-                eliminar = True
-                Sql = "DELETE FROM forfaits_envases "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+            SQL = "¿Seguro que desea eliminar el Envase?"
+            SQL = SQL & vbCrLf & "Envase: " & AdoAux(Index).Recordset!CodArtic
+            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+                Eliminar = True
+                SQL = "DELETE FROM forfaits_envases "
+                SQL = SQL & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
         Case 1 'coste
-            Sql = "¿Seguro que desea eliminar el Coste Confección?"
-            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codCoste
-            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
-                eliminar = True
-                Sql = "DELETE FROM forfaits_costes "
-                Sql = Sql & vWhere & " AND codcoste= " & AdoAux(Index).Recordset!codCoste
+            SQL = "¿Seguro que desea eliminar el Coste Confección?"
+            SQL = SQL & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codCoste
+            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+                Eliminar = True
+                SQL = "DELETE FROM forfaits_costes "
+                SQL = SQL & vWhere & " AND codcoste= " & AdoAux(Index).Recordset!codCoste
             End If
             
     End Select
 
-    If eliminar Then
+    If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute Sql
+        conn.Execute SQL
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
         If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
@@ -3342,7 +3373,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
 End Sub
 
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -3367,7 +3398,7 @@ End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -3466,8 +3497,8 @@ Private Sub imgBuscar_Click(Index As Integer)
             PonerFoco Text1(2)
         Case 8 'codigos ean de este forfait
             Set frmCEan = New frmCodEAN
-            frmCEan.tipo = 1
-            frmCEan.CodigoActual = CStr(Me.Data1.Recordset!Codforfait)
+            frmCEan.Tipo = 1
+            frmCEan.CodigoActual = CStr(Me.Data1.Recordset!codforfait)
             frmCEan.Show vbModal
             Set frmCEan = Nothing
     End Select
@@ -3686,7 +3717,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codforfait=" & DBSet(Me.Data1.Recordset!Codforfait, "T")
+    vWhere = vWhere & " codforfait=" & DBSet(Me.Data1.Recordset!codforfait, "T")
     
     ObtenerWhereCab = vWhere
 End Function
@@ -3742,26 +3773,27 @@ End Sub
 
 Private Sub CalcularTotales()
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 Dim TotalEnvases As String
 Dim TotalCostes As String
 Dim Valor As Currency
+Dim Kilos As Currency
 
     On Error Resume Next
 
     'total importes de envases para ese forfait
-    Sql = "select sum(round(cantidad * "
+    SQL = "select sum(round(cantidad * "
     If vParamAplic.TipoPrecio = 0 Then 'precio medio ponderado
-        Sql = Sql & " preciomp,4))"
+        SQL = SQL & " preciomp,4))"
     Else 'precio ultima compra
-        Sql = Sql & " preciouc,4))"
+        SQL = SQL & " preciouc,4))"
     End If
     
-    Sql = Sql & " from forfaits_envases, sartic where codforfait = " & DBSet(Text1(0).Text, "T")
-    Sql = Sql & " and forfaits_envases.codartic = sartic.codartic"
+    SQL = SQL & " from forfaits_envases, sartic where codforfait = " & DBSet(Text1(0).Text, "T")
+    SQL = SQL & " and forfaits_envases.codartic = sartic.codartic"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalEnvases = 0
     If Not Rs.EOF Then
@@ -3780,11 +3812,11 @@ Dim Valor As Currency
     
     
     'total costes para ese forfait
-    Sql = "select sum(importes) "
-    Sql = Sql & " from forfaits_costes where codforfait = " & DBSet(Text1(0).Text, "T")
+    SQL = "select sum(importes) "
+    SQL = SQL & " from forfaits_costes where codforfait = " & DBSet(Text1(0).Text, "T")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalCostes = 0
     If Not Rs.EOF Then
@@ -3808,6 +3840,23 @@ Dim Valor As Currency
     Else
         Text3(2).Text = ""
     End If
+    
+    '[Monica]17/10/2017: sacamos el coste por caja o por kilo dependiendo de como sea la confeccion
+    Text3(3).Text = ""
+    If Combo1(0).ListIndex = 0 Then ' caja
+        Kilos = CCur(TransformaPuntosComas(ComprobarCero(Text1(4).Text)))
+        If Kilos <> 0 Then Text3(3).Text = Round2(Valor / Kilos, 4)
+    Else 'kilo
+'        Kilos = CCur(TransformaPuntosComas(ComprobarCero(Text1(5).Text)))
+'        If Kilos <> 0 Then Text3(3).Text = Round2(Valor / Kilos, 4)
+        Text3(3).Text = Valor
+    End If
+    If CCur(ComprobarCero(Text3(3).Text)) <> 0 Then
+        Text3(3).Text = Format(Text3(3).Text, "###,###,##0.0000")
+    Else
+        Text3(3).Text = ""
+    End If
+    
     
     If Err.Number <> 0 Then
         Err.Clear
