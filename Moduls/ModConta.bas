@@ -306,7 +306,7 @@ Dim vIban As String
                 
                 '[Monica]28/10/2016: faltaba la cta contable del banco propio
                 CtaBancoPropio = ""
-                If ComprobarCero(vProveedor.BancoPropio) <> 0 Then
+                If ComprobarCero(vTranspor.BancoPropio) <> 0 Then
                     CtaBancoPropio = DevuelveValor("select codmacta from banpropi where codbanpr = " & DBSet(vTranspor.BancoPropio, "N"))
                 End If
                 
