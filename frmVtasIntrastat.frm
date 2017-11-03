@@ -480,6 +480,12 @@ InicializarVbles
             TipCod = "F"
             If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
         End If
+        
+        '[Monica]03/11/2017: para el caso de ser por fecha de albaran
+        cadParam = cadParam & "pNumfac=0|"
+        numParam = numParam + 1
+        
+        
     Else
         cDesde = Trim(txtCodigo(2).Text)
         cHasta = Trim(txtCodigo(3).Text)
@@ -498,6 +504,12 @@ InicializarVbles
                 cadSelect1 = cadSelect1 & " and facturas_variedad.fecfactu <= '" & Format(cHasta, "yyyy-mm-dd") & "'"
             End If
         End If
+        
+        '[Monica]03/11/2017: para el caso de ser por fecha de factura
+        cadParam = cadParam & "pNumfac=1|"
+        numParam = numParam + 1
+        
+        
     End If
     
     
@@ -838,6 +850,10 @@ Dim Sql2 As String
     SQL = "delete from tmpinformes where codusu= " & vUsu.Codigo
     conn.Execute SQL
     
+    '[Monica]03/11/2017:para el caso de que vaya por fecha de factura
+    SQL = "delete from tmpinformes2 where codusu= " & vUsu.Codigo
+    conn.Execute SQL
+    
     cadTABLA = QuitarCaracterACadena(cadTABLA, "{")
     cadTABLA = QuitarCaracterACadena(cadTABLA, "}")
     SQL = "Select count(*) FROM " & QuitarCaracterACadena(cadTABLA, "_1")
@@ -873,6 +889,34 @@ Dim Sql2 As String
         
         Sql2 = "insert into tmpinformes(codusu,codigo1,campo1,importe1) values ("
         Sql2 = Sql2 & vUsu.Codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Rs.Fields(1), "N") & ","
+        Sql2 = Sql2 & DBSet(Importe, "N") & ")"
+        
+        conn.Execute Sql2
+        
+        
+        '????????????
+        
+        '[Monica]03/11/2017: para el caso de que sea por fecha de factura
+        Sql2 = "select distinct concat(numserie,right(concat('000000',numfactu),7) from facturas_variedad, usuarios.stipom  "
+        Sql2 = Sql2 & " where numalbar = " & DBSet(Rs.Fields(0).Value, "N")
+        Sql2 = Sql2 & " and numlinealbar =" & DBLet(Rs.Fields(1).Value, "N")
+        Sql2 = Sql2 & " and facturas_variedad.codtipom = stipom.codtipom "
+        If cWhere1 <> "" Then
+            Sql2 = Sql2 & " and " & cWhere1
+        End If
+        Facturas = ""
+        
+        Set Rs2 = New ADODB.Recordset
+        Rs2.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        While Not Rs2.EOF
+            Facturas = " " & Facturas & DBLet(Rs2.Fields(0).Value, "N")
+            
+            Rs2.MoveNext
+        Wend
+        Set Rs2 = Nothing
+        
+        Sql2 = "update tmpinformes set (codusu,codigo1,campo1,importe1) values ("
+        Sql2 = Sql2 & vUsu.Codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Facturas, "T") & ","
         Sql2 = Sql2 & DBSet(Importe, "N") & ")"
         
         conn.Execute Sql2
