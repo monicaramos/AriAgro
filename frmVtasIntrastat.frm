@@ -842,6 +842,8 @@ Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim Importe As Currency
 Dim Sql2 As String
+Dim Facturas As String
+
     On Error GoTo eCargarTablaTemporal
 
 
@@ -850,9 +852,6 @@ Dim Sql2 As String
     SQL = "delete from tmpinformes where codusu= " & vUsu.Codigo
     conn.Execute SQL
     
-    '[Monica]03/11/2017:para el caso de que vaya por fecha de factura
-    SQL = "delete from tmpinformes2 where codusu= " & vUsu.Codigo
-    conn.Execute SQL
     
     cadTABLA = QuitarCaracterACadena(cadTABLA, "{")
     cadTABLA = QuitarCaracterACadena(cadTABLA, "}")
@@ -894,10 +893,8 @@ Dim Sql2 As String
         conn.Execute Sql2
         
         
-        '????????????
-        
         '[Monica]03/11/2017: para el caso de que sea por fecha de factura
-        Sql2 = "select distinct concat(numserie,right(concat('000000',numfactu),7) from facturas_variedad, usuarios.stipom  "
+        Sql2 = "select distinct concat(letraser,right(concat('000000',facturas_variedad.numfactu),7)) from facturas_variedad, usuarios.stipom  "
         Sql2 = Sql2 & " where numalbar = " & DBSet(Rs.Fields(0).Value, "N")
         Sql2 = Sql2 & " and numlinealbar =" & DBLet(Rs.Fields(1).Value, "N")
         Sql2 = Sql2 & " and facturas_variedad.codtipom = stipom.codtipom "
@@ -915,9 +912,10 @@ Dim Sql2 As String
         Wend
         Set Rs2 = Nothing
         
-        Sql2 = "update tmpinformes set (codusu,codigo1,campo1,importe1) values ("
-        Sql2 = Sql2 & vUsu.Codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Facturas, "T") & ","
-        Sql2 = Sql2 & DBSet(Importe, "N") & ")"
+        If Facturas <> "" Then Facturas = Trim(Facturas)
+        
+        Sql2 = "update tmpinformes set nombre1 = " & DBSet(Facturas, "T") & " where codusu = "
+        Sql2 = Sql2 & vUsu.Codigo & " and codigo1 = " & DBSet(Rs.Fields(0), "N") & " and campo1 =" & DBSet(Rs.Fields(1), "N")
         
         conn.Execute Sql2
         
