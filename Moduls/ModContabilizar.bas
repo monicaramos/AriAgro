@@ -3745,7 +3745,10 @@ Dim ImporteACompensar As Currency
                 Rsx7.Open Sql7, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 While Not Rsx7.EOF
-                    If DBLet(Rsx7!impornet, "N") <> 0 Then
+                    '[Monica]09/11/2017: para el caso de que el importe sea 0 tambien se introduce, pq si no cuando se recibe la factura de
+                    '                    no lo encuentra.
+                    '                    quito la condicion de que el importe sea <> 0 PARA EL CASO DE PICASSENT SÓLO !!!!!!!!!
+                    If DBLet(Rsx7!impornet, "N") <> 0 Or (DBLet(Rsx7!impornet, "N") = 0 And vParamAplic.Cooperativa = 2) Then
                         i = i + 1
                         
                         CadValues2 = CadValues2 & CadValuesAux2 & i & ", "
