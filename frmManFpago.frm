@@ -51,7 +51,7 @@ Begin VB.Form frmManFpago
       Left            =   3285
       MaxLength       =   3
       TabIndex        =   3
-      Tag             =   "Numero Vto|N|N|||forpago|numerove|##0||"
+      Tag             =   "Numero Vto|N|N|1|999|forpago|numerove|##0||"
       Text            =   "Vto"
       Top             =   4950
       Width           =   1395
