@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmListadoOfer 
    BorderStyle     =   3  'Fixed Dialog
@@ -2420,14 +2420,14 @@ Attribute frmMen.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'cadena con los parametros q se pasan a Crystal R.
 Private numParam As Byte
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private Titulo As String 'Titulo informe que se pasa a frmImprimir
 Private nomRPT As String 'nombre del fichero .rpt a imprimir
 Private conSubRPT As Boolean 'si tiene subinformes para enlazarlos a las tablas correctas
 '-------------------------------------
 
 Dim indCodigo As Byte 'indice para txtCodigo
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 
 Dim PrimeraVez As Boolean
 
@@ -2461,12 +2461,12 @@ Private Sub cmdAceptarCompras_Click()
 'Listados de Compras
 Dim campo As String
 Dim cad As String
-Dim Tabla As String
+Dim tabla As String
 
     InicializarVbles
     
     'Pasar nombre de la Empresa como parametro
-    cadParam = "|pNomEmpre=""" & vEmpresa.nomEmpre & """|"
+    cadParam = "|pNomEmpre=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     '====================================================
@@ -2489,7 +2489,7 @@ Dim Tabla As String
         If Not PonerDesdeHasta(campo, "F", 92, 93, cad) Then Exit Sub
     End If
     
-    Tabla = "scafpc"
+    tabla = "scafpc"
     If Opcionlistado = 311 Then
         'Cadena para seleccion D/H FAMILIA
         '--------------------------------------------
@@ -2499,9 +2499,9 @@ Dim Tabla As String
             cad = "pDHFamilia=""Familia: "
             If Not PonerDesdeHasta(campo, "N", 94, 95, cad) Then Exit Sub
             
-            Tabla = "( scafpc INNER JOIN slifpc ON scafpc.codprove=slifpc.codprove AND scafpc.numfactu=slifpc.numfactu "
-            Tabla = Tabla & " AND scafpc.fecfactu=slifpc.fecfactu )"
-            Tabla = Tabla & " INNER JOIN sartic ON slifpc.codartic=sartic.codartic "
+            tabla = "( scafpc INNER JOIN slifpc ON scafpc.codprove=slifpc.codprove AND scafpc.numfactu=slifpc.numfactu "
+            tabla = tabla & " AND scafpc.fecfactu=slifpc.fecfactu )"
+            tabla = tabla & " INNER JOIN sartic ON slifpc.codartic=sartic.codartic "
         End If
     End If
         
@@ -2509,7 +2509,7 @@ Dim Tabla As String
     'Comprobar si hay registros para mostrar en el informe
     '========================================================
     
-    If Not HayRegParaInforme(Tabla, cadSelect) Then Exit Sub
+    If Not HayRegParaInforme(tabla, cadselect) Then Exit Sub
     
     
     'Abrir el listado
@@ -2603,18 +2603,18 @@ Dim campo As String
     End If
     
     'ver si hay registros seleccionados para mostrar en el informe
-    If Not HayRegParaInforme("proveedor", cadSelect) Then Exit Sub
+    If Not HayRegParaInforme("proveedor", cadselect) Then Exit Sub
     
     Set frmMen = New frmMensajes
-    frmMen.cadWHERE = cadSelect
+    frmMen.cadWHERE = cadselect
     frmMen.OpcionMensaje = 9 'Etiquetas proveedores
     frmMen.Show vbModal
     Set frmMen = Nothing
-    If cadSelect = "" Then Exit Sub
+    If cadselect = "" Then Exit Sub
     
-    If Opcionlistado = 306 And Me.chkEmail(0).Value = 1 Then
+    If Opcionlistado = 306 And Me.chkEMAIL(0).Value = 1 Then
         'Enviarlo por e-mail
-        EnviarEMailMulti cadSelect, Titulo, "rComProveCarta.rpt", "proveedor" 'email para proveedores
+        EnviarEMailMulti cadselect, Titulo, "rComProveCarta.rpt", "proveedor" 'email para proveedores
     Else
         LlamarImprimir
     End If
@@ -2703,13 +2703,13 @@ Dim campo1 As String, campo2 As String, campo3 As String
     If NumCod <> "" Then
         devuelve = "{" & NomTabla & "." & campo1 & "}=" & Val(NumCod)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        cadSelect = cadFormula
+        cadselect = cadFormula
         
         If Opcionlistado = 239 Then 'historico ( hay fecha)
             devuelve = "{" & NomTabla & "." & campo2 & "}= Date(" & Year(txtCodigo(76).Text) & "," & Month(txtCodigo(76).Text) & "," & Day(txtCodigo(76).Text) & ")"
             If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
             devuelve = NomTabla & "." & campo2 & "='" & Format(txtCodigo(76).Text, FormatoFecha) & "'"
-            If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Sub
+            If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
         End If
         
         'Seleccionar otros PEdidos entre esas FEchas
@@ -2719,17 +2719,17 @@ Dim campo1 As String, campo2 As String, campo3 As String
             If devuelve = "Error" Then Exit Sub
             If cadFormula <> "" Then
                 cadFormula = "(" & cadFormula & " OR " & devuelve & ")"
-                cadSelect = "((" & cadSelect & ") OR " & CadenaDesdeHastaBD(txtCodigo(74).Text, txtCodigo(75).Text, campo, "F") & ")"
+                cadselect = "((" & cadselect & ") OR " & CadenaDesdeHastaBD(txtCodigo(74).Text, txtCodigo(75).Text, campo, "F") & ")"
             Else
                 cadFormula = devuelve
-                cadSelect = CadenaDesdeHastaBD(txtCodigo(74).Text, txtCodigo(75).Text, campo, "F")
+                cadselect = CadenaDesdeHastaBD(txtCodigo(74).Text, txtCodigo(75).Text, campo, "F")
             End If
         
             'Filtrar solo los Pedidos del CLIENTE/PROVEEDOR que las solicita
             If CodClien <> "" Then
                 campo = "{" & NomTabla & "." & campo3 & "}=" & CodClien
                 If Not AnyadirAFormula(cadFormula, campo) Then Exit Sub
-                If Not AnyadirAFormula(cadSelect, campo) Then Exit Sub
+                If Not AnyadirAFormula(cadselect, campo) Then Exit Sub
             End If
         End If
     Else
@@ -2760,20 +2760,20 @@ Dim campo1 As String, campo2 As String, campo3 As String
     End If
 
     'comprobar que hay datos para mostrar en el Informe
-    If Not HayRegParaInforme(NomTabla, cadSelect) Then Exit Sub
+    If Not HayRegParaInforme(NomTabla, cadselect) Then Exit Sub
     
     LlamarImprimir
 End Sub
 
 Private Sub cmdAceptarPte_Click()
 'LIstado Material Pendiente de recibir
-Dim codigo As String
+Dim Codigo As String
 Dim cad As String
 
     InicializarVbles
     
     'Pasar nombre de la Empresa como parametro
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     'Pasar el ORDEN del informe como parametro
@@ -2795,29 +2795,29 @@ Dim cad As String
     'Cadena para seleccion D/H PROVEEDOR
     '--------------------------------------------
     If txtCodigo(65).Text <> "" Or txtCodigo(66).Text <> "" Then
-        codigo = "{scappr.codprove}"
-        If Opcionlistado = 308 Then codigo = "{scaalp.codprove}"
+        Codigo = "{scappr.codprove}"
+        If Opcionlistado = 308 Then Codigo = "{scaalp.codprove}"
         cad = "pDHProveedor=""Proveedor: "
-        If Not PonerDesdeHasta(codigo, "N", 65, 66, cad) Then Exit Sub
+        If Not PonerDesdeHasta(Codigo, "N", 65, 66, cad) Then Exit Sub
     End If
     
     'Cadena para seleccion Desde y Hasta FECHA
     '--------------------------------------------
     If txtCodigo(69).Text <> "" Or txtCodigo(70).Text <> "" Then
-        codigo = "{scappr.fecpedpr}"
-        If Opcionlistado = 308 Then codigo = "{scaalp.fechaalb}"
+        Codigo = "{scappr.fecpedpr}"
+        If Opcionlistado = 308 Then Codigo = "{scaalp.fechaalb}"
         cad = "pDHFecha=""Fecha Ped.: "
         If Opcionlistado = 308 Then cad = "pDHFecha=""Fecha Alb.: "
-        If Not PonerDesdeHasta(codigo, "F", 69, 70, cad) Then Exit Sub
+        If Not PonerDesdeHasta(Codigo, "F", 69, 70, cad) Then Exit Sub
     End If
     
     If Opcionlistado = 307 Then '307: List. Materia pendiente de recibir
         'Cadena para seleccion D/H ARTICULO
         '--------------------------------------------
         If txtCodigo(67).Text <> "" Or txtCodigo(68).Text <> "" Then
-            codigo = "{slippr.codartic}"
+            Codigo = "{slippr.codartic}"
             cad = "pDHArticulo=""Artículo: "
-            If Not PonerDesdeHasta(codigo, "T", 67, 68, cad) Then Exit Sub
+            If Not PonerDesdeHasta(Codigo, "T", 67, 68, cad) Then Exit Sub
         End If
     End If
     
@@ -2832,7 +2832,7 @@ Dim cad As String
         nomRPT = "rComPteFactura.rpt"
     End If
     
-    If Not HayRegParaInforme(cad, cadSelect) Then Exit Sub
+    If Not HayRegParaInforme(cad, cadselect) Then Exit Sub
 
     'Mostrar el Informe
     conSubRPT = False
@@ -2887,29 +2887,29 @@ Dim Rs As ADODB.Recordset
             Exit Sub
         End If
     Else
-        codigo = ""
+        Codigo = ""
         If vParamAplic.PathFacturaE = "" Then
-            codigo = "Falta configurar parametros"
+            Codigo = "Falta configurar parametros"
         Else
 '            MsgBox vParamAplic.PathFacturaE, vbExclamation
-            If Dir(vParamAplic.PathFacturaE & "\", vbDirectory) = "" Then codigo = "No existe carpeta"
+            If Dir(vParamAplic.PathFacturaE & "\", vbDirectory) = "" Then Codigo = "No existe carpeta"
 '            MsgBox "todo ok", vbExclamation
         End If
-        If codigo <> "" Then
-            MsgBox codigo, vbExclamation
+        If Codigo <> "" Then
+            MsgBox Codigo, vbExclamation
             Exit Sub
         End If
     End If
     
     'AHora pongo los tipo de facturas
     cadFormula = ""
-    cadSelect = ""  'ME dira si estan todas o no
+    cadselect = ""  'ME dira si estan todas o no
     For indCodigo = 0 To Me.ListTipoMov(1000).ListCount - 1
         If Me.ListTipoMov(1000).Selected(indCodigo) Then
             'Esta checkeado
             cadFormula = cadFormula & " OR facturas.codtipom = '" & Trim(Mid(ListTipoMov(1000).List(indCodigo), 1, 3)) & "'"
         Else
-            cadSelect = "NO"
+            cadselect = "NO"
         End If
     Next indCodigo
     
@@ -2930,7 +2930,7 @@ Dim Rs As ADODB.Recordset
     '--------------------------------------------
     InicializarVbles
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     
 '    'Cadena para seleccion D/H Letra Serie
 '    '--------------------------------------------
@@ -2943,32 +2943,32 @@ Dim Rs As ADODB.Recordset
     'Cadena para seleccion D/H Factura
     '--------------------------------------------
     If txtCodigo(106).Text <> "" Or txtCodigo(107).Text <> "" Then
-        codigo = "facturas.numfactu"
-        If Not PonerDesdeHasta(codigo, "N", 106, 107, "") Then Exit Sub
+        Codigo = "facturas.numfactu"
+        If Not PonerDesdeHasta(Codigo, "N", 106, 107, "") Then Exit Sub
     End If
     
     'Cadena para seleccion D/H Fecha
     '--------------------------------------------
     If txtCodigo(108).Text <> "" Or txtCodigo(109).Text <> "" Then
-        codigo = "facturas.fecfactu"
-        If Not PonerDesdeHasta(codigo, "F", 108, 109, "") Then Exit Sub
+        Codigo = "facturas.fecfactu"
+        If Not PonerDesdeHasta(Codigo, "F", 108, 109, "") Then Exit Sub
     End If
     
     'Cadena para seleccion D/H Cliente
     '--------------------------------------------
     If txtCodigo(110).Text <> "" Or txtCodigo(111).Text <> "" Then
-        codigo = "facturas.codclien"
-        If Not PonerDesdeHasta(codigo, "N", 110, 111, "") Then Exit Sub
+        Codigo = "facturas.codclien"
+        If Not PonerDesdeHasta(Codigo, "N", 110, 111, "") Then Exit Sub
     End If
     
     Screen.MousePointer = vbHourglass
     
     'Eliminamos temporales
-    conn.Execute "DELETE from tmpinformes where codusu =" & vUsu.codigo
+    conn.Execute "DELETE from tmpinformes where codusu =" & vUsu.Codigo
     
-    If cadSelect <> "" Then cadSelect = cadSelect & " AND "
-    cadSelect = cadSelect & NomTabla
-    cadSelect = " WHERE " & cadSelect
+    If cadselect <> "" Then cadselect = cadselect & " AND "
+    cadselect = cadselect & NomTabla
+    cadselect = " WHERE " & cadselect
 
     
     Set Rs = New ADODB.Recordset
@@ -2976,8 +2976,8 @@ Dim Rs As ADODB.Recordset
         
     If Opcionlistado = 316 Then
         If Me.Check2.Value = 0 Then
-            If cadSelect <> "" Then cadSelect = cadSelect & " AND "
-            cadSelect = cadSelect & " (facturas.enfacturae = 0 )"
+            If cadselect <> "" Then cadselect = cadselect & " AND "
+            cadselect = cadselect & " (facturas.enfacturae = 0 )"
         End If
     End If
         
@@ -2985,8 +2985,8 @@ Dim Rs As ADODB.Recordset
     'Ahora insertare en la tabla temporal tmpinformes las facturas que voy a generar pdf
 '    Codigo = "insert into tmpinformes (codusu,numalbar,codprove,codartic,numlinea,fechaalb,codalmac,cantidad) "
                                             'codsocio,numfactu, letraser,fecfactu,totalfac
-    codigo = "insert into tmpinformes (codusu,codigo1,importe1, nombre1, fecha1, importe2) "
-    codigo = codigo & " values ( " & vUsu.codigo & ","
+    Codigo = "insert into tmpinformes (codusu,codigo1,importe1, nombre1, fecha1, importe2) "
+    Codigo = Codigo & " values ( " & vUsu.Codigo & ","
     
     If Not PrepararCarpetasEnvioMail Then Exit Sub
         
@@ -2995,18 +2995,18 @@ Dim Rs As ADODB.Recordset
     'Vamos a meter todas las facturas en la tabla temporal para comprobar si tienen mail
     'los clientes
     
-    NomTabla = "Select codtipom,numfactu,codclien,fecfactu,totalfac from facturas  " & cadSelect
+    NomTabla = "Select codtipom,numfactu,codclien,fecfactu,totalfac from facturas  " & cadselect
     'El orden vamos a hacerlo por: Tipo documento
     NomTabla = NomTabla & " ORDER BY codtipom, numfactu, fecfactu "
     Rs.Open NomTabla, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     NumRegElim = 0
     While Not Rs.EOF
-        NomTabla = Rs!CodClien & "," & Rs!Numfactu & ",'" & Trim(Rs!codTipoM) & "','" & Format(Rs!fecfactu, FormatoFecha)
+        NomTabla = Rs!CodClien & "," & Rs!NumFactu & ",'" & Trim(Rs!codTipoM) & "','" & Format(Rs!FecFactu, FormatoFecha)
         
         'El tipo de informe lo guardare en el ultimo campo
         'El report es el = 12
         NomTabla = NomTabla & "'," & TransformaComasPuntos(CStr(DBLet(Rs!TotalFac, "N"))) & ")"
-        conn.Execute codigo & NomTabla
+        conn.Execute Codigo & NomTabla
         NumRegElim = NumRegElim + 1
         Rs.MoveNext
     Wend
@@ -3031,16 +3031,22 @@ Dim Rs As ADODB.Recordset
         
         'AHora ya tengo todos los datos de las facturas que voy  a imprimir
         'Entonces copruebo si para los clientes si tienen puesto el campo mail o no
+        Dim NomCampo As String
         If optEnvioMail(0).Value Then
             'Selecciona mail comercial
-            cadSelect = "2"  'de maiclie2
+            cadselect = "2"  'de maiclie2
+            NomCampo = "maiclie2"
         Else
-            cadSelect = "1"  'de maiclie1
+            cadselect = "1"  'de maiclie1
+            NomCampo = "maiclie1"
         End If
-        cadSelect = "Select codclien,maiclie" & cadSelect
-        cadSelect = cadSelect & " as email from tmpinformes,clientes where codusu = " & vUsu.codigo & " and codclien=codigo1"
-        cadSelect = cadSelect & " group by codclien having email is null"
-        Rs.Open cadSelect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        '[Monica]27/11/2017: cambiado por un problema de catadau con la sintaxis ¿¿¿¿¿??????
+        '                    ahora no agrupo y pongo el having como condicion del where, quito la linea del group by
+        cadselect = "Select distinct codclien,maiclie" & cadselect
+        cadselect = cadselect & " as email from tmpinformes,clientes where codusu = " & vUsu.Codigo & " and codclien=codigo1"
+        cadselect = cadselect & " and " & NomCampo & " is null"
+        'cadselect = cadselect & " group by codclien having email is null"
+        Rs.Open cadselect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         NumRegElim = 0
         While Not Rs.EOF
             NumRegElim = NumRegElim + 1
@@ -3055,17 +3061,17 @@ Dim Rs As ADODB.Recordset
             End If
                 
             'Si no salimos borramos
-            Rs.Open cadSelect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-            cadSelect = "DELETE from tmpinformes where codusu =" & vSesion.codigo & " and codigo1 ="
+            Rs.Open cadselect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            cadselect = "DELETE from tmpinformes where codusu =" & vUsu.Codigo & " and codigo1 ="
             While Not Rs.EOF
-                conn.Execute cadSelect & Rs!CodClien
+                conn.Execute cadselect & Rs!CodClien
                 Rs.MoveNext
             Wend
             Rs.Close
             
             
-            cadSelect = "Select count(*) from tmpinformes where codusu =" & vSesion.codigo
-            Rs.Open cadSelect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            cadselect = "Select count(*) from tmpinformes where codusu =" & vUsu.Codigo
+            Rs.Open cadselect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             NumRegElim = 0
             If Not Rs.EOF Then
                 If Not IsNull(Rs.Fields(0)) Then NumRegElim = DBLet(Rs.Fields(0), "N")
@@ -3080,8 +3086,8 @@ Dim Rs As ADODB.Recordset
                 MsgBox "No hay datos para enviar por mail", vbExclamation
                 Exit Sub
             Else
-                cadSelect = "Hay " & NumRegElim & " facturas para enviar por mail." & vbCrLf & "¿Continuar?"
-                If MsgBox(cadSelect, vbQuestion + vbYesNo) = vbNo Then NumRegElim = 0
+                cadselect = "Hay " & NumRegElim & " facturas para enviar por mail." & vbCrLf & "¿Continuar?"
+                If MsgBox(cadselect, vbQuestion + vbYesNo) = vbNo Then NumRegElim = 0
             End If
             If NumRegElim = 0 Then
                 Set Rs = Nothing
@@ -3093,8 +3099,8 @@ Dim Rs As ADODB.Recordset
         End If
         
     Else
-        cadSelect = "Hay " & NumRegElim & " facturas para integrar con facturaE." & vbCrLf & "¿Continuar?"
-        If MsgBox(cadSelect, vbQuestion + vbYesNo) = vbNo Then
+        cadselect = "Hay " & NumRegElim & " facturas para integrar con facturaE." & vbCrLf & "¿Continuar?"
+        If MsgBox(cadselect, vbQuestion + vbYesNo) = vbNo Then
             Screen.MousePointer = vbDefault
             Exit Sub
         End If
@@ -3121,16 +3127,16 @@ Dim Rs As ADODB.Recordset
         If Opcionlistado = 315 Then
             If optEnvioMail(0).Value Then
                 'Selecciona mail comercial
-                cadSelect = "2"  'de maiclie2
+                cadselect = "2"  'de maiclie2
             Else
-                cadSelect = "1"  'de maiclie1
+                cadselect = "1"  'de maiclie1
             End If
-            cadSelect = "Select nomclien, maiclie" & cadSelect
-            cadSelect = cadSelect & " as email,tmpinformes.* from tmpinformes,clientes where codusu = " & vUsu.codigo & " and codclien=codigo1"
+            cadselect = "Select nomclien, maiclie" & cadselect
+            cadselect = cadselect & " as email,tmpinformes.* from tmpinformes,clientes where codusu = " & vUsu.Codigo & " and codclien=codigo1"
     '        cadSelect = cadSelect & " group by codclien having email is null"
     
             
-            frmEMail.DatosEnvio = Text1(0).Text & "|" & Text1(1).Text & "|" & Abs(chkMail.Value) & "|" & cadSelect & "|"
+            frmEMail.DatosEnvio = Text1(0).Text & "|" & Text1(1).Text & "|" & Abs(chkMail.Value) & "|" & cadselect & "|"
             frmEMail.Opcion = 4 'Multienvio de facturacion
             frmEMail.Show vbModal
             
@@ -3352,14 +3358,14 @@ Private Sub frmMen_DatoSeleccionado(CadenaSeleccion As String)
     If CadenaSeleccion <> "" Then
         If Opcionlistado = 305 Or Opcionlistado = 306 Then 'Proveedores
             cadFormula = "{proveedor.codprove} IN [" & CadenaSeleccion & "]"
-            cadSelect = "proveedor.codprove IN (" & CadenaSeleccion & ")"
+            cadselect = "proveedor.codprove IN (" & CadenaSeleccion & ")"
         Else 'clientes
             cadFormula = "{clientes.codclien} IN [" & CadenaSeleccion & "]"
-            cadSelect = "clientes.codclien IN (" & CadenaSeleccion & ")"
+            cadselect = "clientes.codclien IN (" & CadenaSeleccion & ")"
         End If
     Else 'no seleccionamos ningun cliente
         cadFormula = ""
-        cadSelect = ""
+        cadselect = ""
     End If
 End Sub
 
@@ -3668,8 +3674,8 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
-Dim codCampo As String, nomCampo As String
+Dim tabla As String
+Dim codCampo As String, NomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
 Dim EsNomCod As Boolean
@@ -3709,17 +3715,17 @@ Dim EsNomCod As Boolean
         
         Case 2, 13, 63, 64, 81 'CARTA de la Oferta
             EsNomCod = True
-            Tabla = "scartas"
+            tabla = "scartas"
             codCampo = "codcarta"
-            nomCampo = "descarta"
+            NomCampo = "descarta"
             Formato = "000"
             Titulo = "cod. de Carta"
                     
         Case 9, 10, 27, 28, 43, 44, 79, 80, 96, 97, 110, 111 'Cod. CLIENTE
             EsNomCod = True
-            Tabla = "clientes"
+            tabla = "clientes"
             codCampo = "codclien"
-            nomCampo = "nomclien"
+            NomCampo = "nomclien"
             TipCampo = "N"
             Formato = "000000"
             Titulo = "Cliente"
@@ -3730,63 +3736,63 @@ Dim EsNomCod As Boolean
             If Opcionlistado = 92 Then 'Gastos tecnicos
                 If Index = 18 Or Index = 19 Then
                     'cod agente / cod. trabajador
-                    Tabla = "straba"
+                    tabla = "straba"
                     codCampo = "codtraba"
-                    nomCampo = "nomtraba"
+                    NomCampo = "nomtraba"
                     Titulo = "Trabajador"
                 End If
             Else
-                Tabla = "sagent"
+                tabla = "sagent"
                 codCampo = "codagent"
-                nomCampo = "nomagent"
+                NomCampo = "nomagent"
                 Titulo = "Agente"
             End If
         
         Case 24, 47, 51 'Cod. TRABAJADOR
             EsNomCod = True
-            Tabla = "straba"
+            tabla = "straba"
             codCampo = "codtraba"
-            nomCampo = "nomtraba"
+            NomCampo = "nomtraba"
             Formato = "0000"
             Titulo = "Trabajador"
             
         Case 33, 34, 53, 54 'Cod ACTIVIDAD
             EsNomCod = True
-            Tabla = "sactiv"
+            tabla = "sactiv"
             codCampo = "codactiv"
-            nomCampo = "nomactiv"
+            NomCampo = "nomactiv"
             Formato = "000"
             Titulo = "Actividad de Cliente"
             
         Case 35, 36 'cod ZONA
             EsNomCod = True
-            Tabla = "szonas"
+            tabla = "szonas"
             codCampo = "codzonas"
-            nomCampo = "nomzonas"
+            NomCampo = "nomzonas"
             Formato = "000"
             Titulo = "Zona de Cliente"
             
         Case 37, 38 'cod RUTA
             EsNomCod = True
-            Tabla = "srutas"
+            tabla = "srutas"
             codCampo = "codrutas"
-            nomCampo = "nomrutas"
+            NomCampo = "nomrutas"
             Formato = "000"
             Titulo = "Ruta de Asistencia"
                         
         Case 41, 42, 57 'cod SITUACION
             EsNomCod = True
-            Tabla = "ssitua"
+            tabla = "ssitua"
             codCampo = "codsitua"
-            nomCampo = "nomsitua"
+            NomCampo = "nomsitua"
             Formato = "00"
             Titulo = "Situación Especial"
             
         Case 52 'cod. Incidencias
             EsNomCod = True
-            Tabla = "inciden"
+            tabla = "inciden"
             codCampo = "codincid"
-            nomCampo = "nomincid"
+            NomCampo = "nomincid"
             TipCampo = "T"
             Titulo = "Incidencias"
             
@@ -3796,32 +3802,32 @@ Dim EsNomCod As Boolean
             
          Case 5, 58, 59, 65, 66, 90, 91 'Cod. PROVEEDOR
             EsNomCod = True
-            Tabla = "proveedor"
+            tabla = "proveedor"
             codCampo = "codprove"
-            nomCampo = "nomprove"
+            NomCampo = "nomprove"
             TipCampo = "N"
             Formato = "000000"
             Titulo = "Proveedor"
             
         Case 67, 68 'cod. ARTICULO
             EsNomCod = True
-            Tabla = "sartic"
+            tabla = "sartic"
             codCampo = "codartic"
-            nomCampo = "nomartic"
+            NomCampo = "nomartic"
             TipCampo = "T"
             Titulo = "Artículo"
             
         Case 73  'Nº de Pedido de Compras
             If txtCodigo(Index).Text = "" Then Exit Sub
             If Opcionlistado = 55 Or Opcionlistado = 56 Then
-                nomCampo = "numpedpr"
+                NomCampo = "numpedpr"
                 Titulo = "Proveedor"
             Else
-                nomCampo = "numpedcl"
+                NomCampo = "numpedcl"
                 Titulo = "Cliente"
             End If
-            nomCampo = DevuelveDesdeBDNew(cAgro, NomTabla, nomCampo, nomCampo, txtCodigo(Index).Text, "N")
-            If nomCampo = "" Then
+            NomCampo = DevuelveDesdeBDNew(cAgro, NomTabla, NomCampo, NomCampo, txtCodigo(Index).Text, "N")
+            If NomCampo = "" Then
                 MsgBox "No existe el Nº de Pedido de " & Titulo & ": " & txtCodigo(Index).Text, vbInformation
                 txtCodigo(Index).Text = ""
                 PonerFoco txtCodigo(Index)
@@ -3831,9 +3837,9 @@ Dim EsNomCod As Boolean
             
         Case 94, 95, 100, 101 'cod. FAMILIA articulos
             EsNomCod = True
-            Tabla = "sfamia"
+            tabla = "sfamia"
             codCampo = "codfamia"
-            nomCampo = "nomfamia"
+            NomCampo = "nomfamia"
             TipCampo = "N"
             Formato = "0000"
             Titulo = "Familia"
@@ -3842,13 +3848,13 @@ Dim EsNomCod As Boolean
     If EsNomCod Then
         If TipCampo = "N" Then
             If PonerFormatoEntero(txtCodigo(Index)) Then
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo, TipCampo)
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, NomCampo, codCampo, TipCampo)
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, Formato)
             Else
                 txtNombre(Index).Text = ""
             End If
         Else
-            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo, TipCampo)
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, NomCampo, codCampo, TipCampo)
         End If
     End If
 End Sub
@@ -3875,7 +3881,7 @@ End Function
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -3892,11 +3898,11 @@ Dim cad As String
     
     'para MySQL
     If Tipo <> "F" Then
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
         cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
-        If Not AnyadirAFormula(cadSelect, cad) Then Exit Function
+        If Not AnyadirAFormula(cadselect, cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -3929,7 +3935,7 @@ End Sub
 
 
 Private Sub EnviarEMailMulti(cadWHERE As String, cadTit As String, cadRpt As String, cadTABLA As String)
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 Dim cad1 As String, cad2 As String, Lista As String
 Dim Cont As Integer
@@ -3940,25 +3946,25 @@ On Error GoTo EEnviar
     
     If cadTABLA = "proveedor" Then
         'seleccionamos todos los proveedores a los que queremos enviar e-mail
-        Sql = "SELECT codprove,nomprove,maiprov1,maiprov2 "
+        SQL = "SELECT codprove,nomprove,maiprov1,maiprov2 "
     ElseIf cadTABLA = "clientes" Then
         'seleccionamos todos los clientes a los que queremos enviar e-mail
-        Sql = "SELECT codclien,nomclien,maiclie1,maiclie2 "
+        SQL = "SELECT codclien,nomclien,maiclie1,maiclie2 "
     End If
-    Sql = Sql & "FROM " & cadTABLA
-    Sql = Sql & " WHERE " & cadWHERE
+    SQL = SQL & "FROM " & cadTABLA
+    SQL = SQL & " WHERE " & cadWHERE
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'creamos una temporal donde guardamos para cada proveedor que SI tiene
     'e-mail, el mail1 o el mail2 al que vamos a enviar
-    Sql = "CREATE TEMPORARY TABLE tmpMail ( "
-    Sql = Sql & "codusu INT(7) UNSIGNED  DEFAULT '0' NOT NULL, "
-    Sql = Sql & "codprove INT(6) UNSIGNED  DEFAULT '0' NOT NULL, "
-    Sql = Sql & "nomprove varchar(40)  DEFAULT '' NOT NULL, "
-    Sql = Sql & "email varchar(40)  DEFAULT '' NOT NULL) "
-    conn.Execute Sql
+    SQL = "CREATE TEMPORARY TABLE tmpMail ( "
+    SQL = SQL & "codusu INT(7) UNSIGNED  DEFAULT '0' NOT NULL, "
+    SQL = SQL & "codprove INT(6) UNSIGNED  DEFAULT '0' NOT NULL, "
+    SQL = SQL & "nomprove varchar(40)  DEFAULT '' NOT NULL, "
+    SQL = SQL & "email varchar(40)  DEFAULT '' NOT NULL) "
+    conn.Execute SQL
     
     Cont = 0
     Lista = ""
@@ -3987,13 +3993,13 @@ On Error GoTo EEnviar
                 .OtrosParametros = cadParam
                 .NumeroParametros = numParam
                 If cadTABLA = "proveedor" Then
-                    Sql = "{proveedor.codprove}=" & Rs.Fields(0)
+                    SQL = "{proveedor.codprove}=" & Rs.Fields(0)
                     .Opcion = 306
                 Else
-                    Sql = "{clientes.codclien}=" & Rs.Fields(0)
+                    SQL = "{clientes.codclien}=" & Rs.Fields(0)
                     .Opcion = 91
                 End If
-                .FormulaSeleccion = Sql
+                .FormulaSeleccion = SQL
                 .EnvioEMail = True
                 CadenaDesdeOtroForm = "GENERANDO"
                 .Titulo = cadTit
@@ -4003,17 +4009,17 @@ On Error GoTo EEnviar
 
                 If CadenaDesdeOtroForm = "" Then
                 'si se ha generado el .pdf para enviar
-                    Sql = "INSERT INTO tmpMail (codusu,codprove,nomprove,email)"
-                    Sql = Sql & " VALUES (" & vUsu.codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Rs.Fields(1), "T") & "," & DBSet(cad1, "T") & ")"
-                    conn.Execute Sql
+                    SQL = "INSERT INTO tmpMail (codusu,codprove,nomprove,email)"
+                    SQL = SQL & " VALUES (" & vUsu.Codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Rs.Fields(1), "T") & "," & DBSet(cad1, "T") & ")"
+                    conn.Execute SQL
             
                     Me.Refresh
                     espera 0.4
                     Cont = Cont + 1
                     'Se ha generado bien el documento
                     'Lo copiamos sobre app.path & \temp
-                    Sql = Rs.Fields(0) & ".pdf"
-                    FileCopy App.path & "\docum.pdf", App.path & "\temp\" & Sql
+                    SQL = Rs.Fields(0) & ".pdf"
+                    FileCopy App.path & "\docum.pdf", App.path & "\temp\" & SQL
                 End If
             End With
         End If
@@ -4026,20 +4032,20 @@ On Error GoTo EEnviar
     If Cont > 0 Then
         espera 0.4
         If cadTABLA = "proveedor" Then
-            Sql = "Carta: " & txtNombre(63).Text & "|"
-             Sql = Sql & "Att : " & txtCodigo(62).Text & "|"
+            SQL = "Carta: " & txtNombre(63).Text & "|"
+             SQL = SQL & "Att : " & txtCodigo(62).Text & "|"
         Else
-            Sql = "Carta: " & txtNombre(64).Text & "|"
-            Sql = Sql & "Att : " & txtCodigo(0).Text & "|"
+            SQL = "Carta: " & txtNombre(64).Text & "|"
+            SQL = SQL & "Att : " & txtCodigo(0).Text & "|"
         End If
        
         frmEMail.Opcion = 2
-        frmEMail.DatosEnvio = Sql
+        frmEMail.DatosEnvio = SQL
         frmEMail.Show vbModal
 
         'Borrar la tabla temporal
-        Sql = " DROP TABLE IF EXISTS tmpMail;"
-        conn.Execute Sql
+        SQL = " DROP TABLE IF EXISTS tmpMail;"
+        conn.Execute SQL
         
         'Borrar la carpeta con temporales
         Kill App.path & "\temp\*.pdf"
@@ -4061,8 +4067,8 @@ EEnviar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Enviando Informe por e-mail", Err.Description
         'Borrar la tabla temporal
-        Sql = " DROP TABLE IF EXISTS tmpMail;"
-        conn.Execute Sql
+        SQL = " DROP TABLE IF EXISTS tmpMail;"
+        conn.Execute SQL
     End If
 End Sub
 
@@ -4101,26 +4107,26 @@ End Sub
 
 
 Private Sub CargarIconos()
-Dim I As Integer
+Dim i As Integer
     
-    For I = 4 To 4
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
-    For I = 28 To 29
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
-    For I = 35 To 39
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
-    For I = 41 To 44
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
-    For I = 48 To 51
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
-    For I = 56 To 57
-        Me.imgBuscarOfer(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 4 To 4
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
+    For i = 28 To 29
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
+    For i = 35 To 39
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
+    For i = 41 To 44
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
+    For i = 48 To 51
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
+    For i = 56 To 57
+        Me.imgBuscarOfer(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
 
 End Sub
 
@@ -4142,21 +4148,21 @@ End Sub
 
 
 Private Function GeneracionEnvioMail(ByRef Rs As ADODB.Recordset) As Boolean
-Dim LetraSer As String
+Dim letraser As String
 
     On Error GoTo EGeneracionEnvioMail
     
     GeneracionEnvioMail = False
 
     
-    cadSelect = "Select * from tmpinformes where codusu =" & vUsu.codigo & " ORDER BY importe1,codigo1"
-    Rs.Open cadSelect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    cadselect = "Select * from tmpinformes where codusu =" & vUsu.Codigo & " ORDER BY importe1,codigo1"
+    Rs.Open cadselect, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     CodClien = ""
     While Not Rs.EOF
         
         If Dir(App.path & "\docum.pdf", vbArchive) <> "" Then Kill App.path & "\docum.pdf"
     
-        Label14(22).Caption = "Factura: " & Rs!importe1 & " " & Rs!nombre1
+        Label14(22).Caption = "Factura: " & Rs!importe1 & " " & Rs!Nombre1
         Label14(22).Refresh
         
         Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
@@ -4168,7 +4174,7 @@ Dim LetraSer As String
        'Nombre fichero .rpt a Imprimir
         
         
-       cadFormula = "({facturas.codtipom}='" & Trim(Rs!nombre1) & "') "
+       cadFormula = "({facturas.codtipom}='" & Trim(Rs!Nombre1) & "') "
        cadFormula = cadFormula & " AND ({facturas.numfactu}=" & Rs!importe1 & ") "
        cadFormula = cadFormula & " AND ({facturas.fecfactu}= Date(" & Year(Rs!fecha1) & "," & Month(Rs!fecha1) & "," & Day(Rs!fecha1) & "))"
 
@@ -4200,15 +4206,15 @@ Dim LetraSer As String
         DoEvents
         
         If Opcionlistado = 315 Then
-            FileCopy App.path & "\docum.pdf", App.path & "\temp\" & Rs!nombre1 & Format(Rs!importe1, "0000000") & ".pdf" 'RS!importe1 & Format(RS!Codigo1, "0000000") & ".pdf"
+            FileCopy App.path & "\docum.pdf", App.path & "\temp\" & Rs!Nombre1 & Format(Rs!importe1, "0000000") & ".pdf" 'RS!importe1 & Format(RS!Codigo1, "0000000") & ".pdf"
         Else
             'Se tiene que llamar base_numserie_numFactura_yyyymmdd.pdf
             ' Sacamos la letra de serie
-            LetraSer = ""
-            LetraSer = DevuelveValor("select letraser from usuarios.stipom where codtipom = " & DBSet(Rs!nombre1, "T"))
+            letraser = ""
+            letraser = DevuelveValor("select letraser from usuarios.stipom where codtipom = " & DBSet(Rs!Nombre1, "T"))
             
             '[Monica]07/03/2013: tengo que incluir el nro de la base de datos, antes era "ariagro_"
-            cadFormula = vEmpresa.BDAriagro & "_" & Trim(LetraSer) & "_" & Rs!importe1 & "_" & Format(Rs!fecha1, "yyyymmdd") & "_F" & Rs!nombre1 & ".pdf"
+            cadFormula = vEmpresa.BDAriagro & "_" & Trim(letraser) & "_" & Rs!importe1 & "_" & Format(Rs!fecha1, "yyyymmdd") & "_F" & Rs!Nombre1 & ".pdf"
             cadFormula = vParamAplic.PathFacturaE & "\" & cadFormula
             
             Label14(22).Caption = cadFormula
@@ -4217,7 +4223,7 @@ Dim LetraSer As String
             FileCopy App.path & "\docum.pdf", cadFormula
             
             'Ha copiado, luego yo la pongo como en facturaE
-            cadFormula = "UPDATE facturas set enfacturae=1 WHERE codtipom = '" & Rs!nombre1 & "' AND numfactu=" & Rs!importe1
+            cadFormula = "UPDATE facturas set enfacturae=1 WHERE codtipom = '" & Rs!Nombre1 & "' AND numfactu=" & Rs!importe1
             cadFormula = cadFormula & " AND fecfactu='" & Format(Rs!fecha1, FormatoFecha) & "'"
             
             conn.Execute cadFormula
@@ -4243,9 +4249,9 @@ Private Sub CargarComboTipoMov(indice As Integer)
 ' o marcamos la opcion sorted del combo
 
 'Lo cargamos con los valores de la tabla stipom que tengan tipo de documento=Albaranes (tipodocu=1)
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo ECargaCombo
 
@@ -4254,10 +4260,10 @@ Dim I As Byte
     'Mostraba todas las facturas (movimientos que empizan por F, excepto las rectificativas
     'AHora tiene que mostrarlas todas
     'SQL = "select codtipom, nomtipom from stipom where (codtipom like 'F__') and (codtipom<>'FRT')"
-    Sql = "select codtipom, nomtipom from usuarios.stipom where (codtipom like 'FA_')  and (tipodocu = 0)"
+    SQL = "select codtipom, nomtipom from usuarios.stipom where (codtipom like 'FA_')  and (tipodocu = 0)"
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-    I = 0
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    i = 0
     
     ListTipoMov(indice).Clear
     
