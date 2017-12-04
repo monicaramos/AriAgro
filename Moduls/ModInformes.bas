@@ -31,7 +31,7 @@ Option Explicit
 
 Public Sub AbrirListado(numero As Byte)
     Screen.MousePointer = vbHourglass
-    frmListado.OpcionListado = numero
+    frmListado.Opcionlistado = numero
     frmListado.Show vbModal
     Screen.MousePointer = vbDefault
 End Sub
@@ -40,7 +40,7 @@ End Sub
 Public Sub AbrirListadoOfer(numero As Integer)
 'Abre el Form con los listados de Ofertas
     Screen.MousePointer = vbHourglass
-    frmListadoOfer.OpcionListado = numero
+    frmListadoOfer.Opcionlistado = numero
     frmListadoOfer.Show vbModal
     Screen.MousePointer = vbDefault
 End Sub
@@ -64,24 +64,24 @@ End Function
 Public Function RegistrosAListar(vSQL As String, Optional vBD As Byte) As Byte
 'Devuelve si hay algun registro para mostrar en el Informe con la seleccion
 'realizada. Si no hay nada que mostrar devuelve 0 y no abrirá el informe
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     On Error Resume Next
     
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     If vBD = cConta Then
-        RS.Open vSQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open vSQL, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
     Else
-        RS.Open vSQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open vSQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     End If
 
     
     RegistrosAListar = 0
-    If Not RS.EOF Then
-        If RS.Fields(0).Value > 0 Then RegistrosAListar = 1 'Solo es para saber que hay registros que mostrar
+    If Not Rs.EOF Then
+        If Rs.Fields(0).Value > 0 Then RegistrosAListar = 1 'Solo es para saber que hay registros que mostrar
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 
     If Err.Number <> 0 Then
         RegistrosAListar = 0
@@ -116,7 +116,7 @@ End Function
 
 
 
-Public Function CadenaDesdeHasta(cadDesde As String, cadHasta As String, campo As String, TipoCampo As String, Optional nomcampo As String) As String
+Public Function CadenaDesdeHasta(cadDesde As String, cadHasta As String, campo As String, TipoCampo As String, Optional nomCampo As String) As String
 'Devuelve la cadena de seleccion: " (campo >= cadDesde and campo<=cadHasta) "
 'para Crystal Report
 Dim cadAux As String
@@ -325,7 +325,7 @@ End Function
 
 
 
-Public Function PonerParamRPT(Indice As Byte, cadParam As String, numParam As Byte, nomDocu As String, Optional EsAridoc As Boolean, Optional ImprimeDirecto As Integer) As Boolean
+Public Function PonerParamRPT(indice As Byte, cadParam As String, numParam As Byte, nomDocu As String, Optional EsAridoc As Boolean, Optional ImprimeDirecto As Integer) As Boolean
 'EsAridoc = false usamos el nomdocum normal
 '           true usamos el rpt para aridoc
 'ImprimeDirecto = false usamos el crystal
@@ -336,7 +336,7 @@ Dim cad As String
 
     Set vParamRpt = New CParamRpt
 
-    If vParamRpt.Leer(Indice) = 1 Then
+    If vParamRpt.Leer(indice) = 1 Then
         cad = "No se han podido cargar los Parámetros de Tipos de Documentos." & vbCrLf
         MsgBox cad & "Debe configurar la aplicación.", vbExclamation
         Set vParamRpt = Nothing
@@ -391,7 +391,7 @@ End Function
 
 
 
-Public Sub PonerFrameVisible(ByRef vFrame As Frame, visible As Boolean, h As Integer, w As Integer)
+Public Sub PonerFrameVisible(ByRef vFrame As Frame, visible As Boolean, H As Integer, W As Integer)
 'Pone el Frame Visible y Ajustado al Formulario, y visualiza los controles
     
         vFrame.visible = visible
@@ -399,8 +399,8 @@ Public Sub PonerFrameVisible(ByRef vFrame As Frame, visible As Boolean, h As Int
             'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
             vFrame.Top = -90
             vFrame.Left = 0
-            vFrame.Width = w
-            vFrame.Height = h
+            vFrame.Width = W
+            vFrame.Height = H
         End If
 End Sub
 
@@ -425,20 +425,20 @@ Dim cad As String
         PonerParamEmpresa = True
 End Function
 
-Public Function SaltosDeLinea(ByVal Cadena As String) As String
+Public Function SaltosDeLinea(ByVal CADENA As String) As String
     Dim Devu As String
     Dim i As Integer
     
     Devu = ""
     Do
-        i = InStr(1, Cadena, vbCrLf)
+        i = InStr(1, CADENA, vbCrLf)
         If i > 0 Then
             If Devu <> "" Then Devu = Devu & """ + chr(13) + """
-            Devu = Devu & Mid(Cadena, 1, i - 1)
-            Cadena = Mid(Cadena, i + 2)
+            Devu = Devu & Mid(CADENA, 1, i - 1)
+            CADENA = Mid(CADENA, i + 2)
             
        Else
-            Devu = Devu & Cadena
+            Devu = Devu & CADENA
        End If
     Loop While i > 0
     SaltosDeLinea = Devu

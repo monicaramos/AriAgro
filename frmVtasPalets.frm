@@ -530,7 +530,7 @@ Begin VB.Form frmVtasPalets
          Left            =   8145
          MaxLength       =   6
          TabIndex        =   86
-         Tag             =   "Cod.Camara|N|N|0|999|palets|codcamara|000||"
+         Tag             =   "Cod.Camara|N|S|0|999|palets|codcamara|000||"
          Text            =   "Text1"
          Top             =   1710
          Width           =   780
@@ -808,7 +808,7 @@ Begin VB.Form frmVtasPalets
          Height          =   240
          Index           =   4
          Left            =   8955
-         ToolTipText     =   "Buscar Palet"
+         ToolTipText     =   "Buscar Cámara"
          Top             =   1440
          Width           =   240
       End
@@ -1100,7 +1100,7 @@ Begin VB.Form frmVtasPalets
       Style           =   1
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   18
+         NumButtons      =   19
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Buscar"
             Object.Width           =   1e-4
@@ -1142,34 +1142,37 @@ Begin VB.Form frmVtasPalets
             Object.ToolTipText     =   "Imprimir "
          EndProperty
          BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Style           =   3
+            Object.ToolTipText     =   "Informe Palets en Camaras"
          EndProperty
          BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Enabled         =   0   'False
             Object.Visible         =   0   'False
             Style           =   3
          EndProperty
+         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Salir"
+         EndProperty
          BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Enabled         =   0   'False
+            Object.Visible         =   0   'False
             Style           =   3
          EndProperty
          BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Style           =   3
+         EndProperty
+         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Primero"
             ImageIndex      =   6
          EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Anterior"
             ImageIndex      =   7
          EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Siguiente"
             ImageIndex      =   8
          EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Object.ToolTipText     =   "Último"
             ImageIndex      =   9
          EndProperty
@@ -1554,6 +1557,10 @@ Begin VB.Form frmVtasPalets
          Caption         =   "&Imprimir"
          Shortcut        =   ^I
       End
+      Begin VB.Menu mnInfCamaras 
+         Caption         =   "Informe Palets en Cámaras"
+         Shortcut        =   ^C
+      End
       Begin VB.Menu mnBarra3 
          Caption         =   "-"
       End
@@ -1827,12 +1834,12 @@ End Sub
 
 Private Sub BotonModificar()
 Dim NroAlbar As String
-Dim Cad As String
+Dim cad As String
     NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
     If NroAlbar <> "" Then
-        Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
-        Cad = Cad & "                     ¿ Desea continuar ?"
-        If MsgBox(Cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
+        cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
+        cad = cad & "                     ¿ Desea continuar ?"
+        If MsgBox(cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             TerminaBloquear
             Exit Sub
         End If
@@ -1951,7 +1958,7 @@ Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Facturas (scafac)
 ' y los registros correspondientes de las tablas cab. albaranes (scafac1)
 ' y las lineas de la factura (slifac)
-Dim Cad As String
+Dim cad As String
 Dim NroAlbar As String
 
     On Error GoTo EEliminar
@@ -1961,24 +1968,24 @@ Dim NroAlbar As String
     
     NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
     If NroAlbar <> "" Then
-        Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
-        Cad = Cad & "         ¿ Desea continuar ?"
-        If MsgBox(Cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
+        cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
+        cad = cad & "         ¿ Desea continuar ?"
+        If MsgBox(cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             Exit Sub
         End If
     End If
 
     
-    Cad = "Cabecera de Palets." & vbCrLf
-    Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
-    Cad = Cad & "Va a eliminar el Palet:            "
-    Cad = Cad & vbCrLf & "Nº Palet:  " & Format(text1(0).Text, "0000000")
-    Cad = Cad & vbCrLf & "Fecha:  " & Format(text1(2).Text, "dd/mm/yyyy")
+    cad = "Cabecera de Palets." & vbCrLf
+    cad = cad & "-------------------------------------      " & vbCrLf & vbCrLf
+    cad = cad & "Va a eliminar el Palet:            "
+    cad = cad & vbCrLf & "Nº Palet:  " & Format(text1(0).Text, "0000000")
+    cad = cad & vbCrLf & "Fecha:  " & Format(text1(2).Text, "dd/mm/yyyy")
 
-    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
 
     'Borramos
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
 '        On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
@@ -2034,7 +2041,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim Cad As String
+Dim cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -2048,9 +2055,9 @@ Dim Cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        Cad = Data1.Recordset.Fields(0) & "|"
-        Cad = Cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(Cad)
+        cad = Data1.Recordset.Fields(0) & "|"
+        cad = cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(cad)
         Unload Me
     End If
 End Sub
@@ -2104,7 +2111,7 @@ Dim i As Integer
     Next kCampo
 
     ' ICONITOS DE LA BARRA
-    btnPrimero = 15
+    btnPrimero = 16
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
@@ -2116,7 +2123,8 @@ Dim i As Integer
         .Buttons(6).Image = 5   'Borrar
         .Buttons(9).Image = 10 'Mto Lineas Ofertas
         .Buttons(10).Image = 10 'Imprimir Pedido
-        .Buttons(12).Image = 11  'Salir
+        .Buttons(11).Image = 26 'Informe de palets en camaras
+        .Buttons(13).Image = 11  'Salir
         .Buttons(btnPrimero).Image = 6  'Primero
         .Buttons(btnPrimero + 1).Image = 7 'Anterior
         .Buttons(btnPrimero + 2).Image = 8 'Siguiente
@@ -2162,7 +2170,7 @@ Dim i As Integer
     chkVistaPrevia.Value = CheckValueLeer(Name)
     
     Data1.ConnectionString = conn
-    Data1.RecordSource = "select * from palets where numpalet = -1 "
+    Data1.RecordSource = "select * from palets where numpalet is null"
     Data1.Refresh
         
     'Cargar el DataGrid de lineas de Revisiones inicialmente a nada DATA2
@@ -2200,16 +2208,16 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim CadB As String
+Dim cadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        CadB = ""
+        cadB = ""
         Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
-        CadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        cadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -2247,6 +2255,13 @@ Dim vWhere As String
    
 End Sub
 
+Private Sub frmMCam_DatoSeleccionado(CadenaSeleccion As String)
+    If CadenaSeleccion <> "" Then
+        text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
+        text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
+    End If
+End Sub
+
 Private Sub frmMen_DatoSeleccionado(CadenaSeleccion As String)
     text1(5).Text = CadenaSeleccion
 End Sub
@@ -2263,7 +2278,7 @@ Private Sub frmZ_Actualizar(vCampo As String)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
-Dim Cad As String
+Dim cad As String
 
     If Modo = 2 Or Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
@@ -2282,11 +2297,11 @@ Dim Cad As String
             'mostramos los palets asociados al pedido
             Set frmMen = New frmMensajes
             
-            Cad = "select * from pedidos, clientes, destinos where numalbar is null "
-            Cad = Cad & " and pedidos.codclien = clientes.codclien and "
-            Cad = Cad & " pedidos.codclien = destinos.codclien and pedidos.coddesti = destinos.coddesti"
+            cad = "select * from pedidos, clientes, destinos where numalbar is null "
+            cad = cad & " and pedidos.codclien = clientes.codclien and "
+            cad = cad & " pedidos.codclien = destinos.codclien and pedidos.coddesti = destinos.coddesti"
             
-            frmMen.cadWHERE = Cad
+            frmMen.cadWHERE = cad
             
             frmMen.OpcionMensaje = 20 'Pedidos que no tienen asociados un nro de albaran
             frmMen.Show vbModal
@@ -2328,6 +2343,14 @@ Dim Cad As String
             
             PonerFoco text1(indice)
         
+        Case 4  'camara
+            indice = 20
+            PonerFoco text1(indice)
+            Set frmMCam = New frmManCamara
+            frmMCam.DatosADevolverBusqueda = "0|1|"
+            frmMCam.Show vbModal
+            Set frmMCam = Nothing
+            PonerFoco text1(indice)
     End Select
     
     Screen.MousePointer = vbDefault
@@ -2412,6 +2435,10 @@ Private Sub mnImprimir_Click()
     If Data1.Recordset.EOF Then Exit Sub
     
     BotonImprimir
+End Sub
+
+Private Sub mnInfCamaras_Click()
+    AbrirListado 2
 End Sub
 
 Private Sub mnNuevo_Click()
@@ -2650,7 +2677,7 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim CadB As String
+Dim cadB As String
 Dim cadAux As String
     
 '    '--- Laura 12/01/2007
@@ -2675,7 +2702,7 @@ Dim cadAux As String
     End If
     
     
-    CadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
+    cadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
     text1(8).Tag = Replace(text1(8).Tag, "FHH", "FH")
     text1(6).Tag = Replace(text1(6).Tag, "FHH", "FH")
     
@@ -2688,11 +2715,11 @@ Dim cadAux As String
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
         'Se muestran en el mismo form
         CadenaConsulta = "select palets.* from " & NombreTabla & " LEFT JOIN palets_variedad ON palets.numpalet=palets_variedad.numpalet "
-        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
+        CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY palets.numpalet " & Ordenacion
 '        CadenaConsulta = "select palets.* from " & NombreTabla
 '        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
         PonerCadenaBusqueda
@@ -2700,32 +2727,32 @@ Dim cadAux As String
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
+Dim cad As String
 Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
     '##A mano
-    Cad = ""
-    Cad = Cad & "Nº.Palet|palets.numpalet|N||15·"
+    cad = ""
+    cad = cad & "Nº.Palet|palets.numpalet|N||15·"
     
-    Cad = Cad & ParaGrid(text1(1), 10, "Conf.")
-    Cad = Cad & "Palet|confpale.nompalet|N||35·"
-    Cad = Cad & ParaGrid(text1(2), 15, "F.Inicio")
-    Cad = Cad & ParaGrid(text1(3), 15, "F.Fin")
+    cad = cad & ParaGrid(text1(1), 10, "Conf.")
+    cad = cad & "Palet|confpale.nompalet|N||35·"
+    cad = cad & ParaGrid(text1(2), 15, "F.Inicio")
+    cad = cad & ParaGrid(text1(3), 15, "F.Fin")
     tabla = NombreTabla & " INNER JOIN confpale ON palets.codpalet=confpale.codpalet "
     
     Titulo = "Palets"
     devuelve = "0|"
            
-    If Cad <> "" Then
+    If cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
+        frmB.vCampos = cad
         frmB.vtabla = tabla
-        frmB.vSQL = CadB
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"
@@ -2841,6 +2868,7 @@ Dim BrutoFac As Single
     'poner descripcion campos
     Modo = 4
     text2(4) = PonerNombreDeCod(text1(4), "confpale", "nompalet", "codpalet", "N") 'palet de confeccion
+    text2(20) = PonerNombreDeCod(text1(20), "camaras", "nomcamara", "codcamara", "N") 'camara
     Modo = 2
     
     PonerCamposLineas 'Pone los datos de las tablas de lineas de Ofertas
@@ -2927,7 +2955,7 @@ Dim b As Boolean
     '---------------------------------------------
     b = (Modo <> 0 And Modo <> 2)
     cmdCancelar.visible = b
-    cmdAceptar.visible = b
+    CmdAceptar.visible = b
     
     BloquearImgBuscar Me, Modo, ModificaLineas
     BloquearImgFec Me, 0, Modo
@@ -3071,7 +3099,7 @@ End Function
 
 Private Sub Text2_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 16 And KeyCode = 40 Then 'campo Amliacion Linea y Flecha hacia abajo
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     Else
         KEYdown KeyCode
     End If
@@ -3079,20 +3107,20 @@ End Sub
 
 Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 16 And KeyAscii = 13 Then 'campo Amliacion Linea y ENTER
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     End If
 End Sub
 
 
 Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
 Dim NroAlbar As String
-Dim Cad As String
+Dim cad As String
 
     NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
     If NroAlbar <> "" Then
-        Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
-        Cad = Cad & "                     ¿ Desea continuar ?"
-        If MsgBox(Cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
+        cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
+        cad = cad & "                     ¿ Desea continuar ?"
+        If MsgBox(cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             Exit Sub
         End If
     End If
@@ -3127,7 +3155,7 @@ End Sub
 
 
 Private Sub BotonEliminarLinea()
-Dim Cad As String
+Dim cad As String
 
     On Error GoTo EEliminarLinea
 
@@ -3141,11 +3169,11 @@ Dim Cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    Cad = "¿Seguro que desea eliminar la Variedad?"
-    Cad = Cad & vbCrLf & "Palet: " & Data3.Recordset.Fields(0)
-    Cad = Cad & vbCrLf & "Variedad: " & Data3.Recordset.Fields(3)
+    cad = "¿Seguro que desea eliminar la Variedad?"
+    cad = cad & vbCrLf & "Palet: " & Data3.Recordset.Fields(0)
+    cad = cad & vbCrLf & "Variedad: " & Data3.Recordset.Fields(3)
     
-    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminarLinea
         Screen.MousePointer = vbHourglass
         NumRegElim = Data3.Recordset.AbsolutePosition
@@ -3208,7 +3236,9 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnLineas_Click
         Case 10 'Imprimir Albaran
             mnImprimir_Click
-        Case 12    'Salir
+        Case 11
+            mnInfCamaras_Click
+        Case 13    'Salir
             mnSalir_Click
         Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
             Desplazamiento (Button.Index - btnPrimero)
@@ -3309,7 +3339,7 @@ Private Sub PonerBotonCabecera(b As Boolean)
 'o Pone los botones de Aceptar y cancelar en Insert,update o delete lineas
     On Error Resume Next
 
-    Me.cmdAceptar.visible = Not b
+    Me.CmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -3408,7 +3438,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
     ConseguirFocoLin txtAux(Index)
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Avanzar/Retroceder los campos con las flechas de desplazamiento del teclado.
     KEYdown KeyCode
 End Sub
@@ -3445,13 +3475,13 @@ Private Sub txtAux_LostFocus(Index As Integer)
 End Sub
 
 
-Private Sub BotonMtoLineas(numTab As Integer, Cad As String)
+Private Sub BotonMtoLineas(numTab As Integer, cad As String)
     If Me.DataGrid1.visible Then
         If Me.Data2.Recordset.RecordCount < 1 Then
             MsgBox "El Palet no tiene lineas.", vbInformation
             Exit Sub
         End If
-        TituloLinea = Cad
+        TituloLinea = cad
     End If
     ModificaLineas = 0
     PonerModo 5
@@ -3586,7 +3616,7 @@ Dim SQL As String
 
     On Error Resume Next
     
-    SQL = " numpalet= " & text1(0).Text  ' Data1.Recordset!numpalet ' Text1(0).Text
+    SQL = " numpalet= " & text1(0).Text  'Data1.Recordset!numpalet  ' Text1(0).Text
     If conWhere Then SQL = " WHERE " & SQL
     ObtenerWhereCP = SQL
     
@@ -3676,6 +3706,9 @@ Dim i As Integer
 
 End Sub
 
+
+Private Sub BotonInfPaletsCamaras()
+End Sub
 
 Private Sub BotonImprimir()
 Dim cadFormula As String
@@ -3822,44 +3855,44 @@ End Sub
 
 
 Private Function ObtenerSelFactura() As String
-Dim Cad As String
+Dim cad As String
 Dim Rs As ADODB.Recordset
 
     On Error Resume Next
 
-    Cad = ""
+    cad = ""
     '******************************************************
     'laura: esto se puede comentar, ya no hay movimiento FTI en la smoval
     If hcoCodTipoM = "FTI" Then
         'no hay albaran directamente va a factura de ticket
         
         'ver si lo encontramos como factura: codtipom, numfactu,fecfactu
-        Cad = "SELECT COUNT(*) FROM scafac "
-        Cad = Cad & " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
-        If RegistrosAListar(Cad) > 0 Then
-            Cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
+        cad = "SELECT COUNT(*) FROM scafac "
+        cad = cad & " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
+        If RegistrosAListar(cad) > 0 Then
+            cad = " WHERE codtipom='" & hcoCodTipoM & "' AND numfactu= " & hcoCodMovim & " AND fecfactu=" & DBSet(hcoFechaMov, "F")
         Else
-            Cad = ""
+            cad = ""
         End If
     End If
     '******************************************************
         
-    If Cad = "" Then
+    If cad = "" Then
         'En la smoval estaba e mov. de ALbaran
-        Cad = "SELECT codtipom,numfactu,fecfactu FROM scafac1 "
-        Cad = Cad & " WHERE codtipoa=" & DBSet(hcoCodTipoM, "T") & " AND numalbar=" & hcoCodMovim & " AND fechaalb=" & DBSet(hcoFechaMov, "F")
+        cad = "SELECT codtipom,numfactu,fecfactu FROM scafac1 "
+        cad = cad & " WHERE codtipoa=" & DBSet(hcoCodTipoM, "T") & " AND numalbar=" & hcoCodMovim & " AND fechaalb=" & DBSet(hcoFechaMov, "F")
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not Rs.EOF Then 'where para la factura
-            Cad = " WHERE codtipom='" & Rs!codTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
+            cad = " WHERE codtipom='" & Rs!codTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
         Else
-            Cad = " WHERE numfactu=-1"
+            cad = " WHERE numfactu=-1"
         End If
         Rs.Close
         Set Rs = Nothing
     End If
-    ObtenerSelFactura = Cad
+    ObtenerSelFactura = cad
 End Function
 
 

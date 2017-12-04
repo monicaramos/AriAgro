@@ -33,7 +33,7 @@ Begin VB.Form frmCal
          Strikethrough   =   0   'False
       EndProperty
       ShowToday       =   0   'False
-      StartOfWeek     =   93126658
+      StartOfWeek     =   94437378
       TitleBackColor  =   11829830
       TitleForeColor  =   -2147483639
       CurrentDate     =   38421

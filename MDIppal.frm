@@ -5,7 +5,7 @@ Begin VB.MDIForm MDIppal
    Caption         =   "Ariagro - Gestión Comercial"
    ClientHeight    =   7860
    ClientLeft      =   225
-   ClientTop       =   1170
+   ClientTop       =   1155
    ClientWidth     =   11160
    Icon            =   "MDIppal.frx":0000
    LinkTopic       =   "MDIForm1"
@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "16:22"
+            TextSave        =   "11:00"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
