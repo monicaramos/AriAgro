@@ -2396,7 +2396,7 @@ Dim Salir As Boolean
 Dim KilosVar As Long
 Dim NumLinea As Integer
 Dim resto As Long
-Dim vCodigo As Long
+Dim vcodigo As Long
 
     On Error GoTo eRepartoAlbaranes
 
@@ -2453,11 +2453,11 @@ Dim vCodigo As Long
                     conn.Execute SQL
                     
                     ' insertamos una linea con la diferencia que nos queda
-                    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
-                    vCodigo = vCodigo + 1
+                    vcodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
+                    vcodigo = vcodigo + 1
                     
                     SQL = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
-                    SQL = SQL & "(" & DBSet(vCodigo, "N") & "," & DBSet(Rs2!numpalet, "N") & ",0," & DBSet(Rs2!fecha, "F") & "," & DBSet(Rs!codvarie, "N") & ","
+                    SQL = SQL & "(" & DBSet(vcodigo, "N") & "," & DBSet(Rs2!numpalet, "N") & ",0," & DBSet(Rs2!fecha, "F") & "," & DBSet(Rs!codvarie, "N") & ","
                     SQL = SQL & DBSet(resto, "N") & ")"
                     
                     conn.Execute SQL
@@ -2496,7 +2496,7 @@ Dim NroPalet As Long
 Dim Marca As Integer
 Dim Forfait As String
 Dim Calibre As Integer
-Dim vCodigo As Long
+Dim vcodigo As Long
 
     On Error GoTo eCargarPaletsConfeccionados
 
@@ -2515,7 +2515,7 @@ Dim vCodigo As Long
     
     Marca = DevuelveValor("select min(codmarca) from marcas")
     Forfait = DevuelveValor("select min(codforfait) from forfaits")
-    vCodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
+    vcodigo = DevuelveValor("select max(coalesce(codigo,0)) from trzmovim")
     
     Set Rs = New ADODB.Recordset
     Rs.Open vSQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -2550,10 +2550,10 @@ Dim vCodigo As Long
         End If
         
         ' metemos en la tabla de movimientos de traza
-        vCodigo = vCodigo + 1
+        vcodigo = vcodigo + 1
         
         SQL = "insert into trzmovim (codigo, numpalet, numalbar, fecha, codvarie, kilos) values "
-        SQL = SQL & "(" & DBSet(vCodigo, "N") & "," & DBSet(NroPalet, "N") & ",0," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(Rs1!codvarie, "N") & ","
+        SQL = SQL & "(" & DBSet(vcodigo, "N") & "," & DBSet(NroPalet, "N") & ",0," & DBSet(txtCodigo(30).Text, "F") & "," & DBSet(Rs1!codvarie, "N") & ","
         SQL = SQL & DBSet(Rs1!numkilos, "N") & ")"
         
         conn.Execute SQL
@@ -2886,6 +2886,7 @@ Dim vsqlDestino As String
                 End If
                 Exit Sub
             End If
+            
         Case 3 ' informe de horas trabajadas
             '======== FORMULA  ====================================
             'D/H TRABAJADOR
@@ -2963,7 +2964,7 @@ Dim vsqlDestino As String
             If CargarTablaTemporalPalets Then
                 cadNombreRPT = "rInfPaletsCamaras.rpt"
                 cadTitulo = "Informe de Palets en Cámaras"
-                ConSubInforme = False
+                ConSubInforme = True
                 tabla = "tmpinformes"
                 cadselect = "{tmpinformes.codusu} = " & vUsu.Codigo
 '                cadParam = cadParam & "pUsu=" & vUsu.Codigo & "|"
@@ -2991,9 +2992,12 @@ Dim Rs As ADODB.Recordset
     SQL = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
     conn.Execute SQL
 
-    SQL = "select " & vUsu.Codigo & ", palets.numpalet, palets.codcamara, palets.fechaconf, palets_variedad.codvarie, variedades.nomvarie,  "
-    SQL = SQL & " palets_variedad.pesoneto, palets_variedad.numcajas, palets.numpedid, camaras.nomcamara "
-    SQL = SQL & " from (((palets LEFT JOIN camaras on palets.codcamara = camaras.codcamara) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet) inner join variedades on palets_variedad.codvarie = variedades.codvarie) "
+    SQL = "delete from tmpinformes2 where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute SQL
+
+    SQL = "select " & vUsu.Codigo & ", palets.numpalet, palets.codcamara, palets.fechaconf, palets_variedad.codforfait, forfaits.nomconfe,  "
+    SQL = SQL & " palets_variedad.pesoneto, palets_variedad.numcajas, palets.numpedid, camaras.nomcamara, 0, palets_variedad.numlinea, palets_variedad.codvarie  "
+    SQL = SQL & " from (((palets LEFT JOIN camaras on palets.codcamara = camaras.codcamara) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet) inner join forfaits on palets_variedad.codforfait = forfaits.codforfait) "
     SQL = SQL & " where (1=1) "
     
     If txtCodigo(32).Text <> "" Then SQL = SQL & " and palets.codcamara >= " & DBSet(txtCodigo(32).Text, "N")
@@ -3003,7 +3007,7 @@ Dim Rs As ADODB.Recordset
     If txtCodigo(31).Text <> "" Then SQL = SQL & " and palets.fechaconf <= " & DBSet(txtCodigo(31).Text, "F")
     
     
-    SQL1 = "insert into tmpinformes (codusu, importe1, importe2, fecha1, codigo1, nombre1, importe3, importe4, importe5, nombre2)  " & SQL
+    SQL1 = "insert into tmpinformes (codusu, importe1, importe2, fecha1, nombre3, nombre1, importe3, importe4, importe5, nombre2, importeb1, importeb2, importeb3)  " & SQL
     conn.Execute SQL1
     
     ' marcamos que palets estan en pedidos y albaranes, es decir, han salido
@@ -3013,6 +3017,11 @@ Dim Rs As ADODB.Recordset
     SQL = SQL & " and not pedidos.numalbar is null and pedidos.numalbar <> 0 "
     conn.Execute SQL
     
+    SQL1 = "insert into tmpinformes2 (codusu, importe1, importe2, importe3, nombre1, importe4, importe5) select " & vUsu.Codigo & ", palets_calibre.numpalet, palets_calibre.numlinea, palets_calibre.codcalib, calibres.nomcalib, palets_calibre.numcajas, palets_calibre.codvarie "
+    SQL1 = SQL1 & " from tmpinformes, palets_calibre, calibres where tmpinformes.codusu = " & vUsu.Codigo & " and tmpinformes.importe1 = palets_calibre.numpalet "
+    SQL1 = SQL1 & " and tmpinformes.importeb2 = palets_calibre.numlinea and palets_calibre.codcalib = calibres.codcalib "
+    SQL1 = SQL1 & " and tmpinformes.importeb3 = calibres.codvarie "
+    conn.Execute SQL1
     
     CargarTablaTemporalPalets = True
     Exit Function
@@ -3282,7 +3291,7 @@ Dim List As Collection
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.CmdCancel(indFrame).Cancel = True
+    Me.cmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub
