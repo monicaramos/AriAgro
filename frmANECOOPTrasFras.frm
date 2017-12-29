@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmANECOOPTrasFras 
    BorderStyle     =   3  'Fixed Dialog
@@ -214,7 +214,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public OpcionListado As Byte
+Public Opcionlistado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -239,7 +239,7 @@ Attribute frmMens.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 Private cadSelect1 As String 'Cadena para comprobar si hay datos antes de abrir Informe
@@ -251,7 +251,7 @@ Dim indFrame As Single 'nº de frame en el que estamos
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
 Dim tabla As String
 Dim Tabla1 As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -283,18 +283,18 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim Sql As String
-Dim I As Byte
-Dim cadWhere As String
+Dim SQL As String
+Dim i As Byte
+Dim cadWHERE As String
 Dim b As Boolean
 Dim NomFic As String
-Dim cadena As String
+Dim CADENA As String
 Dim cadena1 As String
 Dim Directorio As String
 Dim fec As String
 Dim nomDir As String
 
-Dim nRegs As Long
+Dim Nregs As Long
 Dim cadTABLA As String
 Dim NomFic1 As String
 
@@ -307,18 +307,19 @@ Dim File1 As FileSystemObject
     cmdAceptar.Enabled = False
     cmdCancelar.Enabled = False
 
-    Sql = " not anecoop.fra_liq is null and anecoop.fra_liq <> '' " 'and not numlinea is null and numlinea <> ''"
+    SQL = " not anecoop.fra_liq is null and anecoop.fra_liq <> '' " 'and not numlinea is null and numlinea <> ''"
     
-    If txtCodigo(14).Text <> "" Then Sql = Sql & " and anecoop.fecha_liq >= " & DBSet(txtCodigo(14).Text, "F")
-    If txtCodigo(15).Text <> "" Then Sql = Sql & " and anecoop.fecha_liq <= " & DBSet(txtCodigo(15).Text, "F")
+    If txtCodigo(14).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq >= " & DBSet(txtCodigo(14).Text, "F")
+    If txtCodigo(15).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq <= " & DBSet(txtCodigo(15).Text, "F")
 
-    Sql = Sql & " and not (fra_liq) in (select numfactu "
-    Sql = Sql & " from facturas where codtipom = " & DBSet(CodtipomAnecoop, "T")
+    '[Monica]18/12/2017: nro de fra A000000X
+    SQL = SQL & " and not mid(fra_liq,2,7) in (select numfactu "
+    SQL = SQL & " from facturas where codtipom = " & DBSet(CodtipomAnecoop, "T")
     
-    If txtCodigo(14).Text <> "" Then Sql = Sql & " and facturas.fecfactu >= " & DBSet(txtCodigo(14).Text, "F")
-    If txtCodigo(15).Text <> "" Then Sql = Sql & " and facturas.fecfactu <= " & DBSet(txtCodigo(15).Text, "F")
+    If txtCodigo(14).Text <> "" Then SQL = SQL & " and facturas.fecfactu >= " & DBSet(txtCodigo(14).Text, "F")
+    If txtCodigo(15).Text <> "" Then SQL = SQL & " and facturas.fecfactu <= " & DBSet(txtCodigo(15).Text, "F")
         
-    Sql = Sql & ") "
+    SQL = SQL & ") "
 
     Facturas = ""
 
@@ -326,7 +327,7 @@ Dim File1 As FileSystemObject
     Set frmMens = New frmMensajes
     
     frmMens.OpcionMensaje = 29
-    frmMens.cadWhere = Sql
+    frmMens.cadWHERE = SQL
     frmMens.Show vbModal
     
     Set frmMens = Nothing
@@ -336,7 +337,7 @@ Dim File1 As FileSystemObject
     
         If Not ComprobarDesdobles Then
         
-            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
             cadTitulo = "Expedientes sin Importe Factura"
             cadNombreRPT = "rErroresExpAnecoop1.rpt"
             LlamarImprimir
@@ -351,21 +352,21 @@ Dim File1 As FileSystemObject
             Exit Sub
         End If
         
-        If CreacionFacturasAnecoop(Sql) Then
+        If CreacionFacturasAnecoop(SQL) Then
             
             MsgBox "Proceso realizado correctamente.", vbExclamation
             
             '========= PARAMETROS  =============================
             'Añadir el parametro de Empresa
-            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
             numParam = numParam + 1
             
             cadTABLA = "tmpinformes"
-            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
 
-            Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+            SQL = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
 
-            If TotalRegistros(Sql) <> 0 Then
+            If TotalRegistros(SQL) <> 0 Then
                 cadTitulo = "Facturas de Anecoop creadas"
                 cadNombreRPT = "rFacturasAnecoop.rpt"
                 LlamarImprimir
@@ -391,26 +392,26 @@ End Sub
 
 
 Private Function ComprobarDesdobles()
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo eComprobarDesdobles
         
     ComprobarDesdobles = False
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
     
-    Sql = " insert into tmpinformes (codusu, nombre1) "
-    Sql = Sql & " select distinct " & vUsu.codigo & ", dd.expediente_id from anecoop dd, anecoop ff "
-    Sql = Sql & " where mid(dd.expediente_id,1,1) <> '0' and (dd.importe_liq = 0 or dd.importe_liq is null)"
-    Sql = Sql & " and mid(dd.expediente_id,2,17) = right(concat('000000000000000000',ff.expediente_id),17)"
-    Sql = Sql & " and ff.fra_liq in (" & Facturas & ") "
+    SQL = " insert into tmpinformes (codusu, nombre1) "
+    SQL = SQL & " select distinct " & vUsu.Codigo & ", dd.expediente_id from anecoop dd, anecoop ff "
+    SQL = SQL & " where mid(dd.expediente_id,1,1) <> '0' and (dd.importe_liq = 0 or dd.importe_liq is null)"
+    SQL = SQL & " and mid(dd.expediente_id,2,17) = right(concat('000000000000000000',ff.expediente_id),17)"
+    SQL = SQL & " and ff.fra_liq in (" & Facturas & ") "
     
-    conn.Execute Sql
+    conn.Execute SQL
     
-    Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+    SQL = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
     
-    ComprobarDesdobles = (TotalRegistros(Sql) = 0)
+    ComprobarDesdobles = (TotalRegistros(SQL) = 0)
     Exit Function
 
 
@@ -419,10 +420,10 @@ eComprobarDesdobles:
 End Function
 
 Private Function CreacionFacturasAnecoop(vWhere As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim Sql3 As String
-Dim numlinea As String
+Dim NumLinea As String
 Dim Albaran As String
 Dim Rs As ADODB.Recordset
 Dim RSLineas As ADODB.Recordset
@@ -432,9 +433,9 @@ Dim FacturaAnt As String
 Dim FechaAnt As Date
 Dim TipoIva As String
 Dim Bruto As Currency
-Dim total As Currency
+Dim Total As Currency
 Dim HayReg As Byte
-Dim I As Integer
+Dim i As Integer
 Dim SqlValues As String
 Dim SqlValues2 As String
 Dim sqlLineas As String
@@ -450,12 +451,13 @@ Dim b As Boolean
 
     conn.Execute "set foreign_key_checks = 0 "
 
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
     
-    sqlLineas = "select fra_liq numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, sum(importe_liq) importe_liq, sum(ncajas) ncajas,  sum(peso_neto) peso_neto, if ( sum(peso_neto) is null or sum(peso_neto) = 0,0, round(sum(importe_liq) / sum(peso_neto),4))  precio_comercial from anecoop  "
+    '[Monica]18/12/2017:nro de fra A000000X
+    sqlLineas = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, sum(importe_liq) importe_liq, sum(ncajas) ncajas,  sum(peso_neto) peso_neto, if ( sum(peso_neto) is null or sum(peso_neto) = 0,0, round(sum(importe_liq) / sum(peso_neto),4))  precio_comercial from anecoop  "
     sqlLineas = sqlLineas & " where " & vWhere
-    sqlLineas = sqlLineas & " and fra_liq in (" & Facturas & ") "
+    sqlLineas = sqlLineas & " and mid(fra_liq,2,7) in (" & Facturas & ") "
     sqlLineas = sqlLineas & " and not numlinea is null and nombre_variedad <> '' "
     sqlLineas = sqlLineas & " group by 1, 2, 3, 4, 5 "
     sqlLineas = sqlLineas & " order by 1, 2, 3, 4, 5 "
@@ -465,9 +467,10 @@ Dim b As Boolean
     
     '[Monica]13/05/2015: no agrupamos por nada cada linea tiene que tener su linea de envase
     'SqlEnvases = "select fra_liq numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, sum(importe_liq) importe_liq, sum(ncajas) ncajas,  sum(peso_neto) peso_neto, if (sum(peso_neto) is null or sum(peso_neto) = 0,0,round(sum(importe_liq) / sum(peso_neto) ,4)) precio_comercial from anecoop  "
-    SqlEnvases = "select fra_liq numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, importe_liq importe_liq, ncajas ncajas,  peso_neto peso_neto, if (peso_neto is null or peso_neto = 0,0,round(importe_liq / peso_neto ,4)) precio_comercial from anecoop  "
+                    '[Monica]18/12/2017:nro de fra A000000X
+    SqlEnvases = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, importe_liq importe_liq, ncajas ncajas,  peso_neto peso_neto, if (peso_neto is null or peso_neto = 0,0,round(importe_liq / peso_neto ,4)) precio_comercial from anecoop  "
     SqlEnvases = SqlEnvases & " where " & vWhere
-    SqlEnvases = SqlEnvases & " and fra_liq in (" & Facturas & ") "
+    SqlEnvases = SqlEnvases & " and mid(fra_liq,2,7) in (" & Facturas & ") "
     SqlEnvases = SqlEnvases & " and numlinea is null and (nombre_variedad = '' or nombre_variedad is null) "
     'SqlEnvases = SqlEnvases & " group by 1, 2, 3, 4, 5 "
     SqlEnvases = SqlEnvases & " order by 1, 2, 3, 4, 5 "
@@ -481,19 +484,19 @@ Dim b As Boolean
     '======================
 
     ' Cargamos el recordset para actualizar segun el tipo de iva las cabeceras
-    Sql = "select fra_liq as numfactu, fecha_liq as fecfactu, porcent_iva_liq as porciva, sum(importe_liq) as importe_liq, sum(importe_iva_liq) as importe_iva_liq,  sum(importe_iva_liq + importe_liq) as total from anecoop  "
-    Sql = Sql & " where " & vWhere
-    Sql = Sql & " and fra_liq in (" & Facturas & ") "
-    Sql = Sql & " group by 1, 2, 3 "
-    Sql = Sql & " order by 1, 2, 3 "
+    SQL = "select mid(fra_liq,2,7) as numfactu, fecha_liq as fecfactu, porcent_iva_liq as porciva, sum(importe_liq) as importe_liq, sum(importe_iva_liq) as importe_iva_liq,  sum(importe_iva_liq + importe_liq) as total from anecoop  "
+    SQL = SQL & " where " & vWhere
+    SQL = SQL & " and mid(fra_liq,2,7) in (" & Facturas & ") "
+    SQL = SQL & " group by 1, 2, 3 "
+    SQL = SQL & " order by 1, 2, 3 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     'Insertamos todas las cabeceras de las facturas
-    Sql3 = "select fra_liq numfactu, fecha_liq fecfactu, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop  "
+    Sql3 = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop  "
     Sql3 = Sql3 & " where " & vWhere
-    Sql3 = Sql3 & " and fra_liq in (" & Facturas & ") "
+    Sql3 = Sql3 & " and mid(fra_liq,2,7) in (" & Facturas & ") "
     Sql3 = Sql3 & " group by 1, 2 "
     Sql3 = Sql3 & " order by 1, 2 "
     
@@ -506,9 +509,9 @@ Dim b As Boolean
         FechaAnt = CDate(DBLet(Rs!FecFactu))
     End If
     
-    I = 0
+    i = 0
     Bruto = 0
-    total = 0
+    Total = 0
     HayReg = 0
     
     While Not Rs.EOF
@@ -516,7 +519,7 @@ Dim b As Boolean
         If FacturaAnt <> Rs!NumFactu Or FechaAnt <> Rs!FecFactu Then
             Sql2 = "update facturas set "
             Sql2 = Sql2 & " brutofac = " & DBSet(Bruto, "N")
-            Sql2 = Sql2 & ", totalfac = " & DBSet(total, "N")
+            Sql2 = Sql2 & ", totalfac = " & DBSet(Total, "N")
             Sql2 = Sql2 & " where codtipom = " & DBSet(CodtipomAnecoop, "T")
             Sql2 = Sql2 & " and numfactu = " & DBSet(FacturaAnt, "N")
             Sql2 = Sql2 & " and fecfactu =" & DBSet(FechaAnt, "F")
@@ -525,14 +528,14 @@ Dim b As Boolean
             
             
             ' insertamos en la tabla temporal la factura que hemos insertado
-            Sql = "insert into tmpinformes (codusu, nombre1, importe1, fecha1, importe2) values "
-            Sql = Sql & "(" & vUsu.codigo & "," & DBSet(CodtipomAnecoop, "T") & "," & DBSet(FacturaAnt, "N") & ","
-            Sql = Sql & DBSet(FechaAnt, "F") & "," & DBSet(total, "N") & ")"
-            conn.Execute Sql
+            SQL = "insert into tmpinformes (codusu, nombre1, importe1, fecha1, importe2) values "
+            SQL = SQL & "(" & vUsu.Codigo & "," & DBSet(CodtipomAnecoop, "T") & "," & DBSet(FacturaAnt, "N") & ","
+            SQL = SQL & DBSet(FechaAnt, "F") & "," & DBSet(Total, "N") & ")"
+            conn.Execute SQL
             
-            I = 0
+            i = 0
             Bruto = 0
-            total = 0
+            Total = 0
             FacturaAnt = DBLet(Rs!NumFactu)
             FechaAnt = DBLet(Rs!FecFactu)
         End If
@@ -546,35 +549,35 @@ Dim b As Boolean
         End If
         
         Bruto = Bruto + DBLet(Rs!importe_liq)
-        total = total + DBLet(Rs!total, "N")
+        Total = Total + DBLet(Rs!Total, "N")
         
         ' actualizamos bases
-        Sql = "update facturas set "
-        Select Case I
+        SQL = "update facturas set "
+        Select Case i
             Case 0
-                Sql = Sql & " baseimp1 = " & DBSet(Rs!importe_liq, "N")
-                Sql = Sql & ",impoiva1 = " & DBSet(Rs!importe_iva_liq, "N")
-                Sql = Sql & ",porciva1 = " & DBSet(Rs!PorcIva, "N")
-                Sql = Sql & ",codiiva1 = " & DBSet(TipoIva, "N")
+                SQL = SQL & " baseimp1 = " & DBSet(Rs!importe_liq, "N")
+                SQL = SQL & ",impoiva1 = " & DBSet(Rs!importe_iva_liq, "N")
+                SQL = SQL & ",porciva1 = " & DBSet(Rs!PorcIva, "N")
+                SQL = SQL & ",codiiva1 = " & DBSet(TipoIva, "N")
             Case 1
-                Sql = Sql & " baseimp2 = " & DBSet(Rs!importe_liq, "N")
-                Sql = Sql & ",impoiva2 = " & DBSet(Rs!importe_iva_liq, "N")
-                Sql = Sql & ",porciva2 = " & DBSet(Rs!PorcIva, "N")
-                Sql = Sql & ",codiiva2 = " & DBSet(TipoIva, "N")
+                SQL = SQL & " baseimp2 = " & DBSet(Rs!importe_liq, "N")
+                SQL = SQL & ",impoiva2 = " & DBSet(Rs!importe_iva_liq, "N")
+                SQL = SQL & ",porciva2 = " & DBSet(Rs!PorcIva, "N")
+                SQL = SQL & ",codiiva2 = " & DBSet(TipoIva, "N")
             Case 2
-                Sql = Sql & " baseimp3 = " & DBSet(Rs!importe_liq, "N")
-                Sql = Sql & ",impoiva3 = " & DBSet(Rs!importe_iva_liq, "N")
-                Sql = Sql & ",porciva3 = " & DBSet(Rs!PorcIva, "N")
-                Sql = Sql & ",codiiva3 = " & DBSet(TipoIva, "N")
+                SQL = SQL & " baseimp3 = " & DBSet(Rs!importe_liq, "N")
+                SQL = SQL & ",impoiva3 = " & DBSet(Rs!importe_iva_liq, "N")
+                SQL = SQL & ",porciva3 = " & DBSet(Rs!PorcIva, "N")
+                SQL = SQL & ",codiiva3 = " & DBSet(TipoIva, "N")
         End Select
     
-        Sql = Sql & " where codtipom = " & DBSet(CodtipomAnecoop, "T")
-        Sql = Sql & " and numfactu = " & DBSet(Rs!NumFactu, "N")
-        Sql = Sql & " and fecfactu =" & DBSet(Rs!FecFactu, "F")
+        SQL = SQL & " where codtipom = " & DBSet(CodtipomAnecoop, "T")
+        SQL = SQL & " and numfactu = " & DBSet(Rs!NumFactu, "N")
+        SQL = SQL & " and fecfactu =" & DBSet(Rs!FecFactu, "F")
         
-        conn.Execute Sql
+        conn.Execute SQL
     
-        I = I + 1
+        i = i + 1
     
         Rs.MoveNext
     Wend
@@ -583,7 +586,7 @@ Dim b As Boolean
     If HayReg Then
         Sql2 = "update facturas set "
         Sql2 = Sql2 & " brutofac = " & DBSet(Bruto, "N")
-        Sql2 = Sql2 & ", totalfac = " & DBSet(total, "N")
+        Sql2 = Sql2 & ", totalfac = " & DBSet(Total, "N")
         Sql2 = Sql2 & " where codtipom = " & DBSet(CodtipomAnecoop, "T")
         Sql2 = Sql2 & " and numfactu = " & DBSet(FacturaAnt, "N")
         Sql2 = Sql2 & " and fecfactu =" & DBSet(FechaAnt, "F")
@@ -591,11 +594,11 @@ Dim b As Boolean
         conn.Execute Sql2
         
         ' insertamos en la tabla temporal la factura que hemos insertado
-        Sql = "insert into tmpinformes (codusu, nombre1, importe1, fecha1, importe2) values "
-        Sql = Sql & "(" & vUsu.codigo & "," & DBSet(CodtipomAnecoop, "T") & "," & DBSet(FacturaAnt, "N") & ","
-        Sql = Sql & DBSet(FechaAnt, "F") & "," & DBSet(total, "N") & ")"
+        SQL = "insert into tmpinformes (codusu, nombre1, importe1, fecha1, importe2) values "
+        SQL = SQL & "(" & vUsu.Codigo & "," & DBSet(CodtipomAnecoop, "T") & "," & DBSet(FacturaAnt, "N") & ","
+        SQL = SQL & DBSet(FechaAnt, "F") & "," & DBSet(Total, "N") & ")"
         
-        conn.Execute Sql
+        conn.Execute SQL
         
     End If
 
@@ -603,8 +606,8 @@ Dim b As Boolean
     '==================
     'Insertamos las lineas de facturas por albaran
     If Not RSLineas.EOF Then
-        Sql = "insert into facturas_variedad (codtipom,numfactu,fecfactu,numlinea,numalbar,numlinealbar,cantreal,cantfact,precibru,precinet,"
-        Sql = Sql & "imporbru,impornet,codigiva,unidades) values "
+        SQL = "insert into facturas_variedad (codtipom,numfactu,fecfactu,numlinea,numalbar,numlinealbar,cantreal,cantfact,precibru,precinet,"
+        SQL = SQL & "imporbru,impornet,codigiva,unidades) values "
         
         Sql2 = "insert into facturas_calibre (codtipom,numfactu,fecfactu,numlinea,numline1,numalbar,numlinealbar,numline1albar,cantreal,cantfact,"
         Sql2 = Sql2 & "precibru,precinet,imporbru,impornet,codigiva,unidades) values "
@@ -612,14 +615,14 @@ Dim b As Boolean
         SqlValues = ""
         SqlValues2 = ""
         
-        I = 0
+        i = 0
         FacturaAnt = RSLineas!NumFactu
         FechaAnt = RSLineas!FecFactu
         While Not RSLineas.EOF
             If FacturaAnt <> RSLineas!NumFactu Or FechaAnt <> RSLineas!FecFactu Then
-                I = 0
+                i = 0
             End If
-            I = I + 1
+            i = i + 1
             TipoIva = DevuelveDesdeBDNew(cConta, "tiposiva", "codigiva", "porceiva", CStr(DBLet(RSLineas!porcent_iva_liq)), "N")
             
             If TipoIva = "" Then
@@ -628,14 +631,14 @@ Dim b As Boolean
                 Exit Function
             End If
         
-            SqlValues = SqlValues & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSLineas!NumFactu, "N") & "," & DBSet(RSLineas!FecFactu, "F") & "," & DBSet(I, "N") & ","
-            SqlValues = SqlValues & DBSet(RSLineas!numero_salida_cooperativa, "N") & "," & DBSet(RSLineas!numlinea, "N") & "," & DBSet(RSLineas!peso_neto, "N") & "," & DBSet(RSLineas!ncajas, "N") & ","
+            SqlValues = SqlValues & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSLineas!NumFactu, "N") & "," & DBSet(RSLineas!FecFactu, "F") & "," & DBSet(i, "N") & ","
+            SqlValues = SqlValues & DBSet(RSLineas!numero_salida_cooperativa, "N") & "," & DBSet(RSLineas!NumLinea, "N") & "," & DBSet(RSLineas!peso_neto, "N") & "," & DBSet(RSLineas!ncajas, "N") & ","
             SqlValues = SqlValues & DBSet(RSLineas!precio_comercial, "N") & "," & DBSet(RSLineas!precio_comercial, "N") & "," & DBSet(RSLineas!importe_liq, "N") & "," & DBSet(RSLineas!importe_liq, "N") & ","
             SqlValues = SqlValues & DBSet(TipoIva, "N") & ",0),"
         
         
-            SqlValues2 = SqlValues2 & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSLineas!NumFactu, "N") & "," & DBSet(RSLineas!FecFactu, "F") & "," & DBSet(I, "N") & ",1,"
-            SqlValues2 = SqlValues2 & DBSet(RSLineas!numero_salida_cooperativa, "N") & "," & DBSet(RSLineas!numlinea, "N") & ",1," & DBSet(RSLineas!peso_neto, "N") & "," & DBSet(RSLineas!ncajas, "N") & ","
+            SqlValues2 = SqlValues2 & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSLineas!NumFactu, "N") & "," & DBSet(RSLineas!FecFactu, "F") & "," & DBSet(i, "N") & ",1,"
+            SqlValues2 = SqlValues2 & DBSet(RSLineas!numero_salida_cooperativa, "N") & "," & DBSet(RSLineas!NumLinea, "N") & ",1," & DBSet(RSLineas!peso_neto, "N") & "," & DBSet(RSLineas!ncajas, "N") & ","
             SqlValues2 = SqlValues2 & DBSet(RSLineas!precio_comercial, "N") & "," & DBSet(RSLineas!precio_comercial, "N") & "," & DBSet(RSLineas!importe_liq, "N") & "," & DBSet(RSLineas!importe_liq, "N") & ","
             SqlValues2 = SqlValues2 & DBSet(TipoIva, "N") & ",0),"
         
@@ -644,7 +647,7 @@ Dim b As Boolean
         Wend
         If SqlValues <> "" Then
             SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1)
-            conn.Execute Sql & SqlValues
+            conn.Execute SQL & SqlValues
             
             SqlValues2 = Mid(SqlValues2, 1, Len(SqlValues2) - 1)
             conn.Execute Sql2 & SqlValues2
@@ -661,20 +664,20 @@ Dim b As Boolean
     'Insertamos las lineas de facturas por albaran
     If Not RSEnvases.EOF Then
     
-        Sql = "insert into facturas_envases (codtipom,numfactu,fecfactu,numlinea,codalmac,codartic,cantidad,precioar,"
-        Sql = Sql & "dtolinea,importel,ampliaci,codigiva, numalbar) values "
+        SQL = "insert into facturas_envases (codtipom,numfactu,fecfactu,numlinea,codalmac,codartic,cantidad,precioar,"
+        SQL = SQL & "dtolinea,importel,ampliaci,codigiva, numalbar) values "
         
         SqlValues = ""
         
-        I = 0
+        i = 0
         
         FacturaAnt = RSEnvases!NumFactu
         FechaAnt = RSEnvases!FecFactu
         While Not RSEnvases.EOF And b
             If FacturaAnt <> RSEnvases!NumFactu Or FechaAnt <> RSEnvases!FecFactu Then
-                I = 0
+                i = 0
             End If
-            I = I + 1
+            i = i + 1
             TipoIva = DevuelveDesdeBDNew(cConta, "tiposiva", "codigiva", "porceiva", CStr(DBLet(RSEnvases!porcent_iva_liq)), "N")
             
             If TipoIva = "" Then
@@ -683,7 +686,7 @@ Dim b As Boolean
                 Exit Function
             End If
         
-            SqlValues = SqlValues & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSEnvases!NumFactu, "N") & "," & DBSet(RSEnvases!FecFactu, "F") & "," & DBSet(I, "N") & ","
+            SqlValues = SqlValues & "(" & DBSet(CodtipomAnecoop, "T") & "," & DBSet(RSEnvases!NumFactu, "N") & "," & DBSet(RSEnvases!FecFactu, "F") & "," & DBSet(i, "N") & ","
             SqlValues = SqlValues & DBSet(vParamAplic.Almacen, "N") & "," & DBSet(vParamAplic.EnvAnecoop, "T") & "," & DBSet(RSEnvases!peso_neto, "N") & ","
             SqlValues = SqlValues & DBSet(RSEnvases!precio_comercial, "N") & ",0," & DBSet(RSEnvases!importe_liq, "N") & "," & ValorNulo & ","
             SqlValues = SqlValues & DBSet(TipoIva, "N") & "," & DBSet(RSEnvases!numero_salida_cooperativa, "N") & "),"
@@ -701,11 +704,11 @@ Dim b As Boolean
             vCStock.Documento = CLng(RSEnvases!NumFactu) 'Nº Factura
             vCStock.Fechamov = DBLet(RSEnvases!FecFactu) 'Fecha de la Factura
             
-            vCStock.codArtic = vParamAplic.EnvAnecoop
+            vCStock.CodArtic = vParamAplic.EnvAnecoop
             vCStock.codAlmac = CInt(vParamAplic.Almacen)
             vCStock.Cantidad = DBLet(RSEnvases!peso_neto)
             vCStock.Importe = DBLet(RSEnvases!importe_liq)
-            vCStock.LineaDocu = I
+            vCStock.LineaDocu = i
         
             b = vCStock.ActualizarStock(True)
     
@@ -715,7 +718,7 @@ Dim b As Boolean
         Wend
         If SqlValues <> "" Then
             SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1)
-            conn.Execute Sql & SqlValues
+            conn.Execute SQL & SqlValues
         End If
     End If
     
@@ -748,7 +751,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 
     PrimeraVez = True
@@ -762,17 +765,17 @@ Dim List As Collection
     '###Descomentar
 '    CommitConexion
         
-    FrameIntegracionVisible True, h, w
+    FrameIntegracionVisible True, H, W
     pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 
-Private Sub FrameIntegracionVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameIntegracionVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el listado de socios por seccion
     Me.FrameIntegracion.visible = visible
     If visible = True Then
@@ -780,14 +783,14 @@ Private Sub FrameIntegracionVisible(visible As Boolean, ByRef h As Integer, ByRe
         Me.FrameIntegracion.Left = 0
         Me.FrameIntegracion.Height = 4665
         Me.FrameIntegracion.Width = 6555
-        w = Me.FrameIntegracion.Width
-        h = Me.FrameIntegracion.Height
+        W = Me.FrameIntegracion.Width
+        H = Me.FrameIntegracion.Height
     End If
 End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadSelect1 = ""
     cadParam = ""
     numParam = 0
@@ -804,15 +807,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -834,7 +837,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Show vbModal
     End With
 End Sub
@@ -861,7 +864,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -877,14 +880,14 @@ End Sub
 Private Function ComprobarErrores(ByRef pb1 As ProgressBar) As Boolean
 Dim NF As Long
 Dim cad As String
-Dim I As Integer
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Rs1 As ADODB.Recordset
 Dim Numreg As Long
-Dim Sql As String
+Dim SQL As String
 Dim SQL1 As String
-Dim total As Long
+Dim Total As Long
 Dim v_cant As Currency
 Dim v_impo As Currency
 Dim v_prec As Currency
@@ -899,23 +902,23 @@ Dim Variedad As String
 
     ComprobarErrores = False
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
 
-    I = 0
+    i = 0
     lblProgres(1).Caption = "Comprobando errores Tabla temporal entradas "
     
-    Sql = "select * from tmpentradaS"
+    SQL = "select * from tmpentradaS"
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
     b = True
-    I = 0
+    i = 0
     While Not Rs.EOF And b
-        I = I + 1
+        i = i + 1
 
         Me.pb1.Value = Me.pb1.Value + 1
-        lblProgres(2).Caption = "Linea " & I
+        lblProgres(2).Caption = "Linea " & i
         Me.Refresh
 
         Variedad = Format(Rs!codprodu, "00") & Format(Rs!codvarie, "00")
@@ -924,50 +927,50 @@ Dim Variedad As String
         FechaEnt = DBLet(Rs!FechaEnt, "T")
         If Not EsFechaOK(FechaEnt) Then
             Mens = "Fecha incorrecta"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
 
         ' comprobamos que exista el socio
-        Sql = "select count(*) from rsocios where codsocio = " & DBSet(Rs!CodSocio, "N")
-        If TotalRegistros(Sql) = 0 Then
+        SQL = "select count(*) from rsocios where codsocio = " & DBSet(Rs!CodSocio, "N")
+        If TotalRegistros(SQL) = 0 Then
             Mens = "Socio no existe"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         ' comprobamos que exista el campo
-        Sql = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
-        Sql = Sql & " and nrocampo = " & DBSet(Rs!codCampo, "N")
-        Sql = Sql & " and codvarie = " & DBSet(Variedad, "N")
-        Sql = Sql & " and fecbajas is null "
-        If TotalRegistros(Sql) = 0 Then
+        SQL = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
+        SQL = SQL & " and nrocampo = " & DBSet(Rs!codCampo, "N")
+        SQL = SQL & " and codvarie = " & DBSet(Variedad, "N")
+        SQL = SQL & " and fecbajas is null "
+        If TotalRegistros(SQL) = 0 Then
             Mens = "Campo no existe o con fecha de baja"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         ' comprobamos que no exista mas de un campo con ese numero de orden campo (scampo.codcampo MB)
-        Sql = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
-        Sql = Sql & " and nrocampo = " & DBSet(Rs!codCampo, "N")
-        Sql = Sql & " and codvarie = " & DBSet(Variedad, "N")
-        If TotalRegistros(Sql) > 1 Then
+        SQL = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
+        SQL = SQL & " and nrocampo = " & DBSet(Rs!codCampo, "N")
+        SQL = SQL & " and codvarie = " & DBSet(Variedad, "N")
+        If TotalRegistros(SQL) > 1 Then
             Mens = "Campo con más de un registro"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         
@@ -990,7 +993,7 @@ End Function
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 ' añadido
 Dim Mens As String
