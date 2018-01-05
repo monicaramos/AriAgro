@@ -348,7 +348,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public Opcionlistado As Byte
+Public OpcionListado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -463,7 +463,7 @@ Dim cadErr As String
             cmdAceptar.Enabled = False
             cmdCancelar.Enabled = False
         
-            If InsertarAsientoDiario(txtcodigo(14).Text, txtcodigo(3).Text, txtcodigo(1).Text, txtcodigo(0).Text, FecLiq, cadErr) Then
+            If InsertarAsientoDiario(txtCodigo(14).Text, txtCodigo(3).Text, txtCodigo(1).Text, txtCodigo(0).Text, FecLiq, cadErr) Then
                 
                 MsgBox "Proceso realizado correctamente.", vbExclamation
                 
@@ -504,7 +504,7 @@ Dim Rs As ADODB.Recordset
     
     SQL = "select distinct expediente_id"
     SQL = SQL & " from anecoop_pago ff"
-    SQL = SQL & " where ff.num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+    SQL = SQL & " where ff.num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
     SQL = SQL & " and (mid(ff.expediente_id,1,1) = '0' or length(ff.expediente_id) <> 18) "
     SQL = SQL & " order by 1 "
     
@@ -516,7 +516,7 @@ Dim Rs As ADODB.Recordset
         If Len(Rs!expediente_id) <> 18 Then
             SQL = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17) "
             SQL = SQL & " and mid(expediente_id,1,1)  <> '0' "
-            SQL = SQL & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+            SQL = SQL & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
             
             If TotalRegistros(SQL) = 0 Then
                 SQL = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17)  "
@@ -531,7 +531,7 @@ Dim Rs As ADODB.Recordset
             
                 SQL = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
                 SQL = SQL & " and mid(expediente_id,1,1)  <> '0' "
-                SQL = SQL & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
+                SQL = SQL & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
                 
                 If TotalRegistros(SQL) = 0 Then
                     SQL = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
@@ -604,7 +604,7 @@ Dim List As Collection
 '    CommitConexion
         
     FrameIntegracionVisible True, H, W
-    pb1.visible = False
+    Pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
@@ -675,7 +675,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = Opcionlistado
+        .Opcion = OpcionListado
         .Show vbModal
     End With
 End Sub
@@ -702,7 +702,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = Opcionlistado
+        .Opcion = OpcionListado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -730,27 +730,27 @@ Dim tipoMov As String
 
     b = True
     ' Datos contables introducidos
-    If txtcodigo(14).Text = "" Then
+    If txtCodigo(14).Text = "" Then
         MsgBox "Debe de introducir la fecha de pago. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(14)
+        PonerFoco txtCodigo(14)
     End If
-    If b And txtcodigo(3).Text = "" Then
+    If b And txtCodigo(3).Text = "" Then
         MsgBox "Debe de introducir el número de diario. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(3)
+        PonerFoco txtCodigo(3)
     End If
-    If b And txtcodigo(1).Text = "" Then
+    If b And txtCodigo(1).Text = "" Then
         MsgBox "Debe de introducir la cuenta de banco. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(1)
+        PonerFoco txtCodigo(1)
     End If
     
     ' Introducido nro de liquidacion
-    If b And txtcodigo(0).Text = "" Then
+    If b And txtCodigo(0).Text = "" Then
         MsgBox "Debe introducir el número de liquidación. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(0)
+        PonerFoco txtCodigo(0)
     End If
     
     DatosOk = b
@@ -809,8 +809,8 @@ Dim i As Long
     Total = 0
     
     '[Monica]18/12/2017: antes ll.*
-    SQL = "select ll.expediente_id, ll.expediente_pagoid, ll.tipo_pago, mid(ll.num_factura, 2,7) num_factura, ll.fecha_factura, ll.num_liquidacion, ll.importe, ll.fecha_pago, ll.fecha_pago_sc, ll.estado, ll.idcontab, "
-    SQL = SQL & " cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtcodigo(0).Text, "N")
+    SQL = "select ll.expediente_id, ll.expediente_pagoid, ll.tipo_pago, if( num_factura regexp '^[A]' = 1 , mid(num_factura,2,length(num_factura)),num_factura) num_factura, ll.fecha_factura, ll.num_liquidacion, ll.importe, ll.fecha_pago, ll.fecha_pago_sc, ll.estado, ll.idcontab, "
+    SQL = SQL & " cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtCodigo(0).Text, "N")
     SQL = SQL & " and ll.expediente_id = cc.expediente_id"
     
     TotalAnecoop = DevuelveValor("select sum(importe) from (" & SQL & ") aaaa")
@@ -825,16 +825,16 @@ Dim i As Long
         FecLiq = DBLet(Rs!fecha_pago, "F")
         
         lblProgres(0).Caption = "Comprobando datos: "
-        pb1.visible = True
-        pb1.Max = Nregs
-        pb1.Value = 0
+        Pb1.visible = True
+        Pb1.Max = Nregs
+        Pb1.Value = 0
         DoEvents
         i = 0
         
         While Not Rs.EOF
             i = i + 1
             lblProgres(1).Caption = "Linea " & i
-            IncrementarProgresNew pb1, 1
+            IncrementarProgresNew Pb1, 1
             DoEvents
             
             
@@ -1030,7 +1030,7 @@ Dim i As Long
     
     lblProgres(0).visible = False
     lblProgres(1).visible = False
-    pb1.visible = False
+    Pb1.visible = False
   
     Exit Function
 
@@ -1040,18 +1040,18 @@ End Function
 
 Private Sub frmBas_DatoSeleccionado(CadenaSeleccion As String)
 'tipos de diario de la Contabilidad
-    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
     
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 
 End Sub
@@ -1087,7 +1087,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmBas.Caption = "Tipos de Diario"
             frmBas.DeConsulta = True
             frmBas.DatosADevolverBusqueda = "0|1|"
-            frmBas.CodigoActual = txtcodigo(3).Text
+            frmBas.CodigoActual = txtCodigo(3).Text
             frmBas.Show vbModal
             
             Set frmBas = Nothing
@@ -1096,7 +1096,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         Case 1 'cuenta contable banco
             AbrirFrmCuentas (Index)
     End Select
-    PonerFoco txtcodigo(indCodigo)
+    PonerFoco txtCodigo(indCodigo)
 
 End Sub
 
@@ -1126,18 +1126,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
+    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1163,7 +1163,7 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1175,17 +1175,17 @@ Dim cad As String, cadTipo As String 'tipo cliente
     
     
         Case 1 ' cta banco
-            If txtcodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtcodigo(Index), 2)
+            If txtCodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtCodigo(Index), 2)
         
         Case 3 ' numero de diario
-            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
+            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtCodigo(Index).Text, "N")
             If txtNombre(Index).Text = "" Then
                 MsgBox "Código de diario no existe. Reintroduzca.", vbExclamation
 '                PonerFoco txtcodigo(Index)
             End If
         
         Case 14 'FECHAS
-            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
     End Select
 End Sub
 
@@ -1194,7 +1194,7 @@ Private Sub AbrirFrmCuentas(indice As Integer)
     indCodigo = indice
     Set frmCtas = New frmCtasConta
     frmCtas.DatosADevolverBusqueda = "0|1|"
-    frmCtas.CodigoActual = txtcodigo(indCodigo)
+    frmCtas.CodigoActual = txtCodigo(indCodigo)
     frmCtas.Show vbModal
     Set frmCtas = Nothing
 End Sub
@@ -1203,9 +1203,9 @@ Private Sub CalcularImporte()
 Dim SQL As String
 
     txtNombre(0).Text = ""
-    If txtcodigo(0).Text = "" Then Exit Sub
+    If txtCodigo(0).Text = "" Then Exit Sub
 
-    SQL = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtcodigo(0).Text, "N") & " and idcontab = 0"
+    SQL = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtCodigo(0).Text, "N") & " and idcontab = 0"
     txtNombre(0).Text = Format(DevuelveValor(SQL), "###,###,##0.00")
 
 End Sub

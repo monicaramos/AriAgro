@@ -214,7 +214,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public Opcionlistado As Byte
+Public OpcionListado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -313,7 +313,8 @@ Dim File1 As FileSystemObject
     If txtCodigo(15).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq <= " & DBSet(txtCodigo(15).Text, "F")
 
     '[Monica]18/12/2017: nro de fra A000000X
-    SQL = SQL & " and not mid(fra_liq,2,7) in (select numfactu "
+    SQL = SQL & " and not if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) in (select numfactu "
+    'SQL = SQL & " and not fra_liq in (select numfactu "
     SQL = SQL & " from facturas where codtipom = " & DBSet(CodtipomAnecoop, "T")
     
     If txtCodigo(14).Text <> "" Then SQL = SQL & " and facturas.fecfactu >= " & DBSet(txtCodigo(14).Text, "F")
@@ -456,6 +457,7 @@ Dim b As Boolean
     
     '[Monica]18/12/2017:nro de fra A000000X
     sqlLineas = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, sum(importe_liq) importe_liq, sum(ncajas) ncajas,  sum(peso_neto) peso_neto, if ( sum(peso_neto) is null or sum(peso_neto) = 0,0, round(sum(importe_liq) / sum(peso_neto),4))  precio_comercial from anecoop  "
+    'sqlLineas = "select fra_liq numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, sum(importe_liq) importe_liq, sum(ncajas) ncajas,  sum(peso_neto) peso_neto, if ( sum(peso_neto) is null or sum(peso_neto) = 0,0, round(sum(importe_liq) / sum(peso_neto),4))  precio_comercial from anecoop  "
     sqlLineas = sqlLineas & " where " & vWhere
     sqlLineas = sqlLineas & " and mid(fra_liq,2,7) in (" & Facturas & ") "
     sqlLineas = sqlLineas & " and not numlinea is null and nombre_variedad <> '' "
@@ -471,6 +473,7 @@ Dim b As Boolean
     SqlEnvases = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, numero_salida_cooperativa, numlinea, porcent_iva_liq, importe_liq importe_liq, ncajas ncajas,  peso_neto peso_neto, if (peso_neto is null or peso_neto = 0,0,round(importe_liq / peso_neto ,4)) precio_comercial from anecoop  "
     SqlEnvases = SqlEnvases & " where " & vWhere
     SqlEnvases = SqlEnvases & " and mid(fra_liq,2,7) in (" & Facturas & ") "
+
     SqlEnvases = SqlEnvases & " and numlinea is null and (nombre_variedad = '' or nombre_variedad is null) "
     'SqlEnvases = SqlEnvases & " group by 1, 2, 3, 4, 5 "
     SqlEnvases = SqlEnvases & " order by 1, 2, 3, 4, 5 "
@@ -485,8 +488,10 @@ Dim b As Boolean
 
     ' Cargamos el recordset para actualizar segun el tipo de iva las cabeceras
     SQL = "select mid(fra_liq,2,7) as numfactu, fecha_liq as fecfactu, porcent_iva_liq as porciva, sum(importe_liq) as importe_liq, sum(importe_iva_liq) as importe_iva_liq,  sum(importe_iva_liq + importe_liq) as total from anecoop  "
+'    SQL = "select fra_liq as numfactu, fecha_liq as fecfactu, porcent_iva_liq as porciva, sum(importe_liq) as importe_liq, sum(importe_iva_liq) as importe_iva_liq,  sum(importe_iva_liq + importe_liq) as total from anecoop  "
     SQL = SQL & " where " & vWhere
     SQL = SQL & " and mid(fra_liq,2,7) in (" & Facturas & ") "
+'    SQL = SQL & " and fra_liq in (" & Facturas & ") "
     SQL = SQL & " group by 1, 2, 3 "
     SQL = SQL & " order by 1, 2, 3 "
     
@@ -495,6 +500,8 @@ Dim b As Boolean
     
     'Insertamos todas las cabeceras de las facturas
     Sql3 = "select mid(fra_liq,2,7) numfactu, fecha_liq fecfactu, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop  "
+'    Sql3 = "select fra_liq numfactu, fecha_liq fecfactu, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop  "
+
     Sql3 = Sql3 & " where " & vWhere
     Sql3 = Sql3 & " and mid(fra_liq,2,7) in (" & Facturas & ") "
     Sql3 = Sql3 & " group by 1, 2 "
@@ -704,7 +711,7 @@ Dim b As Boolean
             vCStock.Documento = CLng(RSEnvases!NumFactu) 'Nº Factura
             vCStock.Fechamov = DBLet(RSEnvases!FecFactu) 'Fecha de la Factura
             
-            vCStock.CodArtic = vParamAplic.EnvAnecoop
+            vCStock.codArtic = vParamAplic.EnvAnecoop
             vCStock.codAlmac = CInt(vParamAplic.Almacen)
             vCStock.Cantidad = DBLet(RSEnvases!peso_neto)
             vCStock.Importe = DBLet(RSEnvases!importe_liq)
@@ -766,7 +773,7 @@ Dim List As Collection
 '    CommitConexion
         
     FrameIntegracionVisible True, H, W
-    pb1.visible = False
+    Pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
@@ -837,7 +844,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = Opcionlistado
+        .Opcion = OpcionListado
         .Show vbModal
     End With
 End Sub
@@ -864,7 +871,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = Opcionlistado
+        .Opcion = OpcionListado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -877,7 +884,7 @@ Private Sub AbrirVisReport()
 End Sub
 
 
-Private Function ComprobarErrores(ByRef pb1 As ProgressBar) As Boolean
+Private Function ComprobarErrores(ByRef Pb1 As ProgressBar) As Boolean
 Dim NF As Long
 Dim cad As String
 Dim i As Integer
@@ -917,7 +924,7 @@ Dim Variedad As String
     While Not Rs.EOF And b
         i = i + 1
 
-        Me.pb1.Value = Me.pb1.Value + 1
+        Me.Pb1.Value = Me.Pb1.Value + 1
         lblProgres(2).Caption = "Linea " & i
         Me.Refresh
 
@@ -978,7 +985,7 @@ Dim Variedad As String
     Wend
     Set Rs = Nothing
     
-    pb1.visible = False
+    Pb1.visible = False
     lblProgres(0).Caption = ""
     lblProgres(1).Caption = ""
     lblProgres(2).Caption = ""

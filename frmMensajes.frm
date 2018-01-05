@@ -1698,7 +1698,7 @@ Dim PrimeraVez As Boolean
 
 'Para los Nº de Serie
 Dim TotalArray As Integer
-Dim CodArtic() As String
+Dim codArtic() As String
 Dim Cantidad() As Integer
 
 Dim IT As ListItem
@@ -1834,7 +1834,7 @@ Dim C1 As String * 10, c2 As String * 10, c3 As String * 10
         'devolverlos al form de Albaranes(facturacion)
         cad = ""
         For J = 0 To TotalArray
-            Articulo = CodArtic(J)
+            Articulo = codArtic(J)
             cad = cad & Articulo & "|"
             For i = 1 To ListView2.ListItems.Count
                 If ListView2.ListItems(i).Checked Then
@@ -1859,7 +1859,7 @@ Dim C1 As String * 10, c2 As String * 10, c3 As String * 10
                 Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Rs.Fields(0).Value >= Abs(Cantidad(J)) - Seleccionados Then
-                    MsgBox "Debe seleccionar " & Cantidad(J) & " Nº Series para el articulo " & CodArtic(J), vbExclamation
+                    MsgBox "Debe seleccionar " & Cantidad(J) & " Nº Series para el articulo " & codArtic(J), vbExclamation
                     Exit Sub
                 Else
                     'No hay Nº Serie y Pedirlos
@@ -2334,7 +2334,7 @@ Dim cad As String
 On Error Resume Next
 
     FrameCobrosPtes.visible = False
-    FrameAcercaDe.visible = False
+    frameAcercaDE.visible = False
     FrameNSeries.visible = False
     FrameComponentes.visible = False
     FrameComponentes2.visible = False
@@ -2362,13 +2362,13 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaCobrosPtes
             Me.Caption = "Cobros Pendientes"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 2 'Mensaje de no hay suficiente Stock
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaArtSinStock (vCampos)
             Me.Caption = "Artículos sin stock suficiente"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 3 'Mensaje ACERCA DE
             CargaImagen
@@ -2436,7 +2436,7 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaErrContab
             Me.Caption = "Facturas NO contabilizadas: "
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
         
         Case 11 'Lineas Factura a Rectificar
             PonerFrameNSeriesVisible True, H, W
@@ -2454,7 +2454,7 @@ On Error Resume Next
             Me.Label1(0).Caption = "Existen Albaranes que NO se van a Facturar:"
             Me.Label1(0).Top = 260
             Me.Label1(0).Left = 480
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 13 'Muestra Errores
             H = 6000
@@ -2575,32 +2575,32 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
             Me.Label1(0).Caption = "CLIENTE: " & vCampos
         Case 2
             W = 8800
-            Me.cmdAceptarCobros.Top = 4000
-            Me.cmdAceptarCobros.Left = 4200
+            Me.CmdAceptarCobros.Top = 4000
+            Me.CmdAceptarCobros.Left = 4200
         Case 5 'Componentes
             W = 6000
             H = 5000
-            Me.cmdAceptarCobros.Left = 4000
+            Me.CmdAceptarCobros.Left = 4000
 
         Case 6, 7 'Prefacturar Albaranes
             W = 7000
             H = 6000
-            Me.cmdAceptarCobros.Top = 5400
-            Me.cmdAceptarCobros.Left = 4600
+            Me.CmdAceptarCobros.Top = 5400
+            Me.CmdAceptarCobros.Left = 4600
 
         Case 10, 12 'Errores al contabilizar facturas
             H = 6000
             W = 8400
-            Me.cmdAceptarCobros.Top = 5300
-            Me.cmdAceptarCobros.Left = 4900
+            Me.CmdAceptarCobros.Top = 5300
+            Me.CmdAceptarCobros.Left = 4900
             If OpcionMensaje = 12 Then
-                Me.cmdCancelarCobros.Top = 5300
-                Me.cmdCancelarCobros.Left = 4600
-                Me.cmdAceptarCobros.Left = 3300
+                Me.CmdCancelarCobros.Top = 5300
+                Me.CmdCancelarCobros.Left = 4600
+                Me.CmdAceptarCobros.Left = 3300
                 Me.Label1(1).Top = 4800
                 Me.Label1(1).Left = 3400
-                Me.cmdAceptarCobros.Caption = "&SI"
-                Me.cmdCancelarCobros.Caption = "&NO"
+                Me.CmdAceptarCobros.Caption = "&SI"
+                Me.CmdCancelarCobros.Caption = "&NO"
             End If
     End Select
             
@@ -2609,7 +2609,7 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
     If visible = True Then
         Me.txtParam.visible = (OpcionMensaje = 6 Or OpcionMensaje = 7)
         Me.Label1(0).visible = (OpcionMensaje = 1) Or (OpcionMensaje = 5) Or (OpcionMensaje = 12)
-        Me.cmdCancelarCobros.visible = (OpcionMensaje = 12)
+        Me.CmdCancelarCobros.visible = (OpcionMensaje = 12)
         Me.Label1(1).visible = (OpcionMensaje = 12)
     End If
 End Sub
@@ -2640,16 +2640,16 @@ End Sub
 Private Sub PonerFrameAcercaDeVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Pone el Frame ACERCA DE visible y Ajustado al Formulario
 
-    Me.FrameAcercaDe.visible = visible
+    Me.frameAcercaDE.visible = visible
     If visible = True Then
         'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
-        Me.FrameAcercaDe.Top = -90
-        Me.FrameAcercaDe.Left = 0
-        Me.FrameAcercaDe.Height = 4555
-        Me.FrameAcercaDe.Width = 6600
+        Me.frameAcercaDE.Top = -90
+        Me.frameAcercaDE.Left = 0
+        Me.frameAcercaDE.Height = 4555
+        Me.frameAcercaDE.Width = 6600
         
-        W = Me.FrameAcercaDe.Width
-        H = Me.FrameAcercaDe.Height
+        W = Me.frameAcercaDE.Width
+        H = Me.frameAcercaDE.Height
     End If
 End Sub
 
@@ -3155,7 +3155,7 @@ Dim SQL As String
              ItmX.SubItems(1) = Format(Rs!NumAlbar, "0000000") 'Nº Albaran
              ItmX.SubItems(2) = Rs!NumLinea 'linea Albaran
              ItmX.SubItems(3) = Format(Rs!codAlmac, "000") 'cod almacen
-             ItmX.SubItems(4) = Rs!CodArtic 'Cod Articulo
+             ItmX.SubItems(4) = Rs!codArtic 'Cod Articulo
              ItmX.SubItems(5) = Rs!NomArtic 'Nombre del Articulo
              ItmX.SubItems(6) = Rs!Cantidad
              ItmX.SubItems(7) = Format(Rs!precioar, FormatoPrecio)
@@ -3396,7 +3396,7 @@ Dim i As Integer, J As Integer
     If TotalArray < 0 Then Exit Function
     
     'Las redimensionaremos
-    ReDim CodArtic(TotalArray)
+    ReDim codArtic(TotalArray)
     ReDim Cantidad(TotalArray)
     
     ObtenerTamanyosArray = True
@@ -3441,7 +3441,7 @@ Dim cad As String
         Grupo = Mid(Grupo, J + 1)
         J = 1
     End If
-    CodArtic(Contador) = cad
+    codArtic(Contador) = cad
     
     'Cantidad
     J = InStr(1, Grupo, "|")
@@ -3598,7 +3598,7 @@ Dim IT As ListItem
     TotalArray = 0
     While Not Rs.EOF
         Set IT = ListView3.ListItems.Add
-        IT.Tag = DevNombreSQL(Rs!CodArtic)
+        IT.Tag = DevNombreSQL(Rs!codArtic)
         IT.Text = Rs!NomArtic
         IT.SubItems(1) = Format(Rs!preciove, cadWHERE2)
         IT.SubItems(2) = Rs!nomfamia
@@ -3667,7 +3667,7 @@ Dim SoloImporteMenor As Boolean
     
     While Not Rs.EOF
         'Calculo los importes
-        lblIndicadorCorregir.Caption = Rs!CodArtic
+        lblIndicadorCorregir.Caption = Rs!codArtic
         lblIndicadorCorregir.Refresh
         
         margen = DBLet(Rs!margenart, "N") / 100
@@ -3709,7 +3709,7 @@ Dim SoloImporteMenor As Boolean
         
         If SQL <> "" Then
             Set IT = ListView4.ListItems.Add
-            IT.Tag = DevNombreSQL(Rs!CodArtic)
+            IT.Tag = DevNombreSQL(Rs!codArtic)
             IT.ToolTipText = IT.Tag
             IT.Text = IT.Tag
             IT.SubItems(1) = Rs!NomArtic
@@ -4147,7 +4147,7 @@ Dim SQL As String
     miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not miRsAux.EOF
         Set IT = lw(0).ListItems.Add()
-        IT.Text = miRsAux!Nombre1  'codartic
+        IT.Text = miRsAux!nombre1  'codartic
         IT.SubItems(1) = miRsAux!Nombre2 'nomartic
         IT.SubItems(2) = miRsAux!campo1
         IT.SubItems(3) = miRsAux!campo2
@@ -4299,7 +4299,8 @@ Dim Sql2 As String
 Dim Rs As ADODB.Recordset
 Dim IT As ListItem
 
-    SQL = "select fra_liq, fecha_liq, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop "
+    '[Monica]04/01/2018:
+    SQL = "select if(fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) fra_liq, fecha_liq, sum(importe_liq) importe_liq, sum(importe_iva_liq) importe_iva_liq,  sum(importe_iva_liq + importe_liq) total from anecoop "
 
     If cadWHERE <> "" Then SQL = SQL & " where " & cadWHERE
     
@@ -4329,8 +4330,8 @@ Dim IT As ListItem
         IT.SubItems(2) = Format(DBLet(Rs!importe_liq, "N"), "###,###,##0.00")
         IT.SubItems(3) = Format(DBLet(Rs!importe_iva_liq, "N"), "###,###,##0.00")
         IT.SubItems(4) = Format(DBLet(Rs!Total, "N"), "###,###,##0.00")
-                
-        Sql2 = "select count(*) from anecoop where fra_liq = " & DBSet(Rs!fra_liq, "N") & " and fra_liq in  (select distinct fra_liq from anecoop where " & cadWHERE & " and (numlinea is null and nombre_variedad <> '') )"
+        '[Monica]04/01/2018:
+        Sql2 = "select count(*) from anecoop where if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) = " & DBSet(Rs!fra_liq, "N") & " and if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) in  (select distinct if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) fra_liq from anecoop where " & cadWHERE & " and (numlinea is null and nombre_variedad <> '') )"
         If TotalRegistros(Sql2) <> 0 Then
             IT.ForeColor = &HC0&
             IT.Bold = True
@@ -4411,7 +4412,7 @@ Dim IT As ListItem
         Set IT = ListView22.ListItems.Add
             
         'It.Tag = DevNombreSQL(RS!codCampo)
-        IT.Text = DBLet(Rs!Nombre1, "T")
+        IT.Text = DBLet(Rs!nombre1, "T")
         IT.SubItems(1) = DBLet(Rs!fecha1, "F")
         IT.SubItems(2) = DBLet(Rs!Nombre2, "T")
         IT.SubItems(3) = DBLet(Rs!nombre3, "T")
