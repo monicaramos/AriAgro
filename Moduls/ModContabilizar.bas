@@ -1422,7 +1422,7 @@ Dim CadenaInsertFaclin2 As String
             
             ' para el caso de las rectificativas
             Dim vTipM As String
-            vTipM = DevuelveValor("select codtipom from stipom where letraser = " & DBSet(Rs!letraser, "T"))
+            vTipM = DevuelveValor("select codtipom from usuarios.stipom where letraser = " & DBSet(Rs!letraser, "T"))
             
             '[Monica]30/05/2017: para el caso de q sea una intracomunitaria de venta el tipo de intracomunitaria es E
             If Intracom = 1 Then
