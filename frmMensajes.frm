@@ -4018,7 +4018,7 @@ Dim IT As ListItem
     While Not Rs.EOF
         Set IT = ListView8.ListItems.Add
             
-        IT.Text = DBLet(Rs!codTipoM, "T")
+        IT.Text = DBLet(Rs!CodTipoM, "T")
         IT.SubItems(1) = Format(DBLet(Rs!NumFactu, "N"), "0000000")
         IT.SubItems(2) = Format(DBLet(Rs!FecFactu, "F"), "dd/mm/yyyy")
         IT.SubItems(3) = Format(DBLet(Rs!TotalFac, "N"), "###,###,##0.00")
@@ -4331,7 +4331,8 @@ Dim IT As ListItem
         IT.SubItems(3) = Format(DBLet(Rs!importe_iva_liq, "N"), "###,###,##0.00")
         IT.SubItems(4) = Format(DBLet(Rs!Total, "N"), "###,###,##0.00")
         '[Monica]04/01/2018:
-        Sql2 = "select count(*) from anecoop where if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) = " & DBSet(Rs!fra_liq, "N") & " and if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) in  (select distinct if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) fra_liq from anecoop where " & cadWHERE & " and (numlinea is null and nombre_variedad <> '') )"
+                '[Monica]23/01/2018: marcamos en rojo las facturas que tengan en nro de albaran 'null'
+        Sql2 = "select count(*) from anecoop where if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) = " & DBSet(Rs!fra_liq, "N") & " and if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) in  (select distinct if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) fra_liq from anecoop where " & cadWHERE & " and ((numlinea is null and nombre_variedad <> '') or numero_salida_cooperativa like '%null%') )"
         If TotalRegistros(Sql2) <> 0 Then
             IT.ForeColor = &HC0&
             IT.Bold = True
