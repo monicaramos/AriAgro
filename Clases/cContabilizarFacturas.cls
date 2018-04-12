@@ -386,7 +386,7 @@ Dim Cliente As String
     
     'Guardo unos datos
     DatosRetencion = ""
-    If Not IsNull(RF!cuereten) Then DatosRetencion = RF!cuereten & "|" & RF!trefaccl & "|"
+    If Not IsNull(RF!cuereten) Then DatosRetencion = RF!cuereten & "|" & DBLet(RF!trefaccl, "N") & "|"
     
     '-------------------------------------------------------------------
     'LINEA Cliente
@@ -1176,7 +1176,7 @@ Dim NoSumaIVA As Boolean
     
     
     DatosRetencion = ""
-    If Not IsNull(RF!cuereten) Then DatosRetencion = RF!cuereten & "|" & RF!trefacpr & "|"
+    If Not IsNull(RF!cuereten) Then DatosRetencion = RF!cuereten & "|" & DBLet(RF!trefacpr, "N") & "|"
     
     '-------------------------------------------------------------------
     'LINEA Cliente
