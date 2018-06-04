@@ -150,7 +150,7 @@ Private mvarEnvAnecoop As String ' Envase de Anecoop
 
 Private mvarContabilidadNueva As Boolean
 
-Private Sql As String  'Para la sentencia
+Private SQL As String  'Para la sentencia
 Private Mens As String    'Para los mensajes
 
 
@@ -787,16 +787,17 @@ End Property
 '------------------------------------------------
 
 '****   LEER  ***
-Public Function leer() As Byte
+Public Function Leer() As Byte
 Dim Rs As ADODB.Recordset
+
 On Error GoTo Err3
-    
-    Sql = "SELECT * FROM sparam "
+
+    SQL = "SELECT * FROM sparam "
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic
 
     If Rs.EOF Then
-        leer = 1
+        Leer = 1
     Else
         
         'Datos Contabilidad
@@ -902,7 +903,7 @@ On Error GoTo Err3
         '[Monica]03/11/2016: nueva contabilidad
         mvarContabilidadNueva = DevuelveValor("select nuevacontabilidad from rparam") = 1
 
-        leer = 0
+        Leer = 0
         
     End If
 
@@ -917,7 +918,7 @@ Err3:
     MsgBox Mens, vbExclamation
     Rs.Close
     Set Rs = Nothing
-    leer = 1
+    Leer = 1
 End Function
 
 
@@ -926,96 +927,96 @@ Public Function Modificar() As Byte
 'Modifica la Tabla: sparam, BD: Arigasol
 On Error GoTo EModificar
 
-    Sql = "UPDATE sparam SET "
-    Sql = Sql & " serconta= '" & mvarSerConta & "'"
-    Sql = Sql & ", usuconta= " & DBSet(mvarUsuConta, "T")
-    Sql = Sql & ", pasconta= " & DBSet(mvarPasConta, "T")
-    Sql = Sql & ", numconta= " & DBSet(mvarNumConta, "N", "S")
-    Sql = Sql & ", websoporte= " & DBSet(mvarWebSoporte, "T")
-    Sql = Sql & ", diremail= " & DBSet(mvarDireMail, "T")
-    Sql = Sql & ", smtphost= " & DBSet(mvarSmtphost, "T")
-    Sql = Sql & ", smtpuser= " & DBSet(mvarSmtpUser, "T")
-    Sql = Sql & ", smtppass= " & DBSet(mvarSmtpPass, "T")
-    Sql = Sql & ", tipoprecio= " & DBSet(mvarTipoPrecio, "N")
-    Sql = Sql & ", inventar= " & DBSet(mvarInventar, "B")
-    Sql = Sql & ", ctrstock = " & DBSet(mvarCtrStock, "B")
-    Sql = Sql & ", pasealbaragrupcalib = " & DBSet(mvarPaseAlbarAgrupCalib, "B")
-    Sql = Sql & ", pasereflineaalb = " & DBSet(mvarPaseRefLineaAlb, "B")
-    Sql = Sql & ", diapago1= " & DBSet(mvarDiaPago1, "N")
-    Sql = Sql & ", diapago2= " & DBSet(mvarDiaPago2, "N")
-    Sql = Sql & ", diapago3= " & DBSet(mvarDiaPago3, "N")
-    Sql = Sql & ", mesnogir= " & DBSet(mvarMesnogir, "N")
-    Sql = Sql & ", limpesobrutcmr= " & DBSet(mvarLimPesoBrutoCMR, "N")
-    Sql = Sql & ", codivatrans= " & DBSet(mvarCodIvaTrans, "N")
-    Sql = Sql & ", ctatrareten= " & DBSet(mvarCtaTraReten, "T")
-    Sql = Sql & ", ctacomreten= " & DBSet(mvarCtaComReten, "T")
-    Sql = Sql & ", ctaabotrans= " & DBSet(mvarCtaAboTrans, "T")
-    Sql = Sql & ", ctaventasfraacta= " & DBSet(mvarCtaVentasFraACta, "T")
-    Sql = Sql & ", ccostefraacta= " & DBSet(mvarCCosteFraACta, "T") ' centro de coste de facturas a cuenta
-    Sql = Sql & ", codivanormal= " & DBSet(mvarCodIvaNormal, "N")
-    Sql = Sql & ", codivaexento= " & DBSet(mvarCodIvaExento, "N")
-    Sql = Sql & ", codivarecargo= " & DBSet(mvarCodIvaRecargo, "N")
-    Sql = Sql & ", nrolote= " & DBSet(mvarNroLote, "N")
-    Sql = Sql & ", nrocheps= " & DBSet(mvarNroCheps, "N")
-    Sql = Sql & ", nrofiche= " & DBSet(mvarNroFiche, "N")
-    Sql = Sql & ", codalmac= " & DBSet(mvarAlmacen, "N")
-    Sql = Sql & ", nropolizaexp= " & DBSet(mvarNroPolizaExp, "T")
-    Sql = Sql & ", numeroggn= " & DBSet(mvarNumeroGGN, "N")
+    SQL = "UPDATE sparam SET "
+    SQL = SQL & " serconta= '" & mvarSerConta & "'"
+    SQL = SQL & ", usuconta= " & DBSet(mvarUsuConta, "T")
+    SQL = SQL & ", pasconta= " & DBSet(mvarPasConta, "T")
+    SQL = SQL & ", numconta= " & DBSet(mvarNumConta, "N", "S")
+    SQL = SQL & ", websoporte= " & DBSet(mvarWebSoporte, "T")
+    SQL = SQL & ", diremail= " & DBSet(mvarDireMail, "T")
+    SQL = SQL & ", smtphost= " & DBSet(mvarSmtphost, "T")
+    SQL = SQL & ", smtpuser= " & DBSet(mvarSmtpUser, "T")
+    SQL = SQL & ", smtppass= " & DBSet(mvarSmtpPass, "T")
+    SQL = SQL & ", tipoprecio= " & DBSet(mvarTipoPrecio, "N")
+    SQL = SQL & ", inventar= " & DBSet(mvarInventar, "B")
+    SQL = SQL & ", ctrstock = " & DBSet(mvarCtrStock, "B")
+    SQL = SQL & ", pasealbaragrupcalib = " & DBSet(mvarPaseAlbarAgrupCalib, "B")
+    SQL = SQL & ", pasereflineaalb = " & DBSet(mvarPaseRefLineaAlb, "B")
+    SQL = SQL & ", diapago1= " & DBSet(mvarDiaPago1, "N")
+    SQL = SQL & ", diapago2= " & DBSet(mvarDiaPago2, "N")
+    SQL = SQL & ", diapago3= " & DBSet(mvarDiaPago3, "N")
+    SQL = SQL & ", mesnogir= " & DBSet(mvarMesnogir, "N")
+    SQL = SQL & ", limpesobrutcmr= " & DBSet(mvarLimPesoBrutoCMR, "N")
+    SQL = SQL & ", codivatrans= " & DBSet(mvarCodIvaTrans, "N")
+    SQL = SQL & ", ctatrareten= " & DBSet(mvarCtaTraReten, "T")
+    SQL = SQL & ", ctacomreten= " & DBSet(mvarCtaComReten, "T")
+    SQL = SQL & ", ctaabotrans= " & DBSet(mvarCtaAboTrans, "T")
+    SQL = SQL & ", ctaventasfraacta= " & DBSet(mvarCtaVentasFraACta, "T")
+    SQL = SQL & ", ccostefraacta= " & DBSet(mvarCCosteFraACta, "T") ' centro de coste de facturas a cuenta
+    SQL = SQL & ", codivanormal= " & DBSet(mvarCodIvaNormal, "N")
+    SQL = SQL & ", codivaexento= " & DBSet(mvarCodIvaExento, "N")
+    SQL = SQL & ", codivarecargo= " & DBSet(mvarCodIvaRecargo, "N")
+    SQL = SQL & ", nrolote= " & DBSet(mvarNroLote, "N")
+    SQL = SQL & ", nrocheps= " & DBSet(mvarNroCheps, "N")
+    SQL = SQL & ", nrofiche= " & DBSet(mvarNroFiche, "N")
+    SQL = SQL & ", codalmac= " & DBSet(mvarAlmacen, "N")
+    SQL = SQL & ", nropolizaexp= " & DBSet(mvarNroPolizaExp, "T")
+    SQL = SQL & ", numeroggn= " & DBSet(mvarNumeroGGN, "N")
     
     'aridoc
-    Sql = Sql & ", hayaridoc= " & DBSet(mvarHayAridoc, "N") ' hay aridoc
-    Sql = Sql & ", codcarpetaalb = " & DBSet(mvarCarpetaAlb, "N") 'carpeta albaran
-    Sql = Sql & ", codcarpetafac = " & DBSet(mvarCarpetaFac, "N") 'carpeta factura
-    Sql = Sql & ", codcarpetarecalm = " & DBSet(mvarCarpetaRecAlmacen, "N") 'carpeta recibo almacen
-    Sql = Sql & ", codcarpetareccamp = " & DBSet(mvarCarpetaRecCampo, "N") 'carpeta recibo campo
-    Sql = Sql & ", codextension = " & DBSet(mvarExtension, "N") 'extension documento
-    Sql = Sql & ", c1albaridoc = " & DBSet(mvarC1Albaran, "N") 'campo 1 albaran
-    Sql = Sql & ", c2albaridoc = " & DBSet(mvarC2Albaran, "N") 'campo 2 albaran
-    Sql = Sql & ", c3albaridoc = " & DBSet(mvarC3Albaran, "N") 'campo 3 albaran
-    Sql = Sql & ", c4albaridoc = " & DBSet(mvarC4Albaran, "N") 'campo 4 albaran
-    Sql = Sql & ", c1facaridoc = " & DBSet(mvarC1Factura, "N") 'campo 1 factura
-    Sql = Sql & ", c2facaridoc = " & DBSet(mvarC2Factura, "N") 'campo 2 factura
-    Sql = Sql & ", c3facaridoc = " & DBSet(mvarC3Factura, "N") 'campo 3 factura
-    Sql = Sql & ", c4facaridoc = " & DBSet(mvarC4Factura, "N") 'campo 4 factura
-    Sql = Sql & ", c1recaridoc = " & DBSet(mvarC1Recibo, "N") 'campo 1 recibo
-    Sql = Sql & ", c2recaridoc = " & DBSet(mvarC2Recibo, "N") 'campo 2 recibo
-    Sql = Sql & ", c3recaridoc = " & DBSet(mvarC3Recibo, "N") 'campo 3 recibo
-    Sql = Sql & ", c4recaridoc = " & DBSet(mvarC4Recibo, "N") 'campo 4 recibo
+    SQL = SQL & ", hayaridoc= " & DBSet(mvarHayAridoc, "N") ' hay aridoc
+    SQL = SQL & ", codcarpetaalb = " & DBSet(mvarCarpetaAlb, "N") 'carpeta albaran
+    SQL = SQL & ", codcarpetafac = " & DBSet(mvarCarpetaFac, "N") 'carpeta factura
+    SQL = SQL & ", codcarpetarecalm = " & DBSet(mvarCarpetaRecAlmacen, "N") 'carpeta recibo almacen
+    SQL = SQL & ", codcarpetareccamp = " & DBSet(mvarCarpetaRecCampo, "N") 'carpeta recibo campo
+    SQL = SQL & ", codextension = " & DBSet(mvarExtension, "N") 'extension documento
+    SQL = SQL & ", c1albaridoc = " & DBSet(mvarC1Albaran, "N") 'campo 1 albaran
+    SQL = SQL & ", c2albaridoc = " & DBSet(mvarC2Albaran, "N") 'campo 2 albaran
+    SQL = SQL & ", c3albaridoc = " & DBSet(mvarC3Albaran, "N") 'campo 3 albaran
+    SQL = SQL & ", c4albaridoc = " & DBSet(mvarC4Albaran, "N") 'campo 4 albaran
+    SQL = SQL & ", c1facaridoc = " & DBSet(mvarC1Factura, "N") 'campo 1 factura
+    SQL = SQL & ", c2facaridoc = " & DBSet(mvarC2Factura, "N") 'campo 2 factura
+    SQL = SQL & ", c3facaridoc = " & DBSet(mvarC3Factura, "N") 'campo 3 factura
+    SQL = SQL & ", c4facaridoc = " & DBSet(mvarC4Factura, "N") 'campo 4 factura
+    SQL = SQL & ", c1recaridoc = " & DBSet(mvarC1Recibo, "N") 'campo 1 recibo
+    SQL = SQL & ", c2recaridoc = " & DBSet(mvarC2Recibo, "N") 'campo 2 recibo
+    SQL = SQL & ", c3recaridoc = " & DBSet(mvarC3Recibo, "N") 'campo 3 recibo
+    SQL = SQL & ", c4recaridoc = " & DBSet(mvarC4Recibo, "N") 'campo 4 recibo
     
     'integracion edi
-    Sql = Sql & ", codigoedi= " & DBSet(mvarCodigoEdi, "T") ' codigo edi del vendedor
-    Sql = Sql & ", regmercantil= " & DBSet(mvarRegMercantil, "T") ' registro mercantil
-    Sql = Sql & ", pathedicom= " & DBSet(Replace(mvarPathEdicom, "\", "\\"), "T") ' path ficheros para edicom
+    SQL = SQL & ", codigoedi= " & DBSet(mvarCodigoEdi, "T") ' codigo edi del vendedor
+    SQL = SQL & ", regmercantil= " & DBSet(mvarRegMercantil, "T") ' registro mercantil
+    SQL = SQL & ", pathedicom= " & DBSet(Replace(mvarPathEdicom, "\", "\\"), "T") ' path ficheros para edicom
     
-    Sql = Sql & ", porcdesvia= " & DBSet(mvarPorcDesv, "N") ' porcentaje de desviacion para el calculo de gastos costes reales
-    Sql = Sql & ", porteskilocaja= " & DBSet(mvarPortesKiloCaja, "N") ' calculo de portes por kilo o por caja
+    SQL = SQL & ", porcdesvia= " & DBSet(mvarPorcDesv, "N") ' porcentaje de desviacion para el calculo de gastos costes reales
+    SQL = SQL & ", porteskilocaja= " & DBSet(mvarPortesKiloCaja, "N") ' calculo de portes por kilo o por caja
         
-    Sql = Sql & ", codtipomalb= " & DBSet(mvarCodTipomAlb, "T") ' codtipom de albaranes de venta
+    SQL = SQL & ", codtipomalb= " & DBSet(mvarCodTipomAlb, "T") ' codtipom de albaranes de venta
         
     ' textos cmr
-    Sql = Sql & ", text1cmr13= " & DBSet(mvarText1CMR13, "T", "S") ' texto 1 de cmr seccion 13
-    Sql = Sql & ", text2cmr13= " & DBSet(mvarText2CMR13, "T", "S") ' texto 2 de cmr seccion 13
+    SQL = SQL & ", text1cmr13= " & DBSet(mvarText1CMR13, "T", "S") ' texto 1 de cmr seccion 13
+    SQL = SQL & ", text2cmr13= " & DBSet(mvarText2CMR13, "T", "S") ' texto 2 de cmr seccion 13
     
-    Sql = Sql & ", codclien= " & DBSet(mvarClienteVtas, "N", "S") ' cliente de ventas
-    Sql = Sql & ", calculocomision = " & DBSet(mvarTipoCalculoComision, "N") 'Tipo de calculo de comision en facturas de cliente
+    SQL = SQL & ", codclien= " & DBSet(mvarClienteVtas, "N", "S") ' cliente de ventas
+    SQL = SQL & ", calculocomision = " & DBSet(mvarTipoCalculoComision, "N") 'Tipo de calculo de comision en facturas de cliente
         
 '    SQL = SQL & " WHERE codparam =" & Codigo & ";"
-    Sql = Sql & ", hayccostes= " & DBSet(mvarHayCCostes, "N") ' hay control de costes
+    SQL = SQL & ", hayccostes= " & DBSet(mvarHayCCostes, "N") ' hay control de costes
     
     '[Monica]11/01/2012: arigesmail
-    Sql = Sql & ", EnvioDesdeOutlook = " & DBSet(Me.EnvioDesdeOutlook, "B")
-    Sql = Sql & ", arigesmail = " & DBSet(ExeEnvioMail, "T", "S")
+    SQL = SQL & ", EnvioDesdeOutlook = " & DBSet(Me.EnvioDesdeOutlook, "B")
+    SQL = SQL & ", arigesmail = " & DBSet(ExeEnvioMail, "T", "S")
 
     '[Monica]25/05/2012: Path de fichadas de costes
-    Sql = Sql & ", pathfichadas= " & DBSet(Replace(mvarPathFichadas, "\", "\\"), "T") ' path ficheros para fichadas para costes
+    SQL = SQL & ", pathfichadas= " & DBSet(Replace(mvarPathFichadas, "\", "\\"), "T") ' path ficheros para fichadas para costes
 
     'FacturaE
-    Sql = Sql & ", pathfacturae = " & DBSet(Replace(mvarPathFacturaE, "\", "\\"), "T")
+    SQL = SQL & ", pathfacturae = " & DBSet(Replace(mvarPathFacturaE, "\", "\\"), "T")
 
     ' Integracion Anecoop
-    Sql = Sql & ", hayanecoop= " & DBSet(mvarHayAnecoop, "N") ' hay anecoop
+    SQL = SQL & ", hayanecoop= " & DBSet(mvarHayAnecoop, "N") ' hay anecoop
 
-    conn.Execute Sql
+    conn.Execute SQL
 
     Modificar = 1
     Exit Function

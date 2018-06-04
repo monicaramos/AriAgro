@@ -1552,7 +1552,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
+Dim Tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -1569,7 +1569,7 @@ Dim cerrar As Boolean
 End Sub
 
 
-Private Sub Check1_Click(Index As Integer)
+Private Sub check1_Click(Index As Integer)
     '[Monica]26/06/2012: si es informe albaranes entradas no es declaracion de ventas
     If Index = 7 And Check1(7).Value = 1 Then Check1(9).Value = 0
     If Index = 9 And Check1(9).Value = 1 Then Check1(7).Value = 0
@@ -1919,7 +1919,8 @@ Dim Tipo As Byte
     
     
     '[Monica]17/10/2016: nuevo informe de albaranes por categoria
-    If optList1(15).Value Then
+'[Monica]25/04/2018: para cualquier tipo de informe
+'    If optList1(15).Value Then
         Set frmMensContr = New frmMensajes
         
         frmMensContr.OpcionMensaje = 21
@@ -1928,7 +1929,7 @@ Dim Tipo As Byte
         frmMensContr.Show vbModal
         
         Set frmMensContr = Nothing
-    End If
+'    End If
     
     ' detalle de albaranes
     If Check1(0).Value Then
@@ -1952,7 +1953,7 @@ Dim Tipo As Byte
     Else
         cadParam = cadParam & "pTipo=""Facturados y No Facturados""|"
     End If
-    cadTABLA = tabla & " INNER JOIN albaran_variedad ON albaran.numalbar = albaran_variedad.numalbar "
+    cadTABLA = Tabla & " INNER JOIN albaran_variedad ON albaran.numalbar = albaran_variedad.numalbar "
     cadTABLA = "(" & cadTABLA & ") INNER JOIN variedades ON albaran_variedad.codvarie = variedades.codvarie "
     cadTABLA = "(" & cadTABLA & ") INNER JOIN destinos ON albaran.codclien = destinos.codclien and albaran.coddesti = destinos.coddesti "
     cadTABLA = "(" & cadTABLA & ") INNER JOIN forfaits ON albaran_variedad.codforfait = forfaits.codforfait "
@@ -2207,16 +2208,16 @@ Dim Tipo As Byte
 End Sub
 
 Private Function EliminarCobrados() As Boolean
-Dim sql As String
+Dim SQL As String
     
     On Error GoTo eEliminarCobrados
         
     EliminarCobrados = False
         
-    sql = "delete from tmpinfventas where codusu = " & vUsu.Codigo
-    sql = sql & " and cobrado = 1 "
+    SQL = "delete from tmpinfventas where codusu = " & vUsu.Codigo
+    SQL = SQL & " and cobrado = 1 "
 
-    conn.Execute sql
+    conn.Execute SQL
         
     EliminarCobrados = True
     Exit Function
@@ -2227,7 +2228,7 @@ End Function
 
 
 Private Function ProcesarCambiosGastos()
-Dim sql As String
+Dim SQL As String
 Dim Sql3 As String
 Dim Sql2 As String
 Dim Sql4 As String
@@ -2247,11 +2248,11 @@ Dim HayReg As Long
     On Error GoTo eProcesarCambiosGastos
     
 
-    sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
 
-    sql = "select * from tmpinfventas where codusu = " & vUsu.Codigo
-    sql = sql & " order by numalbar, numlinea "
+    SQL = "select * from tmpinfventas where codusu = " & vUsu.Codigo
+    SQL = SQL & " order by numalbar, numlinea "
     
     
     Label4(27).visible = True
@@ -2259,14 +2260,14 @@ Dim HayReg As Long
     Label4(27).Caption = "Cargando tabla temporal: prorrateo de gastos por kilos"
     DoEvents
         
-    HayReg = TotalRegistrosConsulta(sql)
+    HayReg = TotalRegistrosConsulta(SQL)
     
     Pb1.Max = HayReg
     Pb1.Value = 0
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                                             'albaran,numlinea,numline1,gasto por linea de calibre, importe de venta
     Sql2 = "insert into tmpinformes (codusu, codigo1, campo1, campo2, importe1, importe2) values "
     
@@ -2279,7 +2280,7 @@ Dim HayReg As Long
         TPesoNeto = DBLet(Rs!Pesoneto, "N")
         Gastos = DBLet(Rs!Gastos, "N") ' DBLet(Rs!GastosPortes, "N") + DBLet(Rs!GastosEnvases, "N") + DBLet(Rs!gastoscomisiones, "N")
     
-        Sql3 = "select * from albaran_calibre where numalbar = " & DBSet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Rs!numlinea, "N")
+        Sql3 = "select * from albaran_calibre where numalbar = " & DBSet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Rs!NumLinea, "N")
         Sql3 = Sql3 & " order by numline1 "
         
         Set RS3 = New ADODB.Recordset
@@ -2296,7 +2297,7 @@ Dim HayReg As Long
             UltimaLinea1 = DBLet(RS3!numline1, "N")
         
             Sql4 = "Select sum(impornet) from facturas_calibre where numalbar = " & DBSet(Rs!NumAlbar, "N")
-            Sql4 = Sql4 & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
+            Sql4 = Sql4 & " and numlinealbar = " & DBSet(Rs!NumLinea, "N")
             Sql4 = Sql4 & " and numline1albar = " & DBSet(RS3!numline1, "N")
             
             ImporteFac = DevuelveValor(Sql4)
@@ -2306,7 +2307,7 @@ Dim HayReg As Long
             '                    jugar con el precio definitivo
             If vParamAplic.Cooperativa = 12 Then
                 Sql4 = "Select count(*) from facturas_calibre where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                Sql4 = Sql4 & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
+                Sql4 = Sql4 & " and numlinealbar = " & DBSet(Rs!NumLinea, "N")
                 Sql4 = Sql4 & " and numline1albar = " & DBSet(RS3!numline1, "N")
                 If TotalRegistros(Sql4) = 0 Then
                     ImporteFac = Round2(DBLet(RS3!Pesoneto, "N") * DBLet(RS3!preciopro, "N"), 2)
@@ -2314,7 +2315,7 @@ Dim HayReg As Long
             End If
         
         
-            cadselect = "(" & vUsu.Codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+            cadselect = "(" & vUsu.Codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
             cadselect = cadselect & DBSet(RS3!numline1, "N") & "," & DBSet(vGastos, "N") & ","
             cadselect = cadselect & DBSet(ImporteFac, "N") & ")"
         
@@ -2330,7 +2331,7 @@ Dim HayReg As Long
             Sql3 = "update tmpinformes set importe1 = importe1 + " & DBSet(Diferencia, "N")
             Sql3 = Sql3 & " where codusu = " & vUsu.Codigo
             Sql3 = Sql3 & " and codigo1 = " & DBSet(Rs!NumAlbar, "N")
-            Sql3 = Sql3 & " and campo1 = " & DBSet(Rs!numlinea, "N")
+            Sql3 = Sql3 & " and campo1 = " & DBSet(Rs!NumLinea, "N")
             Sql3 = Sql3 & " and campo2 = " & DBSet(UltimaLinea1, "N")
         
             conn.Execute Sql3
@@ -2357,7 +2358,7 @@ eProcesarCambiosGastos:
 End Function
 
 Private Function ProcesarCambios(cadTABLA, cadWHERE As String) As Boolean
-Dim sql As String
+Dim SQL As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim i As Integer
@@ -2423,6 +2424,39 @@ On Error GoTo eProcesarCambios
     Pb1.visible = True
     DoEvents
         
+    '[Monica]25/04/2018: cambiado fuera del while
+    If Me.optList1(9).Value Or Me.optList1(12).Value Or Check1(8).Value Then
+        If Me.Check1(3).Value = 0 Then '++monica:240608 añadida la condicion caso de que los gastos no sean los reales
+            cadTabla2 = "(" & cadTABLA & ") inner join albaran_costes on albaran_variedad.numalbar = albaran_costes.numalbar "
+            cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costes.numlinea "
+            
+            Sql2 = "select count(distinct albaran_costes.codcoste) from " & cadTabla2
+            If cadWHERE <> "" Then Sql2 = Sql2 & " where " & cadWHERE
+            
+            Costes = DevuelveValor(Sql2)
+            If CCur(Costes) > 5 Then
+                MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
+                ProcesarCambios = False
+                Exit Function
+            End If
+        Else
+            cadTabla2 = "(" & cadTABLA & ") inner join albaran_costreal on albaran_variedad.numalbar = albaran_costreal.numalbar "
+            cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costreal.numlinea "
+            
+            Sql2 = "select count(distinct albaran_costreal.codcoste) from " & cadTabla2
+            Sql2 = Sql2 & cadWHERE
+            
+            Costes = DevuelveValor(Sql2)
+            If CCur(Costes) > 5 Then
+                MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
+                ProcesarCambios = False
+                Exit Function
+            End If
+        End If
+    End If
+        
+        
+        
     HayReg = TotalRegistrosConsulta(SQL1)
     
     Pb1.Max = HayReg
@@ -2440,7 +2474,7 @@ On Error GoTo eProcesarCambios
     Coste4 = 4
     Coste5 = 5
     
-    sql = ""
+    SQL = ""
     
     While Not Rs.EOF
         IncrementarProgresNew Pb1, 1
@@ -2594,18 +2628,19 @@ On Error GoTo eProcesarCambios
         'calculo para informe Gastos de Confeccion : rAlbaranVta10
         If Me.optList1(9).Value Or Me.optList1(12).Value Or Check1(8).Value Then
             If Me.Check1(3).Value = 0 Then '++monica:240608 añadida la condicion caso de que los gastos no sean los reales
-                cadTabla2 = "(" & cadTABLA & ") inner join albaran_costes on albaran_variedad.numalbar = albaran_costes.numalbar "
-                cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costes.numlinea "
-                
-                Sql2 = "select count(distinct albaran_costes.codcoste) from " & cadTabla2
-                If cadWHERE <> "" Then Sql2 = Sql2 & " where " & cadWHERE
-                
-                Costes = DevuelveValor(Sql2)
-                If CCur(Costes) > 5 Then
-                    MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
-                    ProcesarCambios = False
-                    Exit Function
-                End If
+'[Monica]25/04/2018: fuera del while
+'                cadTabla2 = "(" & cadTABLA & ") inner join albaran_costes on albaran_variedad.numalbar = albaran_costes.numalbar "
+'                cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costes.numlinea "
+'
+'                Sql2 = "select count(distinct albaran_costes.codcoste) from " & cadTabla2
+'                If cadWHERE <> "" Then Sql2 = Sql2 & " where " & cadWHERE
+'
+'                Costes = DevuelveValor(Sql2)
+'                If CCur(Costes) > 5 Then
+'                    MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
+'                    ProcesarCambios = False
+'                    Exit Function
+'                End If
                 
                 Sql2 = "select codcoste, impcoste from albaran_costes where albaran_costes.numalbar = " & DBSet(Rs.Fields(1).Value, "N")
                 Sql2 = Sql2 & " and albaran_costes.numlinea = " & DBSet(Rs.Fields(2).Value, "N")
@@ -2696,18 +2731,18 @@ On Error GoTo eProcesarCambios
                 
             Else '++monica:240608 caso de que los gastos sean reales añadido todo el else
             
-                cadTabla2 = "(" & cadTABLA & ") inner join albaran_costreal on albaran_variedad.numalbar = albaran_costreal.numalbar "
-                cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costreal.numlinea "
-                
-                Sql2 = "select count(distinct albaran_costreal.codcoste) from " & cadTabla2
-                Sql2 = Sql2 & cadWHERE
-                
-                Costes = DevuelveValor(Sql2)
-                If CCur(Costes) > 5 Then
-                    MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
-                    ProcesarCambios = False
-                    Exit Function
-                End If
+'[Monica]25/04/2018: fuera del while
+'                cadTabla2 = "(" & cadTABLA & ") inner join albaran_costreal on albaran_variedad.numalbar = albaran_costreal.numalbar "
+'                cadTabla2 = cadTabla2 & " and albaran_variedad.numlinea = albaran_costreal.numlinea "
+'                Sql2 = "select count(distinct albaran_costreal.codcoste) from " & cadTabla2
+'                Sql2 = Sql2 & cadWHERE
+'
+'                Costes = DevuelveValor(Sql2)
+'                If CCur(Costes) > 5 Then
+'                    MsgBox "El numero de costes distintos es superior a cinco y no cabe en el listado", vbExclamation
+'                    ProcesarCambios = False
+'                    Exit Function
+'                End If
                 
                 Sql2 = "select codcoste, impcoste from albaran_costreal where albaran_costreal.numalbar = " & DBLet(Rs.Fields(1).Value, "N")
                 Sql2 = Sql2 & " and albaran_costreal.numlinea = " & DBLet(Rs.Fields(2).Value, "N")
@@ -2798,35 +2833,35 @@ On Error GoTo eProcesarCambios
             End If
         End If
         
-        sql = sql & "(" & DBSet(vUsu.Codigo, "N") & ","
-        sql = sql & DBSet(Rs.Fields(0).Value, "F") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "N") & ","
-        sql = sql & DBSet(Rs.Fields(3).Value, "N") & "," 'numero de cajas
-        sql = sql & DBSet(PesoReal, "N") & "," & DBSet(Rs.Fields(4).Value, "N") & "," 'peso neto
-        sql = sql & DBSet(TotalGastos, "N") & "," & DBSet(ImpVenta, "N") & "," ' importe de venta
-        sql = sql & DBSet(Facturado, "N") & ","  'facturado o no, pasa a ser : 0=provisional 1=definitivo 2=facturado
-        sql = sql & DBSet(Cobrado, "N") & "," 'cobrado o no
-        sql = sql & DBSet(Coste1, "N") & "," & DBSet(Gasto1, "N") & "," 'coste1 gasto1
-        sql = sql & DBSet(Coste2, "N") & "," & DBSet(Gasto2, "N") & "," 'coste2 gasto2
-        sql = sql & DBSet(Coste3, "N") & "," & DBSet(Gasto3, "N") & "," 'coste3 gasto3
-        sql = sql & DBSet(Coste4, "N") & "," & DBSet(Gasto4, "N") & "," 'coste4 gasto4
-        sql = sql & DBSet(Coste5, "N") & "," & DBSet(Gasto5, "N") & "," 'coste5 gasto5
-        sql = sql & DBSet(GastosPortes, "N") & "," ' gastos portes
-        sql = sql & DBSet(GastosComision, "N") & "," ' gastos comisiones
-        sql = sql & DBSet(GastosEnvases, "N") & "," ' gastos envases
-        sql = sql & DBSet(PreProv, "N") & ")," ' precio provisional para el informe provisional
+        SQL = SQL & "(" & DBSet(vUsu.Codigo, "N") & ","
+        SQL = SQL & DBSet(Rs.Fields(0).Value, "F") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "N") & ","
+        SQL = SQL & DBSet(Rs.Fields(3).Value, "N") & "," 'numero de cajas
+        SQL = SQL & DBSet(PesoReal, "N") & "," & DBSet(Rs.Fields(4).Value, "N") & "," 'peso neto
+        SQL = SQL & DBSet(TotalGastos, "N") & "," & DBSet(ImpVenta, "N") & "," ' importe de venta
+        SQL = SQL & DBSet(Facturado, "N") & ","  'facturado o no, pasa a ser : 0=provisional 1=definitivo 2=facturado
+        SQL = SQL & DBSet(Cobrado, "N") & "," 'cobrado o no
+        SQL = SQL & DBSet(Coste1, "N") & "," & DBSet(Gasto1, "N") & "," 'coste1 gasto1
+        SQL = SQL & DBSet(Coste2, "N") & "," & DBSet(Gasto2, "N") & "," 'coste2 gasto2
+        SQL = SQL & DBSet(Coste3, "N") & "," & DBSet(Gasto3, "N") & "," 'coste3 gasto3
+        SQL = SQL & DBSet(Coste4, "N") & "," & DBSet(Gasto4, "N") & "," 'coste4 gasto4
+        SQL = SQL & DBSet(Coste5, "N") & "," & DBSet(Gasto5, "N") & "," 'coste5 gasto5
+        SQL = SQL & DBSet(GastosPortes, "N") & "," ' gastos portes
+        SQL = SQL & DBSet(GastosComision, "N") & "," ' gastos comisiones
+        SQL = SQL & DBSet(GastosEnvases, "N") & "," ' gastos envases
+        SQL = SQL & DBSet(PreProv, "N") & ")," ' precio provisional para el informe provisional
         
 '        Conn.Execute Sql
       
         Rs.MoveNext
     Wend
     
-    If sql <> "" Then
+    If SQL <> "" Then
         ' quitamos la ultima coma
-        sql = Mid(sql, 1, Len(sql) - 1)
+        SQL = Mid(SQL, 1, Len(SQL) - 1)
     
         Sql3 = "insert into tmpinfventas (codusu, fecalbar, numalbar, numlinea, numcajas, pesoreal, pesoneto, gastos, impventa, facturado, cobrado, "
         Sql3 = Sql3 & " codigo1, gastos1, codigo2, gastos2, codigo3, gastos3, codigo4, gastos4, codigo5, gastos5, gastosportes, gastoscomisiones, gastosenvases, precioprovisional) values "
-        Sql3 = Sql3 & sql
+        Sql3 = Sql3 & SQL
         
         conn.Execute Sql3
     End If
@@ -2853,25 +2888,25 @@ End Function
 Private Function ProrrateoPortesComisProvisional(Albaran As String, Linea As String, Tipo As Byte) As Currency
 'Tipo = 0 portes
 '     = 1 comisiones
-Dim CADENA As String
-Dim sql As String
+Dim cadena As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 Dim KilosTot As Long
 Dim KilosNet As Long
 Dim PortesTot As Currency
 
     If Tipo = 0 Then
-        sql = "select portespre from albaran where numalbar = " & DBSet(Albaran, "N")
+        SQL = "select portespre from albaran where numalbar = " & DBSet(Albaran, "N")
     Else
-        sql = "select comisionespre from albaran where numalbar = " & DBSet(Albaran, "N")
+        SQL = "select comisionespre from albaran where numalbar = " & DBSet(Albaran, "N")
     End If
-    PortesTot = DevuelveValor(sql)
+    PortesTot = DevuelveValor(SQL)
     
-    sql = "select sum(pesoneto) from albaran_variedad where numalbar = " & DBSet(Albaran, "N")
-    KilosTot = DevuelveValor(sql)
+    SQL = "select sum(pesoneto) from albaran_variedad where numalbar = " & DBSet(Albaran, "N")
+    KilosTot = DevuelveValor(SQL)
     
-    sql = "select pesoneto from albaran_variedad where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(Linea, "N")
-    KilosNet = DevuelveValor(sql)
+    SQL = "select pesoneto from albaran_variedad where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(Linea, "N")
+    KilosNet = DevuelveValor(SQL)
     
     ProrrateoPortesComisProvisional = 0
     If KilosTot <> 0 Then
@@ -2883,7 +2918,7 @@ End Function
 
 
 Private Function ProcesarCambiosCalibres(cadTABLA, cadWHERE As String) As Boolean
-Dim sql As String
+Dim SQL As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim i As Integer
@@ -2967,24 +3002,24 @@ On Error GoTo eProcesarCambiosCalibres
         Wend
         Set Rs1 = Nothing
         
-        sql = "insert into tmpinfventas (codusu, fecalbar, numalbar, numlinea, numcajas, pesoneto, "
-        sql = sql & " calibre1, neto1, calibre2, neto2, calibre3, neto3, calibre4, neto4, calibre5, neto5, "
-        sql = sql & " calibre6, neto6, calibre7, neto7, calibre8, neto8, calibre9, neto9, impcalibres) values (" & DBSet(vUsu.Codigo, "N") & ","
-        sql = sql & DBSet(Rs.Fields(1).Value, "F") & "," & DBSet(Rs.Fields(2).Value, "N") & "," & DBSet(Rs.Fields(3).Value, "N") & ","
-        sql = sql & DBSet(Rs.Fields(4).Value, "N") & "," 'numero de cajas
-        sql = sql & DBSet(Rs.Fields(5).Value, "N") & "," 'peso neto
-        sql = sql & DBSet(Calibre(0), "N") & "," & DBSet(Neto(0), "N") & "," ' calibre 1
-        sql = sql & DBSet(Calibre(1), "N") & "," & DBSet(Neto(1), "N") & "," ' calibre 2
-        sql = sql & DBSet(Calibre(2), "N") & "," & DBSet(Neto(2), "N") & "," ' calibre 3
-        sql = sql & DBSet(Calibre(3), "N") & "," & DBSet(Neto(3), "N") & "," ' calibre 4
-        sql = sql & DBSet(Calibre(4), "N") & "," & DBSet(Neto(4), "N") & "," ' calibre 5
-        sql = sql & DBSet(Calibre(5), "N") & "," & DBSet(Neto(5), "N") & "," ' calibre 6
-        sql = sql & DBSet(Calibre(6), "N") & "," & DBSet(Neto(6), "N") & "," ' calibre 7
-        sql = sql & DBSet(Calibre(7), "N") & "," & DBSet(Neto(7), "N") & "," ' calibre 8
-        sql = sql & DBSet(Calibre(8), "N") & "," & DBSet(Neto(8), "N") & "," ' calibre 9
-        sql = sql & DBSet(Incluido, "N") & ")" ' si se han podido incluir todos los calibres
+        SQL = "insert into tmpinfventas (codusu, fecalbar, numalbar, numlinea, numcajas, pesoneto, "
+        SQL = SQL & " calibre1, neto1, calibre2, neto2, calibre3, neto3, calibre4, neto4, calibre5, neto5, "
+        SQL = SQL & " calibre6, neto6, calibre7, neto7, calibre8, neto8, calibre9, neto9, impcalibres) values (" & DBSet(vUsu.Codigo, "N") & ","
+        SQL = SQL & DBSet(Rs.Fields(1).Value, "F") & "," & DBSet(Rs.Fields(2).Value, "N") & "," & DBSet(Rs.Fields(3).Value, "N") & ","
+        SQL = SQL & DBSet(Rs.Fields(4).Value, "N") & "," 'numero de cajas
+        SQL = SQL & DBSet(Rs.Fields(5).Value, "N") & "," 'peso neto
+        SQL = SQL & DBSet(Calibre(0), "N") & "," & DBSet(Neto(0), "N") & "," ' calibre 1
+        SQL = SQL & DBSet(Calibre(1), "N") & "," & DBSet(Neto(1), "N") & "," ' calibre 2
+        SQL = SQL & DBSet(Calibre(2), "N") & "," & DBSet(Neto(2), "N") & "," ' calibre 3
+        SQL = SQL & DBSet(Calibre(3), "N") & "," & DBSet(Neto(3), "N") & "," ' calibre 4
+        SQL = SQL & DBSet(Calibre(4), "N") & "," & DBSet(Neto(4), "N") & "," ' calibre 5
+        SQL = SQL & DBSet(Calibre(5), "N") & "," & DBSet(Neto(5), "N") & "," ' calibre 6
+        SQL = SQL & DBSet(Calibre(6), "N") & "," & DBSet(Neto(6), "N") & "," ' calibre 7
+        SQL = SQL & DBSet(Calibre(7), "N") & "," & DBSet(Neto(7), "N") & "," ' calibre 8
+        SQL = SQL & DBSet(Calibre(8), "N") & "," & DBSet(Neto(8), "N") & "," ' calibre 9
+        SQL = SQL & DBSet(Incluido, "N") & ")" ' si se han podido incluir todos los calibres
         
-        conn.Execute sql
+        conn.Execute SQL
       
         Rs.MoveNext
     Wend
@@ -3037,7 +3072,7 @@ Dim ExporExcel As Boolean
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    tabla = "albaran"
+    Tabla = "albaran"
     
     Label4(27).visible = False
     Pb1.visible = False
@@ -3115,23 +3150,23 @@ Private Sub frmMar_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
+        SQL = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
         Sql2 = " {variedades.codvarie} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {variedades.codvarie} = -1 "
+        SQL = " {variedades.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 
 Private Sub frmMensCate_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If SeleccionadosTodos Then
@@ -3141,27 +3176,27 @@ Dim Sql2 As String
         If CadenaSeleccion <> "" Then
             '[Monica]17/06/2013: añadida la categoria
             If CategoriaValorNulo Then
-                sql = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in (" & CadenaSeleccion & "))"
+                SQL = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in (" & CadenaSeleccion & "))"
                 Sql2 = " (isnull({albaran_variedad.categori}) or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in [" & CadenaSeleccion & "])"
             Else
-                sql = " {albaran_variedad.categori} in (" & CadenaSeleccion & ")"
+                SQL = " {albaran_variedad.categori} in (" & CadenaSeleccion & ")"
                 Sql2 = " {albaran_variedad.categori} in [" & CadenaSeleccion & "]"
             End If
         Else
             If CategoriaValorNulo Then
-                sql = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='') "
+                SQL = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='') "
                 Sql2 = " (isnull({albaran_variedad.categori}) or {albaran_variedad.categori} ='') "
             Else
-                sql = " {albaran_variedad.categori} = '-1' "
+                SQL = " {albaran_variedad.categori} = '-1' "
             End If
         End If
-        If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+        If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
         If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
     End If
 End Sub
 
 Private Sub frmMensContr_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If SeleccionadosTodos Then
@@ -3171,166 +3206,166 @@ Dim Sql2 As String
         If CadenaSeleccion <> "" Then
             '[Monica]17/10/2016: añadido el contrato
             If CategoriaValorNulo Then
-                sql = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='' or {albaran.nrocontra} in (" & CadenaSeleccion & "))"
+                SQL = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='' or {albaran.nrocontra} in (" & CadenaSeleccion & "))"
                 Sql2 = " (isnull({albaran.nrocontra}) or {albaran.nrocontra} ='' or {albaran.nrocontra} in [" & CadenaSeleccion & "])"
             Else
-                sql = " {albaran.nrocontra} in (" & CadenaSeleccion & ")"
+                SQL = " {albaran.nrocontra} in (" & CadenaSeleccion & ")"
                 Sql2 = " {albaran.nrocontra} in [" & CadenaSeleccion & "]"
             End If
         Else
             If CategoriaValorNulo Then
-                sql = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='') "
+                SQL = " ({albaran.nrocontra} is null or {albaran.nrocontra} ='') "
                 Sql2 = " (isnull({albaran.nrocontra}) or {albaran.nrocontra} ='') "
             Else
-                sql = " {albaran.nrocontra} = '-1' "
+                SQL = " {albaran.nrocontra} = '-1' "
             End If
         End If
-        If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+        If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
         If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
     End If
 End Sub
 
 
 Private Sub frmMensClase_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {variedades.codclase} in (" & CadenaSeleccion & ")"
+        SQL = " {variedades.codclase} in (" & CadenaSeleccion & ")"
         Sql2 = " {variedades.codclase} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {variedades.codclase} = -1 "
+        SQL = " {variedades.codclase} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensCliente_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {albaran.codclien} in (" & CadenaSeleccion & ")"
+        SQL = " {albaran.codclien} in (" & CadenaSeleccion & ")"
         Sql2 = " {albaran.codclien} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {albaran.codclien} = -1 "
+        SQL = " {albaran.codclien} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensComisionista_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {albaran.codcomis} in (" & CadenaSeleccion & ")"
+        SQL = " {albaran.codcomis} in (" & CadenaSeleccion & ")"
         Sql2 = " {albaran.codcomis} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {albaran.codcomis} = -1 "
+        SQL = " {albaran.codcomis} = -1 "
     End If
     
     '[Monica]12/12/2013: si esta marcado se refiere al de las líneas
     If Check1(11).Value = 1 Then
-        sql = Replace(sql, "{albaran.codcomis}", "{albaran_variedad.codcomis}")
+        SQL = Replace(SQL, "{albaran.codcomis}", "{albaran_variedad.codcomis}")
         Sql2 = Replace(Sql2, "{albaran.codcomis}", "{albaran_variedad.codcomis}")
     End If
     
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 
 Private Sub frmMensDestino_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {destinos.coddesti} in (" & CadenaSeleccion & ")"
+        SQL = " {destinos.coddesti} in (" & CadenaSeleccion & ")"
         Sql2 = " {destinos.coddesti} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {destinos.coddesti} = -1 "
+        SQL = " {destinos.coddesti} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensForfait_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {forfaits.codforfait} in (" & CadenaSeleccion & ")"
+        SQL = " {forfaits.codforfait} in (" & CadenaSeleccion & ")"
         Sql2 = " {forfaits.codforfait} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {forfaits.codforfait} = -1 "
+        SQL = " {forfaits.codforfait} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensMarca_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {albaran_variedad.codmarca} in (" & CadenaSeleccion & ")"
+        SQL = " {albaran_variedad.codmarca} in (" & CadenaSeleccion & ")"
         Sql2 = " {albaran_variedad.codmarca} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {albaran_variedad.codmarca} = -1 "
+        SQL = " {albaran_variedad.codmarca} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensMercado_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {albaran.codtimer} in (" & CadenaSeleccion & ")"
+        SQL = " {albaran.codtimer} in (" & CadenaSeleccion & ")"
         Sql2 = " {albaran.codtimer} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {albaran.codtimer} = -1 "
+        SQL = " {albaran.codtimer} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
 
 Private Sub frmMensPais_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {destinos.codpaise} in (" & CadenaSeleccion & ")"
+        SQL = " {destinos.codpaise} in (" & CadenaSeleccion & ")"
         Sql2 = " {dsetinos.codpaise} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {destinos.codpaise} = -1 "
+        SQL = " {destinos.codpaise} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 
 End Sub
 
 Private Sub frmMensVariedad_DatoSeleccionado(CadenaSeleccion As String)
-Dim sql As String
+Dim SQL As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        sql = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
+        SQL = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
         Sql2 = " {variedades.codvarie} in [" & CadenaSeleccion & "]"
     Else
-        sql = " {variedades.codvarie} = -1 "
+        SQL = " {variedades.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, sql) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -3793,19 +3828,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 
-    sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        sql = sql & " WHERE " & cWhere
+        SQL = SQL & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -3818,7 +3853,7 @@ End Function
 
 
 Private Function NroGastosMayoraCuatro(cadTABLA As String, cadWHERE As String) As Boolean
-Dim sql As String
+Dim SQL As String
 Dim cadTabla2 As String
 Dim cadWHERE2 As String
 
@@ -3834,11 +3869,11 @@ Dim cadWHERE2 As String
     End If
 
 '    Sql = "select count(*) from nombcoste"
-    sql = "select count(distinct albaran_costes.codcoste) from " & cadTabla2
-    If cadWHERE2 <> "" Then sql = sql & " where " & cadWHERE2
+    SQL = "select count(distinct albaran_costes.codcoste) from " & cadTabla2
+    If cadWHERE2 <> "" Then SQL = SQL & " where " & cadWHERE2
     
     
-    NroGastosMayoraCuatro = (TotalRegistros(sql) > 4)
+    NroGastosMayoraCuatro = (TotalRegistros(SQL) > 4)
 
 End Function
 
@@ -3961,7 +3996,7 @@ End Sub
 
 
 Private Function ProcesarCambiosEvolucion(cadTABLA, cadWHERE As String) As Boolean
-Dim sql As String
+Dim SQL As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim i As Integer
@@ -4031,7 +4066,7 @@ On Error GoTo eProcesarCambiosEvolucion
     Pb1.Max = HayReg
     Pb1.Value = 0
     
-    sql = ""
+    SQL = ""
     
     While Not Rs.EOF
         IncrementarProgresNew Pb1, 1
@@ -4042,12 +4077,12 @@ On Error GoTo eProcesarCambiosEvolucion
         If Not IsNull(Rs.Fields(3).Value) Then Cobrado = AlbaranCobradoTesoreria(DBLet(Rs.Fields(1).Value, "N"), DBLet(Rs.Fields(2).Value, "N"))
 
         
-        sql = sql & "(" & DBSet(vUsu.Codigo, "N") & ","
-        sql = sql & DBSet(Rs.Fields(1).Value, "N") & "," ' albaran
-        sql = sql & DBSet(Rs.Fields(2).Value, "N") & "," ' linea
-        sql = sql & DBSet(Rs.Fields(0).Value, "F") & "," ' fechaalbaran
-        sql = sql & DBSet(ImpVenta, "N") & "," 'importe facturado
-        sql = sql & DBSet(Cobrado, "N") & ")," ' cobrado
+        SQL = SQL & "(" & DBSet(vUsu.Codigo, "N") & ","
+        SQL = SQL & DBSet(Rs.Fields(1).Value, "N") & "," ' albaran
+        SQL = SQL & DBSet(Rs.Fields(2).Value, "N") & "," ' linea
+        SQL = SQL & DBSet(Rs.Fields(0).Value, "F") & "," ' fechaalbaran
+        SQL = SQL & DBSet(ImpVenta, "N") & "," 'importe facturado
+        SQL = SQL & DBSet(Cobrado, "N") & ")," ' cobrado
         
 '        Conn.Execute Sql
       
@@ -4057,12 +4092,12 @@ On Error GoTo eProcesarCambiosEvolucion
     Set Rs = Nothing
     
     
-    If sql <> "" Then
+    If SQL <> "" Then
         ' quitamos la ultima coma
-        sql = Mid(sql, 1, Len(sql) - 1)
+        SQL = Mid(SQL, 1, Len(SQL) - 1)
                                                 '                              impfacturado
         Sql3 = "insert into tmpinfventas (codusu, numalbar, numlinea, fecalbar, impventa, cobrado ) values "
-        Sql3 = Sql3 & sql
+        Sql3 = Sql3 & SQL
         
         conn.Execute Sql3
     End If
@@ -4080,7 +4115,7 @@ End Function
 
 
 Private Function CargarTemporal() As Boolean
-Dim sql As String
+Dim SQL As String
 Dim SqlIns As String
 Dim Rs As ADODB.Recordset
 
@@ -4089,17 +4124,17 @@ Dim Rs As ADODB.Recordset
     CargarTemporal = False
 
 
-    sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
-    conn.Execute sql
+    SQL = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute SQL
     
-    sql = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_calibre.numcajas, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe "
-    sql = sql & " from ((tmpinfventas inner join albaran on tmpinfventas.numalbar = albaran.numalbar) inner join albaran_calibre on tmpinfventas.numalbar = albaran_calibre.numalbar and tmpinfventas.numlinea = albaran_calibre.numlinea)  "
-    sql = sql & " left join facturas_calibre on albaran_calibre.numalbar = facturas_calibre.numalbar and albaran_calibre.numlinea = facturas_calibre.numlinealbar and albaran_calibre.numline1 = facturas_calibre.numline1albar "
-    sql = sql & " where tmpinfventas.codusu = " & DBSet(vUsu.Codigo, "N")
-    sql = sql & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
+    SQL = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_calibre.numcajas, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe "
+    SQL = SQL & " from ((tmpinfventas inner join albaran on tmpinfventas.numalbar = albaran.numalbar) inner join albaran_calibre on tmpinfventas.numalbar = albaran_calibre.numalbar and tmpinfventas.numlinea = albaran_calibre.numlinea)  "
+    SQL = SQL & " left join facturas_calibre on albaran_calibre.numalbar = facturas_calibre.numalbar and albaran_calibre.numlinea = facturas_calibre.numlinealbar and albaran_calibre.numline1 = facturas_calibre.numline1albar "
+    SQL = SQL & " where tmpinfventas.codusu = " & DBSet(vUsu.Codigo, "N")
+    SQL = SQL & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
                                             'fecalbar, numcajas, codcalib, numalbar,  numlinea,  numline1,  pesoneto, importe
     SqlIns = "insert into tmpinformes (codusu, fecha1, importe1, importe2, importeb1, importeb2, importeb3, importe3, importe4 )     "
-    SqlIns = SqlIns & sql
+    SqlIns = SqlIns & SQL
     conn.Execute SqlIns
     
 '    ' quiere la clase

@@ -12,34 +12,34 @@ Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (B
 'Se puede comentar todo y asi no hace nada ni da error
 'El SQL es propio de cada tabla
 Public Function SugerirCodigoSiguienteStr(NomTabla As String, NomCodigo As String, Optional CondLineas As String) As String
-Dim sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 
     On Error GoTo ESugerirCodigo
 
     'SQL = "Select Max(codtipar) from stipar"
-    sql = "Select Max(" & NomCodigo & ") from " & NomTabla
+    SQL = "Select Max(" & NomCodigo & ") from " & NomTabla
     If CondLineas <> "" Then
-        sql = sql & " WHERE " & CondLineas
+        SQL = SQL & " WHERE " & CondLineas
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, conn, , , adCmdText
-    sql = "1"
+    Rs.Open SQL, conn, , , adCmdText
+    SQL = "1"
     If Not Rs.EOF Then
         If Not IsNull(Rs.Fields(0)) Then
             If IsNumeric(Rs.Fields(0)) Then
-                sql = CStr(Rs.Fields(0) + 1)
+                SQL = CStr(Rs.Fields(0) + 1)
             Else
                 If Asc(Left(Rs.Fields(0), 1)) <> 122 Then 'Z
-                sql = Left(Rs.Fields(0), 1) & CStr(Asc(Right(Rs.Fields(0), 1)) + 1)
+                SQL = Left(Rs.Fields(0), 1) & CStr(Asc(Right(Rs.Fields(0), 1)) + 1)
                 End If
             End If
         End If
     End If
     Rs.Close
     Set Rs = Nothing
-    SugerirCodigoSiguienteStr = sql
+    SugerirCodigoSiguienteStr = SQL
 ESugerirCodigo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
@@ -549,9 +549,10 @@ End Sub
 
 
 
-Public Sub DesplazamientoData(ByRef vData As Adodc, Index As Integer)
+Public Sub DesplazamientoData(ByRef vData As Adodc, Index As Integer, Optional EsNuevo As Boolean)
 'Para desplazarse por los registros de control Data
     If vData.Recordset.EOF Then Exit Sub
+    If EsNuevo Then Index = Index - 1
     Select Case Index
         Case 0 'Primer Registro
             If Not vData.Recordset.BOF Then vData.Recordset.MoveFirst
@@ -1359,10 +1360,10 @@ Dim cadEnt As String
 End Function
 
 
-Public Function PonerNombreDeCod(ByRef Txt As TextBox, tabla As String, campo As String, Optional Codigo As String, Optional Tipo As String, Optional cBD As Byte, Optional codigo2 As String, Optional valor2 As String, Optional tipo2 As String) As String
+Public Function PonerNombreDeCod(ByRef Txt As TextBox, Tabla As String, campo As String, Optional Codigo As String, Optional Tipo As String, Optional cBD As Byte, Optional codigo2 As String, Optional valor2 As String, Optional tipo2 As String) As String
 'Devuelve el nombre/Descripción asociado al Código correspondiente
 'Además pone formato al campo txt del código a partir del Tag
-Dim sql As String
+Dim SQL As String
 Dim devuelve As String
 Dim vtag As CTag
 Dim ValorCodigo As String
@@ -1377,10 +1378,10 @@ Dim ValorCodigo As String
             If Tipo = "" Then Tipo = vtag.TipoDato
             
             If cBD = 0 Then cBD = cAgro
-            sql = DevuelveDesdeBDNew(cBD, tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
+            SQL = DevuelveDesdeBDNew(cBD, Tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
             If vtag.TipoDato = "N" Then ValorCodigo = Format(ValorCodigo, vtag.Formato)
             Txt.Text = ValorCodigo 'Valor codigo formateado
-            If sql = "" Then
+            If SQL = "" Then
 '                If vtag.Nombre <> "" Then
 '                    devuelve = "No existe el " & vtag.Nombre & ": " & ValorCodigo
 '                Else
@@ -1390,7 +1391,7 @@ Dim ValorCodigo As String
 '                Txt.Text = ""
 '                PonerFoco Txt
             Else
-                PonerNombreDeCod = sql 'Descripcion del codigo
+                PonerNombreDeCod = SQL 'Descripcion del codigo
             End If
         End If
         Set vtag = Nothing
@@ -1604,13 +1605,13 @@ End Function
 
 
 
-Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, sql As String, PrimeraVez As Boolean)
+Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, SQL As String, PrimeraVez As Boolean)
     On Error GoTo ECargaGRid
 
     vDataGrid.Enabled = True
     '    vdata.Recordset.Cancel
     vData.ConnectionString = conn
-    vData.RecordSource = sql
+    vData.RecordSource = SQL
     vData.CursorType = adOpenDynamic
     vData.LockType = adLockPessimistic
     vDataGrid.ScrollBars = dbgNone
@@ -1680,21 +1681,21 @@ Public Sub DatosPoblacion(codPobla As String, desPobla As String, CPostal As Str
 'IN --> codPobla
 'OUT -> desPobla (Descripcion de la poblacion)
 '        CPostal, Provi, Pais
-Dim sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 
     If codPobla <> "" Then
         If EsEntero(codPobla) Then
-            sql = "SELECT poblacio.despobla,poblacio.codposta, provinci.desprovi, naciones.desnacio, provinci.preprovi"
-            sql = sql & " FROM poblacio, provinci, naciones WHERE codpobla= " & codPobla
-            sql = sql & " AND provinci.codprovi = poblacio.codprovi AND naciones.codnacio = provinci.codnacio"
+            SQL = "SELECT poblacio.despobla,poblacio.codposta, provinci.desprovi, naciones.desnacio, provinci.preprovi"
+            SQL = SQL & " FROM poblacio, provinci, naciones WHERE codpobla= " & codPobla
+            SQL = SQL & " AND provinci.codprovi = poblacio.codprovi AND naciones.codnacio = provinci.codnacio"
 
             Set Rs = New ADODB.Recordset
-            Rs.Open sql, conn, , , adCmdText
+            Rs.Open SQL, conn, , , adCmdText
             If Not Rs.EOF Then
                 codPobla = Format(codPobla, "000000")
                 desPobla = Rs.Fields!desPobla
-                CPostal = DBLet(Rs.Fields!codPosta, "T")
+                CPostal = DBLet(Rs.Fields!codposta, "T")
                 Provi = Rs.Fields!desProvi
                 PAIS = Rs.Fields!desnacio
                 If Not IsNull(Rs.Fields!preprovi) Then _
@@ -1874,28 +1875,28 @@ End Function
 Public Function PonerBancoPropio(codempre As String, codBanpr As String, nomBanpr As String) As String
 'devuelve la cuenta: ES-2077-0014-11-01010225252
 'en nomBanco devuelve el nombre del banco
-Dim sql As String
+Dim SQL As String
 Dim nomempre As String
 Dim Rs As ADODB.Recordset
 
      'Poner banco Propio
     If codBanpr <> "" Then
         'comprobamos que existe el banco propio en la BD
-        sql = DevuelveDesdeBDNew(cAgro, "bancctas", "codbanpr", "codempre", codempre, "N", , "codbanpr", codBanpr, "N")
-        If sql = "" Then 'No existe el cod. banpr
+        SQL = DevuelveDesdeBDNew(cAgro, "bancctas", "codbanpr", "codempre", codempre, "N", , "codbanpr", codBanpr, "N")
+        If SQL = "" Then 'No existe el cod. banpr
             nomempre = DevuelveDesdeBDNew(cAgro, "empresas", "nomempre", "codempre", codempre, "N")
-            sql = "No existe el código de Banco Propio: " & codBanpr
-            sql = sql & vbCrLf & "para la empresa: " & Format(codempre, "000") & " - " & nomempre
-            MsgBox sql, vbExclamation
+            SQL = "No existe el código de Banco Propio: " & codBanpr
+            SQL = SQL & vbCrLf & "para la empresa: " & Format(codempre, "000") & " - " & nomempre
+            MsgBox SQL, vbExclamation
             PonerBancoPropio = ""
             nomBanpr = "Error"
         Else
-            sql = "SELECT DISTINCT naciones.ibanpais, bancctas.codbanco, bancctas.codsucur, bancctas.digcontr, bancctas.ctabanco, bancsofi.nombanco "
-            sql = sql & " FROM bancctas, naciones, bancsofi WHERE codempre = " & codempre & " AND codbanpr= " & codBanpr
-            sql = sql & " AND bancctas.codnacio = naciones.codnacio "
-            sql = sql & " AND (bancctas.codnacio = bancsofi.codnacio AND bancctas.codbanco = bancsofi.codbanco) "
+            SQL = "SELECT DISTINCT naciones.ibanpais, bancctas.codbanco, bancctas.codsucur, bancctas.digcontr, bancctas.ctabanco, bancsofi.nombanco "
+            SQL = SQL & " FROM bancctas, naciones, bancsofi WHERE codempre = " & codempre & " AND codbanpr= " & codBanpr
+            SQL = SQL & " AND bancctas.codnacio = naciones.codnacio "
+            SQL = SQL & " AND (bancctas.codnacio = bancsofi.codnacio AND bancctas.codbanco = bancsofi.codbanco) "
             Set Rs = New ADODB.Recordset
-            Rs.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             PonerBancoPropio = Rs.Fields(0).Value & "-" & Format(Rs.Fields(1).Value, "0000") & "-" & Format(Rs.Fields(2).Value, "0000") & "-" & Format(Rs.Fields(3).Value, "00") & "-" & Format(Rs.Fields(4).Value, "0000000000")
             nomBanpr = Rs.Fields!NomBanco
             Rs.Close
@@ -2139,7 +2140,7 @@ Dim b As Boolean
     End If
 End Sub
 
-Public Function ComprobarStock(CodArtic As String, codAlmac As String, Cant As String, CodTipMov As String) As Boolean
+Public Function ComprobarStock(codArtic As String, codAlmac As String, Cant As String, CodTipMov As String) As Boolean
 'Comprueba si el Articulo existe en el Almacen Origen y si hay
 'stock suficiente para poder realizar el traspaso
 Dim vStock As String
@@ -2147,11 +2148,11 @@ Dim vArtic As CArticulo
 Dim b As Boolean
 
     Set vArtic = New CArticulo
-    b = vArtic.Existe(CodArtic)
+    b = vArtic.Existe(codArtic)
     If b Then
         b = vArtic.ExisteEnAlmacen(codAlmac, vStock)
         If b Then
-            b = ComprobarHayStock(CSng(vStock), CSng(Cant), CodArtic, vArtic.Nombre, CodTipMov)
+            b = ComprobarHayStock(CSng(vStock), CSng(Cant), codArtic, vArtic.Nombre, CodTipMov)
 '            If Not ComprobarHayStock(CSng(vStock), CSng(cant), codArtic, vArtic.Nombre, CodTipMov) Then
 '                b = False
 '            Else
@@ -2163,7 +2164,7 @@ Dim b As Boolean
     ComprobarStock = b
 End Function
 
-Public Function ComprobarHayStock(stockOrig As Single, stockTras As Single, CodArtic As String, NomArtic As String, tipoMov As String)
+Public Function ComprobarHayStock(stockOrig As Single, stockTras As Single, codArtic As String, NomArtic As String, tipoMov As String)
 'IN: stockOrig: stock existente en almacen Origen
 '    stockTras: stock a traspasar del origen a otro almacen
 Dim b As Boolean
@@ -2177,7 +2178,7 @@ Dim devuelve As String
         devuelve = "Control de Stock : " & vbCrLf
         devuelve = devuelve & "---------------------- " & vbCrLf & vbCrLf
         devuelve = devuelve & " No hay suficiente Stock en el Almacen del Artículo:"
-        devuelve = devuelve & vbCrLf & " Código:   " & CodArtic & vbCrLf
+        devuelve = devuelve & vbCrLf & " Código:   " & codArtic & vbCrLf
         devuelve = devuelve & " Desc.: " & NomArtic & vbCrLf & vbCrLf
         devuelve = devuelve & "(Stock=" & stockOrig & ")"
 

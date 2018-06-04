@@ -5,89 +5,1241 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManForfaits 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Forfaits"
-   ClientHeight    =   7545
+   ClientHeight    =   8430
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   13275
+   ClientTop       =   30
+   ClientWidth     =   15270
    Icon            =   "frmManForfaits.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7545
-   ScaleWidth      =   13275
+   ScaleHeight     =   8430
+   ScaleWidth      =   15270
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.TextBox Text3 
-      Alignment       =   1  'Right Justify
-      BackColor       =   &H00FFFFC0&
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   3
-      Left            =   9810
-      TabIndex        =   80
-      Text            =   "Text3"
-      Top             =   7020
-      Width           =   1035
-   End
-   Begin VB.TextBox Text3 
-      Alignment       =   1  'Right Justify
-      BackColor       =   &H00FFFFC0&
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   2
-      Left            =   6345
-      TabIndex        =   72
-      Text            =   "Text3"
-      Top             =   7020
-      Width           =   1300
-   End
-   Begin VB.TextBox Text3 
-      Alignment       =   1  'Right Justify
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   1
-      Left            =   11475
-      TabIndex        =   70
-      Text            =   "Text3"
-      Top             =   6570
-      Width           =   1300
-   End
-   Begin VB.TextBox Text3 
-      Alignment       =   1  'Right Justify
-      Enabled         =   0   'False
-      Height          =   285
-      Index           =   0
-      Left            =   6345
-      TabIndex        =   68
-      Text            =   "Text3"
-      Top             =   6570
-      Width           =   1300
-   End
-   Begin VB.Frame FrameAux1 
-      Caption         =   "Costes"
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00C00000&
+      Height          =   300
+      Index           =   0
+      Left            =   12690
+      TabIndex        =   85
+      Top             =   285
+      Width           =   1605
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   135
+      TabIndex        =   83
+      Top             =   45
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   84
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3795
+      TabIndex        =   81
+      Top             =   45
+      Width           =   1785
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   82
+         Top             =   180
+         Width           =   1410
+         _ExtentX        =   2487
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   3
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Expandir Operaciones"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Cambio Costes"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Duplicar Confección"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   5655
+      TabIndex        =   79
+      Top             =   45
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   80
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame Frame2 
+      Height          =   2970
+      Index           =   0
+      Left            =   135
+      TabIndex        =   23
+      Top             =   810
+      Width           =   15005
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   16
+         Left            =   7620
+         MaxLength       =   9
+         TabIndex        =   10
+         Tag             =   "Precio por Kilo|N|S|||forfaits|preciokilonom|###0.0000||"
+         Top             =   2445
+         Width           =   1440
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   15
+         Left            =   7605
+         MaxLength       =   16
+         TabIndex        =   9
+         Tag             =   "Cajas por Palet|N|S|||forfaits|cajaspalet|##,##0||"
+         Top             =   2055
+         Width           =   1440
+      End
+      Begin VB.TextBox text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   915
+         Index           =   3
+         Left            =   180
+         MaxLength       =   250
+         MultiLine       =   -1  'True
+         ScrollBars      =   2  'Vertical
+         TabIndex        =   3
+         Tag             =   "Observaciones|T|S|||forfaits|observac|||"
+         Top             =   1800
+         Width           =   6060
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   14
+         Left            =   7605
+         MaxLength       =   16
+         TabIndex        =   8
+         Tag             =   "Peso Caja|N|S|||forfaits|pesocaja|#0.00||"
+         Top             =   1695
+         Width           =   1440
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   2
+         Left            =   2295
+         TabIndex        =   58
+         Text            =   "12345678901234567890"
+         Top             =   1125
+         Width           =   3975
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   2
+         Left            =   1350
+         MaxLength       =   6
+         TabIndex        =   2
+         Tag             =   "Variedad|N|S|||forfaits|codvarie|000000||"
+         Text            =   "123456"
+         Top             =   1125
+         Width           =   900
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   13
+         Left            =   11385
+         TabIndex        =   56
+         Top             =   2385
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   13
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   17
+         Tag             =   "Palet|N|N|0|999|forfaits|codpalet|000||"
+         Text            =   "123"
+         Top             =   2385
+         Width           =   630
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   12
+         Left            =   11385
+         TabIndex        =   54
+         Top             =   2025
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   12
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   16
+         Tag             =   "Marca|N|S|0|999|forfaits|codmarca|000||"
+         Text            =   "123"
+         Top             =   2025
+         Width           =   630
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   11
+         Left            =   11385
+         TabIndex        =   52
+         Top             =   1665
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   11
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   15
+         Tag             =   "Presentacion|N|N|0|999|forfaits|codprese|000||"
+         Text            =   "123"
+         Top             =   1665
+         Width           =   630
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   10
+         Left            =   11385
+         TabIndex        =   50
+         Top             =   1290
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   10
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   14
+         Tag             =   "Confeccion|N|N|0|999|forfaits|codtipco|000||"
+         Text            =   "123"
+         Top             =   1290
+         Width           =   630
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   9
+         Left            =   11385
+         TabIndex        =   48
+         Top             =   930
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   9
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   13
+         Tag             =   "Medida|N|N|0|999|forfaits|codmedid|000||"
+         Text            =   "123"
+         Top             =   930
+         Width           =   630
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   8
+         Left            =   11385
+         TabIndex        =   46
+         Top             =   570
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   8
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   12
+         Tag             =   "Capacidad|N|N|0|999|forfaits|codcapac|000||"
+         Text            =   "123"
+         Top             =   570
+         Width           =   630
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         Height          =   285
+         Index           =   6
+         Left            =   3915
+         MaxLength       =   16
+         TabIndex        =   18
+         Top             =   1980
+         Width           =   1035
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   5
+         Left            =   7605
+         MaxLength       =   16
+         TabIndex        =   7
+         Tag             =   "Kilos Unidad|N|S|0|999.99|forfaits|kilosuni|##0.00||"
+         Top             =   1335
+         Width           =   1440
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   4
+         Left            =   7605
+         MaxLength       =   16
+         TabIndex        =   6
+         Tag             =   "Kilos Caja|N|S|0|999.99|forfaits|kiloscaj|##0.00||"
+         Top             =   945
+         Width           =   1440
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         ItemData        =   "frmManForfaits.frx":000C
+         Left            =   7605
+         List            =   "frmManForfaits.frx":0016
+         Style           =   2  'Dropdown List
+         TabIndex        =   5
+         Tag             =   "Facturar por|N|N|0||forfaits|facturar|||"
+         Top             =   570
+         Width           =   1440
+      End
+      Begin VB.TextBox text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         Left            =   1350
+         MaxLength       =   40
+         TabIndex        =   1
+         Tag             =   "Nombre|T|N|||forfaits|nomconfe|||"
+         Text            =   "1234657890123456798012345678901234567890"
+         Top             =   675
+         Width           =   4920
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   0
+         ItemData        =   "frmManForfaits.frx":002C
+         Left            =   7605
+         List            =   "frmManForfaits.frx":0036
+         Style           =   2  'Dropdown List
+         TabIndex        =   4
+         Tag             =   "Caja / Kilo|N|N|0|1|forfaits|cajakilo|||"
+         Top             =   195
+         Width           =   1440
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   7
+         Left            =   11385
+         TabIndex        =   26
+         Top             =   210
+         Width           =   3435
+      End
+      Begin VB.TextBox text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   7
+         Left            =   10710
+         MaxLength       =   4
+         TabIndex        =   11
+         Tag             =   "Envase|N|N|0|999|forfaits|codtipen|000||"
+         Text            =   "123"
+         Top             =   210
+         Width           =   630
+      End
+      Begin VB.TextBox text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   0
+         Left            =   1350
+         MaxLength       =   16
+         TabIndex        =   0
+         Tag             =   "Código  forfait|T|N|||forfaits|codforfait||S|"
+         Text            =   "1234568790123456"
+         Top             =   270
+         Width           =   1890
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Precio/Kilo"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   5
+         Left            =   6390
+         TabIndex        =   76
+         Top             =   2445
+         Width           =   1185
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Cajas/Palet"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   3
+         Left            =   6390
+         TabIndex        =   75
+         Top             =   2085
+         Width           =   1185
+      End
+      Begin VB.Label Label40 
+         Caption         =   "Códigos EAN"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   4410
+         TabIndex        =   74
+         Top             =   270
+         Width           =   1320
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   330
+         Index           =   8
+         Left            =   5895
+         ToolTipText     =   "Códigos EAN asociados"
+         Top             =   225
+         Width           =   375
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Peso Caja"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   4
+         Left            =   6390
+         TabIndex        =   72
+         Top             =   1725
+         Width           =   1185
+      End
+      Begin VB.Label Label10 
+         Caption         =   "Variedad"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   180
+         TabIndex        =   59
+         Top             =   1125
+         Width           =   870
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   7
+         Left            =   1080
+         ToolTipText     =   "Buscar Colectivo"
+         Top             =   1125
+         Width           =   240
+      End
+      Begin VB.Label Label9 
+         Caption         =   "Palet"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   57
+         Top             =   2385
+         Width           =   690
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   6
+         Left            =   10440
+         ToolTipText     =   "Buscar Palet"
+         Top             =   2385
+         Width           =   240
+      End
+      Begin VB.Label Label8 
+         Caption         =   "Marca"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   55
+         Top             =   2025
+         Width           =   690
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   5
+         Left            =   10440
+         ToolTipText     =   "Buscar Marca"
+         Top             =   2025
+         Width           =   240
+      End
+      Begin VB.Label Label7 
+         Caption         =   "Presentac."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   53
+         Top             =   1665
+         Width           =   1185
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   4
+         Left            =   10440
+         ToolTipText     =   "Buscar Presentación"
+         Top             =   1665
+         Width           =   240
+      End
+      Begin VB.Label Label5 
+         Caption         =   "Confección"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   51
+         Top             =   1290
+         Width           =   1140
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   3
+         Left            =   10440
+         ToolTipText     =   "Buscar Confección"
+         Top             =   1290
+         Width           =   240
+      End
+      Begin VB.Label Label4 
+         Caption         =   "Medida"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   49
+         Top             =   930
+         Width           =   690
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   2
+         Left            =   10440
+         ToolTipText     =   "Buscar Medida"
+         Top             =   930
+         Width           =   240
+      End
+      Begin VB.Label Label3 
+         Caption         =   "Capacidad"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   47
+         Top             =   570
+         Width           =   1095
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   1
+         Left            =   10440
+         ToolTipText     =   "Buscar Capacidad"
+         Top             =   570
+         Width           =   240
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Kilos/Unidad"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   2
+         Left            =   6390
+         TabIndex        =   45
+         Top             =   1380
+         Width           =   1275
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Kilos/Caja"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   6390
+         TabIndex        =   44
+         Top             =   975
+         Width           =   1095
+      End
+      Begin VB.Label Label2 
+         Caption         =   "Facturar por "
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   6390
+         TabIndex        =   43
+         Top             =   615
+         Width           =   1200
+      End
+      Begin VB.Label Label6 
+         Caption         =   "Nombre"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   180
+         TabIndex        =   42
+         Top             =   675
+         Width           =   780
+      End
+      Begin VB.Label Label29 
+         Caption         =   "Observaciones"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   180
+         TabIndex        =   29
+         Top             =   1530
+         Width           =   1575
+      End
+      Begin VB.Image imgZoom 
+         Height          =   240
+         Index           =   0
+         Left            =   1755
+         ToolTipText     =   "Zoom descripción"
+         Top             =   1530
+         Width           =   240
+      End
+      Begin VB.Label Label2 
+         Caption         =   "Confección por "
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   0
+         Left            =   6390
+         TabIndex        =   28
+         Top             =   240
+         Width           =   1200
+      End
+      Begin VB.Label Label18 
+         Caption         =   "Envase"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Left            =   9180
+         TabIndex        =   27
+         Top             =   210
+         Width           =   690
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   0
+         Left            =   10440
+         ToolTipText     =   "Buscar Envase"
+         Top             =   210
+         Width           =   240
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Código"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   0
+         Left            =   180
+         TabIndex        =   24
+         Top             =   270
+         Width           =   1095
+      End
+   End
+   Begin VB.TextBox Text3 
+      Alignment       =   1  'Right Justify
+      BackColor       =   &H00FFFFC0&
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   3
+      Left            =   11295
+      TabIndex        =   78
+      Text            =   "Text3"
+      Top             =   7830
+      Width           =   1215
+   End
+   Begin VB.TextBox Text3 
+      Alignment       =   1  'Right Justify
+      BackColor       =   &H00FFFFC0&
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   2
+      Left            =   7155
+      TabIndex        =   70
+      Text            =   "Text3"
+      Top             =   7830
+      Width           =   1575
+   End
+   Begin VB.TextBox Text3 
+      Alignment       =   1  'Right Justify
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   1
+      Left            =   13320
+      TabIndex        =   68
+      Text            =   "Text3"
+      Top             =   7380
+      Width           =   1485
+   End
+   Begin VB.TextBox Text3 
+      Alignment       =   1  'Right Justify
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
+      Index           =   0
+      Left            =   7155
+      TabIndex        =   66
+      Text            =   "Text3"
+      Top             =   7380
+      Width           =   1575
+   End
+   Begin VB.Frame FrameAux1 
+      Caption         =   "Costes"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00972E0B&
       Height          =   3360
-      Left            =   8055
-      TabIndex        =   38
-      Top             =   3105
-      Width           =   5070
+      Left            =   9090
+      TabIndex        =   36
+      Top             =   3915
+      Width           =   6070
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   1350
          MaskColor       =   &H00000000&
-         TabIndex        =   67
+         TabIndex        =   65
          ToolTipText     =   "Buscar Coste"
          Top             =   2610
          Visible         =   0   'False
@@ -98,10 +1250,19 @@ Begin VB.Form frmManForfaits
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   1710
-         TabIndex        =   66
+         TabIndex        =   64
          Text            =   "nombre"
          Top             =   2610
          Visible         =   0   'False
@@ -111,11 +1272,20 @@ Begin VB.Form frmManForfaits
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   9
          Left            =   810
          MaxLength       =   2
-         TabIndex        =   40
+         TabIndex        =   38
          Tag             =   "Codigo coste|N|N|1|99|forfaits_costes|codcoste|00|S|"
          Text            =   "linea"
          Top             =   2610
@@ -126,11 +1296,20 @@ Begin VB.Form frmManForfaits
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   10
          Left            =   3690
          MaxLength       =   9
-         TabIndex        =   41
+         TabIndex        =   39
          Tag             =   "Importes|N|N|||forfaits_costes|importes|###0.0000||"
          Text            =   "impcoste"
          Top             =   2610
@@ -141,11 +1320,20 @@ Begin VB.Form frmManForfaits
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   8
          Left            =   360
          MaxLength       =   16
-         TabIndex        =   39
+         TabIndex        =   37
          Tag             =   "Codigo Forfaits|T|N|||forfaits_costes|codforfait||S|"
          Text            =   "codfor"
          Top             =   2610
@@ -156,7 +1344,7 @@ Begin VB.Form frmManForfaits
          Height          =   390
          Index           =   1
          Left            =   90
-         TabIndex        =   42
+         TabIndex        =   40
          Top             =   270
          Width           =   1200
          _ExtentX        =   2117
@@ -182,32 +1370,32 @@ Begin VB.Form frmManForfaits
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
-         Bindings        =   "frmManForfaits.frx":000C
-         Height          =   2610
+         Bindings        =   "frmManForfaits.frx":004C
+         Height          =   2390
          Index           =   1
          Left            =   90
-         TabIndex        =   43
-         Top             =   630
-         Width           =   4905
-         _ExtentX        =   8652
-         _ExtentY        =   4604
+         TabIndex        =   41
+         Top             =   675
+         Width           =   5910
+         _ExtentX        =   10425
+         _ExtentY        =   4207
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -304,29 +1492,38 @@ Begin VB.Form frmManForfaits
    Begin VB.Frame FrameAux0 
       Caption         =   "Envases"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00C00000&
+      ForeColor       =   &H00972E0B&
       Height          =   3360
       Left            =   180
-      TabIndex        =   32
-      Top             =   3105
-      Width           =   7815
+      TabIndex        =   30
+      Top             =   3915
+      Width           =   8815
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   450
          MaxLength       =   16
-         TabIndex        =   75
+         TabIndex        =   73
          Tag             =   "Linea|N|N|||forfaits_envases|numlinea|00|S|"
          Text            =   "lin"
          Top             =   2565
@@ -339,10 +1536,19 @@ Begin VB.Form frmManForfaits
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   5850
-         TabIndex        =   65
+         TabIndex        =   63
          Text            =   "importe"
          Top             =   2610
          Visible         =   0   'False
@@ -354,10 +1560,19 @@ Begin VB.Form frmManForfaits
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   4815
-         TabIndex        =   64
+         TabIndex        =   62
          Text            =   "precio"
          Top             =   2610
          Visible         =   0   'False
@@ -366,11 +1581,20 @@ Begin VB.Form frmManForfaits
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   1620
          MaskColor       =   &H00000000&
-         TabIndex        =   63
+         TabIndex        =   61
          ToolTipText     =   "Buscar Envase"
          Top             =   2610
          Visible         =   0   'False
@@ -381,10 +1605,19 @@ Begin VB.Form frmManForfaits
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   1830
-         TabIndex        =   62
+         TabIndex        =   60
          Top             =   2610
          Visible         =   0   'False
          Width           =   1815
@@ -393,11 +1626,20 @@ Begin VB.Form frmManForfaits
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   3690
          MaxLength       =   9
-         TabIndex        =   35
+         TabIndex        =   33
          Tag             =   "Cantidad|N|N|||forfaits_envases|cantidad|###0.0000||"
          Text            =   "cantidad"
          Top             =   2610
@@ -407,11 +1649,20 @@ Begin VB.Form frmManForfaits
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   675
          MaxLength       =   16
-         TabIndex        =   34
+         TabIndex        =   32
          Tag             =   "Codigo Articulo|T|N|||forfaits_envases|codartic||N|"
          Text            =   "articuloarticulo"
          Top             =   2565
@@ -422,11 +1673,20 @@ Begin VB.Form frmManForfaits
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   45
          MaxLength       =   16
-         TabIndex        =   33
+         TabIndex        =   31
          Tag             =   "Codigo Forfaits|T|N|||forfaits_envases|codforfait||S|"
          Text            =   "codforfaits"
          Top             =   2565
@@ -437,7 +1697,7 @@ Begin VB.Form frmManForfaits
          Height          =   390
          Index           =   0
          Left            =   135
-         TabIndex        =   36
+         TabIndex        =   34
          Top             =   225
          Width           =   1200
          _ExtentX        =   2117
@@ -511,32 +1771,32 @@ Begin VB.Form frmManForfaits
          _Version        =   393216
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
-         Bindings        =   "frmManForfaits.frx":0024
-         Height          =   2595
+         Bindings        =   "frmManForfaits.frx":0064
+         Height          =   2390
          Index           =   0
          Left            =   135
-         TabIndex        =   37
+         TabIndex        =   35
          Top             =   630
-         Width           =   7590
-         _ExtentX        =   13388
-         _ExtentY        =   4577
+         Width           =   8595
+         _ExtentX        =   15161
+         _ExtentY        =   4207
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -582,568 +1842,19 @@ Begin VB.Form frmManForfaits
          EndProperty
       End
    End
-   Begin VB.Frame Frame2 
-      Height          =   2610
-      Index           =   0
-      Left            =   135
-      TabIndex        =   23
-      Top             =   495
-      Width           =   13005
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   16
-         Left            =   6810
-         MaxLength       =   9
-         TabIndex        =   10
-         Tag             =   "Precio por Kilo|N|S|||forfaits|preciokilonom|###0.0000||"
-         Top             =   2130
-         Width           =   1035
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   15
-         Left            =   6795
-         MaxLength       =   16
-         TabIndex        =   9
-         Tag             =   "Cajas por Palet|N|S|||forfaits|cajaspalet|##,##0||"
-         Top             =   1785
-         Width           =   1035
-      End
-      Begin VB.TextBox text1 
-         Height          =   690
-         Index           =   3
-         Left            =   180
-         MaxLength       =   250
-         MultiLine       =   -1  'True
-         ScrollBars      =   2  'Vertical
-         TabIndex        =   3
-         Tag             =   "Observaciones|T|S|||forfaits|observac|||"
-         Top             =   1710
-         Width           =   5160
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   14
-         Left            =   6795
-         MaxLength       =   16
-         TabIndex        =   8
-         Tag             =   "Peso Caja|N|S|||forfaits|pesocaja|#0.00||"
-         Top             =   1470
-         Width           =   1035
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   2
-         Left            =   1935
-         TabIndex        =   60
-         Text            =   "12345678901234567890"
-         Top             =   1080
-         Width           =   3390
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   2
-         Left            =   1170
-         MaxLength       =   6
-         TabIndex        =   2
-         Tag             =   "Variedad|N|S|||forfaits|codvarie|000000||"
-         Text            =   "123456"
-         Top             =   1080
-         Width           =   720
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   13
-         Left            =   9720
-         TabIndex        =   58
-         Top             =   2115
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   13
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   17
-         Tag             =   "Palet|N|N|0|999|forfaits|codpalet|000||"
-         Text            =   "123"
-         Top             =   2115
-         Width           =   405
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   12
-         Left            =   9720
-         TabIndex        =   56
-         Top             =   1800
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   12
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   16
-         Tag             =   "Marca|N|S|0|999|forfaits|codmarca|000||"
-         Text            =   "123"
-         Top             =   1800
-         Width           =   405
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   11
-         Left            =   9720
-         TabIndex        =   54
-         Top             =   1485
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   11
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   15
-         Tag             =   "Presentacion|N|N|0|999|forfaits|codprese|000||"
-         Text            =   "123"
-         Top             =   1485
-         Width           =   405
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   10
-         Left            =   9720
-         TabIndex        =   52
-         Top             =   1155
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   10
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   14
-         Tag             =   "Confeccion|N|N|0|999|forfaits|codtipco|000||"
-         Text            =   "123"
-         Top             =   1155
-         Width           =   405
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   9
-         Left            =   9720
-         TabIndex        =   50
-         Top             =   840
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   9
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   13
-         Tag             =   "Medida|N|N|0|999|forfaits|codmedid|000||"
-         Text            =   "123"
-         Top             =   840
-         Width           =   405
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   8
-         Left            =   9720
-         TabIndex        =   48
-         Top             =   525
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   8
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   12
-         Tag             =   "Capacidad|N|N|0|999|forfaits|codcapac|000||"
-         Text            =   "123"
-         Top             =   525
-         Width           =   405
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   6
-         Left            =   3915
-         MaxLength       =   16
-         TabIndex        =   18
-         Top             =   1980
-         Width           =   1035
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   5
-         Left            =   6795
-         MaxLength       =   16
-         TabIndex        =   7
-         Tag             =   "Kilos Unidad|N|S|0|999.99|forfaits|kilosuni|##0.00||"
-         Top             =   1155
-         Width           =   1035
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   4
-         Left            =   6795
-         MaxLength       =   16
-         TabIndex        =   6
-         Tag             =   "Kilos Caja|N|S|0|999.99|forfaits|kiloscaj|##0.00||"
-         Top             =   855
-         Width           =   1035
-      End
-      Begin VB.ComboBox Combo1 
-         Height          =   315
-         Index           =   1
-         ItemData        =   "frmManForfaits.frx":003C
-         Left            =   6795
-         List            =   "frmManForfaits.frx":0046
-         Style           =   2  'Dropdown List
-         TabIndex        =   5
-         Tag             =   "Facturar por|N|N|0||forfaits|facturar|||"
-         Top             =   525
-         Width           =   1035
-      End
-      Begin VB.TextBox text1 
-         Height          =   285
-         Index           =   1
-         Left            =   900
-         MaxLength       =   40
-         TabIndex        =   1
-         Tag             =   "Nombre|T|N|||forfaits|nomconfe|||"
-         Text            =   "1234657890123456798012345678901234567890"
-         Top             =   675
-         Width           =   4425
-      End
-      Begin VB.ComboBox Combo1 
-         Height          =   315
-         Index           =   0
-         ItemData        =   "frmManForfaits.frx":005C
-         Left            =   6795
-         List            =   "frmManForfaits.frx":0066
-         Style           =   2  'Dropdown List
-         TabIndex        =   4
-         Tag             =   "Caja / Kilo|N|N|0|1|forfaits|cajakilo|||"
-         Top             =   195
-         Width           =   1035
-      End
-      Begin VB.TextBox text2 
-         BackColor       =   &H80000018&
-         Enabled         =   0   'False
-         Height          =   285
-         Index           =   7
-         Left            =   9720
-         TabIndex        =   28
-         Top             =   210
-         Width           =   3030
-      End
-      Begin VB.TextBox text1 
-         Alignment       =   1  'Right Justify
-         Height          =   285
-         Index           =   7
-         Left            =   9270
-         MaxLength       =   4
-         TabIndex        =   11
-         Tag             =   "Envase|N|N|0|999|forfaits|codtipen|000||"
-         Text            =   "123"
-         Top             =   210
-         Width           =   405
-      End
-      Begin VB.TextBox text1 
-         Height          =   285
-         Index           =   0
-         Left            =   900
-         MaxLength       =   16
-         TabIndex        =   0
-         Tag             =   "Código  forfait|T|N|||forfaits|codforfait||S|"
-         Text            =   "1234568790123456"
-         Top             =   270
-         Width           =   1575
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Precio/Kilo"
-         Height          =   255
-         Index           =   5
-         Left            =   5580
-         TabIndex        =   78
-         Top             =   2130
-         Width           =   1185
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Cajas/Palet"
-         Height          =   255
-         Index           =   3
-         Left            =   5580
-         TabIndex        =   77
-         Top             =   1815
-         Width           =   1185
-      End
-      Begin VB.Label Label40 
-         Caption         =   "Códigos EAN"
-         Height          =   255
-         Left            =   3960
-         TabIndex        =   76
-         Top             =   270
-         Width           =   960
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   330
-         Index           =   8
-         Left            =   4950
-         ToolTipText     =   "Códigos EAN asociados"
-         Top             =   225
-         Width           =   375
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Peso Caja"
-         Height          =   255
-         Index           =   4
-         Left            =   5580
-         TabIndex        =   74
-         Top             =   1500
-         Width           =   1185
-      End
-      Begin VB.Label Label10 
-         Caption         =   "Variedad"
-         Height          =   255
-         Left            =   180
-         TabIndex        =   61
-         Top             =   1080
-         Width           =   690
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   7
-         Left            =   900
-         ToolTipText     =   "Buscar Colectivo"
-         Top             =   1080
-         Width           =   240
-      End
-      Begin VB.Label Label9 
-         Caption         =   "Palet"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   59
-         Top             =   2115
-         Width           =   690
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   6
-         Left            =   9000
-         ToolTipText     =   "Buscar Palet"
-         Top             =   2115
-         Width           =   240
-      End
-      Begin VB.Label Label8 
-         Caption         =   "Marca"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   57
-         Top             =   1800
-         Width           =   690
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   5
-         Left            =   9000
-         ToolTipText     =   "Buscar Marca"
-         Top             =   1800
-         Width           =   240
-      End
-      Begin VB.Label Label7 
-         Caption         =   "Presentac."
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   55
-         Top             =   1485
-         Width           =   825
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   4
-         Left            =   9000
-         ToolTipText     =   "Buscar Presentación"
-         Top             =   1485
-         Width           =   240
-      End
-      Begin VB.Label Label5 
-         Caption         =   "Confección"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   53
-         Top             =   1155
-         Width           =   825
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   3
-         Left            =   9000
-         ToolTipText     =   "Buscar Confección"
-         Top             =   1155
-         Width           =   240
-      End
-      Begin VB.Label Label4 
-         Caption         =   "Medida"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   51
-         Top             =   840
-         Width           =   690
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   2
-         Left            =   9000
-         ToolTipText     =   "Buscar Medida"
-         Top             =   840
-         Width           =   240
-      End
-      Begin VB.Label Label3 
-         Caption         =   "Capacidad"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   49
-         Top             =   525
-         Width           =   780
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   1
-         Left            =   9000
-         ToolTipText     =   "Buscar Capacidad"
-         Top             =   525
-         Width           =   240
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Kilos/Unidad"
-         Height          =   255
-         Index           =   2
-         Left            =   5580
-         TabIndex        =   47
-         Top             =   1200
-         Width           =   1095
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Kilos/Caja"
-         Height          =   255
-         Index           =   1
-         Left            =   5580
-         TabIndex        =   46
-         Top             =   885
-         Width           =   1095
-      End
-      Begin VB.Label Label2 
-         Caption         =   "Facturar por "
-         Height          =   255
-         Index           =   1
-         Left            =   5580
-         TabIndex        =   45
-         Top             =   570
-         Width           =   1200
-      End
-      Begin VB.Label Label6 
-         Caption         =   "Nombre"
-         Height          =   255
-         Index           =   1
-         Left            =   180
-         TabIndex        =   44
-         Top             =   675
-         Width           =   690
-      End
-      Begin VB.Label Label29 
-         Caption         =   "Observaciones"
-         Height          =   255
-         Left            =   225
-         TabIndex        =   31
-         Top             =   1440
-         Width           =   1125
-      End
-      Begin VB.Image imgZoom 
-         Height          =   240
-         Index           =   0
-         Left            =   1395
-         ToolTipText     =   "Zoom descripción"
-         Top             =   1440
-         Width           =   240
-      End
-      Begin VB.Label Label2 
-         Caption         =   "Confección por "
-         Height          =   255
-         Index           =   0
-         Left            =   5580
-         TabIndex        =   30
-         Top             =   240
-         Width           =   1200
-      End
-      Begin VB.Label Label18 
-         Caption         =   "Envase"
-         Height          =   255
-         Left            =   8145
-         TabIndex        =   29
-         Top             =   210
-         Width           =   690
-      End
-      Begin VB.Image imgBuscar 
-         Height          =   240
-         Index           =   0
-         Left            =   9000
-         ToolTipText     =   "Buscar Envase"
-         Top             =   210
-         Width           =   240
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Código"
-         Height          =   255
-         Index           =   0
-         Left            =   180
-         TabIndex        =   24
-         Top             =   270
-         Width           =   1095
-      End
-   End
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   0
       Left            =   240
       TabIndex        =   21
-      Top             =   6750
+      Top             =   7560
       Width           =   2865
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -1160,19 +1871,37 @@ Begin VB.Form frmManForfaits
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   12075
+      Left            =   14040
       TabIndex        =   20
-      Top             =   7005
-      Width           =   1035
+      Top             =   7830
+      Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   10950
+      Left            =   12840
       TabIndex        =   19
-      Top             =   7005
-      Width           =   1035
+      Top             =   7815
+      Width           =   1065
    End
    Begin MSAdodcLib.Adodc Data1 
       Height          =   330
@@ -1221,127 +1950,47 @@ Begin VB.Form frmManForfaits
       EndProperty
       _Version        =   393216
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   26
-      Top             =   0
-      Width           =   13275
-      _ExtentX        =   23416
-      _ExtentY        =   635
+   Begin VB.CommandButton cmdRegresar 
+      Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   14025
+      TabIndex        =   25
+      Top             =   7860
+      Visible         =   0   'False
+      Width           =   1065
+   End
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
+      Height          =   330
+      Left            =   14730
+      TabIndex        =   86
+      Top             =   225
+      Width           =   405
+      _ExtentX        =   714
+      _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
       Style           =   1
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   21
+         NumButtons      =   1
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Expandir operaciones"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Cambio Costes"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Duplicar Confección"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button21 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
+            Object.ToolTipText     =   "Ayuda"
          EndProperty
       EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Index           =   0
-         Left            =   8520
-         TabIndex        =   27
-         Top             =   120
-         Width           =   1215
-      End
-   End
-   Begin VB.CommandButton cmdRegresar 
-      Caption         =   "&Regresar"
-      Height          =   375
-      Left            =   12045
-      TabIndex        =   25
-      Top             =   7005
-      Visible         =   0   'False
-      Width           =   1035
    End
    Begin VB.Label Label11 
       Caption         =   "Total por Kilo: "
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   700
@@ -1349,24 +1998,24 @@ Begin VB.Form frmManForfaits
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   3
-      Left            =   8370
-      TabIndex        =   79
-      Top             =   7065
-      Width           =   1410
+      Left            =   9630
+      TabIndex        =   77
+      Top             =   7875
+      Width           =   1725
    End
    Begin VB.Line Line1 
-      X1              =   5895
-      X2              =   7965
-      Y1              =   6930
-      Y2              =   6930
+      X1              =   6705
+      X2              =   8775
+      Y1              =   7740
+      Y2              =   7740
    End
    Begin VB.Label Label11 
       Caption         =   "Coste Total Forfait: "
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   700
@@ -1374,18 +2023,18 @@ Begin VB.Form frmManForfaits
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   2
-      Left            =   3870
-      TabIndex        =   73
-      Top             =   7065
+      Left            =   4680
+      TabIndex        =   71
+      Top             =   7875
       Width           =   2445
    End
    Begin VB.Label Label11 
       Caption         =   "TOTAL IMPORTE COSTES: "
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   400
@@ -1393,18 +2042,18 @@ Begin VB.Form frmManForfaits
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   1
-      Left            =   8370
-      TabIndex        =   71
-      Top             =   6615
+      Left            =   9630
+      TabIndex        =   69
+      Top             =   7425
       Width           =   2400
    End
    Begin VB.Label Label11 
       Caption         =   "TOTAL IMPORTE ENVASES: "
       BeginProperty Font 
-         Name            =   "Tahoma"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   400
@@ -1412,16 +2061,18 @@ Begin VB.Form frmManForfaits
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   0
-      Left            =   3870
-      TabIndex        =   69
-      Top             =   6615
+      Left            =   4680
+      TabIndex        =   67
+      Top             =   7425
       Width           =   2445
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -1698,31 +2349,77 @@ Dim i As Integer
     PrimeraVez = True
     
     ' ICONETS DE LA BARRA
-    btnPrimero = 18 'index del botó "primero"
+'    btnPrimero = 18 'index del botó "primero"
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        'l'1 i el 2 son separadors
+'        .Buttons(3).Image = 1   'Buscar
+'        .Buttons(4).Image = 2   'Totss
+'        'el 5 i el 6 son separadors
+'        .Buttons(7).Image = 3   'Insertar
+'        .Buttons(8).Image = 4   'Modificar
+'        .Buttons(9).Image = 5   'Borrar
+'        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
+'        .Buttons(12).Image = 26   'cambio de costes de confeccion
+'        .Buttons(13).Image = 16  'Duplicar Confecciones
+'        'el 10 i el 11 son separadors
+'
+'        .Buttons(14).Image = 10  'Imprimir
+'        .Buttons(15).Image = 11  'Eixir
+'        'el 13 i el 14 son separadors
+'        .Buttons(btnPrimero).Image = 6  'Primer
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Següent
+'        .Buttons(btnPrimero + 3).Image = 9 'Últim
+'    End With
+    
+    
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
         'l'1 i el 2 son separadors
-        .Buttons(3).Image = 1   'Buscar
-        .Buttons(4).Image = 2   'Totss
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
         'el 5 i el 6 son separadors
-        .Buttons(7).Image = 3   'Insertar
-        .Buttons(8).Image = 4   'Modificar
-        .Buttons(9).Image = 5   'Borrar
-        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
-        .Buttons(12).Image = 26   'cambio de costes de confeccion
-        .Buttons(13).Image = 16  'Duplicar Confecciones
-        'el 10 i el 11 son separadors
-        
-        .Buttons(14).Image = 10  'Imprimir
-        .Buttons(15).Image = 11  'Eixir
-        'el 13 i el 14 son separadors
-        .Buttons(btnPrimero).Image = 6  'Primer
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Següent
-        .Buttons(btnPrimero + 3).Image = 9 'Últim
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
+    
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 19   'Expandir Añadir, Borrar y Modificar
+        .Buttons(2).Image = 26   'cambio de costes de confeccion
+        .Buttons(3).Image = 16  'Duplicar Confecciones
+    End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+    ' La Ayuda
+    With Me.ToolbarAyuda
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 12
+    End With
+    
+    
+    
+    
     
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
@@ -1850,7 +2547,8 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
@@ -1927,6 +2625,13 @@ EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
+
+
+
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
 'para los campos que permitan introducir criterios más largos del tamaño del campo
@@ -1951,35 +2656,35 @@ Dim i As Byte
     'b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     b = (Modo = 2 Or Modo = 0)
     'Buscar
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Vore Tots
-    Toolbar1.Buttons(4).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(7).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b = (Modo = 2 And Data1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(9).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     'Duplicar Confecciones
-    Toolbar1.Buttons(13).Enabled = b
+    Toolbar5.Buttons(3).Enabled = b
     Me.mnDuplicarConfec.Enabled = b
     
     'Expandir operaciones
-    Toolbar1.Buttons(11).Enabled = True And Not DeConsulta
+    Toolbar5.Buttons(1).Enabled = True And Not DeConsulta
     Me.mnExpandirOperaciones.Enabled = True And Not DeConsulta
     'Cambio Costes
-    Toolbar1.Buttons(12).Enabled = True And Not DeConsulta
+    Toolbar5.Buttons(2).Enabled = True And Not DeConsulta
     Me.mnCambioCostes.Enabled = True And Not DeConsulta
     'Imprimir
-    Toolbar1.Buttons(14).Enabled = True And Not DeConsulta
+    Toolbar1.Buttons(8).Enabled = True And Not DeConsulta
     Me.mnImprimir.Enabled = True And Not DeConsulta
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
@@ -1997,7 +2702,7 @@ End Sub
 Private Sub Desplazamiento(Index As Integer)
 'Botons de Desplaçament; per a desplaçar-se pels registres de control Data
     If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -2011,7 +2716,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim SQL As String
-Dim tabla As String
+Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2177,7 +2882,7 @@ Private Sub mnDuplicarConfec_Click()
     If Data1.Recordset.RecordCount = 0 Then Exit Sub
 
     Screen.MousePointer = vbHourglass
-    frmListConfeccion.Opcionlistado = 1
+    frmListConfeccion.OpcionListado = 1
     frmListConfeccion.NumCod = Text1(0).Text
     frmListConfeccion.Show vbModal
     Screen.MousePointer = vbDefault
@@ -2209,7 +2914,7 @@ End Sub
 
 Private Sub mnImprimir_Click()
     Screen.MousePointer = vbHourglass
-    frmListConfeccion.Opcionlistado = 0
+    frmListConfeccion.OpcionListado = 0
     frmListConfeccion.Show vbModal
     Screen.MousePointer = vbDefault
 End Sub
@@ -2239,15 +2944,15 @@ End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 3  'Búscar
+        Case 5  'Búscar
            mnBuscar_Click
-        Case 4  'Tots
+        Case 6  'Tots
             mnVerTodos_Click
-        Case 7  'Nou
+        Case 1  'Nou
             mnNuevo_Click
-        Case 8  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 9  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
         Case 11  'Expandir operaciones
             mnExpandirOperaciones_Click
@@ -2255,7 +2960,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnCambioCostes_Click
         Case 13 ' Duplicar Confeccion
             mnDuplicarConfec_Click
-        Case 14 'Imprimir
+        Case 8 'Imprimir
             mnImprimir_Click
         Case 15    'Eixir
             mnSalir_Click
@@ -3043,7 +3748,7 @@ Dim Eliminar As Boolean
     Select Case Index
         Case 0 'envases
             SQL = "¿Seguro que desea eliminar el Envase?"
-            SQL = SQL & vbCrLf & "Envase: " & AdoAux(Index).Recordset!CodArtic
+            SQL = SQL & vbCrLf & "Envase: " & AdoAux(Index).Recordset!codArtic
             If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 SQL = "DELETE FROM forfaits_envases "
@@ -3294,6 +3999,21 @@ Dim i As Integer
     Combo1(1).AddItem "Kilo"
     Combo1(1).ItemData(Combo1(1).NewIndex) = 1
     
+End Sub
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1  'Expandir operaciones
+            mnExpandirOperaciones_Click
+        Case 2 ' Cambio Costes
+            mnCambioCostes_Click
+        Case 3 ' Duplicar Confeccion
+            mnDuplicarConfec_Click
+    End Select
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
 End Sub
 
 Private Sub txtAux_LostFocus(Index As Integer)
@@ -3606,11 +4326,11 @@ Dim tots As String
         Case 0 'envases
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;" 'codforfait
-            tots = tots & "S|txtAux(1)|T|Envase|1700|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|txtAux2(2)|T|Denominación|2100|;S|txtAux(2)|T|Cantidad|1000|;"
-            tots = tots & "S|txtAux2(0)|T|Precio|1000|;S|txtAux2(1)|T|Importe|1200|;N||||0|;"
+            tots = tots & "S|txtAux(1)|T|Envase|1900|;S|btnBuscar(0)|B|||;"
+            tots = tots & "S|txtAux2(2)|T|Denominación|2200|;S|txtAux(2)|T|Cantidad|1200|;"
+            tots = tots & "S|txtAux2(0)|T|Precio|1200|;S|txtAux2(1)|T|Importe|1500|;N||||0|;"
             
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
         
             DataGridAux(0).Columns(4).NumberFormat = "###,##0.0000"
             DataGridAux(0).Columns(4).Alignment = dbgRight
@@ -3621,11 +4341,11 @@ Dim tots As String
             
         Case 1 'Costes
             'si es visible|control|tipo campo|nombre campo|ancho control|
-            tots = "N||||0|;S|txtAux(9)|T|Coste|700|;S|btnBuscar(1)|B||195|;" 'codsocio,numlinea
-            tots = tots & "S|txtAux2(3)|T|Denominación|2400|;"
-            tots = tots & "S|txtAux(10)|T|Importe|1200|;"
+            tots = "N||||0|;S|txtAux(9)|T|Coste|1000|;S|btnBuscar(1)|B||195|;" 'codsocio,numlinea
+            tots = tots & "S|txtAux2(3)|T|Denominación|2800|;"
+            tots = tots & "S|txtAux(10)|T|Importe|1500|;"
 
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
             
             b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
             

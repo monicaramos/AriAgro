@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManBanco 
@@ -32,13 +32,13 @@ Begin VB.Form frmManBanco
    Begin VB.TextBox txtAux 
       Height          =   285
       Index           =   17
-      Left            =   11595
-      MaxLength       =   10
+      Left            =   11955
+      MaxLength       =   3
       TabIndex        =   13
       Tag             =   "Código Ordenante|T|S|||banpropi|codorden34|||"
       Text            =   "1234567890"
       Top             =   2370
-      Width           =   1050
+      Width           =   690
    End
    Begin VB.TextBox text2 
       BackColor       =   &H80000018&
@@ -546,12 +546,12 @@ Begin VB.Form frmManBanco
       End
    End
    Begin VB.Label Label8 
-      Caption         =   "Cód.Ordenante Norma 34"
+      Caption         =   "Sufijo Transferencia"
       Height          =   255
-      Left            =   9750
+      Left            =   10440
       TabIndex        =   40
-      Top             =   2370
-      Width           =   1845
+      Top             =   2385
+      Width           =   1485
    End
    Begin VB.Label Label4 
       Caption         =   "Cta.Cont."
@@ -708,7 +708,7 @@ Public TipoSuplem As Integer
 'Private WithEvents frmB As frmBuscaGrid
 
 Private CadenaConsulta As String
-Private CadB As String
+Private cadB As String
 
 ' ### [Monica] 08/09/2006
 Private WithEvents frmCtas As frmCtasConta 'cuentas contables
@@ -818,7 +818,7 @@ Dim anc As Single
 Dim i As Integer
     
     CargaGrid 'primer de tot carregue tot el grid
-    CadB = ""
+    cadB = ""
     '********* canviar taula i camp; repasar codEmpre ************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
         NumF = NuevoCodigo
@@ -864,7 +864,7 @@ End Sub
 
 Private Sub BotonVerTodos()
     CargaGrid ""
-    CadB = ""
+    cadB = ""
     PonerModo 2
 End Sub
 
@@ -939,7 +939,7 @@ Dim i As Integer
 End Sub
 
 Private Sub BotonEliminar()
-Dim Sql As String
+Dim SQL As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -954,18 +954,18 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*** canviar la pregunta, els noms dels camps i el DELETE; repasar codEmpre ***
-    Sql = "¿Seguro que desea eliminar el Banco Propio?"
+    SQL = "¿Seguro que desea eliminar el Banco Propio?"
     'SQL = SQL & vbCrLf & "Código: " & Format(adodc1.Recordset.Fields(0), "000")
-    Sql = Sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
-    Sql = Sql & vbCrLf & "Nombre: " & adodc1.Recordset.Fields(1)
+    SQL = SQL & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
+    SQL = SQL & vbCrLf & "Nombre: " & adodc1.Recordset.Fields(1)
     
-    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
         'N'hi ha que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        Sql = "Delete from banpropi where codbanpr = " & adodc1.Recordset!codBanpr
+        SQL = "Delete from banpropi where codbanpr = " & adodc1.Recordset!codBanpr
         
-        conn.Execute Sql
-        CargaGrid CadB
+        conn.Execute SQL
+        CargaGrid cadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
 '            lblIndicador.Caption = "RESULTADO BUSQUEDA"
@@ -1014,7 +1014,7 @@ Dim i As Long
                     Else
                         BotonAnyadir
                     End If
-                    CadB = ""
+                    cadB = ""
                 End If
             End If
             
@@ -1025,7 +1025,7 @@ Dim i As Long
                     i = adodc1.Recordset.AbsolutePosition
                     TerminaBloquear
                     PonerModo 2
-                    CargaGrid CadB
+                    CargaGrid cadB
 '                    If CadB <> "" Then
 '                        CargaGrid CadB
 '                        lblIndicador.Caption = "RESULTADO BUSQUEDA"
@@ -1039,9 +1039,9 @@ Dim i As Long
             End If
             
         Case 1  'BUSQUEDA
-            CadB = ObtenerBusqueda(Me)
-            If CadB <> "" Then
-                CargaGrid CadB
+            cadB = ObtenerBusqueda(Me)
+            If cadB <> "" Then
+                CargaGrid cadB
                 PonerModo 2
 '                lblIndicador.Caption = "RESULTADO BUSQUEDA"
                 PonerFocoGrid Me.DataGrid1
@@ -1060,7 +1060,7 @@ Private Sub cmdCancelar_Click()
         Case 4 'MODIFICAR
             TerminaBloquear
         Case 1 'BUSQUEDA
-            CargaGrid CadB
+            CargaGrid cadB
     End Select
     
     If Not adodc1.Recordset.EOF Then
@@ -1168,7 +1168,7 @@ Dim i As Integer
     CadenaConsulta = CadenaConsulta & " FROM banpropi "
     '************************************************************************
     
-    CadB = ""
+    cadB = ""
     CargaGrid
     
     ' ****** Si n'hi han camps fora del grid ******
@@ -1192,7 +1192,7 @@ End Sub
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
     txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -1292,20 +1292,20 @@ End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
     Dim i As Integer
-    Dim Sql As String
+    Dim SQL As String
     Dim tots As String
     
 '    adodc1.ConnectionString = Conn
     ' *** si en Form_load ya li he posat clausula WHERE, canviar el `WHERE` de
     ' `SQL = CadenaConsulta & " WHERE " & vSQL` per un `AND`
     If vSQL <> "" Then
-        Sql = CadenaConsulta & " WHERE " & vSQL  ' ### [Monica] 08/09/2006: antes habia AND
+        SQL = CadenaConsulta & " WHERE " & vSQL  ' ### [Monica] 08/09/2006: antes habia AND
     Else
-        Sql = CadenaConsulta
+        SQL = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
     'SQL = SQL & " ORDER BY codempre, codsupdt"
-    Sql = Sql & " ORDER BY codbanpr"
+    SQL = SQL & " ORDER BY codbanpr"
     '**************************************************************++
     
 '    adodc1.RecordSource = SQL
@@ -1315,7 +1315,7 @@ Private Sub CargaGrid(Optional vSQL As String)
 '    adodc1.Refresh
 '    Set DataGrid1.DataSource = adodc1 ' per a que no ixca l'error de "la fila actual no está disponible"
        
-    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, False
+    CargaGridGnral Me.DataGrid1, Me.adodc1, SQL, False
        
        
     ' *** posar només els controls del grid ***
@@ -1349,7 +1349,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
     ConseguirFocoLin txtAux(Index)
 End Sub
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
@@ -1398,7 +1398,7 @@ Dim cadMen As String
         
         Case 12 'cuenta contable
             If txtAux(Index).Text = "" Then Exit Sub
-            text2(Index).Text = PonerNombreCuenta(txtAux(Index), Modo)
+            Text2(Index).Text = PonerNombreCuenta(txtAux(Index), Modo)
 
 '       Case 6, 7 'dates
 '           If txtAux(Index).Text <> "" Then PonerFormatoFecha txtAux(Index)
@@ -1449,7 +1449,7 @@ Private Function DatosOk() As Boolean
 Dim Datos As String
 Dim b As Boolean
 ' *** només per ad este manteniment ***
-Dim RS As Recordset
+Dim Rs As Recordset
 Dim cad As String
 Dim cta As String
 Dim cadMen As String
@@ -1593,7 +1593,7 @@ Private Sub CargaForaGrid()
         txtAux(17) = DataGrid1.Columns(18).Text
 
         ' *** Si fora del grid n'hi han camps de descripció, posar-los valor ***
-        text2(12).Text = PonerNombreCuenta(txtAux(12), Modo)
+        Text2(12).Text = PonerNombreCuenta(txtAux(12), Modo)
         
         'txtAux2(4).Text = PonerNombreDeCod(txtAux(4), "poblacio", "despobla", "codpobla", "N")
 '       If txtAux(4).Text <> "" Then _
@@ -1610,7 +1610,7 @@ On Error Resume Next
         txtAux(i).Text = ""
     Next i
     ' ****************************************************
-    text2(12).Text = "" ' el nombre de la cuenta contable la ponemos a cero
+    Text2(12).Text = "" ' el nombre de la cuenta contable la ponemos a cero
 
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -1622,7 +1622,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If CadB = "" Then
+        If cadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg
@@ -1634,9 +1634,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "banpropi"
         .Informe2 = "rManBanco.rpt"
-        If CadB <> "" Then
+        If cadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(CadB)
+            .cadRegSelec = SQL2SF(cadB)
         Else
             .cadRegSelec = ""
         End If
@@ -1647,7 +1647,7 @@ Private Sub printNou()
         .cadTodosReg = ""
         '.cadTodosReg = "{sbanco.codbanpr} = " & vSesion.Empresa
         ' *** repasar si li pose ordre o no ****
-        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomEmpre & "'|pOrden={banpropi.codbanpr}|"
+        .OtrosParametros2 = "pEmpresa='" & vEmpresa.nomempre & "'|pOrden={banpropi.codbanpr}|"
         '.OtrosParametros2 = "pEmpresa='" & vEmpresa.NomEmpre & "'|"
         ' *** posar el nº de paràmetres que he posat en OtrosParametros2 ***
         '.NumeroParametros2 = 1

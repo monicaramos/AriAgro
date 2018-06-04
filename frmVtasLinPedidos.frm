@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
@@ -9,13 +9,13 @@ Begin VB.Form frmVtasLinPedidos
    ClientHeight    =   8235
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   8730
+   ClientWidth     =   9735
    Icon            =   "frmVtasLinPedidos.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8235
-   ScaleWidth      =   8730
+   ScaleWidth      =   9735
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin TabDlg.SSTab SSTab1 
@@ -23,16 +23,26 @@ Begin VB.Form frmVtasLinPedidos
       Left            =   120
       TabIndex        =   20
       Top             =   420
-      Width           =   8505
-      _ExtentX        =   15002
+      Width           =   9505
+      _ExtentX        =   16775
       _ExtentY        =   6641
       _Version        =   393216
       Tab             =   1
       TabHeight       =   520
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       TabCaption(0)   =   "Variedad"
       TabPicture(0)   =   "frmVtasLinPedidos.frx":000C
       Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Frame2(0)"
+      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Datos de Carga I"
       TabPicture(1)   =   "frmVtasLinPedidos.frx":0028
@@ -111,9 +121,18 @@ Begin VB.Form frmVtasLinPedidos
       Tab(2).Control(7).Enabled=   0   'False
       Tab(2).ControlCount=   8
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   29
-         Left            =   -73590
+         Left            =   -73365
          MaxLength       =   20
          TabIndex        =   46
          Tag             =   "Hora Carga|T|S|||pedidos_variedad|horacarga|||"
@@ -122,9 +141,18 @@ Begin VB.Form frmVtasLinPedidos
          Width           =   2550
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   28
-         Left            =   -73590
+         Left            =   -73365
          MaxLength       =   10
          TabIndex        =   45
          Tag             =   "Fecha Carga|F|S|||pedidos_variedad|feccarga|||"
@@ -133,6 +161,15 @@ Begin VB.Form frmVtasLinPedidos
          Width           =   990
       End
       Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   525
          Index           =   25
          Left            =   -74760
@@ -142,9 +179,18 @@ Begin VB.Form frmVtasLinPedidos
          Tag             =   "Dirección de Carga|T|S|||pedidos_variedad|direccarga|||"
          Text            =   "frmVtasLinPedidos.frx":0060
          Top             =   1980
-         Width           =   7740
+         Width           =   8910
       End
       Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   615
          Index           =   26
          Left            =   -74760
@@ -155,112 +201,202 @@ Begin VB.Form frmVtasLinPedidos
          Tag             =   "Observaciones|T|S|||pedidos_variedad|obsproveedor|||"
          Text            =   "frmVtasLinPedidos.frx":0067
          Top             =   2820
-         Width           =   7710
+         Width           =   8925
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   27
-         Left            =   7110
+         Left            =   8190
          MaxLength       =   4
          TabIndex        =   43
          Tag             =   "Cajasxpalet|T|S|||pedidos_variedad|cajasxpalet|||"
          Text            =   "123456"
          Top             =   2220
-         Width           =   1170
+         Width           =   1035
       End
       Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   615
          Index           =   24
-         Left            =   1245
+         Left            =   1515
          MaxLength       =   200
          MultiLine       =   -1  'True
          TabIndex        =   44
          Tag             =   "Etiquetado|T|S|||pedidos_variedad|etiquetado|||"
          Text            =   "frmVtasLinPedidos.frx":006E
          Top             =   2760
-         Width           =   7050
+         Width           =   7680
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   23
-         Left            =   7140
+         Left            =   8175
          MaxLength       =   15
          TabIndex        =   39
          Tag             =   "Preenfriado|T|S|||pedidos_variedad|preenfriado|||"
          Text            =   "123456"
          Top             =   1800
-         Width           =   1170
+         Width           =   1035
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   22
-         Left            =   5370
+         Left            =   5865
          MaxLength       =   10
          TabIndex        =   42
          Tag             =   "Stickers|T|S|||pedidos_variedad|stickers|||"
-         Text            =   "123456"
+         Text            =   "1234567890"
          Top             =   2220
-         Width           =   990
+         Width           =   1350
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   21
-         Left            =   5370
+         Left            =   6405
          MaxLength       =   10
          TabIndex        =   38
          Tag             =   "Alt.Max.Palet|T|S|||pedidos_variedad|altmaxpalet|||"
          Text            =   "123456"
          Top             =   1800
-         Width           =   990
+         Width           =   810
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   20
-         Left            =   3330
+         Left            =   3555
          MaxLength       =   10
          TabIndex        =   41
          Tag             =   "Zumo|T|S|||pedidos_variedad|zumo|||"
-         Text            =   "123456"
+         Text            =   "1234567890"
          Top             =   2220
-         Width           =   990
+         Width           =   1350
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   19
-         Left            =   3330
+         Left            =   4095
          MaxLength       =   10
          TabIndex        =   37
          Tag             =   "Ind.Madurez|T|S|||pedidos_variedad|madurez|||"
          Text            =   "123456"
          Top             =   1800
-         Width           =   990
+         Width           =   855
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   18
-         Left            =   1260
+         Left            =   1530
          MaxLength       =   10
          TabIndex        =   40
          Tag             =   "Brix|T|S|||pedidos_variedad|brix|||"
-         Text            =   "123456"
+         Text            =   "1234567890"
          Top             =   2220
-         Width           =   990
+         Width           =   1305
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   17
-         Left            =   1260
+         Left            =   1530
          MaxLength       =   10
          TabIndex        =   36
          Tag             =   "Penetromía|T|S|||pedidos_variedad|penetromia|||"
          Text            =   "0000000000"
          Top             =   1800
-         Width           =   990
+         Width           =   1305
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   16
-         Left            =   1275
+         Left            =   1545
          LinkTimeout     =   30
          MaxLength       =   20
          TabIndex        =   35
@@ -270,38 +406,65 @@ Begin VB.Form frmVtasLinPedidos
          Width           =   2010
       End
       Begin VB.TextBox Text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   15
-         Left            =   1275
+         Left            =   1545
          MaxLength       =   200
          TabIndex        =   34
          Tag             =   "Transporte|T|S|||pedidos_variedad|transporte|||"
          Text            =   "123456"
          Top             =   960
-         Width           =   6990
+         Width           =   7665
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
-         Left            =   1275
+         Left            =   1545
          MaxLength       =   6
          TabIndex        =   33
          Tag             =   "Proveedor|N|S|0|999999|pedidos_variedad|codprove|000000||"
          Text            =   "123456"
          Top             =   570
-         Width           =   780
+         Width           =   870
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
-         Left            =   2145
+         Left            =   2460
          TabIndex        =   68
          Text            =   "12345678901234567890"
          Top             =   570
-         Width           =   6135
+         Width           =   6765
       End
       Begin VB.Frame Frame2 
          Height          =   3345
@@ -309,9 +472,18 @@ Begin VB.Form frmVtasLinPedidos
          Left            =   -74970
          TabIndex        =   21
          Top             =   360
-         Width           =   8445
+         Width           =   9445
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   315
             Index           =   13
             Left            =   2415
@@ -324,6 +496,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   315
             Index           =   13
             Left            =   1590
@@ -336,6 +517,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   12
             Left            =   6165
@@ -347,6 +537,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   11
             Left            =   1560
@@ -358,6 +557,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   10
             Left            =   5130
@@ -369,6 +577,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   9
             Left            =   3870
@@ -380,6 +597,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   5
             Left            =   1575
@@ -393,6 +619,15 @@ Begin VB.Form frmVtasLinPedidos
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   5
             Left            =   3150
@@ -403,6 +638,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   4
             Left            =   1575
@@ -416,6 +660,15 @@ Begin VB.Form frmVtasLinPedidos
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   4
             Left            =   2385
@@ -426,6 +679,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   3
             Left            =   1575
@@ -439,6 +701,15 @@ Begin VB.Form frmVtasLinPedidos
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   3
             Left            =   2385
@@ -450,6 +721,15 @@ Begin VB.Form frmVtasLinPedidos
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   2
             Left            =   2385
@@ -460,6 +740,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   2
             Left            =   1575
@@ -472,6 +761,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   8
             Left            =   7110
@@ -483,6 +781,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   7
             Left            =   1560
@@ -494,6 +801,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   6
             Left            =   3855
@@ -505,6 +821,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             BackColor       =   &H80000013&
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   1
             Left            =   3645
@@ -517,6 +842,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.TextBox Text1 
             BackColor       =   &H80000013&
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   285
             Index           =   0
             Left            =   1575
@@ -529,6 +863,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Tipo Palet"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   10
             Left            =   180
@@ -546,6 +889,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Unidades"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   7
             Left            =   6165
@@ -555,6 +907,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Total Palets"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   6
             Left            =   180
@@ -564,6 +925,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Nro.Cajas"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   5
             Left            =   5130
@@ -573,6 +943,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Pr.Provisional"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   4
             Left            =   2790
@@ -590,6 +969,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label13 
             Caption         =   "Forfait"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   180
             TabIndex        =   62
@@ -606,6 +994,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label12 
             Caption         =   "Marca"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   180
             TabIndex        =   61
@@ -622,6 +1019,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label2 
             Caption         =   "Var.Comercial"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   180
             TabIndex        =   60
@@ -630,6 +1036,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label10 
             Caption         =   "Variedad"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   180
             TabIndex        =   59
@@ -646,6 +1061,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Peso Neto"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   3
             Left            =   7110
@@ -655,6 +1079,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Peso Bruto"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   2
             Left            =   210
@@ -664,6 +1097,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Categoria"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   1
             Left            =   2790
@@ -673,6 +1115,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label6 
             Caption         =   "Linea"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   1
             Left            =   3105
@@ -682,6 +1133,15 @@ Begin VB.Form frmVtasLinPedidos
          End
          Begin VB.Label Label1 
             Caption         =   "Número Pedido"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   0
             Left            =   180
@@ -691,95 +1151,203 @@ Begin VB.Form frmVtasLinPedidos
          End
       End
       Begin VB.Label Label22 
-         Caption         =   "Hora de Carga"
+         Caption         =   "Hora Carga"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74760
          TabIndex        =   84
          Top             =   1290
-         Width           =   1140
+         Width           =   1455
       End
       Begin VB.Label Label21 
          Caption         =   "Fecha Carga"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74760
          TabIndex        =   83
          Top             =   810
-         Width           =   1140
+         Width           =   1410
       End
       Begin VB.Label Label18 
          Caption         =   "Dirección Carga"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74760
          TabIndex        =   82
          Top             =   1710
-         Width           =   1170
+         Width           =   2205
       End
       Begin VB.Label Label19 
          Caption         =   "Observaciones "
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   -74760
          TabIndex        =   81
          Top             =   2520
-         Width           =   1170
+         Width           =   1440
       End
       Begin VB.Label Label20 
          Caption         =   "CajxPalet"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   6360
+         Left            =   7215
          TabIndex        =   80
          Top             =   2250
-         Width           =   810
+         Width           =   900
       End
       Begin VB.Label Label17 
          Caption         =   "Etiquetado"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   79
          Top             =   2760
-         Width           =   900
+         Width           =   1215
       End
       Begin VB.Label Label16 
          Caption         =   "Preenfr."
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   6360
+         Left            =   7350
          TabIndex        =   78
          Top             =   1830
          Width           =   1080
       End
       Begin VB.Label Label15 
          Caption         =   "Stickers"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   4380
+         Left            =   5010
          TabIndex        =   77
          Top             =   2250
          Width           =   900
       End
       Begin VB.Label Label14 
-         Caption         =   "Alt. Max Palet"
+         Caption         =   "Alt.Max Palet"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   4350
+         Left            =   5025
          TabIndex        =   76
          Top             =   1830
-         Width           =   1380
+         Width           =   1605
       End
       Begin VB.Label Label11 
          Caption         =   "Zumo"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   2340
+         Left            =   2925
          TabIndex        =   75
          Top             =   2250
          Width           =   900
       End
       Begin VB.Label Label9 
          Caption         =   "Ind.Madurez"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   2310
+         Left            =   2850
          TabIndex        =   74
          Top             =   1830
-         Width           =   900
+         Width           =   1215
       End
       Begin VB.Label Label8 
          Caption         =   "Brix"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   73
@@ -788,14 +1356,32 @@ Begin VB.Form frmVtasLinPedidos
       End
       Begin VB.Label Label7 
          Caption         =   "Penetromía"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   72
          Top             =   1830
-         Width           =   900
+         Width           =   1125
       End
       Begin VB.Label Label5 
          Caption         =   "Origen"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   71
@@ -804,27 +1390,45 @@ Begin VB.Form frmVtasLinPedidos
       End
       Begin VB.Label Label4 
          Caption         =   "Transporte"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   70
          Top             =   960
-         Width           =   900
+         Width           =   1170
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   5
-         Left            =   1005
+         Left            =   1275
          ToolTipText     =   "Buscar Proveedor"
          Top             =   570
          Width           =   240
       End
       Begin VB.Label Label3 
          Caption         =   "Proveedor"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
          TabIndex        =   69
          Top             =   570
-         Width           =   750
+         Width           =   1065
       End
    End
    Begin VB.Frame FrameAux0 
@@ -843,7 +1447,7 @@ Begin VB.Form frmVtasLinPedidos
       Left            =   120
       TabIndex        =   16
       Top             =   4260
-      Width           =   8535
+      Width           =   9535
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
@@ -1073,8 +1677,8 @@ Begin VB.Form frmVtasLinPedidos
          Left            =   135
          TabIndex        =   18
          Top             =   630
-         Width           =   8310
-         _ExtentX        =   14658
+         Width           =   9310
+         _ExtentX        =   16431
          _ExtentY        =   4128
          _Version        =   393216
          AllowUpdate     =   0   'False
@@ -1235,8 +1839,8 @@ Begin VB.Form frmVtasLinPedidos
       TabIndex        =   14
       Top             =   0
       Visible         =   0   'False
-      Width           =   8730
-      _ExtentX        =   15399
+      Width           =   9735
+      _ExtentX        =   17171
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1483,7 +2087,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim CadB As String
+Dim cadB As String
 Dim PesoAnt As Currency
 Dim NumCajAnt As Currency
 
@@ -1653,7 +2257,7 @@ Dim cad As String
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     PrimeraVez = True
     
@@ -1683,8 +2287,8 @@ Dim I As Integer
     
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
-    For I = 0 To ToolAux.Count - 1
-        With Me.ToolAux(I)
+    For i = 0 To ToolAux.Count - 1
+        With Me.ToolAux(i)
             .HotImageList = frmPpal.imgListComun_OM16
             .DisabledImageList = frmPpal.imgListComun_BN16
             .ImageList = frmPpal.imgListComun16
@@ -1692,13 +2296,13 @@ Dim I As Integer
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next I
+    Next i
     ' ***********************************
     
     'cargar IMAGES de busqueda
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
     
     '[Monica]07/05/2014: IMG
     SSTab1.Tab = 0
@@ -1757,7 +2361,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim I As Integer, Numreg As Byte
+Dim i As Integer, Numreg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -1861,7 +2465,7 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Actives unes Opcions de Menú i Toolbar según el modo en que estem
 Dim b As Boolean, bAux As Boolean
-Dim I As Byte
+Dim i As Byte
     
     'Barra de CAPÇALERA
     '------------------------------------------
@@ -1896,12 +2500,12 @@ Dim I As Byte
 '++monica: si insertamos lo he quitado
 '    b = (Modo = 3 Or Modo = 4 Or Modo = 2) And Not DeConsulta
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
-    For I = 0 To ToolAux.Count - 1
-        ToolAux(I).Buttons(1).Enabled = b
-        If b Then bAux = (b And Me.AdoAux(I).Recordset.RecordCount > 0)
-        ToolAux(I).Buttons(2).Enabled = bAux
-        ToolAux(I).Buttons(3).Enabled = bAux
-    Next I
+    For i = 0 To ToolAux.Count - 1
+        ToolAux(i).Buttons(1).Enabled = b
+        If b Then bAux = (b And Me.AdoAux(i).Recordset.RecordCount > 0)
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
     
 End Sub
 
@@ -1921,29 +2525,29 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim Sql As String
+Dim SQL As String
 Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'CALIBRES
-            Sql = "SELECT pedidos_calibre.numpedid, pedidos_calibre.numlinea, pedidos_calibre.numline1, "
-            Sql = Sql & "pedidos_calibre.codvarie, pedidos_calibre.codcalib, calibres.nomcalib, pedidos_calibre.numcajas, "
-            Sql = Sql & "pedidos_calibre.unidades, pedidos_calibre.pesoneto"
-            Sql = Sql & " FROM pedidos_calibre, calibres "
+            SQL = "SELECT pedidos_calibre.numpedid, pedidos_calibre.numlinea, pedidos_calibre.numline1, "
+            SQL = SQL & "pedidos_calibre.codvarie, pedidos_calibre.codcalib, calibres.nomcalib, pedidos_calibre.numcajas, "
+            SQL = SQL & "pedidos_calibre.unidades, pedidos_calibre.pesoneto"
+            SQL = SQL & " FROM pedidos_calibre, calibres "
             If enlaza Then
-                Sql = Sql & ObtenerWhereCab(True)
+                SQL = SQL & ObtenerWhereCab(True)
             Else
-                Sql = Sql & " WHERE pedidos_calibre.numpedid = '-1'"
+                SQL = SQL & " WHERE pedidos_calibre.numpedid = '-1'"
             End If
-            Sql = Sql & " and pedidos_calibre.codcalib = calibres.codcalib"
-            Sql = Sql & " and pedidos_calibre.codvarie = calibres.codvarie"
-            Sql = Sql & " ORDER BY pedidos_calibre.codcalib"
+            SQL = SQL & " and pedidos_calibre.codcalib = calibres.codcalib"
+            SQL = SQL & " and pedidos_calibre.codvarie = calibres.codvarie"
+            SQL = SQL & " ORDER BY pedidos_calibre.codcalib"
                
     End Select
     
-    MontaSQLCarga = Sql
+    MontaSQLCarga = SQL
 End Function
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -1954,12 +2558,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        CadB = ""
+        cadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadB = Aux
+        cadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -1974,31 +2578,31 @@ End Sub
 Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
 'Forfaits
     Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmMar_DatoSeleccionado(CadenaSeleccion As String)
 'Marcas
     Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmarca
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmPal_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de paelets de confeccion
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod palet
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
 End Sub
 
 Private Sub frmPro_DatoSeleccionado(CadenaSeleccion As String)
 'Proveedores
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod proveedor
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
 End Sub
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Variedades
     Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvariedad
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
@@ -2066,7 +2670,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub BotonBuscar()
-Dim I As Integer
+Dim i As Integer
 ' ***** Si la clau primaria de la capçalera no es Text1(0), canviar-ho en <=== *****
     If Modo <> 1 Then
         LimpiarCampos
@@ -2087,12 +2691,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    CadB = ObtenerBusqueda2(Me, 1)
+    cadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -2101,7 +2705,7 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
     Dim cad As String
         
     'Cridem al form
@@ -2115,8 +2719,8 @@ Private Sub MandaBusquedaPrevia(CadB As String)
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = cad
-        frmB.vTabla = NombreTabla
-        frmB.vSQL = CadB
+        frmB.vtabla = NombreTabla
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
@@ -2138,7 +2742,7 @@ End Sub
 Private Sub cmdRegresar_Click()
 Dim cad As String
 Dim Aux As String
-Dim I As Integer
+Dim i As Integer
 Dim J As Integer
 
     
@@ -2175,7 +2779,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    CadB = ""
+    cadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -2271,7 +2875,7 @@ EEliminar:
 End Sub
 
 Private Sub PonerCampos()
-Dim I As Integer
+Dim i As Integer
 Dim codPobla As String, desPobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
@@ -2280,20 +2884,20 @@ Dim CPostal As String, desProvi As String, desPais As String
     
     ' *** si n'hi han llínies en datagrids ***
     'For i = 0 To DataGridAux.Count - 1
-    For I = 0 To 0
-            CargaGrid I, True
-            If Not AdoAux(I).Recordset.EOF Then _
-                PonerCamposForma2 Me, AdoAux(I), 2, "FrameAux" & I
-    Next I
+    For i = 0 To 0
+            CargaGrid i, True
+            If Not AdoAux(i).Recordset.EOF Then _
+                PonerCamposForma2 Me, AdoAux(i), 2, "FrameAux" & i
+    Next i
 
     
     ' ************* configurar els camps de les descripcions de la capçalera *************
-    text2(2).Text = PonerNombreDeCod(Text1(2), "variedades", "nomvarie")
-    text2(3).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(3).Text, "N")
-    text2(4).Text = PonerNombreDeCod(Text1(4), "marcas", "nommarca")
-    text2(5).Text = PonerNombreDeCod(Text1(5), "forfaits", "nomconfe")
-    text2(13).Text = PonerNombreDeCod(Text1(13), "confpale", "nompalet", "codpalet", "N")   'palets
-    text2(14).Text = PonerNombreDeCod(Text1(14), "proveedor", "nomprove", "codprove", "N")   'proveedor
+    Text2(2).Text = PonerNombreDeCod(Text1(2), "variedades", "nomvarie")
+    Text2(3).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(3).Text, "N")
+    Text2(4).Text = PonerNombreDeCod(Text1(4), "marcas", "nommarca")
+    Text2(5).Text = PonerNombreDeCod(Text1(5), "forfaits", "nomconfe")
+    Text2(13).Text = PonerNombreDeCod(Text1(13), "confpale", "nompalet", "codpalet", "N")   'palets
+    Text2(14).Text = PonerNombreDeCod(Text1(14), "proveedor", "nomprove", "codprove", "N")   'proveedor
 
     ' ********************************************************************************
     
@@ -2307,7 +2911,7 @@ Dim CPostal As String, desProvi As String, desPais As String
 End Sub
 
 Private Sub cmdCancelar_Click()
-Dim I As Integer
+Dim i As Integer
 Dim V
 
 
@@ -2387,7 +2991,7 @@ End Sub
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 'Dim Datos As String
 
     On Error GoTo EDatosOK
@@ -2399,9 +3003,9 @@ Dim Sql As String
     ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
     If (Modo = 3) Then 'insertar
         'comprobar si existe ya el cod. del campo clave primaria
-        Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "pedidos_calibre", "numpedid", "numpedid", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
-        If Sql <> "" Then
+        SQL = ""
+        SQL = DevuelveDesdeBDNew(cAgro, "pedidos_calibre", "numpedid", "numpedid", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
+        If SQL <> "" Then
             MsgBox "Ya existe el numero de linea para este pedido", vbExclamation
             b = False
         End If
@@ -2484,8 +3088,8 @@ Dim Variedad As String
         
         Case 2, 3 'Variedad
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(Index).Text, "N")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(Index).Text, "N")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe la Variedad: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -2506,13 +3110,13 @@ Dim Variedad As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
             
         Case 4 'Marca
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index) = PonerNombreDeCod(Text1(Index), "marcas", "nommarca")
-                If text2(Index).Text = "" Then
+                Text2(Index) = PonerNombreDeCod(Text1(Index), "marcas", "nommarca")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe la Marca: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -2533,13 +3137,13 @@ Dim Variedad As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
                 
         Case 5 'Forfait
             If Text1(Index).Text <> "" Then
-                text2(Index) = PonerNombreDeCod(Text1(Index), "forfaits", "nomconfe")
-                If text2(Index).Text = "" Then
+                Text2(Index) = PonerNombreDeCod(Text1(Index), "forfaits", "nomconfe")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe el Forfait: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -2571,7 +3175,7 @@ Dim Variedad As String
                     
                 End If
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
         
         Case 6 ' categoria
@@ -2587,8 +3191,8 @@ Dim Variedad As String
             
         Case 13 ' codigo de paletizacion
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(Text1(Index), "confpale", "nompalet")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "confpale", "nompalet")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe el Tipo de Palet: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -2609,8 +3213,8 @@ Dim Variedad As String
         
         Case 14  ' proveedor
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(Text1(Index), "proeveedor", "nomprove")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "proeveedor", "nomprove")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe el Proveedor: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -2699,7 +3303,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim Sql As String
+Dim SQL As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -2726,12 +3330,12 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'calibres
-            Sql = "¿Seguro que desea eliminar el Calibre?"
-            Sql = Sql & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
-            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
+            SQL = "¿Seguro que desea eliminar el Calibre?"
+            SQL = SQL & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
+            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                Sql = "DELETE FROM pedidos_calibre "
-                Sql = Sql & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
+                SQL = "DELETE FROM pedidos_calibre "
+                SQL = SQL & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
             End If
             
     End Select
@@ -2743,7 +3347,7 @@ Dim Eliminar As Boolean
         BloqueaRegistro "pedidos", "numpedid = " & Text1(0).Text
         conn.BeginTrans
         
-        conn.Execute Sql
+        conn.Execute SQL
         
         ActualizarVariedades Text1(0), Text1(1)
 
@@ -2781,9 +3385,9 @@ End Sub
 
 Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
-Dim vWhere As String, vTabla As String
+Dim vWhere As String, vtabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -2802,7 +3406,7 @@ Dim I As Integer
 
     ' *** posar el nom del les distintes taules de llínies ***
     Select Case Index
-        Case 0: vTabla = "pedidos_calibre"
+        Case 0: vtabla = "pedidos_calibre"
     End Select
     
     vWhere = ObtenerWhereCab(False)
@@ -2851,7 +3455,7 @@ End Sub
 
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     Dim J As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
@@ -2872,8 +3476,8 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         Case 0, 1 ' *** pose els index de llínies que tenen datagrid (en o sense tab) ***
             If DataGridAux(Index).Bookmark < DataGridAux(Index).FirstRow Or DataGridAux(Index).Bookmark > (DataGridAux(Index).FirstRow + DataGridAux(Index).VisibleRows - 1) Then
-                I = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
-                DataGridAux(Index).Scroll 0, I
+                i = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
+                DataGridAux(Index).Scroll 0, i
                 DataGridAux(Index).Refresh
             End If
               
@@ -2999,7 +3603,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
 End Sub
 
 
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -3022,9 +3626,9 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     End If
 End Sub
 
-Private Function DatosOkLlin(nomframe As String) As Boolean
-Dim RS As ADODB.Recordset
-Dim Sql As String
+Private Function DatosOkLlin(nomFrame As String) As Boolean
+Dim Rs As ADODB.Recordset
+Dim SQL As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -3035,7 +3639,7 @@ Dim vFact As Byte, vDocum As Byte
     Mens = ""
     DatosOkLlin = False
         
-    b = CompForm2(Me, 2, nomframe) 'Comprovar formato datos ok
+    b = CompForm2(Me, 2, nomFrame) 'Comprovar formato datos ok
     If Not b Then Exit Function
     
     ' ******************************************************************************
@@ -3114,7 +3718,7 @@ End Sub
 
 
 Private Sub DataGridAux_RowColChange(Index As Integer, LastRow As Variant, ByVal LastCol As Integer)
-Dim I As Byte
+Dim i As Byte
 
     If ModoLineas <> 1 Then
         Select Case Index
@@ -3141,9 +3745,9 @@ Dim I As Byte
 '                txtAux(11).Text = ""
 '                txtAux(12).Text = ""
             Case 1 'departamentos
-                For I = 21 To 24
+                For i = 21 To 24
 '                   txtAux(i).Text = ""
-                Next I
+                Next i
 '               txtAux2(22).Text = ""
             Case 2 'Tarjetas
 '               txtAux(50).Text = ""
@@ -3164,7 +3768,7 @@ End Sub
 
 Private Sub CargaFrame(Index As Integer, enlaza As Boolean)
 Dim tip As Integer
-Dim I As Byte
+Dim i As Byte
 
     AdoAux(Index).ConnectionString = conn
     AdoAux(Index).RecordSource = MontaSQLCarga(Index, enlaza)
@@ -3200,7 +3804,7 @@ End Sub
 
 Private Sub CargaGrid(Index As Integer, enlaza As Boolean)
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 Dim tots As String
 
     On Error GoTo ECarga
@@ -3241,7 +3845,7 @@ End Sub
 
 Private Function InsertarLinea() As Boolean
 'Inserta registre en les taules de Llínies
-Dim nomframe As String
+Dim nomFrame As String
 Dim bol As Boolean
 Dim MenError As String
 
@@ -3250,10 +3854,10 @@ Dim MenError As String
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
     Select Case NumTabMto
-        Case 0: nomframe = "FrameAux0" 'calibres
+        Case 0: nomFrame = "FrameAux0" 'calibres
     End Select
     
-    If DatosOkLlin(nomframe) Then
+    If DatosOkLlin(nomFrame) Then
         TerminaBloquear
         '++monica
         BloqueaRegistro "pedidos", "numpedid = " & Text1(0).Text
@@ -3261,7 +3865,7 @@ Dim MenError As String
         'Aqui empieza transaccion
         conn.BeginTrans
         
-        bol = InsertarDesdeForm2(Me, 2, nomframe)
+        bol = InsertarDesdeForm2(Me, 2, nomFrame)
         If bol Then
             MenError = "Modificando variedades"
             bol = ActualizarVariedades(Text1(0), Text1(1))
@@ -3297,7 +3901,7 @@ End Function
 
 Private Function ModificarLinea() As Boolean
 'Modifica registre en les taules de Llínies
-Dim nomframe As String
+Dim nomFrame As String
 Dim V As Integer
 Dim bol As Boolean
 Dim MenError As String
@@ -3305,15 +3909,15 @@ Dim MenError As String
     On Error GoTo eModificarLinea
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
-    nomframe = "FrameAux0" 'calibres
+    nomFrame = "FrameAux0" 'calibres
     
     ModificarLinea = False
-    If DatosOkLlin(nomframe) Then
+    If DatosOkLlin(nomFrame) Then
         TerminaBloquear
         
         conn.BeginTrans
         
-        bol = ModificaDesdeFormulario2(Me, 2, nomframe)
+        bol = ModificaDesdeFormulario2(Me, 2, nomFrame)
         If bol Then
             MenError = "Modificando variedades"
             bol = ActualizarVariedades(Text1(0), Text1(1))
@@ -3409,8 +4013,8 @@ Private Sub VisualizaPrecio()
 End Sub
 
 Private Sub CalcularTotales()
-Dim RS As ADODB.Recordset
-Dim Sql As String
+Dim Rs As ADODB.Recordset
+Dim SQL As String
 Dim TotalEnvases As String
 Dim TotalCostes As String
 Dim Valor As Currency
@@ -3418,19 +4022,19 @@ Dim Valor As Currency
     On Error Resume Next
 
     'total importes de envases para ese forfait
-    Sql = "select sum(numcajas) "
-    Sql = Sql & " from pedidos_calibre where numpedid = " & DBSet(Text1(0).Text, "N")
-    Sql = Sql & " and numlinea = " & DBSet(Text1(1).Text, "N")
+    SQL = "select sum(numcajas) "
+    SQL = SQL & " from pedidos_calibre where numpedid = " & DBSet(Text1(0).Text, "N")
+    SQL = SQL & " and numlinea = " & DBSet(Text1(1).Text, "N")
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalEnvases = 0
-    If Not RS.EOF Then
-        If RS.Fields(0).Value > 0 Then TotalEnvases = RS.Fields(0).Value
+    If Not Rs.EOF Then
+        If Rs.Fields(0).Value > 0 Then TotalEnvases = Rs.Fields(0).Value
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
     
 '    Text3(0).Text = Format(TotalEnvases, "###,##0")
     If Err.Number <> 0 Then
@@ -3440,21 +4044,21 @@ Dim Valor As Currency
 End Sub
 
 Private Function ObtenerWhereCP(conW As Boolean) As String
-Dim Sql As String
+Dim SQL As String
 On Error Resume Next
     
-    Sql = ""
-    If conW Then Sql = " WHERE "
-    Sql = Sql & NombreTabla & ".numpedid= " & DBSet(Text1(0).Text, "N")
-    Sql = Sql & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
-    ObtenerWhereCP = Sql
+    SQL = ""
+    If conW Then SQL = " WHERE "
+    SQL = SQL & NombreTabla & ".numpedid= " & DBSet(Text1(0).Text, "N")
+    SQL = SQL & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
+    ObtenerWhereCP = SQL
 End Function
 
 
 
 Private Function ActualizarVariedades(Pedido As String, Linea As String) As Boolean
-Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim SQL As String
+Dim Rs As ADODB.Recordset
 Dim SQL1 As String
 
     On Error GoTo eActualizarVariedades
@@ -3464,57 +4068,57 @@ Dim SQL1 As String
     SQL1 = "select sum(pesoneto), sum(numcajas), sum(unidades) from pedidos_calibre where numpedid = " & DBSet(Pedido, "N")
     SQL1 = SQL1 & " and numlinea = " & DBSet(Linea, "N")
     
-    Set RS = New ADODB.Recordset
-    RS.Open SQL1, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open SQL1, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        If DBLet(RS.Fields(0).Value, "N") = 0 Then
-            Sql = "update pedidos_variedad set pesoneto = null "
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+    If Not Rs.EOF Then
+        If DBLet(Rs.Fields(0).Value, "N") = 0 Then
+            SQL = "update pedidos_variedad set pesoneto = null "
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
-        If DBLet(RS.Fields(1).Value, "N") = 0 Then
-            Sql = "update pedidos_variedad set numcajas = null "
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+        If DBLet(Rs.Fields(1).Value, "N") = 0 Then
+            SQL = "update pedidos_variedad set numcajas = null "
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
-        If DBLet(RS.Fields(2).Value, "N") = 0 Then
-            Sql = "update pedidos_variedad set unidades = null "
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+        If DBLet(Rs.Fields(2).Value, "N") = 0 Then
+            SQL = "update pedidos_variedad set unidades = null "
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
         
-        If DBLet(RS.Fields(0).Value, "N") <> 0 Then
-            Sql = "update pedidos_variedad set pesoneto = " & DBSet(RS.Fields(0).Value, "N")
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+        If DBLet(Rs.Fields(0).Value, "N") <> 0 Then
+            SQL = "update pedidos_variedad set pesoneto = " & DBSet(Rs.Fields(0).Value, "N")
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
-        If DBLet(RS.Fields(1).Value, "N") <> 0 Then
-            Sql = "update pedidos_variedad set numcajas = " & DBSet(RS.Fields(1).Value, "N")
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+        If DBLet(Rs.Fields(1).Value, "N") <> 0 Then
+            SQL = "update pedidos_variedad set numcajas = " & DBSet(Rs.Fields(1).Value, "N")
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
-        If DBLet(RS.Fields(2).Value, "N") <> 0 Then
-            Sql = "update pedidos_variedad set unidades = " & DBSet(RS.Fields(2).Value, "N")
-            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
-            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
+        If DBLet(Rs.Fields(2).Value, "N") <> 0 Then
+            SQL = "update pedidos_variedad set unidades = " & DBSet(Rs.Fields(2).Value, "N")
+            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
+            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute Sql
+            conn.Execute SQL
         End If
     
     End If
-    RS.Close
-    Set RS = Nothing
+    Rs.Close
+    Set Rs = Nothing
 
 eActualizarVariedades:
     If Err.Number = 0 Then ActualizarVariedades = True

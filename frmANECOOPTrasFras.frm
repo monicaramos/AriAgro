@@ -77,6 +77,16 @@ Begin VB.Form frmANECOOPTrasFras
          _Version        =   393216
          DefaultExt      =   "doc"
       End
+      Begin VB.Image imgAyuda 
+         Height          =   240
+         Index           =   0
+         Left            =   3105
+         MousePointer    =   4  'Icon
+         Tag             =   "-1"
+         ToolTipText     =   "Ayuda"
+         Top             =   1890
+         Width           =   240
+      End
       Begin VB.Label Label6 
          Caption         =   "Traspaso de Facturas Anecoop"
          BeginProperty Font 
@@ -249,7 +259,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
+Dim Tabla As String
 Dim Tabla1 As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
@@ -288,7 +298,7 @@ Dim i As Byte
 Dim cadWHERE As String
 Dim b As Boolean
 Dim NomFic As String
-Dim CADENA As String
+Dim cadena As String
 Dim cadena1 As String
 Dim Directorio As String
 Dim fec As String
@@ -760,6 +770,7 @@ End Sub
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
 Dim List As Collection
+Dim i As Integer
 
     PrimeraVez = True
     limpiar Me
@@ -774,6 +785,13 @@ Dim List As Collection
         
     FrameIntegracionVisible True, H, W
     Pb1.visible = False
+    
+    txtCodigo(14).Text = "01/01/" & Format(Year(Now), "0000")
+    txtCodigo(15).Text = "31/12/" & Format(Year(Now), "0000")
+    
+    For i = 0 To imgAyuda.Count - 1
+        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
+    Next i
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
@@ -1064,6 +1082,22 @@ Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
         Facturas = ""
     End If
 
+End Sub
+
+Private Sub imgAyuda_Click(Index As Integer)
+Dim vCadena As String
+    Select Case Index
+        Case 0
+           ' "____________________________________________________________"
+            vCadena = "Se da por defecto el rango de fechas correspondiente al año " & vbCrLf & _
+                      "natural de la fecha actual." & vbCrLf & _
+                      "" & vbCrLf & vbCrLf
+                      
+                      
+                      
+    End Select
+    MsgBox vCadena, vbInformation, "Descripción de Ayuda"
+    
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
