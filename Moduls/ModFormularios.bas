@@ -843,7 +843,7 @@ On Error Resume Next
 
     If (Modo <> 0 And Modo <> 2) Then
         If Modo = 1 Then 'Modo 1: Busqueda
-            Text.BackColor = vbYellow
+            Text.BackColor = vbLightBlue 'vbYellow
         End If
         Text.SelStart = 0
         Text.SelLength = Len(Text.Text)
@@ -886,14 +886,13 @@ Dim Comprobar As Boolean
         .Text = Trim(.Text)
         
         
-         If .BackColor = vbYellow Then
+         If .BackColor = vbLightBlue Then
             If .Locked Then
                 .BackColor = &H80000018
             Else
                 .BackColor = vbWhite
             End If
         End If
-        
         
         'Si no estamos en modo: 3=Insertar o 4=Modificar o 1=Busqueda, no hacer ninguna comprobacion
         If (Modo <> 3 And Modo <> 4 And Modo <> 1 And Modo <> 5) Then

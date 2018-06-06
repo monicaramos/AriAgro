@@ -5,24 +5,175 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmVtasPedidos 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Pedidos de Clientes"
-   ClientHeight    =   7845
+   ClientHeight    =   8205
    ClientLeft      =   45
-   ClientTop       =   4335
-   ClientWidth     =   16560
+   ClientTop       =   4035
+   ClientWidth     =   16680
    Icon            =   "frmVtasPedidos.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   Picture         =   "frmVtasPedidos.frx":000C
-   ScaleHeight     =   7845
-   ScaleWidth      =   16560
+   ScaleHeight     =   8205
+   ScaleWidth      =   16680
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   13995
+      TabIndex        =   96
+      Top             =   270
+      Width           =   1605
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   5745
+      TabIndex        =   94
+      Top             =   45
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   95
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3795
+      TabIndex        =   92
+      Top             =   45
+      Width           =   1875
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   93
+         Top             =   180
+         Width           =   1545
+         _ExtentX        =   2725
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   3
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Impresión Proveedor"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Orden de Carga"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Generar Albarán"
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   135
+      TabIndex        =   90
+      Top             =   45
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   91
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame Frame2 
       Height          =   2745
       Left            =   135
-      TabIndex        =   25
-      Top             =   540
+      TabIndex        =   23
+      Top             =   810
       Width           =   16385
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -40,7 +191,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   77
+         TabIndex        =   75
          Text            =   "Text2"
          Top             =   2295
          Width           =   4800
@@ -80,7 +231,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   195
          Index           =   0
          Left            =   14130
-         TabIndex        =   73
+         TabIndex        =   71
          Tag             =   "Impresor|N|N|||pedidos|impresor|0||"
          Top             =   1620
          Width           =   1095
@@ -184,7 +335,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   64
+         TabIndex        =   62
          Text            =   "Text2"
          Top             =   1935
          Width           =   4800
@@ -226,7 +377,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   62
+         TabIndex        =   60
          Text            =   "Text2"
          Top             =   1575
          Width           =   4800
@@ -288,7 +439,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   60
+         TabIndex        =   58
          Text            =   "Text2"
          Top             =   1215
          Width           =   4800
@@ -411,7 +562,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   41
+         TabIndex        =   39
          Text            =   "Text2"
          Top             =   855
          Width           =   4800
@@ -533,7 +684,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   28
          Left            =   225
-         TabIndex        =   88
+         TabIndex        =   86
          Top             =   180
          Width           =   1080
       End
@@ -551,7 +702,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   27
          Left            =   5445
-         TabIndex        =   87
+         TabIndex        =   85
          Top             =   180
          Width           =   1245
       End
@@ -569,7 +720,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   6
          Left            =   11250
-         TabIndex        =   86
+         TabIndex        =   84
          Top             =   225
          Width           =   750
       End
@@ -587,7 +738,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   2
          Left            =   7560
-         TabIndex        =   85
+         TabIndex        =   83
          Top             =   225
          Width           =   1410
       End
@@ -605,7 +756,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   29
          Left            =   1305
-         TabIndex        =   84
+         TabIndex        =   82
          Top             =   180
          Width           =   1095
       End
@@ -623,7 +774,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   4
          Left            =   9495
-         TabIndex        =   83
+         TabIndex        =   81
          Top             =   225
          Width           =   1500
       End
@@ -641,7 +792,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   3
          Left            =   2835
-         TabIndex        =   82
+         TabIndex        =   80
          Top             =   180
          Width           =   1275
       End
@@ -659,7 +810,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   13
          Left            =   12555
-         TabIndex        =   81
+         TabIndex        =   79
          Top             =   225
          Width           =   1140
       End
@@ -677,7 +828,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   9
          Left            =   225
-         TabIndex        =   78
+         TabIndex        =   76
          Top             =   2340
          Width           =   810
       End
@@ -703,7 +854,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   18
          Left            =   9495
-         TabIndex        =   68
+         TabIndex        =   66
          Top             =   900
          Width           =   1065
       End
@@ -721,7 +872,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   17
          Left            =   7560
-         TabIndex        =   67
+         TabIndex        =   65
          Top             =   900
          Width           =   1335
       End
@@ -739,7 +890,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   16
          Left            =   11250
-         TabIndex        =   66
+         TabIndex        =   64
          Top             =   900
          Width           =   1155
       End
@@ -765,7 +916,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   15
          Left            =   225
-         TabIndex        =   65
+         TabIndex        =   63
          Top             =   1980
          Width           =   810
       End
@@ -791,7 +942,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   14
          Left            =   225
-         TabIndex        =   63
+         TabIndex        =   61
          Top             =   1620
          Width           =   1080
       End
@@ -799,7 +950,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   240
          Index           =   2
          Left            =   13725
-         Picture         =   "frmVtasPedidos.frx":0A0E
+         Picture         =   "frmVtasPedidos.frx":000C
          ToolTipText     =   "Buscar fecha"
          Top             =   180
          Width           =   240
@@ -826,7 +977,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   8
          Left            =   225
-         TabIndex        =   61
+         TabIndex        =   59
          Top             =   1260
          Width           =   765
       End
@@ -834,7 +985,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   240
          Index           =   1
          Left            =   4185
-         Picture         =   "frmVtasPedidos.frx":0A99
+         Picture         =   "frmVtasPedidos.frx":0097
          ToolTipText     =   "Buscar fecha"
          Top             =   180
          Width           =   240
@@ -843,7 +994,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   240
          Index           =   0
          Left            =   2475
-         Picture         =   "frmVtasPedidos.frx":0B24
+         Picture         =   "frmVtasPedidos.frx":0122
          ToolTipText     =   "Buscar fecha"
          Top             =   180
          Width           =   240
@@ -869,7 +1020,7 @@ Begin VB.Form frmVtasPedidos
          EndProperty
          Height          =   255
          Left            =   7560
-         TabIndex        =   40
+         TabIndex        =   38
          Top             =   1710
          Width           =   1440
       End
@@ -887,7 +1038,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   5
          Left            =   14085
-         TabIndex        =   39
+         TabIndex        =   37
          Top             =   180
          Width           =   1425
       End
@@ -905,7 +1056,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   0
          Left            =   225
-         TabIndex        =   26
+         TabIndex        =   24
          Top             =   900
          Width           =   810
       End
@@ -925,7 +1076,7 @@ Begin VB.Form frmVtasPedidos
       Left            =   4695
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   90
+      TabIndex        =   88
       Text            =   "Text2"
       Top             =   1290
       Width           =   2640
@@ -936,7 +1087,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   17
       Left            =   3840
       MaxLength       =   6
-      TabIndex        =   89
+      TabIndex        =   87
       Text            =   "Text1"
       Top             =   1290
       Width           =   780
@@ -959,7 +1110,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   8
       Left            =   12015
       MaxLength       =   30
-      TabIndex        =   80
+      TabIndex        =   78
       Tag             =   "Unidades|N|N|0||pedidos_calibre|unidades|#,##0||"
       Text            =   "unidades"
       Top             =   6885
@@ -984,7 +1135,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   16
       Left            =   9135
       MaxLength       =   30
-      TabIndex        =   79
+      TabIndex        =   77
       Tag             =   "Unidades|N|S|||pedidos_variedad|unidades|#,##0|N|"
       Text            =   "unidades"
       Top             =   4905
@@ -1009,7 +1160,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   7
       Left            =   12645
       MaxLength       =   30
-      TabIndex        =   72
+      TabIndex        =   70
       Tag             =   "Peso Neto|N|N|0||pedidos_calibre|pesoneto|###,##0||"
       Text            =   "pesoneto"
       Top             =   6885
@@ -1034,7 +1185,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   15
       Left            =   10530
       MaxLength       =   30
-      TabIndex        =   71
+      TabIndex        =   69
       Tag             =   "Prec.Profes.|N|S|||pedidos_variedad|preciopro|#0.0000|N|"
       Text            =   "precio prof"
       Top             =   4905
@@ -1059,7 +1210,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   14
       Left            =   9810
       MaxLength       =   30
-      TabIndex        =   70
+      TabIndex        =   68
       Tag             =   "Total Palets|N|S|||pedidos_variedad|totpalet|##0|N|"
       Text            =   "tot.palet"
       Top             =   4905
@@ -1084,7 +1235,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   13
       Left            =   8460
       MaxLength       =   30
-      TabIndex        =   69
+      TabIndex        =   67
       Tag             =   "Num.Cajas|N|S|||pedidos_variedad|numcajas|#,##0|N|"
       Text            =   "num.caj"
       Top             =   4905
@@ -1109,7 +1260,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   12
       Left            =   5850
       MaxLength       =   30
-      TabIndex        =   52
+      TabIndex        =   50
       Text            =   "nom forf"
       Top             =   4905
       Visible         =   0   'False
@@ -1133,7 +1284,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   11
       Left            =   4590
       MaxLength       =   30
-      TabIndex        =   51
+      TabIndex        =   49
       Text            =   "nom marca"
       Top             =   4905
       Visible         =   0   'False
@@ -1148,7 +1299,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   6
       Left            =   4365
       MaxLength       =   30
-      TabIndex        =   50
+      TabIndex        =   48
       Tag             =   "Marca|N|N|||pedidos_variedad|codmarca|000||"
       Text            =   "marca"
       Top             =   4905
@@ -1159,8 +1310,8 @@ Begin VB.Form frmVtasPedidos
       Height          =   390
       Index           =   0
       Left            =   135
-      TabIndex        =   49
-      Top             =   3375
+      TabIndex        =   47
+      Top             =   3690
       Width           =   1110
       _ExtentX        =   1958
       _ExtentY        =   688
@@ -1202,7 +1353,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   10
       Left            =   7695
       MaxLength       =   30
-      TabIndex        =   48
+      TabIndex        =   46
       Tag             =   "Peso Neto|N|S|||pedidos_variedad|pesoneto|###,##0|N|"
       Text            =   "peso neto"
       Top             =   4905
@@ -1227,7 +1378,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   9
       Left            =   6930
       MaxLength       =   30
-      TabIndex        =   47
+      TabIndex        =   45
       Tag             =   "Peso Bruto|N|N|||pedidos_variedad|pesobrut|###,##0||"
       Text            =   "peso bruto"
       Top             =   4905
@@ -1252,7 +1403,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   8
       Left            =   6120
       MaxLength       =   30
-      TabIndex        =   46
+      TabIndex        =   44
       Tag             =   "Categoria|T|S|||pedidos_variedad|categori|||"
       Text            =   "categ"
       Top             =   4905
@@ -1277,7 +1428,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   7
       Left            =   5310
       MaxLength       =   30
-      TabIndex        =   45
+      TabIndex        =   43
       Tag             =   "Forfait|T|N|||pedidos_variedad|codforfait|||"
       Text            =   "forfait"
       Top             =   4905
@@ -1302,7 +1453,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   5
       Left            =   3600
       MaxLength       =   30
-      TabIndex        =   44
+      TabIndex        =   42
       Text            =   "nom.var.comer"
       Top             =   4905
       Visible         =   0   'False
@@ -1326,7 +1477,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   4
       Left            =   2835
       MaxLength       =   30
-      TabIndex        =   43
+      TabIndex        =   41
       Tag             =   "Variedad Comercial|N|N|||pedidos_variedad|codvarco|||"
       Text            =   "var.comer."
       Top             =   4905
@@ -1351,7 +1502,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   3
       Left            =   2160
       MaxLength       =   30
-      TabIndex        =   42
+      TabIndex        =   40
       Text            =   "nomvarie"
       Top             =   4905
       Visible         =   0   'False
@@ -1375,7 +1526,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   6
       Left            =   11415
       MaxLength       =   30
-      TabIndex        =   36
+      TabIndex        =   34
       Tag             =   "Num.Cajas|N|N|0||pedidos_calibre|numcajas|#,##0||"
       Text            =   "numcajas"
       Top             =   6885
@@ -1400,7 +1551,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   5
       Left            =   10665
       MaxLength       =   5
-      TabIndex        =   35
+      TabIndex        =   33
       Text            =   "nomca"
       Top             =   6885
       Visible         =   0   'False
@@ -1424,7 +1575,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   0
       Left            =   6060
       MaxLength       =   12
-      TabIndex        =   34
+      TabIndex        =   32
       Tag             =   "Num.Palet|N|N|||pedidos_calibre|numpalet||S|"
       Text            =   "numpedid"
       Top             =   6885
@@ -1449,7 +1600,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   1
       Left            =   7020
       MaxLength       =   12
-      TabIndex        =   33
+      TabIndex        =   31
       Tag             =   "Num.Linea|N|N|||pedidos_calibre|numlinea|00|N|"
       Text            =   "numlinea"
       Top             =   6885
@@ -1473,7 +1624,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   2
       Left            =   7830
       MaxLength       =   12
-      TabIndex        =   32
+      TabIndex        =   30
       Tag             =   "Num.Linea 1|N|N|||pedidos_calibre|numline1||N|"
       Text            =   "numline1"
       Top             =   6885
@@ -1498,7 +1649,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   3
       Left            =   8910
       MaxLength       =   12
-      TabIndex        =   31
+      TabIndex        =   29
       Tag             =   "Variedad|N|N|||pedidos_calibre|codvarie|000000|N|"
       Text            =   "variedad"
       Top             =   6885
@@ -1523,7 +1674,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   4
       Left            =   9975
       MaxLength       =   5
-      TabIndex        =   30
+      TabIndex        =   28
       Tag             =   "Calibre|N|N|||pedidos_calibre|codcalib|00|N|"
       Text            =   "calib"
       Top             =   6885
@@ -1548,7 +1699,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   0
       Left            =   450
       MaxLength       =   7
-      TabIndex        =   29
+      TabIndex        =   27
       Tag             =   "Num.Pedido|N|N|||pedidos_variedad|numpedid||S|"
       Text            =   "numpedi"
       Top             =   4905
@@ -1573,7 +1724,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   1
       Left            =   810
       MaxLength       =   15
-      TabIndex        =   28
+      TabIndex        =   26
       Tag             =   "Num.Linea|N|N|||pedidos_variedad|numlinea|00|S|"
       Text            =   "numlinea"
       Top             =   4905
@@ -1598,7 +1749,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   2
       Left            =   1485
       MaxLength       =   30
-      TabIndex        =   27
+      TabIndex        =   25
       Tag             =   "Variedad|N|N|||pedidos_variedad|codvarie||N|"
       Text            =   "variedad"
       Top             =   4905
@@ -1608,9 +1759,9 @@ Begin VB.Form frmVtasPedidos
    Begin VB.Frame Frame1 
       Height          =   475
       Index           =   0
-      Left            =   120
+      Left            =   165
       TabIndex        =   21
-      Top             =   7290
+      Top             =   7605
       Width           =   2175
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1646,7 +1797,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   15435
       TabIndex        =   19
-      Top             =   7380
+      Top             =   7695
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1663,109 +1814,8 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   14265
       TabIndex        =   18
-      Top             =   7395
+      Top             =   7710
       Width           =   1065
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   23
-      Top             =   0
-      Width           =   16560
-      _ExtentX        =   29210
-      _ExtentY        =   635
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      Style           =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   19
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-            Object.Width           =   1e-4
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Añadir"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Impresión Proveedor"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Orden Carga"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "CMR"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Generar Albarán"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
-         EndProperty
-      EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   24
-         Top             =   120
-         Width           =   1215
-      End
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -1781,7 +1831,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   15435
       TabIndex        =   20
-      Top             =   7380
+      Top             =   7695
       Visible         =   0   'False
       Width           =   1035
    End
@@ -1927,12 +1977,12 @@ Begin VB.Form frmVtasPedidos
       _Version        =   393216
    End
    Begin MSDataGridLib.DataGrid DataGrid2 
-      Bindings        =   "frmVtasPedidos.frx":0BAF
+      Bindings        =   "frmVtasPedidos.frx":01AD
       Height          =   1725
       Left            =   135
-      TabIndex        =   38
-      Top             =   3825
-      Width           =   16355
+      TabIndex        =   36
+      Top             =   4140
+      Width           =   16350
       _ExtentX        =   28840
       _ExtentY        =   3043
       _Version        =   393216
@@ -1996,12 +2046,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
-      Bindings        =   "frmVtasPedidos.frx":0BC4
+      Bindings        =   "frmVtasPedidos.frx":01C2
       Height          =   1710
       Left            =   5940
-      TabIndex        =   37
-      Top             =   5580
-      Width           =   10550
+      TabIndex        =   35
+      Top             =   5895
+      Width           =   10545
       _ExtentX        =   18600
       _ExtentY        =   3016
       _Version        =   393216
@@ -2077,8 +2127,8 @@ Begin VB.Form frmVtasPedidos
       ForeColor       =   &H00000080&
       Height          =   3300
       Left            =   8190
-      TabIndex        =   53
-      Top             =   3870
+      TabIndex        =   51
+      Top             =   4185
       Visible         =   0   'False
       Width           =   2850
       Begin VB.TextBox Text2 
@@ -2088,7 +2138,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   225
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   58
+         TabIndex        =   56
          Text            =   "Text2"
          Top             =   1260
          Width           =   2370
@@ -2100,7 +2150,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   225
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   74
+         TabIndex        =   72
          Text            =   "Text2"
          Top             =   2655
          Width           =   2370
@@ -2112,7 +2162,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   225
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   57
+         TabIndex        =   55
          Text            =   "Text2"
          Top             =   1980
          Width           =   2370
@@ -2124,7 +2174,7 @@ Begin VB.Form frmVtasPedidos
          Left            =   225
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   55
+         TabIndex        =   53
          Text            =   "Text2"
          Top             =   585
          Width           =   2370
@@ -2135,7 +2185,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   7
          Left            =   225
-         TabIndex        =   75
+         TabIndex        =   73
          Top             =   2430
          Width           =   900
       End
@@ -2144,7 +2194,7 @@ Begin VB.Form frmVtasPedidos
          ForeColor       =   &H00000000&
          Height          =   330
          Left            =   225
-         TabIndex        =   59
+         TabIndex        =   57
          Top             =   1710
          Width           =   1500
       End
@@ -2154,7 +2204,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   12
          Left            =   225
-         TabIndex        =   56
+         TabIndex        =   54
          Top             =   315
          Width           =   1530
       End
@@ -2163,17 +2213,36 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Index           =   1
          Left            =   225
-         TabIndex        =   54
+         TabIndex        =   52
          Top             =   990
          Width           =   945
       End
+   End
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
+      Height          =   330
+      Left            =   16035
+      TabIndex        =   97
+      Top             =   210
+      Width           =   405
+      _ExtentX        =   714
+      _ExtentY        =   582
+      ButtonWidth     =   609
+      ButtonHeight    =   582
+      Style           =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   1
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Ayuda"
+         EndProperty
+      EndProperty
    End
    Begin VB.Label Label1 
       Caption         =   "Tipo Palet"
       Height          =   255
       Index           =   10
       Left            =   3840
-      TabIndex        =   91
+      TabIndex        =   89
       Top             =   1020
       Width           =   765
    End
@@ -2199,12 +2268,14 @@ Begin VB.Form frmVtasPedidos
       ForeColor       =   &H0000C000&
       Height          =   645
       Left            =   540
-      TabIndex        =   76
-      Top             =   6120
+      TabIndex        =   74
+      Top             =   6435
       Width           =   5190
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -2371,7 +2442,7 @@ Private CadenaSQL As String 'Para crear consulta de Generar Albaran a partir del
 Dim ImprimeAlb As Boolean 'Para saber cuando vuelve de Generar ALbaran si se ha solicitado Imprimir Albaran o no
 Dim Incidencia As String
 
-Private Sub check1_Click(Index As Integer)
+Private Sub Check1_Click(Index As Integer)
     If Modo = 1 Then
         'Buscqueda
         If InStr(1, BuscaChekc, "check1(" & Index & ")") = 0 Then BuscaChekc = BuscaChekc & "check1(" & Index & ")|"
@@ -2513,12 +2584,12 @@ Dim anc As Single
         
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -2544,7 +2615,7 @@ Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
     If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -2854,29 +2925,79 @@ Dim i As Integer
     Next kCampo
 
     ' ICONITOS DE LA BARRA
-    btnPrimero = 16
+'    btnPrimero = 16
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Todos
+'        .Buttons(4).Image = 3   'Insertar
+'        .Buttons(5).Image = 4   'Modificar
+'        .Buttons(6).Image = 5   'Borrar
+'        .Buttons(8).Image = 10  'Impresión de Pedido
+'        .Buttons(9).Image = 26  'Impresión de Proveedor
+'
+'        .Buttons(10).Image = 24  'Orden de Carga
+'        .Buttons(11).Image = 23 'Impresion CMR
+'        .Buttons(12).Image = 17 'Generar Albaran
+'        .Buttons(14).Image = 11  'Salir
+'
+'        .Buttons(btnPrimero).Image = 6  'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Último
+'    End With
+    
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(4).Image = 3   'Insertar
-        .Buttons(5).Image = 4   'Modificar
-        .Buttons(6).Image = 5   'Borrar
-        .Buttons(8).Image = 10  'Impresión de Pedido
-        .Buttons(9).Image = 26  'Impresión de Proveedor
-        
-        .Buttons(10).Image = 24  'Orden de Carga
-        .Buttons(11).Image = 23 'Impresion CMR
-        .Buttons(12).Image = 17 'Generar Albaran
-        .Buttons(14).Image = 11  'Salir
-        
-        .Buttons(btnPrimero).Image = 6  'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Último
+        'l'1 i el 2 son separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
+        'el 5 i el 6 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
+    
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 26  'Impresión de Proveedor
+        .Buttons(2).Image = 24  'Orden de Carga
+        .Buttons(3).Image = 17 'Generar Albaran
+    End With
+    
+    '[Monica]05/06/2018: si no se hace la impresion de proveedor se rediseñan los toolbar
+    If vParamAplic.Cooperativa <> 15 Then
+        Me.Toolbar5.Width = Me.Toolbar5.Width - 450
+        Me.FrameBotonGnral2.Width = Me.FrameBotonGnral2.Width - 450
+        Me.FrameDesplazamiento.Left = FrameDesplazamiento.Left - 450
+    End If
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+    ' La Ayuda
+    With Me.ToolbarAyuda
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 12
+    End With
+    
+    
     
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
@@ -3804,8 +3925,8 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
-          
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
         
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -3881,6 +4002,10 @@ EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -4211,32 +4336,31 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1  'Buscar
-            mnBuscar_Click
-        Case 2  'Todos
-            BotonVerTodos
-        
-        Case 4  'Añadir
+        Case 1  'Añadir
             mnNuevo_Click
 
-        Case 5  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 6  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
+        Case 5  'Buscar
+            mnBuscar_Click
+        Case 6  'Todos
+            BotonVerTodos
         Case 8  ' Impresion de pedido
             mnImprimir_Click
-        Case 9  ' Impresion de proveedor
-            mnImprimirProv_Click
-        Case 10  ' Orden Carga
-            mnOrdenCarga_Click
-        Case 11 'CMR
-            mnCMR_Click
-        Case 12 'General Albaran
-            mnGenerarAlb_Click
-        Case 14    'Salir
-            mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
+'        Case 9  ' Impresion de proveedor
+'            mnImprimirProv_Click
+'        Case 10  ' Orden Carga
+'            mnOrdenCarga_Click
+'        Case 11 'CMR
+'            mnCMR_Click
+'        Case 12 'General Albaran
+'            mnGenerarAlb_Click
+'        Case 14    'Salir
+'            mnSalir_Click
+'        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
+'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -4423,6 +4547,17 @@ ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1  ' Impresion de proveedor
+            mnImprimirProv_Click
+        Case 2  ' Orden Carga
+            mnOrdenCarga_Click
+        Case 3 'General Albaran
+            mnGenerarAlb_Click
+    End Select
+End Sub
 
 Private Sub TxtAux_Change(Index As Integer)
     If Index = 6 And ModificaLineas = 2 Then 'Precio y Modo Borrar Lineas
@@ -4665,41 +4800,42 @@ Dim i As Integer
 
         b = ((Modo = 2) Or (Modo = 0)) And (hcoCodMovim = "")  'Or (Modo = 5 And ModificaLineas = 0)
         'Buscar
-        Toolbar1.Buttons(1).Enabled = b
+        Toolbar1.Buttons(5).Enabled = b
         Me.mnBuscar.Enabled = b
         'Vore Tots
-        Toolbar1.Buttons(2).Enabled = b
+        Toolbar1.Buttons(6).Enabled = b
         Me.mnVerTodos.Enabled = b
         'Añadir
-        Toolbar1.Buttons(4).Enabled = b
+        Toolbar1.Buttons(1).Enabled = b
         Me.mnModificar.Enabled = b
         
         
         b = (Modo = 2 And Data1.Recordset.RecordCount > 0)
         'Modificar
-        Toolbar1.Buttons(5).Enabled = b
+        Toolbar1.Buttons(2).Enabled = b
         Me.mnModificar.Enabled = b
         'eliminar
-        Toolbar1.Buttons(6).Enabled = (Modo = 2)
+        Toolbar1.Buttons(3).Enabled = (Modo = 2)
         Me.mnEliminar.Enabled = (Modo = 2)
         'Impresión de pedido
         Toolbar1.Buttons(8).Enabled = (Modo = 2 And Data1.Recordset.RecordCount > 0) Or (hcoCodMovim <> "")
         Me.mnImprimir.Enabled = (Modo = 2 And Data1.Recordset.RecordCount > 0) Or (hcoCodMovim <> "")
         
         'Impresión de pedido proveedor
-        Toolbar1.Buttons(9).visible = (vParamAplic.Cooperativa = 15)
+        Toolbar5.Buttons(1).visible = (vParamAplic.Cooperativa = 15)
         Me.mnImprimirProv.visible = (vParamAplic.Cooperativa = 15)
-        Toolbar1.Buttons(9).Enabled = ((Modo = 2 And Data1.Recordset.RecordCount > 0) Or (hcoCodMovim <> "")) And vParamAplic.Cooperativa = 15
+        Toolbar5.Buttons(1).Enabled = ((Modo = 2 And Data1.Recordset.RecordCount > 0) Or (hcoCodMovim <> "")) And vParamAplic.Cooperativa = 15
         Me.mnImprimirProv.Enabled = ((Modo = 2 And Data1.Recordset.RecordCount > 0) Or (hcoCodMovim <> "")) And vParamAplic.Cooperativa = 15
         
         'Orden de Carga
-        Toolbar1.Buttons(10).Enabled = b
+        Toolbar5.Buttons(2).Enabled = b
         Me.mnOrdenCarga.Enabled = b
-        'Generar CMR
-        Toolbar1.Buttons(11).Enabled = b
-        Me.mnCMR.Enabled = b
+'[Monica]06/06/2018: el generar cmr esta en albaranes
+'        'Generar CMR
+'        Toolbar1.Buttons(11).Enabled = b
+'        Me.mnCMR.Enabled = b
         'Generar Albaran
-        Toolbar1.Buttons(12).Enabled = b
+        Toolbar5.Buttons(3).Enabled = b
         Me.mnGenerarAlb.Enabled = b
         
 
@@ -4837,7 +4973,7 @@ Dim Rs As ADODB.Recordset
         Set Rs = New ADODB.Recordset
         Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not Rs.EOF Then 'where para la factura
-            cad = " WHERE codtipom='" & Rs!CodTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
+            cad = " WHERE codtipom='" & Rs!codTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
         Else
             cad = " WHERE numfactu=-1"
         End If
@@ -5104,7 +5240,7 @@ Private Function InsertarAlbaran(vSQL As String, MenError As String, NumAlb As S
 Dim bol As Boolean, Existe As Boolean
 Dim devuelve As String
 Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim CodTipoM As String
+Dim codTipoM As String
 
     On Error GoTo EInsertarAlbaran
     
@@ -5115,19 +5251,19 @@ Dim CodTipoM As String
     '[Monica]02/07/2012: antes cogiamos el tipo de movimiento de parametros ahora lo cogemos de clientes
     'codTipoM = vParamAplic.CodTipomAlb ' "ALV"
     
-    CodTipoM = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
+    codTipoM = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
     
     Set vTipoMov = New CTiposMov
-    If vTipoMov.Leer(CodTipoM) Then
+    If vTipoMov.Leer(codTipoM) Then
         'Comprobar si mientras tanto se incremento el contador de albaranes
         Do
-            NumAlb = vTipoMov.ConseguirContador(CodTipoM)
+            NumAlb = vTipoMov.ConseguirContador(codTipoM)
             devuelve = DevuelveDesdeBDNew(cAgro, "albaran", "numalbar", "numalbar", NumAlb, "N")
             If devuelve <> "" Then
                 'Ya existe el contador incrementarlo
                 Existe = True
-                vTipoMov.IncrementarContador (CodTipoM)
-                NumAlb = vTipoMov.ConseguirContador(CodTipoM)
+                vTipoMov.IncrementarContador (codTipoM)
+                NumAlb = vTipoMov.ConseguirContador(codTipoM)
             Else
                 Existe = False
             End If
@@ -5151,23 +5287,23 @@ Dim CodTipoM As String
     conn.Execute vSQL, , adCmdText
     
     '[Monica]02/07/2012: cogemos el tipo de movimiento de parametros para las inserciones en almacen
-    CodTipoM = vParamAplic.CodTipomAlb ' "ALV"
+    codTipoM = vParamAplic.CodTipomAlb ' "ALV"
     
     'Insertar Lineas (albaran_variedad, albaran_calibre, albaran_costes)
     MenError = "Error al insertar en la tabla Lineas de Albaran (albaran_variedad)."
-    If Not InsertarLineasAlbaran(CodTipoM, MenError, NumAlb) Then Exit Function
+    If Not InsertarLineasAlbaran(codTipoM, MenError, NumAlb) Then Exit Function
     
     'Insertar Lineas (albaran_palets)
     MenError = "Error al insertar en la tabla Lineas de Albaran (albaran_palets)."
     If Not InsertarPaletsAlbaran(Text1(0), NumAlb) Then Exit Function
     
     '[Monica]02/07/2012: antes cogiamos el tipo de movimiento de parametros ahora lo cogemos de clientes
-    CodTipoM = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
+    codTipoM = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
     
     
     MenError = "Error al actualizar el contador del ALbaran."
 '    bol = vTipoMov.IncrementarContador("REG")
-    vTipoMov.IncrementarContador (CodTipoM)
+    vTipoMov.IncrementarContador (codTipoM)
     Set vTipoMov = Nothing
     bol = True
     

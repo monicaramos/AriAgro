@@ -2516,7 +2516,7 @@ Dim anc As Single
         
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco Text1(0)
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
@@ -4663,7 +4663,7 @@ Dim Rs As ADODB.Recordset
         Set Rs = New ADODB.Recordset
         Rs.Open cad, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         If Not Rs.EOF Then 'where para la factura
-            cad = " WHERE codtipom='" & Rs!CodTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
+            cad = " WHERE codtipom='" & Rs!codTipoM & "' AND numfactu= " & Rs!NumFactu & " AND fecfactu=" & DBSet(Rs!FecFactu, "F")
         Else
             cad = " WHERE numfactu=-1"
         End If

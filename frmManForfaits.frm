@@ -2977,7 +2977,7 @@ Dim i As Integer
         LimpiarCampos
         PonerModo 1
         PonerFoco Text1(0) ' <===
-        Text1(0).BackColor = vbYellow ' <===
+        Text1(0).BackColor = vbLightBlue 'vbYellow ' <===
         ' *** si n'hi han combos a la capçalera ***
         For i = 0 To Combo1.Count - 1
             Combo1(i).ListIndex = -1
@@ -2986,7 +2986,7 @@ Dim i As Integer
         HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue
             PonerFoco Text1(kCampo)
         End If
     End If

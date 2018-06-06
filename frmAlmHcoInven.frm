@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmAlmHcoInven 
@@ -621,6 +621,7 @@ Dim i As Integer
         .Buttons(btnPrimero + 3).Image = 9 'Ultimo
     End With
     
+    
     For i = 0 To imgBuscar.Count - 1
         Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     Next i
@@ -689,16 +690,16 @@ End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
 'Formulario para Busqueda
-Dim cadB As String
+Dim CadB As String
 Dim codArtic As String
 
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         
-            cadB = ""
-            cadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+            CadB = ""
+            CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
             PonerCadenaBusqueda
             
     End If
@@ -754,7 +755,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
     End If
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
    If Index = 3 And KeyCode = 40 Then
         PonerFocoBtn Me.cmdAceptar
    Else
@@ -837,7 +838,7 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
 Dim b As Boolean
-Dim NumReg As Byte
+Dim Numreg As Byte
 
     Modo = Kmodo
     'Modo 2. Hay datos y estamos visualizandolos
@@ -845,11 +846,11 @@ Dim NumReg As Byte
     
     PonerIndicador Me.lblIndicador, Modo
     
-    NumReg = 1
+    Numreg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
 
    'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -1027,20 +1028,20 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 
-    cadB = ObtenerBusqueda(Me, False)
+    CadB = ObtenerBusqueda(Me, False)
 '    cadSeleccion = ObtenerBusqueda(Me, True) 'Para la consulta de report
 
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
+        MandaBusquedaPrevia CadB
     Else
         'Se muestran en el mismo form
-        If cadB <> "" Then
+        If CadB <> "" Then
             'Cadena para el Data1
-            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & cadB & " GROUP BY codartic " & Ordenacion
+            CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
             'Cadena para el Datagrid y el Data2
-            CadenaBusqueda = " WHERE " & cadB 'Para cargar la consulta del CargaGrid
+            CadenaBusqueda = " WHERE " & CadB 'Para cargar la consulta del CargaGrid
         Else
             'obtener todos los articulos
             CadenaConsulta = "select codartic from " & NombreTabla & " GROUP BY codartic " & Ordenacion
@@ -1100,30 +1101,30 @@ EPonerCampos:
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
-Dim Tabla As String
+Dim Cad As String
+Dim tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
-    cad = ""
+    Cad = ""
             
 '    cad = cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
-    cad = cad & "Articulo|shinve.codartic|T||25·Denominacion|nomartic|T||70·"
+    Cad = Cad & "Articulo|shinve.codartic|T||25·Denominacion|nomartic|T||70·"
     
     
-    Tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
+    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
 '        tabla = tabla & " GROUP BY shinve.codartic "
     'tabla = "sartic"
     Titulo = "Histórico Inventario"
            
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        frmB.vtabla = Tabla
-        frmB.vSql = cadB
+        frmB.vCampos = Cad
+        frmB.vtabla = tabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"
@@ -1150,7 +1151,7 @@ End Sub
 
 Private Sub LLamaLineas(alto As Single)
 Dim jj As Byte
-Dim ini As Byte
+Dim Ini As Byte
 Dim b As Boolean
 
     DeseleccionaGrid Me.DataGrid1
@@ -1158,12 +1159,12 @@ Dim b As Boolean
     b = (Modo = 3 Or Modo = 4 Or Modo = 1) 'Insertar o Modificar Lineas
     
     If Modo = 4 Then 'modificar
-        ini = 1
+        Ini = 1
     Else
-        ini = 0
+        Ini = 0
     End If
     
-    For jj = ini To txtAux.Count - 1
+    For jj = Ini To txtAux.Count - 1
         txtAux(jj).Height = DataGrid1.RowHeight
         txtAux(jj).Top = alto
         txtAux(jj).visible = b

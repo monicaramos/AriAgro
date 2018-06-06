@@ -123,6 +123,8 @@ Public SeleccionadosTodos As Boolean
 
 Public Const SerieFraPro = "1"
 
+Public Const vbLightBlue = &HFEEFDA
+
 
 Public ResultadoFechaContaOK As Byte
 Public MensajeFechaOkConta As String
@@ -354,7 +356,7 @@ Dim frmMens As frmMensajes
         Set frmMens = New frmMensajes
         
         frmMens.OpcionMensaje = 30
-        frmMens.CADENA = SQL
+        frmMens.cadena = SQL
         frmMens.Show vbModal
     
         Set frmMens = Nothing
@@ -716,7 +718,7 @@ End Function
 
     
 
-Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc As String)
+Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc As String)
     Dim cad As String
     Dim Aux As String
     
@@ -724,8 +726,8 @@ Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc
     'que se produzcan
     On Error Resume Next
     cad = "Se ha producido un error: " & vbCrLf
-    If CADENA <> "" Then
-        cad = cad & vbCrLf & CADENA & vbCrLf & vbCrLf
+    If cadena <> "" Then
+        cad = cad & vbCrLf & cadena & vbCrLf & vbCrLf
     End If
     'Numeros de errores que contolamos
     If conn.Errors.Count > 0 Then
@@ -897,42 +899,42 @@ Dim i As Integer
 End Function
 
 ' ### [Monica] 11/09/2006
-Public Function ImporteSinFormato(CADENA As String) As String
+Public Function ImporteSinFormato(cadena As String) As String
 Dim i As Integer
 'Quitamos puntos
 Do
-    i = InStr(1, CADENA, ".")
-    If i > 0 Then CADENA = Mid(CADENA, 1, i - 1) & Mid(CADENA, i + 1)
+    i = InStr(1, cadena, ".")
+    If i > 0 Then cadena = Mid(cadena, 1, i - 1) & Mid(cadena, i + 1)
 Loop Until i = 0
-ImporteSinFormato = TransformaPuntosComas(CADENA)
+ImporteSinFormato = TransformaPuntosComas(cadena)
 End Function
 
 
 
 'Cambia los puntos de los numeros decimales
 'por comas
-Public Function TransformaComasPuntos(CADENA As String) As String
+Public Function TransformaComasPuntos(cadena As String) As String
 Dim i As Integer
     Do
-        i = InStr(1, CADENA, ",")
+        i = InStr(1, cadena, ",")
         If i > 0 Then
-            CADENA = Mid(CADENA, 1, i - 1) & "." & Mid(CADENA, i + 1)
+            cadena = Mid(cadena, 1, i - 1) & "." & Mid(cadena, i + 1)
         End If
     Loop Until i = 0
-    TransformaComasPuntos = CADENA
+    TransformaComasPuntos = cadena
 End Function
 
 'Para los nombre que pueden tener ' . Para las comillas habra que hacer dentro otro INSTR
-Public Sub NombreSQL(ByRef CADENA As String)
+Public Sub NombreSQL(ByRef cadena As String)
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, CADENA, "'")
+        i = InStr(J, cadena, "'")
         If i > 0 Then
-            Aux = Mid(CADENA, 1, i - 1) & "\"
-            CADENA = Aux & Mid(CADENA, i)
+            Aux = Mid(cadena, 1, i - 1) & "\"
+            cadena = Aux & Mid(cadena, i)
             J = i + 2
         End If
     Loop Until i = 0
@@ -957,20 +959,20 @@ Dim cad As String
     End If
 End Function
 
-Public Function DevNombreSQL(CADENA As String) As String
+Public Function DevNombreSQL(cadena As String) As String
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, CADENA, "'")
+        i = InStr(J, cadena, "'")
         If i > 0 Then
-            Aux = Mid(CADENA, 1, i - 1) & "\"
-            CADENA = Aux & Mid(CADENA, i)
+            Aux = Mid(cadena, 1, i - 1) & "\"
+            cadena = Aux & Mid(cadena, i)
             J = i + 2
         End If
     Loop Until i = 0
-    DevNombreSQL = CADENA
+    DevNombreSQL = cadena
 End Function
 
 
@@ -1306,15 +1308,15 @@ Dim res As Boolean
         EsEntero = res
 End Function
 
-Public Function TransformaPuntosComas(CADENA As String) As String
+Public Function TransformaPuntosComas(cadena As String) As String
     Dim i As Integer
     Do
-        i = InStr(1, CADENA, ".")
+        i = InStr(1, cadena, ".")
         If i > 0 Then
-            CADENA = Mid(CADENA, 1, i - 1) & "," & Mid(CADENA, i + 1)
+            cadena = Mid(cadena, 1, i - 1) & "," & Mid(cadena, i + 1)
         End If
         Loop Until i = 0
-    TransformaPuntosComas = CADENA
+    TransformaPuntosComas = cadena
 End Function
 
 Public Sub InicializarFormatos()
