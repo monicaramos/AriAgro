@@ -5,8 +5,8 @@ Dim DeTransporte As Boolean
 Dim DeServicios As Boolean
 Dim frmBas As frmBasico
 
-Private Sub Construc(nom As String)
-    MsgBox nom & ": en construcció..."
+Private Sub Construc(Nom As String)
+    MsgBox Nom & ": en construcció..."
 End Sub
 
 ' ******* DATOS BASICOS *********
@@ -431,6 +431,8 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         
         Case 11: Screen.MousePointer = vbHourglass 'frmVtasIntConta.Show vbModal ' Integracion contable
 '                frmListado2.OptClientes = True
+                '[Monica]13/06/2018: no se inicializaba
+                frmListado2.CadTag = ""
                 frmListado2.OpcionListado = 223
                 frmListado2.Show vbModal
                 Screen.MousePointer = vbDefault
@@ -626,7 +628,7 @@ Private Sub AbrirFormularioAreasCC()
     frmBas.Tag2 = "Descripción|T|N|||ccareas|nomarea|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 50
-    frmBas.Tabla = "ccareas"
+    frmBas.tabla = "ccareas"
     frmBas.CampoCP = "codarea"
     frmBas.Report = "rManCCAreas.rpt"
     frmBas.Caption = "Áreas"
@@ -649,7 +651,7 @@ Private Sub AbrirFormularioZonasCC()
     frmBas.Tag2 = "Descripción|T|N|||cczonas|nomzona|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 30
-    frmBas.Tabla = "cczonas"
+    frmBas.tabla = "cczonas"
     frmBas.CampoCP = "codzona"
     frmBas.Report = "rManCCZonas.rpt"
     frmBas.Caption = "Zonas"
@@ -671,7 +673,7 @@ Private Sub AbrirFormularioLineasCC()
     frmBas.Tag2 = "Descripción|T|N|||cclinconf|nomlinconf|||"
     frmBas.Maxlen1 = 2
     frmBas.Maxlen2 = 40
-    frmBas.Tabla = "cclinconf"
+    frmBas.tabla = "cclinconf"
     frmBas.CampoCP = "codlinconf"
     frmBas.Report = "rManCCLineasConf.rpt"
     frmBas.Caption = "Lineas de Confección"
