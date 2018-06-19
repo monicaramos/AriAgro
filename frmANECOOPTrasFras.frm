@@ -24,23 +24,41 @@ Begin VB.Form frmANECOOPTrasFras
       Width           =   6555
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
          Left            =   1740
          MaxLength       =   10
          TabIndex        =   0
          Top             =   1890
-         Width           =   1005
+         Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   15
          Left            =   1740
          MaxLength       =   10
          TabIndex        =   1
          Top             =   2295
-         Width           =   1005
+         Width           =   1350
       End
       Begin MSComctlLib.ProgressBar pb1 
          Height          =   285
@@ -55,19 +73,37 @@ Begin VB.Form frmANECOOPTrasFras
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   4080
          TabIndex        =   2
          Top             =   3960
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdCancelar 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5235
          TabIndex        =   3
          Top             =   3960
-         Width           =   975
+         Width           =   1065
       End
       Begin MSComDlg.CommonDialog CommonDialog1 
          Left            =   240
@@ -107,28 +143,46 @@ Begin VB.Form frmANECOOPTrasFras
       End
       Begin VB.Label Label2 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   21
-         Left            =   810
+         Left            =   675
          TabIndex        =   12
          Top             =   1950
-         Width           =   465
+         Width           =   690
       End
       Begin VB.Label Label2 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   22
-         Left            =   810
+         Left            =   675
          TabIndex        =   11
          Top             =   2265
-         Width           =   420
+         Width           =   645
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
          Caption         =   "Fecha"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -136,12 +190,12 @@ Begin VB.Form frmANECOOPTrasFras
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   23
          Left            =   450
          TabIndex        =   10
-         Top             =   1710
-         Width           =   435
+         Top             =   1620
+         Width           =   600
       End
       Begin VB.Image imgFecha 
          Height          =   240
@@ -224,7 +278,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public OpcionListado As Byte
+Public Opcionlistado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -295,16 +349,16 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim SQL As String
 Dim i As Byte
-Dim cadWHERE As String
+Dim cadwhere As String
 Dim b As Boolean
 Dim NomFic As String
-Dim cadena As String
+Dim CADENA As String
 Dim cadena1 As String
 Dim Directorio As String
 Dim fec As String
 Dim nomDir As String
 
-Dim Nregs As Long
+Dim nRegs As Long
 Dim cadTABLA As String
 Dim NomFic1 As String
 
@@ -319,16 +373,16 @@ Dim File1 As FileSystemObject
 
     SQL = " not anecoop.fra_liq is null and anecoop.fra_liq <> '' " 'and not numlinea is null and numlinea <> ''"
     
-    If txtCodigo(14).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq >= " & DBSet(txtCodigo(14).Text, "F")
-    If txtCodigo(15).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq <= " & DBSet(txtCodigo(15).Text, "F")
+    If txtcodigo(14).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq >= " & DBSet(txtcodigo(14).Text, "F")
+    If txtcodigo(15).Text <> "" Then SQL = SQL & " and anecoop.fecha_liq <= " & DBSet(txtcodigo(15).Text, "F")
 
     '[Monica]18/12/2017: nro de fra A000000X
     SQL = SQL & " and not if( fra_liq regexp '^[A]' = 1 , mid(fra_liq,2,length(fra_liq)),fra_liq) in (select numfactu "
     'SQL = SQL & " and not fra_liq in (select numfactu "
     SQL = SQL & " from facturas where codtipom = " & DBSet(CodtipomAnecoop, "T")
     
-    If txtCodigo(14).Text <> "" Then SQL = SQL & " and facturas.fecfactu >= " & DBSet(txtCodigo(14).Text, "F")
-    If txtCodigo(15).Text <> "" Then SQL = SQL & " and facturas.fecfactu <= " & DBSet(txtCodigo(15).Text, "F")
+    If txtcodigo(14).Text <> "" Then SQL = SQL & " and facturas.fecfactu >= " & DBSet(txtcodigo(14).Text, "F")
+    If txtcodigo(15).Text <> "" Then SQL = SQL & " and facturas.fecfactu <= " & DBSet(txtcodigo(15).Text, "F")
         
     SQL = SQL & ") "
 
@@ -338,7 +392,7 @@ Dim File1 As FileSystemObject
     Set frmMens = New frmMensajes
     
     frmMens.OpcionMensaje = 29
-    frmMens.cadWHERE = SQL
+    frmMens.cadwhere = SQL
     frmMens.Show vbModal
     
     Set frmMens = Nothing
@@ -784,10 +838,10 @@ Dim i As Integer
 '    CommitConexion
         
     FrameIntegracionVisible True, H, W
-    Pb1.visible = False
+    pb1.visible = False
     
-    txtCodigo(14).Text = "01/01/" & Format(Year(Now), "0000")
-    txtCodigo(15).Text = "31/12/" & Format(Year(Now), "0000")
+    txtcodigo(14).Text = "01/01/" & Format(Year(Now), "0000")
+    txtcodigo(15).Text = "31/12/" & Format(Year(Now), "0000")
     
     For i = 0 To imgAyuda.Count - 1
         imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
@@ -862,7 +916,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Show vbModal
     End With
 End Sub
@@ -889,7 +943,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -902,9 +956,9 @@ Private Sub AbrirVisReport()
 End Sub
 
 
-Private Function ComprobarErrores(ByRef Pb1 As ProgressBar) As Boolean
+Private Function ComprobarErrores(ByRef pb1 As ProgressBar) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
@@ -942,7 +996,7 @@ Dim Variedad As String
     While Not Rs.EOF And b
         i = i + 1
 
-        Me.Pb1.Value = Me.Pb1.Value + 1
+        Me.pb1.Value = Me.pb1.Value + 1
         lblProgres(2).Caption = "Linea " & i
         Me.Refresh
 
@@ -1003,7 +1057,7 @@ Dim Variedad As String
     Wend
     Set Rs = Nothing
     
-    Pb1.visible = False
+    pb1.visible = False
     lblProgres(0).Caption = ""
     lblProgres(1).Caption = ""
     lblProgres(2).Caption = ""
@@ -1030,10 +1084,10 @@ Dim tipoMov As String
 
     b = True
     
-    If txtCodigo(14).Text = "" Or txtCodigo(15) = "" Then
+    If txtcodigo(14).Text = "" Or txtcodigo(15) = "" Then
         MsgBox "Debe de introducir las fechas de trapaso. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(14)
+        PonerFoco txtcodigo(14)
     End If
     
     If vParamAplic.CodAnecoop = "" Then
@@ -1070,7 +1124,7 @@ End Function
 
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub frmMens_DatoSeleccionado(CadenaSeleccion As String)
@@ -1126,18 +1180,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
+    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1161,10 +1215,10 @@ Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
 End Sub
             
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1172,7 +1226,7 @@ Dim cad As String, cadTipo As String 'tipo cliente
 
     Select Case Index
         Case 14, 15 'FECHAS
-            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
     End Select
 End Sub
 

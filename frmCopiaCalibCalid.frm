@@ -22,15 +22,33 @@ Begin VB.Form frmCopiaCalibCalid
       Width           =   8070
       Begin VB.CheckBox Check1 
          Caption         =   "Calidades/Calibrador"
-         Height          =   195
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
          Index           =   2
          Left            =   540
          TabIndex        =   12
          Top             =   2970
-         Width           =   2130
+         Width           =   2400
       End
       Begin VB.Frame FrameStockMaxMin 
          Caption         =   "Tipo"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1050
          Left            =   3180
@@ -39,25 +57,52 @@ Begin VB.Form frmCopiaCalibCalid
          Width           =   2085
          Begin VB.OptionButton Opcion 
             Caption         =   "Actualizar"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   1
             Left            =   450
             TabIndex        =   11
             Top             =   570
-            Width           =   1245
+            Width           =   1560
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Copiar"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   0
             Left            =   450
             TabIndex        =   10
             Top             =   270
-            Width           =   1305
+            Width           =   1485
          End
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Calibres"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
          Left            =   540
@@ -67,6 +112,15 @@ Begin VB.Form frmCopiaCalibCalid
       End
       Begin VB.CheckBox Check1 
          Caption         =   "Calidades"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
          Left            =   540
@@ -76,7 +130,16 @@ Begin VB.Form frmCopiaCalibCalid
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   70
          Left            =   3195
          Locked          =   -1  'True
@@ -86,7 +149,16 @@ Begin VB.Form frmCopiaCalibCalid
          Width           =   4305
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   70
          Left            =   1710
          MaxLength       =   6
@@ -96,19 +168,37 @@ Begin VB.Form frmCopiaCalibCalid
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5400
          TabIndex        =   2
          Top             =   3645
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   6570
          TabIndex        =   3
          Top             =   3645
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.Label Label1 
          Caption         =   "Copia de Calibres / Calidades a Variedad"
@@ -138,13 +228,22 @@ Begin VB.Form frmCopiaCalibCalid
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Variedad Destino"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   38
          Left            =   510
          TabIndex        =   5
-         Top             =   1350
-         Width           =   1215
+         Top             =   1305
+         Width           =   1665
       End
    End
    Begin MSComDlg.CommonDialog cd1 
@@ -186,7 +285,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim Sql As String
+Dim SQL As String
 Dim SQL1 As String
     
     
@@ -218,7 +317,7 @@ End Sub
 Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
-        PonerFoco txtCodigo(70)
+        PonerFoco txtcodigo(70)
         Me.Opcion(0).Value = True
         Check1(0).Value = 1
         Check1(1).Value = 1
@@ -231,20 +330,20 @@ End Sub
 
 Private Sub Form_Load()
 Dim H As Integer, W As Integer
-Dim I As Integer
+Dim i As Integer
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
     PrimeraVez = True
     limpiar Me
 
-    For I = 27 To 27
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 27 To 27
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
 
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.cmdCancel.Cancel = True
+    Me.cmdcancel.Cancel = True
 '    Me.Width = W + 70
 '    Me.Height = H + 350
 End Sub
@@ -253,7 +352,7 @@ End Sub
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Mantenimiento de variedades
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -272,14 +371,14 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmVar = Nothing
             
     End Select
-    PonerFoco txtCodigo(indCodigo)
+    PonerFoco txtcodigo(indCodigo)
     Screen.MousePointer = vbDefault
 End Sub
 
 
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -299,7 +398,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
 
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -307,12 +406,12 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
     Select Case Index
         Case 70  'Cod.variedad
-            If txtCodigo(Index).Text <> "" Then
-                txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000000")
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "variedades", "nomvarie", "codvarie", "N")
+            If txtcodigo(Index).Text <> "" Then
+                txtcodigo(Index).Text = Format(txtcodigo(Index).Text, "000000")
+                txtNombre(Index).Text = PonerNombreDeCod(txtcodigo(Index), "variedades", "nomvarie", "codvarie", "N")
                 If txtNombre(Index).Text = "" Then
                     MsgBox "Variedad no existe. Reintroduzca.", vbExclamation
-                    PonerFoco txtCodigo(Index)
+                    PonerFoco txtcodigo(Index)
                 End If
             End If
     End Select
@@ -320,10 +419,10 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 End Sub
 
 Private Function DatosOk() As Boolean
-Dim I As Integer
+Dim i As Integer
 
     DatosOk = False
-    If txtCodigo(70).Text = "" Then
+    If txtcodigo(70).Text = "" Then
         MsgBox "Debe de introducir una variedad destino.", vbExclamation
         Exit Function
     Else
@@ -340,7 +439,7 @@ End Function
 
 
 Private Function ActualizarRegistros() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim Sql3 As String
 Dim Rs As ADODB.Recordset
@@ -350,17 +449,17 @@ Dim Rs As ADODB.Recordset
     ActualizarRegistros = False
 
     If Check1(0).Value Then ' calibres
-        If BloqueaRegistro("calibres", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("calibres", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             If Opcion(0).Value Then ' copiar
-                Sql = "select * from calibres where codvarie = " & DBSet(NumCod, "N")
+                SQL = "select * from calibres where codvarie = " & DBSet(NumCod, "N")
                 
                 Set Rs = New ADODB.Recordset
-                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Not Rs.EOF Then Rs.MoveFirst
                 While Not Rs.EOF
-                    Sql2 = "select count(*) from calibres where codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                    Sql2 = "select count(*) from calibres where codvarie = " & DBSet(txtcodigo(70).Text, "N")
                     Sql2 = Sql2 & " and codcalib = " & DBSet(Rs!codcalib, "N")
                     
                     If TotalRegistros(Sql2) > 0 Then
@@ -368,14 +467,14 @@ Dim Rs As ADODB.Recordset
                         Sql3 = "update calibres fuente, calibres destino set destino.nomcalib = fuente.nomcalib, "
                         Sql3 = Sql3 & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
                         Sql3 = Sql3 & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & " and fuente.codcalib = " & DBSet(Rs!codcalib, "N")
                         Sql3 = Sql3 & " and destino.codcalib = " & DBSet(Rs!codcalib, "N")
                 
                         conn.Execute Sql3
                     Else
                         ' insertamos
-                        Sql3 = "insert into calibres (codvarie,codcalib,nomcalib,nomcalab,calbaneco) select " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = "insert into calibres (codvarie,codcalib,nomcalib,nomcalab,calbaneco) select " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & ",codcalib, nomcalib, nomcalab, calbaneco from calibres "
                         Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
                         Sql3 = Sql3 & " and codcalib = " & DBSet(Rs!codcalib, "N")
@@ -397,13 +496,13 @@ Dim Rs As ADODB.Recordset
 '
 '                Conn.Execute Sql
             Else
-                Sql = "update calibres fuente, calibres destino set destino.nomcalib = fuente.nomcalib, "
-                Sql = Sql & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalib = destino.codcalib "
+                SQL = "update calibres fuente, calibres destino set destino.nomcalib = fuente.nomcalib, "
+                SQL = SQL & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalib = destino.codcalib "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If
@@ -411,17 +510,17 @@ Dim Rs As ADODB.Recordset
     End If
     
     If Check1(1).Value Then ' calidades
-        If BloqueaRegistro("rcalidad", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("rcalidad", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             If Opcion(0).Value Then ' copiar
-                Sql = "select * from rcalidad where codvarie = " & DBSet(NumCod, "N")
+                SQL = "select * from rcalidad where codvarie = " & DBSet(NumCod, "N")
                 
                 Set Rs = New ADODB.Recordset
-                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Not Rs.EOF Then Rs.MoveFirst
                 While Not Rs.EOF
-                    Sql2 = "select count(*) from rcalidad where codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                    Sql2 = "select count(*) from rcalidad where codvarie = " & DBSet(txtcodigo(70).Text, "N")
                     Sql2 = Sql2 & " and codcalid = " & DBSet(Rs!codcalid, "N")
                     
                     If TotalRegistros(Sql2) > 0 Then
@@ -438,7 +537,7 @@ Dim Rs As ADODB.Recordset
                         '[Monica]27/01/2016: nueva columna de si se aplica bonficacion
                         Sql3 = Sql3 & " destino.seaplicabonif = fuente.seaplicabonif "
                         Sql3 = Sql3 & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & " and fuente.codcalid = " & DBSet(Rs!codcalid, "N")
                         Sql3 = Sql3 & " and destino.codcalid = " & DBSet(Rs!codcalid, "N")
                         
@@ -446,7 +545,7 @@ Dim Rs As ADODB.Recordset
                         
                     Else
                         ' copiamos
-                        Sql3 = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec,eurrecsoc,eurreccoop,seaplicabonif) select " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec,eurrecsoc,eurreccoop,seaplicabonif) select " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & ",codcalid, nomcalid, nomcalab, tipcalid, tipcalid1, nomcalibrador1,"
                         '[Monica]27/01/2016: nueva columna de si se aplica bonificacion
                         Sql3 = Sql3 & "nomcalibrador2, gastosrec,eurrecsoc,eurreccoop,seaplicabonif from rcalidad "
@@ -473,22 +572,22 @@ Dim Rs As ADODB.Recordset
 
 
             Else
-                Sql = "update rcalidad fuente, rcalidad destino set destino.nomcalid = fuente.nomcalid, "
-                Sql = Sql & " destino.nomcalab = fuente.nomcalab, destino.tipcalid = fuente.tipcalid, "
-                Sql = Sql & " destino.tipcalid1 = fuente.tipcalid1, "
-                Sql = Sql & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
-                Sql = Sql & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
-                Sql = Sql & " destino.gastosrec = fuente.gastosrec, "
+                SQL = "update rcalidad fuente, rcalidad destino set destino.nomcalid = fuente.nomcalid, "
+                SQL = SQL & " destino.nomcalab = fuente.nomcalab, destino.tipcalid = fuente.tipcalid, "
+                SQL = SQL & " destino.tipcalid1 = fuente.tipcalid1, "
+                SQL = SQL & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
+                SQL = SQL & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
+                SQL = SQL & " destino.gastosrec = fuente.gastosrec, "
                 '[Monica]12/11/2013
-                Sql = Sql & " destino.eurrecsoc = fuente.eurrecsoc,"
-                Sql = Sql & " destino.eurreccoop = fuente.eurreccoop,"
+                SQL = SQL & " destino.eurrecsoc = fuente.eurrecsoc,"
+                SQL = SQL & " destino.eurreccoop = fuente.eurreccoop,"
                 '[Monica]27/01/2016: nueva columna de si se aplica bonificacion
-                Sql = Sql & " destino.seaplicabonif = fuente.seaplicabonif "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalid = destino.codcalid "
+                SQL = SQL & " destino.seaplicabonif = fuente.seaplicabonif "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalid = destino.codcalid "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If
@@ -497,19 +596,19 @@ Dim Rs As ADODB.Recordset
 
 
     If Check1(1).Value Then ' calibrador
-        If BloqueaRegistro("rcalidad_calibrador", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("rcalidad_calibrador", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             If Opcion(0).Value Then ' copiar
-                Sql = "select * from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
+                SQL = "select * from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
                 
                 Set Rs = New ADODB.Recordset
-                Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+                Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
                 
                 If Not Rs.EOF Then Rs.MoveFirst
                 While Not Rs.EOF
-                    Sql2 = "select count(*) from rcalidad_calibrador where codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                    Sql2 = "select count(*) from rcalidad_calibrador where codvarie = " & DBSet(txtcodigo(70).Text, "N")
                     Sql2 = Sql2 & " and codcalid = " & DBSet(Rs!codcalid, "N")
-                    Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+                    Sql2 = Sql2 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
                     
                     
                     If TotalRegistros(Sql2) > 0 Then
@@ -519,23 +618,23 @@ Dim Rs As ADODB.Recordset
                         Sql3 = Sql3 & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
                         Sql3 = Sql3 & " destino.nomcalibrador3 = fuente.nomcalibrador3 "
                         Sql3 = Sql3 & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = Sql3 & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & " and fuente.codcalid = " & DBSet(Rs!codcalid, "N")
                         Sql3 = Sql3 & " and destino.codcalid = " & DBSet(Rs!codcalid, "N")
-                        Sql3 = Sql3 & " and fuente.numlinea = " & DBSet(Rs!numlinea, "N")
-                        Sql3 = Sql3 & " and destino.numlinea = " & DBSet(Rs!numlinea, "N")
+                        Sql3 = Sql3 & " and fuente.numlinea = " & DBSet(Rs!NumLinea, "N")
+                        Sql3 = Sql3 & " and destino.numlinea = " & DBSet(Rs!NumLinea, "N")
                         
                         
                         conn.Execute Sql3
                         
                     Else
                         ' copiamos
-                        Sql3 = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) select " & DBSet(txtCodigo(70).Text, "N")
+                        Sql3 = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) select " & DBSet(txtcodigo(70).Text, "N")
                         Sql3 = Sql3 & ",codcalid, numlinea, nomcalibrador1, nomcalibrador2, nomcalibrador3 "
                         Sql3 = Sql3 & "from rcalidad_calibrador "
                         Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
                         Sql3 = Sql3 & " and codcalid = " & DBSet(Rs!codcalid, "N")
-                        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!numlinea, "N")
+                        Sql3 = Sql3 & " and numlinea = " & DBSet(Rs!NumLinea, "N")
                         
                     
                         conn.Execute Sql3
@@ -546,16 +645,16 @@ Dim Rs As ADODB.Recordset
                 Set Rs = Nothing
 
             Else
-                Sql = "update rcalidad_calibrador fuente, rcalidad_calibrador destino set  "
-                Sql = Sql & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
-                Sql = Sql & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
-                Sql = Sql & " destino.nomcalibrador3 = fuente.nomcalibrador3 "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalid = destino.codcalid "
-                Sql = Sql & " and fuente.numlinea = destino.numlinea "
+                SQL = "update rcalidad_calibrador fuente, rcalidad_calibrador destino set  "
+                SQL = SQL & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
+                SQL = SQL & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
+                SQL = SQL & " destino.nomcalibrador3 = fuente.nomcalibrador3 "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalid = destino.codcalid "
+                SQL = SQL & " and fuente.numlinea = destino.numlinea "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If
@@ -580,7 +679,7 @@ End Function
 
 '[Monica]20/03/2013: en el caso de Picassent copiar borra el destino y copia el origen en el destino
 Private Function ActualizarRegistrosNew() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim Sql3 As String
 Dim Rs As ADODB.Recordset
@@ -590,26 +689,26 @@ Dim Rs As ADODB.Recordset
     ActualizarRegistrosNew = False
 
     If Check1(0).Value Then ' calibres
-        If BloqueaRegistro("calibres", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("calibres", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             
             If Opcion(0).Value Then ' copiar
-                Sql = "delete from calibres where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                conn.Execute Sql
+                SQL = "delete from calibres where codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                conn.Execute SQL
                 
-                Sql3 = "insert into calibres (codvarie,codcalib,nomcalib,nomcalab,calbaneco) select " & DBSet(txtCodigo(70).Text, "N")
+                Sql3 = "insert into calibres (codvarie,codcalib,nomcalib,nomcalab,calbaneco) select " & DBSet(txtcodigo(70).Text, "N")
                 Sql3 = Sql3 & ",codcalib, nomcalib, nomcalab, calbaneco from calibres "
                 Sql3 = Sql3 & " where codvarie = " & DBSet(NumCod, "N")
 
                 conn.Execute Sql3
             Else
-                Sql = "update calibres fuente, calibres destino set destino.nomcalib = fuente.nomcalib, "
-                Sql = Sql & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalib = destino.codcalib "
+                SQL = "update calibres fuente, calibres destino set destino.nomcalib = fuente.nomcalib, "
+                SQL = SQL & " destino.nomcalab = fuente.nomcalab, destino.calbaneco = fuente.calbaneco "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalib = destino.codcalib "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If
@@ -617,45 +716,45 @@ Dim Rs As ADODB.Recordset
     End If
     
     If Check1(1).Value Then ' calidades
-        If BloqueaRegistro("rcalidad", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("rcalidad", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             If Opcion(0).Value Then ' copiar
-                Sql = "delete from rcalidad_calibrador where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                conn.Execute Sql
+                SQL = "delete from rcalidad_calibrador where codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                conn.Execute SQL
             
-                Sql = "delete from rcalidad where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                conn.Execute Sql
+                SQL = "delete from rcalidad where codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                conn.Execute SQL
 
-                Sql = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec, eurrecsoc, eurreccoop, seaplicabonif) select " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & ",codcalid, nomcalid, nomcalab, tipcalid, tipcalid1, nomcalibrador1,"
+                SQL = "insert into rcalidad (codvarie,codcalid,nomcalid,nomcalab,tipcalid,tipcalid1,nomcalibrador1,nomcalibrador2,gastosrec, eurrecsoc, eurreccoop, seaplicabonif) select " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & ",codcalid, nomcalid, nomcalab, tipcalid, tipcalid1, nomcalibrador1,"
                 '[Monica]27/01/2016: nueva columna de si se aplica bonificacion
-                Sql = Sql & "nomcalibrador2, gastosrec, eurrecsoc, eurreccoop, seaplicabonif from rcalidad "
-                Sql = Sql & " where codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & "nomcalibrador2, gastosrec, eurrecsoc, eurreccoop, seaplicabonif from rcalidad "
+                SQL = SQL & " where codvarie = " & DBSet(NumCod, "N")
 
-                conn.Execute Sql
+                conn.Execute SQL
 
                 ' pq en este punto he borrado el calibrador por las referenciales
-                Sql = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) "
-                Sql = Sql & " select " & DBSet(txtCodigo(70).Text, "N") & ",codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3 "
-                Sql = Sql & " from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
+                SQL = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) "
+                SQL = SQL & " select " & DBSet(txtcodigo(70).Text, "N") & ",codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3 "
+                SQL = SQL & " from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
 
-                conn.Execute Sql
+                conn.Execute SQL
             Else
-                Sql = "update rcalidad fuente, rcalidad destino set destino.nomcalid = fuente.nomcalid, "
-                Sql = Sql & " destino.nomcalab = fuente.nomcalab, destino.tipcalid = fuente.tipcalid, "
-                Sql = Sql & " destino.tipcalid1 = fuente.tipcalid1, "
-                Sql = Sql & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
-                Sql = Sql & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
-                Sql = Sql & " destino.gastosrec = fuente.gastosrec, "
-                Sql = Sql & " destino.eurrecsoc = fuente.eurrecsoc, "
-                Sql = Sql & " destino.eurreccoop = fuente.eurreccoop, "
+                SQL = "update rcalidad fuente, rcalidad destino set destino.nomcalid = fuente.nomcalid, "
+                SQL = SQL & " destino.nomcalab = fuente.nomcalab, destino.tipcalid = fuente.tipcalid, "
+                SQL = SQL & " destino.tipcalid1 = fuente.tipcalid1, "
+                SQL = SQL & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
+                SQL = SQL & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
+                SQL = SQL & " destino.gastosrec = fuente.gastosrec, "
+                SQL = SQL & " destino.eurrecsoc = fuente.eurrecsoc, "
+                SQL = SQL & " destino.eurreccoop = fuente.eurreccoop, "
                 '[Monica]27/01/2016: nueva columna de si se aplica bonificacion
-                Sql = Sql & " destino.seaplicabonif = fuente.seaplicabonif "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalid = destino.codcalid "
+                SQL = SQL & " destino.seaplicabonif = fuente.seaplicabonif "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalid = destino.codcalid "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If
@@ -664,28 +763,28 @@ Dim Rs As ADODB.Recordset
 
 
     If Check1(1).Value Then ' calibrador
-        If BloqueaRegistro("rcalidad_calibrador", "codvarie = " & DBSet(txtCodigo(70).Text, "N")) Then
+        If BloqueaRegistro("rcalidad_calibrador", "codvarie = " & DBSet(txtcodigo(70).Text, "N")) Then
             conn.BeginTrans
             If Opcion(0).Value Then ' copiar
-                Sql = "delete from rcalidad_calibrador where codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                conn.Execute Sql
+                SQL = "delete from rcalidad_calibrador where codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                conn.Execute SQL
                 
-                Sql = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) "
-                Sql = Sql & " select " & DBSet(txtCodigo(70).Text, "N") & ",codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3 "
-                Sql = Sql & " from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
+                SQL = "insert into rcalidad_calibrador (codvarie,codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3) "
+                SQL = SQL & " select " & DBSet(txtcodigo(70).Text, "N") & ",codcalid,numlinea,nomcalibrador1,nomcalibrador2,nomcalibrador3 "
+                SQL = SQL & " from rcalidad_calibrador where codvarie = " & DBSet(NumCod, "N")
 
-                conn.Execute Sql
+                conn.Execute SQL
             Else
-                Sql = "update rcalidad_calibrador fuente, rcalidad_calibrador destino set  "
-                Sql = Sql & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
-                Sql = Sql & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
-                Sql = Sql & " destino.nomcalibrador3 = fuente.nomcalibrador3 "
-                Sql = Sql & " where fuente.codvarie = " & DBSet(NumCod, "N")
-                Sql = Sql & " and destino.codvarie = " & DBSet(txtCodigo(70).Text, "N")
-                Sql = Sql & " and fuente.codcalid = destino.codcalid "
-                Sql = Sql & " and fuente.numlinea = destino.numlinea "
+                SQL = "update rcalidad_calibrador fuente, rcalidad_calibrador destino set  "
+                SQL = SQL & " destino.nomcalibrador1 = fuente.nomcalibrador1, "
+                SQL = SQL & " destino.nomcalibrador2 = fuente.nomcalibrador2, "
+                SQL = SQL & " destino.nomcalibrador3 = fuente.nomcalibrador3 "
+                SQL = SQL & " where fuente.codvarie = " & DBSet(NumCod, "N")
+                SQL = SQL & " and destino.codvarie = " & DBSet(txtcodigo(70).Text, "N")
+                SQL = SQL & " and fuente.codcalid = destino.codcalid "
+                SQL = SQL & " and fuente.numlinea = destino.numlinea "
                 
-                conn.Execute Sql
+                conn.Execute SQL
             End If
             conn.CommitTrans
         End If

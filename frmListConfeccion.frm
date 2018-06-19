@@ -3,7 +3,7 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmListConfeccion 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   4470
+   ClientHeight    =   6375
    ClientLeft      =   45
    ClientTop       =   2430
    ClientWidth     =   8160
@@ -11,7 +11,7 @@ Begin VB.Form frmListConfeccion
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   4470
+   ScaleHeight     =   6375
    ScaleWidth      =   8160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -23,173 +23,326 @@ Begin VB.Form frmListConfeccion
       _Version        =   393216
    End
    Begin VB.Frame FrameInfConfecciones 
-      Height          =   4440
+      Height          =   6375
       Left            =   45
       TabIndex        =   0
       Top             =   -15
       Width           =   8040
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   4
-         Top             =   2160
-         Width           =   1455
+         Top             =   2430
+         Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   3
-         Top             =   1830
-         Width           =   1455
+         Top             =   2055
+         Width           =   1350
       End
       Begin VB.Frame Frame1 
          Caption         =   "Ordenado por"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   705
-         Left            =   4680
+         Left            =   405
          TabIndex        =   18
-         Top             =   2520
-         Width           =   2835
+         Top             =   4815
+         Width           =   4815
          Begin VB.OptionButton Opcion 
             Caption         =   "Alfabético"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   5
-            Left            =   1530
+            Left            =   2610
             TabIndex        =   20
-            Top             =   300
-            Width           =   1095
+            Top             =   270
+            Width           =   1545
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Código"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   4
-            Left            =   300
+            Left            =   720
             TabIndex        =   19
-            Top             =   300
-            Width           =   1155
+            Top             =   270
+            Width           =   1605
          End
       End
       Begin VB.Frame FrameStockMaxMin 
          Caption         =   "Tipo de Informe"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1830
          Left            =   405
          TabIndex        =   12
-         Top             =   2520
-         Width           =   4035
+         Top             =   2925
+         Width           =   4800
          Begin VB.OptionButton Opcion 
             Caption         =   "Costes por Confección detallada en línea"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   6
-            Left            =   450
+            Left            =   135
             TabIndex        =   21
             Top             =   1170
-            Width           =   3255
+            Width           =   4560
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Costes por Confección detallada"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   3
-            Left            =   450
+            Left            =   135
             TabIndex        =   17
             Top             =   870
-            Width           =   2595
+            Width           =   3900
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Confecciones completas"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   2
-            Left            =   450
+            Left            =   135
             TabIndex        =   16
             Top             =   1470
-            Width           =   2100
+            Width           =   3405
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Envases por Confección "
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   0
-            Left            =   450
+            Left            =   135
             TabIndex        =   14
             Top             =   270
-            Width           =   2055
+            Width           =   3360
          End
          Begin VB.OptionButton Opcion 
             Caption         =   "Costes por Confección"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Index           =   1
-            Left            =   450
+            Left            =   135
             TabIndex        =   13
             Top             =   570
-            Width           =   2055
+            Width           =   3360
          End
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   71
-         Left            =   3195
+         Left            =   3240
          Locked          =   -1  'True
          TabIndex        =   8
          Text            =   "Text5"
-         Top             =   1395
-         Width           =   4305
+         Top             =   1485
+         Width           =   4485
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   70
-         Left            =   3195
+         Left            =   3240
          Locked          =   -1  'True
          TabIndex        =   7
          Text            =   "Text5"
-         Top             =   1080
-         Width           =   4305
+         Top             =   1125
+         Width           =   4485
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   71
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   2
-         Top             =   1395
-         Width           =   1455
+         Top             =   1485
+         Width           =   1545
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   70
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   1
-         Top             =   1080
-         Width           =   1455
+         Top             =   1125
+         Width           =   1545
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   5400
+         Left            =   5490
          TabIndex        =   5
-         Top             =   3915
-         Width           =   975
+         Top             =   5715
+         Width           =   1065
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   11
-         Left            =   6570
+         Left            =   6660
          TabIndex        =   6
-         Top             =   3915
-         Width           =   975
+         Top             =   5715
+         Width           =   1065
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   0
          Left            =   1440
          Picture         =   "frmListConfeccion.frx":000C
-         Top             =   1830
+         Top             =   2055
          Width           =   240
       End
       Begin VB.Image imgFecha 
@@ -197,37 +350,64 @@ Begin VB.Form frmListConfeccion
          Index           =   1
          Left            =   1440
          Picture         =   "frmListConfeccion.frx":0097
-         Top             =   2160
+         Top             =   2430
          Width           =   240
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   3
-         Left            =   870
+         Left            =   780
          TabIndex        =   36
-         Top             =   1860
-         Width           =   465
+         Top             =   2085
+         Width           =   690
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   2
-         Left            =   870
+         Left            =   780
          TabIndex        =   35
-         Top             =   2175
-         Width           =   420
+         Top             =   2445
+         Width           =   645
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Fecha"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   2
          Left            =   510
          TabIndex        =   34
-         Top             =   1650
-         Width           =   450
+         Top             =   1785
+         Width           =   600
       End
       Begin VB.Label Label1 
          Caption         =   "Informe de Confecciones"
@@ -251,44 +431,71 @@ Begin VB.Form frmListConfeccion
          Height          =   240
          Index           =   28
          Left            =   1425
-         Top             =   1395
+         Top             =   1485
          Width           =   240
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   27
          Left            =   1425
-         Top             =   1080
+         Top             =   1125
          Width           =   240
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Confección"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   38
          Left            =   510
          TabIndex        =   11
          Top             =   810
-         Width           =   810
+         Width           =   1095
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   54
-         Left            =   870
+         Left            =   780
          TabIndex        =   10
-         Top             =   1395
-         Width           =   420
+         Top             =   1485
+         Width           =   645
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   51
-         Left            =   870
+         Left            =   780
          TabIndex        =   9
-         Top             =   1080
-         Width           =   465
+         Top             =   1125
+         Width           =   690
       End
    End
    Begin VB.Frame FrameDuplicarConf 
@@ -492,7 +699,7 @@ End Sub
 
 Private Function DatosOk()
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 
     DatosOk = False
     b = True
@@ -507,8 +714,8 @@ Dim Sql As String
                 b = False
                 PonerFoco txtCodigo(0)
             Else
-                Sql = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
-                If TotalRegistros(Sql) = 0 Then
+                SQL = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+                If TotalRegistros(SQL) = 0 Then
                     MsgBox "No existe la confección de origen. Reintroduzca.", vbExclamation
                     b = False
                     PonerFoco txtCodigo(0)
@@ -522,8 +729,8 @@ Dim Sql As String
                     b = False
                     PonerFoco txtCodigo(1)
                 Else
-                    Sql = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(1).Text, "T")
-                    If TotalRegistros(Sql) > 0 Then
+                    SQL = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(1).Text, "T")
+                    If TotalRegistros(SQL) > 0 Then
                         MsgBox "La nueva confección ya existe. Revise.", vbExclamation
                         b = False
                         PonerFoco txtCodigo(1)
@@ -539,37 +746,37 @@ End Function
 
 
 Private Function ProcesoDuplicarConfeccion() As Boolean
-Dim Sql As String
+Dim SQL As String
     
     On Error GoTo eProcesoDuplicarConfeccion
 
     conn.BeginTrans
 
     ' tabla de cabecera: forfaits
-    Sql = "insert into forfaits (codforfait,nomconfe,observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
-    Sql = Sql & "codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom)  "
-    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & "," & DBSet(txtCodigo(2).Text, "T") & ","
-    Sql = Sql & " observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
-    Sql = Sql & " codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom "
-    Sql = Sql & " from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    SQL = "insert into forfaits (codforfait,nomconfe,observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
+    SQL = SQL & "codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom)  "
+    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & "," & DBSet(txtCodigo(2).Text, "T") & ","
+    SQL = SQL & " observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
+    SQL = SQL & " codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom "
+    SQL = SQL & " from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute Sql
+    conn.Execute SQL
     
     ' tabla de lineas envases: forfaits_envases
-    Sql = "insert into forfaits_envases (codforfait,numlinea,codartic,cantidad) "
-    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & ","
-    Sql = Sql & " numlinea,codartic,cantidad "
-    Sql = Sql & " from forfaits_envases where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    SQL = "insert into forfaits_envases (codforfait,numlinea,codartic,cantidad) "
+    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & ","
+    SQL = SQL & " numlinea,codartic,cantidad "
+    SQL = SQL & " from forfaits_envases where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute Sql
+    conn.Execute SQL
     
     ' tabla de lineas de costes: forfaits_costes
-    Sql = "insert into forfaits_costes (codforfait,codcoste,importes) "
-    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & ","
-    Sql = Sql & " codcoste,importes "
-    Sql = Sql & " from forfaits_costes where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    SQL = "insert into forfaits_costes (codforfait,codcoste,importes) "
+    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & ","
+    SQL = SQL & " codcoste,importes "
+    SQL = SQL & " from forfaits_costes where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute Sql
+    conn.Execute SQL
     
     ProcesoDuplicarConfeccion = True
     conn.CommitTrans
@@ -600,7 +807,7 @@ Dim nomDocu As String
     '===================================================
     '============ PARAMETROS ===========================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     
@@ -873,7 +1080,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim tabla As String
+Dim Tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -1004,7 +1211,7 @@ Private Function ComprobarFechasConta(ind As Integer) As Boolean
 'comprobar que el periodo de fechas a contabilizar esta dentro del
 'periodo de fechas del ejercicio de la contabilidad
 Dim FechaIni As String, FechaFin As String
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
     
 On Error GoTo EComprobar
@@ -1024,10 +1231,10 @@ On Error GoTo EComprobar
             Orden2 = FechaFin
         
             If Not EntreFechas(FechaIni, txtCodigo(ind).Text, FechaFin) Then
-                 cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
-                 cad = cad & "    Desde: " & FechaIni & vbCrLf
-                 cad = cad & "    Hasta: " & FechaFin
-                 MsgBox cad, vbExclamation
+                 Cad = "El período de contabilización debe estar dentro del ejercicio:" & vbCrLf & vbCrLf
+                 Cad = Cad & "    Desde: " & FechaIni & vbCrLf
+                 Cad = Cad & "    Hasta: " & FechaFin
+                 MsgBox Cad, vbExclamation
                  txtCodigo(ind).Text = ""
             Else
                 ComprobarFechasConta = True
@@ -1052,7 +1259,7 @@ Private Sub ListadosAlmacen(H As Integer, W As Integer)
 End Sub
 
 Private Function CargarParametros() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim SqlValues As String
 Dim Costes As Integer

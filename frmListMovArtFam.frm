@@ -23,17 +23,26 @@ Begin VB.Form frmListMovArtFam
       Width           =   7995
       Begin VB.CheckBox chkSaltaPag 
          Caption         =   "Salta pág. en Familia"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   3870
          TabIndex        =   24
-         Top             =   3690
-         Width           =   2055
+         Top             =   3915
+         Width           =   2505
       End
       Begin VB.Frame FrameValorar 
          Caption         =   "Valorar Con:"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -44,168 +53,312 @@ Begin VB.Form frmListMovArtFam
          Height          =   1575
          Left            =   540
          TabIndex        =   21
-         Top             =   3360
-         Width           =   2535
+         Top             =   3585
+         Width           =   3165
          Begin VB.OptionButton optPrecioUC 
             Caption         =   "Precio Ultima Compra"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   240
             TabIndex        =   23
             Top             =   880
-            Width           =   2055
+            Width           =   2820
          End
          Begin VB.OptionButton optPrecioMP 
             Caption         =   "Precio Medio Ponderado"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   255
             Left            =   240
             TabIndex        =   22
             Top             =   450
             Value           =   -1  'True
-            Width           =   2055
+            Width           =   2820
          End
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   3
-         Left            =   5850
+         Left            =   6210
          TabIndex        =   6
          Top             =   5130
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   3
-         Left            =   4770
+         Left            =   5040
          TabIndex        =   5
          Top             =   5130
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
          Left            =   1920
          MaxLength       =   16
          TabIndex        =   1
-         Top             =   1680
-         Width           =   1455
+         Top             =   1725
+         Width           =   1500
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   15
          Left            =   1920
          MaxLength       =   16
          TabIndex        =   2
-         Top             =   2040
-         Width           =   1455
+         Top             =   2085
+         Width           =   1500
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   16
          Left            =   1920
          MaxLength       =   4
          TabIndex        =   3
-         Top             =   2640
-         Width           =   615
+         Top             =   2685
+         Width           =   660
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   17
          Left            =   1920
          MaxLength       =   4
          TabIndex        =   4
-         Top             =   3000
-         Width           =   615
+         Top             =   3045
+         Width           =   660
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   13
          Left            =   1920
          MaxLength       =   3
          TabIndex        =   0
          Top             =   1080
-         Width           =   495
+         Width           =   540
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
          Left            =   3440
          Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "Text5"
-         Top             =   1680
-         Width           =   3855
+         Top             =   1725
+         Width           =   3900
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   15
          Left            =   3440
          Locked          =   -1  'True
          TabIndex        =   11
          Text            =   "Text5"
-         Top             =   2040
-         Width           =   3855
+         Top             =   2085
+         Width           =   3900
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   16
          Left            =   2600
          Locked          =   -1  'True
          TabIndex        =   10
          Text            =   "Text5"
-         Top             =   2640
-         Width           =   3135
+         Top             =   2685
+         Width           =   4755
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   17
          Left            =   2600
          Locked          =   -1  'True
          TabIndex        =   9
          Text            =   "Text5"
-         Top             =   3000
-         Width           =   3135
+         Top             =   3045
+         Width           =   4755
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   13
          Left            =   2480
          Locked          =   -1  'True
          TabIndex        =   8
          Text            =   "Text5"
          Top             =   1080
-         Width           =   3255
+         Width           =   4830
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   23
-         Left            =   1080
+         Left            =   990
          TabIndex        =   20
-         Top             =   1680
-         Width           =   465
+         Top             =   1725
+         Width           =   600
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   22
-         Left            =   1080
+         Left            =   990
          TabIndex        =   19
-         Top             =   2040
-         Width           =   420
+         Top             =   2085
+         Width           =   555
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Articulo"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -213,51 +366,69 @@ Begin VB.Form frmListMovArtFam
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   2
          Left            =   600
          TabIndex        =   17
          Top             =   1440
-         Width           =   540
+         Width           =   750
       End
       Begin VB.Image imgBuscarG 
          Height          =   240
          Index           =   11
          Left            =   1635
-         Top             =   1680
+         Top             =   1725
          Width           =   240
       End
       Begin VB.Image imgBuscarG 
          Height          =   240
          Index           =   12
          Left            =   1635
-         Top             =   2040
+         Top             =   2085
          Width           =   240
       End
       Begin VB.Label Label3 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   20
-         Left            =   1080
+         Left            =   990
          TabIndex        =   16
-         Top             =   2640
-         Width           =   465
+         Top             =   2685
+         Width           =   600
       End
       Begin VB.Label Label3 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   19
-         Left            =   1080
+         Left            =   990
          TabIndex        =   15
-         Top             =   3000
-         Width           =   420
+         Top             =   3045
+         Width           =   555
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Familia"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -265,33 +436,33 @@ Begin VB.Form frmListMovArtFam
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   3
          Left            =   600
          TabIndex        =   14
-         Top             =   2400
-         Width           =   480
+         Top             =   2445
+         Width           =   660
       End
       Begin VB.Image imgBuscarG 
          Height          =   240
          Index           =   13
          Left            =   1635
-         Top             =   2640
+         Top             =   2685
          Width           =   240
       End
       Begin VB.Image imgBuscarG 
          Height          =   240
          Index           =   14
          Left            =   1635
-         Top             =   3000
+         Top             =   3045
          Width           =   240
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Almacen"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -299,12 +470,12 @@ Begin VB.Form frmListMovArtFam
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   1
          Left            =   600
          TabIndex        =   13
-         Top             =   1080
-         Width           =   600
+         Top             =   1035
+         Width           =   825
       End
       Begin VB.Image imgBuscarG 
          Height          =   240
@@ -326,10 +497,10 @@ Begin VB.Form frmListMovArtFam
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   345
-         Left            =   240
+         Left            =   600
          TabIndex        =   18
          Top             =   360
-         Width           =   7575
+         Width           =   7260
       End
    End
    Begin MSComDlg.CommonDialog cd1 
@@ -347,7 +518,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Public OpcionListado As Integer
+Public Opcionlistado As Integer
 
     '==== Listados de ALMACEN ====
     '=============================
@@ -395,7 +566,7 @@ Attribute frmF.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para el frmImprimir
 Private cadNomRPT As String 'Nombre del informe a Imprimir
 Private conSubRPT As Boolean 'Si el informe tiene subreports
@@ -433,7 +604,7 @@ Dim bol As Boolean
    If Not PonerFormulaYParametrosInf9() Then Exit Sub
    'comprobar que hay datos para mostrar en el Informe
    cadAux = "sartic LEFT JOIN smoval ON smoval.codartic=sartic.codartic "
-   If Not HayRegParaInforme(cadAux, cadSelect) Then Exit Sub
+   If Not HayRegParaInforme(cadAux, cadselect) Then Exit Sub
    conSubRPT = False
     
    If Me.optPrecioMP.Value Then cadParam = cadParam & "pPrecio=0|"
@@ -477,7 +648,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 
 
     'Icono del formulario
@@ -496,20 +667,20 @@ Dim h As Integer, w As Integer
     cadTitulo = ""
     cadNomRPT = ""
     
-    ListadosAlmacen h, w
+    ListadosAlmacen H, W
     
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
     Me.cmdCancel(3).Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
     NumCod = ""
 End Sub
 
-Private Sub frmCta_DatoSeleccionado(CadenaSeleccion As String)
+Private Sub frmcta_DatoSeleccionado(CadenaSeleccion As String)
     txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1)
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
@@ -618,8 +789,8 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim tabla As String
-Dim codCampo As String, nomcampo As String
+Dim Tabla As String
+Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
 Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
@@ -636,30 +807,30 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
     If Index = 1 Or Index = 2 Then
     'el mismo frame ( y por tanto los mismos campos) se utilizan para distintos
     'informes. Según de donde llamemos código de una tabla u otra
-        Select Case OpcionListado
+        Select Case Opcionlistado
             Case 1 'Listado MARCAS
                 EsNomCod = True
-                tabla = "smarca"
+                Tabla = "smarca"
                 codCampo = "codmarca"
-                nomcampo = "nommarca"
+                nomCampo = "nommarca"
                 TipCampo = "N"
                 Formato = "0000"
                 Titulo = "Marca"
                 
             Case 2 'Listado ALMACENES Propios
                 EsNomCod = True
-                tabla = "salmpr"
+                Tabla = "salmpr"
                 codCampo = "codalmac"
-                nomcampo = "nomalmac"
+                nomCampo = "nomalmac"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Almacen Propio"
                 
             Case 3 'Listado Tipos UNIDADES
                 EsNomCod = True
-                tabla = "sunida"
+                Tabla = "sunida"
                 codCampo = "codunida"
-                nomcampo = "nomunida"
+                nomCampo = "nomunida"
                 TipCampo = "N"
                 Formato = "00"
                 Titulo = "Tipo Unidad"
@@ -673,72 +844,72 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 20 'Listado ACTIVIDADES de Clientes
                 EsNomCod = True
-                tabla = "sactiv"
+                Tabla = "sactiv"
                 codCampo = "codactiv"
-                nomcampo = "nomactiv"
+                nomCampo = "nomactiv"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Actividad de Cliente"
             
             Case 21 'Listado ZONAS de Clientes
                 EsNomCod = True
-                tabla = "szonas"
+                Tabla = "szonas"
                 codCampo = "codzonas"
-                nomcampo = "nomzonas"
+                nomCampo = "nomzonas"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Zona de Cliente"
             
             Case 22 'Listado RUTAS de Asistencia
                 EsNomCod = True
-                tabla = "srutas"
+                Tabla = "srutas"
                 codCampo = "codrutas"
-                nomcampo = "nomrutas"
+                nomCampo = "nomrutas"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Ruta de Asistencia"
             
             Case 23 'Listado Formas de Envío
                 EsNomCod = True
-                tabla = "senvio"
+                Tabla = "senvio"
                 codCampo = "codenvio"
-                nomcampo = "nomenvio"
+                nomCampo = "nomenvio"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Forma de Envío"
             
             Case 24 'Listado Tarifas Venta
                 EsNomCod = True
-                tabla = "starif"
+                Tabla = "starif"
                 codCampo = "codlista"
-                nomcampo = "nomlista"
+                nomCampo = "nomlista"
                 TipCampo = "N"
                 Formato = "000"
                 Titulo = "Tarifa de Venta"
             
             Case 27 'Listado SITUACIONES Especiales
                 EsNomCod = True
-                tabla = "ssitua"
+                Tabla = "ssitua"
                 codCampo = "codsitua"
-                nomcampo = "nomsitua"
+                nomCampo = "nomsitua"
                 TipCampo = "N"
                 Formato = "00"
                 Titulo = "Situación Especial"
             
             Case 58 'Listado PROVEEDORES
                 EsNomCod = True
-                tabla = "proveedor"
+                Tabla = "proveedor"
                 codCampo = "codprove"
-                nomcampo = "nomprove"
+                nomCampo = "nomprove"
                 TipCampo = "N"
                 Formato = "000000"
                 Titulo = "Proveedor"
             
             Case 61 'Listado MOTIVOS Pend. Rep.
                 EsNomCod = True
-                tabla = "smotre"
+                Tabla = "smotre"
                 codCampo = "codmotre"
-                nomcampo = "nommotre"
+                nomCampo = "nommotre"
                 TipCampo = "N"
                 Formato = "00"
                 Titulo = "Motivos Pend. Rep."
@@ -766,29 +937,29 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 5, 6, 14, 15, 29, 30, 70, 71, 90, 91, 92, 93 'Cod. ARTICULO
             EsNomCod = True
-            tabla = "sartic"
+            Tabla = "sartic"
             codCampo = "codartic"
-            nomcampo = "nomartic"
+            nomCampo = "nomartic"
             TipCampo = "T"
             Titulo = "Artículo"
             txtCodigo(Index).Text = UCase(txtCodigo(Index).Text)
         
         Case 7, 8, 16, 17, 25, 26, 62, 63, 75, 76, 88, 89, 94, 95 'Cod. FAMILIA
             EsNomCod = True
-            tabla = "sfamia"
+            Tabla = "sfamia"
             codCampo = "codfamia"
-            nomcampo = "nomfamia"
+            nomCampo = "nomfamia"
             TipCampo = "N"
             Formato = "0000"
             Titulo = "Familia"
         
         Case 9, 10, 20, 22, 31, 32, 43, 44, 53, 54, 82, 83, 109, 110, 115, 116, 119, 120  'FECHA Desde Hasta
             If txtCodigo(Index).Text <> "" Then
-                If Index = 22 And OpcionListado = 19 Then 'Este campo sera Hora y no Fecha
+                If Index = 22 And Opcionlistado = 19 Then 'Este campo sera Hora y no Fecha
                     PonerFormatoHora txtCodigo(Index)
                 Else
                     PonerFormatoFecha txtCodigo(Index)
-                    If OpcionListado = 223 And txtCodigo(Index).Text <> "" Then
+                    If Opcionlistado = 223 And txtCodigo(Index).Text <> "" Then
                         'Contabilizar facturas
                         If Not ComprobarFechasConta(Index) Then
                             PonerFoco txtCodigo(Index)
@@ -806,27 +977,27 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 11, 12, 13, 72 'ALMACENES Propios
             EsNomCod = True
-            tabla = "salmpr"
+            Tabla = "salmpr"
             codCampo = "codalmac"
-            nomcampo = "nomalmac"
+            nomCampo = "nomalmac"
             TipCampo = "N"
             Formato = "000"
             Titulo = "Almacen Propio"
             
         Case 18, 19, 66, 67, 79, 80 'PROVEEDOR
             EsNomCod = True
-            tabla = "sprove"
+            Tabla = "sprove"
             codCampo = "codprove"
-            nomcampo = "nomprove"
+            nomCampo = "nomprove"
             TipCampo = "N"
             Formato = "000000"
             Titulo = "Proveedor"
         
         Case 21, 96, 97, 111 'Cod. Operario/Trabajador
             EsNomCod = True
-            tabla = "straba"
+            Tabla = "straba"
             codCampo = "codtraba"
-            nomcampo = "nomtraba"
+            nomCampo = "nomtraba"
             TipCampo = "N"
             Formato = "0000"
             Titulo = "Trabajador"
@@ -834,25 +1005,25 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         Case 23, 24, 107
             EsNomCod = True
             TipCampo = "N"
-            If OpcionListado = 30 Then 'Precios Especiales
-                tabla = "sclien"
+            If Opcionlistado = 30 Then 'Precios Especiales
+                Tabla = "sclien"
                 codCampo = "codclien"
-                nomcampo = "nomclien"
+                nomCampo = "nomclien"
                 Formato = "000000"
                 Titulo = "Cliente"
             Else   'Tarifas Precios
-                tabla = "starif"
+                Tabla = "starif"
                 codCampo = "codlista"
-                nomcampo = "nomlista"
+                nomCampo = "nomlista"
                 Formato = "000"
                 Titulo = "Tarifa de Venta"
             End If
         
         Case 27, 28, 64, 65, 77, 78 'MARCAS
             EsNomCod = True
-            tabla = "smarca"
+            Tabla = "smarca"
             codCampo = "codmarca"
-            nomcampo = "nommarca"
+            nomCampo = "nommarca"
             TipCampo = "N"
             Formato = "0000"
             Titulo = "Marca"
@@ -869,27 +1040,27 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 32, 43 'Carta de la Oferta
             EsNomCod = True
-            tabla = "scartas"
+            Tabla = "scartas"
             codCampo = "codcarta"
-            nomcampo = "descarta"
+            nomCampo = "descarta"
             TipCampo = "N"
             Formato = "000"
             Titulo = "Cartas para Ofertas"
             
         Case 37, 38, 34, 47, 48, 55, 56, 73, 74, 98, 101, 102, 103, 117, 118 'Cod. CLIENTE
             EsNomCod = True
-            tabla = "sclien"
+            Tabla = "sclien"
             codCampo = "codclien"
-            nomcampo = "nomclien"
+            nomCampo = "nomclien"
             TipCampo = "N"
             Formato = "000000"
             Titulo = "Cliente"
             
         Case 112, 113, 114
             EsNomCod = True
-            tabla = "inciden"
+            Tabla = "inciden"
             codCampo = "codincid"
-            nomcampo = "nomincid"
+            nomCampo = "nomincid"
             TipCampo = "T"
             'Formato = "0000"
             Titulo = "Incidencias"
@@ -901,27 +1072,27 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 
         Case 45, 46, 106, 108 'ZONAS del Cliente
             EsNomCod = True
-            tabla = "szonas"
+            Tabla = "szonas"
             codCampo = "codzonas"
-            nomcampo = "nomzonas"
+            nomCampo = "nomzonas"
             TipCampo = "N"
             Formato = "000"
             Titulo = "Zonas de Clientes"
         
         Case 49, 50 'Cod. AGENTE
             EsNomCod = True
-            tabla = "sagent"
+            Tabla = "sagent"
             codCampo = "codagent"
-            nomcampo = "nomagent"
+            nomCampo = "nomagent"
             TipCampo = "N"
             Formato = "0000"
             Titulo = "Agente"
             
         Case 51, 52, 57, 58, 104, 105 'Tipos Contratos/MAntenimientos
             EsNomCod = True
-            tabla = "stipco"
+            Tabla = "stipco"
             codCampo = "codtipco"
-            nomcampo = "nomtipco"
+            nomCampo = "nomtipco"
             TipCampo = "T"
             Titulo = "Tipos de Contratos"
             
@@ -934,17 +1105,17 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 68, 69 'Tipos de Articulos
             EsNomCod = True
-            tabla = "stipar"
+            Tabla = "stipar"
             codCampo = "codtipar"
-            nomcampo = "nomtipar"
+            nomCampo = "nomtipar"
             TipCampo = "T"
             Titulo = "Tipo de Articulo"
             
         Case 84, 85 'RUTAS del cliente
             EsNomCod = True
-            tabla = "srutas"
+            Tabla = "srutas"
             codCampo = "codrutas"
-            nomcampo = "nomrutas"
+            nomCampo = "nomrutas"
             TipCampo = "N"
             Formato = "000"
             Titulo = "Ruta de Asistencia"
@@ -956,7 +1127,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             If PonerFormatoEntero(txtCodigo(Index)) Then
                 
                 
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, nomcampo, codCampo)
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo)
 '                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, NomCampo, codCampo, Titulo, TipCampo)
             
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, Formato)
@@ -964,7 +1135,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
                 txtNombre(Index).Text = ""
             End If
         Else
-            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, nomcampo, codCampo)
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo)
 '            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, NomCampo, codCampo, Titulo, TipCampo)
         End If
     End If
@@ -976,27 +1147,27 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
     Cad = ""
     Conexion = cAgro    'Conexión a BD: Ariges
-    Select Case OpcionListado
+    Select Case Opcionlistado
         Case 7 'Traspaso de Almacenes
             Cad = Cad & "Nº Trasp|scatra.codtrasp|N|0000000|40·Almacen Origen|scatra.almaorig|N|000|20·Almacen Destino|scatra.almadest|N|000|20·Fecha|scatra.fechatra|F||20·"
-            tabla = "scatra"
+            Tabla = "scatra"
             Titulo = "Traspaso Almacenes"
         Case 8 'Movimientos de Almacen
             Cad = Cad & "Nº Movim.|scamov.codmovim|N|0000000|40·Almacen|scamov.codalmac|N|000|30·Fecha|scamov|fecmovim|F||30·"
-            tabla = "scamov"
+            Tabla = "scamov"
             Titulo = "Movimientos Almacen"
         Case 9, 12, 13, 14, 15, 16, 17 '9: Movimientos Articulos
                    '12: Inventario Articulos
                    '14:Actualizar Diferencias de Stock Inventariado
                    '16: Listado Valoracion stock inventariado
             Cad = Cad & "Código|sartic.codartic|T||30·Denominacion|sartic.nomartic|T||70·"
-            tabla = "sartic"
+            Tabla = "sartic"
             Titulo = "Articulos"
     End Select
           
@@ -1004,8 +1175,8 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSql = CadB
+        frmB.vtabla = Tabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         'frmB.vDevuelve = "0|1|"
@@ -1036,7 +1207,7 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        Select Case OpcionListado
+        Select Case Opcionlistado
             Case 7, 8 'Informe Traspasos Almacen
                 txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaDevuelta, 1), "0000000")
                 PonerFoco txtCodigo(indCodigo)
@@ -1120,7 +1291,7 @@ End Function
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 '    cadTitulo = ""
@@ -1129,22 +1300,22 @@ Private Sub InicializarVbles()
 End Sub
 
 
-Private Function PonerDesdeHasta(campo As String, tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
+Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
 Dim Cad As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     
-    If tipo <> "F" Then
+    If Tipo <> "F" Then
         'Fecha para Crystal Report
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
         'Fecha para la Base de Datos
-        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
-        If Not AnyadirAFormula(cadSelect, Cad) Then Exit Function
+        Cad = CadenaDesdeHastaBD(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
+        If Not AnyadirAFormula(cadselect, Cad) Then Exit Function
     End If
     
     If devuelve <> "" Then
@@ -1166,10 +1337,10 @@ Private Sub LlamarImprimir()
 
         .SoloImprimir = False
         .EnvioEMail = False
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Titulo = cadTitulo
         .NombreRPT = cadNomRPT
-        .ConSubinforme = conSubRPT
+        .ConSubInforme = conSubRPT
         .Show vbModal
     End With
 End Sub
@@ -1250,12 +1421,12 @@ End Function
 
 
 
-Private Sub ListadosAlmacen(h As Integer, w As Integer)
+Private Sub ListadosAlmacen(H As Integer, W As Integer)
     'LISTADOS DE ALMACENES
     'Informe Movimiento Artículos
-     w = 7995
-     h = 5865
-     PonerFrameVisible Me.FrameMovArtic, True, h, w
+     W = 7995
+     H = 5865
+     PonerFrameVisible Me.FrameMovArtic, True, H, W
      indFrame = 3
      Codigo = "{smoval.codartic}"
      cadTitulo = "Informe Movimientos Articulos por Familia"

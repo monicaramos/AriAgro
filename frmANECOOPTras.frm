@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmANECOOPTras 
    BorderStyle     =   3  'Fixed Dialog
@@ -24,23 +24,41 @@ Begin VB.Form frmANECOOPTras
       Width           =   6555
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   14
          Left            =   1740
          MaxLength       =   10
          TabIndex        =   0
          Top             =   1890
-         Width           =   1005
+         Width           =   1351
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   15
          Left            =   1740
          MaxLength       =   10
          TabIndex        =   1
          Top             =   2295
-         Width           =   1005
+         Width           =   1351
       End
       Begin MSComctlLib.ProgressBar pb1 
          Height          =   285
@@ -55,19 +73,37 @@ Begin VB.Form frmANECOOPTras
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   4080
          TabIndex        =   2
          Top             =   3960
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdCancelar 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5235
          TabIndex        =   3
          Top             =   3960
-         Width           =   975
+         Width           =   1065
       End
       Begin MSComDlg.CommonDialog CommonDialog1 
          Left            =   240
@@ -97,28 +133,46 @@ Begin VB.Form frmANECOOPTras
       End
       Begin VB.Label Label2 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   21
-         Left            =   810
+         Left            =   675
          TabIndex        =   12
          Top             =   1950
-         Width           =   465
+         Width           =   645
       End
       Begin VB.Label Label2 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   22
-         Left            =   810
+         Left            =   675
          TabIndex        =   11
          Top             =   2265
-         Width           =   420
+         Width           =   690
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
          Caption         =   "Fecha"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -126,12 +180,12 @@ Begin VB.Form frmANECOOPTras
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   23
          Left            =   450
          TabIndex        =   10
-         Top             =   1710
-         Width           =   435
+         Top             =   1620
+         Width           =   600
       End
       Begin VB.Image imgFecha 
          Height          =   240
@@ -161,7 +215,7 @@ Begin VB.Form frmANECOOPTras
          Alignment       =   2  'Center
          Caption         =   "Proceso que realiza la integración de Expedientes Anecoop para asociarlos con los albaranes"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
             Weight          =   700
@@ -214,7 +268,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public OpcionListado As Byte
+Public Opcionlistado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -238,7 +292,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 Private cadSelect1 As String 'Cadena para comprobar si hay datos antes de abrir Informe
@@ -248,9 +302,9 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
+Dim Tabla As String
 Dim Tabla1 As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -272,12 +326,12 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim Sql As String
-Dim I As Byte
-Dim cadWhere As String
+Dim SQL As String
+Dim i As Byte
+Dim cadwhere As String
 Dim b As Boolean
 Dim NomFic As String
-Dim cadena As String
+Dim CADENA As String
 Dim cadena1 As String
 Dim Directorio As String
 Dim fec As String
@@ -305,15 +359,15 @@ Dim File1 As FileSystemObject
             MsgBox "Proceso realizado correctamente.", vbExclamation
             '========= PARAMETROS  =============================
             'Añadir el parametro de Empresa
-            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
             numParam = numParam + 1
             
             cadTABLA = "tmpinformes"
-            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
 
-            Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+            SQL = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
 
-            If TotalRegistros(Sql) <> 0 Then
+            If TotalRegistros(SQL) <> 0 Then
                 MsgBox "Hay errores en la Asignación a Albaranes." & vbCrLf, vbExclamation
                 cadTitulo = "Errores de asignación a Albaranes"
                 cadNombreRPT = "rErroresAnecoop.rpt"
@@ -339,25 +393,25 @@ End Sub
 
 
 Private Function CambiarFechasANull() As Boolean
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo eCambiarFechasANull
 
     CambiarFechasANull = False
 
-    Sql = "update anecoop set "
-    Sql = Sql & "  fecha_liq = if(mid(fecha_liq,1,4) < 1900,null, fecha_liq), "
-    Sql = Sql & "  fecha_cambio_liq = if(mid(fecha_cambio_liq,1,4) < 1900,null, fecha_cambio_liq), "
-    Sql = Sql & "  fecha_sc_liq = if(mid(fecha_sc_liq,1,4) < 1900,null, fecha_sc_liq) "
+    SQL = "update anecoop set "
+    SQL = SQL & "  fecha_liq = if(mid(fecha_liq,1,4) < 1900,null, fecha_liq), "
+    SQL = SQL & "  fecha_cambio_liq = if(mid(fecha_cambio_liq,1,4) < 1900,null, fecha_cambio_liq), "
+    SQL = SQL & "  fecha_sc_liq = if(mid(fecha_sc_liq,1,4) < 1900,null, fecha_sc_liq) "
     
-    conn.Execute Sql
+    conn.Execute SQL
 
-    Sql = "update anecoop_pago set "
-    Sql = Sql & "  fecha_factura = if(mid(fecha_factura,1,4) < 1900,null, fecha_factura), "
-    Sql = Sql & "  fecha_pago = if(mid(fecha_pago,1,4) < 1900,null, fecha_pago), "
-    Sql = Sql & "  fecha_pago_sc = if(mid(fecha_pago_sc,1,4) < 1900,null, fecha_pago_sc) "
+    SQL = "update anecoop_pago set "
+    SQL = SQL & "  fecha_factura = if(mid(fecha_factura,1,4) < 1900,null, fecha_factura), "
+    SQL = SQL & "  fecha_pago = if(mid(fecha_pago,1,4) < 1900,null, fecha_pago), "
+    SQL = SQL & "  fecha_pago_sc = if(mid(fecha_pago_sc,1,4) < 1900,null, fecha_pago_sc) "
     
-    conn.Execute Sql
+    conn.Execute SQL
 
 
     CambiarFechasANull = True
@@ -368,10 +422,10 @@ eCambiarFechasANull:
 End Function
 
 Private Function AsociacionExpedientes() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim Sql3 As String
-Dim numlinea As String
+Dim NumLinea As String
 Dim Albaran As String
 Dim Rs As ADODB.Recordset
 Dim MenError As String
@@ -382,13 +436,13 @@ Dim PorPedido As Boolean
     AsociacionExpedientes = False
     
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
 
-    Sql = "Select * from anecoop where (numlinea is null or numlinea = 0) and fecha_salida between " & DBSet(txtCodigo(14).Text, "F") & " and " & DBSet(txtCodigo(15).Text, "F")
-    Sql = Sql & " and nombre_variedad <> '' "
+    SQL = "Select * from anecoop where (numlinea is null or numlinea = 0) and fecha_salida between " & DBSet(txtcodigo(14).Text, "F") & " and " & DBSet(txtcodigo(15).Text, "F")
+    SQL = SQL & " and nombre_variedad <> '' "
     
-    If TotalRegistrosConsulta(Sql) = 0 Then
+    If TotalRegistrosConsulta(SQL) = 0 Then
         MsgBox "No hay registros pendientes de asociar a albaranes"
         Exit Function
     End If
@@ -399,7 +453,7 @@ Dim PorPedido As Boolean
     DoEvents
 
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         Me.lblProgres(1).Caption = "Expediente: " & Rs!expediente_id
@@ -417,7 +471,7 @@ Dim PorPedido As Boolean
             End If
         End If
         If MenError <> "" Then
-            Sql3 = "insert into tmpinformes (codusu, nombre1, fecha1, nombre2, importe1, importe2) values (" & vUsu.codigo & ","
+            Sql3 = "insert into tmpinformes (codusu, nombre1, fecha1, nombre2, importe1, importe2) values (" & vUsu.Codigo & ","
             Sql3 = Sql3 & DBSet(Rs!numero_salida_cooperativa, "T") & ","
             Sql3 = Sql3 & DBSet(Rs!fecha_salida, "F") & ","
             Sql3 = Sql3 & DBSet(MenError, "T") & ","
@@ -431,12 +485,12 @@ Dim PorPedido As Boolean
             Sql2 = "select numlinea from albaran_variedad where  numcajas = " & DBSet(Rs!ncajas, "N")
             '[Monica]13/05/2015: añado la condicion de que no tenga expediente insertado
             Sql2 = Sql2 & " and numalbar = " & DBSet(Albaran, "N") & " and (expediente is null or expediente = '') "
-            numlinea = DevuelveValor(Sql2)
+            NumLinea = DevuelveValor(Sql2)
             
-            If numlinea = 0 Then ' error
+            If NumLinea = 0 Then ' error
                 MenError = "No hay línea de albarán asociado"
                 
-                Sql3 = "insert into tmpinformes (codusu, nombre1, fecha1, nombre2, importe1, importe2) values (" & vUsu.codigo & ","
+                Sql3 = "insert into tmpinformes (codusu, nombre1, fecha1, nombre2, importe1, importe2) values (" & vUsu.Codigo & ","
                 Sql3 = Sql3 & DBSet(Rs!numero_salida_cooperativa, "T") & ","
                 Sql3 = Sql3 & DBSet(Rs!fecha_salida, "F") & ","
                 Sql3 = Sql3 & DBSet(MenError, "T") & ","
@@ -445,7 +499,7 @@ Dim PorPedido As Boolean
                 
                 conn.Execute Sql3
             Else
-                Sql3 = "update anecoop set numlinea = " & DBSet(numlinea, "N")
+                Sql3 = "update anecoop set numlinea = " & DBSet(NumLinea, "N")
                 Sql3 = Sql3 & " where expediente_id = " & DBSet(Rs!expediente_id, "T")
                 Sql3 = Sql3 & " and linea_expediente = " & DBSet(Rs!linea_expediente, "T")
                 Sql3 = Sql3 & " and codigo_campanya = " & DBSet(Rs!codigo_campanya, "T")
@@ -455,7 +509,7 @@ Dim PorPedido As Boolean
                 '[Monica]13/05/2015: añado la actualizacion de la linea de albaran_variedad
                 Sql3 = "update albaran_variedad set expediente = " & DBSet(Rs!expediente_id, "T")
                 Sql3 = Sql3 & " where numalbar = " & DBSet(Albaran, "N")
-                Sql3 = Sql3 & " and numlinea = " & DBSet(numlinea, "N")
+                Sql3 = Sql3 & " and numlinea = " & DBSet(NumLinea, "N")
                 
                 conn.Execute Sql3
                 
@@ -478,10 +532,10 @@ End Function
 
 
 Private Function CargarExpedientes() As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Anyo As String
 Dim temp As Boolean
-Dim I As Integer
+Dim i As Integer
 
     On Error GoTo Error2
     
@@ -493,13 +547,13 @@ Dim I As Integer
         If Dir(App.path & "\aneccop.z") = "" Then
             MsgBox "El proceso de carga debe de estar realizándose.", vbExclamation
         Else
-            Sql = "Se va a proceder a realizar la carga de Expedientes Anecoop. " & vbCrLf & vbCrLf & "¿ Desea continuar ?"
-            If MsgBox(Sql, vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
+            SQL = "Se va a proceder a realizar la carga de Expedientes Anecoop. " & vbCrLf & vbCrLf & "¿ Desea continuar ?"
+            If MsgBox(SQL, vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
             
                 '------------------------------------------------------------------------------
                 '  LOG de acciones
                 Set LOG = New cLOG
-                LOG.Insertar 11, vUsu, "Inserción de Expedientes de Anecoop: " & vbCrLf & vUsu.codigo & vbCrLf & Now
+                LOG.Insertar 11, vUsu, "Inserción de Expedientes de Anecoop: " & vbCrLf & vUsu.Codigo & vbCrLf & Now
                 Set LOG = Nothing
                 '-----------------------------------------------------------------------------
                      
@@ -508,18 +562,18 @@ Dim I As Integer
                     
                 Anyo = Mid(CStr(Year(vParam.FecIniCam)), 3, 2)
                     
-                Shell App.path & "\ConAnecoop " & txtCodigo(14).Text & " " & txtCodigo(15).Text & " " & Anyo & " v ", vbNormalFocus
+                Shell App.path & "\ConAnecoop " & txtcodigo(14).Text & " " & txtcodigo(15).Text & " " & Anyo & " v ", vbNormalFocus
                 
                 Screen.MousePointer = vbHourglass
                 
-                I = 0
-                While Dir(App.path & "\aneccop.z") = "" And I < 300
+                i = 0
+                While Dir(App.path & "\aneccop.z") = "" And i < 300
                     Me.lblProgres(0).Caption = "Procesando Insercion "
                     DoEvents
                     
                     espera 1
                     
-                    I = I + 1
+                    i = i + 1
                 Wend
                 
                 
@@ -554,7 +608,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 
     PrimeraVez = True
@@ -568,17 +622,17 @@ Dim List As Collection
     '###Descomentar
 '    CommitConexion
         
-    FrameIntegracionVisible True, h, w
+    FrameIntegracionVisible True, H, W
     pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 
-Private Sub FrameIntegracionVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameIntegracionVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Frame para el listado de socios por seccion
     Me.FrameIntegracion.visible = visible
     If visible = True Then
@@ -586,14 +640,14 @@ Private Sub FrameIntegracionVisible(visible As Boolean, ByRef h As Integer, ByRe
         Me.FrameIntegracion.Left = 0
         Me.FrameIntegracion.Height = 4665
         Me.FrameIntegracion.Width = 6555
-        w = Me.FrameIntegracion.Width
-        h = Me.FrameIntegracion.Height
+        W = Me.FrameIntegracion.Width
+        H = Me.FrameIntegracion.Height
     End If
 End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadSelect1 = ""
     cadParam = ""
     numParam = 0
@@ -610,15 +664,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -640,7 +694,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Show vbModal
     End With
 End Sub
@@ -667,7 +721,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -682,15 +736,15 @@ End Sub
 
 Private Function ComprobarErrores(ByRef pb1 As ProgressBar) As Boolean
 Dim NF As Long
-Dim cad As String
-Dim I As Integer
+Dim Cad As String
+Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Rs1 As ADODB.Recordset
 Dim Numreg As Long
-Dim Sql As String
+Dim SQL As String
 Dim SQL1 As String
-Dim total As Long
+Dim Total As Long
 Dim v_cant As Currency
 Dim v_impo As Currency
 Dim v_prec As Currency
@@ -705,23 +759,23 @@ Dim Variedad As String
 
     ComprobarErrores = False
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
-    conn.Execute Sql
+    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute SQL
 
-    I = 0
+    i = 0
     lblProgres(1).Caption = "Comprobando errores Tabla temporal entradas "
     
-    Sql = "select * from tmpentradaS"
+    SQL = "select * from tmpentradaS"
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
 
     b = True
-    I = 0
+    i = 0
     While Not Rs.EOF And b
-        I = I + 1
+        i = i + 1
 
         Me.pb1.Value = Me.pb1.Value + 1
-        lblProgres(2).Caption = "Linea " & I
+        lblProgres(2).Caption = "Linea " & i
         Me.Refresh
 
         Variedad = Format(Rs!codprodu, "00") & Format(Rs!codvarie, "00")
@@ -730,50 +784,50 @@ Dim Variedad As String
         FechaEnt = DBLet(Rs!FechaEnt, "T")
         If Not EsFechaOK(FechaEnt) Then
             Mens = "Fecha incorrecta"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
 
         ' comprobamos que exista el socio
-        Sql = "select count(*) from rsocios where codsocio = " & DBSet(Rs!CodSocio, "N")
-        If TotalRegistros(Sql) = 0 Then
+        SQL = "select count(*) from rsocios where codsocio = " & DBSet(Rs!CodSocio, "N")
+        If TotalRegistros(SQL) = 0 Then
             Mens = "Socio no existe"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         ' comprobamos que exista el campo
-        Sql = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
-        Sql = Sql & " and nrocampo = " & DBSet(Rs!codCampo, "N")
-        Sql = Sql & " and codvarie = " & DBSet(Variedad, "N")
-        Sql = Sql & " and fecbajas is null "
-        If TotalRegistros(Sql) = 0 Then
+        SQL = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
+        SQL = SQL & " and nrocampo = " & DBSet(Rs!codCampo, "N")
+        SQL = SQL & " and codvarie = " & DBSet(Variedad, "N")
+        SQL = SQL & " and fecbajas is null "
+        If TotalRegistros(SQL) = 0 Then
             Mens = "Campo no existe o con fecha de baja"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         ' comprobamos que no exista mas de un campo con ese numero de orden campo (scampo.codcampo MB)
-        Sql = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
-        Sql = Sql & " and nrocampo = " & DBSet(Rs!codCampo, "N")
-        Sql = Sql & " and codvarie = " & DBSet(Variedad, "N")
-        If TotalRegistros(Sql) > 1 Then
+        SQL = "select count(*) from rcampos where codsocio = " & DBSet(Rs!CodSocio, "N")
+        SQL = SQL & " and nrocampo = " & DBSet(Rs!codCampo, "N")
+        SQL = SQL & " and codvarie = " & DBSet(Variedad, "N")
+        If TotalRegistros(SQL) > 1 Then
             Mens = "Campo con más de un registro"
-            Sql = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
+            SQL = "insert into tmpinformes (codusu, campo1, codigo1, importe1, importe2, fecha1, nombre1) values (" & _
+                  vUsu.Codigo & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!CodSocio, "N") & "," & _
                   DBSet(Rs!codCampo, "N") & "," & DBSet(Rs!Numnotac, "N") & "," & _
                   DBSet(FechaEnt, "F") & "," & DBSet(Mens, "T") & ")"
-            conn.Execute Sql
+            conn.Execute SQL
         End If
 
         
@@ -796,7 +850,7 @@ End Function
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 Dim Sql2 As String
 Dim vClien As CSocio
 ' añadido
@@ -809,10 +863,10 @@ Dim tipoMov As String
 
     b = True
     
-    If txtCodigo(14).Text = "" Or txtCodigo(15) = "" Then
+    If txtcodigo(14).Text = "" Or txtcodigo(15) = "" Then
         MsgBox "Debe de introducir las fechas de trapaso. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(14)
+        PonerFoco txtcodigo(14)
     End If
     
     DatosOk = b
@@ -821,7 +875,7 @@ End Function
 
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
@@ -850,18 +904,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
+    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -885,10 +939,10 @@ Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
 End Sub
             
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -896,7 +950,7 @@ Dim cad As String, cadTipo As String 'tipo cliente
 
     Select Case Index
         Case 14, 15 'FECHAS
-            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
     End Select
 End Sub
 

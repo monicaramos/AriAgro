@@ -7,13 +7,13 @@ Begin VB.Form frmANECOOPTrasPagos
    ClientHeight    =   5550
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   6630
+   ClientWidth     =   7350
    Icon            =   "frmANECOOPTrasPagos.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5550
-   ScaleWidth      =   6630
+   ScaleWidth      =   7350
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameIntegracion 
@@ -21,17 +21,26 @@ Begin VB.Form frmANECOOPTrasPagos
       Left            =   30
       TabIndex        =   6
       Top             =   60
-      Width           =   6555
+      Width           =   7140
       Begin VB.TextBox txtNombre 
          Alignment       =   1  'Right Justify
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   4560
+         Left            =   5235
          Locked          =   -1  'True
          TabIndex        =   20
-         Top             =   1620
+         Top             =   1575
          Width           =   1575
       End
       Begin VB.Frame Frame1 
@@ -50,66 +59,111 @@ Begin VB.Form frmANECOOPTrasPagos
          Left            =   210
          TabIndex        =   13
          Top             =   2190
-         Width           =   6165
+         Width           =   6705
          Begin VB.TextBox txtNombre 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   1
-            Left            =   2655
+            Left            =   3060
             Locked          =   -1  'True
             TabIndex        =   17
             Top             =   1320
-            Width           =   3225
+            Width           =   3540
          End
          Begin VB.TextBox txtcodigo 
             Alignment       =   1  'Right Justify
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   1
-            Left            =   1560
+            Left            =   1650
             MaxLength       =   10
             TabIndex        =   3
             Tag             =   "Cta.Contable|T|S|||sparam|ctaconta|||"
             Top             =   1320
-            Width           =   1005
+            Width           =   1365
          End
          Begin VB.TextBox txtNombre 
             BackColor       =   &H80000018&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   3
-            Left            =   2655
+            Left            =   3060
             Locked          =   -1  'True
             TabIndex        =   15
             Top             =   900
-            Width           =   3225
+            Width           =   3540
          End
          Begin VB.TextBox txtcodigo 
             Alignment       =   1  'Right Justify
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   3
-            Left            =   1560
+            Left            =   1650
             MaxLength       =   10
             TabIndex        =   2
             Tag             =   "Cta.Contable|T|S|||sparam|ctaconta|||"
             Top             =   900
-            Width           =   1005
+            Width           =   1365
          End
          Begin VB.TextBox txtcodigo 
             Alignment       =   1  'Right Justify
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   14
-            Left            =   1560
+            Left            =   1650
             MaxLength       =   10
             TabIndex        =   1
             Top             =   510
-            Width           =   1005
+            Width           =   1365
          End
          Begin VB.Label Label1 
             Caption         =   "Cta Banco"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -119,15 +173,15 @@ Begin VB.Form frmANECOOPTrasPagos
             ForeColor       =   &H00972E0B&
             Height          =   195
             Index           =   1
-            Left            =   300
+            Left            =   165
             TabIndex        =   18
             Top             =   1350
-            Width           =   735
+            Width           =   1185
          End
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   1
-            Left            =   1200
+            Left            =   1380
             ToolTipText     =   "Buscar cuenta"
             Top             =   1350
             Width           =   240
@@ -135,8 +189,8 @@ Begin VB.Form frmANECOOPTrasPagos
          Begin VB.Label Label1 
             Caption         =   "Diario"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -146,15 +200,15 @@ Begin VB.Form frmANECOOPTrasPagos
             ForeColor       =   &H00972E0B&
             Height          =   195
             Index           =   0
-            Left            =   300
+            Left            =   165
             TabIndex        =   16
             Top             =   930
-            Width           =   735
+            Width           =   915
          End
          Begin VB.Image imgBuscar 
             Height          =   240
             Index           =   0
-            Left            =   1200
+            Left            =   1380
             ToolTipText     =   "Buscar diario"
             Top             =   930
             Width           =   240
@@ -162,7 +216,7 @@ Begin VB.Form frmANECOOPTrasPagos
          Begin VB.Image imgFecha 
             Height          =   240
             Index           =   0
-            Left            =   1200
+            Left            =   1380
             Picture         =   "frmANECOOPTrasPagos.frx":000C
             Top             =   510
             Width           =   240
@@ -171,8 +225,8 @@ Begin VB.Form frmANECOOPTrasPagos
             AutoSize        =   -1  'True
             Caption         =   "Fecha Pago"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -180,22 +234,31 @@ Begin VB.Form frmANECOOPTrasPagos
                Strikethrough   =   0   'False
             EndProperty
             ForeColor       =   &H00972E0B&
-            Height          =   195
+            Height          =   240
             Index           =   23
-            Left            =   270
+            Left            =   165
             TabIndex        =   14
             Top             =   480
-            Width           =   840
+            Width           =   1335
          End
       End
       Begin VB.TextBox txtcodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   1740
+         Left            =   1875
          MaxLength       =   10
          TabIndex        =   0
-         Top             =   1620
+         Top             =   1575
          Width           =   1005
       End
       Begin MSComctlLib.ProgressBar pb1 
@@ -203,27 +266,45 @@ Begin VB.Form frmANECOOPTrasPagos
          Left            =   270
          TabIndex        =   10
          Top             =   3990
-         Width           =   6045
-         _ExtentX        =   10663
+         Width           =   6540
+         _ExtentX        =   11536
          _ExtentY        =   450
          _Version        =   393216
          Appearance      =   1
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   4050
+         Left            =   4545
          TabIndex        =   4
          Top             =   4770
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdCancelar 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   5235
+         Left            =   5730
          TabIndex        =   5
          Top             =   4770
-         Width           =   975
+         Width           =   1065
       End
       Begin MSComDlg.CommonDialog CommonDialog1 
          Left            =   240
@@ -237,8 +318,8 @@ Begin VB.Form frmANECOOPTrasPagos
          AutoSize        =   -1  'True
          Caption         =   "Importe Liquidación"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -246,19 +327,19 @@ Begin VB.Form frmANECOOPTrasPagos
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   1
-         Left            =   3060
+         Left            =   3240
          TabIndex        =   19
          Top             =   1620
-         Width           =   1395
+         Width           =   1920
       End
       Begin VB.Label Label2 
          AutoSize        =   -1  'True
          Caption         =   "Nro.Liquidación"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -266,12 +347,12 @@ Begin VB.Form frmANECOOPTrasPagos
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   0
-         Left            =   450
+         Left            =   360
          TabIndex        =   12
          Top             =   1590
-         Width           =   1095
+         Width           =   1485
       End
       Begin VB.Label Label6 
          Caption         =   "Traspaso de Pagos Anecoop"
@@ -295,7 +376,7 @@ Begin VB.Form frmANECOOPTrasPagos
          Alignment       =   2  'Center
          Caption         =   "Proceso que realiza la integración de Pagos Anecoop."
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
             Weight          =   700
@@ -348,7 +429,7 @@ Attribute VB_Exposed = False
 
 Option Explicit
 
-Public OpcionListado As Byte
+Public Opcionlistado As Byte
     
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
@@ -387,7 +468,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
+Dim Tabla As String
 Dim Tabla1 As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
@@ -413,7 +494,7 @@ Dim Dto1 As Currency
 Dim Dto2 As Currency
 
 Dim TotalAnecoop As Currency
-Dim Nregs As Currency
+Dim nRegs As Currency
 Dim FecLiq As String
 
 
@@ -428,7 +509,7 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim SQL As String
 Dim i As Byte
-Dim cadWHERE As String
+Dim cadwhere As String
 Dim b As Boolean
 Dim NomFic As String
 Dim CADENA As String
@@ -459,11 +540,11 @@ Dim cadErr As String
 
     ' comprobamos que se puede hacer el pago de la liquidacion
     If ComprobarLiquidacion() Then
-        If Nregs <> 0 Then
+        If nRegs <> 0 Then
             cmdAceptar.Enabled = False
             cmdCancelar.Enabled = False
         
-            If InsertarAsientoDiario(txtCodigo(14).Text, txtCodigo(3).Text, txtCodigo(1).Text, txtCodigo(0).Text, FecLiq, cadErr) Then
+            If InsertarAsientoDiario(txtcodigo(14).Text, txtcodigo(3).Text, txtcodigo(1).Text, txtcodigo(0).Text, FecLiq, cadErr) Then
                 
                 MsgBox "Proceso realizado correctamente.", vbExclamation
                 
@@ -504,7 +585,7 @@ Dim Rs As ADODB.Recordset
     
     SQL = "select distinct expediente_id"
     SQL = SQL & " from anecoop_pago ff"
-    SQL = SQL & " where ff.num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
+    SQL = SQL & " where ff.num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
     SQL = SQL & " and (mid(ff.expediente_id,1,1) = '0' or length(ff.expediente_id) <> 18) "
     SQL = SQL & " order by 1 "
     
@@ -516,7 +597,7 @@ Dim Rs As ADODB.Recordset
         If Len(Rs!expediente_id) <> 18 Then
             SQL = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17) "
             SQL = SQL & " and mid(expediente_id,1,1)  <> '0' "
-            SQL = SQL & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
+            SQL = SQL & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
             
             If TotalRegistros(SQL) = 0 Then
                 SQL = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = right(concat('000000000000000'," & DBSet(Rs!expediente_id, "T") & "),17)  "
@@ -531,7 +612,7 @@ Dim Rs As ADODB.Recordset
             
                 SQL = "select count(*) from anecoop_pago where mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
                 SQL = SQL & " and mid(expediente_id,1,1)  <> '0' "
-                SQL = SQL & " and num_liquidacion = " & DBSet(txtCodigo(0).Text, "N")
+                SQL = SQL & " and num_liquidacion = " & DBSet(txtcodigo(0).Text, "N")
                 
                 If TotalRegistros(SQL) = 0 Then
                     SQL = "select expediente_id from anecoop where mid(expediente_id,1,1) <> '0' and mid(expediente_id,2,17) = mid(" & DBSet(Rs!expediente_id, "T") & ",2,17) "
@@ -604,7 +685,7 @@ Dim List As Collection
 '    CommitConexion
         
     FrameIntegracionVisible True, H, W
-    Pb1.visible = False
+    pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
 '    Me.cmdCancel(indFrame).Cancel = True
@@ -620,7 +701,7 @@ Private Sub FrameIntegracionVisible(visible As Boolean, ByRef H As Integer, ByRe
         Me.FrameIntegracion.Top = -90
         Me.FrameIntegracion.Left = 0
         Me.FrameIntegracion.Height = 5295
-        Me.FrameIntegracion.Width = 6555
+        Me.FrameIntegracion.Width = 7140
         W = Me.FrameIntegracion.Width
         H = Me.FrameIntegracion.Height
     End If
@@ -675,7 +756,7 @@ Private Sub LlamarImprimir()
         .Titulo = cadTitulo
         .NombreRPT = cadNombreRPT
         .ConSubInforme = ConSubInforme
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Show vbModal
     End With
 End Sub
@@ -702,7 +783,7 @@ Private Sub AbrirVisReport()
         '##descomen
 '        .ConSubInforme = ConSubInforme
         '##
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
 '        .ExportarPDF = (chkEMAIL.Value = 1)
         .Show vbModal
     End With
@@ -730,27 +811,27 @@ Dim tipoMov As String
 
     b = True
     ' Datos contables introducidos
-    If txtCodigo(14).Text = "" Then
+    If txtcodigo(14).Text = "" Then
         MsgBox "Debe de introducir la fecha de pago. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(14)
+        PonerFoco txtcodigo(14)
     End If
-    If b And txtCodigo(3).Text = "" Then
+    If b And txtcodigo(3).Text = "" Then
         MsgBox "Debe de introducir el número de diario. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(3)
+        PonerFoco txtcodigo(3)
     End If
-    If b And txtCodigo(1).Text = "" Then
+    If b And txtcodigo(1).Text = "" Then
         MsgBox "Debe de introducir la cuenta de banco. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(1)
+        PonerFoco txtcodigo(1)
     End If
     
     ' Introducido nro de liquidacion
-    If b And txtCodigo(0).Text = "" Then
+    If b And txtcodigo(0).Text = "" Then
         MsgBox "Debe introducir el número de liquidación. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtCodigo(0)
+        PonerFoco txtcodigo(0)
     End If
     
     DatosOk = b
@@ -810,31 +891,31 @@ Dim i As Long
     
     '[Monica]18/12/2017: antes ll.*
     SQL = "select ll.expediente_id, ll.expediente_pagoid, ll.tipo_pago, if( num_factura regexp '^[A]' = 1 , mid(num_factura,2,length(num_factura)),num_factura) num_factura, ll.fecha_factura, ll.num_liquidacion, ll.importe, ll.fecha_pago, ll.fecha_pago_sc, ll.estado, ll.idcontab, "
-    SQL = SQL & " cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtCodigo(0).Text, "N")
+    SQL = SQL & " cc.nombre_variedad, cc.numero_salida_cooperativa, cc.numlinea from anecoop_pago ll, anecoop cc where ll.idcontab = 0 and ll.num_liquidacion  = " & DBSet(txtcodigo(0).Text, "N")
     SQL = SQL & " and ll.expediente_id = cc.expediente_id"
     
     TotalAnecoop = DevuelveValor("select sum(importe) from (" & SQL & ") aaaa")
     
-    Nregs = TotalRegistrosConsulta(SQL)
+    nRegs = TotalRegistrosConsulta(SQL)
     
     Set Rs = New ADODB.Recordset
     Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Nregs <> 0 Then
+    If nRegs <> 0 Then
         'fecha que pondremos en el documento del apunte del asiento al debe del banco
         FecLiq = DBLet(Rs!fecha_pago, "F")
         
         lblProgres(0).Caption = "Comprobando datos: "
-        Pb1.visible = True
-        Pb1.Max = Nregs
-        Pb1.Value = 0
+        pb1.visible = True
+        pb1.Max = nRegs
+        pb1.Value = 0
         DoEvents
         i = 0
         
         While Not Rs.EOF
             i = i + 1
             lblProgres(1).Caption = "Linea " & i
-            IncrementarProgresNew Pb1, 1
+            IncrementarProgresNew pb1, 1
             DoEvents
             
             
@@ -1030,7 +1111,7 @@ Dim i As Long
     
     lblProgres(0).visible = False
     lblProgres(1).visible = False
-    Pb1.visible = False
+    pb1.visible = False
   
     Exit Function
 
@@ -1040,18 +1121,18 @@ End Function
 
 Private Sub frmBas_DatoSeleccionado(CadenaSeleccion As String)
 'tipos de diario de la Contabilidad
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
     
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    txtCodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    txtcodigo(indCodigo).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 
 End Sub
@@ -1081,13 +1162,13 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmBas.Tag2 = "Descripción|T|N|||tiposdiario|desdiari|||"
             frmBas.Maxlen1 = 4
             frmBas.Maxlen2 = 30
-            frmBas.tabla = "tiposdiario"
+            frmBas.Tabla = "tiposdiario"
             frmBas.CampoCP = "numdiari"
             'frmBas.Report = "rManCCZonas.rpt"
             frmBas.Caption = "Tipos de Diario"
             frmBas.DeConsulta = True
             frmBas.DatosADevolverBusqueda = "0|1|"
-            frmBas.CodigoActual = txtCodigo(3).Text
+            frmBas.CodigoActual = txtcodigo(3).Text
             frmBas.Show vbModal
             
             Set frmBas = Nothing
@@ -1096,7 +1177,7 @@ Private Sub imgBuscar_Click(Index As Integer)
         Case 1 'cuenta contable banco
             AbrirFrmCuentas (Index)
     End Select
-    PonerFoco txtCodigo(indCodigo)
+    PonerFoco txtcodigo(indCodigo)
 
 End Sub
 
@@ -1126,18 +1207,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
+    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtCodigo(Index), 3
+    ConseguirFoco txtcodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1160,10 +1241,10 @@ Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
 End Sub
             
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
+    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1175,17 +1256,17 @@ Dim cad As String, cadTipo As String 'tipo cliente
     
     
         Case 1 ' cta banco
-            If txtCodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtCodigo(Index), 2)
+            If txtcodigo(Index).Text <> "" Then txtNombre(Index).Text = PonerNombreCuenta(txtcodigo(Index), 2)
         
         Case 3 ' numero de diario
-            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtCodigo(Index).Text, "N")
+            txtNombre(Index).Text = DevuelveDesdeBDNew(cConta, "tiposdiario", "desdiari", "numdiari", txtcodigo(Index).Text, "N")
             If txtNombre(Index).Text = "" Then
                 MsgBox "Código de diario no existe. Reintroduzca.", vbExclamation
 '                PonerFoco txtcodigo(Index)
             End If
         
         Case 14 'FECHAS
-            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
+            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
     End Select
 End Sub
 
@@ -1194,7 +1275,7 @@ Private Sub AbrirFrmCuentas(indice As Integer)
     indCodigo = indice
     Set frmCtas = New frmCtasConta
     frmCtas.DatosADevolverBusqueda = "0|1|"
-    frmCtas.CodigoActual = txtCodigo(indCodigo)
+    frmCtas.CodigoActual = txtcodigo(indCodigo)
     frmCtas.Show vbModal
     Set frmCtas = Nothing
 End Sub
@@ -1203,9 +1284,9 @@ Private Sub CalcularImporte()
 Dim SQL As String
 
     txtNombre(0).Text = ""
-    If txtCodigo(0).Text = "" Then Exit Sub
+    If txtcodigo(0).Text = "" Then Exit Sub
 
-    SQL = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtCodigo(0).Text, "N") & " and idcontab = 0"
+    SQL = "select sum(coalesce(importe,0)) from anecoop_pago where num_liquidacion = " & DBSet(txtcodigo(0).Text, "N") & " and idcontab = 0"
     txtNombre(0).Text = Format(DevuelveValor(SQL), "###,###,##0.00")
 
 End Sub

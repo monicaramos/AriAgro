@@ -5,13 +5,13 @@ Begin VB.Form frmListCyC
    ClientHeight    =   5580
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   7530
+   ClientWidth     =   6675
    Icon            =   "frmListCyC.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5580
-   ScaleWidth      =   7530
+   ScaleWidth      =   6675
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin MSComDlg.CommonDialog cd1 
@@ -29,126 +29,234 @@ Begin VB.Form frmListCyC
       Width           =   6555
       Begin VB.CheckBox chkResumen 
          Caption         =   "Sólo resumen"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   3780
          TabIndex        =   24
-         Top             =   4050
-         Width           =   2055
+         Top             =   4140
+         Width           =   2100
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   6
          Left            =   1710
          MaxLength       =   10
          TabIndex        =   6
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   4005
-         Width           =   1050
+         Top             =   4050
+         Width           =   1095
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
          Left            =   1710
          MaxLength       =   7
          TabIndex        =   1
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
-         Top             =   1530
-         Width           =   830
+         Top             =   1485
+         Width           =   870
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   4
          Left            =   1695
          MaxLength       =   7
          TabIndex        =   0
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
-         Top             =   1140
-         Width           =   830
+         Top             =   1095
+         Width           =   870
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
          Left            =   1710
          MaxLength       =   10
          TabIndex        =   3
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   2550
-         Width           =   1050
+         Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
          Left            =   1710
          MaxLength       =   10
          TabIndex        =   2
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   2190
-         Width           =   1050
+         Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5040
          TabIndex        =   8
          Top             =   4950
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   3900
          TabIndex        =   7
          Top             =   4950
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   1710
          MaxLength       =   6
          TabIndex        =   4
          Top             =   3180
-         Width           =   830
+         Width           =   870
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
          Left            =   1710
          MaxLength       =   6
          TabIndex        =   5
          Top             =   3555
-         Width           =   830
+         Width           =   870
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   2610
          Locked          =   -1  'True
          TabIndex        =   11
          Text            =   "Text5"
          Top             =   3180
-         Width           =   3135
+         Width           =   3630
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
          Left            =   2610
          Locked          =   -1  'True
          TabIndex        =   10
          Text            =   "Text5"
          Top             =   3555
-         Width           =   3135
+         Width           =   3630
       End
       Begin VB.Image imgFec 
          Height          =   240
@@ -156,14 +264,14 @@ Begin VB.Form frmListCyC
          Left            =   1440
          Picture         =   "frmListCyC.frx":000C
          ToolTipText     =   "Buscar fecha"
-         Top             =   4005
+         Top             =   4050
          Width           =   240
       End
       Begin VB.Label Label4 
          Caption         =   "Fecha"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -175,16 +283,25 @@ Begin VB.Form frmListCyC
          Index           =   3
          Left            =   450
          TabIndex        =   23
-         Top             =   4005
-         Width           =   1815
+         Top             =   4050
+         Width           =   1860
       End
       Begin VB.Label Label2 
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
-         Left            =   585
+         Left            =   450
          TabIndex        =   22
          Top             =   4590
-         Width           =   5145
+         Width           =   5325
       End
       Begin VB.Label Label1 
          Caption         =   "Facturas Pendientes"
@@ -206,28 +323,46 @@ Begin VB.Form frmListCyC
       End
       Begin VB.Label Label4 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
-         Left            =   855
+         Left            =   780
          TabIndex        =   20
-         Top             =   1530
-         Width           =   420
+         Top             =   1485
+         Width           =   645
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
-         Left            =   855
+         Left            =   780
          TabIndex        =   19
-         Top             =   1170
-         Width           =   465
+         Top             =   1125
+         Width           =   690
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Nro.Albarán"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -235,40 +370,67 @@ Begin VB.Form frmListCyC
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   2
          Left            =   450
          TabIndex        =   18
-         Top             =   900
-         Width           =   870
+         Top             =   855
+         Width           =   1185
       End
       Begin VB.Label Label4 
          Caption         =   "Fecha Albarán"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   16
          Left            =   420
          TabIndex        =   17
          Top             =   1890
-         Width           =   1815
+         Width           =   1860
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   15
          Left            =   780
          TabIndex        =   16
          Top             =   2190
-         Width           =   465
+         Width           =   600
       End
       Begin VB.Label Label4 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   14
          Left            =   780
          TabIndex        =   15
          Top             =   2550
-         Width           =   420
+         Width           =   645
       End
       Begin VB.Image imgFec 
          Height          =   240
@@ -290,28 +452,46 @@ Begin VB.Form frmListCyC
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   13
-         Left            =   810
+         Left            =   780
          TabIndex        =   14
          Top             =   3180
-         Width           =   465
+         Width           =   645
       End
       Begin VB.Label Label4 
          Caption         =   "Hasta"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   12
-         Left            =   825
+         Left            =   780
          TabIndex        =   13
          Top             =   3555
-         Width           =   420
+         Width           =   645
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Cliente"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -319,12 +499,12 @@ Begin VB.Form frmListCyC
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   195
+         Height          =   240
          Index           =   11
          Left            =   465
          TabIndex        =   12
-         Top             =   2940
-         Width           =   495
+         Top             =   2895
+         Width           =   720
       End
       Begin VB.Image imgBuscar 
          Height          =   240
@@ -384,7 +564,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -392,8 +572,8 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Tabla As String
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
 Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
@@ -411,12 +591,12 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim I As Byte
+Dim i As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-Dim Sql As String
+Dim SQL As String
 
 InicializarVbles
     
@@ -441,7 +621,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & tabla & ".codclien}"
+        Codigo = "{" & Tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -451,7 +631,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(5).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{albaran.numalbar}"
+        Codigo = "{albaran.numalbar}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHAlbaran= """) Then Exit Sub
     End If
@@ -461,7 +641,7 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        codigo = "{" & tabla & ".fechaalb}"
+        Codigo = "{" & Tabla & ".fechaalb}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
@@ -471,14 +651,14 @@ InicializarVbles
 
 '    If AnyadirAFormula(cadSelect, "clientes.limiteriesgos <> 0 and clientes.limiteriesgos is not null ") = False Then Exit Sub
     
-    cadTABLA = tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
+    cadTABLA = Tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
     
     cadParam = cadParam & "pSoloResumen=" & chkResumen.Value & "|"
     numParam = numParam + 1
     
-    If HayRegistros(cadTABLA, cadSelect) Then
-        If CargarTemporal(cadTABLA, cadSelect) Then
-            cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+    If HayRegistros(cadTABLA, cadselect) Then
+        If CargarTemporal(cadTABLA, cadselect) Then
+            cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
             cadTitulo = "Facturas Pendientes"
             cadNombreRPT = "rFacturasPdtes.rpt"
             
@@ -516,7 +696,7 @@ Dim List As Collection
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    tabla = "albaran"
+    Tabla = "albaran"
     Me.Label2.Caption = ""
     Me.Refresh
         
@@ -633,7 +813,7 @@ Private Sub KEYFecha(KeyAscii As Integer, indice As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
     txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
@@ -672,7 +852,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -688,15 +868,15 @@ Dim devuelve As String
 Dim devuelve2 As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(codD, codH, codigo, TipCod)
+    devuelve = CadenaDesdeHasta(codD, codH, Codigo, TipCod)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
-        devuelve2 = CadenaDesdeHastaBD(codD, codH, codigo, TipCod)
+        devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -710,7 +890,7 @@ End Function
 
 Private Sub LlamarImprimir()
     With frmImprimir
-        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.codigo
+        .FormulaSeleccion = "{tmpinformes.codusu} = " & vUsu.Codigo
         .OtrosParametros = cadParam
         .NumeroParametros = numParam + 1
         .SoloImprimir = False
@@ -782,19 +962,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 
-    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        Sql = Sql & " WHERE " & cWhere
+        SQL = SQL & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -805,13 +985,13 @@ Dim Rs As ADODB.Recordset
 
 End Function
 
-Private Function CargarTemporal(cTabla As String, cadWHERE As String) As Boolean
-Dim Sql As String
+Private Function CargarTemporal(cTabla As String, cadwhere As String) As Boolean
+Dim SQL As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim Codiva As String
 Dim PorcIva As String
-Dim I As Integer
+Dim i As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 Dim Registro As String
@@ -835,19 +1015,19 @@ On Error GoTo eCargarTemporal
     
     CargarTemporal = False
     
-    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.codigo, "N")
+    conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
         
-    If cadWHERE <> "" Then
-        cadWHERE = QuitarCaracterACadena(cadWHERE, "{")
-        cadWHERE = QuitarCaracterACadena(cadWHERE, "}")
-        cadWHERE = QuitarCaracterACadena(cadWHERE, "_1")
+    If cadwhere <> "" Then
+        cadwhere = QuitarCaracterACadena(cadwhere, "{")
+        cadwhere = QuitarCaracterACadena(cadwhere, "}")
+        cadwhere = QuitarCaracterACadena(cadwhere, "_1")
     End If
                                   '(codusu, albaran,  linea, fecalbar,cliente, imp.factu,imp.provi,fec.pag,dias,   asterisco)
-    Sql = "insert into tmpinformes (codusu, importe1, campo1, fecha1, codigo1, importe2, importe3, fecha2, campo2, nombre1) values "
+    SQL = "insert into tmpinformes (codusu, importe1, campo1, fecha1, codigo1, importe2, importe3, fecha2, campo2, nombre1) values "
     
     Sql2 = "select albaran.fechaalb, albaran.codclien, clientes.tipoiva, clientes.diasasegurados, albaran_variedad.* from albaran_variedad, albaran, clientes where albaran.numalbar = albaran_variedad.numalbar "
     Sql2 = Sql2 & " and albaran.codclien = clientes.codclien "
-    If cadWHERE <> "" Then Sql2 = Sql2 & " and " & cadWHERE
+    If cadwhere <> "" Then Sql2 = Sql2 & " and " & cadwhere
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql2, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -855,13 +1035,13 @@ On Error GoTo eCargarTemporal
     CADENA = ""
     
     While Not Rs.EOF
-        Registro = "(" & vUsu.codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!numlinea, "N") & ","
+        Registro = "(" & vUsu.Codigo & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
         Registro = Registro & DBSet(Rs!FechaAlb, "F") & "," & DBSet(Rs!CodClien, "N") & ","
-        If AlbaranFacturado(CCur(Rs!NumAlbar), CCur(Rs!numlinea)) Then
+        If AlbaranFacturado(CCur(Rs!NumAlbar), CCur(Rs!NumLinea)) Then
             FechaFactura = ""
            '[Monica]16/04/2010:antes FacturaCobradaTesoreria
            ' If FacturaCobradaTesoreria(CCur(RS!numalbar), CCur(RS!numlinea)) Then
-            If AlbaranCobradoTesoreria(CCur(Rs!NumAlbar), CCur(Rs!numlinea)) Then
+            If AlbaranCobradoTesoreria(CCur(Rs!NumAlbar), CCur(Rs!NumLinea)) Then
             ' si la factura está cobrada en tesoreria no hacemos nada.
                 Registro = ""
 '                Importe = CCur(ImporteAlbaranFacturado(CCur(Rs!numalbar), CCur(Rs!numlinea)))
@@ -882,10 +1062,10 @@ On Error GoTo eCargarTemporal
                 '[Monica]26/09/2011:antes ImporteFacturado = CCur(ImporteAlbaranFacturado(CCur(RS!numalbar), CCur(RS!numlinea)))
                 Dim Parcial As Boolean
                 Parcial = False
-                ImporteFacturado = CCur(ImporteAlbaranFacturadoNoCobrado(CCur(Rs!NumAlbar), CCur(Rs!numlinea), Parcial))
+                ImporteFacturado = CCur(ImporteAlbaranFacturadoNoCobrado(CCur(Rs!NumAlbar), CCur(Rs!NumLinea), Parcial))
                 If Not Parcial Then
                     Sql2 = "select codigiva from facturas_variedad where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                    Sql2 = Sql2 & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
+                    Sql2 = Sql2 & " and numlinealbar = " & DBSet(Rs!NumLinea, "N")
                     Codiva = DevuelveValor(Sql2)
     
                     PorcIva = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", Codiva, "N")
@@ -896,7 +1076,7 @@ On Error GoTo eCargarTemporal
                 Importe = 0
                  
                 vSQL = "select max(fecfactu) from facturas_variedad where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                vSQL = vSQL & " and numlinealbar = " & DBSet(Rs!numlinea, "N")
+                vSQL = vSQL & " and numlinealbar = " & DBSet(Rs!NumLinea, "N")
                 
                 FechaFactura = DevuelveValor(vSQL)
                 
@@ -964,23 +1144,23 @@ On Error GoTo eCargarTemporal
     If Len(CADENA) > 0 Then
         CADENA = Mid(CADENA, 1, Len(CADENA) - 1)
     
-        conn.Execute Sql & CADENA
+        conn.Execute SQL & CADENA
     End If
         
     '[Monica]06/10/2011
     ' quitamos las cantidades que esten duplicadas en el listado que se correspondan con facturas parcialmente cobradas
     '             cliente, imp.factu, albaran,  linea
-    Sql = "select codigo1, importe2, importe1, campo1 from tmpinformes "
-    Sql = Sql & " where codusu = " & vUsu.codigo & " and (codigo1,importe2) in ( "
-    Sql = Sql & " select codigo1, importe2 from (select codigo1,importe2,count(*)"
-    Sql = Sql & " from tmpinformes where codusu = " & vUsu.codigo & " and importe2 <> 0"
-    Sql = Sql & " group by 1,2"
-    Sql = Sql & " having count(*) > 1"
-    Sql = Sql & " order by codigo1) aaaaa )"
-    Sql = Sql & " order by 1,2,3,4"
+    SQL = "select codigo1, importe2, importe1, campo1 from tmpinformes "
+    SQL = SQL & " where codusu = " & vUsu.Codigo & " and (codigo1,importe2) in ( "
+    SQL = SQL & " select codigo1, importe2 from (select codigo1,importe2,count(*)"
+    SQL = SQL & " from tmpinformes where codusu = " & vUsu.Codigo & " and importe2 <> 0"
+    SQL = SQL & " group by 1,2"
+    SQL = SQL & " having count(*) > 1"
+    SQL = SQL & " order by codigo1) aaaaa )"
+    SQL = SQL & " order by 1,2,3,4"
 
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Primero = True
     MenError = ""
@@ -990,10 +1170,10 @@ On Error GoTo eCargarTemporal
             If Primero Then
                 Primero = False
             Else
-                Sql = "update tmpinformes set importe2 = 0 where codusu = " & vUsu.codigo & " and importe1 = " & DBSet(Rs.Fields(2).Value, "N")
-                Sql = Sql & " and campo1 = " & DBSet(Rs.Fields(3).Value, "N")
+                SQL = "update tmpinformes set importe2 = 0 where codusu = " & vUsu.Codigo & " and importe1 = " & DBSet(Rs.Fields(2).Value, "N")
+                SQL = SQL & " and campo1 = " & DBSet(Rs.Fields(3).Value, "N")
                             
-                conn.Execute Sql
+                conn.Execute SQL
             End If
         End If
         Rs.MoveNext
@@ -1029,26 +1209,26 @@ End Function
 
 
 Private Function AlbaranDeFacturaCobradaParcialmente(Albaran As Long, Linea As Long, MenError As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo eAlbaranDeFacturaCobradaParcialmente
 
     If vParamAplic.ContabilidadNueva Then
-        Sql = "select  sum(if(isnull(impcobro),0,impcobro)) from ariconta" & vParamAplic.NumeroConta & ".cobros where (numserie, numfactu, fecfactu) in ("
-        Sql = Sql & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
-        Sql = Sql & " from facturas_variedad, usuarios.stipom stipom "
-        Sql = Sql & " where facturas_variedad.numalbar = " & Albaran
-        Sql = Sql & " and facturas_variedad.numlinealbar = " & Linea
-        Sql = Sql & " and facturas_variedad.codtipom = stipom.codtipom) "
+        SQL = "select  sum(if(isnull(impcobro),0,impcobro)) from ariconta" & vParamAplic.NumeroConta & ".cobros where (numserie, numfactu, fecfactu) in ("
+        SQL = SQL & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
+        SQL = SQL & " from facturas_variedad, usuarios.stipom stipom "
+        SQL = SQL & " where facturas_variedad.numalbar = " & Albaran
+        SQL = SQL & " and facturas_variedad.numlinealbar = " & Linea
+        SQL = SQL & " and facturas_variedad.codtipom = stipom.codtipom) "
     Else
-        Sql = "select  sum(if(isnull(impcobro),0,impcobro)) from conta" & vParamAplic.NumeroConta & ".scobro where (numserie, codfaccl, fecfaccl) in ("
-        Sql = Sql & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
-        Sql = Sql & " from facturas_variedad, usuarios.stipom stipom "
-        Sql = Sql & " where facturas_variedad.numalbar = " & Albaran
-        Sql = Sql & " and facturas_variedad.numlinealbar = " & Linea
-        Sql = Sql & " and facturas_variedad.codtipom = stipom.codtipom) "
+        SQL = "select  sum(if(isnull(impcobro),0,impcobro)) from conta" & vParamAplic.NumeroConta & ".scobro where (numserie, codfaccl, fecfaccl) in ("
+        SQL = SQL & " select stipom.letraser, facturas_variedad.numfactu, facturas_variedad.fecfactu "
+        SQL = SQL & " from facturas_variedad, usuarios.stipom stipom "
+        SQL = SQL & " where facturas_variedad.numalbar = " & Albaran
+        SQL = SQL & " and facturas_variedad.numlinealbar = " & Linea
+        SQL = SQL & " and facturas_variedad.codtipom = stipom.codtipom) "
     End If
-    AlbaranDeFacturaCobradaParcialmente = (DevuelveValor(Sql) <> 0)
+    AlbaranDeFacturaCobradaParcialmente = (DevuelveValor(SQL) <> 0)
 
     Exit Function
     
