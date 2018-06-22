@@ -5,22 +5,110 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManBanco 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Bancos Propios"
-   ClientHeight    =   5955
+   ClientHeight    =   7305
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   13935
+   ClientTop       =   30
+   ClientWidth     =   15000
    Icon            =   "frmManBanco.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5955
-   ScaleWidth      =   13935
+   ScaleHeight     =   7305
+   ScaleWidth      =   15000
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   135
+      TabIndex        =   40
+      Top             =   45
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   41
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   12285
+      TabIndex        =   39
+      Top             =   240
+      Width           =   1605
+   End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   18
       Left            =   4230
       MaxLength       =   4
@@ -41,12 +129,12 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   17
-      Left            =   12225
+      Left            =   13980
       MaxLength       =   3
       TabIndex        =   13
       Tag             =   "Código Ordenante|T|S|||banpropi|codorden34|||"
       Text            =   "1234567890"
-      Top             =   2370
+      Top             =   3090
       Width           =   735
    End
    Begin VB.TextBox text2 
@@ -63,27 +151,28 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   12
-      Left            =   10020
-      TabIndex        =   39
-      Top             =   2730
+      Left            =   11775
+      TabIndex        =   37
+      Top             =   3540
       Width           =   2940
    End
    Begin VB.Frame Frame2 
       Caption         =   "Datos de Contacto"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   2055
-      Left            =   7500
-      TabIndex        =   34
-      Top             =   3210
-      Width           =   5505
+      ForeColor       =   &H00972E0B&
+      Height          =   2415
+      Left            =   8895
+      TabIndex        =   32
+      Top             =   3975
+      Width           =   5865
       Begin VB.TextBox txtAux 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -94,14 +183,14 @@ Begin VB.Form frmManBanco
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   16
          Left            =   120
          MaxLength       =   40
          TabIndex        =   18
          Tag             =   "Mail|T|S|||banpropi|maibanpr|||"
-         Top             =   1680
-         Width           =   4815
+         Top             =   1815
+         Width           =   5625
       End
       Begin VB.TextBox txtAux 
          BeginProperty Font 
@@ -113,14 +202,14 @@ Begin VB.Form frmManBanco
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   15
          Left            =   120
          MaxLength       =   30
          TabIndex        =   17
          Tag             =   "Web|T|S|||banpropi|wwwbanpr|||"
-         Top             =   1080
-         Width           =   4845
+         Top             =   1215
+         Width           =   5610
       End
       Begin VB.TextBox txtAux 
          BeginProperty Font 
@@ -132,14 +221,14 @@ Begin VB.Form frmManBanco
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   13
          Left            =   120
          MaxLength       =   10
          TabIndex        =   15
          Tag             =   "Teléfono|T|S|||banpropi|telbanpr|||"
-         Top             =   480
-         Width           =   1695
+         Top             =   615
+         Width           =   2010
       End
       Begin VB.TextBox txtAux 
          BeginProperty Font 
@@ -151,20 +240,20 @@ Begin VB.Form frmManBanco
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   285
+         Height          =   360
          Index           =   14
-         Left            =   3360
+         Left            =   3495
          MaxLength       =   10
          TabIndex        =   16
          Tag             =   "Fax|T|S|||banpropi|faxbanpr|||"
-         Top             =   480
-         Width           =   1575
+         Top             =   615
+         Width           =   2250
       End
       Begin VB.Image imgMail 
          Height          =   240
          Index           =   0
          Left            =   600
-         Top             =   1440
+         Top             =   1575
          Width           =   240
       End
       Begin VB.Image imgWeb 
@@ -172,7 +261,7 @@ Begin VB.Form frmManBanco
          Index           =   0
          Left            =   600
          Picture         =   "frmManBanco.frx":000C
-         Top             =   840
+         Top             =   975
          Width           =   240
       End
       Begin VB.Label Label7 
@@ -188,8 +277,8 @@ Begin VB.Form frmManBanco
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   38
-         Top             =   1440
+         TabIndex        =   36
+         Top             =   1575
          Width           =   495
       End
       Begin VB.Label Label6 
@@ -205,8 +294,8 @@ Begin VB.Form frmManBanco
          EndProperty
          Height          =   255
          Left            =   120
-         TabIndex        =   37
-         Top             =   840
+         TabIndex        =   35
+         Top             =   975
          Width           =   495
       End
       Begin VB.Label Label1 
@@ -223,8 +312,8 @@ Begin VB.Form frmManBanco
          Height          =   375
          Index           =   1
          Left            =   120
-         TabIndex        =   36
-         Top             =   240
+         TabIndex        =   34
+         Top             =   375
          Width           =   960
       End
       Begin VB.Label Label5 
@@ -239,10 +328,10 @@ Begin VB.Form frmManBanco
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   3360
-         TabIndex        =   35
-         Top             =   240
-         Width           =   495
+         Left            =   3495
+         TabIndex        =   33
+         Top             =   375
+         Width           =   810
       End
    End
    Begin VB.TextBox txtAux 
@@ -257,18 +346,27 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   12
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   10
       TabIndex        =   14
       Tag             =   "Cta.Contable|T|S|||banpropi|codmacta|||"
-      Top             =   2730
+      Top             =   3540
       Width           =   1260
    End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   5
       Left            =   3600
       MaxLength       =   10
@@ -281,7 +379,16 @@ Begin VB.Form frmManBanco
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   4
       Left            =   3000
       MaxLength       =   2
@@ -302,11 +409,11 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   10
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   30
       TabIndex        =   11
       Tag             =   "Persona Contacto|T|S|||banpropi|perbanpr|||"
-      Top             =   2010
+      Top             =   2640
       Width           =   4230
    End
    Begin VB.TextBox txtAux 
@@ -321,11 +428,11 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   11
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   3
       TabIndex        =   12
       Tag             =   "Sufijo|T|S|||banpropi|sufijoem|||"
-      Top             =   2370
+      Top             =   3090
       Width           =   780
    End
    Begin VB.TextBox txtAux 
@@ -340,18 +447,27 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   7
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   6
       TabIndex        =   8
       Tag             =   "Código Postal|T|S|||banpropi|codpopr|||"
-      Top             =   930
+      Top             =   1290
       Width           =   1140
    End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   2
       Left            =   1800
       MaxLength       =   4
@@ -364,7 +480,16 @@ Begin VB.Form frmManBanco
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   0
       Left            =   240
       MaxLength       =   2
@@ -385,11 +510,11 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   9
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   30
       TabIndex        =   10
       Tag             =   "Provincia|T|S|||banpropi|probanpr|||"
-      Top             =   1650
+      Top             =   2190
       Width           =   4230
    End
    Begin VB.TextBox txtAux 
@@ -404,11 +529,11 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   8
-      Left            =   8715
+      Left            =   10485
       MaxLength       =   30
       TabIndex        =   9
       Tag             =   "Población|T|S|||banpropi|pobbanpr|||"
-      Top             =   1290
+      Top             =   1740
       Width           =   4230
    End
    Begin VB.TextBox txtAux 
@@ -423,18 +548,27 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   360
       Index           =   6
-      Left            =   8730
+      Left            =   10485
       MaxLength       =   30
       TabIndex        =   7
       Tag             =   "Domicilio|T|S|||banpropi|dombanpr|||"
-      Top             =   570
+      Top             =   840
       Width           =   4200
    End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   3
       Left            =   2400
       MaxLength       =   4
@@ -455,9 +589,9 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10290
+      Left            =   12450
       TabIndex        =   19
-      Top             =   5370
+      Top             =   6585
       Visible         =   0   'False
       Width           =   1065
    End
@@ -474,16 +608,25 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11565
+      Left            =   13725
       TabIndex        =   20
-      Top             =   5355
+      Top             =   6570
       Visible         =   0   'False
       Width           =   1065
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   1
       Left            =   960
       MaxLength       =   30
@@ -494,30 +637,30 @@ Begin VB.Form frmManBanco
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmManBanco.frx":0596
-      Height          =   4410
+      Height          =   5625
       Left            =   150
       TabIndex        =   23
-      Top             =   570
-      Width           =   7185
-      _ExtentX        =   12674
-      _ExtentY        =   7779
+      Top             =   840
+      Width           =   8595
+      _ExtentX        =   15161
+      _ExtentY        =   9922
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -574,18 +717,18 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11550
-      TabIndex        =   32
-      Top             =   5370
+      Left            =   13680
+      TabIndex        =   30
+      Top             =   6585
       Visible         =   0   'False
       Width           =   1095
    End
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   1
-      Left            =   120
+      Left            =   180
       TabIndex        =   21
-      Top             =   5175
+      Top             =   6660
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -600,9 +743,9 @@ Begin VB.Form frmManBanco
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   40
+         Left            =   45
          TabIndex        =   22
-         Top             =   240
+         Top             =   180
          Width           =   2295
       End
    End
@@ -653,77 +796,24 @@ Begin VB.Form frmManBanco
       EndProperty
       _Version        =   393216
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   24
-      Top             =   0
-      Width           =   13935
-      _ExtentX        =   24580
-      _ExtentY        =   635
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
+      Height          =   330
+      Left            =   14325
+      TabIndex        =   42
+      Top             =   180
+      Width           =   405
+      _ExtentX        =   714
+      _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
       Style           =   1
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   12
+         NumButtons      =   1
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
+            Object.ToolTipText     =   "Ayuda"
          EndProperty
       EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   25
-         Top             =   120
-         Visible         =   0   'False
-         Width           =   1215
-      End
    End
    Begin VB.Label Label8 
       Caption         =   "Sufijo Transferencia"
@@ -737,13 +827,13 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   10080
-      TabIndex        =   40
-      Top             =   2385
+      Left            =   11835
+      TabIndex        =   38
+      Top             =   3105
       Width           =   2160
    End
    Begin VB.Label Label4 
-      Caption         =   "Cta.Cont."
+      Caption         =   "Cta.Contable"
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   9.75
@@ -754,17 +844,17 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   7500
-      TabIndex        =   33
-      Top             =   2730
-      Width           =   945
+      Left            =   8895
+      TabIndex        =   31
+      Top             =   3540
+      Width           =   1305
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   0
-      Left            =   8490
+      Left            =   9660
       ToolTipText     =   "Buscar Cta.Contable"
-      Top             =   2760
+      Top             =   3570
       Width           =   240
    End
    Begin VB.Label Label1 
@@ -780,9 +870,9 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   255
       Index           =   0
-      Left            =   7500
-      TabIndex        =   31
-      Top             =   2010
+      Left            =   8895
+      TabIndex        =   29
+      Top             =   2640
       Width           =   1095
    End
    Begin VB.Label Label3 
@@ -797,9 +887,9 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   7500
-      TabIndex        =   30
-      Top             =   2370
+      Left            =   8895
+      TabIndex        =   28
+      Top             =   3090
       Width           =   900
    End
    Begin VB.Label Label1 
@@ -815,9 +905,9 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   255
       Index           =   7
-      Left            =   7500
-      TabIndex        =   29
-      Top             =   570
+      Left            =   8895
+      TabIndex        =   27
+      Top             =   840
       Width           =   900
    End
    Begin VB.Label Label2 
@@ -832,9 +922,9 @@ Begin VB.Form frmManBanco
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   7500
-      TabIndex        =   28
-      Top             =   1650
+      Left            =   8895
+      TabIndex        =   26
+      Top             =   2190
       Width           =   900
    End
    Begin VB.Label Label1 
@@ -850,9 +940,9 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   255
       Index           =   9
-      Left            =   7500
-      TabIndex        =   27
-      Top             =   1290
+      Left            =   8895
+      TabIndex        =   25
+      Top             =   1740
       Width           =   1125
    End
    Begin VB.Label Label1 
@@ -868,13 +958,15 @@ Begin VB.Form frmManBanco
       EndProperty
       Height          =   255
       Index           =   8
-      Left            =   7500
-      TabIndex        =   26
-      Top             =   930
+      Left            =   8895
+      TabIndex        =   24
+      Top             =   1290
       Width           =   1020
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -997,18 +1089,18 @@ Dim i As Integer
     End If
     
     ' **** posar tots els controls (botons inclosos) que siguen del Grid
-    txtaux(0).visible = Not b
-    txtaux(1).visible = Not b
-    txtaux(18).visible = Not b
-    txtaux(2).visible = Not b
-    txtaux(3).visible = Not b
-    txtaux(4).visible = Not b
-    txtaux(5).visible = Not b
+    txtAux(0).visible = Not b
+    txtAux(1).visible = Not b
+    txtAux(18).visible = Not b
+    txtAux(2).visible = Not b
+    txtAux(3).visible = Not b
+    txtAux(4).visible = Not b
+    txtAux(5).visible = Not b
     ' **************************************************
     
     ' **** si n'hi han camps fora del grid, bloquejar-los ****
     For i = 6 To 17
-        BloquearTxt txtaux(i), b
+        BloquearTxt txtAux(i), b
     Next i
     
     ' ********************************************************
@@ -1025,7 +1117,7 @@ Dim i As Integer
     PonerOpcionesMenu 'Activar/Desact botons de menu según permissos de l'usuari
     
     ' *** bloquejar tota la PK quan estem en modificar  ***
-    BloquearTxt txtaux(0), (Modo = 4) 'codbanpr
+    BloquearTxt txtAux(0), (Modo = 4) 'codbanpr
     
     BloquearImgBuscar Me, Modo
 
@@ -1039,26 +1131,26 @@ Dim b As Boolean
 
     b = (Modo = 2) And ExpedBusca = 0
     'Busqueda
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Vore Tots
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(6).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b = (b And adodc1.Recordset.RecordCount > 0) And Not DeConsulta And ExpedBusca = 0
     'Modificar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
 
     'Eliminar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     'Imprimir
-    Toolbar1.Buttons(11).Enabled = b
+    Toolbar1.Buttons(8).Enabled = b
     Me.mnImprimir.Enabled = b
 
     ' ******************************************************************************
@@ -1091,25 +1183,25 @@ Dim i As Integer
     End If
     
     ' *** valors per defecte a l'afegir (dins i fora del grid); repasar codEmpre ***
-    txtaux(0).Text = NumF
+    txtAux(0).Text = NumF
     For i = 1 To 17
-        txtaux(i).Text = ""
+        txtAux(i).Text = ""
     Next i
     ' cuenta CCC
-    txtaux(18).Text = "ES00"
-    txtaux(2).Text = "0"
-    txtaux(3).Text = "0"
-    txtaux(4).Text = "**"
-    txtaux(5).Text = "0"
+    txtAux(18).Text = "ES00"
+    txtAux(2).Text = "0"
+    txtAux(3).Text = "0"
+    txtAux(4).Text = ""
+    txtAux(5).Text = "0"
     ' **************************************************
 
     LLamaLineas anc, 3
        
     ' *** posar el foco ***
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
-        PonerFoco txtaux(1) '**** 1r camp visible que NO siga PK ****
+        PonerFoco txtAux(1) '**** 1r camp visible que NO siga PK ****
     Else
-        PonerFoco txtaux(0) '**** 1r camp visible que siga PK ****
+        PonerFoco txtAux(0) '**** 1r camp visible que siga PK ****
     End If
     ' ******************************************************
 End Sub
@@ -1129,13 +1221,13 @@ Private Sub BotonBuscar()
 
     ' *** canviar-ho pels valors per defecte al buscar (dins i fora del grid);
     For i = 0 To 17
-        txtaux(i).Text = ""
+        txtAux(i).Text = ""
     Next i
 
-    LLamaLineas DataGrid1.Top + 206, 1
+    LLamaLineas DataGrid1.Top + 240, 1
     
     ' *** posar el foco al 1r camp visible que siga PK ***
-    PonerFoco txtaux(0)
+    PonerFoco txtAux(0)
     ' ***************************************************************
 End Sub
 
@@ -1154,23 +1246,23 @@ Private Sub BotonModificar()
     If DataGrid1.Row < 0 Then
         anc = 320
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 545
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top  'DataGrid1.RowTop(DataGrid1.Row) + 545
     End If
 
     ' *** asignar als controls del grid, els valors de les columnes ***
-    txtaux(0).Text = DataGrid1.Columns(0).Text
-    txtaux(1).Text = DataGrid1.Columns(1).Text
-    txtaux(18).Text = DataGrid1.Columns(2).Text
-    txtaux(2).Text = ComprobarCero(Trim(DataGrid1.Columns(3).Text))
-    txtaux(3).Text = ComprobarCero(Trim(DataGrid1.Columns(4).Text))
-    txtaux(4).Text = DataGrid1.Columns(5).Text
-    txtaux(5).Text = DataGrid1.Columns(6).Text
+    txtAux(0).Text = DataGrid1.Columns(0).Text
+    txtAux(1).Text = DataGrid1.Columns(1).Text
+    txtAux(18).Text = DataGrid1.Columns(2).Text
+    txtAux(2).Text = ComprobarCero(Trim(DataGrid1.Columns(3).Text))
+    txtAux(3).Text = ComprobarCero(Trim(DataGrid1.Columns(4).Text))
+    txtAux(4).Text = DataGrid1.Columns(5).Text
+    txtAux(5).Text = DataGrid1.Columns(6).Text
     ' ********************************************************
 
     LLamaLineas anc, 4 'modo 4
    
     ' *** foco al 1r camp visible que NO siga clau primaria ***
-    PonerFoco txtaux(1)
+    PonerFoco txtAux(1)
     ' *********************************************************
     Screen.MousePointer = vbDefault
 End Sub
@@ -1184,9 +1276,9 @@ Dim i As Integer
     ' *** posar el Top a tots els controls del grid (botons també) ***
     'Me.imgFec(2).Top = alto
     For i = 0 To 5
-        txtaux(i).Top = alto
+        txtAux(i).Top = alto
     Next i
-    txtaux(18).Top = alto
+    txtAux(18).Top = alto
     ' ***************************************************
 End Sub
 
@@ -1202,7 +1294,7 @@ Dim temp As Boolean
     
     ' *** repasar el nom de l'adodc, l'index del Field i el camp que te la PK ***
     'El registre de codi 0 no es pot Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(1).Value), FormatoCampo(txtaux(1))) Then Exit Sub
+    If EsCodigoCero(CStr(adodc1.Recordset.Fields(1).Value), FormatoCampo(txtAux(1))) Then Exit Sub
     ' ***************************************************************************
     
     '*** canviar la pregunta, els noms dels camps i el DELETE; repasar codEmpre ***
@@ -1259,7 +1351,7 @@ Dim i As Long
                         If Not adodc1.Recordset.EOF Then
                             ' *** filtrar per tota la PK; repasar codEmpre **
                             'adodc1.Recordset.Filter = "codempre = " & txtAux(0).Text & " AND codsupdt = " & txtAux(1).Text
-                            adodc1.Recordset.Filter = "codbanpr = " & txtaux(0).Text
+                            adodc1.Recordset.Filter = "codbanpr = " & txtAux(0).Text
                             ' ****************************************************
                         End If
                         cmdRegresar_Click
@@ -1371,30 +1463,51 @@ Private Sub Form_Activate()
     Screen.MousePointer = vbDefault
     'Posem el foco
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
-        PonerFoco txtaux(1)
+        PonerFoco txtAux(1)
     End If
 End Sub
 
 Private Sub Form_Load()
 Dim i As Integer
 
-    '******* repasar si n'hi ha botó d'imprimir o no******
+'    '******* repasar si n'hi ha botó d'imprimir o no******
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        'el 1 es separadors
+'        .Buttons(2).Image = 1   'Buscar
+'        .Buttons(3).Image = 2   'Tots
+'        'el 4 i el 5 son separadors
+'        .Buttons(6).Image = 3   'Insertar
+'        .Buttons(7).Image = 4   'Modificar
+'        .Buttons(8).Image = 5   'Borrar
+'        'el 9 i el 10 son separadors
+'        .Buttons(11).Image = 10  'Imprimir
+'        .Buttons(12).Image = 11  'Eixir
+'    End With
+    '*****************************************************
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
-        'el 1 es separadors
-        .Buttons(2).Image = 1   'Buscar
-        .Buttons(3).Image = 2   'Tots
-        'el 4 i el 5 son separadors
-        .Buttons(6).Image = 3   'Insertar
-        .Buttons(7).Image = 4   'Modificar
-        .Buttons(8).Image = 5   'Borrar
-        'el 9 i el 10 son separadors
-        .Buttons(11).Image = 10  'Imprimir
-        .Buttons(12).Image = 11  'Eixir
+        'l'1 i el 2 son separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
+        'el 5 i el 6 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
-    '*****************************************************
+    
+    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+
 
 ' ### [Monica] 08/09/2006
     'IMAGES para busqueda
@@ -1443,8 +1556,8 @@ End Sub
 ' ### [Monica] 08/09/2006
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    txtaux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
+    txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -1457,10 +1570,10 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmCtas = New frmCtasConta
             frmCtas.NumDigit = 0
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = txtaux(indice).Text
+            frmCtas.CodigoActual = txtAux(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco txtaux(indice)
+            PonerFoco txtAux(indice)
           
     End Select
     
@@ -1470,8 +1583,8 @@ End Sub
 
 Private Sub imgMail_Click(Index As Integer)
     If Index = 0 Then
-        If txtaux(16).Text <> "" Then
-            LanzaMailGnral txtaux(16).Text
+        If txtAux(16).Text <> "" Then
+            LanzaMailGnral txtAux(16).Text
         End If
     End If
 End Sub
@@ -1479,7 +1592,7 @@ End Sub
 Private Sub imgWeb_Click(Index As Integer)
     If Modo = 0 Then Exit Sub
     Screen.MousePointer = vbHourglass
-    If LanzaHomeGnral(txtaux(15).Text) Then espera 2
+    If LanzaHomeGnral(txtAux(15).Text) Then espera 2
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -1502,7 +1615,7 @@ Private Sub mnModificar_Click()
     
     ' *** repasar el nom de l'adodc, l'index del Field i el camp que te la PK ***
     'El registre de codi 0 no es pot Modificar ni Eliminar
-    If EsCodigoCero(CStr(adodc1.Recordset.Fields(1).Value), FormatoCampo(txtaux(1))) Then Exit Sub
+    If EsCodigoCero(CStr(adodc1.Recordset.Fields(1).Value), FormatoCampo(txtAux(1))) Then Exit Sub
     ' ***************************************************************************
     
     
@@ -1525,20 +1638,18 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 2
+        Case 5
                 mnBuscar_Click
-        Case 3
-                mnVerTodos_Click
         Case 6
+                mnVerTodos_Click
+        Case 1
                 mnNuevo_Click
-        Case 7
+        Case 2
                 mnModificar_Click
-        Case 8
+        Case 3
                 mnEliminar_Click
-        Case 11 'Imprimir
+        Case 8 'Imprimir
                 mnImprimir_Click
-        Case 12 'Salir
-                mnSalir_Click
     End Select
 End Sub
 
@@ -1571,20 +1682,22 @@ Private Sub CargaGrid(Optional vSQL As String)
        
        
     ' *** posar només els controls del grid ***
-    tots = "S|txtAux(0)|T|Cód.|650|;S|txtAux(1)|T|Denominación|1957|;S|txtAux(18)|T|IBAN|800|;S|txtAux(2)|T|Entidad|800|;"
-    tots = tots & "S|txtAux(3)|T|Sucursal|800|;S|txtAux(4)|T|D.C.|650|;"
-    tots = tots & "S|txtAux(5)|T|Cuenta|1000|;"
+    tots = "S|txtAux(0)|T|Código|750|;S|txtAux(1)|T|Denominación|2657|;S|txtAux(18)|T|IBAN|750|;S|txtAux(2)|T|Entidad|900|;"
+    tots = tots & "S|txtAux(3)|T|Sucursal|1000|;S|txtAux(4)|T|D.C.|550|;"
+    tots = tots & "S|txtAux(5)|T|Cuenta|1400|;"
+    
     For i = 1 To 12
         tots = tots & "N||||0|;"
     Next i
-    arregla tots, DataGrid1, Me
+    arregla tots, DataGrid1, Me, 350
+    
     DataGrid1.ScrollBars = dbgAutomatic
     ' **********************************************************
     
     ' *** alliniar les columnes que siguen numèriques a la dreta ***
     'DataGrid1.Columns(1).Alignment = dbgRight
     'DataGrid1.Columns(2).Alignment = dbgRight
-    'DataGrid1.Columns(4).Alignment = dbgRight
+    DataGrid1.Columns(5).Alignment = dbgRight
     ' *****************************
     
     
@@ -1597,8 +1710,9 @@ Private Sub CargaGrid(Optional vSQL As String)
     ' **************************************
 End Sub
 
+
 Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFocoLin txtaux(Index)
+    ConseguirFocoLin txtAux(Index)
 End Sub
 
 Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -1633,7 +1747,7 @@ End Sub
 Private Sub txtAux_LostFocus(Index As Integer)
 Dim cadMen As String
 
-    If Not PerderFocoGnral(txtaux(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1642,15 +1756,15 @@ Dim cadMen As String
     '*** configurar el LostFocus dels camps (de dins i de fora del grid) ***
     Select Case Index
         Case 0, 2, 3
-            PonerFormatoEntero txtaux(Index)
+            PonerFormatoEntero txtAux(Index)
         
         Case 1
-            If txtaux(Index).Text <> "" Then Exit Sub
-            txtaux(Index).Text = UCase(txtaux(Index).Text)
+            If txtAux(Index).Text <> "" Then Exit Sub
+            txtAux(Index).Text = UCase(txtAux(Index).Text)
         
         Case 12 'cuenta contable
-            If txtaux(Index).Text = "" Then Exit Sub
-            Text2(Index).Text = PonerNombreCuenta(txtaux(Index), Modo)
+            If txtAux(Index).Text = "" Then Exit Sub
+            text2(Index).Text = PonerNombreCuenta(txtAux(Index), Modo)
 
 '       Case 6, 7 'dates
 '           If txtAux(Index).Text <> "" Then PonerFormatoFecha txtAux(Index)
@@ -1661,7 +1775,7 @@ Dim cadMen As String
 '       Case 9
 '           PonerFormatoDecimal txtAux(Index), 4 'tipo 4: Decimal(5,2)
         Case 18 ' codigo de iban
-            txtaux(Index).Text = UCase(txtaux(Index).Text)
+            txtAux(Index).Text = UCase(txtAux(Index).Text)
             
     End Select
     
@@ -1669,19 +1783,19 @@ Dim cadMen As String
     If Index = 2 Or Index = 3 Or Index = 4 Or Index = 5 Then
         Dim cta As String
         Dim CC As String
-        If txtaux(2).Text <> "" And txtaux(3).Text <> "" And txtaux(4).Text <> "" And txtaux(5).Text <> "" Then
+        If txtAux(2).Text <> "" And txtAux(3).Text <> "" And txtAux(4).Text <> "" And txtAux(5).Text <> "" Then
             
-            cta = Format(txtaux(2).Text, "0000") & Format(txtaux(3).Text, "0000") & Format(txtaux(4).Text, "00") & Format(txtaux(5).Text, "0000000000")
+            cta = Format(txtAux(2).Text, "0000") & Format(txtAux(3).Text, "0000") & Format(txtAux(4).Text, "00") & Format(txtAux(5).Text, "0000000000")
             If Len(cta) = 20 Then
     '        Text1(42).Text = Calculo_CC_IBAN(cta, Text1(42).Text)
     
-                If txtaux(18).Text = "" Then
+                If txtAux(18).Text = "" Then
                     'NO ha puesto IBAN
-                    If DevuelveIBAN2("ES", cta, cta) Then txtaux(18).Text = "ES" & cta
+                    If DevuelveIBAN2("ES", cta, cta) Then txtAux(18).Text = "ES" & cta
                 Else
-                    CC = CStr(Mid(txtaux(18).Text, 1, 2))
+                    CC = CStr(Mid(txtAux(18).Text, 1, 2))
                     If DevuelveIBAN2(CStr(CC), cta, cta) Then
-                        If Mid(txtaux(18).Text, 3) <> cta Then
+                        If Mid(txtAux(18).Text, 3) <> cta Then
                             
                             MsgBox "Codigo IBAN distinto del calculado [" & CC & cta & "]", vbExclamation
                         End If
@@ -1719,13 +1833,13 @@ Dim cadMen As String
         'la N es pa dir que es numèric
          
         ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
-        Datos = DevuelveDesdeBD("codbanpr", "banpropi", "codbanpr", txtaux(0).Text, "N")
+        Datos = DevuelveDesdeBD("codbanpr", "banpropi", "codbanpr", txtAux(0).Text, "N")
 '       Datos = DevuelveDesdeBDNew(1, "sdexpgrp", "codsupdt", "codsupdt", txtAux(1).Text, "N", "", "codempre", CStr(vSesion.Empresa), "N")
          
         If Datos <> "" Then
-            MsgBox "Ya existe el Código de Banco: " & txtaux(0).Text, vbExclamation
+            MsgBox "Ya existe el Código de Banco: " & txtAux(0).Text, vbExclamation
             DatosOk = False
-            PonerFoco txtaux(1) '*** posar el foco al 1r camp visible de la PK de la capçalera ***
+            PonerFoco txtAux(1) '*** posar el foco al 1r camp visible de la PK de la capçalera ***
             Exit Function
         End If
         '*************************************************************************************
@@ -1737,15 +1851,15 @@ Dim cadMen As String
         
         
         '[Monica]22/08/2013: añadida la comprobacion de que la cuenta contable sea correcta
-        If txtaux(2).Text = "" Or txtaux(3).Text = "" Or txtaux(4).Text = "" Or txtaux(5).Text = "" Then
+        If txtAux(2).Text = "" Or txtAux(3).Text = "" Or txtAux(4).Text = "" Or txtAux(5).Text = "" Then
             '[Monica]20/11/2013: añadido el codigo de iban
-            txtaux(18).Text = ""
-            txtaux(2).Text = ""
-            txtaux(3).Text = ""
-            txtaux(4).Text = ""
-            txtaux(5).Text = ""
+            txtAux(18).Text = ""
+            txtAux(2).Text = ""
+            txtAux(3).Text = ""
+            txtAux(4).Text = ""
+            txtAux(5).Text = ""
         Else
-            cta = Format(txtaux(2).Text, "0000") & Format(txtaux(3).Text, "0000") & Format(txtaux(4).Text, "00") & Format(txtaux(5).Text, "0000000000")
+            cta = Format(txtAux(2).Text, "0000") & Format(txtAux(3).Text, "0000") & Format(txtAux(4).Text, "00") & Format(txtAux(5).Text, "0000000000")
             If Val(ComprobarCero(cta)) = 0 Then
                 cadMen = "El banco no tiene asignada cuenta bancaria."
                 MsgBox cadMen, vbExclamation
@@ -1755,7 +1869,7 @@ Dim cadMen As String
                 If MsgBox(cadMen, vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                     b = True
                 Else
-                    PonerFoco txtaux(2)
+                    PonerFoco txtAux(2)
                     b = False
                 End If
             Else
@@ -1772,18 +1886,18 @@ Dim cadMen As String
 
 '       sustituido por lo de David
                 BuscaChekc = ""
-                If Me.txtaux(18).Text <> "" Then BuscaChekc = Mid(txtaux(18).Text, 1, 2)
+                If Me.txtAux(18).Text <> "" Then BuscaChekc = Mid(txtAux(18).Text, 1, 2)
                     
                 If DevuelveIBAN2(BuscaChekc, cta, cta) Then
-                    If Me.txtaux(18).Text = "" Then
-                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.txtaux(18).Text = BuscaChekc & cta
+                    If Me.txtAux(18).Text = "" Then
+                        If MsgBox("Poner IBAN ?", vbQuestion + vbYesNo) = vbYes Then Me.txtAux(18).Text = BuscaChekc & cta
                     Else
-                        If Mid(txtaux(18).Text, 3) <> cta Then
+                        If Mid(txtAux(18).Text, 3) <> cta Then
                             cta = "Calculado : " & BuscaChekc & cta
-                            cta = "Introducido: " & Me.txtaux(18).Text & vbCrLf & cta & vbCrLf
+                            cta = "Introducido: " & Me.txtAux(18).Text & vbCrLf & cta & vbCrLf
                             cta = "Error en codigo IBAN" & vbCrLf & cta & "Continuar?"
                             If MsgBox(cta, vbQuestion + vbYesNo) = vbNo Then
-                                PonerFoco txtaux(18)
+                                PonerFoco txtAux(18)
                                 b = False
                             End If
                         End If
@@ -1819,8 +1933,8 @@ Dim i As Byte
     If Modo <> 4 Then 'Modificar
         CargaForaGrid
     Else
-        For i = 0 To txtaux.Count - 1
-            txtaux(i).Text = ""
+        For i = 0 To txtAux.Count - 1
+            txtAux(i).Text = ""
         Next i
     End If
     
@@ -1831,21 +1945,21 @@ End Sub
 Private Sub CargaForaGrid()
         If DataGrid1.Columns.Count <= 2 Then Exit Sub
         ' *** posar als camps de fora del grid el valor de la columna corresponent ***
-        txtaux(6) = DataGrid1.Columns(7).Text
-        txtaux(7) = DataGrid1.Columns(8).Text
-        txtaux(8) = DataGrid1.Columns(9).Text
-        txtaux(9) = DataGrid1.Columns(10).Text
-        txtaux(10) = DataGrid1.Columns(11).Text
-        txtaux(11) = DataGrid1.Columns(12).Text
-        txtaux(12) = DataGrid1.Columns(13).Text
-        txtaux(13) = DataGrid1.Columns(14).Text
-        txtaux(14) = DataGrid1.Columns(15).Text
-        txtaux(15) = DataGrid1.Columns(16).Text
-        txtaux(16) = DataGrid1.Columns(17).Text
-        txtaux(17) = DataGrid1.Columns(18).Text
+        txtAux(6) = DataGrid1.Columns(7).Text
+        txtAux(7) = DataGrid1.Columns(8).Text
+        txtAux(8) = DataGrid1.Columns(9).Text
+        txtAux(9) = DataGrid1.Columns(10).Text
+        txtAux(10) = DataGrid1.Columns(11).Text
+        txtAux(11) = DataGrid1.Columns(12).Text
+        txtAux(12) = DataGrid1.Columns(13).Text
+        txtAux(13) = DataGrid1.Columns(14).Text
+        txtAux(14) = DataGrid1.Columns(15).Text
+        txtAux(15) = DataGrid1.Columns(16).Text
+        txtAux(16) = DataGrid1.Columns(17).Text
+        txtAux(17) = DataGrid1.Columns(18).Text
 
         ' *** Si fora del grid n'hi han camps de descripció, posar-los valor ***
-        Text2(12).Text = PonerNombreCuenta(txtaux(12), Modo)
+        text2(12).Text = PonerNombreCuenta(txtAux(12), Modo)
         
         'txtAux2(4).Text = PonerNombreDeCod(txtAux(4), "poblacio", "despobla", "codpobla", "N")
 '       If txtAux(4).Text <> "" Then _
@@ -1859,10 +1973,10 @@ On Error Resume Next
 
     ' *** posar a huit tots els camps de fora del grid ***
     For i = 6 To 18
-        txtaux(i).Text = ""
+        txtAux(i).Text = ""
     Next i
     ' ****************************************************
-    Text2(12).Text = "" ' el nombre de la cuenta contable la ponemos a cero
+    text2(12).Text = "" ' el nombre de la cuenta contable la ponemos a cero
 
     If Err.Number <> 0 Then Err.Clear
 End Sub

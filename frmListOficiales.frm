@@ -411,6 +411,15 @@ Begin VB.Form frmListOficiales
       End
       Begin VB.Label Label2 
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Left            =   585
          TabIndex        =   18
@@ -636,7 +645,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -725,7 +734,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".codvarie}"
+        Codigo = "{" & tabla & ".codvarie}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHVariedad= """) Then Exit Sub
     End If
@@ -739,13 +748,13 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".fecalbar}"
+        Codigo = "{" & tabla & ".fecalbar}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
     
     ' en rhisfruta seleccionamos lo de horto
-    cadTABLA = "((" & Tabla & " INNER JOIN variedades ON rhisfruta.codvarie = variedades.codvarie) "
+    cadTABLA = "((" & tabla & " INNER JOIN variedades ON rhisfruta.codvarie = variedades.codvarie) "
     cadTABLA = cadTABLA & " INNER JOIN productos ON variedades.codprodu = productos.codprodu) "
     cadTABLA = cadTABLA & " INNER JOIN grupopro ON productos.codgrupo = grupopro.codgrupo "
     cadTABLA = cadTABLA & " and grupopro.codgrupo <> 5 and grupopro.codgrupo <> 6 " ' grupo no puede ser 5=almazara ni 6=bodega
@@ -820,7 +829,7 @@ Dim List As Collection
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "rhisfruta"
+    tabla = "rhisfruta"
     Me.Label2.Caption = ""
     Me.Refresh
         
@@ -1154,7 +1163,7 @@ Dim i As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 Dim Registro As String
-Dim CADENA As String
+Dim cadena As String
 Dim vCliente As CCliente
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
@@ -1203,7 +1212,7 @@ On Error GoTo eCargarTemporal
                                   '(codusu, variedad,  superficie,kilosnetEnt,kilosnetSal, kilosnetVC, kilosmer1, kilosmer2, kilosmer3, kilosmer4)
     Sql4 = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4,  importeb1, importeb2, importeb3, importeb4) values "
     
-    CADENA = ""
+    cadena = ""
     
     Set Rs = New ADODB.Recordset
     Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -1211,15 +1220,15 @@ On Error GoTo eCargarTemporal
     If Not Rs.EOF Then
         VarieAnt = DBLet(Rs!codvarie, "N")
                                   '(codusu, variedad)
-        CADENA = "(" & vUsu.Codigo & ","
-        CADENA = CADENA & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
+        cadena = "(" & vUsu.Codigo & ","
+        cadena = cadena & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
     End If
     
     While Not Rs.EOF
         Variedad = DBLet(Rs!codvarie, "N")
         If VarieAnt <> Variedad Then
-            CADENA = CADENA & "(" & vUsu.Codigo & ","
-            CADENA = CADENA & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
+            cadena = cadena & "(" & vUsu.Codigo & ","
+            cadena = cadena & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
             
             VarieAnt = DBLet(Variedad, "N")
         End If
@@ -1228,10 +1237,10 @@ On Error GoTo eCargarTemporal
     Wend
     Set Rs = Nothing
     
-    If CADENA <> "" Then
+    If cadena <> "" Then
                                       '(codusu, variedad, superficie,kilosnetEnt,kilosnetSal,kilosVC,  kilosmer1, kilosmer2, kilosmer3, kilosmer4)
         SQL = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4, importeb1, importeb2, importeb3, importeb4) values "
-        SQL = SQL & Mid(CADENA, 1, Len(CADENA) - 1) ' quitamos la ultima coma
+        SQL = SQL & Mid(cadena, 1, Len(cadena) - 1) ' quitamos la ultima coma
         conn.Execute SQL
     
         SQL = "select codigo1 from tmpinformes where codusu = " & vUsu.Codigo & " order by codigo1 "

@@ -5,16 +5,16 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmVtasLinAlbaranes 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Variedades de Albaranes"
-   ClientHeight    =   9045
+   ClientHeight    =   10365
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   11145
+   ClientWidth     =   13185
    Icon            =   "frmVtasLinAlbaranes.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9045
-   ScaleWidth      =   11145
+   ScaleHeight     =   10365
+   ScaleWidth      =   13185
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameAux0 
@@ -29,11 +29,11 @@ Begin VB.Form frmVtasLinAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   2505
+      Height          =   2640
       Left            =   135
       TabIndex        =   48
-      Top             =   5820
-      Width           =   10750
+      Top             =   6900
+      Width           =   12750
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
@@ -411,14 +411,14 @@ Begin VB.Form frmVtasLinAlbaranes
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
          Bindings        =   "frmVtasLinAlbaranes.frx":000C
-         Height          =   1695
+         Height          =   1680
          Index           =   0
          Left            =   135
          TabIndex        =   50
          Top             =   630
-         Width           =   10525
-         _ExtentX        =   18574
-         _ExtentY        =   2990
+         Width           =   12525
+         _ExtentX        =   22093
+         _ExtentY        =   2963
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
@@ -482,12 +482,12 @@ Begin VB.Form frmVtasLinAlbaranes
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   5265
+      Height          =   6345
       Index           =   0
       Left            =   135
       TabIndex        =   43
       Top             =   540
-      Width           =   10765
+      Width           =   12705
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -500,11 +500,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   26
-         Left            =   9165
+         Left            =   11010
          MaxLength       =   10
          TabIndex        =   24
          Tag             =   "Número Traza6|T|S|||albaran_variedad|nrotraza6|||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1320
       End
       Begin VB.TextBox Text1 
@@ -519,11 +519,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   25
-         Left            =   7815
+         Left            =   9525
          MaxLength       =   10
          TabIndex        =   23
          Tag             =   "Número Traza5|T|S|||albaran_variedad|nrotraza5|||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1320
       End
       Begin VB.TextBox Text1 
@@ -538,11 +538,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   24
-         Left            =   6495
+         Left            =   8025
          MaxLength       =   10
          TabIndex        =   22
          Tag             =   "Número Traza4|T|S|||albaran_variedad|nrotraza4|||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1320
       End
       Begin VB.TextBox Text1 
@@ -557,11 +557,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   23
-         Left            =   9165
+         Left            =   11010
          MaxLength       =   10
          TabIndex        =   21
          Tag             =   "Número Traza3|T|S|||albaran_variedad|nrotraza3|||"
-         Top             =   4155
+         Top             =   4965
          Width           =   1320
       End
       Begin VB.TextBox Text1 
@@ -576,11 +576,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   22
-         Left            =   7815
+         Left            =   9525
          MaxLength       =   10
          TabIndex        =   20
          Tag             =   "Número Traza2|T|S|||albaran_variedad|nrotraza2|||"
-         Top             =   4155
+         Top             =   4965
          Width           =   1320
       End
       Begin VB.TextBox Text1 
@@ -595,12 +595,12 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   21
-         Left            =   6495
+         Left            =   8025
          MaxLength       =   10
          TabIndex        =   19
          Tag             =   "Número Traza1|T|S|||albaran_variedad|nrotraza1|||"
          Text            =   "0000000000"
-         Top             =   4155
+         Top             =   4965
          Width           =   1320
       End
       Begin VB.TextBox text2 
@@ -617,11 +617,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   20
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   80
          Text            =   "12345678901234567890"
-         Top             =   2820
-         Width           =   7890
+         Top             =   3405
+         Width           =   9645
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -641,7 +641,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   9
          Tag             =   "Cod.Comsionista|N|S|0|999|albaran_variedad|codcomis|000||"
          Text            =   "123"
-         Top             =   2820
+         Top             =   3405
          Width           =   810
       End
       Begin VB.CheckBox Check1 
@@ -657,10 +657,10 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   240
          Index           =   1
-         Left            =   8940
+         Left            =   10785
          TabIndex        =   2
          Tag             =   "Facturar|N|N|||albaran_variedad|sefactura|0||"
-         Top             =   255
+         Top             =   300
          Width           =   1260
       End
       Begin VB.ComboBox Combo1 
@@ -674,12 +674,12 @@ Begin VB.Form frmVtasLinAlbaranes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   8745
+         Left            =   9825
          Style           =   2  'Dropdown List
          TabIndex        =   17
          Tag             =   "Tipo Varieadad|N|N|||albaran_variedad|codtipo||N|"
-         Top             =   3540
-         Width           =   1755
+         Top             =   4215
+         Width           =   2475
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -693,12 +693,12 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   7110
+         Left            =   8010
          MaxLength       =   15
          TabIndex        =   16
          Tag             =   "Número Traza|T|S|||albaran_variedad|nrotraza|||"
          Text            =   "123456789012345"
-         Top             =   3540
+         Top             =   4215
          Width           =   1530
       End
       Begin VB.TextBox Text1 
@@ -719,7 +719,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   8
          Tag             =   "Cod.Palet|N|S|0|999|albaran_variedad|codpalet|000||"
          Text            =   "123"
-         Top             =   2460
+         Top             =   2955
          Width           =   810
       End
       Begin VB.TextBox text2 
@@ -736,11 +736,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   18
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   75
          Text            =   "12345678901234567890"
-         Top             =   2460
-         Width           =   7890
+         Top             =   2955
+         Width           =   9645
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -755,11 +755,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   17
-         Left            =   5535
+         Left            =   6255
          MaxLength       =   12
          TabIndex        =   15
          Tag             =   "Referencia|T|S|||albaran_variedad|referencia|||"
-         Top             =   3540
+         Top             =   4215
          Width           =   1515
       End
       Begin VB.TextBox Text1 
@@ -775,12 +775,12 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   1830
+         Left            =   1695
          MaxLength       =   6
          TabIndex        =   72
          Tag             =   "Unidades|N|S|0|99999|albaran_variedad|unidades|##,##0||"
-         Top             =   4755
-         Width           =   1245
+         Top             =   5655
+         Width           =   1380
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -800,8 +800,8 @@ Begin VB.Form frmVtasLinAlbaranes
          ScrollBars      =   2  'Vertical
          TabIndex        =   18
          Tag             =   "Observaciones|T|S|||albaran_variedad|observac|||"
-         Top             =   4155
-         Width           =   6225
+         Top             =   4965
+         Width           =   7575
       End
       Begin VB.TextBox text2 
          BackColor       =   &H80000018&
@@ -817,11 +817,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   68
          Text            =   "12345678901234567890"
-         Top             =   2070
-         Width           =   7890
+         Top             =   2475
+         Width           =   9645
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -841,7 +841,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   7
          Tag             =   "Incidencia|N|N|0|999|albaran_variedad|codincid|000||"
          Text            =   "123"
-         Top             =   2070
+         Top             =   2475
          Width           =   810
       End
       Begin VB.TextBox Text1 
@@ -857,11 +857,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   2985
+         Left            =   3345
          MaxLength       =   16
          TabIndex        =   12
          Tag             =   "Precio Definitivo|N|S|||albaran_variedad|preciodef|#0.0000||"
-         Top             =   3540
+         Top             =   4215
          Width           =   1215
       End
       Begin VB.TextBox Text1 
@@ -877,11 +877,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   11
-         Left            =   4290
+         Left            =   4830
          MaxLength       =   3
          TabIndex        =   13
          Tag             =   "Total Palets|T|S|||albaran_variedad|totpalet|||"
-         Top             =   3540
+         Top             =   4215
          Width           =   1065
       End
       Begin VB.TextBox Text1 
@@ -901,7 +901,7 @@ Begin VB.Form frmVtasLinAlbaranes
          MaxLength       =   16
          TabIndex        =   25
          Tag             =   "Numero Cajas|N|S|0|999999|albaran_variedad|numcajas|###,##0||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1245
       End
       Begin VB.TextBox Text1 
@@ -917,11 +917,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   1485
+         Left            =   1665
          MaxLength       =   16
          TabIndex        =   11
          Tag             =   "Precio Provisional|N|S|||albaran_variedad|preciopro|#0.0000||"
-         Top             =   3540
+         Top             =   4215
          Width           =   1350
       End
       Begin VB.TextBox Text1 
@@ -941,7 +941,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   6
          Tag             =   "Forfait|T|N|||albaran_variedad|codforfait|||"
          Text            =   "1234567890123456"
-         Top             =   1710
+         Top             =   2025
          Width           =   1530
       End
       Begin VB.TextBox text2 
@@ -958,11 +958,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   3420
+         Left            =   3465
          TabIndex        =   62
          Text            =   "12345678901234567890"
-         Top             =   1710
-         Width           =   7125
+         Top             =   2025
+         Width           =   8880
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -982,7 +982,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   5
          Tag             =   "Marca|N|N|0|999|albaran_variedad|codmarca|000||"
          Text            =   "123"
-         Top             =   1350
+         Top             =   1575
          Width           =   810
       End
       Begin VB.TextBox text2 
@@ -999,11 +999,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   60
          Text            =   "12345678901234567890"
-         Top             =   1350
-         Width           =   7890
+         Top             =   1575
+         Width           =   9645
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1023,7 +1023,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   4
          Tag             =   "Variedad Comercial|N|N|0|999999|albaran_variedad|codvarco|000000||"
          Text            =   "123456"
-         Top             =   990
+         Top             =   1125
          Width           =   810
       End
       Begin VB.TextBox text2 
@@ -1040,11 +1040,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   58
          Text            =   "12345678901234567890"
-         Top             =   990
-         Width           =   7890
+         Top             =   1125
+         Width           =   9645
       End
       Begin VB.TextBox text2 
          BackColor       =   &H80000018&
@@ -1060,11 +1060,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   2655
+         Left            =   2700
          TabIndex        =   55
          Text            =   "12345678901234567890"
-         Top             =   630
-         Width           =   7890
+         Top             =   675
+         Width           =   9645
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1084,7 +1084,7 @@ Begin VB.Form frmVtasLinAlbaranes
          TabIndex        =   3
          Tag             =   "Variedad|N|N|0|999999|albaran_variedad|codvarie|000000||"
          Text            =   "123456"
-         Top             =   630
+         Top             =   675
          Width           =   810
       End
       Begin VB.TextBox Text1 
@@ -1100,11 +1100,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   4995
+         Left            =   4860
          MaxLength       =   16
          TabIndex        =   27
          Tag             =   "Peso Neto|N|S|0|999999|albaran_variedad|pesoneto|###,##0||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1425
       End
       Begin VB.TextBox Text1 
@@ -1120,11 +1120,11 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   3420
+         Left            =   3330
          MaxLength       =   16
          TabIndex        =   26
          Tag             =   "Peso Bruto|N|S|0|999999|albaran_variedad|pesobrut|###,##0||"
-         Top             =   4755
+         Top             =   5655
          Width           =   1200
       End
       Begin VB.TextBox Text1 
@@ -1144,7 +1144,7 @@ Begin VB.Form frmVtasLinAlbaranes
          MaxLength       =   3
          TabIndex        =   10
          Tag             =   "Categoria|T|S|||albaran_variedad|categori|||"
-         Top             =   3540
+         Top             =   4215
          Width           =   1215
       End
       Begin VB.TextBox Text1 
@@ -1193,11 +1193,11 @@ Begin VB.Form frmVtasLinAlbaranes
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   14
-         Left            =   3105
+         Left            =   3375
          MaxLength       =   8
          TabIndex        =   14
          Tag             =   "Imp.Comisión|N|S|||albaran_variedad|impcomis|#,##0.00||"
-         Top             =   3555
+         Top             =   4230
          Width           =   1035
       End
       Begin VB.Label Label1 
@@ -1213,9 +1213,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   17
-         Left            =   9165
+         Left            =   11010
          TabIndex        =   87
-         Top             =   4545
+         Top             =   5445
          Width           =   840
       End
       Begin VB.Label Label1 
@@ -1231,9 +1231,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   16
-         Left            =   7860
+         Left            =   9570
          TabIndex        =   86
-         Top             =   4545
+         Top             =   5445
          Width           =   855
       End
       Begin VB.Label Label1 
@@ -1249,9 +1249,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   15
-         Left            =   6495
+         Left            =   8025
          TabIndex        =   85
-         Top             =   4545
+         Top             =   5445
          Width           =   1590
       End
       Begin VB.Label Label1 
@@ -1267,9 +1267,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   9165
+         Left            =   11010
          TabIndex        =   84
-         Top             =   3945
+         Top             =   4755
          Width           =   780
       End
       Begin VB.Label Label1 
@@ -1285,9 +1285,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   7860
+         Left            =   9570
          TabIndex        =   83
-         Top             =   3945
+         Top             =   4755
          Width           =   870
       End
       Begin VB.Label Label1 
@@ -1303,9 +1303,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   12
-         Left            =   6495
+         Left            =   8025
          TabIndex        =   82
-         Top             =   3945
+         Top             =   4755
          Width           =   840
       End
       Begin VB.Label Label5 
@@ -1322,7 +1322,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   81
-         Top             =   2820
+         Top             =   3405
          Width           =   1275
       End
       Begin VB.Image imgBuscar 
@@ -1330,17 +1330,17 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   6
          Left            =   1575
          ToolTipText     =   "Buscar Comisionista"
-         Top             =   2820
+         Top             =   3405
          Width           =   240
       End
       Begin VB.Image imgAyuda 
          Height          =   240
          Index           =   0
-         Left            =   10275
+         Left            =   12120
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   225
+         Top             =   270
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -1356,9 +1356,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   11
-         Left            =   8745
+         Left            =   9825
          TabIndex        =   79
-         Top             =   3330
+         Top             =   4005
          Width           =   1455
       End
       Begin VB.Label Label1 
@@ -1374,9 +1374,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   49
-         Left            =   7140
+         Left            =   8040
          TabIndex        =   77
-         Top             =   3315
+         Top             =   3990
          Width           =   1545
       End
       Begin VB.Image imgBuscar 
@@ -1384,7 +1384,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   5
          Left            =   1575
          ToolTipText     =   "Buscar tipo palet"
-         Top             =   2460
+         Top             =   2955
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -1401,7 +1401,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   76
-         Top             =   2460
+         Top             =   2955
          Width           =   1140
       End
       Begin VB.Label Label1 
@@ -1417,9 +1417,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   10
-         Left            =   5535
+         Left            =   6255
          TabIndex        =   74
-         Top             =   3315
+         Top             =   3990
          Width           =   1095
       End
       Begin VB.Label Label1 
@@ -1435,9 +1435,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   1830
+         Left            =   1695
          TabIndex        =   73
-         Top             =   4530
+         Top             =   5430
          Width           =   960
       End
       Begin VB.Label Label29 
@@ -1454,7 +1454,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   210
          TabIndex        =   71
-         Top             =   3915
+         Top             =   4725
          Width           =   1455
       End
       Begin VB.Image imgZoom 
@@ -1462,16 +1462,16 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   0
          Left            =   1740
          ToolTipText     =   "Zoom descripción"
-         Top             =   3915
+         Top             =   4725
          Width           =   240
       End
       Begin VB.Label Label1 
          Caption         =   "Imp.Comisión"
          Height          =   255
          Index           =   8
-         Left            =   3045
+         Left            =   3360
          TabIndex        =   70
-         Top             =   3510
+         Top             =   4230
          Width           =   1095
       End
       Begin VB.Label Label3 
@@ -1488,7 +1488,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   69
-         Top             =   2070
+         Top             =   2475
          Width           =   1140
       End
       Begin VB.Image imgBuscar 
@@ -1496,7 +1496,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   4
          Left            =   1575
          ToolTipText     =   "Buscar Marca"
-         Top             =   2070
+         Top             =   2475
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -1512,9 +1512,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   7
-         Left            =   2985
+         Left            =   3345
          TabIndex        =   67
-         Top             =   3315
+         Top             =   3990
          Width           =   1230
       End
       Begin VB.Label Label1 
@@ -1530,9 +1530,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   4275
+         Left            =   4815
          TabIndex        =   66
-         Top             =   3315
+         Top             =   3990
          Width           =   1230
       End
       Begin VB.Label Label1 
@@ -1550,7 +1550,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   5
          Left            =   210
          TabIndex        =   65
-         Top             =   4530
+         Top             =   5430
          Width           =   960
       End
       Begin VB.Label Label1 
@@ -1566,9 +1566,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   4
-         Left            =   1485
+         Left            =   1665
          TabIndex        =   64
-         Top             =   3315
+         Top             =   3990
          Width           =   1410
       End
       Begin VB.Image imgBuscar 
@@ -1576,7 +1576,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   3
          Left            =   1575
          ToolTipText     =   "Buscar Forfait"
-         Top             =   1710
+         Top             =   2025
          Width           =   240
       End
       Begin VB.Label Label13 
@@ -1593,7 +1593,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   63
-         Top             =   1710
+         Top             =   2025
          Width           =   690
       End
       Begin VB.Image imgBuscar 
@@ -1601,7 +1601,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   2
          Left            =   1575
          ToolTipText     =   "Buscar Marca"
-         Top             =   1350
+         Top             =   1575
          Width           =   240
       End
       Begin VB.Label Label12 
@@ -1618,7 +1618,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   61
-         Top             =   1350
+         Top             =   1575
          Width           =   690
       End
       Begin VB.Image imgBuscar 
@@ -1626,7 +1626,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   1
          Left            =   1575
          ToolTipText     =   "Buscar Variedad Comercial"
-         Top             =   990
+         Top             =   1125
          Width           =   240
       End
       Begin VB.Label Label2 
@@ -1643,7 +1643,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   59
-         Top             =   990
+         Top             =   1125
          Width           =   1500
       End
       Begin VB.Label Label10 
@@ -1660,7 +1660,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Height          =   255
          Left            =   180
          TabIndex        =   56
-         Top             =   630
+         Top             =   675
          Width           =   1005
       End
       Begin VB.Image imgBuscar 
@@ -1668,7 +1668,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   0
          Left            =   1575
          ToolTipText     =   "Buscar Variedad"
-         Top             =   630
+         Top             =   675
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -1684,9 +1684,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   4995
+         Left            =   4860
          TabIndex        =   54
-         Top             =   4545
+         Top             =   5445
          Width           =   1095
       End
       Begin VB.Label Label1 
@@ -1702,9 +1702,9 @@ Begin VB.Form frmVtasLinAlbaranes
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   3420
+         Left            =   3330
          TabIndex        =   53
-         Top             =   4530
+         Top             =   5430
          Width           =   1185
       End
       Begin VB.Label Label1 
@@ -1722,7 +1722,7 @@ Begin VB.Form frmVtasLinAlbaranes
          Index           =   1
          Left            =   210
          TabIndex        =   52
-         Top             =   3315
+         Top             =   3990
          Width           =   1095
       End
       Begin VB.Label Label6 
@@ -1767,7 +1767,7 @@ Begin VB.Form frmVtasLinAlbaranes
       Index           =   0
       Left            =   135
       TabIndex        =   41
-      Top             =   8310
+      Top             =   9630
       Width           =   2865
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1801,9 +1801,9 @@ Begin VB.Form frmVtasLinAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9765
+      Left            =   11790
       TabIndex        =   29
-      Top             =   8460
+      Top             =   9855
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1818,9 +1818,9 @@ Begin VB.Form frmVtasLinAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   8595
+      Left            =   10620
       TabIndex        =   28
-      Top             =   8445
+      Top             =   9840
       Width           =   1065
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -1877,8 +1877,8 @@ Begin VB.Form frmVtasLinAlbaranes
       TabIndex        =   46
       Top             =   0
       Visible         =   0   'False
-      Width           =   11145
-      _ExtentX        =   19659
+      Width           =   13185
+      _ExtentX        =   23257
       _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
@@ -1984,9 +1984,9 @@ Begin VB.Form frmVtasLinAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9765
+      Left            =   11790
       TabIndex        =   45
-      Top             =   8445
+      Top             =   9855
       Visible         =   0   'False
       Width           =   1065
    End
@@ -2136,7 +2136,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim cadB As String
+Dim CadB As String
 
 Dim KilosAnt As Currency
 Dim CajasAnt As Currency
@@ -2303,13 +2303,13 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-Dim cad As String
+Dim Cad As String
 
-    cad = ""
+    Cad = ""
     If Text1(0).Text <> "" And Text1(1).Text <> "" Then
-        cad = Text1(0).Text & "|" & Text1(1).Text & "|"
+        Cad = Text1(0).Text & "|" & Text1(1).Text & "|"
     End If
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
 
     CheckValueGuardar Me.Name, Me.chkVistaPrevia(0).Value
     Screen.MousePointer = vbDefault
@@ -2612,7 +2612,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim SQL As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2644,12 +2644,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -2808,12 +2808,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    cadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -2822,22 +2822,22 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-    Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & ParaGrid(Text1(0), 20, "Código")
-    cad = cad & ParaGrid(Text1(1), 20, "Confección")
-    cad = cad & ParaGrid(Text1(2), 60, "Descripción")
-    If cad <> "" Then
+    Cad = ""
+    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
+    Cad = Cad & ParaGrid(Text1(1), 20, "Confección")
+    Cad = Cad & ParaGrid(Text1(2), 60, "Descripción")
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vtabla = NombreTabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
@@ -2857,7 +2857,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
 Dim i As Integer
 Dim J As Integer
@@ -2895,7 +2895,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    cadB = ""
+    CadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -2959,7 +2959,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -2973,11 +2973,11 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Forfait?"
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Forfait?"
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3205,14 +3205,14 @@ End Function
 
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(numalbar=" & DBSet(Text1(0).Text, "N") & ")"
-    cad = cad & " and (numlinea = " & DBSet(Text1(1).Text, "N") & ")"
+    Cad = "(numalbar=" & DBSet(Text1(0).Text, "N") & ")"
+    Cad = Cad & " and (numlinea = " & DBSet(Text1(1).Text, "N") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
-    If SituarDataMULTI(Data1, cad, Indicador) Then
+    If SituarDataMULTI(Data1, Cad, Indicador) Then
     'If SituarData(Data1, cad, Indicador) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
@@ -3894,7 +3894,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
    If Not txtAux(Index).MultiLine Then ConseguirFocoLin txtAux(Index)
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -4117,8 +4117,9 @@ Dim tots As String
         Case 0 'calibres
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;N||||0|;N||||0|;N||||0|;" 'numalbar,numlinea,numline1,codvarie
-            tots = tots & "S|txtAux(1)|T|Calibre|1000|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|txtAux2(2)|T|Denominación|2000|;S|txtAux(2)|T|Cajas|1200|;S|txtAux(8)|T|Uds|1100|;S|txtAux(6)|T|Peso Bruto|1200|;S|txtAux(7)|T|Peso Neto|1200|;S|txtAux2(0)|T|Kilos/Caja|1100|;S|txtAux(9)|T|Pr.Prov|1100|;"
+            tots = tots & "S|txtAux(1)|T|Calibre|1200|;S|btnBuscar(0)|B|||;"
+            tots = tots & "S|txtAux2(2)|T|Denominación|2650|;S|txtAux(2)|T|Cajas|1400|;S|txtAux(8)|T|Uds|1300|;S|txtAux(6)|T|Peso Bruto|1400|;"
+            tots = tots & "S|txtAux(7)|T|Peso Neto|1400|;S|txtAux2(0)|T|Kilos/Caja|1300|;S|txtAux(9)|T|Pr.Prov|1300|;"
             
             arregla tots, DataGridAux(Index), Me, 350
         
@@ -4579,16 +4580,16 @@ EModificar:
 End Function
 
 Private Sub CargaCombo()
-Dim cad As String
+Dim Cad As String
 Dim Rs As ADODB.Recordset
 
     On Error GoTo ErrCarga
     
     Combo1.Clear
     
-    cad = "SELECT * FROM tipovarie ORDER BY codtipo"
+    Cad = "SELECT * FROM tipovarie ORDER BY codtipo"
     Set Rs = New ADODB.Recordset
-    Rs.Open cad, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Cad, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     'Combo1.AddItem "" 'pose uno en blanc sinse valor
     While Not Rs.EOF

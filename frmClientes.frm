@@ -19,34 +19,16 @@ Begin VB.Form frmClientes
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Tag             =   "Cuenta Principal|N|N|0|1|cltebanc|ctaprpal|0||"
-   Begin VB.CheckBox chkVistaPrevia 
-      Caption         =   "Vista previa"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   300
-      Index           =   0
-      Left            =   10620
-      TabIndex        =   160
-      Top             =   330
-      Width           =   1605
-   End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   3915
-      TabIndex        =   158
+      TabIndex        =   160
       Top             =   135
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   159
+         TabIndex        =   161
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -76,6 +58,24 @@ Begin VB.Form frmClientes
             EndProperty
          EndProperty
       End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   0
+      Left            =   11655
+      TabIndex        =   158
+      Top             =   330
+      Width           =   1605
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
@@ -384,39 +384,39 @@ Begin VB.Form frmClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "FrameDatosDtoAdministracion"
-      Tab(0).Control(1)=   "Text1(22)"
-      Tab(0).Control(2)=   "Text1(18)"
-      Tab(0).Control(3)=   "text2(6)"
-      Tab(0).Control(4)=   "Text1(6)"
-      Tab(0).Control(5)=   "Text1(5)"
-      Tab(0).Control(6)=   "Text1(21)"
-      Tab(0).Control(7)=   "Text1(9)"
-      Tab(0).Control(8)=   "Text1(4)"
-      Tab(0).Control(9)=   "Text1(3)"
-      Tab(0).Control(10)=   "Text1(8)"
-      Tab(0).Control(11)=   "Text1(7)"
+      Tab(0).Control(0)=   "Label5"
+      Tab(0).Control(1)=   "Label6(0)"
+      Tab(0).Control(2)=   "imgWeb(0)"
+      Tab(0).Control(3)=   "Label9"
+      Tab(0).Control(4)=   "Label29"
+      Tab(0).Control(5)=   "imgZoom(0)"
+      Tab(0).Control(6)=   "imgBuscar(0)"
+      Tab(0).Control(7)=   "Label7"
+      Tab(0).Control(8)=   "Label28"
+      Tab(0).Control(9)=   "Label1(26)"
+      Tab(0).Control(10)=   "imgBuscar(1)"
+      Tab(0).Control(11)=   "imgBuscar(8)"
       Tab(0).Control(12)=   "Label40"
-      Tab(0).Control(13)=   "imgBuscar(8)"
-      Tab(0).Control(14)=   "imgBuscar(1)"
-      Tab(0).Control(15)=   "Label1(26)"
-      Tab(0).Control(16)=   "Label28"
-      Tab(0).Control(17)=   "Label7"
-      Tab(0).Control(18)=   "imgBuscar(0)"
-      Tab(0).Control(19)=   "imgZoom(0)"
-      Tab(0).Control(20)=   "Label29"
-      Tab(0).Control(21)=   "Label9"
-      Tab(0).Control(22)=   "imgWeb(0)"
-      Tab(0).Control(23)=   "Label6(0)"
-      Tab(0).Control(24)=   "Label5"
+      Tab(0).Control(13)=   "Text1(7)"
+      Tab(0).Control(14)=   "Text1(8)"
+      Tab(0).Control(15)=   "Text1(3)"
+      Tab(0).Control(16)=   "Text1(4)"
+      Tab(0).Control(17)=   "Text1(9)"
+      Tab(0).Control(18)=   "Text1(21)"
+      Tab(0).Control(19)=   "Text1(5)"
+      Tab(0).Control(20)=   "Text1(6)"
+      Tab(0).Control(21)=   "text2(6)"
+      Tab(0).Control(22)=   "Text1(18)"
+      Tab(0).Control(23)=   "Text1(22)"
+      Tab(0).Control(24)=   "FrameDatosDtoAdministracion"
       Tab(0).ControlCount=   25
       TabCaption(1)   =   "Direcciones"
       TabPicture(1)   =   "frmClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame3"
-      Tab(1).Control(1)=   "FrameDatosContacto"
-      Tab(1).Control(2)=   "Frame4"
-      Tab(1).Control(3)=   "Frame5"
+      Tab(1).Control(0)=   "Frame5"
+      Tab(1).Control(1)=   "Frame4"
+      Tab(1).Control(2)=   "FrameDatosContacto"
+      Tab(1).Control(3)=   "Frame3"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Destinos"
       TabPicture(2)   =   "frmClientes.frx":0044
@@ -444,12 +444,12 @@ Begin VB.Form frmClientes
       TabCaption(4)   =   "Datos Seguros"
       TabPicture(4)   =   "frmClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Label46"
-      Tab(4).Control(1)=   "Label47"
-      Tab(4).Control(2)=   "Label48"
-      Tab(4).Control(3)=   "Text1(34)"
-      Tab(4).Control(4)=   "Text1(35)"
-      Tab(4).Control(5)=   "Text1(36)"
+      Tab(4).Control(0)=   "Text1(36)"
+      Tab(4).Control(1)=   "Text1(35)"
+      Tab(4).Control(2)=   "Text1(34)"
+      Tab(4).Control(3)=   "Label48"
+      Tab(4).Control(4)=   "Label47"
+      Tab(4).Control(5)=   "Label46"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Precios"
       TabPicture(5)   =   "frmClientes.frx":0098
@@ -3544,8 +3544,8 @@ Begin VB.Form frmClientes
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   12660
-      TabIndex        =   161
+      Left            =   13695
+      TabIndex        =   159
       Top             =   270
       Width           =   405
       _ExtentX        =   714
@@ -3785,7 +3785,7 @@ Private Sub cmdAceptar_Click()
         Case 3 'INSERTAR
             If DatosOk Then
                 If InsertarDesdeForm2(Me, 1) Then
-                    Text2(24).Text = PonerNombreCuenta(Text1(24), Modo, Text1(0))
+                    text2(24).Text = PonerNombreCuenta(Text1(24), Modo, Text1(0))
                     ' *** canviar o llevar el WHERE, repasar codEmpre ****
                     Data1.RecordSource = "Select * from " & NombreTabla & Ordenacion
                     'Data1.RecordSource = "Select * from " & NombreTabla & " where codempre = " & codEmpre & Ordenacion
@@ -4155,18 +4155,18 @@ Dim b As Boolean
     ' ***************************
         
     b = (Modo = 5)
-    For i = 0 To txtaux.Count - 1
-        txtaux(i).Enabled = b
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Enabled = b
     Next i
     
     '[Monica]22/10/2012: buscar por codigo destino
     For i = 0 To 17 '09/09/2010
-        BloquearTxt txtaux(i), True
-        txtaux(i).Enabled = False
+        BloquearTxt txtAux(i), True
+        txtAux(i).Enabled = False
     Next i
     For i = 0 To 17
-        BloquearTxt txtaux(i), (Modo <> 1 And Modo <> 5)
-        txtaux(i).Enabled = (Modo = 1) Or (Modo = 5)
+        BloquearTxt txtAux(i), (Modo <> 1 And Modo <> 5)
+        txtAux(i).Enabled = (Modo = 1) Or (Modo = 5)
     Next i
     'Hasta aqui
     
@@ -4274,31 +4274,31 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim SQL As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
         Case 0 'DESTINOS
-            Tabla = "destinos"
+            tabla = "destinos"
             SQL = "SELECT destinos.codclien,destinos.coddesti,destinos.nomdesti,destinos.domdesti,destinos.codpobla,destinos.pobdesti,destinos.prodesti,destinos.codpaise,paises.nompaise,destinos.codtimer,tipomer.nomtimer,teldesti,faxdesti,movdesti,maidesti,perdesti,codcajas,codpalet,codcaden, codigoedi "
-            SQL = SQL & " FROM " & Tabla & " INNER JOIN paises ON " & Tabla & ".codpaise=paises.codpaise INNER JOIN tipomer ON " & Tabla & ".codtimer=tipomer.codtimer "
+            SQL = SQL & " FROM " & tabla & " INNER JOIN paises ON " & tabla & ".codpaise=paises.codpaise INNER JOIN tipomer ON " & tabla & ".codtimer=tipomer.codtimer "
             If enlaza Then
                 SQL = SQL & ObtenerWhereCab(True)
             Else
                 SQL = SQL & " WHERE codclien = -1"
             End If
-            SQL = SQL & " ORDER BY " & Tabla & ".coddesti "
+            SQL = SQL & " ORDER BY " & tabla & ".coddesti "
             
         Case 1 'Clientes
-            Tabla = "clientes_precio"
+            tabla = "clientes_precio"
             SQL = "SELECT clientes_precio.codclien,clientes_precio.codartic,sartic.nomartic,clientes_precio.precioar"
-            SQL = SQL & " FROM " & Tabla & " INNER JOIN sartic ON " & Tabla & ".codartic=sartic.codartic "
+            SQL = SQL & " FROM " & tabla & " INNER JOIN sartic ON " & tabla & ".codartic=sartic.codartic "
             If enlaza Then
                 SQL = SQL & ObtenerWhereCab(True)
             Else
                 SQL = SQL & " WHERE codclien = -1"
             End If
-            SQL = SQL & " ORDER BY " & Tabla & ".codartic "
+            SQL = SQL & " ORDER BY " & tabla & ".codartic "
             
     End Select
     ' ********************************************************************************
@@ -4343,8 +4343,8 @@ End Sub
 
 Private Sub frmCad_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Cadenas
-    txtaux(11).Text = RecuperaValor(CadenaSeleccion, 1) 'codcadena
-    FormateaCampo txtaux(11)
+    txtAux(11).Text = RecuperaValor(CadenaSeleccion, 1) 'codcadena
+    FormateaCampo txtAux(11)
     txtAux2(1).Text = RecuperaValor(CadenaSeleccion, 2) 'nomcadena
 End Sub
 
@@ -4358,13 +4358,13 @@ Private Sub frmFpa_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Formas de pago
     Text1(27).Text = RecuperaValor(CadenaSeleccion, 1) 'codforpa
     FormateaCampo Text1(27)
-    Text2(27).Text = RecuperaValor(CadenaSeleccion, 2) 'nomforpa
+    text2(27).Text = RecuperaValor(CadenaSeleccion, 2) 'nomforpa
 End Sub
 
 Private Sub frmPais2_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Paises
-    txtaux(4).Text = RecuperaValor(CadenaSeleccion, 1) 'codpaise
-    FormateaCampo txtaux(4)
+    txtAux(4).Text = RecuperaValor(CadenaSeleccion, 1) 'codpaise
+    FormateaCampo txtAux(4)
     txtAux2(2).Text = RecuperaValor(CadenaSeleccion, 2) 'nompaise
 End Sub
 
@@ -4372,7 +4372,7 @@ Private Sub frmPais_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento paises
     Text1(6).Text = RecuperaValor(CadenaSeleccion, 1) 'codpais
     FormateaCampo Text1(6)
-    Text2(6).Text = RecuperaValor(CadenaSeleccion, 2) 'nompais
+    text2(6).Text = RecuperaValor(CadenaSeleccion, 2) 'nompais
 
 End Sub
 
@@ -4380,13 +4380,13 @@ Private Sub frmTIva_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Tipo de iva
     Text1(25).Text = RecuperaValor(CadenaSeleccion, 1) 'codiva
     FormateaCampo Text1(25)
-    Text2(25).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
+    text2(25).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
 End Sub
 
 Private Sub frmTMer_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento tipos de mercado
-    txtaux(10).Text = RecuperaValor(CadenaSeleccion, 1) 'tipo de mercado
-    FormateaCampo txtaux(10)
+    txtAux(10).Text = RecuperaValor(CadenaSeleccion, 1) 'tipo de mercado
+    FormateaCampo txtAux(10)
     txtAux2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'nombre de mercado
 End Sub
 
@@ -4469,7 +4469,7 @@ Dim dirMail As String
     Select Case Index
         Case 0: dirMail = Text1(14).Text
         Case 1: dirMail = Text1(20).Text
-        Case 2: dirMail = txtaux(8).Text
+        Case 2: dirMail = txtAux(8).Text
     End Select
 
     If LanzaMailGnral(dirMail) Then espera 2
@@ -4925,8 +4925,8 @@ Dim V
 '                                Next i
 '                                txtAux2(22).Text = ""
                             Case 2 'tarjetas
-                                BloquearTxt txtaux(50), True
-                                BloquearTxt txtaux(51), True
+                                BloquearTxt txtAux(50), True
+                                BloquearTxt txtAux(51), True
                         End Select
                     ' *** els tabs que no tenen datagrid ***
                     ElseIf NumTabMto = 3 Then
@@ -4998,7 +4998,7 @@ Private Function DatosOk() As Boolean
 Dim b As Boolean
 Dim SQL As String
 'Dim Datos As String
-Dim nRegs As Long
+Dim Nregs As Long
 
 Dim cta As String
 Dim cadMen As String
@@ -5090,8 +5090,8 @@ Dim cadMen As String
 '                SQL = DevuelveDesdeBDNew(cAgro, "stipom", "codtipom", "codtipom", Text1(25).Text, "T")
 '                If SQL = "" Then
 '++monica:10/02/2009
-                nRegs = TotalRegistros("select count(*) from usuarios.stipom where codtipom = " & DBSet(Text1(25).Text, "T"))
-                If nRegs = 0 Then
+                Nregs = TotalRegistros("select count(*) from usuarios.stipom where codtipom = " & DBSet(Text1(25).Text, "T"))
+                If Nregs = 0 Then
 '++
                     MsgBox "No existe el Tipo de Movimiento. Reintroduzca.", vbExclamation
                     Text1(25).Text = ""
@@ -5107,8 +5107,8 @@ Dim cadMen As String
                 PonerFoco Text1(41)
                 b = False
             Else
-                nRegs = TotalRegistros("select count(*) from usuarios.stipom where codtipom = " & DBSet(Text1(41).Text, "T"))
-                If nRegs = 0 Then
+                Nregs = TotalRegistros("select count(*) from usuarios.stipom where codtipom = " & DBSet(Text1(41).Text, "T"))
+                If Nregs = 0 Then
                     If MsgBox("No existe el Tipo de Movimiento. ¿ Desea crearlo ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                         b = InsertarMovimientoTIPOM(Text1(41).Text, "Albarán Venta")
                     Else
@@ -5243,8 +5243,8 @@ Dim SQL As String
                 
         Case 6 'PAIS
             If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "paises", "nompaise")
-                If Text2(Index).Text = "" Then
+                text2(Index).Text = PonerNombreDeCod(Text1(Index), "paises", "nompaise")
+                If text2(Index).Text = "" Then
                     cadMen = "No existe el País: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -5262,15 +5262,15 @@ Dim SQL As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                Text2(Index).Text = ""
+                text2(Index).Text = ""
             End If
             
 
         
         Case 27 'FORMA DE PAGO
             If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
-                If Text2(Index).Text = "" Then
+                text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
+                If text2(Index).Text = "" Then
                     cadMen = "No existe la Forma de Pago: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -5288,7 +5288,7 @@ Dim SQL As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                Text2(Index).Text = ""
+                text2(Index).Text = ""
             End If
             
 '        Case 25 ' Tipo de Iva
@@ -5310,9 +5310,9 @@ Dim SQL As String
             If Modo = 3 Then ' si estamos insertando puede que no tengamos todos los datos para
                              ' insertar la cuenta contable en contabilidad
                              ' cuando demos aceptar si no existe preguntamos si crear
-                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") ' Text1(0).Text)
+                text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") ' Text1(0).Text)
             Else
-                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, Text1(0).Text)
+                text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, Text1(0).Text)
             End If
             
         Case 23, 26 'porcentajes de comision
@@ -5432,12 +5432,12 @@ Dim NomEmple As String
 
     On Error GoTo EPosarDescripcions
 
-    Text2(6).Text = PonerNombreDeCod(Text1(6), "paises", "nompaise", "codpaise", "N")
+    text2(6).Text = PonerNombreDeCod(Text1(6), "paises", "nompaise", "codpaise", "N")
 '    Text2(8).Text = PonerNombreDeCod(Text1(8), "cadenas", "nomcaden")
-    Text2(27).Text = PonerNombreDeCod(Text1(27), "forpago", "nomforpa", "codforpa", "N")
+    text2(27).Text = PonerNombreDeCod(Text1(27), "forpago", "nomforpa", "codforpa", "N")
     If vParamAplic.NumeroConta <> 0 Then
-        Text2(25).Text = PonerNombreDeCod(Text1(25), "tiposiva", "porceiva", "codigiva", "N", cConta)
-        Text2(24).Text = PonerNombreCuenta(Text1(24), Modo)
+        text2(25).Text = PonerNombreDeCod(Text1(25), "tiposiva", "porceiva", "codigiva", "N", cConta)
+        text2(24).Text = PonerNombreCuenta(Text1(24), Modo)
     End If
     
 EPosarDescripcions:
@@ -5596,18 +5596,18 @@ Dim i As Integer
             Select Case Index
                 ' *** valor per defecte a l'insertar i formateig de tots els camps ***
                 Case 0 'cuentas
-                    For i = 0 To txtaux.Count - 1
-                        txtaux(i).Text = ""
+                    For i = 0 To txtAux.Count - 1
+                        txtAux(i).Text = ""
                     Next i
-                    txtaux(14).Text = Text1(0).Text 'codclien
-                    txtaux(15).Text = NumF 'coddesti
+                    txtAux(14).Text = Text1(0).Text 'codclien
+                    txtAux(15).Text = NumF 'coddesti
                     For i = 0 To 2
                         txtAux2(i).Text = ""
                     Next i
                     
-                    BloquearTxt txtaux(15), False
+                    BloquearTxt txtAux(15), False
 '                    BloquearTxt txtaux(12), False
-                    PonerFoco txtaux(15)
+                    PonerFoco txtAux(15)
                  
                  Case 1 ' clientes_precio
                     For i = 0 To txtAux1.Count - 1
@@ -5678,28 +5678,28 @@ Private Sub BotonModificarLinea(Index As Integer)
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 'DESTINOS
             
-            txtaux(0).Text = DataGridAux(Index).Columns(2).Text
-            txtaux(15).Text = DataGridAux(Index).Columns(1).Text
-            txtaux(16).Text = DataGridAux(Index).Columns(3).Text
-            txtaux(1).Text = DataGridAux(Index).Columns(4).Text
-            txtaux(2).Text = DataGridAux(Index).Columns(5).Text
-            txtaux(3).Text = DataGridAux(Index).Columns(6).Text
+            txtAux(0).Text = DataGridAux(Index).Columns(2).Text
+            txtAux(15).Text = DataGridAux(Index).Columns(1).Text
+            txtAux(16).Text = DataGridAux(Index).Columns(3).Text
+            txtAux(1).Text = DataGridAux(Index).Columns(4).Text
+            txtAux(2).Text = DataGridAux(Index).Columns(5).Text
+            txtAux(3).Text = DataGridAux(Index).Columns(6).Text
             
-            txtaux(5).Text = DataGridAux(Index).Columns(11).Text
-            txtaux(6).Text = DataGridAux(Index).Columns(12).Text
-            txtaux(7).Text = DataGridAux(Index).Columns(13).Text
-            txtaux(8).Text = DataGridAux(Index).Columns(14).Text
-            txtaux(9).Text = DataGridAux(Index).Columns(15).Text
+            txtAux(5).Text = DataGridAux(Index).Columns(11).Text
+            txtAux(6).Text = DataGridAux(Index).Columns(12).Text
+            txtAux(7).Text = DataGridAux(Index).Columns(13).Text
+            txtAux(8).Text = DataGridAux(Index).Columns(14).Text
+            txtAux(9).Text = DataGridAux(Index).Columns(15).Text
             
             
-            txtaux(4).Text = DataGridAux(Index).Columns(7).Text 'PAIS
+            txtAux(4).Text = DataGridAux(Index).Columns(7).Text 'PAIS
             txtAux2(2).Text = DataGridAux(Index).Columns(8).Text 'NOMPAIS
-            txtaux(10).Text = DataGridAux(Index).Columns(9).Text 'CODTIMER
+            txtAux(10).Text = DataGridAux(Index).Columns(9).Text 'CODTIMER
             txtAux2(0).Text = DataGridAux(Index).Columns(10).Text 'NOMTIMER
-            txtaux(11).Text = DataGridAux(Index).Columns(18).Text 'CODCADENA
-            txtaux(12).Text = DataGridAux(Index).Columns(16).Text 'CAJAS
-            txtaux(13).Text = DataGridAux(Index).Columns(17).Text 'PALETS
-            txtaux(17).Text = DataGridAux(Index).Columns(19).Text 'codigo edi
+            txtAux(11).Text = DataGridAux(Index).Columns(18).Text 'CODCADENA
+            txtAux(12).Text = DataGridAux(Index).Columns(16).Text 'CAJAS
+            txtAux(13).Text = DataGridAux(Index).Columns(17).Text 'PALETS
+            txtAux(17).Text = DataGridAux(Index).Columns(19).Text 'codigo edi
             
             
             
@@ -5709,8 +5709,8 @@ Private Sub BotonModificarLinea(Index As Integer)
 '            Next J
 
                        
-            BloquearTxt txtaux(11), False
-            BloquearTxt txtaux(12), False
+            BloquearTxt txtAux(11), False
+            BloquearTxt txtAux(12), False
             
         Case 1 ' clientes_precios
             txtAux1(0).Text = DataGridAux(Index).Columns(0).Text
@@ -5725,7 +5725,7 @@ Private Sub BotonModificarLinea(Index As Integer)
     ' *** foco al 1r camp visible de les llinies en grids que no siga PK (en o sense tab) ***
     Select Case Index
         Case 0 'cuentas bancarias
-            PonerFoco txtaux(0)
+            PonerFoco txtAux(0)
         Case 1 ' precios articulos
             PonerFoco txtAux1(2)
     End Select
@@ -5762,13 +5762,13 @@ Dim b As Boolean
     Select Case Index
         Case 0 'destinos
              For jj = 0 To 1 '3
-                txtaux(jj).visible = b
-                txtaux(jj).Top = alto
+                txtAux(jj).visible = b
+                txtAux(jj).Top = alto
             Next jj
-            txtaux(15).visible = b
-            txtaux(15).Top = alto
-            txtaux(16).visible = b
-            txtaux(16).Top = alto
+            txtAux(15).visible = b
+            txtAux(15).Top = alto
+            txtAux(16).visible = b
+            txtAux(16).Top = alto
             
 '            txtaux2(0).visible = b
 '            txtaux2(0).Top = alto
@@ -5801,7 +5801,7 @@ Private Sub txtAux_LostFocus(Index As Integer)
 Dim cadMen As String
 Dim Nuevo As Boolean
     
-    If Not PerderFocoGnral(txtaux(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
 
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -5811,75 +5811,75 @@ Dim Nuevo As Boolean
     ' ******* configurar el LostFocus dels camps de llínies (dins i fora grid) ********
     Select Case Index
         Case 0 ' nombre de direccion
-            If txtaux(Index).Text <> "" Then txtaux(Index).Text = UCase(txtaux(Index).Text)
+            If txtAux(Index).Text <> "" Then txtAux(Index).Text = UCase(txtAux(Index).Text)
         
         Case 4 ' pais
-            If PonerFormatoEntero(txtaux(Index)) Then
-                txtAux2(Index - 2).Text = PonerNombreDeCod(txtaux(Index), "paises", "nompaise")
+            If PonerFormatoEntero(txtAux(Index)) Then
+                txtAux2(Index - 2).Text = PonerNombreDeCod(txtAux(Index), "paises", "nompaise")
                 If txtAux2(Index - 2).Text = "" Then
-                    cadMen = "No existe el País: " & txtaux(Index).Text & vbCrLf
+                    cadMen = "No existe el País: " & txtAux(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmPais = New frmManPaises
                         frmPais.DatosADevolverBusqueda = "0|1|"
-                        frmPais.NuevoCodigo = txtaux(Index).Text
-                        txtaux(Index).Text = ""
+                        frmPais.NuevoCodigo = txtAux(Index).Text
+                        txtAux(Index).Text = ""
                         TerminaBloquear
                         frmPais.Show vbModal
                         Set frmPais = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        txtaux(Index).Text = ""
+                        txtAux(Index).Text = ""
                     End If
-                    PonerFoco txtaux(Index)
+                    PonerFoco txtAux(Index)
                 End If
             Else
                 txtAux2(Index - 2).Text = ""
             End If
         
         Case 10 ' tipo de mercado
-            If PonerFormatoEntero(txtaux(Index)) Then
-                txtAux2(Index - 10).Text = PonerNombreDeCod(txtaux(Index), "tipomer", "nomtimer")
+            If PonerFormatoEntero(txtAux(Index)) Then
+                txtAux2(Index - 10).Text = PonerNombreDeCod(txtAux(Index), "tipomer", "nomtimer")
                 If txtAux2(Index - 10).Text = "" Then
-                    cadMen = "No existe el Tipo de Mercado: " & txtaux(Index).Text & vbCrLf
+                    cadMen = "No existe el Tipo de Mercado: " & txtAux(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmTMer = New frmManTipMerc
                         frmTMer.DatosADevolverBusqueda = "0|1|"
-                        frmTMer.NuevoCodigo = txtaux(Index).Text
-                        txtaux(Index).Text = ""
+                        frmTMer.NuevoCodigo = txtAux(Index).Text
+                        txtAux(Index).Text = ""
                         TerminaBloquear
                         frmTMer.Show vbModal
                         Set frmTMer = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        txtaux(Index).Text = ""
+                        txtAux(Index).Text = ""
                     End If
-                    PonerFoco txtaux(Index)
+                    PonerFoco txtAux(Index)
                 End If
             Else
                 txtAux2(Index - 10).Text = ""
             End If
         
         Case 11 ' cadena
-            If PonerFormatoEntero(txtaux(Index)) Then
-                txtAux2(Index - 10).Text = PonerNombreDeCod(txtaux(Index), "cadenas", "nomcaden")
+            If PonerFormatoEntero(txtAux(Index)) Then
+                txtAux2(Index - 10).Text = PonerNombreDeCod(txtAux(Index), "cadenas", "nomcaden")
                 If txtAux2(Index - 10).Text = "" Then
-                    cadMen = "No existe la Cadena: " & txtaux(Index).Text & vbCrLf
+                    cadMen = "No existe la Cadena: " & txtAux(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmCad = New frmManCadenas
                         frmCad.DatosADevolverBusqueda = "0|1|"
-                        frmCad.NuevoCodigo = txtaux(Index).Text
-                        txtaux(Index).Text = ""
+                        frmCad.NuevoCodigo = txtAux(Index).Text
+                        txtAux(Index).Text = ""
                         TerminaBloquear
                         frmCad.Show vbModal
                         Set frmCad = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        txtaux(Index).Text = ""
+                        txtAux(Index).Text = ""
                     End If
-                    PonerFoco txtaux(Index)
+                    PonerFoco txtAux(Index)
                 End If
             Else
                 txtAux2(Index - 10).Text = ""
@@ -5891,7 +5891,7 @@ Dim Nuevo As Boolean
 '            If txtAux(Index) <> "" Then PonerFormatoEntero txtAux(Index)
             
         Case 15 'codigo de destino
-            PonerFormatoEntero txtaux(Index)
+            PonerFormatoEntero txtAux(Index)
         
         Case 17 'codigo edi
             cmdAceptar.SetFocus
@@ -5905,15 +5905,15 @@ Dim Nuevo As Boolean
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
-   If Not txtaux(Index).MultiLine Then ConseguirFocoLin txtaux(Index)
+   If Not txtAux(Index).MultiLine Then ConseguirFocoLin txtAux(Index)
 End Sub
 
 Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-    If Not txtaux(Index).MultiLine Then KEYdown KeyCode
+    If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
 Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
-    If Not txtaux(Index).MultiLine Then
+    If Not txtAux(Index).MultiLine Then
         If KeyAscii = teclaBuscar Then
             If Modo = 5 And (ModoLineas = 1 Or ModoLineas = 2) Then
                 Select Case Index
@@ -6051,10 +6051,10 @@ Private Sub imgBuscar_Click(Index As Integer)
         Case 7 'pais
             Set frmPais2 = New frmManPaises
             frmPais2.DatosADevolverBusqueda = "0|1|"
-            frmPais2.CodigoActual = txtaux(4).Text
+            frmPais2.CodigoActual = txtAux(4).Text
             frmPais2.Show vbModal
             Set frmPais2 = Nothing
-            PonerFoco txtaux(4)
+            PonerFoco txtAux(4)
         
         Case 2 'Cuentas Contables (de contabilidad)
             If vParamAplic.NumeroConta = 0 Then Exit Sub
@@ -6092,18 +6092,18 @@ Private Sub imgBuscar_Click(Index As Integer)
        Case 3 'tipos de mercado
             Set frmTMer = New frmManTipMerc
             frmTMer.DatosADevolverBusqueda = "0|1|"
-            frmTMer.CodigoActual = txtaux(10).Text
+            frmTMer.CodigoActual = txtAux(10).Text
             frmTMer.Show vbModal
             Set frmTMer = Nothing
-            PonerFoco txtaux(10)
+            PonerFoco txtAux(10)
             
        Case 4 'cadenas
             Set frmCad = New frmManCadenas
             frmCad.DatosADevolverBusqueda = "0|1|"
-            frmCad.CodigoActual = txtaux(11).Text
+            frmCad.CodigoActual = txtAux(11).Text
             frmCad.Show vbModal
             Set frmCad = Nothing
-            PonerFoco txtaux(11)
+            PonerFoco txtAux(11)
        
        Case 8 'codigos ean de ese cliente
             Set frmCEan = New frmCodEAN
@@ -6125,7 +6125,7 @@ Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
     Text1(24).Text = RecuperaValor(CadenaSeleccion, 1) 'codiva
     FormateaCampo Text1(24)
-    Text2(24).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
+    text2(24).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
 End Sub
 
 
@@ -6147,26 +6147,26 @@ Dim i As Byte
         Select Case Index
             Case 0 'destinos
                 If DataGridAux(Index).Columns.Count > 2 Then
-                    txtaux(14).Text = DataGridAux(Index).Columns(0).Text
-                    txtaux(15).Text = DataGridAux(Index).Columns(1).Text
+                    txtAux(14).Text = DataGridAux(Index).Columns(0).Text
+                    txtAux(15).Text = DataGridAux(Index).Columns(1).Text
                  
-                    txtaux(2).Text = DataGridAux(Index).Columns(5).Text
-                    txtaux(3).Text = DataGridAux(Index).Columns(6).Text
+                    txtAux(2).Text = DataGridAux(Index).Columns(5).Text
+                    txtAux(3).Text = DataGridAux(Index).Columns(6).Text
                 
-                    txtaux(4).Text = DataGridAux(Index).Columns(7).Text
-                    txtaux(5).Text = DataGridAux(Index).Columns(11).Text
-                    txtaux(6).Text = DataGridAux(Index).Columns(13).Text
-                    txtaux(7).Text = DataGridAux(Index).Columns(12).Text
-                    txtaux(8).Text = DataGridAux(Index).Columns(14).Text
-                    txtaux(9).Text = DataGridAux(Index).Columns(15).Text
-                    txtaux(10).Text = DataGridAux(Index).Columns(9).Text
-                    txtaux(11).Text = DataGridAux(Index).Columns(18).Text
-                    txtaux(12).Text = DataGridAux(Index).Columns(16).Text
-                    txtaux(13).Text = DataGridAux(Index).Columns(17).Text
-                    txtaux(17).Text = DataGridAux(Index).Columns(19).Text
+                    txtAux(4).Text = DataGridAux(Index).Columns(7).Text
+                    txtAux(5).Text = DataGridAux(Index).Columns(11).Text
+                    txtAux(6).Text = DataGridAux(Index).Columns(13).Text
+                    txtAux(7).Text = DataGridAux(Index).Columns(12).Text
+                    txtAux(8).Text = DataGridAux(Index).Columns(14).Text
+                    txtAux(9).Text = DataGridAux(Index).Columns(15).Text
+                    txtAux(10).Text = DataGridAux(Index).Columns(9).Text
+                    txtAux(11).Text = DataGridAux(Index).Columns(18).Text
+                    txtAux(12).Text = DataGridAux(Index).Columns(16).Text
+                    txtAux(13).Text = DataGridAux(Index).Columns(17).Text
+                    txtAux(17).Text = DataGridAux(Index).Columns(19).Text
                 
                     txtAux2(0).Text = DataGridAux(Index).Columns(10).Text
-                    txtAux2(1).Text = PonerNombreDeCod(txtaux(11), "cadenas", "nomcaden", "codcaden", "N")
+                    txtAux2(1).Text = PonerNombreDeCod(txtAux(11), "cadenas", "nomcaden", "codcaden", "N")
                     txtAux2(2).Text = DataGridAux(Index).Columns(8).Text
                     
                 End If
@@ -6176,16 +6176,16 @@ Dim i As Byte
     Else 'vamos a Insertar
         Select Case Index
             Case 0 'destinos
-                    txtaux(5).Text = ""
-                    txtaux(6).Text = ""
-                    txtaux(7).Text = ""
-                    txtaux(8).Text = ""
-                    txtaux(9).Text = ""
-                    txtaux(10).Text = ""
-                    txtaux(11).Text = ""
-                    txtaux(12).Text = ""
-                    txtaux(13).Text = ""
-                    txtaux(17).Text = ""
+                    txtAux(5).Text = ""
+                    txtAux(6).Text = ""
+                    txtAux(7).Text = ""
+                    txtAux(8).Text = ""
+                    txtAux(9).Text = ""
+                    txtAux(10).Text = ""
+                    txtAux(11).Text = ""
+                    txtAux(12).Text = ""
+                    txtAux(13).Text = ""
+                    txtAux(17).Text = ""
                 
                     txtAux2(0).Text = ""
         End Select
@@ -6233,7 +6233,7 @@ Dim i As Byte
             txtAux2(32).Text = DBLet(AdoAux(Index).Recordset!nomrapel, "T")
             'Descripcion cuentas contables de la Contabilidad
             For i = 35 To 38
-                txtAux2(i).Text = PonerNombreDeCod(txtaux(i), "cuentas", "nommacta", "codmacta", , cConta)
+                txtAux2(i).Text = PonerNombreDeCod(txtAux(i), "cuentas", "nommacta", "codmacta", , cConta)
             Next i
         End If
         ' ************************************************************************
@@ -6332,33 +6332,33 @@ Dim tots As String
 '            DataGridAux(0).Columns(6).Alignment = dbgLeft
         
             b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
-            BloquearTxt txtaux(14), Not b
-            BloquearTxt txtaux(15), Not b
+            BloquearTxt txtAux(14), Not b
+            BloquearTxt txtAux(15), Not b
 
             If (enlaza = True) And (Not AdoAux(Index).Recordset.EOF) Then 'per a que pose els valors de les arees de text la primera volta
-                txtaux(2).Text = DataGridAux(Index).Columns(5).Text
-                txtaux(3).Text = DataGridAux(Index).Columns(6).Text
+                txtAux(2).Text = DataGridAux(Index).Columns(5).Text
+                txtAux(3).Text = DataGridAux(Index).Columns(6).Text
             
             
-                txtaux(4).Text = DataGridAux(Index).Columns(7).Text
-                txtaux(5).Text = DataGridAux(Index).Columns(11).Text
-                txtaux(6).Text = DataGridAux(Index).Columns(13).Text
-                txtaux(7).Text = DataGridAux(Index).Columns(12).Text
-                txtaux(8).Text = DataGridAux(Index).Columns(14).Text
-                txtaux(9).Text = DataGridAux(Index).Columns(15).Text
-                txtaux(10).Text = DataGridAux(Index).Columns(9).Text
-                txtaux(11).Text = DataGridAux(Index).Columns(18).Text
-                txtaux(12).Text = DataGridAux(Index).Columns(16).Text
-                txtaux(13).Text = DataGridAux(Index).Columns(17).Text
+                txtAux(4).Text = DataGridAux(Index).Columns(7).Text
+                txtAux(5).Text = DataGridAux(Index).Columns(11).Text
+                txtAux(6).Text = DataGridAux(Index).Columns(13).Text
+                txtAux(7).Text = DataGridAux(Index).Columns(12).Text
+                txtAux(8).Text = DataGridAux(Index).Columns(14).Text
+                txtAux(9).Text = DataGridAux(Index).Columns(15).Text
+                txtAux(10).Text = DataGridAux(Index).Columns(9).Text
+                txtAux(11).Text = DataGridAux(Index).Columns(18).Text
+                txtAux(12).Text = DataGridAux(Index).Columns(16).Text
+                txtAux(13).Text = DataGridAux(Index).Columns(17).Text
             
                 txtAux2(0).Text = DataGridAux(Index).Columns(10).Text
                 txtAux2(2).Text = DataGridAux(Index).Columns(8).Text
-                txtAux2(1).Text = PonerNombreDeCod(txtaux(11), "cadenas", "nomcaden")
+                txtAux2(1).Text = PonerNombreDeCod(txtAux(11), "cadenas", "nomcaden")
             Else
-                txtaux(2).Text = ""
-                txtaux(3).Text = ""
+                txtAux(2).Text = ""
+                txtAux(3).Text = ""
                 For i = 5 To 13
-                    txtaux(i).Text = ""
+                    txtAux(i).Text = ""
                 Next i
                 txtAux2(0).Text = ""
                 txtAux2(1).Text = ""
@@ -6377,8 +6377,8 @@ Dim tots As String
             DataGridAux(0).Columns(3).Alignment = dbgLeft
         
             b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
-            BloquearTxt txtaux(14), Not b
-            BloquearTxt txtaux(15), Not b
+            BloquearTxt txtAux(14), Not b
+            BloquearTxt txtAux(15), Not b
 
             If (enlaza = True) And (Not AdoAux(Index).Recordset.EOF) Then 'per a que pose els valors de les arees de text la primera volta
 '                txtAux1(2).Text = DataGridAux(Index).Columns(5).Text
@@ -6569,8 +6569,8 @@ Dim i As Integer
 
     Select Case Index
         Case 0 'Destinos
-            For i = 0 To txtaux.Count - 1
-                txtaux(i).Text = ""
+            For i = 0 To txtAux.Count - 1
+                txtAux(i).Text = ""
             Next i
         Case 1 ' precios articulos
             For i = 0 To txtAux1.Count - 1

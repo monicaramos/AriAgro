@@ -5,16 +5,16 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmVtasAlbEnvases 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Albaranes Venta Envases"
-   ClientHeight    =   8895
+   ClientHeight    =   10545
    ClientLeft      =   45
    ClientTop       =   4035
-   ClientWidth     =   13440
+   ClientWidth     =   15015
    Icon            =   "frmVtasAlbEnvases.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8895
-   ScaleWidth      =   13440
+   ScaleHeight     =   10545
+   ScaleWidth      =   15015
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chkVistaPrevia 
@@ -29,7 +29,7 @@ Begin VB.Form frmVtasAlbEnvases
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   10845
+      Left            =   12285
       TabIndex        =   82
       Top             =   285
       Width           =   1605
@@ -149,10 +149,10 @@ Begin VB.Form frmVtasAlbEnvases
       EndProperty
       ForeColor       =   &H00972E0B&
       Height          =   3195
-      Left            =   6345
+      Left            =   7245
       TabIndex        =   45
       Top             =   885
-      Width           =   6940
+      Width           =   7530
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -166,12 +166,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   5085
+         Left            =   5400
          MaxLength       =   15
          TabIndex        =   67
          Text            =   "Text1 7"
          Top             =   570
-         Width           =   1695
+         Width           =   1920
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -246,12 +246,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   585
+         Left            =   630
          MaxLength       =   15
          TabIndex        =   63
          Text            =   "Text1 7"
          Top             =   1470
-         Width           =   1485
+         Width           =   1665
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -266,7 +266,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   14
-         Left            =   2145
+         Left            =   2325
          MaxLength       =   5
          TabIndex        =   62
          Text            =   "Text1 7"
@@ -287,12 +287,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   2850
+         Left            =   3075
          MaxLength       =   15
          TabIndex        =   61
          Text            =   "Text1 7"
          Top             =   1470
-         Width           =   1440
+         Width           =   1575
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -307,12 +307,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   585
+         Left            =   630
          MaxLength       =   15
          TabIndex        =   60
          Text            =   "Text1 7"
          Top             =   1845
-         Width           =   1485
+         Width           =   1665
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -327,7 +327,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   18
-         Left            =   2145
+         Left            =   2325
          MaxLength       =   5
          TabIndex        =   59
          Text            =   "Text1 7"
@@ -348,12 +348,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   20
-         Left            =   2850
+         Left            =   3075
          MaxLength       =   15
          TabIndex        =   58
          Text            =   "Text1 7"
          Top             =   1830
-         Width           =   1440
+         Width           =   1575
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -368,12 +368,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   23
-         Left            =   585
+         Left            =   630
          MaxLength       =   15
          TabIndex        =   57
          Text            =   "Text1 7"
          Top             =   2205
-         Width           =   1485
+         Width           =   1665
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -388,7 +388,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   22
-         Left            =   2160
+         Left            =   2340
          MaxLength       =   5
          TabIndex        =   56
          Text            =   "Text1 7"
@@ -409,12 +409,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   24
-         Left            =   2850
+         Left            =   3075
          MaxLength       =   15
          TabIndex        =   55
          Text            =   "Text1 7"
          Top             =   2205
-         Width           =   1440
+         Width           =   1575
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -428,14 +428,14 @@ Begin VB.Form frmVtasAlbEnvases
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   350
+         Height          =   360
          Index           =   25
-         Left            =   5130
+         Left            =   5445
          MaxLength       =   15
          TabIndex        =   54
          Text            =   "Text1 7"
          Top             =   2670
-         Width           =   1605
+         Width           =   1830
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -451,12 +451,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   26
-         Left            =   5115
+         Left            =   5430
          MaxLength       =   15
          TabIndex        =   53
          Text            =   "Text1 7"
          Top             =   2205
-         Width           =   1635
+         Width           =   1860
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -471,7 +471,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   27
-         Left            =   4365
+         Left            =   4725
          MaxLength       =   5
          TabIndex        =   52
          Text            =   "Text1 7"
@@ -492,12 +492,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   28
-         Left            =   5115
+         Left            =   5430
          MaxLength       =   15
          TabIndex        =   51
          Text            =   "Text1 7"
          Top             =   1830
-         Width           =   1635
+         Width           =   1860
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -512,7 +512,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   29
-         Left            =   4350
+         Left            =   4710
          MaxLength       =   5
          TabIndex        =   50
          Text            =   "Text1 7"
@@ -533,12 +533,12 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   30
-         Left            =   5115
+         Left            =   5430
          MaxLength       =   15
          TabIndex        =   49
          Text            =   "Text1 7"
          Top             =   1470
-         Width           =   1635
+         Width           =   1860
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -553,7 +553,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   31
-         Left            =   4350
+         Left            =   4710
          MaxLength       =   5
          TabIndex        =   48
          Text            =   "Text1 7"
@@ -564,7 +564,7 @@ Begin VB.Form frmVtasAlbEnvases
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   9
-         Left            =   5115
+         Left            =   5520
          MaxLength       =   15
          TabIndex        =   47
          Text            =   "Text1 7"
@@ -576,7 +576,7 @@ Begin VB.Form frmVtasAlbEnvases
          BackColor       =   &H00FFFFC0&
          Height          =   285
          Index           =   12
-         Left            =   5085
+         Left            =   5400
          MaxLength       =   15
          TabIndex        =   46
          Text            =   "Text1 7"
@@ -584,8 +584,8 @@ Begin VB.Form frmVtasAlbEnvases
          Width           =   1335
       End
       Begin VB.Line Line1 
-         X1              =   5085
-         X2              =   6750
+         X1              =   5400
+         X2              =   7335
          Y1              =   975
          Y2              =   975
       End
@@ -602,7 +602,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   7
-         Left            =   5085
+         Left            =   5400
          TabIndex        =   77
          Top             =   300
          Width           =   1485
@@ -638,7 +638,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   13
-         Left            =   600
+         Left            =   645
          TabIndex        =   75
          Top             =   1185
          Width           =   1530
@@ -656,7 +656,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   33
-         Left            =   2895
+         Left            =   3120
          TabIndex        =   74
          Top             =   1215
          Width           =   1335
@@ -674,7 +674,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   37
-         Left            =   5760
+         Left            =   6165
          TabIndex        =   73
          Top             =   930
          Width           =   135
@@ -711,7 +711,7 @@ Begin VB.Form frmVtasAlbEnvases
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   39
-         Left            =   2880
+         Left            =   3060
          TabIndex        =   71
          Top             =   2700
          Width           =   1710
@@ -729,7 +729,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   41
-         Left            =   2145
+         Left            =   2325
          TabIndex        =   70
          Top             =   1215
          Width           =   720
@@ -747,7 +747,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   15
-         Left            =   4350
+         Left            =   4710
          TabIndex        =   69
          Top             =   1215
          Width           =   675
@@ -765,7 +765,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   16
-         Left            =   5115
+         Left            =   5430
          TabIndex        =   68
          Top             =   1215
          Width           =   1695
@@ -783,11 +783,11 @@ Begin VB.Form frmVtasAlbEnvases
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   4170
+      Height          =   5790
       Left            =   90
       TabIndex        =   23
       Top             =   4110
-      Width           =   13195
+      Width           =   14695
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
@@ -1050,8 +1050,8 @@ Begin VB.Form frmVtasAlbEnvases
          MaxLength       =   60
          TabIndex        =   30
          Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-         Top             =   3675
-         Width           =   11040
+         Top             =   5205
+         Width           =   12525
       End
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
@@ -1109,13 +1109,13 @@ Begin VB.Form frmVtasAlbEnvases
       End
       Begin MSDataGridLib.DataGrid DataGrid3 
          Bindings        =   "frmVtasAlbEnvases.frx":000C
-         Height          =   2755
+         Height          =   4200
          Left            =   225
          TabIndex        =   37
          Top             =   810
-         Width           =   12555
-         _ExtentX        =   22146
-         _ExtentY        =   4868
+         Width           =   14055
+         _ExtentX        =   24791
+         _ExtentY        =   7408
          _Version        =   393216
          AllowUpdate     =   0   'False
          AllowArrows     =   -1  'True
@@ -1239,7 +1239,7 @@ Begin VB.Form frmVtasAlbEnvases
          Index           =   35
          Left            =   405
          TabIndex        =   38
-         Top             =   3720
+         Top             =   5250
          Width           =   1335
       End
    End
@@ -1248,7 +1248,7 @@ Begin VB.Form frmVtasAlbEnvases
       Left            =   90
       TabIndex        =   13
       Top             =   915
-      Width           =   6225
+      Width           =   7080
       Begin VB.ComboBox Combo1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -1261,11 +1261,11 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   4275
+         Left            =   4860
          Style           =   2  'Dropdown List
          TabIndex        =   6
          Top             =   1980
-         Width           =   1785
+         Width           =   2055
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -1287,7 +1287,7 @@ Begin VB.Form frmVtasAlbEnvases
          TabIndex        =   39
          Text            =   "Text2"
          Top             =   1200
-         Width           =   3885
+         Width           =   4740
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1343,7 +1343,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   240
          Index           =   0
-         Left            =   4770
+         Left            =   5715
          TabIndex        =   2
          Tag             =   "Pasa Aridoc|N|N|||scaalb|factursn|0||"
          Top             =   270
@@ -1390,7 +1390,7 @@ Begin VB.Form frmVtasAlbEnvases
          TabIndex        =   19
          Text            =   "Text2"
          Top             =   1605
-         Width           =   3885
+         Width           =   4740
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -1412,7 +1412,7 @@ Begin VB.Form frmVtasAlbEnvases
          TabIndex        =   17
          Text            =   "Text2"
          Top             =   795
-         Width           =   3885
+         Width           =   4740
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1433,7 +1433,7 @@ Begin VB.Form frmVtasAlbEnvases
          TabIndex        =   7
          Tag             =   "Observaciones|T|S|||scaalb|observac|||"
          Top             =   2370
-         Width           =   5835
+         Width           =   6690
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -1521,7 +1521,7 @@ Begin VB.Form frmVtasAlbEnvases
          EndProperty
          Height          =   255
          Index           =   14
-         Left            =   3225
+         Left            =   3810
          TabIndex        =   41
          Top             =   2010
          Width           =   1095
@@ -1680,7 +1680,7 @@ Begin VB.Form frmVtasAlbEnvases
       Index           =   0
       Left            =   120
       TabIndex        =   11
-      Top             =   8280
+      Top             =   9855
       Width           =   2175
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1714,9 +1714,9 @@ Begin VB.Form frmVtasAlbEnvases
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12195
+      Left            =   13680
       TabIndex        =   9
-      Top             =   8370
+      Top             =   9990
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1731,9 +1731,9 @@ Begin VB.Form frmVtasAlbEnvases
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10995
+      Left            =   12480
       TabIndex        =   8
-      Top             =   8370
+      Top             =   9990
       Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
@@ -1748,9 +1748,9 @@ Begin VB.Form frmVtasAlbEnvases
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12195
+      Left            =   13680
       TabIndex        =   10
-      Top             =   8385
+      Top             =   9960
       Visible         =   0   'False
       Width           =   1065
    End
@@ -1899,7 +1899,7 @@ Begin VB.Form frmVtasAlbEnvases
       Alignment       =   1  'Right Justify
       Height          =   285
       Index           =   11
-      Left            =   6705
+      Left            =   7290
       MaxLength       =   15
       TabIndex        =   21
       Text            =   "Text1 7"
@@ -1908,7 +1908,7 @@ Begin VB.Form frmVtasAlbEnvases
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   12885
+      Left            =   14325
       TabIndex        =   83
       Top             =   225
       Width           =   405
@@ -1929,7 +1929,7 @@ Begin VB.Form frmVtasAlbEnvases
       Caption         =   "Imp.Descuento 2"
       Height          =   255
       Index           =   10
-      Left            =   6705
+      Left            =   7290
       TabIndex        =   22
       Top             =   1440
       Width           =   1215
@@ -2412,7 +2412,7 @@ Private Sub BotonEliminar()
 'Eliminar Registro de la Cabecera: Tabla de Facturas (scafac)
 ' y los registros correspondientes de las tablas cab. albaranes (scafac1)
 ' y las lineas de la factura (slifac)
-Dim cad As String
+Dim Cad As String
 'Dim vTipoMov As CTiposMov
 
     On Error GoTo EEliminar
@@ -2423,16 +2423,16 @@ Dim cad As String
 '    'solo se puede modificar la factura si no esta contabilizada
 '    If FactContabilizada Then Exit Sub
     
-    cad = "Cabecera de Albaranes." & vbCrLf
-    cad = cad & "-------------------------------------      " & vbCrLf & vbCrLf
-    cad = cad & "Va a eliminar el Albarán:            "
-    cad = cad & vbCrLf & "Nº Albarán:  " & Format(Text1(0).Text, "0000000")
-    cad = cad & vbCrLf & "Fecha:  " & Format(Text1(1).Text, "dd/mm/yyyy")
+    Cad = "Cabecera de Albaranes." & vbCrLf
+    Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
+    Cad = Cad & "Va a eliminar el Albarán:            "
+    Cad = Cad & vbCrLf & "Nº Albarán:  " & Format(Text1(0).Text, "0000000")
+    Cad = Cad & vbCrLf & "Fecha:  " & Format(Text1(1).Text, "dd/mm/yyyy")
 
-    cad = cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
+    Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
 
     'Borramos
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
 '        On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
@@ -2461,7 +2461,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 'Este es el boton Cabecera
-Dim cad As String
+Dim Cad As String
 
     'Quitar lineas y volver a la cabecera
     If Modo = 5 Then  'modo 5: Mantenimientos Lineas
@@ -2475,9 +2475,9 @@ Dim cad As String
             MsgBox "Ningún registro devuelto.", vbExclamation
             Exit Sub
         End If
-        cad = Data1.Recordset.Fields(0) & "|"
-        cad = cad & Data1.Recordset.Fields(1) & "|"
-        RaiseEvent DatoSeleccionado(cad)
+        Cad = Data1.Recordset.Fields(0) & "|"
+        Cad = Cad & Data1.Recordset.Fields(1) & "|"
+        RaiseEvent DatoSeleccionado(Cad)
         Unload Me
     End If
 End Sub
@@ -2686,22 +2686,22 @@ Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
 '        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 2)
 '        cadB = cadB & " and  " & Aux
 '        Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 3)
 '        cadB = cadB & " and " & Aux
         
         
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
@@ -2945,7 +2945,7 @@ Private Sub Text1_LostFocus(Index As Integer)
 Dim devuelve As String
 Dim cadMen As String
 Dim SQL As String
-Dim nRegs As Long
+Dim Nregs As Long
 
         
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
@@ -3056,7 +3056,7 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 Dim cadAux As String
     
 '    '--- Laura 12/01/2007
@@ -3072,47 +3072,47 @@ Dim cadAux As String
 '    CadB = ObtenerBusqueda(Me)
 '++monica
     If Albaran = "" Then
-        cadB = ObtenerBusqueda2(Me, BuscaChekc, 1)
+        CadB = ObtenerBusqueda2(Me, BuscaChekc, 1)
     Else
-        cadB = "numalbar = " & Albaran & " "
+        CadB = "numalbar = " & Albaran & " "
     End If
 
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
         CadenaConsulta = "select scaalb.* from " & NombreTabla
-        CadenaConsulta = CadenaConsulta & " WHERE " & cadB & Ordenacion
+        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & Ordenacion
         PonerCadenaBusqueda
     End If
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim cad As String
-Dim Tabla As String
+Dim Cad As String
+Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
     'Llamamos a al form
     '##A mano
-    cad = ""
-    cad = cad & "Nº.Albarán|scaalb.numalbar|N||15·"
-    cad = cad & "Cliente|scaalb.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-    cad = cad & "Nombre Cliente|clientes.nomclien|N||45·"
-    cad = cad & ParaGrid(Text1(1), 15, "F.Albarán")
-    Tabla = NombreTabla & " INNER JOIN clientes ON scaalb.codclien=clientes.codclien "
+    Cad = ""
+    Cad = Cad & "Nº.Albarán|scaalb.numalbar|N||15·"
+    Cad = Cad & "Cliente|scaalb.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
+    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+    Cad = Cad & ParaGrid(Text1(1), 15, "F.Albarán")
+    tabla = NombreTabla & " INNER JOIN clientes ON scaalb.codclien=clientes.codclien "
     
     Titulo = "Albaranes"
     devuelve = "0|1|2|"
            
-    If cad <> "" Then
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        frmB.vtabla = Tabla
-        frmB.vSQL = cadB
+        frmB.vCampos = Cad
+        frmB.vtabla = tabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|2|"
@@ -3445,7 +3445,7 @@ End Sub
 
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim cad As String
+Dim Cad As String
 Dim SQL As String
 Dim Mens As String
 Dim b As Boolean
@@ -3464,11 +3464,11 @@ Dim b As Boolean
     b = True
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Envase?"
-    cad = cad & vbCrLf & "Albarán: " & AdoAux(1).Recordset.Fields(0)
-    cad = cad & vbCrLf & "Artículo: " & AdoAux(1).Recordset.Fields(3) & " - " & AdoAux(1).Recordset.Fields(4)
+    Cad = "¿Seguro que desea eliminar el Envase?"
+    Cad = Cad & vbCrLf & "Albarán: " & AdoAux(1).Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Artículo: " & AdoAux(1).Recordset.Fields(3) & " - " & AdoAux(1).Recordset.Fields(4)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminarLinea
         Screen.MousePointer = vbHourglass
         NumRegElim = AdoAux(1).Recordset.AbsolutePosition
@@ -3601,10 +3601,10 @@ Dim tots As String
     Select Case vDataGrid.Name
          Case "DataGrid3" 'slialb lineas de envases
 'select codtipom,numfactu,fecfactu,numlinea,codartic,sartic.nomartic,cantidad,precioar,dtolinea,importel,ampliaci,codigiva
-            tots = "N||||0|;N||||0|;S|txtAux(4)|T|Alm|900|;"
-            tots = tots & "S|txtAux(5)|T|Articulo|1700|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|Text2(0)|T|Nombre|3900|;S|txtAux(6)|T|Cantidad|1400|;"
-            tots = tots & "S|txtAux(7)|T|Precio|1400|;S|txtAux(8)|T|Dto|1000|;S|txtAux(9)|T|Importe|1700|;N||||0|;N||||0|;"
+            tots = "N||||0|;N||||0|;S|txtAux(4)|T|Alm|880|;"
+            tots = tots & "S|txtAux(5)|T|Articulo|2500|;S|btnBuscar(0)|B|||;"
+            tots = tots & "S|Text2(0)|T|Nombre|4100|;S|txtAux(6)|T|Cantidad|1400|;"
+            tots = tots & "S|txtAux(7)|T|Precio|1600|;S|txtAux(8)|T|Dto|1100|;S|txtAux(9)|T|Importe|1900|;N||||0|;N||||0|;"
             arregla tots, DataGrid3, Me, 350
             
      
@@ -3628,7 +3628,7 @@ End Sub
 
 
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Avanzar/Retroceder los campos con las flechas de desplazamiento del teclado.
     KEYdown KeyCode
 End Sub
@@ -4415,7 +4415,7 @@ Private Function ModificarLinea() As Boolean
 'Modifica registre en les taules de Llínies
 Dim nomFrame As String
 Dim V As Integer
-Dim cad As String
+Dim Cad As String
 Dim SQL As String
 Dim vCStock As CStock
 Dim b As Boolean
@@ -4818,7 +4818,7 @@ End Function
 
 Private Sub CalcularDatosAlbaran()
 Dim i As Integer
-Dim cadWHERE As String, SQL As String
+Dim cadwhere As String, SQL As String
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
@@ -4827,16 +4827,16 @@ Dim cadWHERE As String, SQL As String
     Next i
     
     'Comprobar que hay lineas de facturas_variedad para calcular totales
-    cadWHERE = ObtenerWhereCP(False)
-    SQL = "Select count(*) from " & NomTablaLineas & " Where " & Replace(cadWHERE, NombreTabla, NomTablaLineas)
+    cadwhere = ObtenerWhereCP(False)
+    SQL = "Select count(*) from " & NomTablaLineas & " Where " & Replace(cadwhere, NombreTabla, NomTablaLineas)
     If RegistrosAListar(SQL) = 0 Then
         'Comprobar que hay lineas de facturas_envases para calcular totales
-        SQL = "Select count(*) from slialb Where " & Replace(cadWHERE, NombreTabla, "slialb")
+        SQL = "Select count(*) from slialb Where " & Replace(cadwhere, NombreTabla, "slialb")
         If RegistrosAListar(SQL) = 0 Then Exit Sub
     End If
     
     
-    If CalcularDatosAlbaranVenta(cadWHERE, NombreTabla, NomTablaLineas) Then
+    If CalcularDatosAlbaranVenta(cadwhere, NombreTabla, NomTablaLineas) Then
 '        PosicionarData
 '        PonerCampos
     Else
@@ -4848,7 +4848,7 @@ End Sub
 '
 '##Monica
 '
-Private Function CalcularDatosAlbaranVenta(cadWHERE As String, NomTabla As String, NomTablaLin As String) As Boolean
+Private Function CalcularDatosAlbaranVenta(cadwhere As String, NomTabla As String, NomTablaLin As String) As Boolean
 'cadWhere: cad para la where de la SQL que selecciona las lineas del albaran o la factura
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
@@ -4943,7 +4943,7 @@ Dim Nulo3 As String
     TotalFac = 0
 
     'Agrupar el importe bruto por tipos de iva
-    cadwhere1 = Replace(cadWHERE, "scaalb", "slialb")
+    cadwhere1 = Replace(cadwhere, "scaalb", "slialb")
     SQL = SQL & "SELECT slialb.codigiva, sum(importel) as bruto"
     SQL = SQL & " FROM slialb "
     SQL = SQL & " WHERE " & cadwhere1

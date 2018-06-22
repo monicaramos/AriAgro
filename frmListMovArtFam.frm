@@ -355,7 +355,7 @@ Begin VB.Form frmListMovArtFam
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
-         Caption         =   "Articulo"
+         Caption         =   "Artículo"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -485,7 +485,7 @@ Begin VB.Form frmListMovArtFam
          Width           =   240
       End
       Begin VB.Label lbltituloInven 
-         Caption         =   "Informe de Movimiento de Articulos"
+         Caption         =   "Informe de Movimiento de Artículos"
          BeginProperty Font 
             Name            =   "Tahoma"
             Size            =   14.25
@@ -789,7 +789,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -810,7 +810,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         Select Case Opcionlistado
             Case 1 'Listado MARCAS
                 EsNomCod = True
-                Tabla = "smarca"
+                tabla = "smarca"
                 codCampo = "codmarca"
                 nomCampo = "nommarca"
                 TipCampo = "N"
@@ -819,7 +819,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
                 
             Case 2 'Listado ALMACENES Propios
                 EsNomCod = True
-                Tabla = "salmpr"
+                tabla = "salmpr"
                 codCampo = "codalmac"
                 nomCampo = "nomalmac"
                 TipCampo = "N"
@@ -828,7 +828,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
                 
             Case 3 'Listado Tipos UNIDADES
                 EsNomCod = True
-                Tabla = "sunida"
+                tabla = "sunida"
                 codCampo = "codunida"
                 nomCampo = "nomunida"
                 TipCampo = "N"
@@ -844,7 +844,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 20 'Listado ACTIVIDADES de Clientes
                 EsNomCod = True
-                Tabla = "sactiv"
+                tabla = "sactiv"
                 codCampo = "codactiv"
                 nomCampo = "nomactiv"
                 TipCampo = "N"
@@ -853,7 +853,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 21 'Listado ZONAS de Clientes
                 EsNomCod = True
-                Tabla = "szonas"
+                tabla = "szonas"
                 codCampo = "codzonas"
                 nomCampo = "nomzonas"
                 TipCampo = "N"
@@ -862,7 +862,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 22 'Listado RUTAS de Asistencia
                 EsNomCod = True
-                Tabla = "srutas"
+                tabla = "srutas"
                 codCampo = "codrutas"
                 nomCampo = "nomrutas"
                 TipCampo = "N"
@@ -871,7 +871,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 23 'Listado Formas de Envío
                 EsNomCod = True
-                Tabla = "senvio"
+                tabla = "senvio"
                 codCampo = "codenvio"
                 nomCampo = "nomenvio"
                 TipCampo = "N"
@@ -880,7 +880,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 24 'Listado Tarifas Venta
                 EsNomCod = True
-                Tabla = "starif"
+                tabla = "starif"
                 codCampo = "codlista"
                 nomCampo = "nomlista"
                 TipCampo = "N"
@@ -889,7 +889,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 27 'Listado SITUACIONES Especiales
                 EsNomCod = True
-                Tabla = "ssitua"
+                tabla = "ssitua"
                 codCampo = "codsitua"
                 nomCampo = "nomsitua"
                 TipCampo = "N"
@@ -898,7 +898,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 58 'Listado PROVEEDORES
                 EsNomCod = True
-                Tabla = "proveedor"
+                tabla = "proveedor"
                 codCampo = "codprove"
                 nomCampo = "nomprove"
                 TipCampo = "N"
@@ -907,7 +907,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
             Case 61 'Listado MOTIVOS Pend. Rep.
                 EsNomCod = True
-                Tabla = "smotre"
+                tabla = "smotre"
                 codCampo = "codmotre"
                 nomCampo = "nommotre"
                 TipCampo = "N"
@@ -937,7 +937,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 5, 6, 14, 15, 29, 30, 70, 71, 90, 91, 92, 93 'Cod. ARTICULO
             EsNomCod = True
-            Tabla = "sartic"
+            tabla = "sartic"
             codCampo = "codartic"
             nomCampo = "nomartic"
             TipCampo = "T"
@@ -946,7 +946,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 7, 8, 16, 17, 25, 26, 62, 63, 75, 76, 88, 89, 94, 95 'Cod. FAMILIA
             EsNomCod = True
-            Tabla = "sfamia"
+            tabla = "sfamia"
             codCampo = "codfamia"
             nomCampo = "nomfamia"
             TipCampo = "N"
@@ -977,7 +977,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 11, 12, 13, 72 'ALMACENES Propios
             EsNomCod = True
-            Tabla = "salmpr"
+            tabla = "salmpr"
             codCampo = "codalmac"
             nomCampo = "nomalmac"
             TipCampo = "N"
@@ -986,7 +986,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 18, 19, 66, 67, 79, 80 'PROVEEDOR
             EsNomCod = True
-            Tabla = "sprove"
+            tabla = "sprove"
             codCampo = "codprove"
             nomCampo = "nomprove"
             TipCampo = "N"
@@ -995,7 +995,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 21, 96, 97, 111 'Cod. Operario/Trabajador
             EsNomCod = True
-            Tabla = "straba"
+            tabla = "straba"
             codCampo = "codtraba"
             nomCampo = "nomtraba"
             TipCampo = "N"
@@ -1006,13 +1006,13 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             EsNomCod = True
             TipCampo = "N"
             If Opcionlistado = 30 Then 'Precios Especiales
-                Tabla = "sclien"
+                tabla = "sclien"
                 codCampo = "codclien"
                 nomCampo = "nomclien"
                 Formato = "000000"
                 Titulo = "Cliente"
             Else   'Tarifas Precios
-                Tabla = "starif"
+                tabla = "starif"
                 codCampo = "codlista"
                 nomCampo = "nomlista"
                 Formato = "000"
@@ -1021,7 +1021,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 27, 28, 64, 65, 77, 78 'MARCAS
             EsNomCod = True
-            Tabla = "smarca"
+            tabla = "smarca"
             codCampo = "codmarca"
             nomCampo = "nommarca"
             TipCampo = "N"
@@ -1040,7 +1040,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 32, 43 'Carta de la Oferta
             EsNomCod = True
-            Tabla = "scartas"
+            tabla = "scartas"
             codCampo = "codcarta"
             nomCampo = "descarta"
             TipCampo = "N"
@@ -1049,7 +1049,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 37, 38, 34, 47, 48, 55, 56, 73, 74, 98, 101, 102, 103, 117, 118 'Cod. CLIENTE
             EsNomCod = True
-            Tabla = "sclien"
+            tabla = "sclien"
             codCampo = "codclien"
             nomCampo = "nomclien"
             TipCampo = "N"
@@ -1058,7 +1058,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 112, 113, 114
             EsNomCod = True
-            Tabla = "inciden"
+            tabla = "inciden"
             codCampo = "codincid"
             nomCampo = "nomincid"
             TipCampo = "T"
@@ -1072,7 +1072,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
 
         Case 45, 46, 106, 108 'ZONAS del Cliente
             EsNomCod = True
-            Tabla = "szonas"
+            tabla = "szonas"
             codCampo = "codzonas"
             nomCampo = "nomzonas"
             TipCampo = "N"
@@ -1081,7 +1081,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 49, 50 'Cod. AGENTE
             EsNomCod = True
-            Tabla = "sagent"
+            tabla = "sagent"
             codCampo = "codagent"
             nomCampo = "nomagent"
             TipCampo = "N"
@@ -1090,7 +1090,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 51, 52, 57, 58, 104, 105 'Tipos Contratos/MAntenimientos
             EsNomCod = True
-            Tabla = "stipco"
+            tabla = "stipco"
             codCampo = "codtipco"
             nomCampo = "nomtipco"
             TipCampo = "T"
@@ -1105,7 +1105,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
         
         Case 68, 69 'Tipos de Articulos
             EsNomCod = True
-            Tabla = "stipar"
+            tabla = "stipar"
             codCampo = "codtipar"
             nomCampo = "nomtipar"
             TipCampo = "T"
@@ -1113,7 +1113,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             
         Case 84, 85 'RUTAS del cliente
             EsNomCod = True
-            Tabla = "srutas"
+            tabla = "srutas"
             codCampo = "codrutas"
             nomCampo = "nomrutas"
             TipCampo = "N"
@@ -1127,7 +1127,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
             If PonerFormatoEntero(txtCodigo(Index)) Then
                 
                 
-                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo)
+                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, nomCampo, codCampo)
 '                txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, NomCampo, codCampo, Titulo, TipCampo)
             
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, Formato)
@@ -1135,7 +1135,7 @@ Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod
                 txtNombre(Index).Text = ""
             End If
         Else
-            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, nomCampo, codCampo)
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), tabla, nomCampo, codCampo)
 '            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), Tabla, NomCampo, codCampo, Titulo, TipCampo)
         End If
     End If
@@ -1147,7 +1147,7 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim Tabla As String
+Dim tabla As String
 Dim Titulo As String
 
     'Llamamos a al form
@@ -1156,18 +1156,18 @@ Dim Titulo As String
     Select Case Opcionlistado
         Case 7 'Traspaso de Almacenes
             Cad = Cad & "Nº Trasp|scatra.codtrasp|N|0000000|40·Almacen Origen|scatra.almaorig|N|000|20·Almacen Destino|scatra.almadest|N|000|20·Fecha|scatra.fechatra|F||20·"
-            Tabla = "scatra"
+            tabla = "scatra"
             Titulo = "Traspaso Almacenes"
         Case 8 'Movimientos de Almacen
             Cad = Cad & "Nº Movim.|scamov.codmovim|N|0000000|40·Almacen|scamov.codalmac|N|000|30·Fecha|scamov|fecmovim|F||30·"
-            Tabla = "scamov"
+            tabla = "scamov"
             Titulo = "Movimientos Almacen"
         Case 9, 12, 13, 14, 15, 16, 17 '9: Movimientos Articulos
                    '12: Inventario Articulos
                    '14:Actualizar Diferencias de Stock Inventariado
                    '16: Listado Valoracion stock inventariado
             Cad = Cad & "Código|sartic.codartic|T||30·Denominacion|sartic.nomartic|T||70·"
-            Tabla = "sartic"
+            tabla = "sartic"
             Titulo = "Articulos"
     End Select
           
@@ -1175,7 +1175,7 @@ Dim Titulo As String
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
         frmB.vCampos = Cad
-        frmB.vtabla = Tabla
+        frmB.vtabla = tabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
