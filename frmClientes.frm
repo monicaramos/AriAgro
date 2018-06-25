@@ -3785,7 +3785,7 @@ Private Sub cmdAceptar_Click()
         Case 3 'INSERTAR
             If DatosOk Then
                 If InsertarDesdeForm2(Me, 1) Then
-                    text2(24).Text = PonerNombreCuenta(Text1(24), Modo, Text1(0))
+                    Text2(24).Text = PonerNombreCuenta(Text1(24), Modo, Text1(0))
                     ' *** canviar o llevar el WHERE, repasar codEmpre ****
                     Data1.RecordSource = "Select * from " & NombreTabla & Ordenacion
                     'Data1.RecordSource = "Select * from " & NombreTabla & " where codempre = " & codEmpre & Ordenacion
@@ -3950,8 +3950,8 @@ Dim i As Integer
     
     Me.imgBuscar(8).Picture = frmPpal.imgListComun.ListImages(21).Picture
     'carga IMAGES de mail
-    For i = 0 To Me.imgMail.Count - 1
-        Me.imgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
+    For i = 0 To Me.ImgMail.Count - 1
+        Me.ImgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
     Next i
     
     'IMAGES para zoom
@@ -4358,7 +4358,7 @@ Private Sub frmFpa_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Formas de pago
     Text1(27).Text = RecuperaValor(CadenaSeleccion, 1) 'codforpa
     FormateaCampo Text1(27)
-    text2(27).Text = RecuperaValor(CadenaSeleccion, 2) 'nomforpa
+    Text2(27).Text = RecuperaValor(CadenaSeleccion, 2) 'nomforpa
 End Sub
 
 Private Sub frmPais2_DatoSeleccionado(CadenaSeleccion As String)
@@ -4372,7 +4372,7 @@ Private Sub frmPais_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento paises
     Text1(6).Text = RecuperaValor(CadenaSeleccion, 1) 'codpais
     FormateaCampo Text1(6)
-    text2(6).Text = RecuperaValor(CadenaSeleccion, 2) 'nompais
+    Text2(6).Text = RecuperaValor(CadenaSeleccion, 2) 'nompais
 
 End Sub
 
@@ -4380,7 +4380,7 @@ Private Sub frmTIva_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento Tipo de iva
     Text1(25).Text = RecuperaValor(CadenaSeleccion, 1) 'codiva
     FormateaCampo Text1(25)
-    text2(25).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
+    Text2(25).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
 End Sub
 
 Private Sub frmTMer_DatoSeleccionado(CadenaSeleccion As String)
@@ -5243,8 +5243,8 @@ Dim SQL As String
                 
         Case 6 'PAIS
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(Text1(Index), "paises", "nompaise")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "paises", "nompaise")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe el País: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -5262,15 +5262,15 @@ Dim SQL As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
             
 
         
         Case 27 'FORMA DE PAGO
             If PonerFormatoEntero(Text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
+                If Text2(Index).Text = "" Then
                     cadMen = "No existe la Forma de Pago: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -5288,7 +5288,7 @@ Dim SQL As String
                     PonerFoco Text1(Index)
                 End If
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
             
 '        Case 25 ' Tipo de Iva
@@ -5310,9 +5310,9 @@ Dim SQL As String
             If Modo = 3 Then ' si estamos insertando puede que no tengamos todos los datos para
                              ' insertar la cuenta contable en contabilidad
                              ' cuando demos aceptar si no existe preguntamos si crear
-                text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") ' Text1(0).Text)
+                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") ' Text1(0).Text)
             Else
-                text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, Text1(0).Text)
+                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, Text1(0).Text)
             End If
             
         Case 23, 26 'porcentajes de comision
@@ -5432,12 +5432,12 @@ Dim NomEmple As String
 
     On Error GoTo EPosarDescripcions
 
-    text2(6).Text = PonerNombreDeCod(Text1(6), "paises", "nompaise", "codpaise", "N")
+    Text2(6).Text = PonerNombreDeCod(Text1(6), "paises", "nompaise", "codpaise", "N")
 '    Text2(8).Text = PonerNombreDeCod(Text1(8), "cadenas", "nomcaden")
-    text2(27).Text = PonerNombreDeCod(Text1(27), "forpago", "nomforpa", "codforpa", "N")
+    Text2(27).Text = PonerNombreDeCod(Text1(27), "forpago", "nomforpa", "codforpa", "N")
     If vParamAplic.NumeroConta <> 0 Then
-        text2(25).Text = PonerNombreDeCod(Text1(25), "tiposiva", "porceiva", "codigiva", "N", cConta)
-        text2(24).Text = PonerNombreCuenta(Text1(24), Modo)
+        Text2(25).Text = PonerNombreDeCod(Text1(25), "tiposiva", "porceiva", "codigiva", "N", cConta)
+        Text2(24).Text = PonerNombreCuenta(Text1(24), Modo)
     End If
     
 EPosarDescripcions:
@@ -6125,7 +6125,7 @@ Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
     Text1(24).Text = RecuperaValor(CadenaSeleccion, 1) 'codiva
     FormateaCampo Text1(24)
-    text2(24).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
+    Text2(24).Text = RecuperaValor(CadenaSeleccion, 2) 'nomiva
 End Sub
 
 
