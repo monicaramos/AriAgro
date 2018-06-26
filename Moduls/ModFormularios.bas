@@ -1071,14 +1071,14 @@ Public Function EsNumerico(Texto As String) As Boolean
 Dim i As Integer
 Dim C As Integer
 Dim L As Integer
-Dim cad As String
+Dim Cad As String
 Dim b As Boolean
     
     EsNumerico = False
     b = True
-    cad = ""
+    Cad = ""
     If Not IsNumeric(Texto) Then
-        cad = "El campo debe ser numérico"
+        Cad = "El campo debe ser numérico"
         b = False
         '======= Añade Laura
         'formato: (.25)
@@ -1099,7 +1099,7 @@ Dim b As Boolean
             End If
         Loop Until i = 0
         If C > 1 Then
-            cad = "Numero de comas incorrecto"
+            Cad = "Numero de comas incorrecto"
             b = False
         End If
         
@@ -1114,13 +1114,13 @@ Dim b As Boolean
                 End If
             Loop Until i = 0
             If C > 1 Then
-                cad = "Numero incorrecto"
+                Cad = "Numero incorrecto"
                 b = False
             End If
         End If
     End If
     If Not b Then
-        MsgBox cad, vbExclamation
+        MsgBox Cad, vbExclamation
     Else
         EsNumerico = b
     End If
@@ -1130,7 +1130,7 @@ End Function
 Public Function PonerFormatoEntero(ByRef T As TextBox) As Boolean
 'Comprueba que el valor del textbox es un entero y le pone el formato
 Dim mTag As CTag
-Dim cad As String
+Dim Cad As String
 Dim Formato As String
 On Error GoTo EPonerFormato
 
@@ -1141,14 +1141,14 @@ On Error GoTo EPonerFormato
     Set mTag = New CTag
     mTag.Cargar T
     If mTag.Cargado Then
-       cad = mTag.Nombre 'descripcion del campo
+       Cad = mTag.Nombre 'descripcion del campo
        Formato = mTag.Formato
     End If
     Set mTag = Nothing
 
     If Not EsEntero(T.Text) Then
         PonerFormatoEntero = False
-        MsgBox "El campo " & cad & " tiene que ser numérico.", vbExclamation
+        MsgBox "El campo " & Cad & " tiene que ser numérico.", vbExclamation
         PonerFoco T
     Else
          'T.Text = Format(T.Text, Formato)
@@ -1170,7 +1170,7 @@ End Function
 Public Function PosarFormatTelefon(ByRef T As TextBox) As Boolean
 'Comprova que el Telèfon/Fax/Mòbil no te espais en blanc i només té números
 Dim mTag As CTag
-Dim cad As String
+Dim Cad As String
 
 On Error GoTo EPosarFormatTelefon
 
@@ -1182,13 +1182,13 @@ On Error GoTo EPosarFormatTelefon
     Set mTag = New CTag
     mTag.Cargar T
     If mTag.Cargado Then
-       cad = mTag.Nombre 'descripció del camp
+       Cad = mTag.Nombre 'descripció del camp
     End If
     Set mTag = Nothing
 
     If (InStr(1, T.Text, ",") > 0) Or (InStr(1, T.Text, ".") > 0) Or (InStr(1, T.Text, "+") > 0) Or (InStr(1, T.Text, "-") > 0) Or (Not IsNumeric(T.Text)) Then
         PosarFormatTelefon = False
-        MsgBox "El campo " & cad & " tiene que ser numérico.", vbExclamation
+        MsgBox "El campo " & Cad & " tiene que ser numérico.", vbExclamation
         PonerFoco T
     End If
     
@@ -1359,7 +1359,7 @@ Dim cadEnt As String
 End Function
 
 
-Public Function PonerNombreDeCod(ByRef Txt As TextBox, Tabla As String, campo As String, Optional Codigo As String, Optional Tipo As String, Optional cBD As Byte, Optional codigo2 As String, Optional valor2 As String, Optional tipo2 As String) As String
+Public Function PonerNombreDeCod(ByRef Txt As TextBox, tabla As String, campo As String, Optional Codigo As String, Optional Tipo As String, Optional cBD As Byte, Optional codigo2 As String, Optional valor2 As String, Optional tipo2 As String) As String
 'Devuelve el nombre/Descripción asociado al Código correspondiente
 'Además pone formato al campo txt del código a partir del Tag
 Dim SQL As String
@@ -1377,7 +1377,7 @@ Dim ValorCodigo As String
             If Tipo = "" Then Tipo = vtag.TipoDato
             
             If cBD = 0 Then cBD = cAgro
-            SQL = DevuelveDesdeBDNew(cBD, Tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
+            SQL = DevuelveDesdeBDNew(cBD, tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
             If vtag.TipoDato = "N" Then ValorCodigo = Format(ValorCodigo, vtag.Formato)
             Txt.Text = ValorCodigo 'Valor codigo formateado
             If SQL = "" Then
@@ -1775,7 +1775,7 @@ End Sub
 Public Function PonerNomCliente(ByRef T As TextBox) As String
 'Obtiene la cadena "apellido, nombre" o "nom.comercial" del cliente del codigo en T
 'segun sea una persona o empresa.
-Dim cad As String, cadNom As String
+Dim Cad As String, cadNom As String
 Dim tipCli As String 'tipo de cliente (persona/empresa)
 On Error Resume Next
 
@@ -1794,8 +1794,8 @@ On Error Resume Next
 '        PonerFoco T
 '        Exit Function
 '    Else
-        cad = "nom_come" 'nombre persona/nom comercial empresa
-        tipCli = DevuelveDesdeBDNew(cAgro, "clientes", "tipclien", "codclien", T.Text, "N", cad)
+        Cad = "nom_come" 'nombre persona/nom comercial empresa
+        tipCli = DevuelveDesdeBDNew(cAgro, "clientes", "tipclien", "codclien", T.Text, "N", Cad)
         If tipCli = "" Then
             MsgBox "No existe el cliente: " & T.Text, vbExclamation
             T.Text = ""
@@ -1805,12 +1805,12 @@ On Error Resume Next
             'obtenemos el Apellido
             cadNom = DevuelveDesdeBDNew(cAgro, "clientes", "ape_raso", "codclien", T.Text, "N")
             If cadNom <> "" Then
-                cadNom = cadNom & ", " & cad 'apellido, nombre
+                cadNom = cadNom & ", " & Cad 'apellido, nombre
                 PonerNomCliente = cadNom
             End If
         ElseIf tipCli = 2 Then 'empresa
             T.Text = Format(T.Text, "000000")
-            PonerNomCliente = cad
+            PonerNomCliente = Cad
         End If
     End If
     If Err.Number <> 0 Then Err.Clear
@@ -2016,7 +2016,7 @@ Public Function ObtenerAlto(ByRef vDataGrid As DataGrid, Optional alto As Intege
 Dim anc As Single
     anc = vDataGrid.Top + alto
     If vDataGrid.Row < 0 Then
-        anc = anc + 210
+        anc = anc + 240
     Else
         anc = anc + vDataGrid.RowTop(vDataGrid.Row)
     End If

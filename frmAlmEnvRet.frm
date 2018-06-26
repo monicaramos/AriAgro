@@ -332,7 +332,7 @@ Begin VB.Form frmAlmEnvRet
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13650
+      Left            =   13875
       TabIndex        =   7
       Top             =   7215
       Visible         =   0   'False
@@ -351,7 +351,7 @@ Begin VB.Form frmAlmEnvRet
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14805
+      Left            =   15030
       TabIndex        =   8
       Top             =   7215
       Visible         =   0   'False
@@ -460,7 +460,7 @@ Begin VB.Form frmAlmEnvRet
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14760
+      Left            =   14985
       TabIndex        =   12
       Top             =   7200
       Visible         =   0   'False
@@ -839,7 +839,7 @@ Private Sub BotonBuscar()
     For i = 0 To txtAux.Count - 1
         txtAux(i).Text = ""
     Next i
-    For i = 0 To 2
+    For i = 0 To Text2.Count - 1
         Text2(i).Text = ""
     Next i
     Me.cmbAux(0).ListIndex = -1
@@ -1325,9 +1325,9 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     
-    tots = "N|txtAux(0)|T|Albaran|800|;S|txtAux(1)|T|Linea|850|;"
+    tots = "N|txtAux(0)|T|Albarán|800|;S|txtAux(1)|T|Línea|850|;"
     tots = tots & "S|txtAux(4)|T|Fecha|1350|;S|btnBuscar(0)|B|||;S|txtAux(5)|T|Cliente|1100|;S|btnBuscar(2)|B|||;S|Text2(3)|T|Denominación|3300|;"
-    tots = tots & "S|txtAux(2)|T|Articulo|1750|;S|btnBuscar(1)|B|||;S|Text2(0)|T|Denominación|3000|;"
+    tots = tots & "S|txtAux(2)|T|Artículo|1750|;S|btnBuscar(1)|B|||;S|Text2(0)|T|Denominación|3000|;"
     tots = tots & "N|Text2(1)|T|Tipo|1000|;S|Text2(2)|T|Tipo Envase|1600|;S|cmbAux(0)|C|Tipo Mov.|1200|;"
     tots = tots & "S|txtAux(3)|T|Cantidad|1200|;"
     
