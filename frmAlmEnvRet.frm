@@ -5,7 +5,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmAlmEnvRet 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Envases Retornables"
-   ClientHeight    =   7785
+   ClientHeight    =   9915
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   16305
@@ -13,13 +13,13 @@ Begin VB.Form frmAlmEnvRet
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   7785
+   ScaleHeight     =   9915
    ScaleWidth      =   16305
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
-      Left            =   180
+      Left            =   135
       TabIndex        =   20
       Top             =   135
       Width           =   3585
@@ -334,7 +334,7 @@ Begin VB.Form frmAlmEnvRet
       Height          =   375
       Left            =   13875
       TabIndex        =   7
-      Top             =   7215
+      Top             =   9375
       Visible         =   0   'False
       Width           =   1035
    End
@@ -353,7 +353,7 @@ Begin VB.Form frmAlmEnvRet
       Height          =   375
       Left            =   15030
       TabIndex        =   8
-      Top             =   7215
+      Top             =   9375
       Visible         =   0   'False
       Width           =   1095
    End
@@ -380,13 +380,13 @@ Begin VB.Form frmAlmEnvRet
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmAlmEnvRet.frx":000C
-      Height          =   5985
+      Height          =   8145
       Left            =   180
       TabIndex        =   11
       Top             =   945
-      Width           =   15910
+      Width           =   15915
       _ExtentX        =   28072
-      _ExtentY        =   10557
+      _ExtentY        =   14367
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
@@ -460,9 +460,9 @@ Begin VB.Form frmAlmEnvRet
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14985
+      Left            =   15030
       TabIndex        =   12
-      Top             =   7200
+      Top             =   9360
       Visible         =   0   'False
       Width           =   1095
    End
@@ -471,7 +471,7 @@ Begin VB.Form frmAlmEnvRet
       Index           =   1
       Left            =   180
       TabIndex        =   9
-      Top             =   7020
+      Top             =   9180
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -912,7 +912,7 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
 End Sub
 
 Private Sub BotonEliminar()
-Dim SQL As String
+Dim Sql As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -927,18 +927,18 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*************** canviar els noms i el DELETE **********************************
-    SQL = "¿Seguro que desea eliminar el Envase?"
-    SQL = SQL & vbCrLf & "Línea: " & adodc1.Recordset.Fields(1)
-    SQL = SQL & vbCrLf & "Fecha " & adodc1.Recordset.Fields(2)
-    SQL = SQL & vbCrLf & "Cliente: " & Format(adodc1.Recordset.Fields(3), "000000") & " - " & adodc1.Recordset.Fields(4)
-    SQL = SQL & vbCrLf & "Articulo: " & adodc1.Recordset.Fields(5) & " - " & adodc1.Recordset.Fields(6)
+    Sql = "¿Seguro que desea eliminar el Envase?"
+    Sql = Sql & vbCrLf & "Línea: " & adodc1.Recordset.Fields(1)
+    Sql = Sql & vbCrLf & "Fecha " & adodc1.Recordset.Fields(2)
+    Sql = Sql & vbCrLf & "Cliente: " & Format(adodc1.Recordset.Fields(3), "000000") & " - " & adodc1.Recordset.Fields(4)
+    Sql = Sql & vbCrLf & "Articulo: " & adodc1.Recordset.Fields(5) & " - " & adodc1.Recordset.Fields(6)
     
-    If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
-        SQL = "Delete from albaran_envase where numalbar=" & adodc1.Recordset!NumAlbar
-        SQL = SQL & " and numlinea = " & adodc1.Recordset!NumLinea
-        conn.Execute SQL
+        Sql = "Delete from albaran_envase where numalbar=" & adodc1.Recordset!NumAlbar
+        Sql = Sql & " and numlinea = " & adodc1.Recordset!NumLinea
+        conn.Execute Sql
         CargaGrid CadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
@@ -1306,22 +1306,22 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim SQL As String
+    Dim Sql As String
     Dim tots As String
     
 '    adodc1.ConnectionString = Conn
     If vSQL <> "" Then
-        SQL = CadenaConsulta & " AND " & vSQL
+        Sql = CadenaConsulta & " AND " & vSQL
     Else
-        SQL = CadenaConsulta
+        Sql = CadenaConsulta
     End If
     
     
     '********************* canviar el ORDER BY *********************++
-    SQL = SQL & " ORDER BY albaran_envase.numalbar, albaran_envase.numlinea"
+    Sql = Sql & " ORDER BY albaran_envase.numalbar, albaran_envase.numlinea"
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, SQL, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     
@@ -1440,7 +1440,7 @@ End Sub
 Private Function DatosOk() As Boolean
 'Dim Datos As String
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Mens As String
 
     b = CompForm(Me)
@@ -1453,8 +1453,8 @@ Dim Mens As String
 '        End If
         
         If b Then
-            SQL = DevuelveDesdeBDNew(cAgro, "albaran_envase", "numalbar", "numalbar", txtAux(0).Text, "N", , "numlinea", txtAux(1).Text, "N")
-            If SQL <> "" Then
+            Sql = DevuelveDesdeBDNew(cAgro, "albaran_envase", "numalbar", "numalbar", txtAux(0).Text, "N", , "numlinea", txtAux(1).Text, "N")
+            If Sql <> "" Then
                 MsgBox "Esta línea existe para este albarán. Reintroduzca.", vbExclamation
                 PonerFoco txtAux(1)
                 b = False
@@ -1533,7 +1533,7 @@ End Sub
 
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim i As Byte
     
     cmbAux(0).Clear
@@ -1547,7 +1547,7 @@ Dim i As Byte
 End Sub
 
 Private Function InsertarCabeceraAlbaran(NumAlbar As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 '    InsertarCabeceraAlbaran = False
 '
 '    On Error GoTo eInsertarCabeceraAlbaran

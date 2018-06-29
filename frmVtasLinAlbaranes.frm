@@ -253,6 +253,15 @@ Begin VB.Form frmVtasLinAlbaranes
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   330
          Index           =   2
          Left            =   3900
@@ -488,6 +497,26 @@ Begin VB.Form frmVtasLinAlbaranes
       TabIndex        =   43
       Top             =   540
       Width           =   12705
+      Begin VB.TextBox Text1 
+         BackColor       =   &H80000013&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   27
+         Left            =   5310
+         MaxLength       =   40
+         TabIndex        =   88
+         Text            =   "1234657890123456798012345678901234567890"
+         Top             =   225
+         Width           =   825
+      End
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -1199,6 +1228,24 @@ Begin VB.Form frmVtasLinAlbaranes
          Tag             =   "Imp.Comisión|N|S|||albaran_variedad|impcomis|#,##0.00||"
          Top             =   4230
          Width           =   1035
+      End
+      Begin VB.Label Label6 
+         Caption         =   "Tipo"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   0
+         Left            =   4770
+         TabIndex        =   89
+         Top             =   255
+         Width           =   780
       End
       Begin VB.Label Label1 
          Caption         =   "Traza 6"
@@ -2073,6 +2120,7 @@ Public CodigoActual As String
 Public DeConsulta As Boolean
 Public Albaran As Long
 Public Linea As Integer
+Public codTipoM As String
 
 Public ModoExt As Byte
 
@@ -2416,6 +2464,9 @@ Dim i As Integer
         Label1(i).Enabled = (vParamAplic.Cooperativa = 9)
     Next i
 
+    Text1(27).Text = codTipoM
+
+
 End Sub
 
 Private Sub LimpiarCampos()
@@ -2493,6 +2544,7 @@ Dim b As Boolean
     If Modo = 4 Or Modo = 3 Then
         BloquearTxt Text1(0), True, True 'si estic en  modificar, bloqueja la clau primaria
         BloquearTxt Text1(1), True, True  'si estic en  modificar, bloqueja la clau primaria
+        BloquearTxt Text1(27), True, True    'si estic en  modificar, bloqueja la clau primaria
     End If
     ' **********************************************************************************
     
@@ -2918,8 +2970,12 @@ Private Sub BotonAnyadir()
     
     Text1(0).Text = Albaran
     Text1(1).Text = SugerirCodigoSiguienteStr("albaran_variedad", "numlinea", "numalbar = " & Text1(0).Text)
+    '[Monica]28/06/2018: el tipo de movimiento es el que se trae del albaran
+    Text1(27).Text = codTipoM
+    
     Text1(0).Locked = True
     Text1(1).Locked = True
+    Text1(27).Locked = True
     
     Combo1.ListIndex = 0
     
@@ -2935,6 +2991,7 @@ Private Sub BotonModificar()
     
     Text1(0).Text = Albaran
     Text1(1).Text = Linea
+    Text1(27).Text = codTipoM
     
     Text1(0).BackColor = &H80000013
     Text1(1).BackColor = &H80000013
@@ -3164,6 +3221,19 @@ Dim SQL As String
         End If
     End If
     
+    '[Monica]28/06/2018: la variedad real controlamos que sea comercializada solo la real
+    If Modo = 3 Or Modo = 4 Then
+        If vParamAplic.Cooperativa = 16 Then
+            If Text1(27).Text = "ALX" Then
+                If Not EsVariedadComercializada(Text1(2).Text) Then
+                    MsgBox "La variedad no es comercializada compartida. Revise.", vbExclamation
+                    PonerFoco Text1(2)
+                End If
+            End If
+        End If
+    End If
+    
+    
     ' ************************************************************************************
     DatosOk = b
     
@@ -3295,6 +3365,18 @@ Dim Variedad As String
                         Text1(Index).Text = ""
                     End If
                     PonerFoco Text1(Index)
+                Else
+                    '[Monica]27/06/2018: la variedad ha de ser comercializada
+                    If vParamAplic.Cooperativa = 16 Then
+                        If Index = 2 And (Modo = 3 Or Modo = 4) Then
+                            If Text1(27).Text = "ALX" Then
+                                If Not EsVariedadComercializada(Text1(2).Text) Then
+                                    MsgBox "La variedad no es comercializada compartida. Revise.", vbExclamation
+                                    PonerFoco Text1(2)
+                                End If
+                            End If
+                        End If
+                    End If
                 End If
             Else
                 Text2(Index).Text = ""
@@ -3388,6 +3470,7 @@ Dim Variedad As String
                     cadMen = "No existe el Tipo de Palet: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
+                        indice = 18
                         Set frmPal = New frmManPaleConf
                         frmPal.DatosADevolverBusqueda = "0|1|"
                         frmPal.NuevoCodigo = Text1(Index).Text

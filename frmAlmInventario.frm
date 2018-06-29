@@ -1,97 +1,183 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmAlmInventario 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Entrada de Inventario Real"
-   ClientHeight    =   6420
+   ClientHeight    =   10830
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   11550
+   ClientWidth     =   13545
    ClipControls    =   0   'False
    Icon            =   "frmAlmInventario.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6420
-   ScaleWidth      =   11550
+   ScaleHeight     =   10830
+   ScaleWidth      =   13545
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Visible         =   0   'False
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   90
+      TabIndex        =   15
+      Top             =   90
+      Width           =   1425
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   16
+         Top             =   180
+         Width           =   1020
+         _ExtentX        =   1799
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   2
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame Frame2 
-      Height          =   620
+      Height          =   840
       Left            =   120
-      TabIndex        =   12
-      Top             =   675
-      Width           =   11295
+      TabIndex        =   10
+      Top             =   855
+      Width           =   13275
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   7080
+         Left            =   6630
          MaxLength       =   16
          TabIndex        =   1
          Tag             =   "Cod. Familia|N|N|0|9999|sinven|codfamia|0000|N|"
          Text            =   "Text1"
-         Top             =   200
+         Top             =   285
          Width           =   735
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   7845
+         Left            =   7395
          Locked          =   -1  'True
-         TabIndex        =   15
+         TabIndex        =   13
          Text            =   "Text2"
-         Top             =   200
-         Width           =   2895
+         Top             =   285
+         Width           =   5685
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   1680
          MaxLength       =   16
          TabIndex        =   0
          Tag             =   "Cod. Almacen|N|N|0|999|sinven|codalmac|000|N|"
          Text            =   "Text1"
-         Top             =   200
+         Top             =   285
          Width           =   615
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   2340
          Locked          =   -1  'True
-         TabIndex        =   13
+         TabIndex        =   11
          Text            =   "Text2"
-         Top             =   200
-         Width           =   2775
+         Top             =   285
+         Width           =   3045
       End
       Begin VB.Label Label4 
-         Caption         =   "Cod. Familia"
+         Caption         =   "Familia"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   5520
-         TabIndex        =   16
-         Top             =   200
-         Width           =   1215
+         TabIndex        =   14
+         Top             =   285
+         Width           =   720
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   6780
-         Top             =   200
+         Left            =   6330
+         Top             =   285
          Width           =   240
       End
       Begin VB.Label Label1 
-         Caption         =   "Cod. Almacen"
+         Caption         =   "Almacen"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   240
-         TabIndex        =   14
-         Top             =   200
+         TabIndex        =   12
+         Top             =   285
          Width           =   1095
       End
       Begin VB.Image imgBuscar 
@@ -99,7 +185,7 @@ Begin VB.Form frmAlmInventario
          Index           =   0
          Left            =   1380
          ToolTipText     =   "Buscar almacen"
-         Top             =   200
+         Top             =   285
          Width           =   240
       End
    End
@@ -108,6 +194,15 @@ Begin VB.Form frmAlmInventario
       Appearance      =   0  'Flat
       BackColor       =   &H00FFFFFF&
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       ForeColor       =   &H00000000&
       Height          =   320
       Left            =   1200
@@ -123,120 +218,109 @@ Begin VB.Form frmAlmInventario
       Height          =   540
       Index           =   0
       Left            =   120
-      TabIndex        =   10
-      Top             =   5805
+      TabIndex        =   8
+      Top             =   10125
       Width           =   3255
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   11
+         TabIndex        =   9
          Top             =   180
          Width           =   2355
       End
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   8760
+      Left            =   11100
       TabIndex        =   2
-      Top             =   5895
-      Width           =   1035
+      Top             =   10215
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   10035
+      Left            =   12375
       TabIndex        =   3
-      Top             =   5895
-      Width           =   1035
+      Top             =   10215
+      Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
-      Height          =   375
-      Left            =   10035
-      TabIndex        =   4
-      Top             =   5895
-      Visible         =   0   'False
-      Width           =   1035
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   7
-      Top             =   0
-      Width           =   11550
-      _ExtentX        =   20373
-      _ExtentY        =   635
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      Style           =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   5
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
       EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   315
-         Left            =   6600
-         TabIndex        =   9
-         Top             =   90
-         Visible         =   0   'False
-         Width           =   1215
-      End
+      Height          =   375
+      Left            =   12375
+      TabIndex        =   4
+      Top             =   10215
+      Visible         =   0   'False
+      Width           =   1065
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmAlmInventario.frx":000C
-      Height          =   4395
+      Height          =   8145
       Left            =   120
       TabIndex        =   6
-      Top             =   1350
-      Width           =   11295
-      _ExtentX        =   19923
-      _ExtentY        =   7752
+      Top             =   1755
+      Width           =   13290
+      _ExtentX        =   23442
+      _ExtentY        =   14367
       _Version        =   393216
       AllowUpdate     =   -1  'True
       AllowArrows     =   -1  'True
       ColumnHeaders   =   -1  'True
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       FormatLocked    =   -1  'True
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -338,7 +422,7 @@ Begin VB.Form frmAlmInventario
       EndProperty
       Height          =   255
       Left            =   240
-      TabIndex        =   8
+      TabIndex        =   7
       Top             =   8220
       Visible         =   0   'False
       Width           =   3495
@@ -374,7 +458,7 @@ Private HaDevueltoDatos As Boolean
 
 
 Private Sub cmdAceptar_Click()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo Error1
     
@@ -388,19 +472,19 @@ Dim cad As String
                     PonerModo 4
                     CargaTxtAux True, True
                 Else 'No existen registros en la tabla sinven para ese criterio de búsqueda
-                    cad = "No se esta realizando inventario para esos criterios de búsqueda."
-                    MsgBox cad, vbInformation
+                    Cad = "No se esta realizando inventario para esos criterios de búsqueda."
+                    MsgBox Cad, vbInformation
                     PonerFoco Text1(0)
                 End If
             Else
-                cad = "Criterio de Búsqueda incompleto." & vbCrLf
-                cad = cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
+                Cad = "Criterio de Búsqueda incompleto." & vbCrLf
+                Cad = Cad & "Debe introducir ambos criterios de búsqueda: cod. almacen, "
                 If vParamAplic.InventarioxProv Then
-                    cad = cad & "Cod. Proveedor"
+                    Cad = Cad & "Cod. Proveedor"
                 Else
-                    cad = cad & "Cod. Familia"
+                    Cad = Cad & "Cod. Familia"
                 End If
-                MsgBox cad, vbExclamation
+                MsgBox Cad, vbExclamation
                 PonerFoco Text1(0)
             End If
             
@@ -466,8 +550,7 @@ Dim i As Integer
         
         'ASignamos botones
         .Buttons(1).Image = 1   'Buscar
-        .Buttons(4).Image = 4 'Modificar
-        .Buttons(5).Image = 11 'Salir
+        .Buttons(2).Image = 4 'Modificar
     End With
     
     For i = 0 To imgBuscar.Count - 1
@@ -476,10 +559,10 @@ Dim i As Integer
     
     'cargar el TAG en funcion del valor del parametro haydepar de la tabla spara1
     If vParamAplic.InventarioxProv Then
-        Label4.Caption = "Cod. Proveedor"
+        Label4.Caption = "Proveedor"
         Text1(1).Tag = "Cod. Proveedor|N|N|||sinven|codprove|000000|N|"
     Else
-        Label4.Caption = "Cod. Familia"
+        Label4.Caption = "Familia"
         Text1(1).Tag = "Cod. Familia|N|N|||sinven|codfamia|0000|N|"
     End If
     
@@ -495,25 +578,25 @@ End Sub
 
 Private Sub CargaGrid(enlaza As Boolean)
 Dim i As Byte
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     gridCargado = False
     
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data1, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data1, Sql, PrimeraVez
     
     PrimeraVez = False
         
     'Cod. Articulo
-    DataGrid1.Columns(0).Caption = "Cod. Articulo"
-    DataGrid1.Columns(0).Width = 1650
-    DataGrid1.Columns(1).Caption = "Desc. Articulo"
-    DataGrid1.Columns(1).Width = 3800
+    DataGrid1.Columns(0).Caption = "Articulo"
+    DataGrid1.Columns(0).Width = 1850
+    DataGrid1.Columns(1).Caption = "Descripción"
+    DataGrid1.Columns(1).Width = 4100
        
     'Fecha Inventario
     DataGrid1.Columns(2).Caption = "Fecha"
-    DataGrid1.Columns(2).Width = 1150
+    DataGrid1.Columns(2).Width = 1650
     DataGrid1.Columns(2).Alignment = dbgCenter
     
     'Hora Inventario
@@ -524,18 +607,20 @@ On Error GoTo ECarga
     
     'Existencia Real
     DataGrid1.Columns(4).Caption = "Existencia"
-    DataGrid1.Columns(4).Width = 1500
+    DataGrid1.Columns(4).Width = 2000
     DataGrid1.Columns(4).Alignment = dbgCenter
     
     'Diferencia
     DataGrid1.Columns(5).Caption = "Diferencia"
-    DataGrid1.Columns(5).Width = 1500
+    DataGrid1.Columns(5).Width = 2000
     DataGrid1.Columns(5).Alignment = dbgCenter
     
     For i = 0 To DataGrid1.Columns.Count - 1
         DataGrid1.Columns(i).AllowSizing = False
         DataGrid1.Columns(i).Locked = True
     Next i
+    
+    DataGrid1.RowHeight = 350
     
     DataGrid1.ScrollBars = dbgAutomatic
     gridCargado = True
@@ -666,7 +751,7 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 Dim campo As String
-Dim Tabla As String
+Dim tabla As String
 
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
     
@@ -681,18 +766,18 @@ Dim Tabla As String
         Select Case Index
             Case 0 'Codigo Almacen
                 campo = "nomalmac"
-                Tabla = "salmpr"
+                tabla = "salmpr"
             Case 1 'Codigo Familia/ Cod. Proveedor
                 If vParamAplic.InventarioxProv Then
                 'Realizar inventario por Proveedor
                     campo = "nomprove"
-                    Tabla = "proveedor"
+                    tabla = "proveedor"
                 Else
                     campo = "nomfamia"
-                    Tabla = "sfamia"
+                    tabla = "sfamia"
                 End If
         End Select
-        Text2(Index).Text = PonerNombreDeCod(Text1(Index), Tabla, campo)
+        Text2(Index).Text = PonerNombreDeCod(Text1(Index), tabla, campo)
         If Text1(Index).Text <> "" And Text2(Index).Text = "" Then PonerFoco Text1(Index)
      End If
 End Sub
@@ -702,7 +787,7 @@ Private Sub txtAux_GotFocus()
     ConseguirFocoLin txtAux
 End Sub
 
-Private Sub TxtAux_KeyDown(KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(KeyCode As Integer, Shift As Integer)
 On Error GoTo EKeyD
     If KeyCode = 38 Or KeyCode = 40 Then
         ModificarExistencia
@@ -767,10 +852,8 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
         Case 1 'Busqueda
             BotonBuscar
-        Case 4 'Modificar
+        Case 2 'Modificar
             BotonModificar
-        Case 5 'Salir
-            Unload Me
     End Select
 End Sub
 
@@ -827,7 +910,7 @@ Dim b As Boolean
 
     b = (Modo = 1)
     Toolbar1.Buttons(1).Enabled = Not b
-    Toolbar1.Buttons(4).Enabled = Not b And (Not (Modo = 0 Or Modo = 4))
+    Toolbar1.Buttons(2).Enabled = Not b And (Not (Modo = 0 Or Modo = 4))
 
     PonerOpcionesMenu   'Activar opciones de menu según nivel
                         'de permisos del usuario
@@ -850,30 +933,30 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
 
-    SQL = "SELECT sinven.codartic, sartic.nomartic, "
-    SQL = SQL & " sinven.fechainv, sinven.horainve, sinven.existenc, sinven.existenc - salmac.canstock as diferencia "
-    SQL = SQL & " FROM (sinven INNER JOIN sartic on sinven.codartic=sartic.codartic) INNER JOIN salmac ON sinven.codalmac=salmac.codalmac and sinven.codartic=salmac.codartic"
-    SQL = SQL & " INNER JOIN salmpr ON sinven.codalmac=salmpr.codalmac"
+    Sql = "SELECT sinven.codartic, sartic.nomartic, "
+    Sql = Sql & " sinven.fechainv, sinven.horainve, sinven.existenc, sinven.existenc - salmac.canstock as diferencia "
+    Sql = Sql & " FROM (sinven INNER JOIN sartic on sinven.codartic=sartic.codartic) INNER JOIN salmac ON sinven.codalmac=salmac.codalmac and sinven.codartic=salmac.codartic"
+    Sql = Sql & " INNER JOIN salmpr ON sinven.codalmac=salmpr.codalmac"
     
     If enlaza Then
-        SQL = SQL & " WHERE sinven.codalmac = " & Text1(0).Text & " AND "
+        Sql = Sql & " WHERE sinven.codalmac = " & Text1(0).Text & " AND "
         If vParamAplic.InventarioxProv Then
-            SQL = SQL & "sinven.codprove=" & Text1(1).Text
+            Sql = Sql & "sinven.codprove=" & Text1(1).Text
         Else
-            SQL = SQL & "sinven.codfamia=" & Text1(1).Text
+            Sql = Sql & "sinven.codfamia=" & Text1(1).Text
         End If
     Else
-        SQL = SQL & " WHERE sinven.codalmac = -1"
+        Sql = Sql & " WHERE sinven.codalmac = -1"
     End If
 
     If vParamAplic.InventarioxProv Then
-        SQL = SQL & " ORDER BY sinven.codprove, sinven.codfamia, codartic"
+        Sql = Sql & " ORDER BY sinven.codprove, sinven.codfamia, codartic"
     Else
-        SQL = SQL & " ORDER BY sinven.codfamia, codartic"
+        Sql = Sql & " ORDER BY sinven.codfamia, codartic"
     End If
-    MontaSQLCarga = SQL
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -884,13 +967,13 @@ Private Sub BotonBuscar()
         'Ponemos el grid lineasfacturas enlazando a ningun sitio
         CargaGrid False
         CargaTxtAux False, False
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         'Ya estamos en Modo de Busqueda
 '        HacerBusqueda
         If Data1.Recordset.EOF Then
             Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
             PonerFoco Text1(kCampo)
         End If
     End If
@@ -933,44 +1016,44 @@ Private Sub PonerOpcionesMenu()
 End Sub
 
 
-Private Function ActualizarExistencia(Canti As String) As Boolean
+Private Function ActualizarExistencia(canti As String) As Boolean
 'Actualiza la cantidad de stock Inventariada (Existencia Real en Almacen)
-Dim SQL As String
+Dim Sql As String
 Dim ADonde As String
 
     On Error GoTo EActualizar
 
-    Conn.BeginTrans
+    conn.BeginTrans
     'Actualizar la Tabla: sinven con la cantidad introducida
     '-------------------------------------------------------
     ADonde = "Modificando datos de Inventario (Tabla: sinven)."
-    SQL = "UPDATE sinven Set existenc = " & DBSet(Canti, "N")
-    SQL = SQL & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
-    SQL = SQL & " codalmac =" & Val(Text1(0).Text)
-    Conn.Execute SQL
+    Sql = "UPDATE sinven Set existenc = " & DBSet(canti, "N")
+    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
+    Sql = Sql & " codalmac =" & Val(Text1(0).Text)
+    conn.Execute Sql
     
     
     'Actualizar la Tabla: salmac el campo stockinv con la cantidad introducida
     '-------------------------------------------------------------------------
     ADonde = "Modificando datos de Articulos en Almacen. Tabla: salmac."
-    SQL = "UPDATE salmac Set stockinv = " & DBSet(Canti, "N")
-    SQL = SQL & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
-    SQL = SQL & " codalmac =" & Val(Text1(0).Text)
-    Conn.Execute SQL
+    Sql = "UPDATE salmac Set stockinv = " & DBSet(canti, "N")
+    Sql = Sql & " WHERE codartic =" & DBSet(Data1.Recordset!codArtic, "T") & " AND "
+    Sql = Sql & " codalmac =" & Val(Text1(0).Text)
+    conn.Execute Sql
     
     ActualizarExistencia = True
         
 EActualizar:
     If Err.Number <> 0 Then
         'Hay error , almacenamos y salimos
-         SQL = "Actualizando Diferencias de Inventario." & vbCrLf & "--------------------------------------------" & vbCrLf
-         SQL = SQL & ADonde
-         MuestraError Err.Number, SQL, Err.Description
-         Conn.RollbackTrans
+         Sql = "Actualizando Diferencias de Inventario." & vbCrLf & "--------------------------------------------" & vbCrLf
+         Sql = Sql & ADonde
+         MuestraError Err.Number, Sql, Err.Description
+         conn.RollbackTrans
          ActualizarExistencia = False
     Else
         ActualizarExistencia = True
-        Conn.CommitTrans
+        conn.CommitTrans
     End If
 End Function
 
@@ -987,15 +1070,15 @@ End Sub
 
 
 Private Function ModificarExistencia() As Boolean
-Dim NumReg As Long
+Dim Numreg As Long
 Dim Indicador As String
 
     If DatosOk Then
         If ActualizarExistencia(txtAux.Text) Then
             TerminaBloquear
-            NumReg = Data1.Recordset.AbsolutePosition
+            Numreg = Data1.Recordset.AbsolutePosition
             CargaGrid True
-            If SituarDataPosicion(Data1, NumReg, Indicador) Then
+            If SituarDataPosicion(Data1, Numreg, Indicador) Then
 
             End If
             ModificarExistencia = True

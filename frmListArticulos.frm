@@ -32,9 +32,9 @@ Begin VB.Form frmListArticulos
       Begin VB.Frame FrameOrden 
          BorderStyle     =   0  'None
          Height          =   1935
-         Left            =   6300
+         Left            =   6435
          TabIndex        =   34
-         Top             =   1080
+         Top             =   585
          Width           =   2655
          Begin VB.CommandButton cmdBajar 
             Height          =   510
@@ -72,6 +72,15 @@ Begin VB.Form frmListArticulos
             BackColor       =   -2147483643
             BorderStyle     =   1
             Appearance      =   1
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             NumItems        =   2
             BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
                Object.Width           =   2540
@@ -131,7 +140,7 @@ Begin VB.Form frmListArticulos
                Strikethrough   =   0   'False
             EndProperty
             Height          =   255
-            Left            =   1440
+            Left            =   1620
             TabIndex        =   33
             Top             =   280
             Width           =   1425
@@ -172,7 +181,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   27
          Text            =   "Text5"
          Top             =   4245
-         Width           =   3075
+         Width           =   5865
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -192,7 +201,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   26
          Text            =   "Text5"
          Top             =   3840
-         Width           =   3075
+         Width           =   5865
       End
       Begin VB.TextBox txtCodigo 
          BeginProperty Font 
@@ -248,7 +257,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   16
          Text            =   "Text5"
          Top             =   1845
-         Width           =   3195
+         Width           =   3780
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -268,7 +277,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   15
          Text            =   "Text5"
          Top             =   1440
-         Width           =   3195
+         Width           =   3780
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -288,7 +297,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   14
          Text            =   "Text5"
          Top             =   5355
-         Width           =   4035
+         Width           =   4980
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -308,7 +317,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   13
          Text            =   "Text5"
          Top             =   4950
-         Width           =   4035
+         Width           =   4980
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -396,9 +405,9 @@ Begin VB.Form frmListArticulos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5250
+         Left            =   6195
          TabIndex        =   11
-         Top             =   6015
+         Top             =   5970
          Width           =   1065
       End
       Begin VB.CommandButton cmdCancel 
@@ -414,9 +423,9 @@ Begin VB.Form frmListArticulos
          EndProperty
          Height          =   375
          Index           =   11
-         Left            =   6375
+         Left            =   7320
          TabIndex        =   12
-         Top             =   6015
+         Top             =   5970
          Width           =   1065
       End
       Begin VB.TextBox txtCodigo 
@@ -475,7 +484,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   2
          Text            =   "Text5"
          Top             =   2610
-         Width           =   4755
+         Width           =   5700
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -495,7 +504,7 @@ Begin VB.Form frmListArticulos
          TabIndex        =   1
          Text            =   "Text5"
          Top             =   3015
-         Width           =   4755
+         Width           =   5700
       End
       Begin VB.Label Label1 
          Caption         =   "Informe de Artículos"
@@ -531,7 +540,7 @@ Begin VB.Form frmListArticulos
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
-         Caption         =   "Tipo de Articulo"
+         Caption         =   "Tipo de Artículo"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -1298,7 +1307,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String

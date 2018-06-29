@@ -17,6 +17,33 @@ Begin VB.Form frmCCCostesMes
    ScaleWidth      =   16035
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3870
+      TabIndex        =   16
+      Top             =   135
+      Width           =   930
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   17
+         Top             =   180
+         Width           =   510
+         _ExtentX        =   900
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   1
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Cálculo Importes Reales"
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   180
@@ -92,7 +119,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   4
       Left            =   6600
       MaxLength       =   14
@@ -134,7 +161,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   3
       Left            =   5160
       MaxLength       =   14
@@ -157,7 +184,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   285
+      Height          =   330
       Index           =   0
       Left            =   1170
       TabIndex        =   13
@@ -177,7 +204,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   300
+      Height          =   330
       Index           =   0
       Left            =   930
       MaskColor       =   &H00000000&
@@ -199,7 +226,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   2
       Left            =   3690
       MaxLength       =   4
@@ -257,7 +284,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   1
       Left            =   3060
       MaxLength       =   2
@@ -279,7 +306,7 @@ Begin VB.Form frmCCCostesMes
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   0
       Left            =   60
       MaxLength       =   4
@@ -301,19 +328,19 @@ Begin VB.Form frmCCCostesMes
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -621,23 +648,23 @@ Dim bAux As Boolean
 
     b = (Modo = 2)
     'Busqueda
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Ver Todos
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     'Insertar
-    Toolbar1.Buttons(6).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     b = (b And adodc1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'Eliminar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     'Imprimir
-    Toolbar1.Buttons(11).Enabled = b
+    Toolbar1.Buttons(8).Enabled = b
     Me.mnImprimir.Enabled = b
     
 End Sub
@@ -688,7 +715,7 @@ Private Sub BotonBuscar()
     For i = 0 To 4 'txtAux.Count - 1
         txtAux(i).Text = ""
     Next i
-    LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.Top + 240, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
 End Sub
 
@@ -707,7 +734,7 @@ Private Sub BotonModificar()
     If DataGrid1.Row < 0 Then
         anc = 320
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 545
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top '+ 545
     End If
 
     'Llamamos al form
@@ -981,22 +1008,46 @@ End Sub
 Private Sub Form_Load()
     PrimeraVez = True
 
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        'el 1 es separadors
+'        .Buttons(2).Image = 1   'Buscar
+'        .Buttons(3).Image = 2   'Todos
+'        'el 4 i el 5 son separadors
+'        .Buttons(6).Image = 3   'Insertar
+'        .Buttons(7).Image = 4   'Modificar
+'        .Buttons(8).Image = 5   'Borrar
+'        .Buttons(9).Image = 13  'Calculo de impotes
+'        'el 9 i el 10 son separadors
+'        .Buttons(11).Image = 10  'imprimir
+'        .Buttons(12).Image = 11  'Salir
+'    End With
+    
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
-        'el 1 es separadors
-        .Buttons(2).Image = 1   'Buscar
-        .Buttons(3).Image = 2   'Todos
-        'el 4 i el 5 son separadors
-        .Buttons(6).Image = 3   'Insertar
-        .Buttons(7).Image = 4   'Modificar
-        .Buttons(8).Image = 5   'Borrar
-        .Buttons(9).Image = 13  'Calculo de impotes
-        'el 9 i el 10 son separadors
-        .Buttons(11).Image = 10  'imprimir
-        .Buttons(12).Image = 11  'Salir
+        'l'1 i el 2 son separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
+        'el 5 i el 6 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
+
+    With Me.Toolbar5
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 13  'Calculo de impotes
+    End With
+
+
 
     '## A mano
 '    chkVistaPrevia.Value = CheckValueLeer(Name)
@@ -1094,23 +1145,21 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 2
+        Case 5
                 mnBuscar_Click
-        Case 3
-                mnVerTodos_Click
         Case 6
+                mnVerTodos_Click
+        Case 1
                 mnNuevo_Click
-        Case 7
+        Case 2
                 mnModificar_Click
-        Case 8
+        Case 3
                 mnEliminar_Click
-        Case 9
-                mnCalculo_Click
-        Case 11
+'        Case 9
+'                mnCalculo_Click
+        Case 8
                 'MsgBox "Imprimir...under construction"
                 mnImprimir_Click
-        Case 12
-                mnSalir_Click
     End Select
 End Sub
 
@@ -1132,18 +1181,25 @@ Private Sub CargaGrid(Optional vSQL As String)
     CargaGridGnral Me.DataGrid1, Me.adodc1, SQL, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Cód.|800|;S|btnBuscar(0)|B|||;S|txtAux2(0)|T|Descripción|3975|;"
-    tots = tots & "S|txtAux(1)|T|Mes|700|;S|txtAux(2)|T|Año|700|;S|txtAux(3)|T|Importe Previsto|1700|;"
-    tots = tots & "S|txtAux(4)|T|Importe Real|1700|;"
-    tots = tots & "N||||0|;S|Combo1(0)|C|Tipo|1200|;"
+    tots = "S|txtAux(0)|T|Código|1000|;S|btnBuscar(0)|B|||;S|txtAux2(0)|T|Descripción|4975|;"
+    tots = tots & "S|txtAux(1)|T|Mes|1000|;S|txtAux(2)|T|Año|1000|;S|txtAux(3)|T|Importe Previsto|2700|;"
+    tots = tots & "S|txtAux(4)|T|Importe Real|2700|;"
+    tots = tots & "N||||0|;S|Combo1(0)|C|Tipo|1700|;"
     
-    arregla tots, DataGrid1, Me
+    arregla tots, DataGrid1, Me, 350
     
     DataGrid1.ScrollBars = dbgAutomatic
     DataGrid1.Columns(0).Alignment = dbgRight
     DataGrid1.Columns(4).Alignment = dbgRight
     DataGrid1.Columns(5).Alignment = dbgRight
     
+End Sub
+
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1
+            mnCalculo_Click
+    End Select
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
