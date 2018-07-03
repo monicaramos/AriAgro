@@ -356,7 +356,7 @@ Dim frmMens As frmMensajes
         Set frmMens = New frmMensajes
         
         frmMens.OpcionMensaje = 30
-        frmMens.cadena = Sql
+        frmMens.CADENA = Sql
         frmMens.Show vbModal
     
         Set frmMens = Nothing
@@ -467,6 +467,7 @@ On Error GoTo EAbrirConexion
 '[Monica]23/09/2014: dejamos la conexion igual que en todas las aplicaciones, como en recoleccion
     If vParamAplic.ServidorConta = "" Then vParamAplic.ServidorConta = vConfig.SERVER
 
+ '[Monica]29/06/2018:se añade el odbc DATA SOURCE=Aridoc
     If vParamAplic.ContabilidadNueva Then
         Cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATA SOURCE=Ariconta6;DATABASE=ariconta" & vParamAplic.NumeroConta & ";SERVER=" & vParamAplic.ServidorConta & ";"
     Else
@@ -512,7 +513,8 @@ On Error GoTo EAbrirConexion
                         
 '    cad = "DSN=Aridoc;DESC=MySQL ODBC 3.51 Driver DSN;UID=" & Usuario & ";PASSWORD=" & Pass & ";PORT=3306;OPTION=3;STMT=;"
     
-    Cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATABASE=aridoc;SERVER=" & vConfig.SERVER & ";"
+'[Monica]29/06/2018: nueva conexion volvemos a poner el odbc DATA SOURCE=Aridoc
+    Cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATA SOURCE=Aridoc;DATABASE=aridoc;SERVER=" & vConfig.SERVER
     Cad = Cad & ";UID=" & Usuario
     Cad = Cad & ";PWD=" & Pass
                      
@@ -719,7 +721,7 @@ End Function
 
     
 
-Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc As String)
+Public Sub MuestraError(numero As Long, Optional CADENA As String, Optional Desc As String)
     Dim Cad As String
     Dim Aux As String
     
@@ -727,8 +729,8 @@ Public Sub MuestraError(numero As Long, Optional cadena As String, Optional Desc
     'que se produzcan
     On Error Resume Next
     Cad = "Se ha producido un error: " & vbCrLf
-    If cadena <> "" Then
-        Cad = Cad & vbCrLf & cadena & vbCrLf & vbCrLf
+    If CADENA <> "" Then
+        Cad = Cad & vbCrLf & CADENA & vbCrLf & vbCrLf
     End If
     'Numeros de errores que contolamos
     If conn.Errors.Count > 0 Then
@@ -900,42 +902,42 @@ Dim i As Integer
 End Function
 
 ' ### [Monica] 11/09/2006
-Public Function ImporteSinFormato(cadena As String) As String
+Public Function ImporteSinFormato(CADENA As String) As String
 Dim i As Integer
 'Quitamos puntos
 Do
-    i = InStr(1, cadena, ".")
-    If i > 0 Then cadena = Mid(cadena, 1, i - 1) & Mid(cadena, i + 1)
+    i = InStr(1, CADENA, ".")
+    If i > 0 Then CADENA = Mid(CADENA, 1, i - 1) & Mid(CADENA, i + 1)
 Loop Until i = 0
-ImporteSinFormato = TransformaPuntosComas(cadena)
+ImporteSinFormato = TransformaPuntosComas(CADENA)
 End Function
 
 
 
 'Cambia los puntos de los numeros decimales
 'por comas
-Public Function TransformaComasPuntos(cadena As String) As String
+Public Function TransformaComasPuntos(CADENA As String) As String
 Dim i As Integer
     Do
-        i = InStr(1, cadena, ",")
+        i = InStr(1, CADENA, ",")
         If i > 0 Then
-            cadena = Mid(cadena, 1, i - 1) & "." & Mid(cadena, i + 1)
+            CADENA = Mid(CADENA, 1, i - 1) & "." & Mid(CADENA, i + 1)
         End If
     Loop Until i = 0
-    TransformaComasPuntos = cadena
+    TransformaComasPuntos = CADENA
 End Function
 
 'Para los nombre que pueden tener ' . Para las comillas habra que hacer dentro otro INSTR
-Public Sub NombreSQL(ByRef cadena As String)
+Public Sub NombreSQL(ByRef CADENA As String)
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, cadena, "'")
+        i = InStr(J, CADENA, "'")
         If i > 0 Then
-            Aux = Mid(cadena, 1, i - 1) & "\"
-            cadena = Aux & Mid(cadena, i)
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
             J = i + 2
         End If
     Loop Until i = 0
@@ -960,20 +962,20 @@ Dim Cad As String
     End If
 End Function
 
-Public Function DevNombreSQL(cadena As String) As String
+Public Function DevNombreSQL(CADENA As String) As String
 Dim J As Integer
 Dim i As Integer
 Dim Aux As String
     J = 1
     Do
-        i = InStr(J, cadena, "'")
+        i = InStr(J, CADENA, "'")
         If i > 0 Then
-            Aux = Mid(cadena, 1, i - 1) & "\"
-            cadena = Aux & Mid(cadena, i)
+            Aux = Mid(CADENA, 1, i - 1) & "\"
+            CADENA = Aux & Mid(CADENA, i)
             J = i + 2
         End If
     Loop Until i = 0
-    DevNombreSQL = cadena
+    DevNombreSQL = CADENA
 End Function
 
 
@@ -1309,15 +1311,15 @@ Dim res As Boolean
         EsEntero = res
 End Function
 
-Public Function TransformaPuntosComas(cadena As String) As String
+Public Function TransformaPuntosComas(CADENA As String) As String
     Dim i As Integer
     Do
-        i = InStr(1, cadena, ".")
+        i = InStr(1, CADENA, ".")
         If i > 0 Then
-            cadena = Mid(cadena, 1, i - 1) & "," & Mid(cadena, i + 1)
+            CADENA = Mid(CADENA, 1, i - 1) & "," & Mid(CADENA, i + 1)
         End If
         Loop Until i = 0
-    TransformaPuntosComas = cadena
+    TransformaPuntosComas = CADENA
 End Function
 
 Public Sub InicializarFormatos()
@@ -1483,7 +1485,7 @@ On Error GoTo EAbrirConexion
 ''++monica: tema del vista
 '    Cad = Cad & ";Persist Security Info=true"
 
-'*******[Monica29/06/2018
+'*******[Monica]29/06/2018: volvemos a poner el odbc DATA SOURCE=Aridoc;
     Cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATA SOURCE=vAriagro"
     Cad = Cad & ";DATABASE=" & BaseDatos
     Cad = Cad & ";UID=" & vConfig.User
@@ -1682,6 +1684,7 @@ On Error GoTo EAbrirConexion
     
     
 '*******
+ '[Monica]29/06/2018:se añade el odbc DATA SOURCE=vODBC
     Cad = "DRIVER={MySQL ODBC 3.51 Driver};DESC=;DATA SOURCE=vUsuarios"
     Cad = Cad & ";DATABASE=usuarios"
     Cad = Cad & ";UID=" & vConfig.User
