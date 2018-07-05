@@ -17,44 +17,16 @@ Begin VB.Form frmAlmMovimientos
    ScaleWidth      =   14130
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.Frame FrameBotonGnral2 
-      Height          =   705
-      Left            =   3780
-      TabIndex        =   34
-      Top             =   45
-      Width           =   795
-      Begin MSComctlLib.Toolbar Toolbar5 
-         Height          =   330
-         Left            =   210
-         TabIndex        =   35
-         Top             =   180
-         Width           =   510
-         _ExtentX        =   900
-         _ExtentY        =   582
-         ButtonWidth     =   609
-         ButtonHeight    =   582
-         AllowCustomize  =   0   'False
-         Style           =   1
-         _Version        =   393216
-         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   1
-            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Actualizar"
-               Object.Tag             =   "2"
-            EndProperty
-         EndProperty
-      End
-   End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   135
-      TabIndex        =   31
+      TabIndex        =   34
       Top             =   45
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   32
+         TabIndex        =   35
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -103,6 +75,34 @@ Begin VB.Form frmAlmMovimientos
                Enabled         =   0   'False
                Object.Visible         =   0   'False
                Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral2 
+      Height          =   705
+      Left            =   3780
+      TabIndex        =   32
+      Top             =   45
+      Width           =   795
+      Begin MSComctlLib.Toolbar Toolbar5 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   33
+         Top             =   180
+         Width           =   510
+         _ExtentX        =   900
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   1
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Actualizar"
+               Object.Tag             =   "2"
             EndProperty
          EndProperty
       End
@@ -733,7 +733,7 @@ Begin VB.Form frmAlmMovimientos
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
       Left            =   13245
-      TabIndex        =   33
+      TabIndex        =   31
       Top             =   135
       Width           =   405
       _ExtentX        =   714
@@ -973,9 +973,6 @@ Private Sub cboImpresion_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub chkVistaPrevia_KeyPress(KeyAscii As Integer)
-    KEYpress KeyAscii
-End Sub
 
 Private Sub cmdAceptar_Click()
 Dim Cad As String, Indicador As String
@@ -1182,11 +1179,12 @@ Dim i As Integer
         .Buttons(4).Image = 9
     End With
     
-    ' La Ayuda
-    With Me.ToolbarAyuda
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 12
-    End With
+' comentado de momento
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
 
 
 
@@ -1213,7 +1211,7 @@ Dim i As Integer
     DataGrid1.ClearFields
     
     'Vemos como esta guardado el valor del check
-    chkVistaPrevia.Value = CheckValueLeer(Name)
+    chkVistaPrevia(0).Value = CheckValueLeer(Name)
     CodTipoMov = "REG"
     
     'campo situacio solo en tabla scamov
@@ -1286,12 +1284,12 @@ On Error GoTo ECarga
     i = 2
     
     'Cod. Artículo
-    DataGrid1.Columns(i).Caption = "Articulo"
+    DataGrid1.Columns(i).Caption = "Artículo"
     DataGrid1.Columns(i).Width = 2200
     
     'Nombre Artículo
     i = i + 1
-    DataGrid1.Columns(i).Caption = "Nombre Articulo"
+    DataGrid1.Columns(i).Caption = "Nombre Artículo"
     DataGrid1.Columns(i).Width = 3600
     
     'Cantidad
@@ -1642,6 +1640,17 @@ Dim vWhere As String
     'End If
 End Sub
 
+Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Select Case Button.Index
+        Case 1 'Actualizar
+           BotonActualizar
+    End Select
+End Sub
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
+
 Private Sub txtAux_GotFocus(Index As Integer)
     ConseguirFocoLin txtAux(Index)
 End Sub
@@ -1683,27 +1692,29 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1 'Busqueda
+        Case 5 'Busqueda
            mnBuscar_Click
-        Case 2 'Ver Todos
+        Case 6 'Ver Todos
            mnVerTodos_Click
-        Case 5 'Nuevo
+        Case 1 'Nuevo
            mnNuevo_Click
-        Case 6  'Modificar
+        Case 2  'Modificar
            mnModificar_Click
-        Case 7 'Eliminar
+        Case 3 'Eliminar
            mnEliminar_Click
-           
-        Case 9 'Mantenimiento Lineas
-           BotonLineas
-        Case 10 'Actualizar
-           BotonActualizar
-        Case 12 'Imprimir
+        Case 8 'Imprimir
            BotonImprimir
-        Case 13  'Salir
-           mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
-           Desplazamiento (Button.Index - btnPrimero)
+           
+'        Case 9 'Mantenimiento Lineas
+'           BotonLineas
+'        Case 10 'Actualizar
+'           BotonActualizar
+'        Case 12 'Imprimir
+'           BotonImprimir
+'        Case 13  'Salir
+'           mnSalir_Click
+'        Case btnPrimero To btnPrimero + 3 'Flechas de Desplazamiento
+'           Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -1733,7 +1744,8 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
     
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
     'Si estamos en Insertar además limpia los campos Text1
@@ -1762,7 +1774,7 @@ Dim b As Boolean
         Me.imgBuscar(i).Enabled = b
     Next i
 
-    Me.chkVistaPrevia.Enabled = (Modo <= 2)
+    Me.chkVistaPrevia(0).Enabled = (Modo <= 2)
 
     'Poner el tamaño de los campos. Si es modo Busqueda el MaxLength del campo
     'debe ser mayor para adminir intervalos de busqueda.
@@ -1773,6 +1785,10 @@ Dim b As Boolean
                         'de permisos del usuario
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -1785,9 +1801,9 @@ Dim b As Boolean, bAux As Boolean
 Dim i As Byte
 
     'Si visualizamos el historico no mostrar botones de Mantenimiento, solo es consulta
-    For i = 5 To 10
+    For i = 1 To 3
         '++monica: rollo toolbar he puesto condicion
-        If i <> 9 Then Toolbar1.Buttons(i).visible = Not EsHistorico
+        If i <> 9 Then Toolbar1.Buttons(i).Enabled = Not EsHistorico
     Next i
     Me.mnNuevo.visible = Not EsHistorico
     Me.mnModificar.visible = Not EsHistorico
@@ -1799,13 +1815,13 @@ Dim i As Byte
         'Modo 2. Hay datos y estamos visualizandolos
         b = (Modo = 2) Or (Modo = 5 And ModificaLineas = 0)
         'Insertar
-        Toolbar1.Buttons(5).Enabled = (b Or Modo = 0)
+        Toolbar1.Buttons(1).Enabled = (b Or Modo = 0)
         Me.mnNuevo.Enabled = (b Or Modo = 0)
         'Modificar
-        Toolbar1.Buttons(6).Enabled = b
+        Toolbar1.Buttons(2).Enabled = b
         Me.mnModificar.Enabled = b
         'eliminar
-        Toolbar1.Buttons(7).Enabled = b
+        Toolbar1.Buttons(3).Enabled = b
         Me.mnEliminar.Enabled = b
         
         '--------------------------------
@@ -1815,15 +1831,15 @@ Dim i As Byte
 '        Toolbar1.Buttons(9).Enabled = b
 
         'Actualizar
-        Toolbar1.Buttons(10).Enabled = b
+        Toolbar5.Buttons(1).Enabled = b
         
         
         b = (Modo >= 3) Or Modo = 1
         'Buscar
-        Toolbar1.Buttons(1).Enabled = Not b
+        Toolbar1.Buttons(5).Enabled = Not b
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
-        Toolbar1.Buttons(2).Enabled = Not b
+        Toolbar1.Buttons(6).Enabled = Not b
         Me.mnVerTodos.Enabled = Not b
     End If
     
@@ -1854,10 +1870,10 @@ Private Sub Desplazamiento(Index As Integer)
     Select Case Modo
         Case 5 'Modo Mantenimiento de Almacenes (Lineas)
             If Data2.Recordset.EOF Then Exit Sub
-            DesplazamientoData Data2, Index
+            DesplazamientoData Data2, Index, True
         Case Else 'Datos de Cabecera
             If Data1.Recordset.EOF Then Exit Sub
-            DesplazamientoData Data1, Index
+            DesplazamientoData Data1, Index, True
             PonerCampos
     End Select
 End Sub
@@ -1918,7 +1934,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Ver todos
     
-    If chkVistaPrevia.Value = 1 Then
+    If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
     Else
         CadenaConsulta = "Select * from " & NombreTabla & Ordenacion
@@ -2410,7 +2426,7 @@ Dim CadB As String
     CadB = ObtenerBusqueda(Me, False)
     cadSeleccion = ObtenerBusqueda(Me, True) 'Para la consulta de report
 
-    If chkVistaPrevia = 1 Then
+    If chkVistaPrevia(0) = 1 Then
         MandaBusquedaPrevia CadB
     ElseIf CadB <> "" Then 'Se muestran en el mismo form
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
