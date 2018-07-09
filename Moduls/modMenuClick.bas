@@ -301,7 +301,8 @@ End Sub
 
 Public Sub SubmnC_GV_PalPed_Click(Index As Integer)
     Select Case Index
-        Case 1: frmVtasPalets.Show vbModal 'Mantenimiento de palets
+        Case 1: frmVtasPaletsPrev.Show vbModal 'Mantenimiento de palets
+        
         Case 2: frmListPaletsConf.Show vbModal   'frmVtasPaletsConf.Show vbModal 'Listado de palets confeccionados
         Case 4: frmVtasPedidos.Show vbModal 'Mantenimiento de pedidos
         Case 5: frmVtasPlanDiario.Show vbModal 'planning de Confeccion
@@ -316,10 +317,10 @@ Public Sub SubmnC_GV_PalPed_Click(Index As Integer)
                  frmImpAridoc.Show vbModal 'vbModalConstruc("Integracion aridoc")
         Case 15: Select Case vParamAplic.Cooperativa
                     Case 1 ' Valsur
-                        frmTrazabilidad.OpcionListado = 0
+                        frmTrazabilidad.Opcionlistado = 0
                         frmTrazabilidad.Show vbModal 'traspaso de trazabilidad
                     Case 5 ' Castelduc
-                        frmTrazabilidad.OpcionListado = 1
+                        frmTrazabilidad.Opcionlistado = 1
                         frmTrazabilidad.Show vbModal 'traspaso de trazabilidad
                  End Select
     End Select
@@ -339,7 +340,7 @@ End Sub
 
 Public Sub SubmnC_GV_FactAlbEnv_Click()
 '    Construc ("Facturacion Albaranes Envases") 'frmVtasAlbEnvases.Show vbModal ' Informes de Gestion de Ventas Gráficos
-    frmVtasFactAlbEnv.OpcionListado = 52 'facturacion de albaranes
+    frmVtasFactAlbEnv.Opcionlistado = 52 'facturacion de albaranes
     frmVtasFactAlbEnv.Show vbModal
 End Sub
 
@@ -387,9 +388,9 @@ End Sub
 Public Sub SubmnC_GV_Incidencias_Click(Index As Integer)
     Select Case Index
         Case 1
-            frmVtasListIncid.OpcionListado = 0  ' Informe de incidencias
+            frmVtasListIncid.Opcionlistado = 0  ' Informe de incidencias
         Case 2
-            frmVtasListIncid.OpcionListado = 1  ' Informe de categorias
+            frmVtasListIncid.Opcionlistado = 1  ' Informe de categorias
     End Select
     frmVtasListIncid.Show vbModal
 End Sub
@@ -400,7 +401,7 @@ End Sub
 Public Sub SubmnC_GV_Traza_Click(Index As Integer)
     Select Case Index
         Case 1
-            frmVtasListTraza.OpcionListado = 0  ' Informe de trazabilidad
+            frmVtasListTraza.Opcionlistado = 0  ' Informe de trazabilidad
             frmVtasListTraza.Show vbModal
     End Select
 End Sub
@@ -433,7 +434,7 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
 '                frmListado2.OptClientes = True
                 '[Monica]13/06/2018: no se inicializaba
                 frmListado2.CadTag = ""
-                frmListado2.OpcionListado = 223
+                frmListado2.Opcionlistado = 223
                 frmListado2.Show vbModal
                 Screen.MousePointer = vbDefault
         Case 12: frmImpAridoc.Tipo = 1 ' Integracion de aridoc: Facturas de venta
@@ -447,7 +448,7 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         
         Case 17: frmVtasAlbSocios.Show vbModal ' albaranes de venta a socios
         Case 18: frmVtasFactSocios.Show vbModal ' facturas de venta a socios
-        Case 19: frmListado2.OpcionListado = 223
+        Case 19: frmListado2.Opcionlistado = 223
                  frmListado2.CadTag = "A"
                  frmListado2.Show vbModal
     End Select
@@ -489,24 +490,24 @@ Public Sub SubmnC_GV_CCostes_Click(Index As Integer)
                 frmCCCostesMes.Show vbModal
                 
         Case 7: 'procesar fichajes
-                frmCCListados.OpcionListado = 2
+                frmCCListados.Opcionlistado = 2
                 frmCCListados.Show vbModal
         
         Case 8: 'mantenimiento de fichajes
                 frmCCFichajesTrab.Show vbModal
                 
         Case 9: 'carga automatica de lineas de confeccion
-                frmCCListados.OpcionListado = 1
+                frmCCListados.Opcionlistado = 1
                 frmCCListados.Show vbModal
                 
         Case 10: frmCCOrdenConfeccion.Show vbModal ' Ordenes de confeccion
         
         Case 11: frmCCCostesDiarios.Show vbModal ' Costes diarios
         
-        Case 12: frmCCListados.OpcionListado = 0
+        Case 12: frmCCListados.Opcionlistado = 0
                  frmCCListados.Show vbModal ' Informe de Costes diarios
 
-        Case 13: frmCCListados.OpcionListado = 6
+        Case 13: frmCCListados.Opcionlistado = 6
                  frmCCListados.Show vbModal ' busqueda de cadena en ficheros
 
     End Select
@@ -560,7 +561,7 @@ Public Sub AbrirListado2(numero As Integer)
     Screen.MousePointer = vbHourglass
     
     frmListado2.DeServicios = DeServicios
-    frmListado2.OpcionListado = numero
+    frmListado2.Opcionlistado = numero
     frmListado2.OptProve = (Not DeTransporte)
     DeTransporte = False
     

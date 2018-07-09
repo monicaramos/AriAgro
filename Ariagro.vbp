@@ -248,6 +248,7 @@ Class=CCampAnt; Clases\CCampAnt.cls
 Object={608009F3-E1FB-11D2-9BA1-0040D0002C80}#1.0#0; nslock15vb6.ocx
 Form=frmManCamara.frm
 Module=TraspCooperativas; Moduls\TraspCooperativas.bas
+Form=frmVtasPaletsPrev.frm
 IconForm="MDIppal"
 Startup="Sub Main"
 HelpFile=""

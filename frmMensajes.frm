@@ -2334,7 +2334,7 @@ Dim Cad As String
 On Error Resume Next
 
     FrameCobrosPtes.visible = False
-    frameAcercaDE.visible = False
+    FrameAcercaDe.visible = False
     FrameNSeries.visible = False
     FrameComponentes.visible = False
     FrameComponentes2.visible = False
@@ -2362,13 +2362,13 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaCobrosPtes
             Me.Caption = "Cobros Pendientes"
-            PonerFocoBtn Me.CmdAceptarCobros
+            PonerFocoBtn Me.cmdAceptarCobros
             
         Case 2 'Mensaje de no hay suficiente Stock
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaArtSinStock (vCampos)
             Me.Caption = "Artículos sin stock suficiente"
-            PonerFocoBtn Me.CmdAceptarCobros
+            PonerFocoBtn Me.cmdAceptarCobros
             
         Case 3 'Mensaje ACERCA DE
             CargaImagen
@@ -2436,7 +2436,7 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaErrContab
             Me.Caption = "Facturas NO contabilizadas: "
-            PonerFocoBtn Me.CmdAceptarCobros
+            PonerFocoBtn Me.cmdAceptarCobros
         
         Case 11 'Lineas Factura a Rectificar
             PonerFrameNSeriesVisible True, H, W
@@ -2454,13 +2454,13 @@ On Error Resume Next
             Me.Label1(0).Caption = "Existen Albaranes que NO se van a Facturar:"
             Me.Label1(0).Top = 260
             Me.Label1(0).Left = 480
-            PonerFocoBtn Me.CmdAceptarCobros
+            PonerFocoBtn Me.cmdAceptarCobros
             
         Case 13 'Muestra Errores
             H = 6000
             W = 8800
             PonerFrameVisible Me.FrameErrores, True, H, W
-            Me.Text1.Text = vCampos
+            Me.text1.Text = vCampos
             Me.Caption = "Errores"
         
         Case 14 'Muestra Empresas del sistema
@@ -2575,32 +2575,32 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
             Me.Label1(0).Caption = "CLIENTE: " & vCampos
         Case 2
             W = 8800
-            Me.CmdAceptarCobros.Top = 4000
-            Me.CmdAceptarCobros.Left = 4200
+            Me.cmdAceptarCobros.Top = 4000
+            Me.cmdAceptarCobros.Left = 4200
         Case 5 'Componentes
             W = 6000
             H = 5000
-            Me.CmdAceptarCobros.Left = 4000
+            Me.cmdAceptarCobros.Left = 4000
 
         Case 6, 7 'Prefacturar Albaranes
             W = 7000
             H = 6000
-            Me.CmdAceptarCobros.Top = 5400
-            Me.CmdAceptarCobros.Left = 4600
+            Me.cmdAceptarCobros.Top = 5400
+            Me.cmdAceptarCobros.Left = 4600
 
         Case 10, 12 'Errores al contabilizar facturas
             H = 6000
             W = 8400
-            Me.CmdAceptarCobros.Top = 5300
-            Me.CmdAceptarCobros.Left = 4900
+            Me.cmdAceptarCobros.Top = 5300
+            Me.cmdAceptarCobros.Left = 4900
             If OpcionMensaje = 12 Then
-                Me.CmdCancelarCobros.Top = 5300
-                Me.CmdCancelarCobros.Left = 4600
-                Me.CmdAceptarCobros.Left = 3300
+                Me.cmdCancelarCobros.Top = 5300
+                Me.cmdCancelarCobros.Left = 4600
+                Me.cmdAceptarCobros.Left = 3300
                 Me.Label1(1).Top = 4800
                 Me.Label1(1).Left = 3400
-                Me.CmdAceptarCobros.Caption = "&SI"
-                Me.CmdCancelarCobros.Caption = "&NO"
+                Me.cmdAceptarCobros.Caption = "&SI"
+                Me.cmdCancelarCobros.Caption = "&NO"
             End If
     End Select
             
@@ -2609,7 +2609,7 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
     If visible = True Then
         Me.txtParam.visible = (OpcionMensaje = 6 Or OpcionMensaje = 7)
         Me.Label1(0).visible = (OpcionMensaje = 1) Or (OpcionMensaje = 5) Or (OpcionMensaje = 12)
-        Me.CmdCancelarCobros.visible = (OpcionMensaje = 12)
+        Me.cmdCancelarCobros.visible = (OpcionMensaje = 12)
         Me.Label1(1).visible = (OpcionMensaje = 12)
     End If
 End Sub
@@ -2640,16 +2640,16 @@ End Sub
 Private Sub PonerFrameAcercaDeVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Pone el Frame ACERCA DE visible y Ajustado al Formulario
 
-    Me.frameAcercaDE.visible = visible
+    Me.FrameAcercaDe.visible = visible
     If visible = True Then
         'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
-        Me.frameAcercaDE.Top = -90
-        Me.frameAcercaDE.Left = 0
-        Me.frameAcercaDE.Height = 4555
-        Me.frameAcercaDE.Width = 6600
+        Me.FrameAcercaDe.Top = -90
+        Me.FrameAcercaDe.Left = 0
+        Me.FrameAcercaDe.Height = 4555
+        Me.FrameAcercaDe.Width = 6600
         
-        W = Me.frameAcercaDE.Width
-        H = Me.frameAcercaDE.Height
+        W = Me.FrameAcercaDe.Width
+        H = Me.FrameAcercaDe.Height
     End If
 End Sub
 
@@ -3522,6 +3522,10 @@ End Sub
 
 
 
+
+
+
+
 Private Sub ListView11_ItemCheck(ByVal item As MSComctlLib.ListItem)
     For NumRegElim = 1 To ListView11.ListItems.Count
         If ListView11.ListItems(NumRegElim).Tag = 0 Then
@@ -3531,6 +3535,8 @@ Private Sub ListView11_ItemCheck(ByVal item As MSComctlLib.ListItem)
 
 
 End Sub
+
+
 
 Private Sub OptCompXClien_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
