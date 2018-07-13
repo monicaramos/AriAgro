@@ -2942,6 +2942,8 @@ Dim i As Integer
     
     
     Select Case pModo
+        Case 1 ' venimos del listview con busqueda avanzada
+            BotonBuscar
         Case 3
             BotonAnyadir
         Case 4
@@ -2970,16 +2972,16 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim CadB As String
+Dim cadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        CadB = ""
+        cadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        cadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -3441,7 +3443,7 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim CadB As String
+Dim cadB As String
 Dim cadAux As String
     
 '    '--- Laura 12/01/2007
@@ -3466,7 +3468,7 @@ Dim cadAux As String
     End If
     
     
-    CadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
+    cadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
     Text1(8).Tag = Replace(Text1(8).Tag, "FHH", "FH")
     Text1(6).Tag = Replace(Text1(6).Tag, "FHH", "FH")
     
@@ -3479,11 +3481,11 @@ Dim cadAux As String
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia CadB
-    ElseIf CadB <> "" Then
+        MandaBusquedaPrevia cadB
+    ElseIf cadB <> "" Then
         'Se muestran en el mismo form
         CadenaConsulta = "select palets.* from " & NombreTabla & " LEFT JOIN palets_variedad ON palets.numpalet=palets_variedad.numpalet "
-        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
+        CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY palets.numpalet " & Ordenacion
 '        CadenaConsulta = "select palets.* from " & NombreTabla
 '        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
         PonerCadenaBusqueda
@@ -3491,7 +3493,7 @@ Dim cadAux As String
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(CadB As String)
+Private Sub MandaBusquedaPrevia(cadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
 Dim tabla As String
@@ -3516,7 +3518,7 @@ Dim Desc As String, devuelve As String
         Set frmB = New frmBuscaGrid
         frmB.vCampos = Cad
         frmB.vtabla = tabla
-        frmB.vSQL = CadB
+        frmB.vSQL = cadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"
@@ -3668,7 +3670,7 @@ Dim b As Boolean
     '=========================================
     b = (Modo = 2)
     'Ponemos visible, si es formulario de busqueda, el boton regresar cuando hay datos
-    If DatosADevolverBusqueda <> "" Then
+    If DatosADevolverBusqueda <> "" Or pModo <> 0 Then
         cmdRegresar.visible = b
     Else
         cmdRegresar.visible = False

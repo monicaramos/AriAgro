@@ -124,6 +124,7 @@ Public SeleccionadosTodos As Boolean
 Public Const SerieFraPro = "1"
 
 Public Const vbLightBlue = &HFEEFDA
+Public Const vbDarkBlue = &HFC8227
 
 
 Public ResultadoFechaContaOK As Byte

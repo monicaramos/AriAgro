@@ -780,8 +780,8 @@ Dim b As Boolean
     Me.mnEliminar.Enabled = b
     
     'Imprimir
-    Toolbar1.Buttons(8).Enabled = b
-    Me.mnImprimir.Enabled = b
+    Toolbar1.Buttons(8).Enabled = True
+    Me.mnImprimir.Enabled = True
     
 End Sub
 
@@ -803,7 +803,7 @@ Private Sub BotonAnyadir()
          
     anc = DataGrid1.Top
     If DataGrid1.Row < 0 Then
-        anc = anc + 206
+        anc = anc + 240
     Else
         anc = anc + DataGrid1.RowTop(DataGrid1.Row) + 5
     End If
@@ -1289,16 +1289,16 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 5
-                mnBuscar_Click
-        Case 6
-                mnVerTodos_Click
         Case 1
                 mnNuevo_Click
         Case 2
                 mnModificar_Click
         Case 3
                 mnEliminar_Click
+        Case 5
+                mnBuscar_Click
+        Case 6
+                mnVerTodos_Click
         Case 8
                 'MsgBox "Imprimir...under construction"
                 mnImprimir_Click

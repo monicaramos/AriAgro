@@ -15,6 +15,85 @@ Begin VB.Form frmMensajes
    ScaleWidth      =   14160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FramePedidosSinAlbaran 
+      Height          =   5880
+      Left            =   0
+      TabIndex        =   56
+      Top             =   0
+      Width           =   10655
+      Begin VB.CommandButton CmdPedSinAlb 
+         Caption         =   "&Regresar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   9180
+         TabIndex        =   57
+         Top             =   5310
+         Width           =   1065
+      End
+      Begin MSComctlLib.ListView ListView6 
+         Height          =   4545
+         Left            =   150
+         TabIndex        =   58
+         Top             =   510
+         Width           =   10095
+         _ExtentX        =   17806
+         _ExtentY        =   8017
+         View            =   3
+         LabelWrap       =   -1  'True
+         HideSelection   =   -1  'True
+         FullRowSelect   =   -1  'True
+         GridLines       =   -1  'True
+         _Version        =   393217
+         ForeColor       =   -2147483640
+         BackColor       =   -2147483643
+         Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         NumItems        =   2
+         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            Object.Width           =   2540
+         EndProperty
+         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+            SubItemIndex    =   1
+            Object.Width           =   2540
+         EndProperty
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Pedidos sin Albarán Asignado:"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   375
+         Index           =   5
+         Left            =   165
+         TabIndex        =   59
+         Top             =   180
+         Visible         =   0   'False
+         Width           =   7215
+      End
+   End
    Begin VB.Frame FrameFrasPteContabilizar 
       Height          =   5790
       Left            =   0
@@ -448,67 +527,6 @@ Begin VB.Form frmMensajes
          TabIndex        =   81
          Top             =   600
          Width           =   945
-      End
-   End
-   Begin VB.Frame FramePedidosSinAlbaran 
-      Height          =   4620
-      Left            =   0
-      TabIndex        =   56
-      Top             =   0
-      Width           =   8655
-      Begin VB.CommandButton CmdPedSinAlb 
-         Caption         =   "&Regresar"
-         Height          =   375
-         Left            =   7290
-         TabIndex        =   57
-         Top             =   4005
-         Width           =   975
-      End
-      Begin MSComctlLib.ListView ListView6 
-         Height          =   3555
-         Left            =   150
-         TabIndex        =   58
-         Top             =   330
-         Width           =   8100
-         _ExtentX        =   14288
-         _ExtentY        =   6271
-         View            =   3
-         LabelWrap       =   -1  'True
-         HideSelection   =   -1  'True
-         FullRowSelect   =   -1  'True
-         GridLines       =   -1  'True
-         _Version        =   393217
-         ForeColor       =   -2147483640
-         BackColor       =   -2147483643
-         Appearance      =   1
-         NumItems        =   2
-         BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            Object.Width           =   2540
-         EndProperty
-         BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-            SubItemIndex    =   1
-            Object.Width           =   2540
-         EndProperty
-      End
-      Begin VB.Label Label1 
-         Caption         =   "Pedidos sin Albarán Asignado:"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         ForeColor       =   &H00FF0000&
-         Height          =   375
-         Index           =   5
-         Left            =   120
-         TabIndex        =   59
-         Top             =   90
-         Visible         =   0   'False
-         Width           =   7215
       End
    End
    Begin VB.Frame FramePaletsAsociados 
@@ -2334,7 +2352,7 @@ Dim Cad As String
 On Error Resume Next
 
     FrameCobrosPtes.visible = False
-    FrameAcercaDe.visible = False
+    frameAcercaDE.visible = False
     FrameNSeries.visible = False
     FrameComponentes.visible = False
     FrameComponentes2.visible = False
@@ -2362,13 +2380,13 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaCobrosPtes
             Me.Caption = "Cobros Pendientes"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 2 'Mensaje de no hay suficiente Stock
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaArtSinStock (vCampos)
             Me.Caption = "Artículos sin stock suficiente"
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 3 'Mensaje ACERCA DE
             CargaImagen
@@ -2436,7 +2454,7 @@ On Error Resume Next
             PonerFrameCobrosPtesVisible True, H, W
             CargarListaErrContab
             Me.Caption = "Facturas NO contabilizadas: "
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
         
         Case 11 'Lineas Factura a Rectificar
             PonerFrameNSeriesVisible True, H, W
@@ -2454,13 +2472,13 @@ On Error Resume Next
             Me.Label1(0).Caption = "Existen Albaranes que NO se van a Facturar:"
             Me.Label1(0).Top = 260
             Me.Label1(0).Left = 480
-            PonerFocoBtn Me.cmdAceptarCobros
+            PonerFocoBtn Me.CmdAceptarCobros
             
         Case 13 'Muestra Errores
             H = 6000
             W = 8800
             PonerFrameVisible Me.FrameErrores, True, H, W
-            Me.text1.Text = vCampos
+            Me.Text1.Text = vCampos
             Me.Caption = "Errores"
         
         Case 14 'Muestra Empresas del sistema
@@ -2575,32 +2593,32 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
             Me.Label1(0).Caption = "CLIENTE: " & vCampos
         Case 2
             W = 8800
-            Me.cmdAceptarCobros.Top = 4000
-            Me.cmdAceptarCobros.Left = 4200
+            Me.CmdAceptarCobros.Top = 4000
+            Me.CmdAceptarCobros.Left = 4200
         Case 5 'Componentes
             W = 6000
             H = 5000
-            Me.cmdAceptarCobros.Left = 4000
+            Me.CmdAceptarCobros.Left = 4000
 
         Case 6, 7 'Prefacturar Albaranes
             W = 7000
             H = 6000
-            Me.cmdAceptarCobros.Top = 5400
-            Me.cmdAceptarCobros.Left = 4600
+            Me.CmdAceptarCobros.Top = 5400
+            Me.CmdAceptarCobros.Left = 4600
 
         Case 10, 12 'Errores al contabilizar facturas
             H = 6000
             W = 8400
-            Me.cmdAceptarCobros.Top = 5300
-            Me.cmdAceptarCobros.Left = 4900
+            Me.CmdAceptarCobros.Top = 5300
+            Me.CmdAceptarCobros.Left = 4900
             If OpcionMensaje = 12 Then
-                Me.cmdCancelarCobros.Top = 5300
-                Me.cmdCancelarCobros.Left = 4600
-                Me.cmdAceptarCobros.Left = 3300
+                Me.CmdCancelarCobros.Top = 5300
+                Me.CmdCancelarCobros.Left = 4600
+                Me.CmdAceptarCobros.Left = 3300
                 Me.Label1(1).Top = 4800
                 Me.Label1(1).Left = 3400
-                Me.cmdAceptarCobros.Caption = "&SI"
-                Me.cmdCancelarCobros.Caption = "&NO"
+                Me.CmdAceptarCobros.Caption = "&SI"
+                Me.CmdCancelarCobros.Caption = "&NO"
             End If
     End Select
             
@@ -2609,7 +2627,7 @@ Private Sub PonerFrameCobrosPtesVisible(visible As Boolean, ByRef H As Integer, 
     If visible = True Then
         Me.txtParam.visible = (OpcionMensaje = 6 Or OpcionMensaje = 7)
         Me.Label1(0).visible = (OpcionMensaje = 1) Or (OpcionMensaje = 5) Or (OpcionMensaje = 12)
-        Me.cmdCancelarCobros.visible = (OpcionMensaje = 12)
+        Me.CmdCancelarCobros.visible = (OpcionMensaje = 12)
         Me.Label1(1).visible = (OpcionMensaje = 12)
     End If
 End Sub
@@ -2640,16 +2658,16 @@ End Sub
 Private Sub PonerFrameAcercaDeVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
 'Pone el Frame ACERCA DE visible y Ajustado al Formulario
 
-    Me.FrameAcercaDe.visible = visible
+    Me.frameAcercaDE.visible = visible
     If visible = True Then
         'Ajustar Tamaño del Frame para ajustar tamaño de Formulario al del Frame
-        Me.FrameAcercaDe.Top = -90
-        Me.FrameAcercaDe.Left = 0
-        Me.FrameAcercaDe.Height = 4555
-        Me.FrameAcercaDe.Width = 6600
+        Me.frameAcercaDE.Top = -90
+        Me.frameAcercaDE.Left = 0
+        Me.frameAcercaDE.Height = 4555
+        Me.frameAcercaDE.Width = 6600
         
-        W = Me.FrameAcercaDe.Width
-        H = Me.FrameAcercaDe.Height
+        W = Me.frameAcercaDE.Width
+        H = Me.frameAcercaDE.Height
     End If
 End Sub
 
@@ -2677,8 +2695,8 @@ Private Sub PonerFramePedidosSinAlbaranVisible(visible As Boolean, ByRef H As In
 'necesario para el Informe
 
         
-    H = 4620
-    W = 8655
+    H = 6120
+    W = 10655
         
     PonerFrameVisible Me.FramePedidosSinAlbaran, visible, H, W
 
@@ -3855,19 +3873,18 @@ Dim Sql As String
         'Los encabezados
         ListView6.ColumnHeaders.Clear
 
-        ListView6.ColumnHeaders.Add , , "Nº Pedido", 1000
-        ListView6.ColumnHeaders.Add , , "Fecha", 1100, 1
+        ListView6.ColumnHeaders.Add , , "Nº Pedido", 1200
+        ListView6.ColumnHeaders.Add , , "Fecha", 1500, 1
         ListView6.ColumnHeaders.item(2).Alignment = lvwColumnCenter
-        ListView6.ColumnHeaders.Add , , "Código", 900
-        ListView6.ColumnHeaders.Add , , "Cliente", 2100
-        ListView6.ColumnHeaders.Add , , "Código  ", 700
-        ListView6.ColumnHeaders.Add , , "Destino", 2100
-        
-        
+        ListView6.ColumnHeaders.Add , , "Código", 1100
+        ListView6.ColumnHeaders.Add , , "Cliente", 2400
+        ListView6.ColumnHeaders.Add , , "Código  ", 1000
+        ListView6.ColumnHeaders.Add , , "Destino", 2600
+    
     
         While Not Rs.EOF
             Set ItmX = ListView6.ListItems.Add
-            ItmX.Text = Format(Rs!numpedid, "000000")
+            ItmX.Text = Format(Rs!numpedid, "0000000")
             ItmX.SubItems(1) = Rs!FechaPed
             ItmX.SubItems(2) = Format(Rs!CodClien, "000000")
             ItmX.SubItems(3) = Rs!Nomclien

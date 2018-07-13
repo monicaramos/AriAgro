@@ -12,34 +12,34 @@ Private Declare Function ShellExecute Lib "shell32.dll" Alias "ShellExecuteA" (B
 'Se puede comentar todo y asi no hace nada ni da error
 'El SQL es propio de cada tabla
 Public Function SugerirCodigoSiguienteStr(NomTabla As String, NomCodigo As String, Optional CondLineas As String) As String
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
     On Error GoTo ESugerirCodigo
 
     'SQL = "Select Max(codtipar) from stipar"
-    SQL = "Select Max(" & NomCodigo & ") from " & NomTabla
+    Sql = "Select Max(" & NomCodigo & ") from " & NomTabla
     If CondLineas <> "" Then
-        SQL = SQL & " WHERE " & CondLineas
+        Sql = Sql & " WHERE " & CondLineas
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, , , adCmdText
-    SQL = "1"
+    Rs.Open Sql, conn, , , adCmdText
+    Sql = "1"
     If Not Rs.EOF Then
         If Not IsNull(Rs.Fields(0)) Then
             If IsNumeric(Rs.Fields(0)) Then
-                SQL = CStr(Rs.Fields(0) + 1)
+                Sql = CStr(Rs.Fields(0) + 1)
             Else
                 If Asc(Left(Rs.Fields(0), 1)) <> 122 Then 'Z
-                SQL = Left(Rs.Fields(0), 1) & CStr(Asc(Right(Rs.Fields(0), 1)) + 1)
+                Sql = Left(Rs.Fields(0), 1) & CStr(Asc(Right(Rs.Fields(0), 1)) + 1)
                 End If
             End If
         End If
     End If
     Rs.Close
     Set Rs = Nothing
-    SugerirCodigoSiguienteStr = SQL
+    SugerirCodigoSiguienteStr = Sql
 ESugerirCodigo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Function
@@ -1362,7 +1362,7 @@ End Function
 Public Function PonerNombreDeCod(ByRef Txt As TextBox, tabla As String, campo As String, Optional Codigo As String, Optional Tipo As String, Optional cBD As Byte, Optional codigo2 As String, Optional valor2 As String, Optional tipo2 As String) As String
 'Devuelve el nombre/Descripción asociado al Código correspondiente
 'Además pone formato al campo txt del código a partir del Tag
-Dim SQL As String
+Dim Sql As String
 Dim devuelve As String
 Dim vtag As CTag
 Dim ValorCodigo As String
@@ -1377,10 +1377,10 @@ Dim ValorCodigo As String
             If Tipo = "" Then Tipo = vtag.TipoDato
             
             If cBD = 0 Then cBD = cAgro
-            SQL = DevuelveDesdeBDNew(cBD, tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
+            Sql = DevuelveDesdeBDNew(cBD, tabla, campo, Codigo, ValorCodigo, Tipo, , codigo2, valor2, tipo2)
             If vtag.TipoDato = "N" Then ValorCodigo = Format(ValorCodigo, vtag.Formato)
             Txt.Text = ValorCodigo 'Valor codigo formateado
-            If SQL = "" Then
+            If Sql = "" Then
 '                If vtag.Nombre <> "" Then
 '                    devuelve = "No existe el " & vtag.Nombre & ": " & ValorCodigo
 '                Else
@@ -1390,7 +1390,7 @@ Dim ValorCodigo As String
 '                Txt.Text = ""
 '                PonerFoco Txt
             Else
-                PonerNombreDeCod = SQL 'Descripcion del codigo
+                PonerNombreDeCod = Sql 'Descripcion del codigo
             End If
         End If
         Set vtag = Nothing
@@ -1415,7 +1415,8 @@ Public Sub PonerIndicador(ByRef lblIndicador As label, Modo As Byte, Optional Mo
             lblIndicador.Caption = "BUSQUEDA"
         Case 2    'Preparamos para que pueda Modificar
             lblIndicador.Caption = ""
-
+            
+            
         Case 3 'Modo Insertar
             lblIndicador.Caption = "INSERTAR"
         Case 4 'MODIFICAR
@@ -1544,21 +1545,21 @@ End Function
 
 Public Sub SubirItemList(ByRef LView As ListView)
 'Subir el item seleccionado del listview una posicion
-Dim i As Byte, item As Byte
+Dim i As Byte, Item As Byte
 Dim Aux As String
 On Error Resume Next
    
     For i = 2 To LView.ListItems.Count
         If LView.ListItems(i).Selected Then
-            item = i
+            Item = i
             Aux = LView.ListItems(i).Text
             LView.ListItems(i).Text = LView.ListItems(i - 1).Text
             LView.ListItems(i - 1).Text = Aux
         End If
     Next i
-    If item <> 0 Then
-        LView.ListItems(item).Selected = False
-        LView.ListItems(item - 1).Selected = True
+    If Item <> 0 Then
+        LView.ListItems(Item).Selected = False
+        LView.ListItems(Item - 1).Selected = True
     End If
     LView.SetFocus
     If Err.Number <> 0 Then Err.Clear
@@ -1567,21 +1568,21 @@ End Sub
 
 Public Sub BajarItemList(ByRef LView As ListView)
 'Bajar el item seleccionado del listview una posicion
-Dim i As Byte, item As Byte
+Dim i As Byte, Item As Byte
 Dim Aux As String
 On Error Resume Next
 
     For i = 1 To LView.ListItems.Count - 1
         If LView.ListItems(i).Selected Then
-            item = i
+            Item = i
             Aux = LView.ListItems(i).Text
             LView.ListItems(i).Text = LView.ListItems(i + 1).Text
             LView.ListItems(i + 1).Text = Aux
         End If
     Next i
-    If item <> 0 Then
-        LView.ListItems(item).Selected = False
-        LView.ListItems(item + 1).Selected = True
+    If Item <> 0 Then
+        LView.ListItems(Item).Selected = False
+        LView.ListItems(Item + 1).Selected = True
     End If
     LView.SetFocus
     If Err.Number <> 0 Then Err.Clear
@@ -1604,13 +1605,13 @@ End Function
 
 
 
-Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, SQL As String, PrimeraVez As Boolean)
+Public Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, Sql As String, PrimeraVez As Boolean)
     On Error GoTo ECargaGRid
 
     vDataGrid.Enabled = True
     '    vdata.Recordset.Cancel
     vData.ConnectionString = conn
-    vData.RecordSource = SQL
+    vData.RecordSource = Sql
     vData.CursorType = adOpenDynamic
     vData.LockType = adLockPessimistic
     vDataGrid.ScrollBars = dbgNone
@@ -1680,17 +1681,17 @@ Public Sub DatosPoblacion(codPobla As String, desPobla As String, CPostal As Str
 'IN --> codPobla
 'OUT -> desPobla (Descripcion de la poblacion)
 '        CPostal, Provi, Pais
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
     If codPobla <> "" Then
         If EsEntero(codPobla) Then
-            SQL = "SELECT poblacio.despobla,poblacio.codposta, provinci.desprovi, naciones.desnacio, provinci.preprovi"
-            SQL = SQL & " FROM poblacio, provinci, naciones WHERE codpobla= " & codPobla
-            SQL = SQL & " AND provinci.codprovi = poblacio.codprovi AND naciones.codnacio = provinci.codnacio"
+            Sql = "SELECT poblacio.despobla,poblacio.codposta, provinci.desprovi, naciones.desnacio, provinci.preprovi"
+            Sql = Sql & " FROM poblacio, provinci, naciones WHERE codpobla= " & codPobla
+            Sql = Sql & " AND provinci.codprovi = poblacio.codprovi AND naciones.codnacio = provinci.codnacio"
 
             Set Rs = New ADODB.Recordset
-            Rs.Open SQL, conn, , , adCmdText
+            Rs.Open Sql, conn, , , adCmdText
             If Not Rs.EOF Then
                 codPobla = Format(codPobla, "000000")
                 desPobla = Rs.Fields!desPobla
@@ -1874,28 +1875,28 @@ End Function
 Public Function PonerBancoPropio(codempre As String, codBanpr As String, nomBanpr As String) As String
 'devuelve la cuenta: ES-2077-0014-11-01010225252
 'en nomBanco devuelve el nombre del banco
-Dim SQL As String
+Dim Sql As String
 Dim nomempre As String
 Dim Rs As ADODB.Recordset
 
      'Poner banco Propio
     If codBanpr <> "" Then
         'comprobamos que existe el banco propio en la BD
-        SQL = DevuelveDesdeBDNew(cAgro, "bancctas", "codbanpr", "codempre", codempre, "N", , "codbanpr", codBanpr, "N")
-        If SQL = "" Then 'No existe el cod. banpr
+        Sql = DevuelveDesdeBDNew(cAgro, "bancctas", "codbanpr", "codempre", codempre, "N", , "codbanpr", codBanpr, "N")
+        If Sql = "" Then 'No existe el cod. banpr
             nomempre = DevuelveDesdeBDNew(cAgro, "empresas", "nomempre", "codempre", codempre, "N")
-            SQL = "No existe el código de Banco Propio: " & codBanpr
-            SQL = SQL & vbCrLf & "para la empresa: " & Format(codempre, "000") & " - " & nomempre
-            MsgBox SQL, vbExclamation
+            Sql = "No existe el código de Banco Propio: " & codBanpr
+            Sql = Sql & vbCrLf & "para la empresa: " & Format(codempre, "000") & " - " & nomempre
+            MsgBox Sql, vbExclamation
             PonerBancoPropio = ""
             nomBanpr = "Error"
         Else
-            SQL = "SELECT DISTINCT naciones.ibanpais, bancctas.codbanco, bancctas.codsucur, bancctas.digcontr, bancctas.ctabanco, bancsofi.nombanco "
-            SQL = SQL & " FROM bancctas, naciones, bancsofi WHERE codempre = " & codempre & " AND codbanpr= " & codBanpr
-            SQL = SQL & " AND bancctas.codnacio = naciones.codnacio "
-            SQL = SQL & " AND (bancctas.codnacio = bancsofi.codnacio AND bancctas.codbanco = bancsofi.codbanco) "
+            Sql = "SELECT DISTINCT naciones.ibanpais, bancctas.codbanco, bancctas.codsucur, bancctas.digcontr, bancctas.ctabanco, bancsofi.nombanco "
+            Sql = Sql & " FROM bancctas, naciones, bancsofi WHERE codempre = " & codempre & " AND codbanpr= " & codBanpr
+            Sql = Sql & " AND bancctas.codnacio = naciones.codnacio "
+            Sql = Sql & " AND (bancctas.codnacio = bancsofi.codnacio AND bancctas.codbanco = bancsofi.codbanco) "
             Set Rs = New ADODB.Recordset
-            Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             PonerBancoPropio = Rs.Fields(0).Value & "-" & Format(Rs.Fields(1).Value, "0000") & "-" & Format(Rs.Fields(2).Value, "0000") & "-" & Format(Rs.Fields(3).Value, "00") & "-" & Format(Rs.Fields(4).Value, "0000000000")
             nomBanpr = Rs.Fields!NomBanco
             Rs.Close
@@ -2139,7 +2140,7 @@ Dim b As Boolean
     End If
 End Sub
 
-Public Function ComprobarStock(codArtic As String, codAlmac As String, Cant As String, CodTipMov As String) As Boolean
+Public Function ComprobarStock(CodArtic As String, codAlmac As String, Cant As String, CodTipMov As String) As Boolean
 'Comprueba si el Articulo existe en el Almacen Origen y si hay
 'stock suficiente para poder realizar el traspaso
 Dim vStock As String
@@ -2147,11 +2148,11 @@ Dim vArtic As CArticulo
 Dim b As Boolean
 
     Set vArtic = New CArticulo
-    b = vArtic.Existe(codArtic)
+    b = vArtic.Existe(CodArtic)
     If b Then
         b = vArtic.ExisteEnAlmacen(codAlmac, vStock)
         If b Then
-            b = ComprobarHayStock(CSng(vStock), CSng(Cant), codArtic, vArtic.Nombre, CodTipMov)
+            b = ComprobarHayStock(CSng(vStock), CSng(Cant), CodArtic, vArtic.Nombre, CodTipMov)
 '            If Not ComprobarHayStock(CSng(vStock), CSng(cant), codArtic, vArtic.Nombre, CodTipMov) Then
 '                b = False
 '            Else
@@ -2163,7 +2164,7 @@ Dim b As Boolean
     ComprobarStock = b
 End Function
 
-Public Function ComprobarHayStock(stockOrig As Single, stockTras As Single, codArtic As String, NomArtic As String, tipoMov As String)
+Public Function ComprobarHayStock(stockOrig As Single, stockTras As Single, CodArtic As String, NomArtic As String, tipoMov As String)
 'IN: stockOrig: stock existente en almacen Origen
 '    stockTras: stock a traspasar del origen a otro almacen
 Dim b As Boolean
@@ -2177,7 +2178,7 @@ Dim devuelve As String
         devuelve = "Control de Stock : " & vbCrLf
         devuelve = devuelve & "---------------------- " & vbCrLf & vbCrLf
         devuelve = devuelve & " No hay suficiente Stock en el Almacen del Artículo:"
-        devuelve = devuelve & vbCrLf & " Código:   " & codArtic & vbCrLf
+        devuelve = devuelve & vbCrLf & " Código:   " & CodArtic & vbCrLf
         devuelve = devuelve & " Desc.: " & NomArtic & vbCrLf & vbCrLf
         devuelve = devuelve & "(Stock=" & stockOrig & ")"
 
@@ -2263,3 +2264,21 @@ Public Sub ConseguirfocoChk(Modo As Byte)
         KEYpressGnral 13, Modo, False
     End If
 End Sub
+
+
+Public Function PonerContRegistrosLw(ByRef lw1 As ListView, it As ListItem) As String
+'indicador del registro donde nos encontramos: "1 de 20"
+    On Error GoTo EPonerReg
+    
+    If Not lw1 Is Nothing Then
+        PonerContRegistrosLw = it.Index & " de " & lw1.ListItems.Count
+    Else
+        PonerContRegistrosLw = ""
+    End If
+    
+EPonerReg:
+    If Err.Number <> 0 Then
+        Err.Clear
+        PonerContRegistrosLw = ""
+    End If
+End Function
