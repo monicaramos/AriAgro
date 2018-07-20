@@ -3,7 +3,7 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmListConfeccion 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   6375
+   ClientHeight    =   6825
    ClientLeft      =   45
    ClientTop       =   2430
    ClientWidth     =   8160
@@ -11,7 +11,7 @@ Begin VB.Form frmListConfeccion
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6375
+   ScaleHeight     =   6825
    ScaleWidth      =   8160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -23,7 +23,7 @@ Begin VB.Form frmListConfeccion
       _Version        =   393216
    End
    Begin VB.Frame FrameInfConfecciones 
-      Height          =   6375
+      Height          =   6780
       Left            =   45
       TabIndex        =   0
       Top             =   -15
@@ -43,7 +43,7 @@ Begin VB.Form frmListConfeccion
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   4
-         Top             =   2430
+         Top             =   2565
          Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
@@ -61,7 +61,7 @@ Begin VB.Form frmListConfeccion
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   3
-         Top             =   2055
+         Top             =   2145
          Width           =   1350
       End
       Begin VB.Frame Frame1 
@@ -79,7 +79,7 @@ Begin VB.Form frmListConfeccion
          Height          =   705
          Left            =   405
          TabIndex        =   18
-         Top             =   4815
+         Top             =   5310
          Width           =   4815
          Begin VB.OptionButton Opcion 
             Caption         =   "Alfabético"
@@ -130,10 +130,10 @@ Begin VB.Form frmListConfeccion
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00972E0B&
-         Height          =   1830
+         Height          =   2145
          Left            =   405
          TabIndex        =   12
-         Top             =   2925
+         Top             =   3060
          Width           =   4800
          Begin VB.OptionButton Opcion 
             Caption         =   "Costes por Confección detallada en línea"
@@ -150,7 +150,7 @@ Begin VB.Form frmListConfeccion
             Index           =   6
             Left            =   135
             TabIndex        =   21
-            Top             =   1170
+            Top             =   1305
             Width           =   4560
          End
          Begin VB.OptionButton Opcion 
@@ -168,7 +168,7 @@ Begin VB.Form frmListConfeccion
             Index           =   3
             Left            =   135
             TabIndex        =   17
-            Top             =   870
+            Top             =   960
             Width           =   3900
          End
          Begin VB.OptionButton Opcion 
@@ -186,7 +186,7 @@ Begin VB.Form frmListConfeccion
             Index           =   2
             Left            =   135
             TabIndex        =   16
-            Top             =   1470
+            Top             =   1650
             Width           =   3405
          End
          Begin VB.OptionButton Opcion 
@@ -222,7 +222,7 @@ Begin VB.Form frmListConfeccion
             Index           =   1
             Left            =   135
             TabIndex        =   13
-            Top             =   570
+            Top             =   615
             Width           =   3360
          End
       End
@@ -239,11 +239,11 @@ Begin VB.Form frmListConfeccion
          EndProperty
          Height          =   360
          Index           =   71
-         Left            =   3240
+         Left            =   3285
          Locked          =   -1  'True
          TabIndex        =   8
          Text            =   "Text5"
-         Top             =   1485
+         Top             =   1575
          Width           =   4485
       End
       Begin VB.TextBox txtNombre 
@@ -259,11 +259,11 @@ Begin VB.Form frmListConfeccion
          EndProperty
          Height          =   360
          Index           =   70
-         Left            =   3240
+         Left            =   3285
          Locked          =   -1  'True
          TabIndex        =   7
          Text            =   "Text5"
-         Top             =   1125
+         Top             =   1170
          Width           =   4485
       End
       Begin VB.TextBox txtCodigo 
@@ -281,7 +281,7 @@ Begin VB.Form frmListConfeccion
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   2
-         Top             =   1485
+         Top             =   1575
          Width           =   1545
       End
       Begin VB.TextBox txtCodigo 
@@ -299,7 +299,7 @@ Begin VB.Form frmListConfeccion
          Left            =   1710
          MaxLength       =   16
          TabIndex        =   1
-         Top             =   1125
+         Top             =   1170
          Width           =   1545
       End
       Begin VB.CommandButton cmdAceptar 
@@ -316,7 +316,7 @@ Begin VB.Form frmListConfeccion
          Height          =   375
          Left            =   5490
          TabIndex        =   5
-         Top             =   5715
+         Top             =   6120
          Width           =   1065
       End
       Begin VB.CommandButton cmdCancel 
@@ -334,7 +334,7 @@ Begin VB.Form frmListConfeccion
          Index           =   11
          Left            =   6660
          TabIndex        =   6
-         Top             =   5715
+         Top             =   6120
          Width           =   1065
       End
       Begin VB.Image imgFecha 
@@ -342,7 +342,7 @@ Begin VB.Form frmListConfeccion
          Index           =   0
          Left            =   1440
          Picture         =   "frmListConfeccion.frx":000C
-         Top             =   2055
+         Top             =   2145
          Width           =   240
       End
       Begin VB.Image imgFecha 
@@ -350,7 +350,7 @@ Begin VB.Form frmListConfeccion
          Index           =   1
          Left            =   1440
          Picture         =   "frmListConfeccion.frx":0097
-         Top             =   2430
+         Top             =   2565
          Width           =   240
       End
       Begin VB.Label Label3 
@@ -368,7 +368,7 @@ Begin VB.Form frmListConfeccion
          Index           =   3
          Left            =   780
          TabIndex        =   36
-         Top             =   2085
+         Top             =   2175
          Width           =   690
       End
       Begin VB.Label Label3 
@@ -386,7 +386,7 @@ Begin VB.Form frmListConfeccion
          Index           =   2
          Left            =   780
          TabIndex        =   35
-         Top             =   2445
+         Top             =   2580
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -406,7 +406,7 @@ Begin VB.Form frmListConfeccion
          Index           =   2
          Left            =   510
          TabIndex        =   34
-         Top             =   1785
+         Top             =   1875
          Width           =   600
       End
       Begin VB.Label Label1 
@@ -431,14 +431,14 @@ Begin VB.Form frmListConfeccion
          Height          =   240
          Index           =   28
          Left            =   1425
-         Top             =   1485
+         Top             =   1575
          Width           =   240
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   27
          Left            =   1425
-         Top             =   1125
+         Top             =   1170
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -476,7 +476,7 @@ Begin VB.Form frmListConfeccion
          Index           =   54
          Left            =   780
          TabIndex        =   10
-         Top             =   1485
+         Top             =   1575
          Width           =   645
       End
       Begin VB.Label Label3 
@@ -494,7 +494,7 @@ Begin VB.Form frmListConfeccion
          Index           =   51
          Left            =   780
          TabIndex        =   9
-         Top             =   1125
+         Top             =   1170
          Width           =   690
       End
    End
@@ -699,7 +699,7 @@ End Sub
 
 Private Function DatosOk()
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 
     DatosOk = False
     b = True
@@ -714,8 +714,8 @@ Dim SQL As String
                 b = False
                 PonerFoco txtCodigo(0)
             Else
-                SQL = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
-                If TotalRegistros(SQL) = 0 Then
+                Sql = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+                If TotalRegistros(Sql) = 0 Then
                     MsgBox "No existe la confección de origen. Reintroduzca.", vbExclamation
                     b = False
                     PonerFoco txtCodigo(0)
@@ -729,8 +729,8 @@ Dim SQL As String
                     b = False
                     PonerFoco txtCodigo(1)
                 Else
-                    SQL = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(1).Text, "T")
-                    If TotalRegistros(SQL) > 0 Then
+                    Sql = "select count(*) from forfaits where codforfait = " & DBSet(txtCodigo(1).Text, "T")
+                    If TotalRegistros(Sql) > 0 Then
                         MsgBox "La nueva confección ya existe. Revise.", vbExclamation
                         b = False
                         PonerFoco txtCodigo(1)
@@ -746,37 +746,37 @@ End Function
 
 
 Private Function ProcesoDuplicarConfeccion() As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo eProcesoDuplicarConfeccion
 
     conn.BeginTrans
 
     ' tabla de cabecera: forfaits
-    SQL = "insert into forfaits (codforfait,nomconfe,observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
-    SQL = SQL & "codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom)  "
-    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & "," & DBSet(txtCodigo(2).Text, "T") & ","
-    SQL = SQL & " observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
-    SQL = SQL & " codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom "
-    SQL = SQL & " from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    Sql = "insert into forfaits (codforfait,nomconfe,observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
+    Sql = Sql & "codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom)  "
+    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & "," & DBSet(txtCodigo(2).Text, "T") & ","
+    Sql = Sql & " observac,cajakilo,facturar,kiloscaj,kilosuni,codvarie,codtipen,"
+    Sql = Sql & " codcapac,codmedid,codtipco,codprese,codmarca,codpalet,pesocaja,cajaspalet,preciokilonom "
+    Sql = Sql & " from forfaits where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     ' tabla de lineas envases: forfaits_envases
-    SQL = "insert into forfaits_envases (codforfait,numlinea,codartic,cantidad) "
-    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & ","
-    SQL = SQL & " numlinea,codartic,cantidad "
-    SQL = SQL & " from forfaits_envases where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    Sql = "insert into forfaits_envases (codforfait,numlinea,codartic,cantidad) "
+    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & ","
+    Sql = Sql & " numlinea,codartic,cantidad "
+    Sql = Sql & " from forfaits_envases where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     ' tabla de lineas de costes: forfaits_costes
-    SQL = "insert into forfaits_costes (codforfait,codcoste,importes) "
-    SQL = SQL & " select " & DBSet(txtCodigo(1).Text, "T") & ","
-    SQL = SQL & " codcoste,importes "
-    SQL = SQL & " from forfaits_costes where codforfait = " & DBSet(txtCodigo(0).Text, "T")
+    Sql = "insert into forfaits_costes (codforfait,codcoste,importes) "
+    Sql = Sql & " select " & DBSet(txtCodigo(1).Text, "T") & ","
+    Sql = Sql & " codcoste,importes "
+    Sql = Sql & " from forfaits_costes where codforfait = " & DBSet(txtCodigo(0).Text, "T")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     ProcesoDuplicarConfeccion = True
     conn.CommitTrans
@@ -965,7 +965,7 @@ Private Sub FrameInfConfeccionesVisible(visible As Boolean, ByRef H As Integer, 
     If visible = True Then
         Me.FrameInfConfecciones.Top = -90
         Me.FrameInfConfecciones.Left = 0
-        Me.FrameInfConfecciones.Height = 4650
+        Me.FrameInfConfecciones.Height = 7345
         Me.FrameInfConfecciones.Width = 8240
         W = Me.FrameInfConfecciones.Width
         H = Me.FrameInfConfecciones.Height
@@ -1080,7 +1080,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
@@ -1118,7 +1118,7 @@ Private Sub ponerFrameConfeccionesVisible(visible As Boolean, ByRef H As Integer
 Dim b As Boolean
 
     b = True
-    H = 4950
+    H = 6375
     W = 8250
     
     PonerFrameVisible Me.FrameInfConfecciones, visible, H, W
@@ -1259,7 +1259,7 @@ Private Sub ListadosAlmacen(H As Integer, W As Integer)
 End Sub
 
 Private Function CargarParametros() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 Dim SqlValues As String
 Dim Costes As Integer

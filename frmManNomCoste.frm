@@ -622,7 +622,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim cadB As String
+Dim CadB As String
 
 
 
@@ -971,26 +971,37 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim sql As String
+Dim Sql As String
 Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'CUENTAS CONTABLES
-            sql = "SELECT ctacoste.codcoste, ctacoste.numlinea, ctacoste.codmacta, conta" & vParamAplic.NumeroConta & ".cuentas.nommacta "
-            sql = sql & " FROM ctacoste, conta" & vParamAplic.NumeroConta & ".cuentas "
-            If enlaza Then
-                sql = sql & ObtenerWhereCab(True)
+            '[Monica]20/07/2018: se iba a buscar a la contabilidad antigua. CORREGIDO
+            If vParamAplic.ContabilidadNueva Then
+                Sql = "SELECT ctacoste.codcoste, ctacoste.numlinea, ctacoste.codmacta, ariconta" & vParamAplic.NumeroConta & ".cuentas.nommacta "
+                Sql = Sql & " FROM ctacoste, ariconta" & vParamAplic.NumeroConta & ".cuentas "
             Else
-                sql = sql & " WHERE ctacoste.codcoste = -1"
+                Sql = "SELECT ctacoste.codcoste, ctacoste.numlinea, ctacoste.codmacta, conta" & vParamAplic.NumeroConta & ".cuentas.nommacta "
+                Sql = Sql & " FROM ctacoste, conta" & vParamAplic.NumeroConta & ".cuentas "
             End If
-            sql = sql & " and ctacoste.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
-            sql = sql & " ORDER BY ctacoste.numlinea"
+            
+            If enlaza Then
+                Sql = Sql & ObtenerWhereCab(True)
+            Else
+                Sql = Sql & " WHERE ctacoste.codcoste = -1"
+            End If
+            If vParamAplic.ContabilidadNueva Then
+                Sql = Sql & " and ctacoste.codmacta = ariconta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            Else
+                Sql = Sql & " and ctacoste.codmacta = conta" & vParamAplic.NumeroConta & ".cuentas.codmacta "
+            End If
+            Sql = Sql & " ORDER BY ctacoste.numlinea"
                
     End Select
     
-    MontaSQLCarga = sql
+    MontaSQLCarga = Sql
 End Function
 
 Private Sub frmcta_DatoSeleccionado(CadenaSeleccion As String)
@@ -1007,12 +1018,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -1102,12 +1113,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    cadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -1116,21 +1127,21 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-    Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & ParaGrid(Text1(0), 20, "Código")
-    cad = cad & ParaGrid(Text1(1), 60, "Descripción")
-    If cad <> "" Then
+    Cad = ""
+    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
+    Cad = Cad & ParaGrid(Text1(1), 60, "Descripción")
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        frmB.vTabla = NombreTabla
-        frmB.vSQL = cadB
+        frmB.vCampos = Cad
+        frmB.vtabla = NombreTabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Denominación Costes" ' ***** repasa açò: títol de BuscaGrid *****
@@ -1150,7 +1161,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
 Dim i As Integer
 Dim J As Integer
@@ -1160,7 +1171,7 @@ Dim J As Integer
         Exit Sub
     End If
     
-    cad = ""
+    Cad = ""
     i = 0
     Do
         J = i + 1
@@ -1168,10 +1179,10 @@ Dim J As Integer
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+            Cad = Cad & Text1(J).Text & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -1205,7 +1216,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    cadB = ""
+    CadB = ""
     
     If chkVistaPrevia.Value = 1 Then
         MandaBusquedaPrevia ""
@@ -1252,7 +1263,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -1266,11 +1277,11 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Coste?"
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Coste?"
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -1416,14 +1427,14 @@ EDatosOK:
 End Function
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(codcoste=" & DBSet(Text1(0).Text, "T") & ")"
+    Cad = "(codcoste=" & DBSet(Text1(0).Text, "T") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(Data1, cad, Indicador) Then
-    If SituarData(Data1, cad, Indicador) Then
+    If SituarData(Data1, Cad, Indicador) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -1522,7 +1533,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim sql As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -1549,12 +1560,12 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'envases
-            sql = "¿Seguro que desea eliminar la Cta Contable?"
-            sql = sql & vbCrLf & "Cuenta : " & AdoAux(Index).Recordset!Codmacta
-            If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar la Cta Contable?"
+            Sql = Sql & vbCrLf & "Cuenta : " & AdoAux(Index).Recordset!Codmacta
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                sql = "DELETE FROM ctacoste "
-                sql = sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = "DELETE FROM ctacoste "
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
     End Select
@@ -1562,7 +1573,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute sql
+        conn.Execute Sql
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
         If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
@@ -1585,7 +1596,7 @@ End Sub
 
 Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
-Dim vWhere As String, vTabla As String
+Dim vWhere As String, vtabla As String
 Dim anc As Single
 Dim i As Integer
     
@@ -1604,7 +1615,7 @@ Dim i As Integer
 
     ' *** posar el nom del les distintes taules de llínies ***
     Select Case Index
-        Case 0: vTabla = "ctacoste"
+        Case 0: vtabla = "ctacoste"
     End Select
     
     vWhere = ObtenerWhereCab(False)
@@ -1614,7 +1625,7 @@ Dim i As Integer
             ' *** canviar la clau primaria de les llínies,
             'pasar a "" si no volem que mos sugerixca res a l'afegir ***
             
-            If Index = 0 Then NumF = SugerirCodigoSiguienteStr(vTabla, "numlinea", vWhere)
+            If Index = 0 Then NumF = SugerirCodigoSiguienteStr(vtabla, "numlinea", vWhere)
 
             AnyadirLinea DataGridAux(Index), AdoAux(Index)
     
@@ -1765,7 +1776,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
 End Sub
 
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -1787,7 +1798,7 @@ End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
-Dim sql As String
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -2060,9 +2071,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "nombcoste"
         .Informe2 = "rManNomCoste.rpt"
-        If cadB <> "" Then
+        If CadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(cadB)
+            .cadRegSelec = SQL2SF(CadB)
         Else
             .cadRegSelec = ""
         End If
@@ -2088,23 +2099,23 @@ Private Sub printNou()
 End Sub
 
 Private Function ComprobarRestoCuentas(Coste As String, Linea As String, Cuenta As String) As Boolean
-Dim sql As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
     
     ComprobarRestoCuentas = False
 
-    sql = "select count(*) from ctacoste where codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
-    sql = sql & " and codmacta = '" & Trim(Cuenta) & "'"
-    If DevuelveValor(sql) Then
+    Sql = "select count(*) from ctacoste where codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
+    Sql = Sql & " and codmacta = '" & Trim(Cuenta) & "'"
+    If DevuelveValor(Sql) Then
         MsgBox "Esta cuenta ya está en otro registro. Revise.", vbExclamation
         Exit Function
     End If
 
     If Len(Cuenta) = vEmpresa.DigitosNivelAnterior Then
-        sql = "select count(*) from ctacoste where codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
-        sql = sql & " and codmacta like '" & Trim(Cuenta) & "%'"
+        Sql = "select count(*) from ctacoste where codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
+        Sql = Sql & " and codmacta like '" & Trim(Cuenta) & "%'"
         
-        If DevuelveValor(sql) <> 0 Then
+        If DevuelveValor(Sql) <> 0 Then
             MsgBox "Hay cuentas del último nivel que pertenecen a este grupo. Revise.", vbExclamation
             Exit Function
         Else
@@ -2113,10 +2124,10 @@ Dim Rs As ADODB.Recordset
     
     End If
     If Len(Cuenta) = vEmpresa.DigitosUltimoNivel Then
-        sql = "select count(*) from ctacoste where  codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
-        sql = sql & " and codmacta = '" & Mid(Cuenta, 1, vEmpresa.DigitosNivelAnterior) & "'"
+        Sql = "select count(*) from ctacoste where  codcoste = " & DBSet(Coste, "N") & " and numlinea <> " & DBSet(Linea, "N")
+        Sql = Sql & " and codmacta = '" & Mid(Cuenta, 1, vEmpresa.DigitosNivelAnterior) & "'"
         
-        If DevuelveValor(sql) <> 0 Then
+        If DevuelveValor(Sql) <> 0 Then
             MsgBox "Hay cuentas del nivel anterior que contiene esta cuenta. Revise.", vbExclamation
             Exit Function
         Else
@@ -2129,7 +2140,7 @@ End Function
 
 
 Private Function ComprobarCuentas(Coste As String) As Boolean
-Dim sql As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim b As Boolean
 
@@ -2137,14 +2148,14 @@ Dim b As Boolean
 
     ComprobarCuentas = False
 
-    sql = "select numlinea, codmacta from ctacoste where codcoste = " & DBSet(Coste, "N")
+    Sql = "select numlinea, codmacta from ctacoste where codcoste = " & DBSet(Coste, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open sql, conn, adOpenForwardOnly, adLockReadOnly, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockReadOnly, adCmdText
     
     b = True
     While Not Rs.EOF And b
-        b = ComprobarRestoCuentas(Coste, CStr(Rs!numlinea), CStr(Rs!Codmacta))
+        b = ComprobarRestoCuentas(Coste, CStr(Rs!NumLinea), CStr(Rs!Codmacta))
         Rs.MoveNext
     Wend
     

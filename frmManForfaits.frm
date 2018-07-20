@@ -5,16 +5,16 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManForfaits 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Forfaits"
-   ClientHeight    =   8430
+   ClientHeight    =   10905
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   15270
+   ClientWidth     =   17730
    Icon            =   "frmManForfaits.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8430
-   ScaleWidth      =   15270
+   ScaleHeight     =   10905
+   ScaleWidth      =   17730
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CheckBox chkVistaPrevia 
@@ -30,9 +30,9 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   300
       Index           =   0
-      Left            =   12690
+      Left            =   14895
       TabIndex        =   85
-      Top             =   285
+      Top             =   240
       Width           =   1605
    End
    Begin VB.Frame FrameBotonGnral 
@@ -171,12 +171,12 @@ Begin VB.Form frmManForfaits
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   2970
+      Height          =   3465
       Index           =   0
       Left            =   135
       TabIndex        =   23
       Top             =   810
-      Width           =   15005
+      Width           =   17250
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -190,11 +190,11 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   7620
+         Left            =   8295
          MaxLength       =   9
          TabIndex        =   10
          Tag             =   "Precio por Kilo|N|S|||forfaits|preciokilonom|###0.0000||"
-         Top             =   2445
+         Top             =   2985
          Width           =   1440
       End
       Begin VB.TextBox text1 
@@ -210,11 +210,11 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   7605
+         Left            =   8280
          MaxLength       =   16
          TabIndex        =   9
          Tag             =   "Cajas por Palet|N|S|||forfaits|cajaspalet|##,##0||"
-         Top             =   2055
+         Top             =   2505
          Width           =   1440
       End
       Begin VB.TextBox text1 
@@ -227,7 +227,7 @@ Begin VB.Form frmManForfaits
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   915
+         Height          =   1500
          Index           =   3
          Left            =   180
          MaxLength       =   250
@@ -236,7 +236,7 @@ Begin VB.Form frmManForfaits
          TabIndex        =   3
          Tag             =   "Observaciones|T|S|||forfaits|observac|||"
          Top             =   1800
-         Width           =   6060
+         Width           =   6600
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -251,11 +251,11 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   14
-         Left            =   7605
+         Left            =   8280
          MaxLength       =   16
          TabIndex        =   8
          Tag             =   "Peso Caja|N|S|||forfaits|pesocaja|#0.00||"
-         Top             =   1695
+         Top             =   2055
          Width           =   1440
       End
       Begin VB.TextBox text2 
@@ -276,7 +276,7 @@ Begin VB.Form frmManForfaits
          TabIndex        =   58
          Text            =   "12345678901234567890"
          Top             =   1125
-         Width           =   3975
+         Width           =   4515
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -313,10 +313,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   56
-         Top             =   2385
-         Width           =   3435
+         Top             =   2970
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -331,12 +331,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   17
          Tag             =   "Palet|N|N|0|999|forfaits|codpalet|000||"
          Text            =   "123"
-         Top             =   2385
+         Top             =   2970
          Width           =   630
       End
       Begin VB.TextBox text2 
@@ -353,10 +353,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   54
-         Top             =   2025
-         Width           =   3435
+         Top             =   2520
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -371,12 +371,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   16
          Tag             =   "Marca|N|S|0|999|forfaits|codmarca|000||"
          Text            =   "123"
-         Top             =   2025
+         Top             =   2520
          Width           =   630
       End
       Begin VB.TextBox text2 
@@ -393,10 +393,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   11
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   52
-         Top             =   1665
-         Width           =   3435
+         Top             =   2070
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -411,12 +411,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   11
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   15
          Tag             =   "Presentacion|N|N|0|999|forfaits|codprese|000||"
          Text            =   "123"
-         Top             =   1665
+         Top             =   2070
          Width           =   630
       End
       Begin VB.TextBox text2 
@@ -433,10 +433,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   50
-         Top             =   1290
-         Width           =   3435
+         Top             =   1605
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -451,12 +451,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   14
          Tag             =   "Confeccion|N|N|0|999|forfaits|codtipco|000||"
          Text            =   "123"
-         Top             =   1290
+         Top             =   1605
          Width           =   630
       End
       Begin VB.TextBox text2 
@@ -473,10 +473,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   48
-         Top             =   930
-         Width           =   3435
+         Top             =   1155
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -491,12 +491,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   13
          Tag             =   "Medida|N|N|0|999|forfaits|codmedid|000||"
          Text            =   "123"
-         Top             =   930
+         Top             =   1155
          Width           =   630
       End
       Begin VB.TextBox text2 
@@ -513,10 +513,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   46
-         Top             =   570
-         Width           =   3435
+         Top             =   705
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -531,12 +531,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   12
          Tag             =   "Capacidad|N|N|0|999|forfaits|codcapac|000||"
          Text            =   "123"
-         Top             =   570
+         Top             =   705
          Width           =   630
       End
       Begin VB.TextBox text1 
@@ -562,11 +562,11 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   7605
+         Left            =   8280
          MaxLength       =   16
          TabIndex        =   7
          Tag             =   "Kilos Unidad|N|S|0|999.99|forfaits|kilosuni|##0.00||"
-         Top             =   1335
+         Top             =   1605
          Width           =   1440
       End
       Begin VB.TextBox text1 
@@ -582,11 +582,11 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   7605
+         Left            =   8280
          MaxLength       =   16
          TabIndex        =   6
          Tag             =   "Kilos Caja|N|S|0|999.99|forfaits|kiloscaj|##0.00||"
-         Top             =   945
+         Top             =   1125
          Width           =   1440
       End
       Begin VB.ComboBox Combo1 
@@ -602,12 +602,12 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   1
          ItemData        =   "frmManForfaits.frx":000C
-         Left            =   7605
+         Left            =   8280
          List            =   "frmManForfaits.frx":0016
          Style           =   2  'Dropdown List
          TabIndex        =   5
          Tag             =   "Facturar por|N|N|0||forfaits|facturar|||"
-         Top             =   570
+         Top             =   660
          Width           =   1440
       End
       Begin VB.TextBox text1 
@@ -628,7 +628,7 @@ Begin VB.Form frmManForfaits
          Tag             =   "Nombre|T|N|||forfaits|nomconfe|||"
          Text            =   "1234657890123456798012345678901234567890"
          Top             =   675
-         Width           =   4920
+         Width           =   5460
       End
       Begin VB.ComboBox Combo1 
          BeginProperty Font 
@@ -643,7 +643,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   0
          ItemData        =   "frmManForfaits.frx":002C
-         Left            =   7605
+         Left            =   8280
          List            =   "frmManForfaits.frx":0036
          Style           =   2  'Dropdown List
          TabIndex        =   4
@@ -665,10 +665,10 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   11385
+         Left            =   12825
          TabIndex        =   26
-         Top             =   210
-         Width           =   3435
+         Top             =   255
+         Width           =   4065
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -683,12 +683,12 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   10710
+         Left            =   12150
          MaxLength       =   4
          TabIndex        =   11
          Tag             =   "Envase|N|N|0|999|forfaits|codtipen|000||"
          Text            =   "123"
-         Top             =   210
+         Top             =   255
          Width           =   630
       End
       Begin VB.TextBox text1 
@@ -724,9 +724,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   5
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   76
-         Top             =   2445
+         Top             =   2985
          Width           =   1185
       End
       Begin VB.Label Label1 
@@ -742,9 +742,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   75
-         Top             =   2085
+         Top             =   2535
          Width           =   1185
       End
       Begin VB.Label Label40 
@@ -759,7 +759,7 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   4410
+         Left            =   4995
          TabIndex        =   74
          Top             =   270
          Width           =   1320
@@ -767,7 +767,7 @@ Begin VB.Form frmManForfaits
       Begin VB.Image imgBuscar 
          Height          =   330
          Index           =   8
-         Left            =   5895
+         Left            =   6435
          ToolTipText     =   "Códigos EAN asociados"
          Top             =   225
          Width           =   375
@@ -785,9 +785,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   4
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   72
-         Top             =   1725
+         Top             =   2085
          Width           =   1185
       End
       Begin VB.Label Label10 
@@ -827,17 +827,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   57
-         Top             =   2385
-         Width           =   690
+         Top             =   2970
+         Width           =   870
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   6
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Palet"
-         Top             =   2385
+         Top             =   2970
          Width           =   240
       End
       Begin VB.Label Label8 
@@ -852,21 +852,21 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   55
-         Top             =   2025
-         Width           =   690
+         Top             =   2520
+         Width           =   870
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   5
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Marca"
-         Top             =   2025
+         Top             =   2520
          Width           =   240
       End
       Begin VB.Label Label7 
-         Caption         =   "Presentac."
+         Caption         =   "Presentación"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -877,17 +877,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   53
-         Top             =   1665
-         Width           =   1185
+         Top             =   2070
+         Width           =   1320
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   4
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Presentación"
-         Top             =   1665
+         Top             =   2070
          Width           =   240
       End
       Begin VB.Label Label5 
@@ -902,17 +902,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   51
-         Top             =   1290
-         Width           =   1140
+         Top             =   1605
+         Width           =   1320
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   3
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Confección"
-         Top             =   1290
+         Top             =   1605
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -927,17 +927,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   49
-         Top             =   930
-         Width           =   690
+         Top             =   1155
+         Width           =   870
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Medida"
-         Top             =   930
+         Top             =   1155
          Width           =   240
       End
       Begin VB.Label Label3 
@@ -952,17 +952,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   47
-         Top             =   570
-         Width           =   1095
+         Top             =   705
+         Width           =   1275
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Capacidad"
-         Top             =   570
+         Top             =   705
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -978,9 +978,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   45
-         Top             =   1380
+         Top             =   1650
          Width           =   1275
       End
       Begin VB.Label Label1 
@@ -996,9 +996,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   1
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   44
-         Top             =   975
+         Top             =   1155
          Width           =   1095
       End
       Begin VB.Label Label2 
@@ -1014,9 +1014,9 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   1
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   43
-         Top             =   615
+         Top             =   705
          Width           =   1200
       End
       Begin VB.Label Label6 
@@ -1075,7 +1075,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Index           =   0
-         Left            =   6390
+         Left            =   7065
          TabIndex        =   28
          Top             =   240
          Width           =   1200
@@ -1092,17 +1092,17 @@ Begin VB.Form frmManForfaits
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   9180
+         Left            =   10530
          TabIndex        =   27
-         Top             =   210
-         Width           =   690
+         Top             =   255
+         Width           =   870
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   10440
+         Left            =   11880
          ToolTipText     =   "Buscar Envase"
-         Top             =   210
+         Top             =   255
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -1139,10 +1139,10 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   360
       Index           =   3
-      Left            =   11295
+      Left            =   13590
       TabIndex        =   78
       Text            =   "Text3"
-      Top             =   7830
+      Top             =   10305
       Width           =   1215
    End
    Begin VB.TextBox Text3 
@@ -1160,10 +1160,10 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   360
       Index           =   2
-      Left            =   7155
+      Left            =   9155
       TabIndex        =   70
       Text            =   "Text3"
-      Top             =   7830
+      Top             =   10305
       Width           =   1575
    End
    Begin VB.TextBox Text3 
@@ -1180,10 +1180,10 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   360
       Index           =   1
-      Left            =   13320
+      Left            =   15615
       TabIndex        =   68
       Text            =   "Text3"
-      Top             =   7380
+      Top             =   9855
       Width           =   1485
    End
    Begin VB.TextBox Text3 
@@ -1200,10 +1200,10 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   360
       Index           =   0
-      Left            =   7155
+      Left            =   9155
       TabIndex        =   66
       Text            =   "Text3"
-      Top             =   7380
+      Top             =   9855
       Width           =   1575
    End
    Begin VB.Frame FrameAux1 
@@ -1218,10 +1218,10 @@ Begin VB.Form frmManForfaits
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   3360
-      Left            =   9090
+      Height          =   5385
+      Left            =   11340
       TabIndex        =   36
-      Top             =   3915
+      Top             =   4320
       Width           =   6070
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
@@ -1501,11 +1501,11 @@ Begin VB.Form frmManForfaits
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   3360
+      Height          =   5430
       Left            =   180
       TabIndex        =   30
-      Top             =   3915
-      Width           =   8815
+      Top             =   4320
+      Width           =   11010
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
@@ -1772,14 +1772,14 @@ Begin VB.Form frmManForfaits
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
          Bindings        =   "frmManForfaits.frx":0064
-         Height          =   2390
+         Height          =   4545
          Index           =   0
          Left            =   135
          TabIndex        =   35
          Top             =   630
-         Width           =   8595
-         _ExtentX        =   15161
-         _ExtentY        =   4207
+         Width           =   10595
+         _ExtentX        =   18680
+         _ExtentY        =   8017
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
@@ -1847,7 +1847,7 @@ Begin VB.Form frmManForfaits
       Index           =   0
       Left            =   240
       TabIndex        =   21
-      Top             =   7560
+      Top             =   10035
       Width           =   2865
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1881,9 +1881,9 @@ Begin VB.Form frmManForfaits
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14040
+      Left            =   16335
       TabIndex        =   20
-      Top             =   7830
+      Top             =   10305
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1898,9 +1898,9 @@ Begin VB.Form frmManForfaits
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12840
+      Left            =   15135
       TabIndex        =   19
-      Top             =   7815
+      Top             =   10290
       Width           =   1065
    End
    Begin MSAdodcLib.Adodc Data1 
@@ -1962,17 +1962,17 @@ Begin VB.Form frmManForfaits
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14025
+      Left            =   16320
       TabIndex        =   25
-      Top             =   7860
+      Top             =   10290
       Visible         =   0   'False
       Width           =   1065
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   14730
+      Left            =   16935
       TabIndex        =   86
-      Top             =   225
+      Top             =   180
       Width           =   405
       _ExtentX        =   714
       _ExtentY        =   582
@@ -2001,16 +2001,16 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   3
-      Left            =   9630
+      Left            =   11925
       TabIndex        =   77
-      Top             =   7875
+      Top             =   10350
       Width           =   1725
    End
    Begin VB.Line Line1 
-      X1              =   6705
-      X2              =   8775
-      Y1              =   7740
-      Y2              =   7740
+      X1              =   8865
+      X2              =   10935
+      Y1              =   10215
+      Y2              =   10215
    End
    Begin VB.Label Label11 
       Caption         =   "Coste Total Forfait: "
@@ -2026,9 +2026,9 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   2
-      Left            =   4680
+      Left            =   6675
       TabIndex        =   71
-      Top             =   7875
+      Top             =   10350
       Width           =   2445
    End
    Begin VB.Label Label11 
@@ -2045,9 +2045,9 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   1
-      Left            =   9630
+      Left            =   11925
       TabIndex        =   69
-      Top             =   7425
+      Top             =   9900
       Width           =   2400
    End
    Begin VB.Label Label11 
@@ -2064,9 +2064,9 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   240
       Index           =   0
-      Left            =   4680
+      Left            =   6675
       TabIndex        =   67
-      Top             =   7425
+      Top             =   9900
       Width           =   2445
    End
    Begin VB.Menu mnOpciones 
@@ -2230,7 +2230,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim cadB As String
+Dim CadB As String
 
 Private Sub btnBuscar_Click(Index As Integer)
     TerminaBloquear
@@ -2715,44 +2715,44 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim Tabla As String
+Dim Sql As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'ENVASES
-            SQL = "SELECT forfaits_envases.codforfait, forfaits_envases.codartic, sartic.nomartic, "
-            SQL = SQL & " forfaits_envases.cantidad, "
+            Sql = "SELECT forfaits_envases.codforfait, forfaits_envases.codartic, sartic.nomartic, "
+            Sql = Sql & " forfaits_envases.cantidad, "
             If vParamAplic.TipoPrecio = 0 Then
-                SQL = SQL & "sartic.preciomp, round(forfaits_envases.cantidad*sartic.preciomp,4) "
+                Sql = Sql & "sartic.preciomp, round(forfaits_envases.cantidad*sartic.preciomp,4) "
             Else
-                SQL = SQL & "sartic.preciouc, round(forfaits_envases.cantidad*sartic.preciouc,4) "
+                Sql = Sql & "sartic.preciouc, round(forfaits_envases.cantidad*sartic.preciouc,4) "
             End If
             
-            SQL = SQL & ", forfaits_envases.numlinea FROM forfaits_envases, sartic "
+            Sql = Sql & ", forfaits_envases.numlinea FROM forfaits_envases, sartic "
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " WHERE forfaits_envases.codforfait = '-1'"
+                Sql = Sql & " WHERE forfaits_envases.codforfait = '-1'"
             End If
-            SQL = SQL & " and forfaits_envases.codartic = sartic.codartic"
-            SQL = SQL & " ORDER BY forfaits_envases.numlinea"
+            Sql = Sql & " and forfaits_envases.codartic = sartic.codartic"
+            Sql = Sql & " ORDER BY forfaits_envases.numlinea"
                
         Case 1 'COSTES
-            SQL = "SELECT forfaits_costes.codforfait, forfaits_costes.codcoste, nombcoste.denominacion ,forfaits_costes.importes "
-            SQL = SQL & " FROM forfaits_costes, nombcoste"
+            Sql = "SELECT forfaits_costes.codforfait, forfaits_costes.codcoste, nombcoste.denominacion ,forfaits_costes.importes "
+            Sql = Sql & " FROM forfaits_costes, nombcoste"
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " WHERE forfaits_costes.codforfait = '-1'"
+                Sql = Sql & " WHERE forfaits_costes.codforfait = '-1'"
             End If
-            SQL = SQL & " and forfaits_costes.codcoste = nombcoste.codcoste"
-            SQL = SQL & " ORDER BY forfaits_costes.codcoste"
+            Sql = Sql & " and forfaits_costes.codcoste = nombcoste.codcoste"
+            Sql = Sql & " ORDER BY forfaits_costes.codcoste"
             
     End Select
     
-    MontaSQLCarga = SQL
+    MontaSQLCarga = Sql
 End Function
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
@@ -2770,12 +2770,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -2882,16 +2882,16 @@ Private Sub mnDuplicarConfec_Click()
     If Data1.Recordset.RecordCount = 0 Then Exit Sub
 
     Screen.MousePointer = vbHourglass
-    frmListConfeccion.OpcionListado = 1
+    frmListConfeccion.Opcionlistado = 1
     frmListConfeccion.NumCod = Text1(0).Text
     frmListConfeccion.Show vbModal
     Screen.MousePointer = vbDefault
     If Confeccion <> "" Then
-        cadB = "codforfait = " & DBSet(Confeccion, "T")
+        CadB = "codforfait = " & DBSet(Confeccion, "T")
         If chkVistaPrevia(0) = 1 Then
-            MandaBusquedaPrevia cadB
-        ElseIf cadB <> "" Then
-            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+            MandaBusquedaPrevia CadB
+        ElseIf CadB <> "" Then
+            CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
         End If
         
@@ -2914,7 +2914,7 @@ End Sub
 
 Private Sub mnImprimir_Click()
     Screen.MousePointer = vbHourglass
-    frmListConfeccion.OpcionListado = 0
+    frmListConfeccion.Opcionlistado = 0
     frmListConfeccion.Show vbModal
     Screen.MousePointer = vbDefault
 End Sub
@@ -2995,12 +2995,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    cadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -3009,25 +3009,25 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-    Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & ParaGrid(Text1(0), 20, "Código")
-    cad = cad & ParaGrid(Text1(1), 50, "Confección")
+    Cad = ""
+    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
+    Cad = Cad & ParaGrid(Text1(1), 50, "Confección")
 '    cad = cad & ParaGrid(text1(2), 60, "Descripción")
-    cad = cad & "Variedad|nomvarie|T||30·"
-    If cad <> "" Then
+    Cad = Cad & "Variedad|nomvarie|T||30·"
+    If Cad <> "" Then
         
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        cad = NombreTabla & " left join variedades on forfaits.codvarie = variedades.codvarie "
-        frmB.vtabla = cad 'NombreTabla
-        frmB.vSQL = cadB
+        frmB.vCampos = Cad
+        Cad = NombreTabla & " left join variedades on forfaits.codvarie = variedades.codvarie "
+        frmB.vtabla = Cad 'NombreTabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
@@ -3047,7 +3047,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
 Dim i As Integer
 Dim J As Integer
@@ -3057,7 +3057,7 @@ Dim J As Integer
         Exit Sub
     End If
     
-    cad = ""
+    Cad = ""
     i = 0
     Do
         J = i + 1
@@ -3065,10 +3065,10 @@ Dim J As Integer
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & Text1(J).Text & "|"
+            Cad = Cad & Text1(J).Text & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -3102,7 +3102,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    cadB = ""
+    CadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -3155,7 +3155,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -3169,11 +3169,11 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Forfait?"
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Forfait?"
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3356,14 +3356,14 @@ EDatosOK:
 End Function
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(codforfait=" & DBSet(Text1(0).Text, "T") & ")"
+    Cad = "(codforfait=" & DBSet(Text1(0).Text, "T") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(Data1, cad, Indicador) Then
-    If SituarData(Data1, cad, Indicador) Then
+    If SituarData(Data1, Cad, Indicador) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -3720,7 +3720,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -3747,21 +3747,21 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'envases
-            SQL = "¿Seguro que desea eliminar el Envase?"
-            SQL = SQL & vbCrLf & "Envase: " & AdoAux(Index).Recordset!codArtic
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar el Envase?"
+            Sql = Sql & vbCrLf & "Envase: " & AdoAux(Index).Recordset!CodArtic
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM forfaits_envases "
-                SQL = SQL & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                Sql = "DELETE FROM forfaits_envases "
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
         Case 1 'coste
-            SQL = "¿Seguro que desea eliminar el Coste Confección?"
-            SQL = SQL & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codCoste
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar el Coste Confección?"
+            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codCoste
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM forfaits_costes "
-                SQL = SQL & vWhere & " AND codcoste= " & AdoAux(Index).Recordset!codCoste
+                Sql = "DELETE FROM forfaits_costes "
+                Sql = Sql & vWhere & " AND codcoste= " & AdoAux(Index).Recordset!codCoste
             End If
             
     End Select
@@ -3769,7 +3769,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute SQL
+        conn.Execute Sql
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
         If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
@@ -3981,7 +3981,7 @@ End Sub
 ' ********* si n'hi han combos a la capçalera ************
 Private Sub CargaCombo()
 Dim Ini As Integer
-Dim Fin As Integer
+Dim fin As Integer
 Dim i As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
@@ -4093,7 +4093,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
 End Sub
 
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -4118,7 +4118,7 @@ End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -4327,7 +4327,7 @@ Dim tots As String
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;" 'codforfait
             tots = tots & "S|txtAux(1)|T|Envase|1900|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|txtAux2(2)|T|Denominación|2200|;S|txtAux(2)|T|Cantidad|1200|;"
+            tots = tots & "S|txtAux2(2)|T|Denominación|4200|;S|txtAux(2)|T|Cantidad|1200|;"
             tots = tots & "S|txtAux2(0)|T|Precio|1200|;S|txtAux2(1)|T|Importe|1500|;N||||0|;"
             
             arregla tots, DataGridAux(Index), Me, 350
@@ -4493,7 +4493,7 @@ End Sub
 
 Private Sub CalcularTotales()
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim TotalEnvases As String
 Dim TotalCostes As String
 Dim Valor As Currency
@@ -4502,18 +4502,18 @@ Dim Kilos As Currency
     On Error Resume Next
 
     'total importes de envases para ese forfait
-    SQL = "select sum(round(cantidad * "
+    Sql = "select sum(round(cantidad * "
     If vParamAplic.TipoPrecio = 0 Then 'precio medio ponderado
-        SQL = SQL & " preciomp,4))"
+        Sql = Sql & " preciomp,4))"
     Else 'precio ultima compra
-        SQL = SQL & " preciouc,4))"
+        Sql = Sql & " preciouc,4))"
     End If
     
-    SQL = SQL & " from forfaits_envases, sartic where codforfait = " & DBSet(Text1(0).Text, "T")
-    SQL = SQL & " and forfaits_envases.codartic = sartic.codartic"
+    Sql = Sql & " from forfaits_envases, sartic where codforfait = " & DBSet(Text1(0).Text, "T")
+    Sql = Sql & " and forfaits_envases.codartic = sartic.codartic"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalEnvases = 0
     If Not Rs.EOF Then
@@ -4532,11 +4532,11 @@ Dim Kilos As Currency
     
     
     'total costes para ese forfait
-    SQL = "select sum(importes) "
-    SQL = SQL & " from forfaits_costes where codforfait = " & DBSet(Text1(0).Text, "T")
+    Sql = "select sum(importes) "
+    Sql = Sql & " from forfaits_costes where codforfait = " & DBSet(Text1(0).Text, "T")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalCostes = 0
     If Not Rs.EOF Then

@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:00"
+            TextSave        =   "12:27"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -273,7 +273,9 @@ Begin VB.MDIForm MDIppal
          Caption         =   "&Productos"
          Begin VB.Menu mnComG_Produc 
             Caption         =   "&Grupos"
+            Enabled         =   0   'False
             Index           =   1
+            Visible         =   0   'False
          End
          Begin VB.Menu mnComG_Produc 
             Caption         =   "&Productos"
@@ -289,7 +291,9 @@ Begin VB.MDIForm MDIppal
          End
          Begin VB.Menu mnComG_Produc 
             Caption         =   "&Calibres"
+            Enabled         =   0   'False
             Index           =   5
+            Visible         =   0   'False
          End
          Begin VB.Menu mnComG_Produc 
             Caption         =   "&Marcas"
@@ -989,7 +993,7 @@ Private Sub MDIForm_Activate()
 End Sub
 
 Private Sub MDIForm_Load()
-Dim cad As String
+Dim Cad As String
 
     PrimeraVez = True
     CargarImagen
@@ -999,7 +1003,7 @@ Dim cad As String
     If vParam Is Nothing Then
         Caption = "AriAgro - Gestión Comercial" & " ver. " & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & " FALTA CONFIGURAR"
     Else
-        Caption = "AriAgro - Gestión Comercial" & " ver. " & App.Major & "." & App.Minor & "." & App.Revision & "   -  Empresa: " & vParam.NombreEmpresa & cad & _
+        Caption = "AriAgro - Gestión Comercial" & " ver. " & App.Major & "." & App.Minor & "." & App.Revision & "   -  Empresa: " & vParam.NombreEmpresa & Cad & _
                   " - Campaña: " & vParam.FecIniCam & " - " & vParam.FecFinCam & "   -  Usuario: " & vUsu.Nombre
     End If
 
@@ -1314,11 +1318,11 @@ End Sub
 ' ### [Monica] 05/09/2006
 Private Sub HabilitarSoloPrametros_o_Empresas(Habilitar As Boolean)
 Dim T As Control
-Dim cad As String
+Dim Cad As String
 
     On Error Resume Next
     For Each T In Me
-        cad = T.Name
+        Cad = T.Name
         If Mid(T.Name, 1, 2) = "mn" Then
             'If LCase(Mid(T.Name, 1, 8)) <> "mn_b" Then
                 T.Enabled = Habilitar
@@ -1342,14 +1346,14 @@ End Sub
 ' añadida esta parte para la personalizacion de menus
 
 Private Sub LeerEditorMenus()
-Dim SQL As String
+Dim Sql As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     TieneEditorDeMenus = False
-    SQL = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
+    Sql = "Select count(*) from usuarios.appmenus where aplicacion='Ariagro'"
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     If Not miRsAux.EOF Then
         If Not IsNull(miRsAux.Fields(0)) Then
             If miRsAux.Fields(0) > 0 Then TieneEditorDeMenus = True
@@ -1368,33 +1372,33 @@ End Sub
 
 Private Sub PoneMenusDelEditor()
 Dim T As Control
-Dim SQL As String
+Dim Sql As String
 Dim C As String
 Dim miRsAux As ADODB.Recordset
 
     On Error GoTo ELeerEditorMenus
     
-    SQL = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.Codigo - vUsu.DevuelveAumentoPC), 3))
+    Sql = "Select * from usuarios.appmenususuario where aplicacion='Ariagro' and codusu = " & Val(Right(CStr(vUsu.Codigo - vUsu.DevuelveAumentoPC), 3))
     Set miRsAux = New ADODB.Recordset
-    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    SQL = ""
+    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Sql = ""
 
     While Not miRsAux.EOF
         If Not IsNull(miRsAux.Fields(3)) Then
-            SQL = SQL & miRsAux.Fields(3) & "·"
+            Sql = Sql & miRsAux.Fields(3) & "·"
         End If
         miRsAux.MoveNext
     Wend
     miRsAux.Close
         
    
-    If SQL <> "" Then
-        SQL = "·" & SQL
+    If Sql <> "" Then
+        Sql = "·" & Sql
         For Each T In Me.Controls
             If TypeOf T Is menu Then
                 C = DevuelveCadenaMenu(T)
                 C = "·" & C & "·"
-                If InStr(1, SQL, C) > 0 Then T.visible = False
+                If InStr(1, Sql, C) > 0 Then T.visible = False
            
             End If
         Next
@@ -1489,7 +1493,7 @@ End Function
 
 Private Sub LanzaHome(Opcion As String)
     Dim i As Integer
-    Dim cad As String
+    Dim Cad As String
     On Error GoTo ELanzaHome
     
     'Obtenemos la pagina web de los parametros
@@ -1500,16 +1504,16 @@ Private Sub LanzaHome(Opcion As String)
     End If
         
     i = FreeFile
-    cad = ""
+    Cad = ""
     Open App.path & "\lanzaexp.dat" For Input As #i
-    Line Input #i, cad
+    Line Input #i, Cad
     Close #i
     
     'Lanzamos
-    If cad <> "" Then Shell cad & " " & CadenaDesdeOtroForm, vbMaximizedFocus
+    If Cad <> "" Then Shell Cad & " " & CadenaDesdeOtroForm, vbMaximizedFocus
     
 ELanzaHome:
-    If Err.Number <> 0 Then MuestraError Err.Number, cad & vbCrLf & Err.Description
+    If Err.Number <> 0 Then MuestraError Err.Number, Cad & vbCrLf & Err.Description
     CadenaDesdeOtroForm = ""
 End Sub
 
@@ -1616,13 +1620,13 @@ End Sub
 
 Private Sub PonerDatosVisiblesForm()
 'Escribe texto de la barra de la aplicación
-Dim cad As String
-    cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
-    cad = cad & ", " & Format(Now, "d")
-    cad = cad & " de " & Format(Now, "mmmm")
-    cad = cad & " de " & Format(Now, "yyyy")
-    cad = "    " & cad & "    "
-    Me.StatusBar1.Panels(7).Text = cad
+Dim Cad As String
+    Cad = UCase(Mid(Format(Now, "dddd"), 1, 1)) & Mid(Format(Now, "dddd"), 2)
+    Cad = Cad & ", " & Format(Now, "d")
+    Cad = Cad & " de " & Format(Now, "mmmm")
+    Cad = Cad & " de " & Format(Now, "yyyy")
+    Cad = "    " & Cad & "    "
+    Me.StatusBar1.Panels(7).Text = Cad
     
     '
     Me.StatusBar1.Panels(2).Text = vUsu.CadenaConexion
@@ -1638,11 +1642,11 @@ Dim cad As String
         End If
     End If
     
-    cad = ""
+    Cad = ""
     If vParam Is Nothing Then
         Caption = "AriAgro - Comercial " & " v." & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & " FALTA CONFIGURAR"
     Else
-        Caption = "AriAgro - Comercial " & " v." & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & vParam.NombreEmpresa & cad & _
+        Caption = "AriAgro - Comercial " & " v." & App.Major & "." & App.Minor & "." & App.Revision & "   -  " & vParam.NombreEmpresa & Cad & _
                   "   -   " & vEmpresa.nomresum & "   -   Fechas: " & vParam.FecIniCam & " - " & vParam.FecFinCam & "   -   Usuario: " & vUsu.Nombre
     End If
 End Sub

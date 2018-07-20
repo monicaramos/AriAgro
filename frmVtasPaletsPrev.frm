@@ -195,7 +195,7 @@ Begin VB.Form frmVtasPaletsPrev
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
             NumButtons      =   1
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-               Object.ToolTipText     =   "Informe Palets en Cámaras"
+               Object.ToolTipText     =   "Búsqueda Avanzada"
             EndProperty
          EndProperty
       End
@@ -696,6 +696,16 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       NumItems        =   0
    End
+   Begin VB.Image imgAyuda 
+      Height          =   240
+      Index           =   0
+      Left            =   16965
+      MousePointer    =   4  'Icon
+      Tag             =   "-1"
+      ToolTipText     =   "Ayuda"
+      Top             =   540
+      Width           =   240
+   End
    Begin VB.Label Label1 
       Caption         =   "Cargando datos...."
       BeginProperty Font 
@@ -905,9 +915,6 @@ Dim Orden As Integer
 Dim CadB As String
 Dim FiltroCamara As String
 
-Private Sub Check1_KeyPress(KeyAscii As Integer)
-    KEYpress KeyAscii
-End Sub
 
 Private Sub cmdAceptar_Click()
 Dim i As Integer
@@ -962,7 +969,7 @@ Private Sub BotonVerTodos()
     columna = 2
     Orden = 1
     
-    CargaListview nomColumna, "", False
+    CargaListview nomColumna, CadB, False
     
 End Sub
 
@@ -1023,13 +1030,13 @@ Private Sub Combo1_Change(Index As Integer)
     Select Case Index
         Case 0
             If Combo1(1).ListIndex > 0 Then
-                cadfiltro1 = "palets.codcamara = " & Combo1(1).ListIndex
+                FiltroCamara = "palets.codcamara = " & Combo1(0).ListIndex
             Else
-                cadfiltro1 = ""
+                FiltroCamara = ""
             End If
     End Select
     
-    CargaListview columna1, CadB, False
+    CargaListview nomColumna, CadB, False
     
    
 End Sub
@@ -1085,6 +1092,12 @@ Dim i As Integer
     For kCampo = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(kCampo).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     Next kCampo
+
+    For i = 0 To imgAyuda.Count - 1
+        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
+    Next i
+
+
 
     ' ICONITOS DE LA BARRA
     btnPrimero = 16
@@ -1176,7 +1189,7 @@ Dim miRsAux As ADODB.Recordset
     Combo1(1).AddItem "En Pedido"
     Combo1(1).ItemData(Combo1(1).NewIndex) = 2
     
-    Combo1(1).AddItem "Salido"
+    Combo1(1).AddItem "En Albarán"
     Combo1(1).ItemData(Combo1(1).NewIndex) = 3
     
 End Sub
@@ -1188,6 +1201,11 @@ On Error Resume Next
     lblIndicador.Caption = ""
     'Aqui va el especifico de cada form es
     '### a mano
+    
+    'limpiamos la condicion si las hubiera
+    CadB = ""
+    
+    
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -1248,6 +1266,22 @@ End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
      Text1(indice).Text = vCampo
+End Sub
+
+Private Sub imgAyuda_Click(Index As Integer)
+Dim vCadena As String
+    Select Case Index
+        Case 0
+           ' "____________________________________________________________"
+            vCadena = "Descripcion de colores: " & vbCrLf & vbCrLf & _
+                      "Negro : sin asignar a pedido." & vbCrLf & vbCrLf & _
+                      "Azul  : asignado a pedido pero sin salir en albarán." & vbCrLf & vbCrLf & _
+                      "Rojo  : asignado a albarán." & vbCrLf & _
+                      "" & vbCrLf
+                      
+    End Select
+    MsgBox vCadena, vbInformation, "Descripción de Ayuda"
+    
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -1334,25 +1368,6 @@ Private Sub imgFec_Click(Index As Integer)
     ' ********************************************
 End Sub
 
-Private Sub imgZoom_Click(Index As Integer)
-    
-    Set frmZ = New frmZoom
-
-    If Index = 0 Then
-        indice = 7
-        frmZ.pTitulo = "Observaciones del Palet"
-        frmZ.pValor = Text1(indice).Text
-        frmZ.pModo = Modo
-    
-        frmZ.Show vbModal
-        Set frmZ = Nothing
-            
-        PonerFoco Text1(indice)
-    End If
-End Sub
-
-
-
 
 Private Sub lw1_ColumnClick(ByVal ColumnHeader As MSComctlLib.ColumnHeader)
 Dim campo2 As Integer
@@ -1408,6 +1423,21 @@ End Sub
 
 
 
+Private Sub lw1_DblClick()
+Dim frmPal As frmVtasPalets
+    
+    
+    If lw1.SelectedItem Is Nothing Then Exit Sub
+    
+    Set frmPal = New frmVtasPalets
+    
+    frmPal.DatosADevolverBusqueda = lw1.SelectedItem.Text
+    frmPal.Show vbModal
+    
+    Set frmPal = Nothing
+
+End Sub
+
 Private Sub lw1_ItemClick(ByVal item As MSComctlLib.ListItem)
     lblIndicador.Caption = PonerContRegistrosLw(lw1, item)
 End Sub
@@ -1452,10 +1482,6 @@ Dim frmPal As frmVtasPalets
     
     CargaListview nomColumna, CadB, False
     
-End Sub
-
-Private Sub mnLineas_Click()
-    BotonMtoLineas 1, "Facturas"
 End Sub
 
 
@@ -1512,16 +1538,6 @@ EBloqueaLin:
 End Function
 
 
-Private Sub mnSalir_Click()
-    Screen.MousePointer = vbDefault
-    If (Modo = 5) Then 'Modo 5: Mto Lineas
-        '1:Insertar linea, 2: Modificar
-        If ModificaLineas = 1 Or ModificaLineas = 2 Then cmdCancelar_Click
-        cmdRegresar_Click
-        Exit Sub
-    End If
-    Unload Me
-End Sub
 
 
 Private Sub mnVerTodos_Click()
@@ -1617,41 +1633,6 @@ Dim cadAux As String
 End Sub
 
 
-Private Sub PonerCampos()
-Dim BrutoFac As Single
-
-    On Error Resume Next
-
-    If Data1.Recordset.EOF Then Exit Sub
-    PonerCamposForma2 Me, Data1, 2, "Frame2"
-    Text1(9).Text = Mid(Text1(8).Text, 12, 8)
-    Text1(10).Text = Mid(Text1(6).Text, 12, 8)
-    Text1(12).Text = Mid(Text1(14).Text, 12, 8)
-    Text1(11).Text = Mid(Text1(15).Text, 12, 8)
-    
-    Text2(3).Text = DevuelveDesdeBDNew(cAgro, "confpale", "pesopale", "codpalet", Text1(4).Text, "N")
-    If Text2(3).Text <> "" Then PonerFormatoDecimal Text2(3), 4
-    
-'    FormatoDatosTotales
-    
-    'poner descripcion campos
-    Modo = 4
-    Text2(4) = PonerNombreDeCod(Text1(4), "confpale", "nompalet", "codpalet", "N") 'palet de confeccion
-    Text2(20) = PonerNombreDeCod(Text1(20), "camaras", "nomcamara", "codcamara", "N") 'camara
-    Modo = 2
-    
-    PonerCamposLineas 'Pone los datos de las tablas de lineas de Ofertas
-    
-    '-- Esto permanece para saber donde estamos
-    lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
-    
-    PonerModoOpcionesMenu (Modo) 'Activar opciones de menu según modo
-    PonerOpcionesMenu 'Activar opciones de menu según nivel de permisos del usuario
-
-    If Err.Number <> 0 Then Err.Clear
-End Sub
-
-
 '----------------------------------------------------------------
 '----------------------------------------------------------------
 '   En PONERMODO se habilitan, o no, los diverso campos del
@@ -1693,10 +1674,6 @@ EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
 
-Private Sub DesplazamientoVisible(bol As Boolean)
-    FrameDesplazamiento.visible = bol
-    FrameDesplazamiento.Enabled = bol
-End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
@@ -1789,33 +1766,6 @@ EDatosOK:
 End Function
 
 
-Private Function DatosOkLinea() As Boolean
-Dim b As Boolean
-Dim i As Byte
-
-    On Error GoTo EDatosOkLinea
-
-    DatosOkLinea = False
-    b = True
-
-    For i = 0 To txtAux.Count - 1
-        If i = 4 Or i = 6 Or i = 7 Then
-            If txtAux(i).Text = "" Then
-                MsgBox "El campo " & txtAux(i).Tag & " no puede ser nulo", vbExclamation
-                b = False
-                PonerFoco txtAux(i)
-                Exit Function
-            End If
-        End If
-    Next i
-            
-    DatosOkLinea = b
-    
-EDatosOkLinea:
-    If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
-End Function
-
-
 Private Sub Text2_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 16 And KeyCode = 40 Then 'campo Amliacion Linea y Flecha hacia abajo
         PonerFocoBtn Me.cmdAceptar
@@ -1827,48 +1777,6 @@ End Sub
 Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 16 And KeyAscii = 13 Then 'campo Amliacion Linea y ENTER
         PonerFocoBtn Me.cmdAceptar
-    End If
-End Sub
-
-
-Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Button)
-Dim NroAlbar As String
-Dim Cad As String
-
-    NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
-    If NroAlbar <> "" Then
-        Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
-        Cad = Cad & "                     ¿ Desea continuar ?"
-        If MsgBox(Cad, vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
-            Exit Sub
-        End If
-    End If
-
-    If BloqueaRegistro(NombreTabla, "numpalet = " & Data1.Recordset!numpalet) Then
-'    If BLOQUEADesdeFormulario2(Me, Data1, 1) Then
-        Select Case Button.Index
-            Case 1 'añadir variedad
-                Set frmLPal = New frmVtasLinPalets
-                
-                frmLPal.ModoExt = 3
-                frmLPal.Palet = Data1.Recordset.Fields(0).Value
-                frmLPal.Show vbModal
-            
-                Set frmLPal = Nothing
-            Case 2 'modificar variedad
-                Set frmLPal = New frmVtasLinPalets
-                
-                frmLPal.ModoExt = 4
-                frmLPal.Palet = Data3.Recordset.Fields(0).Value
-                frmLPal.Linea = Data3.Recordset.Fields(1).Value
-                frmLPal.Show vbModal
-                
-                Set frmLPal = Nothing
-                
-            Case 3 ' boton eliminar linea de variedades
-                BotonEliminarLinea
-            Case Else
-        End Select
     End If
 End Sub
 
@@ -1916,56 +1824,6 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
         Case 1
            mnBusquedaAvanzada_Click
     End Select
-End Sub
-
-Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
-    Desplazamiento (Button.Index)
-End Sub
-
-Private Sub TxtAux_Change(Index As Integer)
-    If Index = 6 And ModificaLineas = 2 Then 'Precio y Modo Borrar Lineas
-        txtAux(5).Text = "M"
-    End If
-End Sub
-
-Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFocoLin txtAux(Index)
-End Sub
-
-Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-'Avanzar/Retroceder los campos con las flechas de desplazamiento del teclado.
-    KEYdown KeyCode
-End Sub
-
-
-Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
-    KEYpress KeyAscii
-End Sub
-
-
-Private Sub txtAux_LostFocus(Index As Integer)
-
-    'Quitar espacios en blanco
-    If Not PerderFocoGnralLineas(txtAux(Index), ModificaLineas) Then Exit Sub
-    
-    Select Case Index
-        Case 4 'Precio
-             'Tipo 2: Decimal(10,4)
-             If txtAux(Index).Text <> "" Then PonerFormatoDecimal txtAux(Index), 2
-            
-        Case 6, 7 'Descuentos
-            PonerFormatoDecimal txtAux(Index), 4 'Tipo 4: Decimal(4,2)
-            If Index = 7 Then PonerFoco Me.Text2(16)
-            
-        Case 8 'Importe Linea
-            PonerFormatoDecimal txtAux(Index), 3 'Tipo 3: Decimal(10,2)
-    End Select
-    
-'    If (Index = 3 Or Index = 4 Or Index = 6 Or Index = 7) Then 'Cant., Precio, Dto1, Dto2
-'        If txtAux(1).Text = "" Then Exit Sub
-'        txtAux(8).Text = CalcularImporte(txtAux(3).Text, txtAux(4).Text, txtAux(6).Text, txtAux(7).Text, vParamAplic.TipoDtos)
-'        PonerFormatoDecimal txtAux(8), 1
-'    End If
 End Sub
 
 
@@ -2078,42 +1936,6 @@ Dim Sql As String
 End Function
 
 
-Private Function MontaSQLCarga(enlaza As Boolean, Opcion As Byte) As String
-'--------------------------------------------------------------------
-' MontaSQlCarga:
-'   Basándose en la información proporcionada por el vector de campos
-'   crea un SQl para ejecutar una consulta sobre la base de datos que los
-'   devuelva.
-' Si ENLAZA -> Enlaza con el data1
-'           -> Si no lo cargamos sin enlazar a ningun campo
-'--------------------------------------------------------------------
-Dim Sql As String
-    
-    If Opcion = 1 Then
-        Sql = "SELECT numpalet, numlinea, numline1, palets_calibre.codvarie, palets_calibre.codcalib, nomcalib, numcajas "
-        Sql = Sql & " FROM palets_calibre, calibres WHERE palets_calibre.codvarie = calibres.codvarie and "
-        Sql = Sql & " palets_calibre.codcalib = calibres.codcalib "
-    ElseIf Opcion = 2 Then
-        Sql = "SELECT palets_variedad.numpalet, numlinea, palets_variedad.codvarie, a.nomvarie as nomvarie1, palets_variedad.codvarco, "
-        Sql = Sql & " b.nomvarie as nomvarie2, palets_variedad.codmarca, marcas.nommarca, palets_variedad.codforfait, forfaits.nomconfe, "
-        Sql = Sql & " categori, numcajas, pesobrut, pesoneto "
-        Sql = Sql & " FROM palets_variedad, variedades a, variedades b, marcas, forfaits " 'lineas de variedades del palet
-        Sql = Sql & " WHERE palets_variedad.codvarie = a.codvarie "
-        Sql = Sql & " and palets_variedad.codvarco = b.codvarie"
-        Sql = Sql & " and palets_variedad.codmarca = marcas.codmarca "
-        Sql = Sql & " and palets_variedad.codforfait = forfaits.codforfait "
-    End If
-    
-    If enlaza Then
-        Sql = Sql & " and " & ObtenerWhereCP(False)
-        If Opcion = 1 Then Sql = Sql & " AND numlinea=" & Data3.Recordset.Fields!NumLinea
-    Else
-        Sql = Sql & " and numpalet = -1"
-    End If
-    Sql = Sql & " ORDER BY numpalet"
-    If Opcion = 1 Then Sql = Sql & ", numlinea "
-    MontaSQLCarga = Sql
-End Function
 
 
 Private Sub PonerModoOpcionesMenu(Modo As Byte)
@@ -2281,22 +2103,6 @@ Dim bImpre As Boolean
    
 End Sub
 
-Private Sub TxtAux3_GotFocus(Index As Integer)
-    ConseguirFoco txtAux3(Index), Modo
-End Sub
-
-Private Sub TxtAux3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-    If Index <> 0 And KeyCode <> 38 Then KEYdown KeyCode
-End Sub
-
-Private Sub TxtAux3_KeyPress(Index As Integer, KeyAscii As Integer)
-    KEYpress KeyAscii
-End Sub
-
-Private Sub TxtAux3_LostFocus(Index As Integer)
-    If Not PerderFocoGnral(txtAux3(Index), Modo) Then Exit Sub
-End Sub
-
 
 Private Function ObtenerSelFactura() As String
 Dim Cad As String
@@ -2338,202 +2144,6 @@ Dim Rs As ADODB.Recordset
     End If
     ObtenerSelFactura = Cad
 End Function
-
-
-Private Sub InsertarCabecera()
-Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim Sql As String
-
-    On Error GoTo EInsertarCab
-    
-    Set vTipoMov = New CTiposMov
-    If vTipoMov.Leer(CodTipoMov) Then
-        Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-        Sql = CadenaInsertarDesdeForm(Me)
-        If Sql <> "" Then
-            If InsertarOferta(Sql, vTipoMov) Then
-                CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
-                PonerCadenaBusqueda
-                PonerModo 2
-                'Ponerse en Modo Insertar Lineas
-'                BotonMtoLineas 0, "Variedades"
-'                BotonAnyadirLinea
-                Set frmLPal = New frmVtasLinPalets
-                
-                frmLPal.ModoExt = 3
-                frmLPal.Palet = Text1(0).Text
-                frmLPal.Show vbModal
-                
-                Set frmLPal = Nothing
-            End If
-        End If
-        Text1(0).Text = Format(Text1(0).Text, "0000000")
-        CalcularTaraEnvase 1
-    End If
-    Set vTipoMov = Nothing
-    
-EInsertarCab:
-    Screen.MousePointer = vbDefault
-    If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
-End Sub
-
-
-Private Function InsertarOferta(vSQL As String, vTipoMov As CTiposMov) As Boolean
-Dim MenError As String
-Dim bol As Boolean, Existe As Boolean
-Dim cambiaSQL As Boolean
-Dim devuelve As String
-
-    On Error GoTo EInsertarOferta
-    
-    bol = True
-    
-    cambiaSQL = False
-    'Comprobar si mientras tanto se incremento el contador de Pedidos
-    'para ello vemos si existe una oferta con ese contador y si existe la incrementamos
-    Do
-        devuelve = DevuelveDesdeBDNew(cAgro, NombreTabla, "numpalet", "numpalet", Text1(0).Text, "N")
-        If devuelve <> "" Then
-            'Ya existe el contador incrementarlo
-            Existe = True
-            vTipoMov.IncrementarContador (CodTipoMov)
-            Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-            cambiaSQL = True
-        Else
-            Existe = False
-        End If
-    Loop Until Not Existe
-    If cambiaSQL Then vSQL = CadenaInsertarDesdeForm(Me)
-    
-    
-    'Aqui empieza transaccion
-    conn.BeginTrans
-    MenError = "Error al insertar en la tabla Cabecera de Palets (" & NombreTabla & ")."
-    conn.Execute vSQL, , adCmdText
-    
-'    'Actualizar los datos del cliente si es de varios
-'    If EsDeVarios Then
-'        'Si es cliente de varios actualizar datos cliente en tabla:sclvar
-'        MenError = "Modificando datos cliente varios"
-'        bol = ActualizarClienteVarios(Text1(4).Text, Text1(6).Text)
-'    End If
-'
-'    If bol Then
-'        'Actualizar el campo fechamov (ult. movimiento) de la tabla de clientes (sclien)
-'        MenError = "Actualizando Fecha Movimiento del Cliente."
-'        bol = ActualizarFecMovCliente
-        
-        MenError = "Error al actualizar el contador del Palets."
-    '    bol = vTipoMov.IncrementarContador("REG")
-        vTipoMov.IncrementarContador (CodTipoMov)
-'    End If
-    
-EInsertarOferta:
-        If Err.Number <> 0 Then
-            MenError = "Insertando Albaran." & vbCrLf & "----------------------------" & vbCrLf & MenError
-            MuestraError Err.Number, MenError, Err.Description
-            bol = False
-        End If
-        If bol Then
-            conn.CommitTrans
-            InsertarOferta = True
-        Else
-            conn.RollbackTrans
-            InsertarOferta = False
-        End If
-End Function
-
-Private Sub CalcularTaraEnvase(NumLinea As String)
-Dim Valor As Currency
-Dim TotalCajas As Currency
-Dim Sql As String
-Dim Rs As ADODB.Recordset
-Dim TaraEnvase As String
-Dim Forfaits As String
-Dim PesoCaja As String
-
-    If CCur(NumLinea) < 1 Then
-        Text2(1).Text = ""
-        Text2(2).Text = ""
-        Exit Sub
-    End If
-
-'    'total importes de envases para ese forfait
-'    Sql = "select sum(numcajas) "
-'    Sql = Sql & " from palets_calibre where numpalet = " & Data1.Recordset.Fields(0)
-'    Sql = Sql & " and palets_calibre.numlinea = " & numlinea
-'
-'    Set Rs = New ADODB.Recordset
-'    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-'
-'    TotalCajas = 0
-'    If Not Rs.EOF Then
-'        If Rs.Fields(0).Value > 0 Then TotalCajas = Rs.Fields(0).Value
-'    End If
-'
-'    Rs.Close
-'    Set Rs = Nothing
-    
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "palets_variedad", "numcajas", "numpalet", Data1.Recordset.Fields(0), "N", , "numlinea", NumLinea, "N")
-    If Sql = "" Then
-        TotalCajas = 0
-    Else
-        TotalCajas = CLng(Sql)
-    End If
-    
-    Forfaits = DevuelveDesdeBDNew(cAgro, "palets_variedad", "codforfait", "numpalet", Data1.Recordset.Fields(0), "N", , "numlinea", NumLinea, "N")
-    
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", Forfaits, "N")
-    PesoCaja = ""
-    If Sql <> "" Then
-        PesoCaja = Format(TransformaPuntosComas(Sql), "###,###,##0.00")
-    End If
-        
-    If PesoCaja <> "" Then
-       Text2(0).Text = PesoCaja
-    Else
-       Text2(0).Text = ""
-       PesoCaja = "0"
-    End If
-    
-    Text2(1).Text = Format(TotalCajas, "###,###,##0")
-    Valor = Round(CCur(TransformaPuntosComas(PesoCaja)) * TotalCajas, 2)
-    If Valor <> 0 Then
-        Text2(2).Text = Format(Valor, "###,###,##0.00")
-    Else
-        Text2(2).Text = ""
-    End If
-
-
-    'Calculo de totales
-    Sql = "select palets_variedad.numlinea, round(sum(palets_calibre.numcajas) * forfaits.pesocaja  ,2) "
-    Sql = Sql & " from palets_variedad, forfaits, palets_calibre "
-    Sql = Sql & " where palets_variedad.numpalet = " & Data1.Recordset.Fields(0) & " and "
-    Sql = Sql & " palets_variedad.numpalet = palets_calibre.numpalet and "
-    Sql = Sql & " palets_variedad.numlinea = palets_calibre.numlinea and "
-    Sql = Sql & " palets_variedad.codforfait = forfaits.codforfait "
-    Sql = Sql & " group by 1"
-    
-    
-    Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    
-    TaraEnvase = 0
-    While Not Rs.EOF
-        TaraEnvase = TaraEnvase + DBLet(Rs.Fields(1).Value, "N")
-        Rs.MoveNext
-    Wend
-    Rs.Close
-    Set Rs = Nothing
-    
-    Text2(5).Text = Format(TaraEnvase, "###,###,##0.00")
-    
-    Text2(6).Text = Format(TaraEnvase + CCur(TransformaPuntosComas(ComprobarCero(Text2(3).Text))), "###,###,##0.00")
-
-
-End Sub
 
 
 Private Function ClientePalet(Palet As String) As String
@@ -2605,12 +2215,12 @@ Private Sub CargarColumnas()
     End If
     If columna = 5 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Nombre Variedad", 2100, 0
+            lw1.ColumnHeaders.Add , , "Nombre Variedad", 2700, 0
         Else
-            lw1.ColumnHeaders.Add , , "Nombre Variedad v", 2100, 0
+            lw1.ColumnHeaders.Add , , "Nombre Variedad v", 2700, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Nombre Variedad", 2100, 0
+        lw1.ColumnHeaders.Add , , "Nombre Variedad", 2700, 0
     End If
     If columna = 6 Then
         If Orden = 0 Then
@@ -2641,21 +2251,21 @@ Private Sub CargarColumnas()
     End If
     If columna = 9 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Peso Bruto", 2000, 1
+            lw1.ColumnHeaders.Add , , "Peso Bruto", 1700, 1
         Else
-            lw1.ColumnHeaders.Add , , "Peso Bruto v", 2000, 1
+            lw1.ColumnHeaders.Add , , "Peso Bruto v", 1700, 1
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Peso Bruto", 2000, 1
+        lw1.ColumnHeaders.Add , , "Peso Bruto", 1700, 1
     End If
     If columna = 10 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Peso Neto", 2000, 1
+            lw1.ColumnHeaders.Add , , "Peso Neto", 1700, 1
         Else
-            lw1.ColumnHeaders.Add , , "Peso Neto v", 2000, 1
+            lw1.ColumnHeaders.Add , , "Peso Neto v", 1700, 1
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Peso Neto", 2000, 1
+        lw1.ColumnHeaders.Add , , "Peso Neto", 1700, 1
     End If
     If columna = 11 Then
         If Orden = 0 Then
@@ -2824,6 +2434,8 @@ Dim Estado As Integer
     End If
     
     PonerModo 2
+    
+    PonerFocoLw Me.lw1
 
     Label1(0).visible = False
     DoEvents

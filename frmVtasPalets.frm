@@ -2486,8 +2486,15 @@ Private Sub BotonAnyadir()
     
     Text1(2).Text = Format(Now, "dd/mm/yyyy")
     Text1(3).Text = Format(Now, "dd/mm/yyyy")
-'    text1(13).Text = Format(Now, "dd/mm/yyyy")
+    
+    '[Monica]20/07/2018: antes lo tenia comentado, he añadido todos las horas
+    Text1(13).Text = Format(Now, "dd/mm/yyyy")
+    Text1(9).Text = Format(Now, "hh:mm:ss")
+    Text1(12).Text = Format(Now, "hh:mm:ss")
+    Text1(8).Text = Format(Now, "dd/mm/yyyy hh:mm:ss")
+    Text1(14).Text = Format(Now, "dd/mm/yyyy hh:mm:ss")
         
+    
     LimpiarDataGrids
     CalcularTaraEnvase "-1"
     
@@ -2972,16 +2979,16 @@ End Sub
 
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
-Dim cadB As String
+Dim CadB As String
 Dim Aux As String
       
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadB = Aux
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     End If
     Screen.MousePointer = vbDefault
@@ -3443,7 +3450,7 @@ End Sub
 
 
 Private Sub HacerBusqueda()
-Dim cadB As String
+Dim CadB As String
 Dim cadAux As String
     
 '    '--- Laura 12/01/2007
@@ -3468,7 +3475,7 @@ Dim cadAux As String
     End If
     
     
-    cadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
+    CadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
     Text1(8).Tag = Replace(Text1(8).Tag, "FHH", "FH")
     Text1(6).Tag = Replace(Text1(6).Tag, "FHH", "FH")
     
@@ -3481,11 +3488,11 @@ Dim cadAux As String
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
         'Se muestran en el mismo form
         CadenaConsulta = "select palets.* from " & NombreTabla & " LEFT JOIN palets_variedad ON palets.numpalet=palets_variedad.numpalet "
-        CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY palets.numpalet " & Ordenacion
+        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
 '        CadenaConsulta = "select palets.* from " & NombreTabla
 '        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
         PonerCadenaBusqueda
@@ -3493,7 +3500,7 @@ Dim cadAux As String
 End Sub
 
 
-Private Sub MandaBusquedaPrevia(cadB As String)
+Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
 Dim tabla As String
@@ -3518,7 +3525,7 @@ Dim Desc As String, devuelve As String
         Set frmB = New frmBuscaGrid
         frmB.vCampos = Cad
         frmB.vtabla = tabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         '###A mano
         frmB.vDevuelve = "0|1|"
