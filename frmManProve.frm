@@ -495,19 +495,12 @@ Begin VB.Form frmManProve
       TabPicture(2)   =   "frmManProve.frx":0044
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "imgFec1(0)"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "Label17"
-      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "Label16"
-      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Toolbar3"
-      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "lw1"
-      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).Control(5)=   "Toolbar2"
-      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).Control(6)=   "Text3(0)"
-      Tab(2).Control(6).Enabled=   0   'False
       Tab(2).ControlCount=   7
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -2795,7 +2788,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
     Cad = ""
     Cad = Cad & ParaGrid(Text1(0), 15, "Cód.")
     Cad = Cad & ParaGrid(Text1(1), 60, "Nombre")
-    Cad = Cad & ParaGrid(Text1(2), 25, "N.I.F.")
+    Cad = Cad & ParaGrid(Text1(7), 25, "N.I.F.")
     If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
@@ -3354,13 +3347,13 @@ Private Function SepuedeBorrar(ByRef Index As Integer) As Boolean
 End Function
 
 Private Function SepuedeBorrarProveedor() As Boolean
-Dim SQL As String
+Dim Sql As String
 
     SepuedeBorrarProveedor = False
     
     ' *** si cal comprovar alguna cosa abans de borrar ***
-    SQL = "select count(*) from pedidos_variedad where codprove = " & DBSet(Text1(0).Text, "T")
-    If TotalRegistros(SQL) <> 0 Then
+    Sql = "select count(*) from pedidos_variedad where codprove = " & DBSet(Text1(0).Text, "T")
+    If TotalRegistros(Sql) <> 0 Then
         MsgBox "Este Proveedor está en un Pedido, no se puede eliminar. Revise", vbExclamation
         Exit Function
     End If
@@ -3762,7 +3755,7 @@ End Sub
 
 
 Private Sub ModificarDatosCuentaContable()
-Dim SQL As String
+Dim Sql As String
 Dim Cad As String
 Dim CtaBancoPropio As String
 
@@ -3784,50 +3777,50 @@ Dim CtaBancoPropio As String
         
         If MsgBox(Cad, vbQuestion + vbYesNo + vbDefaultButton2) = vbYes Then
                         
-            SQL = "update cuentas set nommacta = " & DBSet(Trim(Text1(1).Text), "T")
+            Sql = "update cuentas set nommacta = " & DBSet(Trim(Text1(1).Text), "T")
             '[Monica]20/01/2016: tanto en razosoci como en nommacta pondremos el nombre del socio (PICASSENT)
             '                    antes grababamos el text1(2)
-            SQL = SQL & ", razosoci = " & DBSet(Trim(Text1(1).Text), "T")
+            Sql = Sql & ", razosoci = " & DBSet(Trim(Text1(1).Text), "T")
             
-            SQL = SQL & ", dirdatos = " & DBSet(Trim(Text1(3).Text), "T")
-            SQL = SQL & ", codposta = " & DBSet(Trim(Text1(4).Text), "T")
-            SQL = SQL & ", despobla = " & DBSet(Trim(Text1(5).Text), "T")
-            SQL = SQL & ", desprovi = " & DBSet(Trim(Text1(6).Text), "T")
-            SQL = SQL & ", maidatos = " & DBSet(Trim(Text1(20).Text), "T")
-            SQL = SQL & ", webdatos = " & DBSet(Trim(Text1(27).Text), "T")
-            SQL = SQL & ", nifdatos = " & DBSet(Trim(Text1(7).Text), "T")
+            Sql = Sql & ", dirdatos = " & DBSet(Trim(Text1(3).Text), "T")
+            Sql = Sql & ", codposta = " & DBSet(Trim(Text1(4).Text), "T")
+            Sql = Sql & ", despobla = " & DBSet(Trim(Text1(5).Text), "T")
+            Sql = Sql & ", desprovi = " & DBSet(Trim(Text1(6).Text), "T")
+            Sql = Sql & ", maidatos = " & DBSet(Trim(Text1(20).Text), "T")
+            Sql = Sql & ", webdatos = " & DBSet(Trim(Text1(27).Text), "T")
+            Sql = Sql & ", nifdatos = " & DBSet(Trim(Text1(7).Text), "T")
             
             '[Monica]26/03/2015: antes no grababamos la forma de pago de la cuenta
-            SQL = SQL & ", forpa = " & DBSet(Trim(Text1(13).Text), "N", "S")
+            Sql = Sql & ", forpa = " & DBSet(Trim(Text1(13).Text), "N", "S")
             
             If vParamAplic.ContabilidadNueva Then
                 Dim vIban As String
                 
                 vIban = MiFormat(Text1(29).Text, "") & MiFormat(Text1(15).Text, "0000") & MiFormat(Text1(16).Text, "0000") & MiFormat(Text1(17).Text, "00") & MiFormat(Text1(18).Text, "0000000000")
             
-                SQL = SQL & ", iban = " & DBSet(vIban, "T")
+                Sql = Sql & ", iban = " & DBSet(vIban, "T")
                 
                 '[Monica]08/06/2017: el pais no lo tengo en proveedores, se queda el que tiene la cuenta
                 'sql = sql & ", codpais = 'ES' "
             
             Else
-                SQL = SQL & ", entidad = " & DBSet(Trim(Text1(15).Text), "T", "S")
-                SQL = SQL & ", oficina = " & DBSet(Trim(Text1(16).Text), "T", "S")
-                SQL = SQL & ", cc = " & DBSet(Trim(Text1(17).Text), "T", "S")
-                SQL = SQL & ", cuentaba = " & DBSet(Trim(Text1(18).Text), "T", "S")
+                Sql = Sql & ", entidad = " & DBSet(Trim(Text1(15).Text), "T", "S")
+                Sql = Sql & ", oficina = " & DBSet(Trim(Text1(16).Text), "T", "S")
+                Sql = Sql & ", cc = " & DBSet(Trim(Text1(17).Text), "T", "S")
+                Sql = Sql & ", cuentaba = " & DBSet(Trim(Text1(18).Text), "T", "S")
                 
                 '[Monica]22/11/2013: tema iban
                 If vEmpresa.HayNorma19_34Nueva = 1 Then
-                    SQL = SQL & ", iban = " & DBSet(Trim(Text1(29).Text), "T", "S")
+                    Sql = Sql & ", iban = " & DBSet(Trim(Text1(29).Text), "T", "S")
                 End If
             End If
             
             '[Monica]27/10/2016: si han cambiado la cta de pago hay que cambiarla
-            SQL = SQL & ", ctabanco = " & DBSet(CtaBancoPropio, "T")
+            Sql = Sql & ", ctabanco = " & DBSet(CtaBancoPropio, "T")
             
-            SQL = SQL & " where codmacta = " & DBSet(Trim(Text1(12).Text), "T")
+            Sql = Sql & " where codmacta = " & DBSet(Trim(Text1(12).Text), "T")
                         
-            ConnConta.Execute SQL
+            ConnConta.Execute Sql
                         
 '            MsgBox "Datos de Cuenta modificados correctamente.", vbExclamation
                         

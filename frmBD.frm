@@ -552,7 +552,7 @@ Dim Tam2 As Long
 Dim Tamanyo As Long
 Dim NombreArchivo As String
 Dim PrimeraLinea As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Insert As String
 Dim Final As String
 Dim Linea As String
@@ -613,16 +613,16 @@ End Function
 Private Sub Command8_Click()
 'DROP DATABASE
 On Error Resume Next
-SQL = "Va a eliminar una  BD" & vbCrLf & "¿Desea continuar?"
-If MsgBox(SQL, vbQuestion + vbYesNoCancel) = vbYes Then
-    SQL = InputBox("Nombre BD")
-    If SQL <> "" Then
-        If LCase(SQL) = "conta" Then
+Sql = "Va a eliminar una  BD" & vbCrLf & "¿Desea continuar?"
+If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
+    Sql = InputBox("Nombre BD")
+    If Sql <> "" Then
+        If LCase(Sql) = "conta" Then
             MsgBox "BD ppal", vbExclamation
             Exit Sub
         End If
-        SQL = "DROP DATABASE " & SQL
-        Cnn.Execute SQL
+        Sql = "DROP DATABASE " & Sql
+        Cnn.Execute Sql
         If Err.Number <> 0 Then
             MuestraError Err.Number, "Eliminando BD"
         End If
@@ -662,8 +662,8 @@ End Sub
 Private Function GeneraNuevaBD() As Boolean
 On Error Resume Next
        GeneraNuevaBD = False
-        SQL = "CREATE DATABASE " & NombreArchivo
-        conn.Execute SQL
+        Sql = "CREATE DATABASE " & NombreArchivo
+        conn.Execute Sql
         If Err.Number <> 0 Then
             MuestraError Err.Number, "Creando BD"
         Else
@@ -880,19 +880,19 @@ Dim L As Collection
      CargarProgres Pb1, NumTablas
      
      For ContadorInserciones = 1 To L.Count
-         SQL = L.item(ContadorInserciones)
+         Sql = L.item(ContadorInserciones)
          IncrementarProgres Pb1, 1
          DoEvents
-         RSCta.Open "SHOW CREATE TABLE " & SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+         RSCta.Open "SHOW CREATE TABLE " & Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
          If Not RSCta.EOF Then
-             SQL = RSCta.Fields(1)
+             Sql = RSCta.Fields(1)
              'Voy a quitar las `
              Do
-                 Tam2 = InStr(1, SQL, "`")
-                 If Tam2 > 0 Then SQL = Mid(SQL, 1, Tam2 - 1) & Mid(SQL, Tam2 + 1)
+                 Tam2 = InStr(1, Sql, "`")
+                 If Tam2 > 0 Then Sql = Mid(Sql, 1, Tam2 - 1) & Mid(Sql, Tam2 + 1)
              Loop Until Tam2 = 0
-             Final = Final & SQL & ";     " & vbCrLf
-             Print #NF, SQL & ";     " & vbCrLf
+             Final = Final & Sql & ";     " & vbCrLf
+             Print #NF, Sql & ";     " & vbCrLf
      
          End If
          RSCta.Close
@@ -933,8 +933,8 @@ Dim Rs As Recordset
     If AbrirConexion(vConfig.User, vConfig.password, "Usuarios") Then
         Set Rs = New ADODB.Recordset
         NF = 1
-        SQL = "select max(codempre) from empresasariagro"
-        Rs.Open SQL, Cnn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Sql = "select max(codempre) from empresasariagro"
+        Rs.Open Sql, Cnn, adOpenForwardOnly, adLockOptimistic, adCmdText
         If Not Rs.EOF Then
             If Not IsNull(Rs.Fields(0)) Then
                 NF = Rs.Fields(0)
@@ -1002,128 +1002,128 @@ Dim Rs As Recordset
     Me.Refresh
     
     ' No tenemos en cuenta las claves referenciales
-    SQL = "set foreign_key_checks = 0"
-    conn.Execute SQL
+    Sql = "set foreign_key_checks = 0"
+    conn.Execute Sql
     
     '1 agencias
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".agencias SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".agencias "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".agencias SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".agencias "
+    conn.Execute Sql
     
     '2 banpropi
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".banpropi SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".banpropi "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".banpropi SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".banpropi "
+    conn.Execute Sql
     
     '3 cadenas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".cadenas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cadenas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".cadenas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cadenas "
+    conn.Execute Sql
     
     '4 capacidad
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".capacida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".capacida "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".capacida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".capacida "
+    conn.Execute Sql
     
     '5 clases
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".clases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clases "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".clases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clases "
+    conn.Execute Sql
     
     '6 confenva
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".confenva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confenva "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".confenva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confenva "
+    conn.Execute Sql
     
     '7 confmedi
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".confmedi SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confmedi "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".confmedi SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confmedi "
+    conn.Execute Sql
     
     '8 confpale
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".confpale SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpale "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".confpale SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpale "
+    conn.Execute Sql
     
     '9 confpres
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".confpres SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpres "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".confpres SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpres "
+    conn.Execute Sql
     
     '10 conftipo
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".conftipo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".conftipo "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".conftipo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".conftipo "
+    conn.Execute Sql
     
     '11 forpago
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".forpago SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forpago "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".forpago SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forpago "
+    conn.Execute Sql
     
     '12 grupopro
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".grupopro SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".grupopro "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".grupopro SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".grupopro "
+    conn.Execute Sql
     
     '13 inciden
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".inciden SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".inciden "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".inciden SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".inciden "
+    conn.Execute Sql
     
     '14 marcas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".marcas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".marcas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".marcas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".marcas "
+    conn.Execute Sql
     
     '15 nombcoste
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".nombcoste SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".nombcoste "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".nombcoste SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".nombcoste "
+    conn.Execute Sql
     
     '16 paises
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".paises SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".paises "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".paises SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".paises "
+    conn.Execute Sql
     
     '17 scartas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".scartas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".scartas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".scartas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".scartas "
+    conn.Execute Sql
     
     '18 scryst
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".scryst SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".scryst "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".scryst SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".scryst "
+    conn.Execute Sql
     
     '19 sdirpr
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sdirpr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sdirpr "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sdirpr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sdirpr "
+    conn.Execute Sql
     
     '20 sfamia
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sfamia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sfamia "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sfamia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sfamia "
+    conn.Execute Sql
     
 '
 '    Sql = "UPDATE " & Trim(BdNueva) & ".sparam SET codparam = " & DBSet(Text2(2).Text, "T")
@@ -1132,14 +1132,14 @@ Dim Rs As Recordset
     '21 sprvar
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sprvar SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sprvar "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sprvar SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sprvar "
+    conn.Execute Sql
     
     '22 stipar
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".stipar SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".stipar "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".stipar SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".stipar "
+    conn.Execute Sql
     
 '--monica:10/02/2009 la stipom pasa a estar en la bd usuarios
 '    '24 stipom
@@ -1150,92 +1150,92 @@ Dim Rs As Recordset
     '23 sunida
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sunida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sunida "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sunida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sunida "
+    conn.Execute Sql
     
     '24 tarifas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".tarifas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tarifas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".tarifas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tarifas "
+    conn.Execute Sql
     
     '25 tipomer
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".tipomer SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tipomer "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".tipomer SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tipomer "
+    conn.Execute Sql
     
     '26 tmpcopiascmr
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".tmpcopiascmr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tmpcopiascmr "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".tmpcopiascmr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tmpcopiascmr "
+    conn.Execute Sql
     
     
     '27 empresas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".empresas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".empresas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".empresas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".empresas "
+    conn.Execute Sql
     
-    SQL = "UPDATE " & Trim(BdNueva) & ".empresas SET codempre = " & DBSet(Text2(2).Text, "T")
-    SQL = SQL & " , fechaini = " & DBSet(Text2(3).Text, "F") & ", fechafin = " & DBSet(Text2(4).Text, "F")
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(BdNueva) & ".empresas SET codempre = " & DBSet(Text2(2).Text, "T")
+    Sql = Sql & " , fechaini = " & DBSet(Text2(3).Text, "F") & ", fechafin = " & DBSet(Text2(4).Text, "F")
+    conn.Execute Sql
     
     '28 salmpr
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".salmpr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salmpr "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".salmpr SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salmpr "
+    conn.Execute Sql
     
     '29 sparam
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sparam SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sparam "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sparam SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sparam "
+    conn.Execute Sql
     
     '[Monica]08/06/2012: tipos de variedad para las lineas de albaranes de comercial
     '30 tipos de variedad
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".tipovarie SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tipovarie "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".tipovarie SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tipovarie "
+    conn.Execute Sql
     
     '31 clientes
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".clientes SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clientes "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".clientes SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clientes "
+    conn.Execute Sql
     
     '32 destinos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".destinos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".destinos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".destinos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".destinos "
+    conn.Execute Sql
     
     '33 productos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".productos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".productos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".productos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".productos "
+    conn.Execute Sql
 
     '34 variedades
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".variedades SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".variedades "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".variedades SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".variedades "
+    conn.Execute Sql
     
     '35 variedades anecoop
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".variane SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".variane "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".variane SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".variane "
+    conn.Execute Sql
     
     '36 calibres
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".calibres SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".calibres "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".calibres SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".calibres "
+    conn.Execute Sql
     
 '    'calibres variedad
 '    IncrementarProgres Pb1, 1
@@ -1245,62 +1245,62 @@ Dim Rs As Recordset
     '37 proveedores
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".proveedor SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".proveedor "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".proveedor SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".proveedor "
+    conn.Execute Sql
     
     '38 articulos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".sartic SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sartic "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".sartic SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".sartic "
+    conn.Execute Sql
     
     '39 almacenes
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".salmac SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salmac "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".salmac SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salmac "
+    conn.Execute Sql
     
     '40 forfaits
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".forfaits SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".forfaits SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits "
+    conn.Execute Sql
     
     '41 forfaits-lineas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".forfaits_envases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits_envases "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".forfaits_envases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits_envases "
+    conn.Execute Sql
     
     '42 costes de confeccion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".forfaits_costes SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits_costes "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".forfaits_costes SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".forfaits_costes "
+    conn.Execute Sql
     
     '43 tipos de iva
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".tiposiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tiposiva "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".tiposiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".tiposiva "
+    conn.Execute Sql
     
     '44 codigoean
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".codigoean SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".codigoean "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".codigoean SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".codigoean "
+    conn.Execute Sql
     
     '45 salarios
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".salarios SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salarios "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".salarios SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".salarios "
+    conn.Execute Sql
     
     '46 straba
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".straba SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".straba "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".straba SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".straba "
+    conn.Execute Sql
     
     '----------------------------------------
     'tablas de recoleccion
@@ -1308,455 +1308,455 @@ Dim Rs As Recordset
     '47 rcalidad
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcalidad SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcalidad "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcalidad SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcalidad "
+    conn.Execute Sql
     
     '48 rcapataz
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcapataz SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcapataz "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcapataz SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcapataz "
+    conn.Execute Sql
     
     '49 rcoope
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcoope SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcoope "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcoope SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcoope "
+    conn.Execute Sql
     
     '50 rincidencia
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rincidencia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rincidencia "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rincidencia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rincidencia "
+    conn.Execute Sql
     
     '51 rseccion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rseccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rseccion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rseccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rseccion "
+    conn.Execute Sql
     
     '52 rparam
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rparam SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rparam "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rparam SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rparam "
+    conn.Execute Sql
     
     '53 rzonas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rzonas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rzonas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rzonas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rzonas "
+    conn.Execute Sql
     
     '54 rpueblos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpueblos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpueblos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpueblos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpueblos "
+    conn.Execute Sql
     
     '55 rpartida
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpartida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpartida "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpartida SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpartida "
+    conn.Execute Sql
     
     '56 rportespobla
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rportespobla SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rportespobla "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rportespobla SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rportespobla "
+    conn.Execute Sql
     
     
     '57 rsituacion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsituacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsituacion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsituacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsituacion "
+    conn.Execute Sql
     
     '58 rsituacioncampo
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsituacioncampo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsituacioncampo "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsituacioncampo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsituacioncampo "
+    conn.Execute Sql
     
     '59 rtransporte
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtransporte SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtransporte "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtransporte SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtransporte "
+    conn.Execute Sql
     
     '60 rtarifatra
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtarifatra SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtarifatra "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtarifatra SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtarifatra "
+    conn.Execute Sql
     
     '61 rsocios
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsocios SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsocios SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios "
+    conn.Execute Sql
     
     '62 rsocios_seccion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsocios_seccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_seccion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsocios_seccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_seccion "
+    conn.Execute Sql
     
     '63 rsocios_telefonos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsocios_telefonos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_telefonos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsocios_telefonos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_telefonos "
+    conn.Execute Sql
     
     '64 rsocios_pozos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rsocios_pozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_pozos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rsocios_pozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rsocios_pozos "
+    conn.Execute Sql
     
     
     '65 rdesarrollo
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rdesarrollo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rdesarrollo "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rdesarrollo SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rdesarrollo "
+    conn.Execute Sql
     
     '66 rplantacion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rplantacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rplantacion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rplantacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rplantacion "
+    conn.Execute Sql
     
     '67 rriego
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rriego SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rriego "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rriego SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rriego "
+    conn.Execute Sql
     
     '68 rtierra
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtierra SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtierra "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtierra SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtierra "
+    conn.Execute Sql
     
     '69 rseguroopcion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rseguroopcion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rseguroopcion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rseguroopcion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rseguroopcion "
+    conn.Execute Sql
     
     '70 rproceriego
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rproceriego SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rproceriego "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rproceriego SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rproceriego "
+    conn.Execute Sql
     
     '71 rpatronpie
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpatronpie SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpatronpie "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpatronpie SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpatronpie "
+    conn.Execute Sql
     
     
     '72 rcampos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos "
+    conn.Execute Sql
     
     '73 rcampos_clasif
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos_clasif SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_clasif "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos_clasif SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_clasif "
+    conn.Execute Sql
     
     '74 rconcepgasto
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rconcepgasto SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rconcepgasto "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rconcepgasto SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rconcepgasto "
+    conn.Execute Sql
     
     '75 rconcepgastonom
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rconcepgastonom SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rconcepgastonom "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rconcepgastonom SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rconcepgastonom "
+    conn.Execute Sql
     
     '76 rcopropiedad
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcopropiedad SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcopropiedad "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcopropiedad SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcopropiedad "
+    conn.Execute Sql
     
     '77 rdeposito
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rdeposito SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rdeposito "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rdeposito SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rdeposito "
+    conn.Execute Sql
     
     '78 rpozos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos "
+    conn.Execute Sql
     
     '79 rcalidad_calibrador
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcalidad_calibrador SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcalidad_calibrador "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcalidad_calibrador SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcalidad_calibrador "
+    conn.Execute Sql
     
     '80 advfamia
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advfamia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advfamia "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advfamia SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advfamia "
+    conn.Execute Sql
     
     '81 advartic
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advartic SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advartic SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic "
+    conn.Execute Sql
     
     
     '82 advartic_salmac
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advartic_salmac SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic_salmac "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advartic_salmac SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic_salmac "
+    conn.Execute Sql
     
     '83 trztipos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".trztipos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trztipos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".trztipos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trztipos "
+    conn.Execute Sql
     
     '84 trzareas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".trzareas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzareas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".trzareas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzareas "
+    conn.Execute Sql
     
     '85 trzdispositivos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".trzdispositivos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzdispositivos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".trzdispositivos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzdispositivos "
+    conn.Execute Sql
     
     '86 trzlineas_rfid
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".trzlineas_rfid SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzlineas_rfid "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".trzlineas_rfid SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzlineas_rfid "
+    conn.Execute Sql
     
     '87 trzlineas_confeccion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".trzlineas_confeccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzlineas_confeccion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".trzlineas_confeccion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".trzlineas_confeccion "
+    conn.Execute Sql
     
     '88 rplagasaux
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rplagasaux SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rplagasaux "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rplagasaux SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rplagasaux "
+    conn.Execute Sql
     
     '[Monica] 14/02/2011 : dos nuevas tablas de adv alzira
     
     '89 advmatactiva
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advmatactiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advmatactiva "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advmatactiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advmatactiva "
+    conn.Execute Sql
     
     '90 advartic_matactiva
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advartic_matactiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic_matactiva "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advartic_matactiva SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advartic_matactiva "
+    conn.Execute Sql
     
     
     '91 raporreparto
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".raporreparto SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raporreparto "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".raporreparto SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raporreparto "
+    conn.Execute Sql
 
     '92 raportacion
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".raportacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raportacion "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".raportacion SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raportacion "
+    conn.Execute Sql
     
     '93 rbonifica
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rbonifica SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rbonifica "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rbonifica SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rbonifica "
+    conn.Execute Sql
     
     '94 rbonifica_lineas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rbonifica_lineas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rbonifica_lineas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rbonifica_lineas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rbonifica_lineas "
+    conn.Execute Sql
     
     '95 rcampos_cooprop
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos_cooprop SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_cooprop "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos_cooprop SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_cooprop "
+    conn.Execute Sql
     
     '96 rcampos_parcelas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos_parcelas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_parcelas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos_parcelas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_parcelas "
+    conn.Execute Sql
     
     '97 rpozos_cooprop
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpozos_cooprop SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos_cooprop "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpozos_cooprop SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos_cooprop "
+    conn.Execute Sql
 
     '98 rtipoapor
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtipoapor SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtipoapor "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtipoapor SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtipoapor "
+    conn.Execute Sql
 
     '99 rtipopozos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtipopozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtipopozos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtipopozos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtipopozos "
+    conn.Execute Sql
 
     '100 rtarifaett
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rtarifaett SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtarifaett "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rtarifaett SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rtarifaett "
+    conn.Execute Sql
 
     '101 advtrata
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advtrata SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advtrata "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advtrata SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advtrata "
+    conn.Execute Sql
 
     '[Monica]20/10/2011: incrementamos en un año la fecha de inicio y fin de tratamientos
-    SQL = "UPDATE " & Trim(BdNueva) & ".advtrata SET fechaini = date_add(fechaini, interval 1 year), "
-    SQL = SQL & " fechafin = date_add(fechafin, interval 1 year)"
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(BdNueva) & ".advtrata SET fechaini = date_add(fechaini, interval 1 year), "
+    Sql = Sql & " fechafin = date_add(fechafin, interval 1 year)"
+    conn.Execute Sql
 
     '102 advtrata_lineas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".advtrata_lineas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advtrata_lineas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".advtrata_lineas SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".advtrata_lineas "
+    conn.Execute Sql
 
 ' actualizamos los campos de seguro de la campaña anterior de esta nueva bd e inicializamos los de esta campaña
-    SQL = "UPDATE " & Trim(BdNueva) & ".rcampos SET codseguroant = codseguro, aseguradoant = asegurado, kilosaseant = kilosase, costeseguroant = costeseguro, "
-    SQL = SQL & " codseguro = null, asegurado = 0, kilosase = null, costeseguro = null "
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(BdNueva) & ".rcampos SET codseguroant = codseguro, aseguradoant = asegurado, kilosaseant = kilosase, costeseguroant = costeseguro, "
+    Sql = Sql & " codseguro = null, asegurado = 0, kilosase = null, costeseguro = null "
+    conn.Execute Sql
     
     '[Monica]24/10/2011: nueva tabla de hco de campos (un campo por qué socios ha pasado)
     '103 rcampos_hco
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos_hco SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_hco "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos_hco SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_hco "
+    conn.Execute Sql
     
     '[Monica]10/11/2011: nueva tabla entrega de ficha de cultivo de campos
     '104 entrega ficha de cultivo de campos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rfichculti SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rfichculti "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rfichculti SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rfichculti "
+    conn.Execute Sql
     
     '[Monica]17/11/2011: nueva tabla de rglobalgap
     '105 globalgap
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rglobalgap SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rglobalgap "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rglobalgap SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rglobalgap "
+    conn.Execute Sql
     
     
     '[Monica]28/11/2011: nueva tabla de clientes_precio
     '106 clientes_precio
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".clientes_precio SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clientes_precio "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".clientes_precio SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".clientes_precio "
+    conn.Execute Sql
     
     
     '[Monica]27/12/2011: nueva tabla de rcampos_gastos
     '107 rcampos_gastos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rcampos_gastos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_gastos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rcampos_gastos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rcampos_gastos "
+    conn.Execute Sql
     
     '[Monica]07/02/2012: tabla de lineas de envases de palets, faltaba
     '108 confpale_envases
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".confpale_envases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpale_envases "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".confpale_envases SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".confpale_envases "
+    conn.Execute Sql
     
     '[Monica]07/02/2012: tabla de lineas de envases de palets, faltaba
     '109 raporhco
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".raporhco SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raporhco "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".raporhco SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".raporhco "
+    conn.Execute Sql
     
     '[Monica]29/02/2012: tabla de rpozos_campos, faltaba
     '110 rpozos_campos
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".rpozos_campos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos_campos "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".rpozos_campos SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".rpozos_campos "
+    conn.Execute Sql
     
     '[Monica]10/04/2012: tabla de cctipocoste tabla maestra basica
     '111 cctipocoste
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".cctipocoste  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cctipocoste "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".cctipocoste  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cctipocoste "
+    conn.Execute Sql
     
     '[Monica]11/04/2012: tabla de ccareas
     '112 ccareas
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".ccareas  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".ccareas "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".ccareas  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".ccareas "
+    conn.Execute Sql
     
     '[Monica]11/04/2012: tabla de ccconcostes
     '113 ccconcostes
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".ccconcostes  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".ccconcostes "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".ccconcostes  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".ccconcostes "
+    conn.Execute Sql
     
     '[Monica]11/04/2012: tabla de cclinconf
     '114 cclinconf
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".cclinconf  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cclinconf "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".cclinconf  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cclinconf "
+    conn.Execute Sql
     
     '[Monica]31/07/2012: tabla de cchorario
     '115 cchorario
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".cchorario  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cchorario "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".cchorario  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cchorario "
+    conn.Execute Sql
     
     '[Monica]31/07/2012: tabla de cchorario_tramo
     '116 cchorario_tramo
     IncrementarProgres Pb1, 1
     DoEvents
-    SQL = "INSERT INTO " & Trim(BdNueva) & ".cchorario_tramo  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cchorario_tramo "
-    conn.Execute SQL
+    Sql = "INSERT INTO " & Trim(BdNueva) & ".cchorario_tramo  SELECT * FROM " & Trim(vEmpresa.BDAriagro) & ".cchorario_tramo "
+    conn.Execute Sql
     
     Me.Refresh
     DoEvents
@@ -1765,23 +1765,23 @@ Dim Rs As Recordset
     'parametros
     '----------------------------------------
     'Insertamos en tabla empresas
-    SQL = "INSERT INTO empresasariagro (codempre, nomempre, nomresum, Usuario, Pass, ariagro) VALUES ("
-    SQL = SQL & Text2(2).Text & ",'" & Text2(0).Text & "','" & Text2(1).Text
-    SQL = SQL & "','',''," & DBSet(BdNueva, "T") & ")"
-    Cnn.Execute SQL
+    Sql = "INSERT INTO empresasariagro (codempre, nomempre, nomresum, Usuario, Pass, ariagro) VALUES ("
+    Sql = Sql & Text2(2).Text & ",'" & Text2(0).Text & "','" & Text2(1).Text
+    Sql = Sql & "','',''," & DBSet(BdNueva, "T") & ")"
+    Cnn.Execute Sql
     
     ' inicializamos los contadores de la stipom
     If Me.Check1.Value Then
-        SQL = "update stipom set contador = 0"
+        Sql = "update stipom set contador = 0"
         
-        Cnn.Execute SQL
+        Cnn.Execute Sql
     End If
     
     InsercionDatos = True
     
     ' No tenemos en cuenta las claves referenciales
-    SQL = "set foreign_key_checks = 1"
-    conn.Execute SQL
+    Sql = "set foreign_key_checks = 1"
+    conn.Execute Sql
     
     Exit Function
     
@@ -1789,8 +1789,8 @@ EInsercionDatos:
     MuestraError Err.Number, Label6.Caption & vbCrLf & vbCrLf & Err.Description
     
     ' No tenemos en cuenta las claves referenciales
-    SQL = "set foreign_key_checks = 1"
-    conn.Execute SQL
+    Sql = "set foreign_key_checks = 1"
+    conn.Execute Sql
 
 End Function
 
@@ -1841,15 +1841,15 @@ End Function
 
 
 Private Function CrearTablas() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim NF As Long
 Dim J As Integer
 Dim NVeces As Integer
 
     On Error Resume Next
     
-    SQL = "USE ariagro" & Text2(2).Text
-    conn.Execute SQL
+    Sql = "USE ariagro" & Text2(2).Text
+    conn.Execute Sql
     
     CrearTablas = True
     
@@ -1867,9 +1867,9 @@ Dim NVeces As Integer
     While J < NumTablas And NVeces < 6
         Open vConfig.FichGene For Input As #NF
         Do Until EOF(NF) Or J = NumTablas
-            Line Input #NF, SQL
-            If SQL <> "" Then
-                conn.Execute SQL
+            Line Input #NF, Sql
+            If Sql <> "" Then
+                conn.Execute Sql
                 If Err.Number = 0 Then
                     J = J + 1
                     IncrementarProgres Pb1, 1
@@ -2053,20 +2053,20 @@ Dim Sql2 As String
     'parametros
     '----------------------------------------
     'Insertamos en tabla empresas la campaña anterior
-    SQL = "INSERT INTO empresasariagro (codempre, nomempre, nomresum, Usuario, Pass, ariagro) select  "
-    SQL = SQL & Text2(2).Text & ", nomempre, nomresum,'','','ariagro" & Text2(2).Text & "' from usuarios.empresasariagro where codempre = 0"
-    Cnn.Execute SQL
+    Sql = "INSERT INTO empresasariagro (codempre, nomempre, nomresum, Usuario, Pass, ariagro) select  "
+    Sql = Sql & Text2(2).Text & ", nomempre, nomresum,'','','ariagro" & Text2(2).Text & "' from usuarios.empresasariagro where codempre = 0"
+    Cnn.Execute Sql
     
     ' modificamos el registro de la campaña actual (registro 0)
-    SQL = "update empresasariagro set nomempre = " & DBSet(Text2(0).Text, "T") & ", nomresum = " & DBSet(Text2(1).Text, "T")
-    SQL = SQL & " where codempre = 0 "
-    Cnn.Execute SQL
+    Sql = "update empresasariagro set nomempre = " & DBSet(Text2(0).Text, "T") & ", nomresum = " & DBSet(Text2(1).Text, "T")
+    Sql = Sql & " where codempre = 0 "
+    Cnn.Execute Sql
     
     ' inicializamos los contadores de la stipom
     If Me.Check1.Value Then
-        SQL = "update stipom set contador = 0"
+        Sql = "update stipom set contador = 0"
         
-        Cnn.Execute SQL
+        Cnn.Execute Sql
     End If
      
      
@@ -2096,46 +2096,46 @@ Dim Sql2 As String
      CargarProgres Pb1, NumTablas
      
      For ContadorInserciones = 1 To L.Count
-         SQL = L.item(ContadorInserciones)
+         Sql = L.item(ContadorInserciones)
          IncrementarProgres Pb1, 1
          DoEvents
          
-         Sql2 = "insert into " & Destino & "." & SQL & " select * from " & Origen & "." & SQL
+         Sql2 = "insert into " & Destino & "." & Sql & " select * from " & Origen & "." & Sql
          conn.Execute Sql2
          
      Next ContadorInserciones
      Set L = Nothing
      
-    SQL = "UPDATE " & Trim(Origen) & ".empresas SET "
-    SQL = SQL & " fechaini = " & DBSet(Text2(3).Text, "F") & ", fechafin = " & DBSet(Text2(4).Text, "F")
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".empresas SET "
+    Sql = Sql & " fechaini = " & DBSet(Text2(3).Text, "F") & ", fechafin = " & DBSet(Text2(4).Text, "F")
+    conn.Execute Sql
      
-    SQL = "UPDATE " & Trim(Destino) & ".empresas SET codempre = " & DBSet(Text2(2).Text, "T")
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Destino) & ".empresas SET codempre = " & DBSet(Text2(2).Text, "T")
+    conn.Execute Sql
      
      
     '[Monica]20/10/2011: incrementamos en un año la fecha de inicio y fin de tratamientos
-    SQL = "UPDATE " & Trim(Origen) & ".advtrata SET fechaini = date_add(fechaini, interval 1 year), "
-    SQL = SQL & " fechafin = date_add(fechafin, interval 1 year)"
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".advtrata SET fechaini = date_add(fechaini, interval 1 year), "
+    Sql = Sql & " fechafin = date_add(fechafin, interval 1 year)"
+    conn.Execute Sql
      
     ' actualizamos los campos de seguro de la campaña anterior de esta nueva bd e inicializamos los de esta campaña
-    SQL = "UPDATE " & Trim(Origen) & ".rcampos SET codseguroant = codseguro, aseguradoant = asegurado, kilosaseant = kilosase, costeseguroant = costeseguro, "
-    SQL = SQL & " codseguro = null, asegurado = 0, kilosase = null, costeseguro = null "
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".rcampos SET codseguroant = codseguro, aseguradoant = asegurado, kilosaseant = kilosase, costeseguroant = costeseguro, "
+    Sql = Sql & " codseguro = null, asegurado = 0, kilosase = null, costeseguro = null "
+    conn.Execute Sql
      
     '[Monica]26/08/2013: desmarcamos el campo como terminado de recolectar
-    SQL = "UPDATE " & Trim(Origen) & ".rcampos SET acabadorecol = 0"
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".rcampos SET acabadorecol = 0"
+    conn.Execute Sql
     
     '[Monica]11/02/2015: ponemos ficha de cultivo no entregada
-    SQL = "UPDATE " & Trim(Origen) & ".rcampos SET entregafichaculti = 0"
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".rcampos SET entregafichaculti = 0"
+    conn.Execute Sql
     
     
     '[Monica]26/03/2014: modificamos el año de los costes fijos, incrementando el año
-    SQL = "UPDATE " & Trim(Origen) & ".ccconcostes_mes SET año = año + 1"
-    conn.Execute SQL
+    Sql = "UPDATE " & Trim(Origen) & ".ccconcostes_mes SET año = año + 1"
+    conn.Execute Sql
      
      
      'Volvemos a tener control de las claves referenciales
@@ -3161,7 +3161,7 @@ Dim Sql2 As String
     
     '[Monica]29/01/2016: solo para el caso de catadau borramos los datos de asegurado
     '190 rcampos_seguros
-    If vParamAplic.Cooperativa = 0 Then
+    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 18 Then
         Sql2 = "delete from ariagro.rcampos_seguros"
         conn.Execute Sql2
         IncrementarProgres Pb1, 1

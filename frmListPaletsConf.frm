@@ -552,7 +552,7 @@ Dim Opcion As Byte, numOp As Byte
         Case 1
             cadNombreRPT = "rPaletsConf1.rpt"
             '[Monica]06/05/2015: para Catadau ordenado por palet en lugar de por variedad
-            If vParamAplic.Cooperativa = 0 Then cadNombreRPT = "rPaletsConf.rpt"
+            If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 18 Then cadNombreRPT = "rPaletsConf.rpt"
             
             cadTitulo = cadTitulo & " Pendientes Asignar"
             AnyadirAFormula cadFormula, "isnull({palets.numpedid})"
@@ -576,80 +576,80 @@ Dim Opcion As Byte, numOp As Byte
 End Sub
 
 Private Function CargarTemporal() As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo eCargarTemporal
     
     CargarTemporal = False
     
-    SQL = "delete from tmpinformes2 where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinformes2 where codusu = " & vUsu.Codigo
+    conn.Execute Sql
     
-    SQL = "insert into tmpinformes2 (codusu, importe1, nombre1, campo1, importe3, importe4) "
+    Sql = "insert into tmpinformes2 (codusu, importe1, nombre1, campo1, importe3, importe4) "
     
-    SQL = SQL & " select " & vUsu.Codigo & ", palets_calibre.codvarie, palets_variedad.codforfait, palets_calibre.codcalib, sum(coalesce(palets_calibre.numcajas,0)), count(distinct palets.numpalet) "
+    Sql = Sql & " select " & vUsu.Codigo & ", palets_calibre.codvarie, palets_variedad.codforfait, palets_calibre.codcalib, sum(coalesce(palets_calibre.numcajas,0)), count(distinct palets.numpalet) "
     
     If Opcion(0).Value Then
-        SQL = SQL & " from pedidos, palets, palets_variedad, palets_calibre "
-        SQL = SQL & " where pedidos.numpedid = palets.numpedid and palets.numpalet = palets_variedad.numpalet and palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
+        Sql = Sql & " from pedidos, palets, palets_variedad, palets_calibre "
+        Sql = Sql & " where pedidos.numpedid = palets.numpedid and palets.numpalet = palets_variedad.numpalet and palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
     End If
     
     If Opcion(1).Value Then
-        SQL = SQL & " from palets, palets_variedad, palets_calibre "
-        SQL = SQL & " where palets.numpalet = palets_variedad.numpalet and palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
-        SQL = SQL & " and (palets.numpedid is null or palets.numpedid = 0)"
+        Sql = Sql & " from palets, palets_variedad, palets_calibre "
+        Sql = Sql & " where palets.numpalet = palets_variedad.numpalet and palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
+        Sql = Sql & " and (palets.numpedid is null or palets.numpedid = 0)"
     End If
     
     If Opcion(2).Value Then
-        SQL = SQL & " from ((palets left join pedidos on pedidos.numpedid = palets.numpedid) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet) inner join  palets_calibre on palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
-        SQL = SQL & " where (1=1) "
+        Sql = Sql & " from ((palets left join pedidos on pedidos.numpedid = palets.numpedid) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet) inner join  palets_calibre on palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea "
+        Sql = Sql & " where (1=1) "
     End If
     
-    If txtCodigo(0).Text <> "" Then SQL = SQL & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
-    If txtCodigo(1).Text <> "" Then SQL = SQL & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
+    If txtCodigo(0).Text <> "" Then Sql = Sql & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
+    If txtCodigo(1).Text <> "" Then Sql = Sql & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
     
     If Opcion(0).Value Or Opcion(2).Value Then
-        If txtCodigo(2).Text <> "" Then SQL = SQL & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-        If txtCodigo(3).Text <> "" Then SQL = SQL & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+        If txtCodigo(2).Text <> "" Then Sql = Sql & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+        If txtCodigo(3).Text <> "" Then Sql = Sql & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
     End If
     
-    SQL = SQL & " group by 1,2,3,4"
-    SQL = SQL & " order by 1,2,3,4"
+    Sql = Sql & " group by 1,2,3,4"
+    Sql = Sql & " order by 1,2,3,4"
     
-    conn.Execute SQL
+    conn.Execute Sql
                             
                             
-    SQL = "delete from tmpliquidacion where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpliquidacion where codusu = " & vUsu.Codigo
+    conn.Execute Sql
     
-    SQL = "insert into tmpliquidacion  (codusu, codvarie, codsocio, nomvarie, codcampo, kilosnet, importe, gastos) "
-    SQL = SQL & " select " & vUsu.Codigo & ", palets_variedad.codvarie, palets_variedad.codvarco, palets_variedad.codforfait,sum(coalesce(palets_variedad.pesobrut,0)), sum(coalesce(palets_variedad.pesoneto,0)), sum(coalesce(palets_variedad.numcajas,0)), count(distinct palets.numpalet) "
+    Sql = "insert into tmpliquidacion  (codusu, codvarie, codsocio, nomvarie, codcampo, kilosnet, importe, gastos) "
+    Sql = Sql & " select " & vUsu.Codigo & ", palets_variedad.codvarie, palets_variedad.codvarco, palets_variedad.codforfait,sum(coalesce(palets_variedad.pesobrut,0)), sum(coalesce(palets_variedad.pesoneto,0)), sum(coalesce(palets_variedad.numcajas,0)), count(distinct palets.numpalet) "
     
     If Opcion(0).Value Then
-        SQL = SQL & " from pedidos, palets, palets_variedad "
-        SQL = SQL & " where pedidos.numpedid = palets.numpedid and palets.numpalet = palets_variedad.numpalet "
+        Sql = Sql & " from pedidos, palets, palets_variedad "
+        Sql = Sql & " where pedidos.numpedid = palets.numpedid and palets.numpalet = palets_variedad.numpalet "
     End If
     If Opcion(1).Value Then
-        SQL = SQL & " from palets, palets_variedad "
-        SQL = SQL & " where palets.numpalet = palets_variedad.numpalet and (palets.numpedid is null or palets.numpedid = 0) "
+        Sql = Sql & " from palets, palets_variedad "
+        Sql = Sql & " where palets.numpalet = palets_variedad.numpalet and (palets.numpedid is null or palets.numpedid = 0) "
     End If
     If Opcion(2).Value Then
-        SQL = SQL & " from (palets left join pedidos  on pedidos.numpedid = palets.numpedid) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet "
-        SQL = SQL & " where (1=1) "
+        Sql = Sql & " from (palets left join pedidos  on pedidos.numpedid = palets.numpedid) inner join palets_variedad on palets.numpalet = palets_variedad.numpalet "
+        Sql = Sql & " where (1=1) "
     End If
     
-    If txtCodigo(0).Text <> "" Then SQL = SQL & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
-    If txtCodigo(1).Text <> "" Then SQL = SQL & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
+    If txtCodigo(0).Text <> "" Then Sql = Sql & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
+    If txtCodigo(1).Text <> "" Then Sql = Sql & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
     
     If Opcion(0).Value Or Opcion(2).Value Then
-        If txtCodigo(2).Text <> "" Then SQL = SQL & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-        If txtCodigo(3).Text <> "" Then SQL = SQL & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+        If txtCodigo(2).Text <> "" Then Sql = Sql & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+        If txtCodigo(3).Text <> "" Then Sql = Sql & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
     End If
     
-    SQL = SQL & " group by 1,2,3,4"
-    SQL = SQL & " order by 1,2,3,4"
+    Sql = Sql & " group by 1,2,3,4"
+    Sql = Sql & " order by 1,2,3,4"
     
-    conn.Execute SQL
+    conn.Execute Sql
                             
                             
     CargarTemporal = True
@@ -662,27 +662,27 @@ End Function
 
 
 Private Function InsertarTemporal(Cliente As String) As Boolean
-Dim SQL As String
+Dim Sql As String
     
     On Error GoTo eInsertarTemporal
     
     InsertarTemporal = False
     
-    SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql
     
-    SQL = "insert into tmpinformes (codusu, importe1, importe2) "
-    SQL = SQL & " select " & vUsu.Codigo & ", palets.numpalet, pedidos.codclien "
-    SQL = SQL & " from pedidos, palets "
-    SQL = SQL & " where pedidos.numpedid = palets.numpedid"
+    Sql = "insert into tmpinformes (codusu, importe1, importe2) "
+    Sql = Sql & " select " & vUsu.Codigo & ", palets.numpalet, pedidos.codclien "
+    Sql = Sql & " from pedidos, palets "
+    Sql = Sql & " where pedidos.numpedid = palets.numpedid"
     
-    If txtCodigo(0).Text <> "" Then SQL = SQL & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
-    If txtCodigo(1).Text <> "" Then SQL = SQL & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
+    If txtCodigo(0).Text <> "" Then Sql = Sql & " and palets.fechafin >= " & DBSet(txtCodigo(0).Text, "F")
+    If txtCodigo(1).Text <> "" Then Sql = Sql & " and palets.fechafin <= " & DBSet(txtCodigo(1).Text, "F")
     
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
+    If txtCodigo(2).Text <> "" Then Sql = Sql & " and pedidos.codclien >= " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(3).Text <> "" Then Sql = Sql & " and pedidos.codclien <= " & DBSet(txtCodigo(3).Text, "N")
         
-    conn.Execute SQL
+    conn.Execute Sql
                             
     InsertarTemporal = True
     Exit Function
@@ -839,7 +839,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
+Dim tabla As String
 Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String

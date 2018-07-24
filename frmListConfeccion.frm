@@ -864,7 +864,7 @@ Dim nomDocu As String
                     cadNombreRPT = nomDocu '"rConfeccion1.rpt"  'Nombre fichero .rpt a Imprimir
                     cadTABLA = "forfaits"
                     
-                    If vParamAplic.Cooperativa = 0 Then
+                    If vParamAplic.Cooperativa = 0 Or vParamAplic.Cooperativa = 18 Then
                         If txtCodigo(3).Text <> "" Then
                             cadParam = cadParam & "pDesFec=Date(" & Year(txtCodigo(3).Text) & "," & Month(txtCodigo(3).Text) & "," & Day(txtCodigo(3).Text) & ")" & "|"
                             numParam = numParam + 1

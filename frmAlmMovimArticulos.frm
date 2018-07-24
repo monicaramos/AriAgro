@@ -31,9 +31,9 @@ Begin VB.Form frmAlmMovimArticulos
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   11340
+      Left            =   12060
       TabIndex        =   42
-      Top             =   330
+      Top             =   315
       Width           =   1605
    End
    Begin VB.Frame FrameDesplazamiento 
@@ -941,7 +941,7 @@ Begin VB.Form frmAlmMovimArticulos
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   13380
+      Left            =   14310
       TabIndex        =   43
       Top             =   270
       Width           =   405
@@ -1712,14 +1712,14 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
 Dim b As Boolean
-Dim Numreg As Byte
+Dim NumReg As Byte
 
     Modo = Kmodo
     'Modo 2. Hay datos y estamos visualizandolos
     b = (Kmodo = 2)
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
