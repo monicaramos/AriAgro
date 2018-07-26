@@ -23,7 +23,7 @@ Begin VB.Form frmVtasPlanDiario
       _Version        =   393216
    End
    Begin VB.Frame FrameCobros 
-      Height          =   5130
+      Height          =   5175
       Left            =   120
       TabIndex        =   8
       Top             =   120
@@ -46,7 +46,7 @@ Begin VB.Form frmVtasPlanDiario
          Locked          =   -1  'True
          TabIndex        =   18
          Text            =   "Text5"
-         Top             =   3765
+         Top             =   4035
          Width           =   4485
       End
       Begin VB.TextBox txtNombre 
@@ -67,7 +67,7 @@ Begin VB.Form frmVtasPlanDiario
          Locked          =   -1  'True
          TabIndex        =   17
          Text            =   "Text5"
-         Top             =   3390
+         Top             =   3660
          Width           =   4485
       End
       Begin VB.TextBox txtCodigo 
@@ -86,7 +86,7 @@ Begin VB.Form frmVtasPlanDiario
          Left            =   1755
          MaxLength       =   6
          TabIndex        =   5
-         Top             =   3780
+         Top             =   4050
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -105,7 +105,7 @@ Begin VB.Form frmVtasPlanDiario
          Left            =   1755
          MaxLength       =   6
          TabIndex        =   4
-         Top             =   3390
+         Top             =   3660
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -125,7 +125,7 @@ Begin VB.Form frmVtasPlanDiario
          MaxLength       =   10
          TabIndex        =   1
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   1785
+         Top             =   1830
          Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
@@ -162,7 +162,7 @@ Begin VB.Form frmVtasPlanDiario
          Height          =   375
          Left            =   6060
          TabIndex        =   7
-         Top             =   4500
+         Top             =   4590
          Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
@@ -179,7 +179,7 @@ Begin VB.Form frmVtasPlanDiario
          Height          =   375
          Left            =   4875
          TabIndex        =   6
-         Top             =   4500
+         Top             =   4590
          Width           =   1065
       End
       Begin VB.TextBox txtCodigo 
@@ -198,7 +198,7 @@ Begin VB.Form frmVtasPlanDiario
          Left            =   1755
          MaxLength       =   6
          TabIndex        =   2
-         Top             =   2370
+         Top             =   2505
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -217,7 +217,7 @@ Begin VB.Form frmVtasPlanDiario
          Left            =   1755
          MaxLength       =   6
          TabIndex        =   3
-         Top             =   2745
+         Top             =   2925
          Width           =   830
       End
       Begin VB.TextBox txtNombre 
@@ -238,7 +238,7 @@ Begin VB.Form frmVtasPlanDiario
          Locked          =   -1  'True
          TabIndex        =   10
          Text            =   "Text5"
-         Top             =   2370
+         Top             =   2505
          Width           =   4485
       End
       Begin VB.TextBox txtNombre 
@@ -259,7 +259,7 @@ Begin VB.Form frmVtasPlanDiario
          Locked          =   -1  'True
          TabIndex        =   9
          Text            =   "Text5"
-         Top             =   2745
+         Top             =   2925
          Width           =   4485
       End
       Begin VB.Label Label1 
@@ -287,7 +287,7 @@ Begin VB.Form frmVtasPlanDiario
          MouseIcon       =   "frmVtasPlanDiario.frx":000C
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar variedad"
-         Top             =   3765
+         Top             =   4035
          Width           =   240
       End
       Begin VB.Image imgBuscar 
@@ -297,7 +297,7 @@ Begin VB.Form frmVtasPlanDiario
          MouseIcon       =   "frmVtasPlanDiario.frx":015E
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar variedad"
-         Top             =   3390
+         Top             =   3660
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -317,7 +317,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   2
          Left            =   360
          TabIndex        =   21
-         Top             =   3105
+         Top             =   3330
          Width           =   855
       End
       Begin VB.Label Label4 
@@ -335,7 +335,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   1
          Left            =   720
          TabIndex        =   20
-         Top             =   3765
+         Top             =   4035
          Width           =   690
       End
       Begin VB.Label Label4 
@@ -353,7 +353,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   0
          Left            =   720
          TabIndex        =   19
-         Top             =   3390
+         Top             =   3615
          Width           =   735
       End
       Begin VB.Label Label4 
@@ -408,7 +408,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   14
          Left            =   735
          TabIndex        =   14
-         Top             =   1785
+         Top             =   1830
          Width           =   690
       End
       Begin VB.Image imgFec 
@@ -426,7 +426,7 @@ Begin VB.Form frmVtasPlanDiario
          Left            =   1440
          Picture         =   "frmVtasPlanDiario.frx":033B
          ToolTipText     =   "Buscar fecha"
-         Top             =   1785
+         Top             =   1830
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -444,7 +444,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   13
          Left            =   735
          TabIndex        =   13
-         Top             =   2370
+         Top             =   2505
          Width           =   735
       End
       Begin VB.Label Label4 
@@ -462,7 +462,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   12
          Left            =   735
          TabIndex        =   12
-         Top             =   2745
+         Top             =   2925
          Width           =   690
       End
       Begin VB.Label Label4 
@@ -482,7 +482,7 @@ Begin VB.Form frmVtasPlanDiario
          Index           =   11
          Left            =   375
          TabIndex        =   11
-         Top             =   2085
+         Top             =   2175
          Width           =   675
       End
       Begin VB.Image imgBuscar 
@@ -492,7 +492,7 @@ Begin VB.Form frmVtasPlanDiario
          MouseIcon       =   "frmVtasPlanDiario.frx":03C6
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
-         Top             =   2370
+         Top             =   2505
          Width           =   240
       End
       Begin VB.Image imgBuscar 
@@ -502,7 +502,7 @@ Begin VB.Form frmVtasPlanDiario
          MouseIcon       =   "frmVtasPlanDiario.frx":0518
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
-         Top             =   2745
+         Top             =   2925
          Width           =   240
       End
    End
@@ -823,7 +823,7 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
         Me.FrameCobros.Height = 5850
-        Me.FrameCobros.Width = 6930
+        Me.FrameCobros.Width = 7545 '6930
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
     End If
@@ -941,21 +941,21 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation

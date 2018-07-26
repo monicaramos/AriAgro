@@ -27,6 +27,7 @@ Begin VB.Form frmVtasLinPedidos
       _ExtentX        =   16775
       _ExtentY        =   6641
       _Version        =   393216
+      Tab             =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
@@ -39,77 +40,58 @@ Begin VB.Form frmVtasLinPedidos
       EndProperty
       TabCaption(0)   =   "Variedad"
       TabPicture(0)   =   "frmVtasLinPedidos.frx":000C
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Frame2(0)"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Datos de Carga I"
       TabPicture(1)   =   "frmVtasLinPedidos.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Label3"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "imgBuscar(5)"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "Label4"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "Label5"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "Label7"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "Label8"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "Label9"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "Label11"
-      Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "Label14"
-      Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "Label15"
-      Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "Label16"
-      Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "Label17"
-      Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "Label20"
-      Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "Text2(14)"
-      Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "Text1(14)"
-      Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text1(15)"
-      Tab(1).Control(15).Enabled=   0   'False
-      Tab(1).Control(16)=   "Text1(16)"
-      Tab(1).Control(16).Enabled=   0   'False
-      Tab(1).Control(17)=   "Text1(17)"
-      Tab(1).Control(17).Enabled=   0   'False
-      Tab(1).Control(18)=   "Text1(18)"
-      Tab(1).Control(18).Enabled=   0   'False
-      Tab(1).Control(19)=   "Text1(19)"
-      Tab(1).Control(19).Enabled=   0   'False
-      Tab(1).Control(20)=   "Text1(20)"
-      Tab(1).Control(20).Enabled=   0   'False
-      Tab(1).Control(21)=   "Text1(21)"
-      Tab(1).Control(21).Enabled=   0   'False
-      Tab(1).Control(22)=   "Text1(22)"
-      Tab(1).Control(22).Enabled=   0   'False
-      Tab(1).Control(23)=   "Text1(23)"
-      Tab(1).Control(23).Enabled=   0   'False
-      Tab(1).Control(24)=   "Text1(24)"
-      Tab(1).Control(24).Enabled=   0   'False
-      Tab(1).Control(25)=   "Text1(27)"
-      Tab(1).Control(25).Enabled=   0   'False
+      Tab(1).Control(0)=   "Text1(27)"
+      Tab(1).Control(1)=   "Text1(24)"
+      Tab(1).Control(2)=   "Text1(23)"
+      Tab(1).Control(3)=   "Text1(22)"
+      Tab(1).Control(4)=   "Text1(21)"
+      Tab(1).Control(5)=   "Text1(20)"
+      Tab(1).Control(6)=   "Text1(19)"
+      Tab(1).Control(7)=   "Text1(18)"
+      Tab(1).Control(8)=   "Text1(17)"
+      Tab(1).Control(9)=   "Text1(16)"
+      Tab(1).Control(10)=   "Text1(15)"
+      Tab(1).Control(11)=   "Text1(14)"
+      Tab(1).Control(12)=   "Text2(14)"
+      Tab(1).Control(13)=   "Label20"
+      Tab(1).Control(14)=   "Label17"
+      Tab(1).Control(15)=   "Label16"
+      Tab(1).Control(16)=   "Label15"
+      Tab(1).Control(17)=   "Label14"
+      Tab(1).Control(18)=   "Label11"
+      Tab(1).Control(19)=   "Label9"
+      Tab(1).Control(20)=   "Label8"
+      Tab(1).Control(21)=   "Label7"
+      Tab(1).Control(22)=   "Label5"
+      Tab(1).Control(23)=   "Label4"
+      Tab(1).Control(24)=   "imgBuscar(5)"
+      Tab(1).Control(25)=   "Label3"
       Tab(1).ControlCount=   26
       TabCaption(2)   =   "Datos de Carga II"
       TabPicture(2)   =   "frmVtasLinPedidos.frx":0044
-      Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text1(29)"
-      Tab(2).Control(1)=   "Text1(28)"
-      Tab(2).Control(2)=   "Text1(25)"
-      Tab(2).Control(3)=   "Text1(26)"
-      Tab(2).Control(4)=   "Label22"
-      Tab(2).Control(5)=   "Label21"
-      Tab(2).Control(6)=   "Label18"
-      Tab(2).Control(7)=   "Label19"
+      Tab(2).ControlEnabled=   -1  'True
+      Tab(2).Control(0)=   "Label19"
+      Tab(2).Control(0).Enabled=   0   'False
+      Tab(2).Control(1)=   "Label18"
+      Tab(2).Control(1).Enabled=   0   'False
+      Tab(2).Control(2)=   "Label21"
+      Tab(2).Control(2).Enabled=   0   'False
+      Tab(2).Control(3)=   "Label22"
+      Tab(2).Control(3).Enabled=   0   'False
+      Tab(2).Control(4)=   "Text1(26)"
+      Tab(2).Control(4).Enabled=   0   'False
+      Tab(2).Control(5)=   "Text1(25)"
+      Tab(2).Control(5).Enabled=   0   'False
+      Tab(2).Control(6)=   "Text1(28)"
+      Tab(2).Control(6).Enabled=   0   'False
+      Tab(2).Control(7)=   "Text1(29)"
+      Tab(2).Control(7).Enabled=   0   'False
       Tab(2).ControlCount=   8
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -123,7 +105,7 @@ Begin VB.Form frmVtasLinPedidos
          EndProperty
          Height          =   360
          Index           =   29
-         Left            =   -73365
+         Left            =   1635
          MaxLength       =   20
          TabIndex        =   46
          Tag             =   "Hora Carga|T|S|||pedidos_variedad|horacarga|||"
@@ -143,7 +125,7 @@ Begin VB.Form frmVtasLinPedidos
          EndProperty
          Height          =   360
          Index           =   28
-         Left            =   -73365
+         Left            =   1635
          MaxLength       =   10
          TabIndex        =   45
          Tag             =   "Fecha Carga|F|S|||pedidos_variedad|feccarga|||"
@@ -163,7 +145,7 @@ Begin VB.Form frmVtasLinPedidos
          EndProperty
          Height          =   525
          Index           =   25
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   200
          MultiLine       =   -1  'True
          TabIndex        =   47
@@ -184,7 +166,7 @@ Begin VB.Form frmVtasLinPedidos
          EndProperty
          Height          =   615
          Index           =   26
-         Left            =   -74760
+         Left            =   240
          MaxLength       =   500
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
@@ -460,7 +442,7 @@ Begin VB.Form frmVtasLinPedidos
       Begin VB.Frame Frame2 
          Height          =   3345
          Index           =   0
-         Left            =   30
+         Left            =   -74970
          TabIndex        =   21
          Top             =   360
          Width           =   9445
@@ -1152,7 +1134,7 @@ Begin VB.Form frmVtasLinPedidos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   84
          Top             =   1290
          Width           =   1455
@@ -1169,7 +1151,7 @@ Begin VB.Form frmVtasLinPedidos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   83
          Top             =   810
          Width           =   1410
@@ -1186,7 +1168,7 @@ Begin VB.Form frmVtasLinPedidos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   82
          Top             =   1710
          Width           =   2205
@@ -1203,7 +1185,7 @@ Begin VB.Form frmVtasLinPedidos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   81
          Top             =   2520
          Width           =   1440
@@ -2194,7 +2176,7 @@ Private HaDevueltoDatos As Boolean
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim cadB As String
+Dim CadB As String
 Dim PesoAnt As Currency
 Dim NumCajAnt As Currency
 
@@ -2348,13 +2330,13 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-Dim cad As String
+Dim Cad As String
 
-    cad = ""
+    Cad = ""
     If Text1(0).Text <> "" And Text1(1).Text <> "" Then
-        cad = Text1(0).Text & "|" & Text1(1).Text & "|"
+        Cad = Text1(0).Text & "|" & Text1(1).Text & "|"
     End If
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
 
     CheckValueGuardar Me.Name, Me.chkVistaPrevia(0).Value
     Screen.MousePointer = vbDefault
@@ -2454,10 +2436,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(frameAux As String)
+Private Sub LimpiarCamposLin(FrameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -2468,7 +2450,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, Numreg As Byte
+Dim i As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2493,11 +2475,11 @@ Dim b As Boolean
     '=======================================
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
@@ -2632,29 +2614,29 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim SQL As String
-Dim Tabla As String
+Dim Sql As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'CALIBRES
-            SQL = "SELECT pedidos_calibre.numpedid, pedidos_calibre.numlinea, pedidos_calibre.numline1, "
-            SQL = SQL & "pedidos_calibre.codvarie, pedidos_calibre.codcalib, calibres.nomcalib, pedidos_calibre.numcajas, "
-            SQL = SQL & "pedidos_calibre.unidades, pedidos_calibre.pesoneto"
-            SQL = SQL & " FROM pedidos_calibre, calibres "
+            Sql = "SELECT pedidos_calibre.numpedid, pedidos_calibre.numlinea, pedidos_calibre.numline1, "
+            Sql = Sql & "pedidos_calibre.codvarie, pedidos_calibre.codcalib, calibres.nomcalib, pedidos_calibre.numcajas, "
+            Sql = Sql & "pedidos_calibre.unidades, pedidos_calibre.pesoneto"
+            Sql = Sql & " FROM pedidos_calibre, calibres "
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " WHERE pedidos_calibre.numpedid = '-1'"
+                Sql = Sql & " WHERE pedidos_calibre.numpedid = '-1'"
             End If
-            SQL = SQL & " and pedidos_calibre.codcalib = calibres.codcalib"
-            SQL = SQL & " and pedidos_calibre.codvarie = calibres.codvarie"
-            SQL = SQL & " ORDER BY pedidos_calibre.codcalib"
+            Sql = Sql & " and pedidos_calibre.codcalib = calibres.codcalib"
+            Sql = Sql & " and pedidos_calibre.codvarie = calibres.codvarie"
+            Sql = Sql & " ORDER BY pedidos_calibre.codcalib"
                
     End Select
     
-    MontaSQLCarga = SQL
+    MontaSQLCarga = Sql
 End Function
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -2665,12 +2647,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -2753,6 +2735,8 @@ Private Sub mnVerTodos_Click()
     BotonVerTodos
 End Sub
 
+
+
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
@@ -2798,12 +2782,12 @@ End Sub
 
 Private Sub HacerBusqueda()
 
-    cadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, 1)
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
@@ -2812,22 +2796,22 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-    Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & ParaGrid(Text1(0), 20, "Código")
-    cad = cad & ParaGrid(Text1(1), 20, "Confección")
-    cad = cad & ParaGrid(Text1(2), 60, "Descripción")
-    If cad <> "" Then
+    Cad = ""
+    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
+    Cad = Cad & ParaGrid(Text1(1), 20, "Confección")
+    Cad = Cad & ParaGrid(Text1(2), 60, "Descripción")
+    If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
+        frmB.vCampos = Cad
         frmB.vtabla = NombreTabla
-        frmB.vSQL = cadB
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
@@ -2847,7 +2831,7 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
 Dim i As Integer
 Dim J As Integer
@@ -2886,7 +2870,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    cadB = ""
+    CadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -2942,7 +2926,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -2956,11 +2940,11 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Forfait?"
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar el Forfait?"
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -2983,7 +2967,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim i As Integer
-Dim codPobla As String, desPobla As String
+Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -3098,7 +3082,7 @@ End Sub
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 'Dim Datos As String
 
     On Error GoTo EDatosOK
@@ -3110,9 +3094,9 @@ Dim SQL As String
     ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
     If (Modo = 3) Then 'insertar
         'comprobar si existe ya el cod. del campo clave primaria
-        SQL = ""
-        SQL = DevuelveDesdeBDNew(cAgro, "pedidos_calibre", "numpedid", "numpedid", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
-        If SQL <> "" Then
+        Sql = ""
+        Sql = DevuelveDesdeBDNew(cAgro, "pedidos_calibre", "numpedid", "numpedid", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
+        If Sql <> "" Then
             MsgBox "Ya existe el numero de linea para este pedido", vbExclamation
             b = False
         End If
@@ -3126,14 +3110,14 @@ EDatosOK:
 End Function
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(numpedid=" & DBSet(Text1(0).Text, "N") & ")"
-    cad = cad & " and (numlinea = " & DBSet(Text1(1).Text, "N") & ")"
+    Cad = "(numpedid=" & DBSet(Text1(0).Text, "N") & ")"
+    Cad = Cad & " and (numlinea = " & DBSet(Text1(1).Text, "N") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
-    If SituarDataMULTI(Data1, cad, Indicador) Then
+    If SituarDataMULTI(Data1, Cad, Indicador) Then
     'If SituarData(Data1, cad, Indicador) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
@@ -3410,7 +3394,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -3437,12 +3421,12 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'calibres
-            SQL = "¿Seguro que desea eliminar el Calibre?"
-            SQL = SQL & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar el Calibre?"
+            Sql = Sql & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM pedidos_calibre "
-                SQL = SQL & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
+                Sql = "DELETE FROM pedidos_calibre "
+                Sql = Sql & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
             End If
             
     End Select
@@ -3454,7 +3438,7 @@ Dim Eliminar As Boolean
         BloqueaRegistro "pedidos", "numpedid = " & Text1(0).Text
         conn.BeginTrans
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         ActualizarVariedades Text1(0), Text1(1)
 
@@ -3710,7 +3694,7 @@ Private Sub txtAux_GotFocus(Index As Integer)
 End Sub
 
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -3735,7 +3719,7 @@ End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -4121,7 +4105,7 @@ End Sub
 
 Private Sub CalcularTotales()
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim TotalEnvases As String
 Dim TotalCostes As String
 Dim Valor As Currency
@@ -4129,12 +4113,12 @@ Dim Valor As Currency
     On Error Resume Next
 
     'total importes de envases para ese forfait
-    SQL = "select sum(numcajas) "
-    SQL = SQL & " from pedidos_calibre where numpedid = " & DBSet(Text1(0).Text, "N")
-    SQL = SQL & " and numlinea = " & DBSet(Text1(1).Text, "N")
+    Sql = "select sum(numcajas) "
+    Sql = Sql & " from pedidos_calibre where numpedid = " & DBSet(Text1(0).Text, "N")
+    Sql = Sql & " and numlinea = " & DBSet(Text1(1).Text, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalEnvases = 0
     If Not Rs.EOF Then
@@ -4151,20 +4135,20 @@ Dim Valor As Currency
 End Sub
 
 Private Function ObtenerWhereCP(conW As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 On Error Resume Next
     
-    SQL = ""
-    If conW Then SQL = " WHERE "
-    SQL = SQL & NombreTabla & ".numpedid= " & DBSet(Text1(0).Text, "N")
-    SQL = SQL & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
-    ObtenerWhereCP = SQL
+    Sql = ""
+    If conW Then Sql = " WHERE "
+    Sql = Sql & NombreTabla & ".numpedid= " & DBSet(Text1(0).Text, "N")
+    Sql = Sql & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
+    ObtenerWhereCP = Sql
 End Function
 
 
 
 Private Function ActualizarVariedades(Pedido As String, Linea As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim SQL1 As String
 
@@ -4180,47 +4164,47 @@ Dim SQL1 As String
     
     If Not Rs.EOF Then
         If DBLet(Rs.Fields(0).Value, "N") = 0 Then
-            SQL = "update pedidos_variedad set pesoneto = null "
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set pesoneto = null "
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(1).Value, "N") = 0 Then
-            SQL = "update pedidos_variedad set numcajas = null "
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set numcajas = null "
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(2).Value, "N") = 0 Then
-            SQL = "update pedidos_variedad set unidades = null "
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set unidades = null "
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         
         If DBLet(Rs.Fields(0).Value, "N") <> 0 Then
-            SQL = "update pedidos_variedad set pesoneto = " & DBSet(Rs.Fields(0).Value, "N")
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set pesoneto = " & DBSet(Rs.Fields(0).Value, "N")
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(1).Value, "N") <> 0 Then
-            SQL = "update pedidos_variedad set numcajas = " & DBSet(Rs.Fields(1).Value, "N")
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set numcajas = " & DBSet(Rs.Fields(1).Value, "N")
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(2).Value, "N") <> 0 Then
-            SQL = "update pedidos_variedad set unidades = " & DBSet(Rs.Fields(2).Value, "N")
-            SQL = SQL & " where numpedid = " & DBSet(Pedido, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update pedidos_variedad set unidades = " & DBSet(Rs.Fields(2).Value, "N")
+            Sql = Sql & " where numpedid = " & DBSet(Pedido, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
     
     End If
