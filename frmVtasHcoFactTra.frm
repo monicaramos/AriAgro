@@ -6,31 +6,148 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmVtasHcoFactTra 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Histórico de Facturas Transportistas/Comisionistas"
-   ClientHeight    =   9840
+   ClientHeight    =   10110
    ClientLeft      =   45
-   ClientTop       =   4335
+   ClientTop       =   4035
    ClientWidth     =   14190
    Icon            =   "frmVtasHcoFactTra.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   Picture         =   "frmVtasHcoFactTra.frx":000C
-   ScaleHeight     =   9840
+   ScaleHeight     =   10110
    ScaleWidth      =   14190
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3285
+      TabIndex        =   119
+      Top             =   90
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   120
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   45
+      TabIndex        =   117
+      Top             =   90
+      Width           =   3180
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   118
+         Top             =   180
+         Width           =   2775
+         _ExtentX        =   4895
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Left            =   11520
+      TabIndex        =   116
+      Top             =   285
+      Width           =   1605
+   End
    Begin TabDlg.SSTab SSTab1 
       Height          =   7050
       Left            =   45
-      TabIndex        =   42
+      TabIndex        =   40
       Tag             =   "Fecha Oferta|F|N|||scapre|fecentre|dd/mm/yyyy|N|"
-      Top             =   1845
-      Width           =   13895
+      Top             =   2115
+      Width           =   13890
       _ExtentX        =   24500
       _ExtentY        =   12435
       _Version        =   393216
       Style           =   1
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -43,62 +160,40 @@ Begin VB.Form frmVtasHcoFactTra
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Datos básicos"
-      TabPicture(0)   =   "frmVtasHcoFactTra.frx":0A0E
-      Tab(0).ControlEnabled=   0   'False
+      TabPicture(0)   =   "frmVtasHcoFactTra.frx":000C
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Frame2(1)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Albaranes"
-      TabPicture(1)   =   "frmVtasHcoFactTra.frx":0A2A
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "Label1(6)"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "FrameObserva"
-      Tab(1).Control(1).Enabled=   0   'False
-      Tab(1).Control(2)=   "DataGrid2"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "DataGrid1"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "txtAux(7)"
-      Tab(1).Control(4).Enabled=   0   'False
-      Tab(1).Control(5)=   "txtAux(6)"
-      Tab(1).Control(5).Enabled=   0   'False
-      Tab(1).Control(6)=   "txtAux(5)"
-      Tab(1).Control(6).Enabled=   0   'False
-      Tab(1).Control(7)=   "txtAux(4)"
-      Tab(1).Control(7).Enabled=   0   'False
-      Tab(1).Control(8)=   "cmdObserva"
-      Tab(1).Control(8).Enabled=   0   'False
-      Tab(1).Control(9)=   "txtAux(0)"
-      Tab(1).Control(9).Enabled=   0   'False
-      Tab(1).Control(10)=   "txtAux(1)"
-      Tab(1).Control(10).Enabled=   0   'False
-      Tab(1).Control(11)=   "txtAux(2)"
-      Tab(1).Control(11).Enabled=   0   'False
-      Tab(1).Control(12)=   "txtAux(3)"
-      Tab(1).Control(12).Enabled=   0   'False
-      Tab(1).Control(13)=   "txtAux3(0)"
-      Tab(1).Control(13).Enabled=   0   'False
-      Tab(1).Control(14)=   "txtAux3(1)"
-      Tab(1).Control(14).Enabled=   0   'False
-      Tab(1).Control(15)=   "Text3(2)"
-      Tab(1).Control(15).Enabled=   0   'False
+      TabPicture(1)   =   "frmVtasHcoFactTra.frx":0028
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "Text3(2)"
+      Tab(1).Control(1)=   "txtAux3(1)"
+      Tab(1).Control(2)=   "txtAux3(0)"
+      Tab(1).Control(3)=   "txtAux(3)"
+      Tab(1).Control(4)=   "txtAux(2)"
+      Tab(1).Control(5)=   "txtAux(1)"
+      Tab(1).Control(6)=   "txtAux(0)"
+      Tab(1).Control(7)=   "cmdObserva"
+      Tab(1).Control(8)=   "txtAux(4)"
+      Tab(1).Control(9)=   "txtAux(5)"
+      Tab(1).Control(10)=   "txtAux(6)"
+      Tab(1).Control(11)=   "txtAux(7)"
+      Tab(1).Control(12)=   "DataGrid1"
+      Tab(1).Control(13)=   "DataGrid2"
+      Tab(1).Control(14)=   "FrameObserva"
+      Tab(1).Control(15)=   "Label1(6)"
       Tab(1).ControlCount=   16
       TabCaption(2)   =   "Portes Vuelta"
-      TabPicture(2)   =   "frmVtasHcoFactTra.frx":0A46
+      TabPicture(2)   =   "frmVtasHcoFactTra.frx":0044
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "Label1(13)"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).Control(1)=   "DataGrid3"
-      Tab(2).Control(1).Enabled=   0   'False
       Tab(2).Control(2)=   "Text4(0)"
-      Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Text4(1)"
-      Tab(2).Control(3).Enabled=   0   'False
       Tab(2).Control(4)=   "Text4(2)"
-      Tab(2).Control(4).Enabled=   0   'False
       Tab(2).Control(5)=   "Text5"
-      Tab(2).Control(5).Enabled=   0   'False
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text5 
          Alignment       =   1  'Right Justify
@@ -116,7 +211,7 @@ Begin VB.Form frmVtasHcoFactTra
          Left            =   -67530
          Locked          =   -1  'True
          MaxLength       =   60
-         TabIndex        =   115
+         TabIndex        =   113
          Text            =   "Text5"
          Top             =   5985
          Width           =   1800
@@ -137,7 +232,7 @@ Begin VB.Form frmVtasHcoFactTra
          Left            =   -73065
          Locked          =   -1  'True
          MaxLength       =   60
-         TabIndex        =   111
+         TabIndex        =   109
          Text            =   "Text4"
          Top             =   4815
          Visible         =   0   'False
@@ -156,7 +251,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   360
          Index           =   1
          Left            =   -67890
-         TabIndex        =   110
+         TabIndex        =   108
          Tag             =   "Importe|N|N|||tcafpv|importel|###,###,##0.00|N|"
          Text            =   "Text4"
          Top             =   4815
@@ -176,7 +271,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   360
          Index           =   0
          Left            =   -74460
-         TabIndex        =   109
+         TabIndex        =   107
          Tag             =   "Cuenta Contable|T|N|||tcafpv|codmacta||N|"
          Text            =   "Text4"
          Top             =   4815
@@ -186,8 +281,8 @@ Begin VB.Form frmVtasHcoFactTra
       Begin VB.Frame Frame2 
          Height          =   6360
          Index           =   1
-         Left            =   -74865
-         TabIndex        =   82
+         Left            =   135
+         TabIndex        =   80
          Top             =   315
          Width           =   13605
          Begin VB.Frame FrameCliente 
@@ -204,7 +299,7 @@ Begin VB.Form frmVtasHcoFactTra
             ForeColor       =   &H00972E0B&
             Height          =   2640
             Left            =   45
-            TabIndex        =   98
+            TabIndex        =   96
             Top             =   135
             Width           =   13485
             Begin VB.TextBox Text1 
@@ -285,7 +380,7 @@ Begin VB.Form frmVtasHcoFactTra
                Left            =   8385
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   99
+               TabIndex        =   97
                Text            =   "Text2"
                Top             =   465
                Width           =   4680
@@ -425,7 +520,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   7
                Left            =   120
-               TabIndex        =   107
+               TabIndex        =   105
                Top             =   1005
                Width           =   1050
             End
@@ -451,7 +546,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   26
                Left            =   8505
-               TabIndex        =   106
+               TabIndex        =   104
                Top             =   1140
                Width           =   1050
             End
@@ -469,7 +564,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   25
                Left            =   6255
-               TabIndex        =   105
+               TabIndex        =   103
                Top             =   1088
                Width           =   975
             End
@@ -487,7 +582,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   15
                Left            =   6270
-               TabIndex        =   104
+               TabIndex        =   102
                Top             =   465
                Width           =   1170
             End
@@ -514,7 +609,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   20
                Left            =   120
-               TabIndex        =   103
+               TabIndex        =   101
                Top             =   420
                Width           =   615
             End
@@ -532,7 +627,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   19
                Left            =   2445
-               TabIndex        =   102
+               TabIndex        =   100
                Top             =   420
                Width           =   915
             End
@@ -550,7 +645,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   16
                Left            =   120
-               TabIndex        =   101
+               TabIndex        =   99
                Top             =   1530
                Width           =   1050
             End
@@ -568,7 +663,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   17
                Left            =   120
-               TabIndex        =   100
+               TabIndex        =   98
                Top             =   2115
                Width           =   1050
             End
@@ -576,7 +671,7 @@ Begin VB.Form frmVtasHcoFactTra
          Begin VB.Frame FrameFactura 
             Height          =   3300
             Left            =   45
-            TabIndex        =   83
+            TabIndex        =   81
             Top             =   2835
             Width           =   13485
             Begin VB.TextBox Text1 
@@ -641,7 +736,7 @@ Begin VB.Form frmVtasHcoFactTra
                Tag             =   "Base Imponible 3|N|S|||tcafpc|baseiva3|#,###,###,##0.00|N|"
                Text            =   "Text1 7"
                Top             =   2700
-               Width           =   1710
+               Width           =   1800
             End
             Begin VB.TextBox Text1 
                Alignment       =   1  'Right Justify
@@ -722,7 +817,7 @@ Begin VB.Form frmVtasHcoFactTra
                Index           =   17
                Left            =   6030
                MaxLength       =   15
-               TabIndex        =   84
+               TabIndex        =   82
                Text            =   "Text1 7"
                Top             =   450
                Width           =   1800
@@ -746,7 +841,7 @@ Begin VB.Form frmVtasHcoFactTra
                Tag             =   "Base Imponible 1|N|N|||tcafpc|baseiva1|#,###,###,##0.00|N|"
                Text            =   "Text1 7"
                Top             =   1170
-               Width           =   1710
+               Width           =   1800
             End
             Begin VB.TextBox Text1 
                Alignment       =   1  'Right Justify
@@ -831,7 +926,7 @@ Begin VB.Form frmVtasHcoFactTra
                Tag             =   "Base Imponible 2 |N|S|||tcafpc|baseiva2|#,###,###,##0.00|N|"
                Text            =   "Text1 7"
                Top             =   1575
-               Width           =   1710
+               Width           =   1800
             End
             Begin VB.TextBox Text1 
                Alignment       =   1  'Right Justify
@@ -916,7 +1011,7 @@ Begin VB.Form frmVtasHcoFactTra
                Tag             =   "Base Imponible 3|N|S|||tcafpc|baseiva3|#,###,###,##0.00|N|"
                Text            =   "Text1 7"
                Top             =   1995
-               Width           =   1710
+               Width           =   1800
             End
             Begin VB.TextBox Text1 
                Alignment       =   1  'Right Justify
@@ -1018,7 +1113,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   8
                Left            =   8235
-               TabIndex        =   114
+               TabIndex        =   112
                Top             =   2430
                Width           =   1920
             End
@@ -1036,7 +1131,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   5
                Left            =   7965
-               TabIndex        =   113
+               TabIndex        =   111
                Top             =   2700
                Width           =   135
             End
@@ -1054,7 +1149,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   4
                Left            =   4905
-               TabIndex        =   112
+               TabIndex        =   110
                Top             =   2430
                Width           =   675
             End
@@ -1072,7 +1167,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   10
                Left            =   240
-               TabIndex        =   97
+               TabIndex        =   95
                Top             =   195
                Width           =   1395
             End
@@ -1090,7 +1185,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   11
                Left            =   2190
-               TabIndex        =   96
+               TabIndex        =   94
                Top             =   195
                Width           =   1530
             End
@@ -1108,7 +1203,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   12
                Left            =   3990
-               TabIndex        =   95
+               TabIndex        =   93
                Top             =   195
                Width           =   1530
             End
@@ -1126,7 +1221,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   14
                Left            =   6015
-               TabIndex        =   94
+               TabIndex        =   92
                Top             =   195
                Width           =   1485
             End
@@ -1144,7 +1239,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   30
                Left            =   1920
-               TabIndex        =   93
+               TabIndex        =   91
                Top             =   360
                Width           =   135
             End
@@ -1162,7 +1257,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   31
                Left            =   3720
-               TabIndex        =   92
+               TabIndex        =   90
                Top             =   360
                Width           =   135
             End
@@ -1180,7 +1275,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   32
                Left            =   5790
-               TabIndex        =   91
+               TabIndex        =   89
                Top             =   360
                Width           =   135
             End
@@ -1198,7 +1293,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   33
                Left            =   8235
-               TabIndex        =   90
+               TabIndex        =   88
                Top             =   855
                Width           =   1335
             End
@@ -1216,7 +1311,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   37
                Left            =   7950
-               TabIndex        =   89
+               TabIndex        =   87
                Top             =   1230
                Width           =   135
             End
@@ -1240,7 +1335,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   38
                Left            =   10335
-               TabIndex        =   88
+               TabIndex        =   86
                Top             =   2715
                Width           =   135
             End
@@ -1259,7 +1354,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   39
                Left            =   10680
-               TabIndex        =   87
+               TabIndex        =   85
                Top             =   2430
                Width           =   1800
             End
@@ -1277,7 +1372,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   41
                Left            =   4905
-               TabIndex        =   86
+               TabIndex        =   84
                Top             =   870
                Width           =   675
             End
@@ -1295,7 +1390,7 @@ Begin VB.Form frmVtasHcoFactTra
                Height          =   255
                Index           =   42
                Left            =   3960
-               TabIndex        =   85
+               TabIndex        =   83
                Top             =   885
                Width           =   870
             End
@@ -1314,9 +1409,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   11655
+         Left            =   -63345
          MaxLength       =   14
-         TabIndex        =   80
+         TabIndex        =   78
          Tag             =   "Importe|N|S|||tcafpa|importe|###,###,##0.00|N|"
          Text            =   "Text1 7"
          Top             =   2025
@@ -1338,9 +1433,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   2070
+         Left            =   -72930
          MaxLength       =   30
-         TabIndex        =   64
+         TabIndex        =   62
          Tag             =   "Fecha Albaran|F|N|||tcafpa|fechaalb|dd/mm/yyyy|N|"
          Text            =   "fecalbar"
          Top             =   2160
@@ -1363,9 +1458,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   1080
+         Left            =   -73920
          MaxLength       =   15
-         TabIndex        =   63
+         TabIndex        =   61
          Tag             =   "Nº Albaran|N|N|||tcafpa|numalbar|0|N|"
          Text            =   "numalbar"
          Top             =   2160
@@ -1388,9 +1483,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   3
-         Left            =   3240
+         Left            =   -71760
          MaxLength       =   12
-         TabIndex        =   56
+         TabIndex        =   54
          Tag             =   "Forfait|T|N|0||slifac|cantidad||N|"
          Text            =   "nom.forfait"
          Top             =   4320
@@ -1412,9 +1507,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   2
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   12
-         TabIndex        =   55
+         TabIndex        =   53
          Tag             =   "Nombre Marca|T|N|||slifac|nommarca||N|"
          Text            =   "nommarca"
          Top             =   4320
@@ -1437,9 +1532,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   1
-         Left            =   1320
+         Left            =   -73680
          MaxLength       =   12
-         TabIndex        =   54
+         TabIndex        =   52
          Tag             =   "Variedad comercial|T|N|||slifac|codartic||N|"
          Text            =   "comercial"
          Top             =   4320
@@ -1462,9 +1557,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   12
-         TabIndex        =   53
+         TabIndex        =   51
          Tag             =   "Variedad|T|N|||slifac|codalmac||N|"
          Text            =   "variedad"
          Top             =   4320
@@ -1473,9 +1568,9 @@ Begin VB.Form frmVtasHcoFactTra
       End
       Begin VB.CommandButton cmdObserva 
          Height          =   375
-         Left            =   4080
+         Left            =   -70920
          Style           =   1  'Graphical
-         TabIndex        =   52
+         TabIndex        =   50
          Top             =   520
          Width           =   375
       End
@@ -1495,9 +1590,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   4
-         Left            =   4080
+         Left            =   -70920
          MaxLength       =   12
-         TabIndex        =   57
+         TabIndex        =   55
          Tag             =   "Precio|N|N|0|999999.0000|slifac|precioar|###,##0.0000|N|"
          Text            =   "Precio"
          Top             =   4320
@@ -1520,9 +1615,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   5
-         Left            =   5760
+         Left            =   -69240
          MaxLength       =   5
-         TabIndex        =   58
+         TabIndex        =   56
          Tag             =   "Dto 1|N|N|0|99.90|slifac|dtoline1|#0.00|N|"
          Text            =   "Dto1"
          Top             =   4320
@@ -1545,9 +1640,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   6
-         Left            =   6480
+         Left            =   -68520
          MaxLength       =   30
-         TabIndex        =   59
+         TabIndex        =   57
          Tag             =   "Dto 2|N|N|0|99.90|slifac|dtolinea|#0.00|N|"
          Text            =   "Dto2"
          Top             =   4320
@@ -1570,9 +1665,9 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   315
          Index           =   7
-         Left            =   7080
+         Left            =   -67920
          MaxLength       =   12
-         TabIndex        =   62
+         TabIndex        =   60
          Tag             =   "Importe|N|N|0||slifac|importel|#,###,###,##0.00|N|"
          Text            =   "Importe"
          Top             =   4320
@@ -1580,10 +1675,10 @@ Begin VB.Form frmVtasHcoFactTra
          Width           =   1095
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmVtasHcoFactTra.frx":0A62
+         Bindings        =   "frmVtasHcoFactTra.frx":0060
          Height          =   3825
-         Left            =   225
-         TabIndex        =   44
+         Left            =   -74775
+         TabIndex        =   42
          Top             =   2625
          Width           =   13435
          _ExtentX        =   23707
@@ -1652,10 +1747,10 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid2 
-         Bindings        =   "frmVtasHcoFactTra.frx":0A77
+         Bindings        =   "frmVtasHcoFactTra.frx":0075
          Height          =   1890
-         Left            =   240
-         TabIndex        =   45
+         Left            =   -74760
+         TabIndex        =   43
          Top             =   525
          Width           =   3600
          _ExtentX        =   6350
@@ -1728,8 +1823,8 @@ Begin VB.Form frmVtasHcoFactTra
          Caption         =   "Observaciones"
          ForeColor       =   &H00972E0B&
          Height          =   2055
-         Left            =   225
-         TabIndex        =   46
+         Left            =   -74775
+         TabIndex        =   44
          Tag             =   "Observación 4|T|S|||scafac1|observa4||N|"
          Top             =   2610
          Width           =   10575
@@ -1738,7 +1833,7 @@ Begin VB.Form frmVtasHcoFactTra
             Index           =   8
             Left            =   720
             MaxLength       =   80
-            TabIndex        =   51
+            TabIndex        =   49
             Tag             =   "Observación 5|T|S|||tcafpa|observa5||N|"
             Text            =   "Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Te"
             Top             =   1560
@@ -1749,7 +1844,7 @@ Begin VB.Form frmVtasHcoFactTra
             Index           =   7
             Left            =   720
             MaxLength       =   80
-            TabIndex        =   50
+            TabIndex        =   48
             Tag             =   "Observación 4|T|S|||tcafpa|observa4||N|"
             Text            =   "Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Te"
             Top             =   1230
@@ -1760,7 +1855,7 @@ Begin VB.Form frmVtasHcoFactTra
             Index           =   6
             Left            =   720
             MaxLength       =   80
-            TabIndex        =   49
+            TabIndex        =   47
             Tag             =   "Observación 3|T|S|||tcafpa|observa3||N|"
             Text            =   "Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Te"
             Top             =   900
@@ -1771,7 +1866,7 @@ Begin VB.Form frmVtasHcoFactTra
             Index           =   5
             Left            =   720
             MaxLength       =   80
-            TabIndex        =   48
+            TabIndex        =   46
             Tag             =   "Observación 2|T|S|||tcafpa|observa2||N|"
             Text            =   "Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Te"
             Top             =   570
@@ -1782,7 +1877,7 @@ Begin VB.Form frmVtasHcoFactTra
             Index           =   4
             Left            =   720
             MaxLength       =   80
-            TabIndex        =   47
+            TabIndex        =   45
             Tag             =   "Observación 1|T|S|||tcafpa|observa1||N|"
             Text            =   "Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Text1 Te"
             Top             =   240
@@ -1790,10 +1885,10 @@ Begin VB.Form frmVtasHcoFactTra
          End
       End
       Begin MSDataGridLib.DataGrid DataGrid3 
-         Bindings        =   "frmVtasHcoFactTra.frx":0A8C
+         Bindings        =   "frmVtasHcoFactTra.frx":008A
          Height          =   4545
          Left            =   -74820
-         TabIndex        =   108
+         TabIndex        =   106
          Top             =   720
          Width           =   9240
          _ExtentX        =   16298
@@ -1876,7 +1971,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   13
          Left            =   -68610
-         TabIndex        =   116
+         TabIndex        =   114
          Top             =   6030
          Width           =   1320
       End
@@ -1893,8 +1988,8 @@ Begin VB.Form frmVtasHcoFactTra
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   11655
-         TabIndex        =   81
+         Left            =   -63345
+         TabIndex        =   79
          Top             =   1755
          Width           =   1590
       End
@@ -1905,7 +2000,7 @@ Begin VB.Form frmVtasHcoFactTra
       Index           =   1
       Left            =   4485
       MaxLength       =   30
-      TabIndex        =   77
+      TabIndex        =   75
       Text            =   "Text1"
       Top             =   2205
       Width           =   660
@@ -1917,7 +2012,7 @@ Begin VB.Form frmVtasHcoFactTra
       Left            =   5145
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   76
+      TabIndex        =   74
       Text            =   "Text2"
       Top             =   2205
       Width           =   3525
@@ -1928,9 +2023,9 @@ Begin VB.Form frmVtasHcoFactTra
       Index           =   0
       Left            =   4485
       MaxLength       =   30
-      TabIndex        =   75
+      TabIndex        =   73
       Text            =   "Text1"
-      Top             =   1845
+      Top             =   2160
       Width           =   660
    End
    Begin VB.TextBox Text2 
@@ -1940,17 +2035,17 @@ Begin VB.Form frmVtasHcoFactTra
       Left            =   5145
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   74
+      TabIndex        =   72
       Text            =   "Text2"
-      Top             =   1845
+      Top             =   2160
       Width           =   3525
    End
    Begin VB.Frame Frame2 
       Height          =   1110
       Index           =   0
       Left            =   45
-      TabIndex        =   65
-      Top             =   540
+      TabIndex        =   63
+      Top             =   945
       Width           =   13890
       Begin VB.ComboBox Combo1 
          BeginProperty Font 
@@ -2107,7 +2202,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   18
          Left            =   180
-         TabIndex        =   117
+         TabIndex        =   115
          Top             =   180
          Width           =   1305
       End
@@ -2125,7 +2220,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   2
          Left            =   4815
-         TabIndex        =   69
+         TabIndex        =   67
          Top             =   180
          Width           =   1335
       End
@@ -2143,7 +2238,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   0
          Left            =   6300
-         TabIndex        =   68
+         TabIndex        =   66
          Top             =   180
          Width           =   780
       End
@@ -2169,7 +2264,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   29
          Left            =   3375
-         TabIndex        =   67
+         TabIndex        =   65
          Top             =   180
          Width           =   1050
       End
@@ -2187,7 +2282,7 @@ Begin VB.Form frmVtasHcoFactTra
          Height          =   255
          Index           =   28
          Left            =   2205
-         TabIndex        =   66
+         TabIndex        =   64
          Top             =   180
          Width           =   1170
       End
@@ -2198,9 +2293,9 @@ Begin VB.Form frmVtasHcoFactTra
       Index           =   13
       Left            =   3555
       MaxLength       =   4
-      TabIndex        =   72
+      TabIndex        =   70
       Text            =   "Text1"
-      Top             =   720
+      Top             =   1125
       Width           =   540
    End
    Begin VB.TextBox Text2 
@@ -2210,9 +2305,9 @@ Begin VB.Form frmVtasHcoFactTra
       Left            =   4140
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   71
+      TabIndex        =   69
       Text            =   "Text2"
-      Top             =   720
+      Top             =   1125
       Width           =   3285
    End
    Begin VB.TextBox Text2 
@@ -2222,7 +2317,7 @@ Begin VB.Form frmVtasHcoFactTra
       Left            =   7500
       Locked          =   -1  'True
       MaxLength       =   15
-      TabIndex        =   61
+      TabIndex        =   59
       Text            =   "ABCDKFJADKSFJAK"
       Top             =   5430
       Visible         =   0   'False
@@ -2338,9 +2433,9 @@ Begin VB.Form frmVtasHcoFactTra
       Left            =   2355
       Locked          =   -1  'True
       MaxLength       =   60
-      TabIndex        =   60
+      TabIndex        =   58
       Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-      Top             =   9300
+      Top             =   9525
       Visible         =   0   'False
       Width           =   8460
    End
@@ -2349,7 +2444,7 @@ Begin VB.Form frmVtasHcoFactTra
       Index           =   0
       Left            =   75
       TabIndex        =   38
-      Top             =   9135
+      Top             =   9360
       Width           =   2175
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -2385,7 +2480,7 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   375
       Left            =   12870
       TabIndex        =   35
-      Top             =   9270
+      Top             =   9495
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -2402,101 +2497,8 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   375
       Left            =   11700
       TabIndex        =   34
-      Top             =   9270
+      Top             =   9495
       Width           =   1065
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   420
-      Left            =   0
-      TabIndex        =   40
-      Top             =   0
-      Width           =   14190
-      _ExtentX        =   25030
-      _ExtentY        =   741
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   18
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-            Object.Width           =   1e-4
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Lineas Factura"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Imprimir Factura"
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
-         EndProperty
-      EndProperty
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   41
-         Top             =   120
-         Width           =   1215
-      End
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -2512,7 +2514,7 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   375
       Left            =   12870
       TabIndex        =   37
-      Top             =   9270
+      Top             =   9495
       Visible         =   0   'False
       Width           =   1065
    End
@@ -2566,7 +2568,7 @@ Begin VB.Form frmVtasHcoFactTra
    Begin MSAdodcLib.Adodc Data4 
       Height          =   465
       Left            =   6840
-      Top             =   765
+      Top             =   1170
       Visible         =   0   'False
       Width           =   1335
       _ExtentX        =   2355
@@ -2610,21 +2612,40 @@ Begin VB.Form frmVtasHcoFactTra
       EndProperty
       _Version        =   393216
    End
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
+      Height          =   330
+      Left            =   13560
+      TabIndex        =   121
+      Top             =   225
+      Width           =   405
+      _ExtentX        =   714
+      _ExtentY        =   582
+      ButtonWidth     =   609
+      ButtonHeight    =   582
+      Style           =   1
+      _Version        =   393216
+      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+         NumButtons      =   1
+         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+            Object.ToolTipText     =   "Ayuda"
+         EndProperty
+      EndProperty
+   End
    Begin VB.Image imgBuscar 
       Enabled         =   0   'False
       Height          =   240
       Index           =   2
       Left            =   4455
-      Picture         =   "frmVtasHcoFactTra.frx":0AA1
+      Picture         =   "frmVtasHcoFactTra.frx":009F
       ToolTipText     =   "Buscar población"
-      Top             =   900
+      Top             =   1035
       Width           =   240
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   6
       Left            =   4125
-      Picture         =   "frmVtasHcoFactTra.frx":0BA3
+      Picture         =   "frmVtasHcoFactTra.frx":01A1
       ToolTipText     =   "Buscar trabajador"
       Top             =   2220
       Width           =   240
@@ -2634,7 +2655,7 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   255
       Index           =   9
       Left            =   2565
-      TabIndex        =   79
+      TabIndex        =   77
       Top             =   2220
       Width           =   1425
    End
@@ -2642,9 +2663,9 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   240
       Index           =   5
       Left            =   4140
-      Picture         =   "frmVtasHcoFactTra.frx":0CA5
+      Picture         =   "frmVtasHcoFactTra.frx":02A3
       ToolTipText     =   "Buscar trabajador"
-      Top             =   1845
+      Top             =   2160
       Width           =   240
    End
    Begin VB.Label Label1 
@@ -2652,8 +2673,8 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   255
       Index           =   21
       Left            =   2565
-      TabIndex        =   78
-      Top             =   1890
+      TabIndex        =   76
+      Top             =   2205
       Width           =   1455
    End
    Begin VB.Label Label1 
@@ -2661,17 +2682,17 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   255
       Index           =   1
       Left            =   2340
-      TabIndex        =   73
-      Top             =   720
+      TabIndex        =   71
+      Top             =   1125
       Width           =   855
    End
    Begin VB.Image imgBuscar 
       Height          =   240
       Index           =   4
       Left            =   3270
-      Picture         =   "frmVtasHcoFactTra.frx":0DA7
+      Picture         =   "frmVtasHcoFactTra.frx":03A5
       ToolTipText     =   "Buscar trabajador"
-      Top             =   750
+      Top             =   1155
       Width           =   240
    End
    Begin VB.Label Label1 
@@ -2679,7 +2700,7 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   255
       Index           =   3
       Left            =   7500
-      TabIndex        =   70
+      TabIndex        =   68
       Top             =   5250
       Visible         =   0   'False
       Width           =   615
@@ -2698,13 +2719,15 @@ Begin VB.Form frmVtasHcoFactTra
       Height          =   255
       Index           =   35
       Left            =   2355
-      TabIndex        =   43
-      Top             =   9030
+      TabIndex        =   41
+      Top             =   9255
       Visible         =   0   'False
       Width           =   1335
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -2954,7 +2977,7 @@ Dim anc As Single
         'poner los txtaux para buscar por lineas de albaran
         anc = DataGrid2.Top
         If DataGrid2.Row < 0 Then
-            anc = anc + 440
+            anc = anc + 460       '440
         Else
             anc = anc + DataGrid2.RowTop(DataGrid2.Row) + 20
         End If
@@ -3002,7 +3025,7 @@ Private Sub Desplazamiento(Index As Integer)
 'Botones de Desplazamiento de la Toolbar
 'Para desplazarse por los registros de control Data
     If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -3352,31 +3375,62 @@ Dim i As Integer
     Me.Icon = frmPpal.Icon
 
     ' ICONITOS DE LA BARRA
-    btnPrimero = 15
+'    btnPrimero = 15
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 1   'Botón Buscar
+'        .Buttons(2).Image = 2   'Botón Todos
+'        .Buttons(5).Image = 4   'Modificar
+'        .Buttons(6).Image = 5   'Borrar
+'        .Buttons(9).Image = 15 'Mto Lineas Ofertas
+'        .Buttons(10).Image = 10 'Imprimir
+'        .Buttons(12).Image = 11  'Salir
+'        .Buttons(btnPrimero).Image = 6  'Primero
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
+'        .Buttons(btnPrimero + 3).Image = 9 'Último
+'    End With
+    
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 1   'Botón Buscar
-        .Buttons(2).Image = 2   'Botón Todos
-        .Buttons(5).Image = 4   'Modificar
-        .Buttons(6).Image = 5   'Borrar
-        .Buttons(9).Image = 15 'Mto Lineas Ofertas
-        .Buttons(10).Image = 10 'Imprimir
-        .Buttons(12).Image = 11  'Salir
-        .Buttons(btnPrimero).Image = 6  'Primero
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-        .Buttons(btnPrimero + 3).Image = 9 'Último
+        'l'1 i el 2 son separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
+        'el 5 i el 6 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
+    
+    ' desplazamiento
+    With Me.ToolbarDes
+        .HotImageList = frmPpal.imgListComun_OM
+        .DisabledImageList = frmPpal.imgListComun_BN
+        .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 6
+        .Buttons(2).Image = 7
+        .Buttons(3).Image = 8
+        .Buttons(4).Image = 9
+    End With
+    
+'    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+    
     Me.SSTab1.Tab = 0
       
     'cargar IMAGES de busqueda
     For i = 0 To Me.imgBuscar.Count - 1
         Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     Next i
-      
-      
       
     LimpiarCampos   'Limpia los campos TextBox
      
@@ -3992,7 +4046,8 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
           
         
     'Bloquea los campos Text1 sino estamos modificando/Insertando Datos
@@ -4079,13 +4134,16 @@ EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
 
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
 'para los campos que permitan introducir criterios más largos del tamaño del campo
     PonerLongCamposGnral Me, Modo, 1
 End Sub
-
 
 Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
@@ -4172,23 +4230,23 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 1  'Buscar
+        Case 5  'Buscar
             mnBuscar_Click
-        Case 2  'Todos
+        Case 6  'Todos
             BotonVerTodos
 
-        Case 5  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 6  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 9  'Lineas
-            mnLineas_Click
-        Case 10 'Imprimir Albaran
-            mnImprimir_Click
-        Case 12    'Salir
-            mnSalir_Click
-        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
-            Desplazamiento (Button.Index - btnPrimero)
+'        Case 3  'Lineas
+'            mnLineas_Click
+'        Case 8 'Imprimir Albaran
+'            mnImprimir_Click
+'        Case 12    'Salir
+'            mnSalir_Click
+'        Case btnPrimero To btnPrimero + 3 'Flechas Desplazamiento
+'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -4389,6 +4447,10 @@ ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
+
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
     ConseguirFoco txtAux(Index), Modo
@@ -4685,27 +4747,24 @@ Private Sub PonerModoOpcionesMenu(Modo As Byte)
 Dim b As Boolean
 
         b = ((Modo = 2) Or (Modo = 5 And ModificaLineas = 0)) And Check1(0).Value = 0
+        
+        'Insertar
+        Toolbar1.Buttons(1).Enabled = False
+        Toolbar1.Buttons(1).visible = False
+        
         'Modificar
-        Toolbar1.Buttons(5).Enabled = b
+        Toolbar1.Buttons(2).Enabled = b
         Me.mnModificar.Enabled = b
         'eliminar
-        Toolbar1.Buttons(6).Enabled = b
+        Toolbar1.Buttons(3).Enabled = b
         Me.mnEliminar.Enabled = b
             
-'        b = (Modo = 2)
-'        'Mantenimiento lineas
-'        Toolbar1.Buttons(9).Enabled = b
-'        Me.mnLineas.Enabled = b
-        'Imprimir
-'        Toolbar1.Buttons(10).Enabled = b
-'        Me.mnImprimir.Enabled = b
-        
         b = (Modo >= 3) Or Modo = 1
         'Buscar
-        Toolbar1.Buttons(1).Enabled = Not b
+        Toolbar1.Buttons(5).Enabled = Not b
         Me.mnBuscar.Enabled = Not b
         'Ver Todos
-        Toolbar1.Buttons(2).Enabled = Not b
+        Toolbar1.Buttons(6).Enabled = Not b
         Me.mnVerTodos.Enabled = Not b
 End Sub
 

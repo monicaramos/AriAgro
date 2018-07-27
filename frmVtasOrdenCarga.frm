@@ -3,16 +3,16 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasOrdenCarga 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   10500
+   ClientHeight    =   11940
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   11190
+   ClientWidth     =   12615
    Icon            =   "frmVtasOrdenCarga.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   10500
-   ScaleWidth      =   11190
+   ScaleHeight     =   11940
+   ScaleWidth      =   12615
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin MSComDlg.CommonDialog cd1 
@@ -23,19 +23,28 @@ Begin VB.Form frmVtasOrdenCarga
       _Version        =   393216
    End
    Begin VB.Frame FrameCobros 
-      Height          =   10485
+      Height          =   11970
       Left            =   0
       TabIndex        =   34
       Top             =   -60
-      Width           =   11085
+      Width           =   12525
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   19
          Left            =   2145
          MaxLength       =   100
          TabIndex        =   27
-         Top             =   8550
-         Width           =   6150
+         Top             =   9720
+         Width           =   7365
       End
       Begin VB.Frame Frame4 
          Caption         =   "FACTURACION DEL TRANSPORTE A : "
@@ -48,46 +57,46 @@ Begin VB.Form frmVtasOrdenCarga
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   1515
+         Height          =   1740
          Left            =   420
          TabIndex        =   57
-         Top             =   8850
-         Width           =   8175
+         Top             =   10065
+         Width           =   9300
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            Height          =   360
             Index           =   30
             Left            =   120
             MaxLength       =   100
             TabIndex        =   31
-            Top             =   1110
-            Width           =   7770
+            Top             =   1290
+            Width           =   8985
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            Height          =   360
             Index           =   29
             Left            =   120
             MaxLength       =   100
             TabIndex        =   30
-            Top             =   840
-            Width           =   7770
+            Top             =   930
+            Width           =   8985
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            Height          =   360
             Index           =   28
             Left            =   120
             MaxLength       =   100
             TabIndex        =   29
             Top             =   570
-            Width           =   7770
+            Width           =   8985
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            Height          =   360
             Index           =   18
             Left            =   120
             MaxLength       =   100
             TabIndex        =   28
-            Top             =   300
-            Width           =   7770
+            Top             =   210
+            Width           =   8985
          End
       End
       Begin VB.Frame Frame3 
@@ -101,99 +110,180 @@ Begin VB.Form frmVtasOrdenCarga
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2685
+         Height          =   3090
          Left            =   390
          TabIndex        =   50
-         Top             =   5850
-         Width           =   8205
+         Top             =   6615
+         Width           =   9285
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   33
             Left            =   1755
             MaxLength       =   250
             TabIndex        =   24
-            Top             =   1740
-            Width           =   6180
+            Top             =   1965
+            Width           =   7440
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   27
             Left            =   1755
             MaxLength       =   250
             TabIndex        =   23
-            Top             =   1470
-            Width           =   6180
+            Top             =   1605
+            Width           =   7440
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   26
             Left            =   1755
             MaxLength       =   250
             TabIndex        =   21
-            Top             =   840
-            Width           =   6210
+            Top             =   885
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   17
             Left            =   1755
             MaxLength       =   250
             MultiLine       =   -1  'True
             TabIndex        =   26
-            Top             =   2340
-            Width           =   6180
+            Top             =   2700
+            Width           =   7395
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   16
             Left            =   1755
             MaxLength       =   20
             TabIndex        =   25
-            Top             =   2025
-            Width           =   1710
+            Top             =   2340
+            Width           =   2790
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   15
             Left            =   1755
             MaxLength       =   250
             TabIndex        =   22
-            Top             =   1170
-            Width           =   6180
+            Top             =   1260
+            Width           =   7440
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   14
             Left            =   1755
             MaxLength       =   250
             ScrollBars      =   2  'Vertical
             TabIndex        =   20
             Top             =   540
-            Width           =   6210
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   13
             Left            =   1755
             MaxLength       =   20
             TabIndex        =   18
-            Top             =   210
-            Width           =   1770
+            Top             =   165
+            Width           =   2850
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   12
-            Left            =   4725
+            Left            =   5940
             MaxLength       =   30
             TabIndex        =   19
-            Top             =   210
+            Top             =   165
             Width           =   3240
          End
          Begin VB.Label Label4 
             Caption         =   "Observaciones"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -205,14 +295,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   17
             Left            =   150
             TabIndex        =   56
-            Top             =   2340
+            Top             =   2700
             Width           =   2355
          End
          Begin VB.Label Label4 
             Caption         =   "Teléfono"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -224,14 +314,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   15
             Left            =   150
             TabIndex        =   55
-            Top             =   2040
+            Top             =   2355
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Lugar"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -243,14 +333,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   14
             Left            =   180
             TabIndex        =   54
-            Top             =   1170
+            Top             =   1260
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Mercancia"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -268,8 +358,8 @@ Begin VB.Form frmVtasOrdenCarga
          Begin VB.Label Label4 
             Caption         =   "Fecha Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -281,14 +371,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   12
             Left            =   180
             TabIndex        =   52
-            Top             =   240
+            Top             =   195
             Width           =   960
          End
          Begin VB.Label Label4 
             Caption         =   "Hora Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -298,9 +388,9 @@ Begin VB.Form frmVtasOrdenCarga
             ForeColor       =   &H00972E0B&
             Height          =   255
             Index           =   11
-            Left            =   3735
+            Left            =   4995
             TabIndex        =   51
-            Top             =   240
+            Top             =   195
             Width           =   960
          End
       End
@@ -315,103 +405,184 @@ Begin VB.Form frmVtasOrdenCarga
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2685
+         Height          =   3090
          Left            =   390
          TabIndex        =   43
-         Top             =   3180
-         Width           =   8205
+         Top             =   3540
+         Width           =   9285
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   25
             Left            =   1725
             MaxLength       =   100
             ScrollBars      =   2  'Vertical
             TabIndex        =   15
-            Top             =   1710
-            Width           =   6210
+            Top             =   1890
+            Width           =   7470
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   24
             Left            =   1725
             MaxLength       =   100
             ScrollBars      =   2  'Vertical
             TabIndex        =   14
-            Top             =   1410
-            Width           =   6210
+            Top             =   1545
+            Width           =   7470
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   23
             Left            =   1725
             MaxLength       =   100
             MultiLine       =   -1  'True
             TabIndex        =   12
-            Top             =   810
-            Width           =   6210
+            Top             =   855
+            Width           =   7470
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   11
-            Left            =   4725
+            Left            =   5895
             MaxLength       =   30
             TabIndex        =   10
-            Top             =   210
-            Width           =   3240
+            Top             =   165
+            Width           =   3285
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   10
             Left            =   1725
             MaxLength       =   20
             TabIndex        =   9
-            Top             =   210
-            Width           =   1770
+            Top             =   165
+            Width           =   2940
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   9
             Left            =   1725
             MaxLength       =   100
             MultiLine       =   -1  'True
             TabIndex        =   11
             Top             =   510
-            Width           =   6210
+            Width           =   7470
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   6
             Left            =   1725
             MaxLength       =   100
             ScrollBars      =   2  'Vertical
             TabIndex        =   13
-            Top             =   1110
-            Width           =   6210
+            Top             =   1200
+            Width           =   7470
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   5
             Left            =   1725
             MaxLength       =   20
             TabIndex        =   16
-            Top             =   2025
-            Width           =   1710
+            Top             =   2250
+            Width           =   2970
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   1
             Left            =   1725
             MaxLength       =   100
             MultiLine       =   -1  'True
             TabIndex        =   17
-            Top             =   2310
-            Width           =   6180
+            Top             =   2625
+            Width           =   7440
          End
          Begin VB.Label Label4 
             Caption         =   "Hora Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -421,16 +592,16 @@ Begin VB.Form frmVtasOrdenCarga
             ForeColor       =   &H00972E0B&
             Height          =   255
             Index           =   10
-            Left            =   3735
+            Left            =   4995
             TabIndex        =   49
-            Top             =   210
+            Top             =   165
             Width           =   960
          End
          Begin VB.Label Label4 
             Caption         =   "Fecha Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -442,14 +613,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   9
             Left            =   180
             TabIndex        =   48
-            Top             =   240
+            Top             =   195
             Width           =   960
          End
          Begin VB.Label Label4 
             Caption         =   "Mercancia"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -467,8 +638,8 @@ Begin VB.Form frmVtasOrdenCarga
          Begin VB.Label Label4 
             Caption         =   "Lugar"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -480,14 +651,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   7
             Left            =   180
             TabIndex        =   46
-            Top             =   1080
+            Top             =   1170
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Teléfono"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -499,14 +670,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   4
             Left            =   150
             TabIndex        =   45
-            Top             =   2040
+            Top             =   2265
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Observaciones"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -518,7 +689,7 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   1
             Left            =   150
             TabIndex        =   44
-            Top             =   2340
+            Top             =   2655
             Width           =   2355
          End
       End
@@ -533,97 +704,178 @@ Begin VB.Form frmVtasOrdenCarga
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   2715
+         Height          =   3075
          Left            =   390
          TabIndex        =   36
          Top             =   450
-         Width           =   8205
+         Width           =   9285
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   22
             Left            =   1725
             MaxLength       =   250
             TabIndex        =   6
-            Top             =   1740
-            Width           =   6210
+            Top             =   1920
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   21
             Left            =   1725
             MaxLength       =   250
             TabIndex        =   5
-            Top             =   1440
-            Width           =   6210
+            Top             =   1575
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   20
             Left            =   1725
             MaxLength       =   250
             TabIndex        =   3
-            Top             =   840
-            Width           =   6210
+            Top             =   885
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   4
             Left            =   1725
             MaxLength       =   100
             TabIndex        =   8
-            Top             =   2340
-            Width           =   6210
+            Top             =   2655
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   0
             Left            =   1725
             MaxLength       =   20
             TabIndex        =   7
-            Top             =   2055
-            Width           =   1710
+            Top             =   2280
+            Width           =   2925
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   7
             Left            =   1725
             MaxLength       =   250
             TabIndex        =   4
-            Top             =   1140
-            Width           =   6210
+            Top             =   1230
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   3
             Left            =   1725
             MaxLength       =   250
             TabIndex        =   2
             Top             =   540
-            Width           =   6210
+            Width           =   7425
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   2
             Left            =   1725
             MaxLength       =   20
             TabIndex        =   0
-            Top             =   240
-            Width           =   1770
+            Top             =   195
+            Width           =   2940
          End
          Begin VB.TextBox txtCodigo 
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   8
-            Left            =   4725
+            Left            =   5985
             MaxLength       =   30
             TabIndex        =   1
-            Top             =   240
+            Top             =   195
             Width           =   3240
          End
          Begin VB.Label Label4 
             Caption         =   "Observaciones"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -635,14 +887,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   2
             Left            =   150
             TabIndex        =   42
-            Top             =   2340
+            Top             =   2655
             Width           =   2355
          End
          Begin VB.Label Label4 
             Caption         =   "Teléfono"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -654,14 +906,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   6
             Left            =   150
             TabIndex        =   41
-            Top             =   2070
+            Top             =   2295
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Lugar"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -673,14 +925,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   0
             Left            =   180
             TabIndex        =   40
-            Top             =   1140
+            Top             =   1230
             Width           =   1860
          End
          Begin VB.Label Label4 
             Caption         =   "Mercancia"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -698,8 +950,8 @@ Begin VB.Form frmVtasOrdenCarga
          Begin VB.Label Label4 
             Caption         =   "Fecha Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -711,14 +963,14 @@ Begin VB.Form frmVtasOrdenCarga
             Index           =   16
             Left            =   180
             TabIndex        =   38
-            Top             =   270
+            Top             =   225
             Width           =   960
          End
          Begin VB.Label Label4 
             Caption         =   "Hora Carga"
             BeginProperty Font 
-               Name            =   "Tahoma"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -728,27 +980,45 @@ Begin VB.Form frmVtasOrdenCarga
             ForeColor       =   &H00972E0B&
             Height          =   255
             Index           =   5
-            Left            =   3735
+            Left            =   4995
             TabIndex        =   37
-            Top             =   270
+            Top             =   225
             Width           =   960
          End
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   9990
+         Left            =   11205
          TabIndex        =   33
-         Top             =   9960
-         Width           =   975
+         Top             =   11400
+         Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
-         Left            =   8940
+         Left            =   10020
          TabIndex        =   32
-         Top             =   9960
-         Width           =   975
+         Top             =   11400
+         Width           =   1065
       End
       Begin VB.Image imgAyuda 
          Height          =   240
@@ -757,14 +1027,14 @@ Begin VB.Form frmVtasOrdenCarga
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
-         Top             =   8910
+         Top             =   10125
          Width           =   240
       End
       Begin VB.Label Label4 
          Caption         =   "Precio"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -776,7 +1046,7 @@ Begin VB.Form frmVtasOrdenCarga
          Index           =   18
          Left            =   540
          TabIndex        =   58
-         Top             =   8565
+         Top             =   9735
          Width           =   1860
       End
       Begin VB.Label Label1 
@@ -830,7 +1100,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -838,7 +1108,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -861,7 +1131,7 @@ Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
 Dim cadTABLA As String, cOrden As String
-Dim I As Byte
+Dim i As Byte
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
@@ -876,7 +1146,7 @@ Dim Sql As String
     
     '========= PARAMETROS  =============================
     'Añadir el parametro de Empresa
-    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+    cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
     numParam = numParam + 1
     
     '========= PARAMETROS  =============================
@@ -991,7 +1261,7 @@ Dim Sql As String
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "pedidos"
+    tabla = "pedidos"
     
     imgAyuda(0).Picture = frmPpal.ImageListB.ListImages(10).Picture
 
@@ -1039,7 +1309,7 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
 End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
     txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
@@ -1055,8 +1325,8 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 10485
-        Me.FrameCobros.Width = 11085
+        Me.FrameCobros.Height = 11970 '10485
+        Me.FrameCobros.Width = 12525 '11085
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
     End If
@@ -1064,7 +1334,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -1084,11 +1354,11 @@ Dim devuelve2 As String
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
     If TipCod <> "F" Then 'Fecha
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     Else
         devuelve2 = CadenaDesdeHastaBD(codD, codH, Codigo, TipCod)
         If devuelve2 = "Error" Then Exit Function
-        If Not AnyadirAFormula(cadSelect, devuelve2) Then Exit Function
+        If Not AnyadirAFormula(cadselect, devuelve2) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -1157,7 +1427,7 @@ End Sub
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 
     Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
@@ -1169,10 +1439,10 @@ Dim RS As ADODB.Recordset
     Sql = Sql & " group by 1 "
     Sql = Sql & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If RS.EOF Then
+    If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
         HayRegistros = False
     Else
@@ -1184,7 +1454,7 @@ End Function
 
 Private Function CargarVariedades(Mens As String) As Boolean
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim b As Boolean
 
     Sql = "delete from tmpinformes where codusu =" & vUsu.Codigo
@@ -1192,19 +1462,19 @@ Dim b As Boolean
     
     Sql = "select sum(pesobrut) from albaran_variedad where numalbar = " & NumCod
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
-    If Not RS.EOF Then
-        If DBLet(RS.Fields(0).Value, "N") > vParamAplic.LimPesoCMR Then
+    If Not Rs.EOF Then
+        If DBLet(Rs.Fields(0).Value, "N") > vParamAplic.LimPesoCMR Then
             Mens = "Repartir Pesos Brutos"
-            b = RepartirBrutos(Mens, DBLet(RS.Fields(0).Value, "N"))
+            b = RepartirBrutos(Mens, DBLet(Rs.Fields(0).Value, "N"))
         Else
             Mens = "Cargar Pesos Brutos"
             b = CargarBrutos(Mens)
         End If
     End If
-    Set RS = Nothing
+    Set Rs = Nothing
     
     CargarVariedades = b
     
@@ -1213,7 +1483,7 @@ End Function
 Private Function RepartirBrutos(Mens As String, SumaBrutos As Currency) As Boolean
 Dim Sql As String
 Dim Sql2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Importe As Currency
 Dim CarImporte As String
 Dim CadValues As String
@@ -1225,25 +1495,25 @@ Dim CadValues As String
 
     Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Sql2 = "insert into tmpinformes (codusu, campo1, importe1) values "
     
-    While Not RS.EOF
-        Importe = Round2(vParamAplic.LimPesoCMR * DBLet(RS.Fields(1).Value, "N") / (SumaBrutos * 10), 0)
+    While Not Rs.EOF
+        Importe = Round2(vParamAplic.LimPesoCMR * DBLet(Rs.Fields(1).Value, "N") / (SumaBrutos * 10), 0)
         CarImporte = CStr(Importe) & "0"
         
-        CadValues = "(" & vUsu.Codigo & "," & DBSet(RS.Fields(0).Value, "N") & "," & DBSet(CarImporte, "N") & ")"
+        CadValues = "(" & vUsu.Codigo & "," & DBSet(Rs.Fields(0).Value, "N") & "," & DBSet(CarImporte, "N") & ")"
         
         conn.Execute Sql2 & CadValues
     
-        RS.MoveNext
+        Rs.MoveNext
     Wend
     
-    RS.Close
+    Rs.Close
     
-    Set RS = Nothing
+    Set Rs = Nothing
 
 eRepartirBrutos:
     If Err.Number = 0 Then
@@ -1254,7 +1524,7 @@ End Function
 Private Function CargarBrutos(Mens As String) As Boolean
 Dim Sql As String
 Dim Sql2 As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim Importe As Currency
 Dim CarImporte As String
 Dim CadValues As String
@@ -1263,20 +1533,20 @@ Dim CadValues As String
     
     Sql = "select numlinea, pesobrut from albaran_variedad where numalbar = " & NumCod
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     Sql2 = "insert into tmpinformes (codusu, campo1, importe1) values "
     
-    While Not RS.EOF
-        Importe = Round2(DBLet(RS.Fields(1).Value, "N") / 10, 0)
+    While Not Rs.EOF
+        Importe = Round2(DBLet(Rs.Fields(1).Value, "N") / 10, 0)
         CarImporte = CStr(Importe) & "0"
         
-        CadValues = "(" & vUsu.Codigo & "," & DBSet(RS.Fields(0).Value, "N") & "," & DBSet(CarImporte, "N") & ")"
+        CadValues = "(" & vUsu.Codigo & "," & DBSet(Rs.Fields(0).Value, "N") & "," & DBSet(CarImporte, "N") & ")"
         
         conn.Execute Sql2 & CadValues
         
-        RS.MoveNext
+        Rs.MoveNext
     Wend
 
 eCargarBrutos:
@@ -1307,17 +1577,17 @@ End Function
 
 Private Function ProvAgenciaTransporte() As String
 Dim Sql As String
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
     
     ProvAgenciaTransporte = ""
     
     Sql = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(NumCod, "N")
     Sql = Sql & " and albaran.codtrans = agencias.codtrans"
     
-    Set RS = New ADODB.Recordset
-    RS.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    If Not RS.EOF Then
-        ProvAgenciaTransporte = UCase(DBLet(RS.Fields(0).Value, "T"))
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    If Not Rs.EOF Then
+        ProvAgenciaTransporte = UCase(DBLet(Rs.Fields(0).Value, "T"))
     End If
     
 End Function
