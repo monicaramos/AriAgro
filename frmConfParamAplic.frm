@@ -36,32 +36,26 @@ Begin VB.Form frmConfParamAplic
       _ExtentY        =   10028
       _Version        =   393216
       Tabs            =   6
+      Tab             =   5
       TabsPerRow      =   6
       TabHeight       =   520
       ForeColor       =   8388608
       TabCaption(0)   =   "Contabilidad"
       TabPicture(0)   =   "frmConfParamAplic.frx":000C
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "imgBuscar(2)"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(2)"
-      Tab(0).Control(1).Enabled=   0   'False
       Tab(0).Control(2)=   "Frame2"
-      Tab(0).Control(2).Enabled=   0   'False
       Tab(0).Control(3)=   "Frame6"
-      Tab(0).Control(3).Enabled=   0   'False
       Tab(0).Control(4)=   "Text1(17)"
-      Tab(0).Control(4).Enabled=   0   'False
       Tab(0).Control(5)=   "Text2(17)"
-      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).Control(6)=   "Frame3"
-      Tab(0).Control(6).Enabled=   0   'False
       Tab(0).ControlCount=   7
       TabCaption(1)   =   "Internet"
       TabPicture(1)   =   "frmConfParamAplic.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame4"
-      Tab(1).Control(1)=   "Frame7"
+      Tab(1).Control(0)=   "Frame7"
+      Tab(1).Control(1)=   "Frame4"
       Tab(1).ControlCount=   2
       TabCaption(2)   =   "Varios"
       TabPicture(2)   =   "frmConfParamAplic.frx":0044
@@ -103,65 +97,75 @@ Begin VB.Form frmConfParamAplic
       TabCaption(3)   =   "Aridoc"
       TabPicture(3)   =   "frmConfParamAplic.frx":0060
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "Text2(23)"
-      Tab(3).Control(0).Enabled=   0   'False
-      Tab(3).Control(1)=   "Text1(23)"
-      Tab(3).Control(1).Enabled=   0   'False
-      Tab(3).Control(2)=   "Frame9"
-      Tab(3).Control(2).Enabled=   0   'False
-      Tab(3).Control(3)=   "Frame8"
-      Tab(3).Control(3).Enabled=   0   'False
-      Tab(3).Control(4)=   "Text1(22)"
-      Tab(3).Control(4).Enabled=   0   'False
-      Tab(3).Control(5)=   "Text2(22)"
-      Tab(3).Control(5).Enabled=   0   'False
-      Tab(3).Control(6)=   "Text1(21)"
-      Tab(3).Control(6).Enabled=   0   'False
-      Tab(3).Control(7)=   "Text2(21)"
-      Tab(3).Control(7).Enabled=   0   'False
-      Tab(3).Control(8)=   "imgBuscar(8)"
-      Tab(3).Control(8).Enabled=   0   'False
-      Tab(3).Control(9)=   "Label1(28)"
-      Tab(3).Control(9).Enabled=   0   'False
-      Tab(3).Control(10)=   "imgBuscar(7)"
-      Tab(3).Control(10).Enabled=   0   'False
-      Tab(3).Control(11)=   "Label1(7)"
-      Tab(3).Control(11).Enabled=   0   'False
-      Tab(3).Control(12)=   "imgBuscar(6)"
-      Tab(3).Control(12).Enabled=   0   'False
-      Tab(3).Control(13)=   "Label1(6)"
-      Tab(3).Control(13).Enabled=   0   'False
+      Tab(3).Control(0)=   "Label1(6)"
+      Tab(3).Control(1)=   "imgBuscar(6)"
+      Tab(3).Control(2)=   "Label1(7)"
+      Tab(3).Control(3)=   "imgBuscar(7)"
+      Tab(3).Control(4)=   "Label1(28)"
+      Tab(3).Control(5)=   "imgBuscar(8)"
+      Tab(3).Control(6)=   "Text2(21)"
+      Tab(3).Control(7)=   "Text1(21)"
+      Tab(3).Control(8)=   "Text2(22)"
+      Tab(3).Control(9)=   "Text1(22)"
+      Tab(3).Control(10)=   "Frame8"
+      Tab(3).Control(11)=   "Frame9"
+      Tab(3).Control(12)=   "Text1(23)"
+      Tab(3).Control(13)=   "Text2(23)"
       Tab(3).ControlCount=   14
       TabCaption(4)   =   "Edicom"
       TabPicture(4)   =   "frmConfParamAplic.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Label1(31)"
-      Tab(4).Control(1)=   "Label1(32)"
-      Tab(4).Control(2)=   "Label1(33)"
-      Tab(4).Control(3)=   "Text1(26)"
-      Tab(4).Control(4)=   "Text1(27)"
-      Tab(4).Control(5)=   "Text1(28)"
+      Tab(4).Control(0)=   "Text1(28)"
+      Tab(4).Control(1)=   "Text1(27)"
+      Tab(4).Control(2)=   "Text1(26)"
+      Tab(4).Control(3)=   "Label1(33)"
+      Tab(4).Control(4)=   "Label1(32)"
+      Tab(4).Control(5)=   "Label1(31)"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Otros"
       TabPicture(5)   =   "frmConfParamAplic.frx":0098
-      Tab(5).ControlEnabled=   0   'False
+      Tab(5).ControlEnabled=   -1  'True
       Tab(5).Control(0)=   "imgAyuda(1)"
       Tab(5).Control(0).Enabled=   0   'False
       Tab(5).Control(1)=   "Label34"
       Tab(5).Control(1).Enabled=   0   'False
       Tab(5).Control(2)=   "Label1(52)"
       Tab(5).Control(2).Enabled=   0   'False
-      Tab(5).Control(3)=   "Frame11"
+      Tab(5).Control(3)=   "Label38"
       Tab(5).Control(3).Enabled=   0   'False
-      Tab(5).Control(4)=   "Frame12"
+      Tab(5).Control(4)=   "Frame11"
       Tab(5).Control(4).Enabled=   0   'False
-      Tab(5).Control(5)=   "Text1(45)"
+      Tab(5).Control(5)=   "Frame12"
       Tab(5).Control(5).Enabled=   0   'False
-      Tab(5).Control(6)=   "Frame13"
+      Tab(5).Control(6)=   "Text1(45)"
       Tab(5).Control(6).Enabled=   0   'False
-      Tab(5).Control(7)=   "Text1(47)"
+      Tab(5).Control(7)=   "Frame13"
       Tab(5).Control(7).Enabled=   0   'False
-      Tab(5).ControlCount=   8
+      Tab(5).Control(8)=   "Text1(47)"
+      Tab(5).Control(8).Enabled=   0   'False
+      Tab(5).Control(9)=   "Text1(48)"
+      Tab(5).Control(9).Enabled=   0   'False
+      Tab(5).ControlCount=   10
+      Begin VB.TextBox Text1 
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Index           =   48
+         Left            =   6360
+         MaxLength       =   10
+         TabIndex        =   152
+         Tag             =   "BD Destino|T|S|||sparam|bddestino|||"
+         Text            =   "m3"
+         Top             =   3735
+         Width           =   1335
+      End
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "MS Sans Serif"
@@ -174,9 +178,9 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   47
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   255
-         TabIndex        =   152
+         TabIndex        =   153
          Tag             =   "Path FacturaE|T|S|||sparam|pathfacturae|||"
          Top             =   4110
          Width           =   6120
@@ -185,8 +189,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Datos de Costes"
          ForeColor       =   &H00972E0B&
          Height          =   855
-         Left            =   -74700
-         TabIndex        =   160
+         Left            =   300
+         TabIndex        =   161
          Top             =   4500
          Width           =   8205
          Begin VB.TextBox Text1 
@@ -203,7 +207,7 @@ Begin VB.Form frmConfParamAplic
             Index           =   46
             Left            =   1320
             MaxLength       =   250
-            TabIndex        =   153
+            TabIndex        =   154
             Tag             =   "Path Fichadas|T|S|||sparam|pathfichadas|||"
             Top             =   360
             Width           =   6135
@@ -221,7 +225,7 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   255
             Left            =   240
-            TabIndex        =   161
+            TabIndex        =   162
             Top             =   390
             Width           =   1185
          End
@@ -239,7 +243,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   45
-         Left            =   -73380
+         Left            =   1620
          MaxLength       =   14
          TabIndex        =   151
          Tag             =   "Número GNN|N|S|||rparam|numeroggn|#############0||"
@@ -287,8 +291,8 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "Ventas a Socios"
          ForeColor       =   &H00972E0B&
          Height          =   705
-         Left            =   -74700
-         TabIndex        =   155
+         Left            =   300
+         TabIndex        =   156
          Top             =   2970
          Width           =   8205
          Begin VB.TextBox Text1 
@@ -327,7 +331,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   285
             Index           =   43
             Left            =   2205
-            TabIndex        =   156
+            TabIndex        =   157
             Top             =   300
             Width           =   5235
          End
@@ -345,7 +349,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   255
             Index           =   51
             Left            =   240
-            TabIndex        =   157
+            TabIndex        =   158
             Top             =   345
             Width           =   720
          End
@@ -362,7 +366,7 @@ Begin VB.Form frmConfParamAplic
          Caption         =   "CMR"
          ForeColor       =   &H00972E0B&
          Height          =   2415
-         Left            =   -74700
+         Left            =   300
          TabIndex        =   146
          Top             =   480
          Width           =   8175
@@ -421,7 +425,7 @@ Begin VB.Form frmConfParamAplic
             EndProperty
             Height          =   225
             Left            =   270
-            TabIndex        =   154
+            TabIndex        =   155
             Top             =   270
             Width           =   1845
          End
@@ -651,7 +655,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1380
-         Left            =   495
+         Left            =   -74505
          TabIndex        =   62
          Top             =   2175
          Width           =   7665
@@ -865,7 +869,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   17
-         Left            =   3885
+         Left            =   -71115
          TabIndex        =   111
          Top             =   2925
          Width           =   3570
@@ -883,7 +887,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   285
          Index           =   17
-         Left            =   2625
+         Left            =   -72375
          MaxLength       =   10
          TabIndex        =   110
          Tag             =   "Cta.Abono Transporte|T|S|||sparam|ctaabotrans|||"
@@ -944,7 +948,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1950
-         Left            =   480
+         Left            =   -74520
          TabIndex        =   80
          Top             =   3570
          Width           =   7665
@@ -2140,7 +2144,7 @@ Begin VB.Form frmConfParamAplic
             Height          =   195
             Index           =   60
             Left            =   120
-            TabIndex        =   158
+            TabIndex        =   159
             Top             =   2040
             Width           =   2040
          End
@@ -2283,7 +2287,7 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1575
-         Left            =   495
+         Left            =   -74505
          TabIndex        =   56
          Top             =   600
          Width           =   7665
@@ -2463,6 +2467,23 @@ Begin VB.Form frmConfParamAplic
             Width           =   900
          End
       End
+      Begin VB.Label Label38 
+         Caption         =   "BD Destino"
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Left            =   5310
+         TabIndex        =   164
+         Top             =   3735
+         Width           =   1005
+      End
       Begin VB.Label Label1 
          Caption         =   "Path FacturaE"
          BeginProperty Font 
@@ -2476,8 +2497,8 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   52
-         Left            =   -74460
-         TabIndex        =   162
+         Left            =   540
+         TabIndex        =   163
          Top             =   4125
          Width           =   2070
       End
@@ -2493,15 +2514,15 @@ Begin VB.Form frmConfParamAplic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   285
-         Left            =   -74460
-         TabIndex        =   159
+         Left            =   540
+         TabIndex        =   160
          Top             =   3780
          Width           =   1590
       End
       Begin VB.Image imgAyuda 
          Height          =   240
          Index           =   1
-         Left            =   -71940
+         Left            =   3060
          MousePointer    =   4  'Icon
          Tag             =   "-1"
          ToolTipText     =   "Ayuda"
@@ -2665,7 +2686,7 @@ Begin VB.Form frmConfParamAplic
          EndProperty
          Height          =   195
          Index           =   2
-         Left            =   900
+         Left            =   -74100
          TabIndex        =   112
          Top             =   2955
          Width           =   1170
@@ -2673,7 +2694,7 @@ Begin VB.Form frmConfParamAplic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   2265
+         Left            =   -72735
          ToolTipText     =   "Buscar Cta.Contable"
          Top             =   2955
          Width           =   240
@@ -3582,6 +3603,11 @@ Dim kms As Currency
                 '[Monica]25/05/2012: añadimos el path de fichadas para costes
                 vParamAplic.PathFichadas = Text1(46).Text
                 
+                '[Monica]20/08/2018: base de datos destino
+                vParamAplic.BDDestino = Text1(48).Text
+                
+                
+                
                 actualiza = vParamAplic.Modificar()
                 TerminaBloquear
     
@@ -3594,7 +3620,7 @@ Dim kms As Currency
                     End If
                     BloqueoMenusSegunContabilidad
                     PonerModo 2
-                    If vParamAplic.leer = 0 Then
+                    If vParamAplic.Leer = 0 Then
                         PonerFocoBtn Me.cmdSalir
                     End If
                 End If
@@ -3643,7 +3669,7 @@ End Sub
 
 
 Private Sub Form_Load()
-Dim I As Byte
+Dim i As Byte
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
@@ -3661,17 +3687,17 @@ Dim I As Byte
     LimpiarCampos   'Limpia los campos TextBox
    
    'cargar IMAGES de busqueda
-    For I = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
     'IMAGES para zoom
-    For I = 2 To 3
-        Me.imgZoom(I).Picture = frmPpal.imgListImages16.ListImages(5).Picture
-    Next I
+    For i = 2 To 3
+        Me.imgZoom(i).Picture = frmPpal.imgListImages16.ListImages(5).Picture
+    Next i
 
-    For I = 0 To imgAyuda.Count - 1
-        imgAyuda(I).Picture = frmPpal.ImageListB.ListImages(10).Picture
-    Next I
+    For i = 0 To imgAyuda.Count - 1
+        imgAyuda(i).Picture = frmPpal.ImageListB.ListImages(10).Picture
+    Next i
 
     SSTab1.Tab = 0
 
@@ -3778,9 +3804,9 @@ Private Sub frmIva_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmAri_DatoSeleccionado(CadenaSeleccion As String)
-Dim cad As String
-    cad = RecuperaValor(CadenaSeleccion, 1)
-    Text1(indice).Text = Mid(cad, 2, Len(cad))
+Dim Cad As String
+    Cad = RecuperaValor(CadenaSeleccion, 1)
+    Text1(indice).Text = Mid(Cad, 2, Len(Cad))
     Text1(indice).Text = Format(Text1(indice).Text, "000")
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 3)
 End Sub
@@ -4030,7 +4056,7 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 Dim cadMen As String
-Dim cad As String
+Dim Cad As String
 
     If Text1(Index).Text = "" Then Exit Sub
 
@@ -4087,8 +4113,8 @@ Dim cad As String
             If Text1(Index).Text = "" Then Exit Sub
 '            Text2(Index).Text = PonerNombreDeCod(Text1(Index), "carpetas", "nombre", "codcarpeta", "N", cAridoc)
             Text1(Index).Text = Format(Text1(Index).Text, "000")
-            cad = CargaPath(Text1(Index))
-            Text2(Index).Text = Mid(cad, 2, Len(cad))
+            Cad = CargaPath(Text1(Index))
+            Text2(Index).Text = Mid(Cad, 2, Len(Cad))
         
         Case 23
             If Text1(Index).Text = "" Then Exit Sub
@@ -4170,8 +4196,8 @@ End Sub
 
 
 Private Sub PonerCampos()
-Dim I As Byte
-Dim cad As String
+Dim i As Byte
+Dim Cad As String
 
 
 On Error GoTo EPonerCampos
@@ -4200,12 +4226,12 @@ On Error GoTo EPonerCampos
     
     If vParamAplic.HayAridoc = 1 Then
          If ComprobarCero(Text1(21).Text) <> 0 Then
-            cad = CargaPath(Text1(21))
-            Text2(21).Text = Mid(cad, 2, Len(cad))
+            Cad = CargaPath(Text1(21))
+            Text2(21).Text = Mid(Cad, 2, Len(Cad))
          End If
          If ComprobarCero(Text1(22).Text) <> 0 Then
-            cad = CargaPath(Text1(22))
-            Text2(22).Text = Mid(cad, 2, Len(cad))
+            Cad = CargaPath(Text1(22))
+            Text2(22).Text = Mid(Cad, 2, Len(Cad))
          End If
 '         cad = CargaPath(Text1(29))
 '         Text2(29).Text = Mid(cad, 2, Len(cad))
@@ -4228,14 +4254,14 @@ End Sub
 
 
 Private Sub LimpiarCampos()
-Dim I As Integer
+Dim i As Integer
 
     limpiar Me   'Metodo general: Limpia los controles TextBox
     lblIndicador.Caption = ""
     'Aqui va el especifico de cada form es
-    For I = 0 To Combo1.Count - 1
-        Combo1(I).ListIndex = -1
-    Next I
+    For i = 0 To Combo1.Count - 1
+        Combo1(i).ListIndex = -1
+    Next i
     '### a mano
 End Sub
 
@@ -4245,7 +4271,7 @@ End Sub
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     Modo = Kmodo
     PonerIndicador lblIndicador, Modo
@@ -4267,9 +4293,9 @@ Dim I As Byte
     
     
     'Bloquear imagen de Busqueda
-    For I = 0 To imgBuscar.Count - 1
-        Me.imgBuscar(I).Enabled = (Modo >= 3)
-    Next I
+    For i = 0 To imgBuscar.Count - 1
+        Me.imgBuscar(i).Enabled = (Modo >= 3)
+    Next i
     
     BloquearImgBuscar Me, Modo
     'Bloquear los checkbox
@@ -4295,13 +4321,13 @@ End Sub
 ' ********* si n'hi han combos a la capçalera ************
 Private Sub CargaCombo()
 Dim Ini As Integer
-Dim Fin As Integer
-Dim I As Integer
+Dim fin As Integer
+Dim i As Integer
 
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
-    For I = 0 To Combo1.Count - 1
-        Combo1(I).Clear
-    Next I
+    For i = 0 To Combo1.Count - 1
+        Combo1(i).Clear
+    Next i
     
     Combo1(0).AddItem "Precio Medio Ponderado"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 0
@@ -4310,40 +4336,40 @@ Dim I As Integer
     
     
     'combos de albaranes
-    For I = 1 To 4
-        Combo1(I).AddItem "Nro.Albaran"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 0
-        Combo1(I).AddItem "Cod.Cliente"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 1
-        Combo1(I).AddItem "Nom.Cliente"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 2
-        Combo1(I).AddItem "Destino"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 3
-        Combo1(I).AddItem "Procedencia"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 4
-    Next I
+    For i = 1 To 4
+        Combo1(i).AddItem "Nro.Albaran"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 0
+        Combo1(i).AddItem "Cod.Cliente"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 1
+        Combo1(i).AddItem "Nom.Cliente"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 2
+        Combo1(i).AddItem "Destino"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 3
+        Combo1(i).AddItem "Procedencia"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 4
+    Next i
     
     'combos de facturas
-    For I = 5 To 8
-        Combo1(I).AddItem "Nro.Factura"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 0
-        Combo1(I).AddItem "Cod.Cliente"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 1
-        Combo1(I).AddItem "Nom.Cliente"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 2
-        Combo1(I).AddItem "Procedencia"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 3
-    Next I
+    For i = 5 To 8
+        Combo1(i).AddItem "Nro.Factura"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 0
+        Combo1(i).AddItem "Cod.Cliente"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 1
+        Combo1(i).AddItem "Nom.Cliente"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 2
+        Combo1(i).AddItem "Procedencia"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 3
+    Next i
     
     'combos de recibos
-    For I = 9 To 12
-        Combo1(I).AddItem "Cod.Trabajador"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 0
-        Combo1(I).AddItem "Nom.Trabajador"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 1
-        Combo1(I).AddItem "Procedencia"
-        Combo1(I).ItemData(Combo1(I).NewIndex) = 2
-    Next I
+    For i = 9 To 12
+        Combo1(i).AddItem "Cod.Trabajador"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 0
+        Combo1(i).AddItem "Nom.Trabajador"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 1
+        Combo1(i).AddItem "Procedencia"
+        Combo1(i).ItemData(Combo1(i).NewIndex) = 2
+    Next i
     
     'combo de reparto de gastos portes
     Combo1(13).AddItem "Kilos"
@@ -4353,19 +4379,19 @@ Dim I As Integer
     
 End Sub
 
-Private Function CargaPath(codigo As Integer) As String
+Private Function CargaPath(Codigo As Integer) As String
 Dim Nod As Node
-Dim j As Integer
-Dim I As Integer
+Dim J As Integer
+Dim i As Integer
 Dim C As String
 Dim campo1 As String
 Dim padre As String
 Dim A As String
 
     'Primero copiamos la carpeta
-    C = "\" & DevuelveDesdeBDNew(cAridoc, "carpetas", "nombre", "codcarpeta", CInt(codigo), "N")
+    C = "\" & DevuelveDesdeBDNew(cAridoc, "carpetas", "nombre", "codcarpeta", CInt(Codigo), "N")
     campo1 = "nombre"
-    padre = DevuelveDesdeBDNew(cAridoc, "carpetas", "padre", "codcarpeta", CStr(codigo), "N", campo1)
+    padre = DevuelveDesdeBDNew(cAridoc, "carpetas", "padre", "codcarpeta", CStr(Codigo), "N", campo1)
     If CInt(ComprobarCero(padre)) > 0 Then
         C = CargaPath(CInt(padre)) & C
     End If

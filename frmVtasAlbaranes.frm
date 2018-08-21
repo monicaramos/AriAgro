@@ -30,7 +30,7 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   360
       Index           =   0
-      Left            =   9765
+      Left            =   11160
       Style           =   2  'Dropdown List
       TabIndex        =   230
       Top             =   270
@@ -103,14 +103,14 @@ Begin VB.Form frmVtasAlbaranes
       Left            =   3750
       TabIndex        =   225
       Top             =   90
-      Width           =   2280
+      Width           =   2820
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
          TabIndex        =   226
          Top             =   180
-         Width           =   1860
-         _ExtentX        =   3281
+         Width           =   2355
+         _ExtentX        =   4154
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -118,7 +118,7 @@ Begin VB.Form frmVtasAlbaranes
          Style           =   1
          _Version        =   393216
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   4
+            NumButtons      =   5
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Object.ToolTipText     =   "Packing List"
             EndProperty
@@ -131,12 +131,15 @@ Begin VB.Form frmVtasAlbaranes
             BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Object.ToolTipText     =   "Generar Factura"
             EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Traspaso Albarán"
+            EndProperty
          EndProperty
       End
    End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   6105
+      Left            =   6645
       TabIndex        =   223
       Top             =   90
       Width           =   2415
@@ -1685,13 +1688,11 @@ Begin VB.Form frmVtasAlbaranes
       TabPicture(1)   =   "frmVtasAlbaranes.frx":0176
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FrameAux0"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       TabCaption(2)   =   "Costes"
       TabPicture(2)   =   "frmVtasAlbaranes.frx":0192
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameAux1"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       TabCaption(3)   =   "Palets"
       TabPicture(3)   =   "frmVtasAlbaranes.frx":01AE
@@ -5492,7 +5493,7 @@ Begin VB.Form frmVtasAlbaranes
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   9045
+      Left            =   10440
       TabIndex        =   231
       Top             =   315
       Width           =   1035
@@ -6579,6 +6580,7 @@ Dim i As Integer
         .Buttons(2).Image = 24  'Orden de Carga
         .Buttons(3).Image = 23  'CMR
         .Buttons(4).Image = 26 'Generar Factura
+        .Buttons(5).Image = 16 'Traspaso Albaran (solo Frutas Inma)
     End With
     
     '[Monica]05/06/2018: si no se hace el packing list se rediseñan los toolbar
@@ -7173,6 +7175,16 @@ Private Sub mnModificar_Click()
 End Sub
 
 
+Private Sub mnTraspaso_Click()
+'Traspaso del albaran a la bddestino (solo Frutas Inma)
+    
+    If Data1.Recordset.EOF Then Exit Sub
+    
+    BotonTraspaso
+End Sub
+
+
+
 Private Function BloqueaAlbxFac() As Boolean
 'bloquea todos los albaranes de la factura
 Dim Sql As String
@@ -7477,11 +7489,11 @@ Dim Sql As String
                     Me.SSTab2.Tab = 1
                     PonerFoco Text1(20)
                 Else
-                    cmdAceptar.SetFocus
+                    CmdAceptar.SetFocus
                 End If
             End If
         Case 24 'ETA
-            cmdAceptar.SetFocus
+            CmdAceptar.SetFocus
     End Select
 End Sub
 
@@ -7731,7 +7743,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Byte, NumReg As Byte
+Dim i As Byte, Numreg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -7755,9 +7767,9 @@ Dim b As Boolean
     End If
         
     'Poner Flechas de desplazamiento visibles
-    NumReg = 1
+    Numreg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -7829,7 +7841,7 @@ Dim b As Boolean
     '---------------------------------------------
     b = (Modo <> 0 And Modo <> 2)
     cmdCancelar.visible = b
-    cmdAceptar.visible = b
+    CmdAceptar.visible = b
     
     BloquearImgBuscar Me, Modo, ModificaLineas
     BloquearImgFec Me, 0, Modo
@@ -7936,7 +7948,7 @@ End Function
 
 Private Sub Text2_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 16 And KeyCode = 40 Then 'campo Amliacion Linea y Flecha hacia abajo
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     Else
         KEYdown KeyCode
     End If
@@ -7944,7 +7956,7 @@ End Sub
 
 Private Sub Text2_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 16 And KeyAscii = 13 Then 'campo Amliacion Linea y ENTER
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     End If
 End Sub
 
@@ -8282,7 +8294,7 @@ Private Sub PonerBotonCabecera(b As Boolean)
 'o Pone los botones de Aceptar y cancelar en Insert,update o delete lineas
     On Error Resume Next
 
-    Me.cmdAceptar.visible = Not b
+    Me.CmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -8414,6 +8426,8 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnCMR_Click
         Case 4 ' Generar Factura
             mnGenerarFactura_Click
+        Case 5 ' traspaso de albaran (solo frutas Inma)
+            mnTraspaso_Click
     End Select
 End Sub
 
@@ -8531,7 +8545,7 @@ Dim Sql As String
         
         '[Monica]20/10/2016: fecha de factura
         Case 26 'fecha de factura
-            If PonerFormatoFecha(txtAux(26)) Then cmdAceptar.SetFocus
+            If PonerFormatoFecha(txtAux(26)) Then CmdAceptar.SetFocus
             
         Case 14 'numero de palet
             If txtAux(Index) <> "" Then
@@ -8558,7 +8572,7 @@ Dim Sql As String
                     End If
                 End If
             End If
-            cmdAceptar.SetFocus
+            CmdAceptar.SetFocus
     End Select
     
 End Sub
@@ -8860,6 +8874,9 @@ Dim i As Integer
         Toolbar5.Buttons(4).Enabled = (Modo = 2) And (NumAlbar = "")
         Me.mnCMR.Enabled = (Modo = 2) And (NumAlbar = "")
         
+        'Traspaso de Albaran a otra BD (unicamente para Frutas Inma)
+        Toolbar5.Buttons(5).Enabled = (Modo = 2) And (NumAlbar = "") And vParamAplic.BDDestino <> ""
+        
 
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
@@ -9129,6 +9146,19 @@ Dim frmCMR As frmVtasCMR
     
     Set frmCMR = Nothing
 End Sub
+
+Private Sub BotonTraspaso()
+
+    Screen.MousePointer = vbHourglass
+    frmListado.Opcionlistado = 3
+    frmListado.NumCod = Text1(0).Text ' numero de albaran
+    frmListado.Show vbModal
+    Screen.MousePointer = vbDefault
+
+End Sub
+
+
+
 
 Private Sub TxtAux3_GotFocus(Index As Integer)
     ConseguirFoco txtAux3(Index), Modo

@@ -7,15 +7,213 @@ Begin VB.Form frmListado
    ClientHeight    =   8010
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   9000
+   ClientWidth     =   8745
    Icon            =   "frmListado.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8010
-   ScaleWidth      =   9000
+   ScaleWidth      =   8745
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameTraspasoAlbaran 
+      Height          =   3465
+      Left            =   0
+      TabIndex        =   174
+      Top             =   0
+      Width           =   7380
+      Begin VB.TextBox txtNombre 
+         BackColor       =   &H80000018&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   35
+         Left            =   2670
+         Locked          =   -1  'True
+         TabIndex        =   180
+         Text            =   "Text5"
+         Top             =   1185
+         Width           =   3960
+      End
+      Begin VB.TextBox txtNombre 
+         BackColor       =   &H80000018&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   34
+         Left            =   2670
+         Locked          =   -1  'True
+         TabIndex        =   179
+         Text            =   "Text5"
+         Top             =   1680
+         Width           =   3960
+      End
+      Begin VB.TextBox txtCodigo 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   35
+         Left            =   1785
+         MaxLength       =   6
+         TabIndex        =   175
+         Top             =   1185
+         Width           =   840
+      End
+      Begin VB.TextBox txtCodigo 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   34
+         Left            =   1785
+         MaxLength       =   3
+         TabIndex        =   176
+         Top             =   1680
+         Width           =   840
+      End
+      Begin VB.CommandButton CmdAcepTraspaso 
+         Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   4335
+         TabIndex        =   177
+         Top             =   2475
+         Width           =   1065
+      End
+      Begin VB.CommandButton CmdCancel 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   8
+         Left            =   5505
+         TabIndex        =   178
+         Top             =   2475
+         Width           =   1065
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   26
+         Left            =   1485
+         MouseIcon       =   "frmListado.frx":000C
+         MousePointer    =   4  'Icon
+         ToolTipText     =   "Buscar cliente"
+         Top             =   1215
+         Width           =   240
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   25
+         Left            =   1485
+         MouseIcon       =   "frmListado.frx":015E
+         MousePointer    =   4  'Icon
+         ToolTipText     =   "Buscar destino"
+         Top             =   1710
+         Width           =   240
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Destino"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   54
+         Left            =   540
+         TabIndex        =   183
+         Top             =   1665
+         Width           =   735
+      End
+      Begin VB.Label Label11 
+         Caption         =   "Traspaso de Albarán de Venta"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   345
+         Left            =   495
+         TabIndex        =   182
+         Top             =   360
+         Width           =   6735
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Cliente"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   51
+         Left            =   540
+         TabIndex        =   181
+         Top             =   1215
+         Width           =   675
+      End
+   End
    Begin VB.Frame FrameVariedades 
       Height          =   4455
       Left            =   0
@@ -217,7 +415,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command2 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":000C
+         Picture         =   "frmListado.frx":02B0
          Style           =   1  'Graphical
          TabIndex        =   17
          Top             =   2215
@@ -227,7 +425,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command1 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":0316
+         Picture         =   "frmListado.frx":05BA
          Style           =   1  'Graphical
          TabIndex        =   16
          Top             =   1440
@@ -415,9 +613,9 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   7
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":0620
+         MouseIcon       =   "frmListado.frx":08C4
          MousePointer    =   4  'Icon
-         ToolTipText     =   "Buscar familia"
+         ToolTipText     =   "Buscar producto"
          Top             =   1680
          Width           =   240
       End
@@ -425,9 +623,9 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   6
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":0772
+         MouseIcon       =   "frmListado.frx":0A16
          MousePointer    =   4  'Icon
-         ToolTipText     =   "Buscar familia"
+         ToolTipText     =   "Buscar producto"
          Top             =   1320
          Width           =   240
       End
@@ -435,9 +633,9 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   1
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":08C4
+         MouseIcon       =   "frmListado.frx":0B68
          MousePointer    =   4  'Icon
-         ToolTipText     =   "Buscar articulo"
+         ToolTipText     =   "Buscar variedad"
          Top             =   2760
          Width           =   240
       End
@@ -445,9 +643,9 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   0
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":0A16
+         MouseIcon       =   "frmListado.frx":0CBA
          MousePointer    =   4  'Icon
-         ToolTipText     =   "Buscar artículo"
+         ToolTipText     =   "Buscar variedad"
          Top             =   2400
          Width           =   240
       End
@@ -583,7 +781,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command4 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":0B68
+         Picture         =   "frmListado.frx":0E0C
          Style           =   1  'Graphical
          TabIndex        =   39
          Top             =   2215
@@ -593,7 +791,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command3 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":0E72
+         Picture         =   "frmListado.frx":1116
          Style           =   1  'Graphical
          TabIndex        =   38
          Top             =   1440
@@ -725,7 +923,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   3
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":117C
+         MouseIcon       =   "frmListado.frx":1420
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   1680
@@ -735,7 +933,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   2
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":12CE
+         MouseIcon       =   "frmListado.frx":1572
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   1365
@@ -751,7 +949,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton cmdSubir 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":1420
+         Picture         =   "frmListado.frx":16C4
          Style           =   1  'Graphical
          TabIndex        =   8
          Top             =   1440
@@ -761,7 +959,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton cmdBajar 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":172A
+         Picture         =   "frmListado.frx":19CE
          Style           =   1  'Graphical
          TabIndex        =   7
          Top             =   2215
@@ -914,7 +1112,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   5
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":1A34
+         MouseIcon       =   "frmListado.frx":1CD8
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   1815
@@ -924,7 +1122,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   4
          Left            =   1560
-         MouseIcon       =   "frmListado.frx":1B86
+         MouseIcon       =   "frmListado.frx":1E2A
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   1365
@@ -1489,7 +1687,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   22
          Left            =   1470
-         MouseIcon       =   "frmListado.frx":1CD8
+         MouseIcon       =   "frmListado.frx":1F7C
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar destino"
          Top             =   4575
@@ -1499,7 +1697,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   21
          Left            =   1470
-         MouseIcon       =   "frmListado.frx":1E2A
+         MouseIcon       =   "frmListado.frx":20CE
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar destino"
          Top             =   4185
@@ -1621,7 +1819,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   19
          Left            =   1470
-         MouseIcon       =   "frmListado.frx":1F7C
+         MouseIcon       =   "frmListado.frx":2220
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   3615
@@ -1631,7 +1829,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   18
          Left            =   1470
-         MouseIcon       =   "frmListado.frx":20CE
+         MouseIcon       =   "frmListado.frx":2372
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   3255
@@ -1697,7 +1895,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   17
          Left            =   1485
-         MouseIcon       =   "frmListado.frx":2220
+         MouseIcon       =   "frmListado.frx":24C4
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar artículo"
          Top             =   2670
@@ -1707,7 +1905,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   16
          Left            =   1485
-         MouseIcon       =   "frmListado.frx":2372
+         MouseIcon       =   "frmListado.frx":2616
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar artículo"
          Top             =   2310
@@ -1717,7 +1915,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   1
          Left            =   1485
-         Picture         =   "frmListado.frx":24C4
+         Picture         =   "frmListado.frx":2768
          Top             =   5580
          Width           =   240
       End
@@ -1725,7 +1923,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   0
          Left            =   1485
-         Picture         =   "frmListado.frx":254F
+         Picture         =   "frmListado.frx":27F3
          Top             =   5175
          Width           =   240
       End
@@ -1733,7 +1931,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   13
          Left            =   1485
-         MouseIcon       =   "frmListado.frx":25DA
+         MouseIcon       =   "frmListado.frx":287E
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar tipo envase"
          Top             =   1725
@@ -1743,7 +1941,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   12
          Left            =   1485
-         MouseIcon       =   "frmListado.frx":272C
+         MouseIcon       =   "frmListado.frx":29D0
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar tipo envase"
          Top             =   1320
@@ -2001,7 +2199,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   20
          Left            =   1335
-         MouseIcon       =   "frmListado.frx":287E
+         MouseIcon       =   "frmListado.frx":2B22
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar almacén"
          Top             =   2220
@@ -2031,7 +2229,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   13
          Left            =   1365
-         Picture         =   "frmListado.frx":29D0
+         Picture         =   "frmListado.frx":2C74
          Top             =   1290
          Width           =   240
       End
@@ -2255,7 +2453,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command8 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":2A5B
+         Picture         =   "frmListado.frx":2CFF
          Style           =   1  'Graphical
          TabIndex        =   155
          Top             =   2215
@@ -2265,7 +2463,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command7 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":2D65
+         Picture         =   "frmListado.frx":3009
          Style           =   1  'Graphical
          TabIndex        =   154
          Top             =   1440
@@ -2358,7 +2556,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   6
          Left            =   1665
-         Picture         =   "frmListado.frx":306F
+         Picture         =   "frmListado.frx":3313
          Top             =   2790
          Width           =   240
       End
@@ -2366,7 +2564,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   5
          Left            =   1665
-         Picture         =   "frmListado.frx":30FA
+         Picture         =   "frmListado.frx":339E
          Top             =   2340
          Width           =   240
       End
@@ -2504,7 +2702,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   24
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":3185
+         MouseIcon       =   "frmListado.frx":3429
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cámara"
          Top             =   1680
@@ -2514,7 +2712,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   23
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":32D7
+         MouseIcon       =   "frmListado.frx":357B
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cámara"
          Top             =   1320
@@ -2584,7 +2782,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command6 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":3429
+         Picture         =   "frmListado.frx":36CD
          Style           =   1  'Graphical
          TabIndex        =   64
          Top             =   1440
@@ -2594,7 +2792,7 @@ Begin VB.Form frmListado
       Begin VB.CommandButton Command5 
          Height          =   440
          Left            =   7860
-         Picture         =   "frmListado.frx":3733
+         Picture         =   "frmListado.frx":39D7
          Style           =   1  'Graphical
          TabIndex        =   63
          Top             =   2215
@@ -2825,7 +3023,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   11
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":3A3D
+         MouseIcon       =   "frmListado.frx":3CE1
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar artículo"
          Top             =   2790
@@ -2835,7 +3033,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   10
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":3B8F
+         MouseIcon       =   "frmListado.frx":3E33
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar articulo"
          Top             =   2400
@@ -2845,7 +3043,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   9
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":3CE1
+         MouseIcon       =   "frmListado.frx":3F85
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar familia"
          Top             =   1680
@@ -2855,7 +3053,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   8
          Left            =   1650
-         MouseIcon       =   "frmListado.frx":3E33
+         MouseIcon       =   "frmListado.frx":40D7
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar familia"
          Top             =   1275
@@ -3056,7 +3254,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   4
          Left            =   1320
-         Picture         =   "frmListado.frx":3F85
+         Picture         =   "frmListado.frx":4229
          Top             =   1290
          Width           =   240
       End
@@ -3436,7 +3634,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   15
          Left            =   1620
-         MouseIcon       =   "frmListado.frx":4010
+         MouseIcon       =   "frmListado.frx":42B4
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar trabajador"
          Top             =   1665
@@ -3446,7 +3644,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   14
          Left            =   1620
-         MouseIcon       =   "frmListado.frx":4162
+         MouseIcon       =   "frmListado.frx":4406
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar trabajador"
          Top             =   1305
@@ -3456,7 +3654,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   3
          Left            =   1575
-         Picture         =   "frmListado.frx":42B4
+         Picture         =   "frmListado.frx":4558
          Top             =   2745
          Width           =   240
       End
@@ -3464,7 +3662,7 @@ Begin VB.Form frmListado
          Height          =   240
          Index           =   2
          Left            =   1575
-         Picture         =   "frmListado.frx":433F
+         Picture         =   "frmListado.frx":45E3
          Top             =   2340
          Width           =   240
       End
@@ -3495,6 +3693,10 @@ Public Opcionlistado As Byte
     ' 1 .- Creacion automatica de palets
     ' 2 .- Informe de palets en camaras
     
+    ' 3 .- Traspaso de albaran a bddestino
+    
+    
+    
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
                         'Para indicar nº oferta a imprimir
     
@@ -3508,6 +3710,8 @@ Private WithEvents frmPro As frmManProve 'Proveedores
 Attribute frmPro.VB_VarHelpID = -1
 Private WithEvents frmCli As frmClientes 'Clientes
 Attribute frmCli.VB_VarHelpID = -1
+Private WithEvents frmCli2 As frmBasico 'Basico
+Attribute frmCli2.VB_VarHelpID = -1
 Private WithEvents frmProd As frmManProductos 'Productos
 Attribute frmProd.VB_VarHelpID = -1
 Private WithEvents frmVar As frmManVariedad 'Variedades
@@ -3524,6 +3728,8 @@ Private WithEvents frmAlm As frmManAlmProp 'mantenimiento de almacenes propios
 Attribute frmAlm.VB_VarHelpID = -1
 Private WithEvents frmDes As frmDestCli 'Destinos de Clientes
 Attribute frmDes.VB_VarHelpID = -1
+Private WithEvents frmDes2 As frmBasico 'Destinos de Clientes
+Attribute frmDes2.VB_VarHelpID = -1
 Private WithEvents frmMensDestino As frmMensajes 'mensajes
 Attribute frmMensDestino.VB_VarHelpID = -1
 Private WithEvents frmCam As frmManCamara 'mantenimiento de camaras
@@ -4388,6 +4594,397 @@ Dim numOp As Byte
 
 End Sub
 
+Private Sub CmdAcepTraspaso_Click()
+Dim Sql As String
+
+    Sql = ""
+    If txtCodigo(35).Text = "" Then
+        MsgBox "Debe introducir el cliente de la empresa destino.", vbExclamation
+        PonerFoco txtCodigo(35)
+    Else
+        'comprobamos que exista en la base de datos destino
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".clientes", "nomclien", "codclien", txtCodigo(35).Text, "N")
+        If Sql = "" Then
+            MsgBox "No existe cliente en la empresa destino. Reintroduzca.", vbExclamation
+            PonerFoco txtCodigo(35)
+        Else
+            txtNombre(35).Text = Sql
+            ' comprobacion del destino
+            If txtCodigo(34).Text = "" Then
+                MsgBox "Debe introducir el destino del cliente de la empresa destino.", vbExclamation
+                PonerFoco txtCodigo(34)
+            Else
+                Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".destinos", "nomdesti", "codclien", txtCodigo(35).Text, "N", , "coddesti", txtCodigo(34).Text, "N")
+                If Sql = "" Then
+                    MsgBox "No existe el destino del cliente en la empresa destino. Reintroduzca.", vbExclamation
+                    PonerFoco txtCodigo(34)
+                Else
+                    txtNombre(34).Text = Sql
+                End If
+            End If
+        End If
+    End If
+    
+    ' comprobacion de si existe el albaran en la bd destino
+    Dim ExisteAlb As String
+    ExisteAlb = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".albaran", "numalbar", "numalbar", NumCod, "N")
+    If ExisteAlb <> "" Then
+        If MsgBox("Albaran existente en la empresa destino. ¿ Desea modificarlo ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then Exit Sub
+    End If
+    
+    ' comprobacion de las claves refereciales
+    If ComprobarReferenciales(NumCod) Then
+        If TraspasoAlbaran(NumCod, ExisteAlb) Then
+            MsgBox "Proceso realizado correctamente.", vbExclamation
+            cmdCancel_Click
+        End If
+    End If
+
+End Sub
+
+
+Private Function TraspasoAlbaran(Albaran As String, ExisteAlb As String) As Boolean
+Dim Sql As String
+
+    On Error GoTo eTraspasoAlbaran
+
+    TraspasoAlbaran = False
+
+    If ExisteAlb = "" Then
+        ' insertamos
+        'albaran
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran "
+        Sql = Sql & "(numalbar,fechaalb,codclien,coddesti,codtrans,matriveh,matrirem,refclien,codtimer,"
+        Sql = Sql & "totpalet,portespre,nrocontra,nroactas,numpedid,fechaped,observac,pasaridoc,"
+        Sql = Sql & "codalmac,portespag,paletspag,numerocmr,comisionespre,comisionespag,codcomis,"
+        Sql = Sql & "codsocio,airline,AWB,flight1,flight2,airorigin,airdestiny,ETD,ETA,precnodef,"
+        Sql = Sql & "estacomunicada,codtipom)"
+        Sql = Sql & " select numalbar, fechaalb, " & DBSet(txtCodigo(35).Text, "N") & "," & DBSet(txtCodigo(34).Text, "N") & ",codtrans,matriveh,matrirem,refclien,codtimer,"
+        Sql = Sql & "totpalet,portespre,nrocontra,nroactas,numpedid,fechaped,observac,pasaridoc,"
+        Sql = Sql & "codalmac,portespag,paletspag,numerocmr,comisionespre,comisionespag,codcomis,"
+        Sql = Sql & "codsocio,airline,AWB,flight1,flight2,airorigin,airdestiny,ETD,ETA,precnodef,"
+        Sql = Sql & "estacomunicada,codtipom "
+        Sql = Sql & " from albaran "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+    
+        conn.Execute Sql
+        
+        'albaran_variedad
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_variedad "
+        Sql = Sql & "(numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas,"
+        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,unidades,"
+        Sql = Sql & "referencia,codpalet,nrotraza,codtipo,sefactura,codcomis,nrotraza1,nrotraza2,nrotraza3,"
+        Sql = Sql & "nrotraza4,nrotraza5,nrotraza6,expediente) "
+        Sql = Sql & " select numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas, "
+        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,unidades,"
+        Sql = Sql & "referencia,codpalet,nrotraza,codtipo,sefactura,codcomis,nrotraza1,nrotraza2,nrotraza3,"
+        Sql = Sql & "nrotraza4,nrotraza5,nrotraza6,expediente "
+        Sql = Sql & " from albaran_variedad "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+        'albaran_calibre
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_calibre "
+        Sql = Sql & "(numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas) "
+        Sql = Sql & " select numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas "
+        Sql = Sql & " from albaran_calibre "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+        'albaran_costes
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_costes "
+        Sql = Sql & "(numalbar,numlinea,tipogasto,codcoste,impcoste,importes,unidades,codartic) "
+        Sql = Sql & " select numalbar,numlinea,tipogasto,codcoste,impcoste,importes,unidades,codartic "
+        Sql = Sql & " from albaran_costes "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+        'albaran_envase
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_envase "
+        Sql = Sql & "(numalbar,numlinea,fechamov,codartic,tipomovi,cantidad,codclien,impfianza,factura,fecfactu) "
+        Sql = Sql & " select numalbar,numlinea,fechamov,codartic,tipomovi,cantidad,codclien,impfianza,factura,fecfactu "
+        Sql = Sql & " from albaran_envase "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+        'albaran_palets
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_palets "
+        Sql = Sql & "(numalbar,numlinea,numpalet) "
+        Sql = Sql & " select numalbar,numlinea,numpalet "
+        Sql = Sql & " from albaran_palets "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+        'albaran_costreal
+        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_costreal "
+        Sql = Sql & "(numalbar,numlinea,codcoste,impcoste) "
+        Sql = Sql & " select numalbar,numlinea,codcoste,impcoste "
+        Sql = Sql & " from albaran_palets "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        
+        conn.Execute Sql
+        
+    Else
+    
+    
+    End If
+    
+    TraspasoAlbaran = True
+    Exit Function
+
+eTraspasoAlbaran:
+    MuestraError Err.Number, "Traspaso Albaran", Err.Description
+End Function
+
+
+Private Function ComprobarReferenciales(Albaran As String) As Boolean
+Dim Sql As String
+Dim Rs As ADODB.Recordset
+
+    On Error GoTo eComprobarReferenciales
+
+    ComprobarReferenciales = False
+
+    
+    'albaran
+    Sql = "select * from albaran where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    
+    If Not Rs.EOF Then
+    
+        'agencias de transporte
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".agencias", "nomtrans", "codtrans", DBLet(Rs!codTrans, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe la Agencia de Transporte " & DBLet(Rs!codTrans, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'tipo de mercado
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".tipomer", "nomtimer", "codtimer", DBLet(Rs!codtimer, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe el Tipo de Mercado " & DBLet(Rs!codtimer, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'Almacen
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".salmpr", "nomalmac", "codalmac", DBLet(Rs!codAlmac, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe el Almacén " & DBLet(Rs!codAlmac, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+        
+        'Comisionista
+        If Not IsNull(Rs!codcomis) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".agencias", "nomtrans", "codtrans", DBLet(Rs!codcomis, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el Comisionista " & DBLet(Rs!codcomis, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+        
+        'socio
+        If Not IsNull(Rs!CodSocio) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".rsocios", "nomsocio", "codsocio", DBLet(Rs!CodSocio, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el Socio " & DBLet(Rs!CodSocio, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+    
+    End If
+    Set Rs = Nothing
+    
+    
+    'albaran_variedad
+    Sql = "select * from albaran_variedad where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+    
+        'variedad
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".variedades", "nomvarie", "codvarie", DBLet(Rs!codvarie, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe la Variedad " & DBLet(Rs!codvarie, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'variedad comercial
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".variedades", "nomvarie", "codvarie", DBLet(Rs!codvarco, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe la Variedad Comercial " & Rs!DBLet(Rs!codvarco, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'marca
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".marcas", "nommarca", "codmarca", DBLet(Rs!codmarca, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe la Marca " & DBLet(Rs!codmarca, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'forfaits
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".forfaits", "nomconfe", "codforfait", DBLet(Rs!codforfait, "T"), "T")
+        If Sql = "" Then
+            MsgBox "No existe el Forfait " & DBLet(Rs!codforfait, "T") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'incidencia
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".inciden", "nomincid", "codincid", DBLet(Rs!codincid, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe la Incidencia " & DBLet(Rs!codincid, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+    
+        'palet
+        If Not IsNull(Rs!CodPalet) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".confpale", "nompalet", "codpalet", DBLet(Rs!CodPalet, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el Tipo de Palet " & DBLet(Rs!CodPalet, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+        
+        'tipo de variedad
+        If Not IsNull(Rs!codtipo) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".tipovarie", "nomtipo", "codtipo", DBLet(Rs!codtipo, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el Tipo de Variedad " & DBLet(Rs!codtipo, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+    
+        Rs.MoveNext
+    
+    Wend
+    
+    Set Rs = Nothing
+    
+    'albaran_calibre
+    Sql = "select * from albaran_calibre where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        'calibres
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".calibres", "nomcalib", "codvarie", DBLet(Rs!codvarie, "N"), "N", , "codcalib", DBLet(Rs!codcalib, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe el calibre " & DBLet(Rs!codvarie, "N") & "-" & DBLet(Rs!codcalib, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+        Rs.MoveNext
+    Wend
+    
+    Set Rs = Nothing
+    
+    
+    'albaran_costes
+    Sql = "select * from albaran_costes where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        'nombcoste
+        If Not IsNull(Rs!codCoste) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".nombcoste", "denominacion", "codcoste", DBLet(Rs!codCoste, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el coste " & DBLet(Rs!codCoste, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+        'articulo
+        If Not IsNull(Rs!CodArtic) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".sartic", "nomartic", "codartic", DBLet(Rs!CodArtic, "T"), "T")
+            If Sql = "" Then
+                MsgBox "No existe el artículo " & DBLet(Rs!CodArtic, "T") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+        Rs.MoveNext
+    Wend
+    
+    Set Rs = Nothing
+    
+    
+    'albaran_costreal
+    Sql = "select * from albaran_costreal where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        'nombcoste
+        If Not IsNull(Rs!codCoste) Then
+            Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".nombcoste", "denominacion", "codcoste", DBLet(Rs!codCoste, "N"), "N")
+            If Sql = "" Then
+                MsgBox "No existe el coste " & DBLet(Rs!codCoste, "N") & ". Revise.", vbExclamation
+                Exit Function
+            End If
+        End If
+        Rs.MoveNext
+    Wend
+    
+    Set Rs = Nothing
+    
+    
+    'albaran_envase
+    Sql = "select * from albaran_envase where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        'cliente
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".clientes", "nomclien", "codclien", DBLet(Rs!CodClien, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe el cliente " & DBLet(Rs!CodClien, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+        'articulo
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".sartic", "nomartic", "codartic", DBLet(Rs!CodArtic, "T"), "T")
+        If Sql = "" Then
+            MsgBox "No existe el artículo " & DBLet(Rs!CodArtic, "T") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+        Rs.MoveNext
+    Wend
+    
+    Set Rs = Nothing
+    
+    
+    'albaran_palets
+    Sql = "select * from albaran_palets where numalbar = " & DBSet(Albaran, "N")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        'palets
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".palets", "numpalet", "numpalet", DBLet(Rs!numpalet, "N"), "N")
+        If Sql = "" Then
+            MsgBox "No existe el palet " & DBLet(Rs!numpalet, "N") & ". Revise.", vbExclamation
+            Exit Function
+        End If
+        Rs.MoveNext
+    Wend
+    
+    Set Rs = Nothing
+    
+    
+    ComprobarReferenciales = True
+    Exit Function
+    
+eComprobarReferenciales:
+    MuestraError Err.Number, "Comprobar Referenciales", Err.Description
+End Function
+
+
+
 Private Sub cmdBajar_Click()
 'Bajar el item seleccionado del listview2
     BajarItemList Me.ListView1
@@ -4411,6 +5008,9 @@ Private Sub Form_Activate()
         Select Case Opcionlistado
             Case 2 ' informe de palets en camaras
                 PonerFoco txtCodigo(32)
+                
+            Case 3 ' traspaso de albaran a bddestino
+                PonerFoco txtCodigo(35)
                 
             Case 10 ' Listado de Clientes
                 PonerFoco txtCodigo(4)
@@ -4477,6 +5077,8 @@ Dim List As Collection
     Me.FrameCalculoHorasProductivas.visible = False
     Me.FrameCreacionPalets.visible = False
     FrameInfPaletsCamaras.visible = False
+    FrameTraspasoAlbaran.visible = False
+    
     
     '###Descomentar
 '    CommitConexion
@@ -4495,6 +5097,11 @@ Dim List As Collection
         indFrame = 0
         tabla = "albaran_envase"
     
+    Case 3 ' Traspaso de albaran
+        H = 3465
+        W = 7380
+        PonerFrameVisible FrameTraspasoAlbaran, True, H, W
+        tabla = "albaran"
     
     
     'LISTADOS DE MANTENIMIENTOS BASICOS
@@ -4551,7 +5158,7 @@ Dim List As Collection
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.cmdCancel(indFrame).Cancel = True
+    Me.CmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub
@@ -4712,6 +5319,13 @@ Private Sub imgBuscar_Click(Index As Integer)
             AbrirFrmManCamara (Index)
         Case 24
             AbrirFrmManCamara (Index)
+            
+        ' traspaso de albaranes
+        Case 26
+            AbrirFrmClientes2 (Index + 9)
+        
+        Case 25
+            AbrirFrmDestinos2 Index + 9
     End Select
     PonerFoco txtCodigo(indCodigo)
 End Sub
@@ -4802,6 +5416,11 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
             Case 31: KEYFecha KeyAscii, 6 'fecha hasta
             
             Case 30: KEYFecha KeyAscii, 16 'fecha de carga automatica de palets
+        
+            ' traspaso de albaran a bd destino
+            Case 35: KEYBusqueda KeyAscii, 26 'cliente
+            Case 34: KEYBusqueda KeyAscii, 25 'destino
+        
         End Select
     Else
         KEYpress KeyAscii
@@ -4914,10 +5533,24 @@ Dim Cad As String, cadTipo As String 'tipo cliente
                 If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
             End If
         
+        
         Case 32, 33 'CAMARAS
             txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "camaras", "nomcamara", "codcamara", "N")
-
             
+        '
+        Case 35 ' CLIENTE
+            txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), vParamAplic.BDDestino & ".clientes", "nomclien", "codclien", "N")
+            If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000000")
+        
+        Case 34 'DESTINO
+            If txtCodigo(35).Text <> "" Then
+                txtNombre(Index).Text = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".destinos", "nomdesti", "codclien", txtCodigo(35).Text, "N", , "coddesti", txtCodigo(Index).Text, "N")
+                If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
+            End If
+        
+    
+    
+    
     End Select
 End Sub
 
@@ -5214,12 +5847,16 @@ Dim nomCampo As String
 
 End Function
 
-Private Sub AbrirFrmDestinos(indice As Integer)
+Private Sub AbrirFrmDestinos(indice As Integer, Optional Cliente As String)
     indCodigo = indice
     Set frmDes = New frmDestCli
     frmDes.DatosADevolverBusqueda = "0|1|"
 '    frmDes.DeConsulta = True
-    frmDes.Cliente = txtCodigo(22).Text
+    If Cliente <> "" Then
+        frmDes.Cliente = Cliente
+    Else
+        frmDes.Cliente = txtCodigo(22).Text
+    End If
     frmDes.CodigoActual = txtCodigo(indCodigo)
     frmDes.Show vbModal
     Set frmDes = Nothing
@@ -5255,6 +5892,29 @@ Private Sub AbrirFrmClientes(indice As Integer)
     frmCli.Show vbModal
     Set frmCli = Nothing
 End Sub
+
+Private Sub AbrirFrmClientes2(indice As Integer)
+    indCodigo = indice
+    
+    Set frmCli2 = New frmBasico
+        
+    AyudaClientes frmCli2, txtCodigo(35).Text
+    
+    Set frmCli2 = Nothing
+End Sub
+
+Private Sub AbrirFrmDestinos2(indice As Integer)
+    indCodigo = indice
+    
+    Set frmDes2 = New frmBasico
+        
+    AyudaDestinos frmDes2, txtCodigo(35).Text
+    
+    Set frmDes2 = Nothing
+End Sub
+
+
+
 
 Private Sub AbrirFrmVariedades(indice As Integer)
     indCodigo = indice

@@ -8,7 +8,6 @@ Begin VB.Form frmIdentifica
    ClientTop       =   0
    ClientWidth     =   7965
    LinkTopic       =   "Form1"
-   Picture         =   "frmIdentifica.frx":0000
    ScaleHeight     =   5520
    ScaleWidth      =   7965
    ShowInTaskbar   =   0   'False
@@ -82,6 +81,7 @@ Begin VB.Form frmIdentifica
       Width           =   7305
    End
    Begin VB.Label Label2 
+      BackStyle       =   0  'Transparent
       Caption         =   "Label2"
       BeginProperty Font 
          Name            =   "Tahoma"
@@ -92,11 +92,11 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00400000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   195
-      Left            =   930
+      Left            =   4275
       TabIndex        =   5
-      Top             =   5250
+      Top             =   1305
       Width           =   1725
    End
    Begin VB.Label Label1 
@@ -130,7 +130,7 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Index           =   1
       Left            =   4920
@@ -150,7 +150,7 @@ Begin VB.Form frmIdentifica
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00800000&
+      ForeColor       =   &H00FFFFFF&
       Height          =   375
       Index           =   0
       Left            =   4920
@@ -336,7 +336,7 @@ Dim OK As Byte
 End Sub
 
 Private Sub HacerAccionesBD()
-Dim SQL As String
+Dim Sql As String
 
 
     
@@ -379,29 +379,29 @@ End Sub
 'a la que ha entrado, y el usuario
 Private Sub NumeroEmpresaMemorizar(Leer As Boolean)
 Dim NF As Integer
-Dim cad As String
+Dim Cad As String
 On Error GoTo ENumeroEmpresaMemorizar
 
 
         
-    cad = App.path & "\ultusuT.dat"
+    Cad = App.path & "\ultusuT.dat"
     If Leer Then
-        If Dir(cad) <> "" Then
+        If Dir(Cad) <> "" Then
             NF = FreeFile
-            Open cad For Input As #NF
-            Line Input #NF, cad
+            Open Cad For Input As #NF
+            Line Input #NF, Cad
             Close #NF
-            cad = Trim(cad)
+            Cad = Trim(Cad)
             
                 'El primer pipe es el usuario
-                Text1(0).Text = cad
+                Text1(0).Text = Cad
     
         End If
     Else 'Escribir
         NF = FreeFile
-        Open cad For Output As #NF
-        cad = Text1(0).Text
-        Print #NF, cad
+        Open Cad For Output As #NF
+        Cad = Text1(0).Text
+        Print #NF, Cad
         Close #NF
     End If
 ENumeroEmpresaMemorizar:
