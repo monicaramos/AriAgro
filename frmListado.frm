@@ -4636,7 +4636,7 @@ Dim Sql As String
     If ComprobarReferenciales(NumCod) Then
         If TraspasoAlbaran(NumCod, ExisteAlb) Then
             MsgBox "Proceso realizado correctamente.", vbExclamation
-            cmdCancel_Click
+            cmdCancel_Click (1)
         End If
     End If
 
@@ -4672,11 +4672,11 @@ Dim Sql As String
         'albaran_variedad
         Sql = "insert into " & vParamAplic.BDDestino & ".albaran_variedad "
         Sql = Sql & "(numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas,"
-        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,unidades,"
+        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,"
         Sql = Sql & "referencia,codpalet,nrotraza,codtipo,sefactura,codcomis,nrotraza1,nrotraza2,nrotraza3,"
         Sql = Sql & "nrotraza4,nrotraza5,nrotraza6,expediente) "
         Sql = Sql & " select numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas, "
-        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,unidades,"
+        Sql = Sql & "pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac,unidades,"
         Sql = Sql & "referencia,codpalet,nrotraza,codtipo,sefactura,codcomis,nrotraza1,nrotraza2,nrotraza3,"
         Sql = Sql & "nrotraza4,nrotraza5,nrotraza6,expediente "
         Sql = Sql & " from albaran_variedad "
@@ -4686,8 +4686,8 @@ Dim Sql As String
         
         'albaran_calibre
         Sql = "insert into " & vParamAplic.BDDestino & ".albaran_calibre "
-        Sql = Sql & "(numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas) "
-        Sql = Sql & " select numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,categori,totpalet,numcajas "
+        Sql = Sql & "(numalbar,numlinea,numline1,codvarie,codcalib,numcajas,pesobrut,pesoneto,unidades,preciopro) "
+        Sql = Sql & " select numalbar,numlinea,numline1,codvarie,codcalib,numcajas,pesobrut,pesoneto,unidades,preciopro "
         Sql = Sql & " from albaran_calibre "
         Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
         
@@ -4724,12 +4724,85 @@ Dim Sql As String
         Sql = "insert into " & vParamAplic.BDDestino & ".albaran_costreal "
         Sql = Sql & "(numalbar,numlinea,codcoste,impcoste) "
         Sql = Sql & " select numalbar,numlinea,codcoste,impcoste "
-        Sql = Sql & " from albaran_palets "
+        Sql = Sql & " from albaran_costreal "
         Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
         
         conn.Execute Sql
         
     Else
+    
+        'albaran
+        Sql = "update " & vParamAplic.BDDestino & ".albaran dd, albaran ff set "
+        Sql = Sql & "dd.numalbar = ff.numalbar,dd.fechaalb = ff.fechaalb, dd.codclien = ff.codclien,dd.coddesti = ff.coddesti,dd.codtrans=ff.codtrans,"
+        Sql = Sql & "dd.matriveh=ff.matriveh,dd.matrirem=ff.matrirem,dd.refclien=ff.refclien,dd.codtimer=dd.codtimer,"
+        Sql = Sql & "dd.totpalet=ff.totpalet,dd.portespre=ff.portespre,dd.nrocontra=ff.nrocontra,dd.nroactas=ff.nroactas,dd.numpedid=ff.numpedid,"
+        Sql = Sql & "dd.fechaped=ff.fechaped,dd.observac=ff.observac,dd.pasaridoc=ff.pasaridoc,"
+        Sql = Sql & "dd.codalmac=ff.codalmac,dd.portespag=ff.portespag,dd.paletspag=ff.paletspag,dd.numerocmr=ff.numerocmr,dd.comisionespre=ff.comisionespre,"
+        Sql = Sql & "dd.comisionespag=ff.comisionespag,dd.codcomis=ff.codcomis,"
+        Sql = Sql & "dd.codsocio=ff.codsocio,dd.airline=ff.airline,dd.AWB=ff.AWB,dd.flight1=ff.flight1,dd.flight2=ff.flight2,dd.airorigin=ff.airorigin,"
+        Sql = Sql & "dd.airdestiny=ff.airdestiny,dd.ETD=ff.ETD,dd.ETA=ff.ETA,dd.precnodef=ff.precnodef,"
+        Sql = Sql & "dd.estacomunicada=ff.estacomunicada,dd.codtipom=ff.codtipom "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar "
+    
+        conn.Execute Sql
+        
+        'albaran_variedad
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_variedad dd, albaran_variedad ff set "
+        Sql = Sql & "dd.codvarie=ff.codvarie,dd.codvarco=ff.codvarco,dd.codforfait=ff.codforfait,"
+        Sql = Sql & "dd.codmarca=ff.codmarca,dd.categori=ff.categori,dd.totpalet=ff.totpalet,dd.numcajas=ff.numcajas,"
+        Sql = Sql & "dd.pesobrut=ff.pesobrut,dd.pesoneto=ff.pesoneto,dd.preciopro=ff.preciopro,dd.preciodef=ff.preciodef,dd.codincid=ff.codincid,"
+        Sql = Sql & "dd.impcomis=ff.impcomis,dd.observac=ff.observac,dd.unidades=ff.unidades,"
+        Sql = Sql & "dd.referencia=ff.referencia,dd.codpalet=ff.codpalet,dd.nrotraza=ff.nrotraza,dd.codtipo=ff.codtipo,dd.sefactura=ff.sefactura,"
+        Sql = Sql & "dd.codcomis=ff.codcomis,dd.nrotraza1=ff.nrotraza1,dd.nrotraza2=ff.nrotraza2,dd.nrotraza3=ff.nrotraza3,"
+        Sql = Sql & "dd.nrotraza4=ff.nrotraza4,dd.nrotraza5=ff.nrotraza6,dd.nrotraza6=ff.nrotraza6,dd.expediente=ff.expediente "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea = ff.numlinea "
+        
+        conn.Execute Sql
+        
+        'albaran_calibre
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_calibre dd, albaran_calibre ff set "
+        Sql = Sql & "dd.codvarie = ff.codvarie, dd.codcalib = ff.codcalib,"
+        Sql = Sql & "dd.numcajas = ff.numcajas, dd.pesobrut = ff.pesobrut, dd.pesoneto = ff.pesoneto, dd.unidades = ff.unidades, dd.preciopro = ff.preciopro "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea = ff.numlinea and dd.numline1 = ff.numline1 "
+        
+        conn.Execute Sql
+        
+        'albaran_costes
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_costes dd, albaran_costes ff set "
+        Sql = Sql & "dd.tipogasto=ff.tipogasto,dd.codcoste=ff.codcoste,dd.impcoste=ff.impcoste,"
+        Sql = Sql & "dd.importes = ff.importes,dd.unidades=ff.unidades,dd.codartic=ff.codartic "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea = ff.numlinea"
+        
+        conn.Execute Sql
+        
+        'albaran_envase
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_envase dd, albaran_envase ff set "
+        Sql = Sql & "dd.fechamov=ff.fechamov,dd.codartic=ff.codartic,dd.tipomovi=ff.tipomovi,"
+        Sql = Sql & "dd.cantidad=ff.cantidad,dd.codclien=ff.codclien,dd.impfianza=ff.impfianza,dd.factura=ff.factura,dd.fecfactu=ff.fecfactu "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea=ff.numlinea"
+        
+        conn.Execute Sql
+        
+        'albaran_palets
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_palets dd, albaran_palets ff set "
+        Sql = Sql & "dd.numpalet=ff.numpalet "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea=ff.numlinea"
+        
+        conn.Execute Sql
+        
+        'albaran_costreal
+        Sql = "update " & vParamAplic.BDDestino & ".albaran_costreal dd, albaran_costreal ff set "
+        Sql = Sql & "dd.codcoste=ff.codcoste,dd.impcoste=ff.impcoste "
+        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea=ff.numlinea"
+        
+        conn.Execute Sql
     
     
     End If
@@ -4767,9 +4840,9 @@ Dim Rs As ADODB.Recordset
         End If
     
         'tipo de mercado
-        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".tipomer", "nomtimer", "codtimer", DBLet(Rs!codtimer, "N"), "N")
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".tipomer", "nomtimer", "codtimer", DBLet(Rs!Codtimer, "N"), "N")
         If Sql = "" Then
-            MsgBox "No existe el Tipo de Mercado " & DBLet(Rs!codtimer, "N") & ". Revise.", vbExclamation
+            MsgBox "No existe el Tipo de Mercado " & DBLet(Rs!Codtimer, "N") & ". Revise.", vbExclamation
             Exit Function
         End If
     
@@ -4819,14 +4892,14 @@ Dim Rs As ADODB.Recordset
         'variedad comercial
         Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".variedades", "nomvarie", "codvarie", DBLet(Rs!codvarco, "N"), "N")
         If Sql = "" Then
-            MsgBox "No existe la Variedad Comercial " & Rs!DBLet(Rs!codvarco, "N") & ". Revise.", vbExclamation
+            MsgBox "No existe la Variedad Comercial " & DBLet(Rs!codvarco, "N") & ". Revise.", vbExclamation
             Exit Function
         End If
     
         'marca
-        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".marcas", "nommarca", "codmarca", DBLet(Rs!codmarca, "N"), "N")
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".marcas", "nommarca", "codmarca", DBLet(Rs!Codmarca, "N"), "N")
         If Sql = "" Then
-            MsgBox "No existe la Marca " & DBLet(Rs!codmarca, "N") & ". Revise.", vbExclamation
+            MsgBox "No existe la Marca " & DBLet(Rs!Codmarca, "N") & ". Revise.", vbExclamation
             Exit Function
         End If
     
@@ -4838,9 +4911,9 @@ Dim Rs As ADODB.Recordset
         End If
     
         'incidencia
-        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".inciden", "nomincid", "codincid", DBLet(Rs!codincid, "N"), "N")
+        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".inciden", "nomincid", "codincid", DBLet(Rs!Codincid, "N"), "N")
         If Sql = "" Then
-            MsgBox "No existe la Incidencia " & DBLet(Rs!codincid, "N") & ". Revise.", vbExclamation
+            MsgBox "No existe la Incidencia " & DBLet(Rs!Codincid, "N") & ". Revise.", vbExclamation
             Exit Function
         End If
     
@@ -5158,7 +5231,7 @@ Dim List As Collection
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.CmdCancel(indFrame).Cancel = True
+    Me.cmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub

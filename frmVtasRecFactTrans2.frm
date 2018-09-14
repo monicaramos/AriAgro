@@ -436,10 +436,10 @@ Public CodigoActual As String
 Public DeConsulta As Boolean
 
 
-Public Lw1 As ListView
+Public lw1 As ListView
 
 Private CadenaConsulta As String
-Private cadB As String
+Private CadB As String
 
 Private WithEvents frmCtas As frmCtasConta 'cuentas contables
 Attribute frmCtas.VB_VarHelpID = -1
@@ -455,7 +455,7 @@ Dim Modo As Byte
 '--------------------------------------------------
 Dim PrimeraVez As Boolean
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim I As Integer
+Dim i As Integer
 
 Private Sub PonerModo(vModo)
 Dim b As Boolean
@@ -469,9 +469,9 @@ Dim b As Boolean
         PonerIndicador lblIndicador, Modo
     End If
     
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).visible = Not b
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).visible = Not b
+    Next i
     
     cmdAceptar.visible = Not b
     cmdCancelar.visible = Not b
@@ -526,7 +526,7 @@ Private Sub BotonAnyadir()
     Dim anc As Single
     
     CargaGrid 'primer de tot carregue tot el grid
-    cadB = ""
+    CadB = ""
     '******************** canviar taula i camp **************************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
         NumF = NuevoCodigo
@@ -545,9 +545,9 @@ Private Sub BotonAnyadir()
     End If
     txtAux(0).Text = NumF
     FormateaCampo txtAux(0)
-    For I = 1 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 1 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
 
     LLamaLineas anc, 3 'Pone el form en Modo=3, Insertar
        
@@ -556,7 +556,7 @@ Private Sub BotonAnyadir()
 End Sub
 
 Private Sub BotonVerTodos()
-    cadB = ""
+    CadB = ""
     CargaGrid ""
     PonerModo 2
 End Sub
@@ -566,9 +566,9 @@ Private Sub BotonBuscar()
     CargaGrid "tmpalbaranes.codusu = -1"
     '*******************************************************************************
     'Buscar
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Text = ""
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Text = ""
+    Next i
 '    PosicionarCombo Combo1, "724"
     LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
@@ -576,13 +576,13 @@ End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim I As Integer
+    Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        I = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, I
+        i = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, i
         DataGrid1.Refresh
     End If
     
@@ -616,9 +616,9 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     PonerModo xModo
     
     'Fijamos el ancho
-    For I = 0 To txtAux.Count - 1
-        txtAux(I).Top = alto
-    Next I
+    For i = 0 To txtAux.Count - 1
+        txtAux(i).Top = alto
+    Next i
     ' ### [Monica] 12/09/2006
 End Sub
 
@@ -647,7 +647,7 @@ Dim temp As Boolean
         NumRegElim = adodc1.Recordset.AbsolutePosition
         Sql = "Delete from sunida where codunida=" & adodc1.Recordset!Codunida
         conn.Execute Sql
-        CargaGrid cadB
+        CargaGrid CadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
 '            lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -676,13 +676,13 @@ Private Sub PonerLongCampos()
 End Sub
 
 Private Sub cmdAceptar_Click()
-    Dim I As Integer
+    Dim i As Long
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            cadB = ObtenerBusqueda(Me)
-            If cadB <> "" Then
-                CargaGrid cadB
+            CadB = ObtenerBusqueda(Me)
+            If CadB <> "" Then
+                CargaGrid CadB
                 PonerModo 2
 '                lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
                 PonerFocoGrid Me.DataGrid1
@@ -702,7 +702,7 @@ Private Sub cmdAceptar_Click()
                     Else
                         BotonAnyadir
                     End If
-                    cadB = ""
+                    CadB = ""
                 End If
             End If
             
@@ -710,9 +710,9 @@ Private Sub cmdAceptar_Click()
             If DatosOk Then
                 If ModificaDesdeFormulario(Me) Then
                     TerminaBloquear
-                    I = adodc1.Recordset.Fields(0)
+                    i = adodc1.Recordset.Fields(0)
                     PonerModo 2
-                    CargaGrid cadB
+                    CargaGrid CadB
 '                    If CadB <> "" Then
 '                        CargaGrid CadB
 '                        lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -732,7 +732,7 @@ Private Sub cmdCancelar_Click()
     
     Select Case Modo
         Case 1 'búsqueda
-            CargaGrid cadB
+            CargaGrid CadB
         Case 3 'insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
@@ -754,27 +754,27 @@ Private Sub cmdCancelar_Click()
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
-Dim I As Integer
-Dim j As Integer
+Dim Cad As String
+Dim i As Integer
+Dim J As Integer
 Dim Aux As String
 
     If adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
-    I = 0
+    Cad = ""
+    i = 0
     Do
-        j = I + 1
-        I = InStr(j, DatosADevolverBusqueda, "|")
-        If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, j, I - j)
-            j = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(j) & "|"
+        J = i + 1
+        i = InStr(J, DatosADevolverBusqueda, "|")
+        If i > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, i - J)
+            J = Val(Aux)
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
-    Loop Until I = 0
-    RaiseEvent DatoSeleccionado(cad)
+    Loop Until i = 0
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -833,14 +833,14 @@ Private Sub Form_Load()
 '    chkVistaPrevia.Value = CheckValueLeer(Name)
     
     '****************** canviar la consulta *********************************+
-    CadenaConsulta = "SELECT " & vUsu.codigo & ",tmpalbaranes.numalbar, tmpalbaranes.numlinea, variedades.nomvarie, forfaits.nomconfe, tmpalbaranes.portespag "
+    CadenaConsulta = "SELECT " & vUsu.Codigo & ",tmpalbaranes.numalbar, tmpalbaranes.numlinea, variedades.nomvarie, forfaits.nomconfe, tmpalbaranes.portespag "
     CadenaConsulta = CadenaConsulta & " FROM tmpalbaranes, albaran_variedad, variedades, forfaits"
     CadenaConsulta = CadenaConsulta & " WHERE tmpalbaranes.numalbar = albaran_variedad.numalbar and tmpalbaranes.numlinea = albaran_variedad.numlinea and "
     CadenaConsulta = CadenaConsulta & " albaran_variedad.codvarie = variedades.codvarie and albaran_variedad.codforfait = forfaits.codforfait and "
-    CadenaConsulta = CadenaConsulta & " tmpalbaranes.codusu = " & vUsu.codigo
+    CadenaConsulta = CadenaConsulta & " tmpalbaranes.codusu = " & vUsu.Codigo
     '************************************************************************
     
-    cadB = ""
+    CadB = ""
     CargaGrid
     
 '    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
@@ -999,7 +999,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If cadB = "" Then
+        If CadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg
@@ -1011,9 +1011,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "cadenas"
         .Informe2 = "rManTipUnid.rpt"
-        If cadB <> "" Then
+        If CadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(cadB)
+            .cadRegSelec = SQL2SF(CadB)
         Else
             .cadRegSelec = ""
         End If
@@ -1050,7 +1050,7 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
@@ -1064,21 +1064,21 @@ End Sub
 
 Private Function ImportesLineasCuadrados(ByRef albaranes As String) As Boolean
 Dim Sql As String
-Dim I As Long
+Dim i As Long
 
 
     albaranes = ""
 
-    For I = 1 To Me.Lw1.ListItems.Count
-        If CCur(Lw1.ListItems(I).SubItems(5)) <> 0 Then
-            Sql = "select sum(portespag) from tmpalbaranes where codusu = " & vUsu.codigo
-            Sql = Sql & " and numalbar = " & DBSet(Lw1.ListItems(I).Text, "N")
+    For i = 1 To Me.lw1.ListItems.Count
+        If CCur(lw1.ListItems(i).SubItems(5)) <> 0 Then
+            Sql = "select sum(portespag) from tmpalbaranes where codusu = " & vUsu.Codigo
+            Sql = Sql & " and numalbar = " & DBSet(lw1.ListItems(i).Text, "N")
             
-            If CCur(DevuelveValor(Sql)) <> CCur(Me.Lw1.ListItems(I).SubItems(5)) Then
-                albaranes = albaranes & Me.Lw1.ListItems(I).Text & ","
+            If CCur(DevuelveValor(Sql)) <> CCur(Me.lw1.ListItems(i).SubItems(5)) Then
+                albaranes = albaranes & Me.lw1.ListItems(i).Text & ","
             End If
         End If
-    Next I
+    Next i
     
     If albaranes <> "" Then albaranes = Mid(albaranes, 1, Len(albaranes) - 1)
     

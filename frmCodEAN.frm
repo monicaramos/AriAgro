@@ -1,30 +1,101 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCodEAN 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Códigos EAN asociados"
-   ClientHeight    =   5925
+   ClientHeight    =   9930
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   9330
+   ClientTop       =   30
+   ClientWidth     =   11325
    Icon            =   "frmCodEAN.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5925
-   ScaleWidth      =   9330
+   ScaleHeight     =   9930
+   ScaleWidth      =   11325
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   135
+      TabIndex        =   12
+      Top             =   90
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   13
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   3
       Left            =   6885
       MaxLength       =   13
-      TabIndex        =   13
+      TabIndex        =   11
       Tag             =   "Ref.Cliente|N|S|||codigoean|refclien|#######0||"
       Top             =   4275
       Width           =   1080
@@ -32,11 +103,20 @@ Begin VB.Form frmCodEAN
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   2
       Left            =   5715
       MaxLength       =   13
-      TabIndex        =   12
+      TabIndex        =   10
       Tag             =   "Código EAN|T|N|||codigoean|codigoean|||"
       Top             =   4275
       Width           =   1080
@@ -44,11 +124,20 @@ Begin VB.Form frmCodEAN
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   0
       Left            =   165
       MaxLength       =   16
-      TabIndex        =   11
+      TabIndex        =   9
       Tag             =   "Código Forfaits|T|N|||codigoean|codforfait||S|"
       Top             =   4275
       Width           =   900
@@ -56,11 +145,20 @@ Begin VB.Form frmCodEAN
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   290
       Index           =   1
       Left            =   3105
       MaxLength       =   4
-      TabIndex        =   10
+      TabIndex        =   8
       Tag             =   "Variedad|N|N|0|9999|codigoean|codvarie|0000|S|"
       Top             =   4275
       Width           =   540
@@ -70,10 +168,19 @@ Begin VB.Form frmCodEAN
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
       Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   285
       Index           =   0
       Left            =   1170
-      TabIndex        =   9
+      TabIndex        =   7
       Top             =   4275
       Visible         =   0   'False
       Width           =   1815
@@ -83,55 +190,91 @@ Begin VB.Form frmCodEAN
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
       Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   285
       Index           =   1
       Left            =   3735
-      TabIndex        =   8
+      TabIndex        =   6
       Top             =   4275
       Visible         =   0   'False
       Width           =   1815
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   6705
+      Left            =   8865
       TabIndex        =   4
-      Top             =   5340
+      Top             =   9390
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7875
+      Left            =   10035
       TabIndex        =   5
-      Top             =   5355
+      Top             =   9405
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7875
+      Left            =   10035
       TabIndex        =   2
-      Top             =   5340
+      Top             =   9405
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.Frame Frame1 
-      Height          =   555
+      Height          =   690
       Index           =   1
       Left            =   120
       TabIndex        =   0
-      Top             =   5175
-      Width           =   2385
+      Top             =   9135
+      Width           =   3105
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -139,10 +282,10 @@ Begin VB.Form frmCodEAN
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   40
+         Left            =   135
          TabIndex        =   1
          Top             =   240
-         Width           =   2295
+         Width           =   2790
       End
    End
    Begin MSAdodcLib.Adodc adodc1 
@@ -194,30 +337,30 @@ Begin VB.Form frmCodEAN
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmCodEAN.frx":000C
-      Height          =   4410
+      Height          =   8145
       Left            =   135
       TabIndex        =   3
-      Top             =   585
-      Width           =   8955
-      _ExtentX        =   15796
-      _ExtentY        =   7779
+      Top             =   900
+      Width           =   10950
+      _ExtentX        =   19315
+      _ExtentY        =   14367
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -262,77 +405,10 @@ Begin VB.Form frmCodEAN
          EndProperty
       EndProperty
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   6
-      Top             =   0
-      Width           =   9330
-      _ExtentX        =   16457
-      _ExtentY        =   635
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      Style           =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   11
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-      EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   8400
-         TabIndex        =   7
-         Top             =   120
-         Visible         =   0   'False
-         Width           =   1215
-      End
-   End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -489,37 +565,38 @@ Dim b As Boolean
     b = (Modo = 2)
 '    mnOpciones.Enabled = b
     'Buscar
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Ver Todos
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(6).Enabled = False
+    Toolbar1.Buttons(1).Enabled = False
     Me.mnNuevo.Enabled = False
     
 '    b = (b And adodc1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(7).Enabled = False
+    Toolbar1.Buttons(2).Enabled = False
     Me.mnModificar.Enabled = False
     'Eliminar
-    Toolbar1.Buttons(8).Enabled = False
+    Toolbar1.Buttons(3).Enabled = False
     Me.mnEliminar.Enabled = False
     
     'Imprimir
-    Toolbar1.Buttons(11).Enabled = b
+    'Toolbar1.Buttons(11).Enabled = b
+    Toolbar1.Buttons(8).Enabled = False
 End Sub
 
 
 Private Sub BotonVerTodos()
     Select Case Tipo
         Case 0 ' cliente
-            CargaGrid "codclien=" & CodigoActual
+            CargaGrid "codigoean.codclien=" & CodigoActual
         Case 1 ' forfait
-            CargaGrid "codforfait=" & CodigoActual
+            CargaGrid "codigoean.codforfait=" & DBSet(CodigoActual, "T")
         Case 2 ' variedad
-            CargaGrid "codvarie=" & CodigoActual
+            CargaGrid "codigoean.codvarie=" & CodigoActual
     End Select
             
     CadB = ""
@@ -547,7 +624,7 @@ Private Sub BotonBuscar()
     txtAux2(0).Text = ""
     txtAux2(1).Text = ""
 
-    LLamaLineas DataGrid1.Top + 206, 1
+    LLamaLineas DataGrid1.Top + 240, 1
     PonerFoco txtAux(0)
 End Sub
 
@@ -558,6 +635,7 @@ Private Sub LLamaLineas(alto As Single, xModo As Byte)
     txtAux(0).Top = alto
     txtAux(1).Top = alto
     txtAux(2).Top = alto
+    txtAux(3).Top = alto
     txtAux2(0).Top = alto
     txtAux2(1).Top = alto
 End Sub
@@ -617,27 +695,27 @@ End Sub
 
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
-Dim j As Integer
+Dim J As Integer
 Dim Aux As String
 
     If adodc1.Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
+    Cad = ""
     i = 0
     Do
-        j = i + 1
-        i = InStr(j, DatosADevolverBusqueda, "|")
+        J = i + 1
+        i = InStr(J, DatosADevolverBusqueda, "|")
         If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, j, i - j)
-            j = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(j) & "|"
+            Aux = Mid(DatosADevolverBusqueda, J, i - J)
+            J = Val(Aux)
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -690,24 +768,46 @@ Private Sub Form_Load()
     'Icono del formulario
     Me.Icon = frmPpal.Icon
 
+'    With Me.Toolbar1
+'        .HotImageList = frmPpal.imgListComun_OM
+'        .DisabledImageList = frmPpal.imgListComun_BN
+'        .ImageList = frmPpal.imgListComun
+'        'el 1 es separadors
+'        .Buttons(2).Image = 1   'Buscar
+'        .Buttons(3).Image = 2   'Todos
+'        'el 4 i el 5 son separadors
+'        .Buttons(6).Image = 3   'Insertar
+'        .Buttons(7).Image = 4   'Modificar
+'        .Buttons(8).Image = 5   'Borrar
+'        'el 9 i el 10 son separadors
+''        .Buttons(11).Image = 10  'Imprimir
+'        .Buttons(11).Image = 11  'Salir
+'    End With
+
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
         'el 1 es separadors
-        .Buttons(2).Image = 1   'Buscar
-        .Buttons(3).Image = 2   'Todos
-        'el 4 i el 5 son separadors
-        .Buttons(6).Image = 3   'Insertar
-        .Buttons(7).Image = 4   'Modificar
-        .Buttons(8).Image = 5   'Borrar
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Todos
         'el 9 i el 10 son separadors
-'        .Buttons(11).Image = 10  'Imprimir
-        .Buttons(11).Image = 11  'Salir
+        .Buttons(8).Image = 10  'imprimir
     End With
 
+    ' La Ayuda
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
+
+
+
     '## A mano
-    chkVistaPrevia.Value = CheckValueLeer(Name)
+'    chkVistaPrevia.Value = CheckValueLeer(Name)
       
 '    PonerOpcionesMenu  'En funcion del usuario
     
@@ -777,7 +877,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
-    CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
+'    CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
     Screen.MousePointer = vbDefault
     If Modo = 4 Then TerminaBloquear
 End Sub
@@ -797,9 +897,9 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 2
+        Case 5
                 BotonBuscar
-        Case 3
+        Case 6
                 BotonVerTodos
 '        Case 6
 '                BotonAnyadir
@@ -847,32 +947,32 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     Select Case Tipo
         Case 0 ' cliente
-            tots = "S|txtAux(0)|T|Forfait|1750|;S|txtAux2(0)|T|Descripción|2100|;"
-            tots = tots & "S|txtAux(1)|T|Var.|600|;S|txtAux2(1)|T|Descripción|2100|;"
+            tots = "S|txtAux(0)|T|Forfait|1750|;S|txtAux2(0)|T|Descripción|3100|;"
+            tots = tots & "S|txtAux(1)|T|Var.|600|;S|txtAux2(1)|T|Descripción|3100|;"
             tots = tots & "S|txtAux(2)|T|Código EAN|1600|;S|txtAux(3)|T|Ref.Cli.|900|;"
-            Me.DataGrid1.Width = 9700
-            Me.Width = 10300
+            Me.DataGrid1.Width = 11700
+            Me.Width = 12300
             
             
         Case 1 ' forfait
-            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|2400|;"
-            tots = tots & "S|txtAux(1)|T|Var.|600|;S|txtAux2(1)|T|Descripción|2100|;"
+            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|3400|;"
+            tots = tots & "S|txtAux(1)|T|Var.|600|;S|txtAux2(1)|T|Descripción|3100|;"
             tots = tots & "S|txtAux(2)|T|Código EAN|1600|;S|txtAux(3)|T|Ref.Cli.|900|;"
             
-            Me.DataGrid1.Width = 9000
-            Me.Width = 9600
+            Me.DataGrid1.Width = 11000
+            Me.Width = 11600
         
         Case 2 ' variedad
-            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|2400|;"
-            tots = tots & "S|txtAux(1)|T|Forfait|1750|;S|txtAux2(1)|T|Descripción|2100|;"
+            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|3400|;"
+            tots = tots & "S|txtAux(1)|T|Forfait|1750|;S|txtAux2(1)|T|Descripción|3100|;"
             tots = tots & "S|txtAux(2)|T|Código EAN|1600|;S|txtAux(3)|T|Ref.Cli.|900|;"
             
-            Me.DataGrid1.Width = 10200
-            Me.Width = 10800
+            Me.DataGrid1.Width = 12200
+            Me.Width = 12800
 
     End Select
-    Me.Height = 6705
-    arregla tots, DataGrid1, Me
+    Me.Height = 10350 '8145 '6705
+    arregla tots, DataGrid1, Me, 350
    
 '   'Habilitamos modificar y eliminar
 '   Toolbar1.Buttons(7).Enabled = Not adodc1.Recordset.EOF
@@ -923,10 +1023,10 @@ Dim cadReg As String
     End If
 End Sub
 
-' ### [DavidV] 26/04/2006: Activar/desactivar la rueda del ratón.
-Private Sub DataGrid1_GotFocus()
-  WheelHook DataGrid1
-End Sub
-Private Sub DataGrid1_Lostfocus()
-  WheelUnHook
-End Sub
+'' ### [DavidV] 26/04/2006: Activar/desactivar la rueda del ratón.
+'Private Sub DataGrid1_GotFocus()
+'  WheelHook DataGrid1
+'End Sub
+'Private Sub DataGrid1_Lostfocus()
+'  WheelUnHook
+'End Sub

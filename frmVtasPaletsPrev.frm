@@ -1963,8 +1963,8 @@ Dim i As Integer
         Toolbar1.Buttons(2).Enabled = b
         Me.mnModificar.Enabled = b
         'eliminar
-        Toolbar1.Buttons(3).Enabled = (Modo = 2)
-        Me.mnEliminar.Enabled = (Modo = 2)
+        Toolbar1.Buttons(3).Enabled = b '(Modo = 2)
+        Me.mnEliminar.Enabled = b ' (Modo = 2)
             
         b = (Modo = 2)
         'Imprimir
