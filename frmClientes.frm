@@ -384,39 +384,39 @@ Begin VB.Form frmClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label5"
-      Tab(0).Control(1)=   "Label6(0)"
-      Tab(0).Control(2)=   "imgWeb(0)"
-      Tab(0).Control(3)=   "Label9"
-      Tab(0).Control(4)=   "Label29"
-      Tab(0).Control(5)=   "imgZoom(0)"
-      Tab(0).Control(6)=   "imgBuscar(0)"
-      Tab(0).Control(7)=   "Label7"
-      Tab(0).Control(8)=   "Label28"
-      Tab(0).Control(9)=   "Label1(26)"
-      Tab(0).Control(10)=   "imgBuscar(1)"
-      Tab(0).Control(11)=   "imgBuscar(8)"
+      Tab(0).Control(0)=   "FrameDatosDtoAdministracion"
+      Tab(0).Control(1)=   "Text1(22)"
+      Tab(0).Control(2)=   "Text1(18)"
+      Tab(0).Control(3)=   "text2(6)"
+      Tab(0).Control(4)=   "Text1(6)"
+      Tab(0).Control(5)=   "Text1(5)"
+      Tab(0).Control(6)=   "Text1(21)"
+      Tab(0).Control(7)=   "Text1(9)"
+      Tab(0).Control(8)=   "Text1(4)"
+      Tab(0).Control(9)=   "Text1(3)"
+      Tab(0).Control(10)=   "Text1(8)"
+      Tab(0).Control(11)=   "Text1(7)"
       Tab(0).Control(12)=   "Label40"
-      Tab(0).Control(13)=   "Text1(7)"
-      Tab(0).Control(14)=   "Text1(8)"
-      Tab(0).Control(15)=   "Text1(3)"
-      Tab(0).Control(16)=   "Text1(4)"
-      Tab(0).Control(17)=   "Text1(9)"
-      Tab(0).Control(18)=   "Text1(21)"
-      Tab(0).Control(19)=   "Text1(5)"
-      Tab(0).Control(20)=   "Text1(6)"
-      Tab(0).Control(21)=   "text2(6)"
-      Tab(0).Control(22)=   "Text1(18)"
-      Tab(0).Control(23)=   "Text1(22)"
-      Tab(0).Control(24)=   "FrameDatosDtoAdministracion"
+      Tab(0).Control(13)=   "imgBuscar(8)"
+      Tab(0).Control(14)=   "imgBuscar(1)"
+      Tab(0).Control(15)=   "Label1(26)"
+      Tab(0).Control(16)=   "Label28"
+      Tab(0).Control(17)=   "Label7"
+      Tab(0).Control(18)=   "imgBuscar(0)"
+      Tab(0).Control(19)=   "imgZoom(0)"
+      Tab(0).Control(20)=   "Label29"
+      Tab(0).Control(21)=   "Label9"
+      Tab(0).Control(22)=   "imgWeb(0)"
+      Tab(0).Control(23)=   "Label6(0)"
+      Tab(0).Control(24)=   "Label5"
       Tab(0).ControlCount=   25
       TabCaption(1)   =   "Direcciones"
       TabPicture(1)   =   "frmClientes.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame3"
-      Tab(1).Control(1)=   "FrameDatosContacto"
-      Tab(1).Control(2)=   "Frame4"
-      Tab(1).Control(3)=   "Frame5"
+      Tab(1).Control(0)=   "Frame5"
+      Tab(1).Control(1)=   "Frame4"
+      Tab(1).Control(2)=   "FrameDatosContacto"
+      Tab(1).Control(3)=   "Frame3"
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Destinos"
       TabPicture(2)   =   "frmClientes.frx":0044
@@ -444,12 +444,12 @@ Begin VB.Form frmClientes
       TabCaption(4)   =   "Datos Seguros"
       TabPicture(4)   =   "frmClientes.frx":007C
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Label46"
-      Tab(4).Control(1)=   "Label47"
-      Tab(4).Control(2)=   "Label48"
-      Tab(4).Control(3)=   "Text1(34)"
-      Tab(4).Control(4)=   "Text1(35)"
-      Tab(4).Control(5)=   "Text1(36)"
+      Tab(4).Control(0)=   "Text1(36)"
+      Tab(4).Control(1)=   "Text1(35)"
+      Tab(4).Control(2)=   "Text1(34)"
+      Tab(4).Control(3)=   "Label48"
+      Tab(4).Control(4)=   "Label47"
+      Tab(4).Control(5)=   "Label46"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Precios"
       TabPicture(5)   =   "frmClientes.frx":0098
@@ -4051,7 +4051,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, Numreg As Byte
+Dim i As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -4079,9 +4079,9 @@ Dim b As Boolean
 
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
     'DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1

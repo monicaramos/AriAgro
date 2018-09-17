@@ -955,7 +955,7 @@ Private Sub CargaGrid(Optional vSQL As String)
             
             
         Case 1 ' forfait
-            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|3400|;"
+            tots = "S|txtAux(0)|T|Cliente|900|;S|txtAux2(0)|T|Nombre|3200|;"
             tots = tots & "S|txtAux(1)|T|Var.|600|;S|txtAux2(1)|T|Descripción|3100|;"
             tots = tots & "S|txtAux(2)|T|Código EAN|1600|;S|txtAux(3)|T|Ref.Cli.|900|;"
             
@@ -963,7 +963,7 @@ Private Sub CargaGrid(Optional vSQL As String)
             Me.Width = 11600
         
         Case 2 ' variedad
-            tots = "S|txtAux(0)|T|Cliente|700|;S|txtAux2(0)|T|Nombre|3400|;"
+            tots = "S|txtAux(0)|T|Cliente|900|;S|txtAux2(0)|T|Nombre|3200|;"
             tots = tots & "S|txtAux(1)|T|Forfait|1750|;S|txtAux2(1)|T|Descripción|3100|;"
             tots = tots & "S|txtAux(2)|T|Código EAN|1600|;S|txtAux(3)|T|Ref.Cli.|900|;"
             
