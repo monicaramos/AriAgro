@@ -6,23 +6,94 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmManProductos 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Productos"
-   ClientHeight    =   9150
+   ClientHeight    =   11295
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   9555
+   ClientTop       =   30
+   ClientWidth     =   12555
    Icon            =   "frmManProductos.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9150
-   ScaleWidth      =   9555
+   ScaleHeight     =   11295
+   ScaleWidth      =   12555
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   90
+      TabIndex        =   36
+      Top             =   90
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   37
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.TextBox txtAux 
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   6
       Left            =   8820
       MaxLength       =   2
@@ -32,25 +103,24 @@ Begin VB.Form frmManProductos
       Width           =   1095
    End
    Begin TabDlg.SSTab SSTab1 
-      Height          =   3195
+      Height          =   5085
       Left            =   90
-      TabIndex        =   18
-      Top             =   5070
-      Width           =   9295
-      _ExtentX        =   16404
-      _ExtentY        =   5636
+      TabIndex        =   16
+      Top             =   5565
+      Width           =   12300
+      _ExtentX        =   21696
+      _ExtentY        =   8969
       _Version        =   393216
       Tabs            =   2
       TabsPerRow      =   4
       TabHeight       =   520
-      ForeColor       =   12582912
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   9.75
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       TabCaption(0)   =   "Insecticidas"
@@ -77,17 +147,58 @@ Begin VB.Form frmManProductos
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00C00000&
-         Height          =   2520
+         Height          =   4545
          Left            =   -74910
-         TabIndex        =   30
+         TabIndex        =   27
          Top             =   390
-         Width           =   9055
+         Width           =   12055
+         Begin VB.Frame FrameToolAux1 
+            Height          =   645
+            Left            =   135
+            TabIndex        =   40
+            Top             =   0
+            Width           =   1905
+            Begin MSComctlLib.Toolbar ToolAux 
+               Height          =   330
+               Index           =   1
+               Left            =   135
+               TabIndex        =   41
+               Top             =   180
+               Width           =   1530
+               _ExtentX        =   2699
+               _ExtentY        =   582
+               ButtonWidth     =   609
+               ButtonHeight    =   582
+               AllowCustomize  =   0   'False
+               Style           =   1
+               _Version        =   393216
+               BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+                  NumButtons      =   4
+                  BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Nuevo"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Modificar"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Eliminar"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Intercalar"
+                     Object.Tag             =   "2"
+                  EndProperty
+               EndProperty
+            End
+         End
          Begin VB.CheckBox chkAux1 
             BackColor       =   &H80000005&
             Height          =   255
             Index           =   0
             Left            =   5460
-            TabIndex        =   37
+            TabIndex        =   34
             Tag             =   "Es helicida|N|N|0|1|productos_herb|eshelicida|||"
             Top             =   1710
             Visible         =   0   'False
@@ -97,11 +208,20 @@ Begin VB.Form frmManProductos
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   1
             Left            =   450
             MaxLength       =   4
-            TabIndex        =   32
+            TabIndex        =   29
             Tag             =   "Linea|N|N|||productos_herb|numlinea|0000|S|"
             Text            =   "lin"
             Top             =   1725
@@ -112,11 +232,20 @@ Begin VB.Form frmManProductos
             Alignment       =   2  'Center
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   4
             Left            =   3240
             MaxLength       =   15
-            TabIndex        =   35
+            TabIndex        =   32
             Tag             =   "Dosis|T|S|||productos_herb|dosis||N|"
             Text            =   "dosis"
             Top             =   1710
@@ -126,11 +255,20 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux3 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
             Height          =   290
             Index           =   3
             Left            =   2130
             MaxLength       =   40
-            TabIndex        =   34
+            TabIndex        =   31
             Tag             =   "Nombre Comercial|T|N|||productos_herb|nombre||N|"
             Text            =   "nombre"
             Top             =   1710
@@ -141,11 +279,20 @@ Begin VB.Form frmManProductos
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   0
             Left            =   45
             MaxLength       =   3
-            TabIndex        =   31
+            TabIndex        =   28
             Tag             =   "Código|N|N|0|999|productos_herb|codprodu|000|S|"
             Text            =   "cod"
             Top             =   1725
@@ -155,11 +302,20 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux3 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   2
             Left            =   810
             MaxLength       =   40
-            TabIndex        =   33
+            TabIndex        =   30
             Tag             =   "Materia Activa|T|S|||productos_herb|matactiva||N|"
             Text            =   "Materia activa"
             Top             =   1740
@@ -169,49 +325,25 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux3 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   5
             Left            =   4320
             MaxLength       =   40
-            TabIndex        =   36
+            TabIndex        =   33
             Tag             =   "Plagas|T|S|||productos_herb|plagas||N|"
             Text            =   "Plagas"
             Top             =   1710
             Visible         =   0   'False
             Width           =   1080
-         End
-         Begin MSComctlLib.Toolbar ToolAux 
-            Height          =   390
-            Index           =   1
-            Left            =   135
-            TabIndex        =   38
-            Top             =   225
-            Width           =   1530
-            _ExtentX        =   2699
-            _ExtentY        =   688
-            ButtonWidth     =   609
-            ButtonHeight    =   582
-            AllowCustomize  =   0   'False
-            _Version        =   393216
-            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-               NumButtons      =   4
-               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Nuevo"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Modificar"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Eliminar"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Intercalar"
-                  Object.Tag             =   "2"
-               EndProperty
-            EndProperty
          End
          Begin MSAdodcLib.Adodc AdoAux 
             Height          =   375
@@ -263,31 +395,31 @@ Begin VB.Form frmManProductos
          End
          Begin MSDataGridLib.DataGrid DataGridAux 
             Bindings        =   "frmManProductos.frx":0044
-            Height          =   1700
+            Height          =   3400
             Index           =   1
             Left            =   135
-            TabIndex        =   39
-            Top             =   660
-            Width           =   8800
-            _ExtentX        =   15531
-            _ExtentY        =   2990
+            TabIndex        =   35
+            Top             =   705
+            Width           =   11805
+            _ExtentX        =   20823
+            _ExtentY        =   6006
             _Version        =   393216
             AllowUpdate     =   0   'False
             BorderStyle     =   0
             HeadLines       =   1
-            RowHeight       =   15
+            RowHeight       =   19
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
-               Italic          =   0   'False
+               Italic          =   -1  'True
                Strikethrough   =   0   'False
             EndProperty
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -345,20 +477,70 @@ Begin VB.Form frmManProductos
             Strikethrough   =   0   'False
          EndProperty
          ForeColor       =   &H00C00000&
-         Height          =   2520
+         Height          =   4500
          Left            =   90
-         TabIndex        =   19
+         TabIndex        =   17
          Top             =   390
-         Width           =   9085
+         Width           =   12085
+         Begin VB.Frame FrameToolAux0 
+            Height          =   645
+            Left            =   135
+            TabIndex        =   38
+            Top             =   0
+            Width           =   1905
+            Begin MSComctlLib.Toolbar ToolAux 
+               Height          =   330
+               Index           =   0
+               Left            =   135
+               TabIndex        =   39
+               Top             =   180
+               Width           =   1530
+               _ExtentX        =   2699
+               _ExtentY        =   582
+               ButtonWidth     =   609
+               ButtonHeight    =   582
+               AllowCustomize  =   0   'False
+               Style           =   1
+               _Version        =   393216
+               BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+                  NumButtons      =   4
+                  BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Nuevo"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Modificar"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Eliminar"
+                     Object.Tag             =   "2"
+                  EndProperty
+                  BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                     Object.ToolTipText     =   "Intercalar"
+                     Object.Tag             =   "2"
+                  EndProperty
+               EndProperty
+            End
+         End
          Begin VB.TextBox txtAux1 
             Alignment       =   2  'Center
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   7
             Left            =   6720
             MaxLength       =   6
-            TabIndex        =   28
+            TabIndex        =   25
             Tag             =   "CultAu|T|S|||productos_insec|cultivoaut||N|"
             Text            =   "CultAu"
             Top             =   1710
@@ -369,11 +551,20 @@ Begin VB.Form frmManProductos
             Alignment       =   2  'Center
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   6
             Left            =   5550
             MaxLength       =   40
-            TabIndex        =   27
+            TabIndex        =   24
             Tag             =   "PSDias|N|S|||productos_insec|psdias|##0|N|"
             Text            =   "PSDias"
             Top             =   1710
@@ -383,11 +574,20 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux1 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   5
             Left            =   4320
             MaxLength       =   40
-            TabIndex        =   26
+            TabIndex        =   23
             Tag             =   "Plagas|T|S|||productos_insec|plagas||N|"
             Text            =   "Plagas"
             Top             =   1710
@@ -397,11 +597,20 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux1 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   2
             Left            =   840
             MaxLength       =   40
-            TabIndex        =   23
+            TabIndex        =   20
             Tag             =   "Materia Activa|T|S|||productos_insec|matactiva||N|"
             Text            =   "Materia activa"
             Top             =   1710
@@ -412,11 +621,20 @@ Begin VB.Form frmManProductos
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   0
             Left            =   45
             MaxLength       =   3
-            TabIndex        =   20
+            TabIndex        =   18
             Tag             =   "Código|N|N|0|999|productos_insec|codprodu|000|S|"
             Text            =   "cod"
             Top             =   1725
@@ -426,11 +644,20 @@ Begin VB.Form frmManProductos
          Begin VB.TextBox txtAux1 
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   3
             Left            =   1980
             MaxLength       =   40
-            TabIndex        =   24
+            TabIndex        =   21
             Tag             =   "Nombre Comercial|T|N|||productos_insec|nombre||N|"
             Text            =   "nombre"
             Top             =   1710
@@ -441,11 +668,20 @@ Begin VB.Form frmManProductos
             Alignment       =   2  'Center
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   4
             Left            =   3180
             MaxLength       =   15
-            TabIndex        =   25
+            TabIndex        =   22
             Tag             =   "Dosis|T|S|||productos_insec|dosis||N|"
             Text            =   "dosis"
             Top             =   1710
@@ -456,49 +692,25 @@ Begin VB.Form frmManProductos
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   1
             Left            =   450
             MaxLength       =   4
-            TabIndex        =   22
+            TabIndex        =   19
             Tag             =   "Linea|N|N|||productos_insec|numlinea|0000|S|"
             Text            =   "lin"
             Top             =   1725
             Visible         =   0   'False
             Width           =   240
-         End
-         Begin MSComctlLib.Toolbar ToolAux 
-            Height          =   390
-            Index           =   0
-            Left            =   135
-            TabIndex        =   21
-            Top             =   225
-            Width           =   1530
-            _ExtentX        =   2699
-            _ExtentY        =   688
-            ButtonWidth     =   609
-            ButtonHeight    =   582
-            AllowCustomize  =   0   'False
-            _Version        =   393216
-            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-               NumButtons      =   4
-               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Nuevo"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Modificar"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Eliminar"
-                  Object.Tag             =   "2"
-               EndProperty
-               BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-                  Object.ToolTipText     =   "Intercalar"
-                  Object.Tag             =   "2"
-               EndProperty
-            EndProperty
          End
          Begin MSAdodcLib.Adodc AdoAux 
             Height          =   375
@@ -550,31 +762,31 @@ Begin VB.Form frmManProductos
          End
          Begin MSDataGridLib.DataGrid DataGridAux 
             Bindings        =   "frmManProductos.frx":005C
-            Height          =   1700
+            Height          =   3470
             Index           =   0
             Left            =   135
-            TabIndex        =   29
-            Top             =   630
-            Width           =   8800
-            _ExtentX        =   15531
-            _ExtentY        =   2990
+            TabIndex        =   26
+            Top             =   705
+            Width           =   11805
+            _ExtentX        =   20823
+            _ExtentY        =   6112
             _Version        =   393216
             AllowUpdate     =   0   'False
             BorderStyle     =   0
             HeadLines       =   1
-            RowHeight       =   15
+            RowHeight       =   19
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
-               Italic          =   0   'False
+               Italic          =   -1  'True
                Strikethrough   =   0   'False
             EndProperty
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -623,6 +835,15 @@ Begin VB.Form frmManProductos
    End
    Begin VB.CheckBox chkAux 
       BackColor       =   &H80000005&
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   255
       Index           =   0
       Left            =   8490
@@ -636,7 +857,16 @@ Begin VB.Form frmManProductos
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   5
       Left            =   7380
       MaxLength       =   5
@@ -649,7 +879,16 @@ Begin VB.Form frmManProductos
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   4
       Left            =   6270
       MaxLength       =   3
@@ -662,7 +901,16 @@ Begin VB.Form frmManProductos
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   3
       Left            =   5520
       MaxLength       =   3
@@ -676,10 +924,19 @@ Begin VB.Form frmManProductos
       BackColor       =   &H80000018&
       BorderStyle     =   0  'None
       Enabled         =   0   'False
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   2
       Left            =   4140
-      TabIndex        =   17
+      TabIndex        =   15
       Top             =   4950
       Visible         =   0   'False
       Width           =   1275
@@ -687,11 +944,20 @@ Begin VB.Form frmManProductos
    Begin VB.CommandButton btnBuscar 
       Appearance      =   0  'Flat
       Caption         =   "+"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   300
       Index           =   0
       Left            =   3930
       MaskColor       =   &H00000000&
-      TabIndex        =   16
+      TabIndex        =   14
       ToolTipText     =   "Buscar grupo"
       Top             =   4950
       Visible         =   0   'False
@@ -700,7 +966,16 @@ Begin VB.Form frmManProductos
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   2
       Left            =   2490
       MaxLength       =   3
@@ -711,27 +986,54 @@ Begin VB.Form frmManProductos
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   7200
+      Left            =   10170
       TabIndex        =   8
-      Top             =   8475
+      Top             =   10725
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   8310
+      Left            =   11280
       TabIndex        =   9
-      Top             =   8475
+      Top             =   10725
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   1
       Left            =   900
       MaxLength       =   15
@@ -744,7 +1046,16 @@ Begin VB.Form frmManProductos
       Alignment       =   1  'Right Justify
       Appearance      =   0  'Flat
       BorderStyle     =   0  'None
-      Height          =   290
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
       Index           =   0
       Left            =   60
       MaxLength       =   3
@@ -755,30 +1066,30 @@ Begin VB.Form frmManProductos
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmManProductos.frx":0074
-      Height          =   4410
+      Height          =   4545
       Left            =   120
       TabIndex        =   12
-      Top             =   540
-      Width           =   9255
-      _ExtentX        =   16325
-      _ExtentY        =   7779
+      Top             =   945
+      Width           =   12255
+      _ExtentX        =   21616
+      _ExtentY        =   8017
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -825,26 +1136,35 @@ Begin VB.Form frmManProductos
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   8310
-      TabIndex        =   15
-      Top             =   8490
+      Left            =   11295
+      TabIndex        =   13
+      Top             =   10710
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   1
       Left            =   120
       TabIndex        =   10
-      Top             =   8430
+      Top             =   10680
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -852,9 +1172,9 @@ Begin VB.Form frmManProductos
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   40
+         Left            =   45
          TabIndex        =   11
-         Top             =   240
+         Top             =   180
          Width           =   2295
       End
    End
@@ -905,80 +1225,10 @@ Begin VB.Form frmManProductos
       EndProperty
       _Version        =   393216
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   13
-      Top             =   0
-      Width           =   9555
-      _ExtentX        =   16854
-      _ExtentY        =   635
-      ButtonWidth     =   609
-      ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
-      Style           =   1
-      _Version        =   393216
-      BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   12
-         BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-      EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Left            =   7590
-         TabIndex        =   14
-         Top             =   90
-         Visible         =   0   'False
-         Width           =   1215
-      End
-   End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -1071,7 +1321,7 @@ Public CodigoActual As String
 Public DeConsulta As Boolean
 
 Private CadenaConsulta As String
-Private cadB As String
+Private CadB As String
 
 Private WithEvents frmGru As frmManGrupos 'grupos de productos
 Attribute frmGru.VB_VarHelpID = -1
@@ -1120,6 +1370,7 @@ Dim b As Boolean
     
     For i = 0 To txtAux.Count - 1
         txtAux(i).visible = Not b And (Modo <> 5)
+        txtAux(i).BackColor = vbWhite
     Next i
     
     txtAux2(2).visible = Not b And (Modo <> 5)
@@ -1149,25 +1400,25 @@ Dim bAux As Boolean
 
     b = (Modo = 2) Or (Modo = 0)
     'Busqueda
-    Toolbar1.Buttons(2).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Ver Todos
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(6).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b = (b And adodc1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(7).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'Eliminar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     'Imprimir
-    Toolbar1.Buttons(11).Enabled = b
+    Toolbar1.Buttons(8).Enabled = b
     Me.mnImprimir.Enabled = b
     
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
@@ -1182,8 +1433,6 @@ Dim bAux As Boolean
     Next i
     
     
-    
-    
 End Sub
 
 Private Sub BotonAnyadir()
@@ -1191,7 +1440,7 @@ Private Sub BotonAnyadir()
     Dim anc As Single
     
     CargaGrid 'primer de tot carregue tot el grid
-    cadB = ""
+    CadB = ""
     '******************** canviar taula i camp **************************
     If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
         NumF = NuevoCodigo
@@ -1231,7 +1480,7 @@ Private Sub BotonAnyadir()
 End Sub
 
 Private Sub BotonVerTodos()
-    cadB = ""
+    CadB = ""
     CargaGrid ""
     PonerModo 2
 End Sub
@@ -1259,7 +1508,7 @@ Private Sub BotonBuscar()
     Next i
     
     
-    LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.Top + 240, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
 End Sub
 
@@ -1278,7 +1527,7 @@ Private Sub BotonModificar()
     If DataGrid1.Row < 0 Then
         anc = 320
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 545
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top ' 545
     End If
 
     'Llamamos al form
@@ -1350,7 +1599,7 @@ End Sub
 
 
 Private Sub BotonEliminar()
-Dim sql As String
+Dim Sql As String
 Dim temp As Boolean
 
     On Error GoTo Error2
@@ -1366,27 +1615,27 @@ Dim temp As Boolean
     ' ***************************************************************************
     
     '*************** canviar els noms i el DELETE **********************************
-    sql = "¿Seguro que desea eliminar el Producto?"
-    sql = sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
-    sql = sql & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
+    Sql = "¿Seguro que desea eliminar el Producto?"
+    Sql = Sql & vbCrLf & "Código: " & adodc1.Recordset.Fields(0)
+    Sql = Sql & vbCrLf & "Descripción: " & adodc1.Recordset.Fields(1)
     
-    If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
         NumRegElim = adodc1.Recordset.AbsolutePosition
         
         CargarUnProducto CLng(adodc1.Recordset!codprodu), "D"
         
-        sql = "Delete from productos_herb where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute sql
+        Sql = "Delete from productos_herb where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute Sql
         
-        sql = "Delete from productos_insec where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute sql
+        Sql = "Delete from productos_insec where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute Sql
         
-        sql = "Delete from productos where codprodu=" & adodc1.Recordset!codprodu
-        conn.Execute sql
+        Sql = "Delete from productos where codprodu=" & adodc1.Recordset!codprodu
+        conn.Execute Sql
         
         
-        CargaGrid cadB
+        CargaGrid CadB
 '        If CadB <> "" Then
 '            CargaGrid CadB
 '            lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -1455,9 +1704,9 @@ Private Sub cmdAceptar_Click()
 
     Select Case Modo
         Case 1 'BUSQUEDA
-            cadB = ObtenerBusqueda2(Me, BuscaChekc, 1)
-            If cadB <> "" Then
-                CargaGrid cadB
+            CadB = ObtenerBusqueda2(Me, BuscaChekc, 1)
+            If CadB <> "" Then
+                CargaGrid CadB
                 PonerModo 2
 '                lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
                 PonerFocoGrid Me.DataGrid1
@@ -1478,7 +1727,7 @@ Private Sub cmdAceptar_Click()
                     Else
                         BotonAnyadir
                     End If
-                    cadB = ""
+                    CadB = ""
                 End If
             End If
             
@@ -1489,7 +1738,7 @@ Private Sub cmdAceptar_Click()
                     TerminaBloquear
                     i = adodc1.Recordset.Fields(0)
                     PonerModo 2
-                    CargaGrid cadB
+                    CargaGrid CadB
 '                    If CadB <> "" Then
 '                        CargaGrid CadB
 '                        lblIndicador.Caption = "BUSQUEDA: " & PonerContRegistros(Me.adodc1)
@@ -1522,7 +1771,7 @@ Dim V
     
     Select Case Modo
         Case 1 'búsqueda
-            CargaGrid cadB
+            CargaGrid CadB
         Case 3 'insertar
             DataGrid1.AllowAddNew = False
             'CargaGrid
@@ -1580,7 +1829,7 @@ Dim V
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim J As Integer
 Dim Aux As String
@@ -1589,7 +1838,7 @@ Dim Aux As String
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
-    cad = ""
+    Cad = ""
     i = 0
     Do
         J = i + 1
@@ -1597,10 +1846,10 @@ Dim Aux As String
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            cad = cad & adodc1.Recordset.Fields(J) & "|"
+            Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
     Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -1647,16 +1896,15 @@ Private Sub Form_Load()
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
-        'el 1 es separadors
-        .Buttons(2).Image = 1   'Buscar
-        .Buttons(3).Image = 2   'Todos
-        'el 4 i el 5 son separadors
-        .Buttons(6).Image = 3   'Insertar
-        .Buttons(7).Image = 4   'Modificar
-        .Buttons(8).Image = 5   'Borrar
-        'el 9 i el 10 son separadors
-        .Buttons(11).Image = 10  'imprimir
-        .Buttons(12).Image = 11  'Salir
+        'l'1 i el 2 son separadors
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
+        'el 5 i el 6 son separadors
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+        'el 10  son separadors
+        .Buttons(8).Image = 10  'Imprimir
     End With
 
     ' ******* si n'hi han llínies *******
@@ -1690,7 +1938,7 @@ Private Sub Form_Load()
     
     NombreTabla = "productos"
     
-    cadB = ""
+    CadB = ""
     CargaGrid
     PonerCampos
 
@@ -1710,7 +1958,7 @@ Private Sub Form_Load()
     Set dbAriagro = New BaseDatos
     dbAriagro.abrir_MYSQL vConfig.SERVER, vUsu.CadenaConexion, vConfig.User, vConfig.password
 
-
+'    DataGridAux(1).Height = 3470
 End Sub
 
 Private Sub Form_Unload(Cancel As Integer)
@@ -1796,51 +2044,49 @@ End Sub
 
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
-        Case 2
-                mnBuscar_Click
-        Case 3
-                mnVerTodos_Click
-        Case 6
+        Case 1
                 mnNuevo_Click
-        Case 7
+        Case 2
                 mnModificar_Click
-        Case 8
+        Case 3
                 mnEliminar_Click
-        Case 11
+        Case 5
+                mnBuscar_Click
+        Case 6
+                mnVerTodos_Click
+        Case 8
                 mnImprimir_Click
-        Case 12
-                mnSalir_Click
     End Select
 End Sub
 
 Private Sub CargaGrid(Optional vSQL As String)
-    Dim sql As String
+    Dim Sql As String
     Dim tots As String
     
 '    adodc1.ConnectionString = Conn
     If vSQL <> "" Then
-        sql = CadenaConsulta & " AND " & vSQL
+        Sql = CadenaConsulta & " AND " & vSQL
     Else
-        sql = CadenaConsulta
+        Sql = CadenaConsulta
     End If
     '********************* canviar el ORDER BY *********************++
-    sql = sql & " ORDER BY productos.codprodu"
+    Sql = Sql & " ORDER BY productos.codprodu"
     '**************************************************************++
     
-    CargaGridGnral Me.DataGrid1, Me.adodc1, sql, PrimeraVez
+    CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Cód.|500|;S|txtAux(1)|T|Descripción|2100|;"
+    tots = "S|txtAux(0)|T|Código|900|;S|txtAux(1)|T|Descripción|3100|;"
     tots = tots & "S|txtAux(2)|T|Grupo|700|;"
-    tots = tots & "S|btnBuscar(0)|B|||;S|txtAux2(2)|T|Nombre de Grupo|2200|;"
-    tots = tots & "S|txtAux(3)|T|Sigpac|800|;"
-    tots = tots & "S|txtAux(4)|T|Gr.Ret|800|;"
-    tots = tots & "S|txtAux(5)|T|%Epigr|800|;"
+    tots = tots & "S|btnBuscar(0)|B|||;S|txtAux2(2)|T|Nombre de Grupo|3200|;"
+    tots = tots & "S|txtAux(3)|T|Sigpac|1000|;"
+    tots = tots & "S|txtAux(4)|T|Gr.Ret|1000|;"
+    tots = tots & "S|txtAux(5)|T|%Epigr|1000|;"
     tots = tots & "N||||0|;S|chkAux(0)|CB|@|360|;"
     tots = tots & "S|txtAux(6)|T|GG|400|;"
     
     
-    arregla tots, DataGrid1, Me
+    arregla tots, DataGrid1, Me, 350
     
     DataGrid1.ScrollBars = dbgAutomatic
     DataGrid1.Columns(0).Alignment = dbgRight
@@ -1863,11 +2109,11 @@ Dim tots As String
         Case 0 'insecticidas
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;N||||0|;" 'codprodu, numlinea
-            tots = tots & "S|txtAux1(2)|T|Materia Activa|1700|;S|txtAux1(3)|T|Nombre Comercial|1800|;"
-            tots = tots & "S|txtAux1(4)|T|Dosis|900|;"
-            tots = tots & "S|txtAux1(5)|T|Plagas|1900|;S|txtAux1(6)|T|PS Dias|900|;S|txtAux1(7)|T|Cult.Aut|980|;"
+            tots = tots & "S|txtAux1(2)|T|Materia Activa|2700|;S|txtAux1(3)|T|Nombre Comercial|2800|;"
+            tots = tots & "S|txtAux1(4)|T|Dosis|1100|;"
+            tots = tots & "S|txtAux1(5)|T|Plagas|2300|;S|txtAux1(6)|T|PS Dias|1100|;S|txtAux1(7)|T|Cult.Aut|1200|;"
             
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
         
             DataGridAux(0).Columns(4).Alignment = dbgCenter
             DataGridAux(0).Columns(6).Alignment = dbgCenter
@@ -1878,11 +2124,11 @@ Dim tots As String
             'si es visible|control|tipo campo|nombre campo|ancho control|
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;N||||0|;" 'codprodu, numlinea
-            tots = tots & "S|txtAux3(2)|T|Materia Activa|2250|;S|txtAux3(3)|T|Nombre Comercial|2200|;"
-            tots = tots & "S|txtAux3(4)|T|Dosis|900|;"
-            tots = tots & "S|txtAux3(5)|T|Plagas|1900|;N||||0|;S|chkAux1(0)|CB|Helicida|980|;"
+            tots = tots & "S|txtAux3(2)|T|Materia Activa|3250|;S|txtAux3(3)|T|Nombre Comercial|3200|;"
+            tots = tots & "S|txtAux3(4)|T|Dosis|1100|;"
+            tots = tots & "S|txtAux3(5)|T|Plagas|2700|;N||||0|;S|chkAux1(0)|CB|Helicida|980|;"
             
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
         
             DataGridAux(1).Columns(4).Alignment = dbgCenter
         
@@ -1908,7 +2154,7 @@ End Sub
 
 
 Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFocoLin txtAux(Index)
+    ConseguirFoco txtAux(Index), Modo
 End Sub
 
 
@@ -1981,7 +2227,7 @@ End Sub
 Private Function DatosOk() As Boolean
 'Dim Datos As String
 Dim b As Boolean
-Dim sql As String
+Dim Sql As String
 Dim Mens As String
 
 
@@ -2009,7 +2255,7 @@ Dim cadReg As String
 
     If (Modo = 2 Or Modo = 0) Then
         cadReg = PonerContRegistros(Me.adodc1)
-        If cadB = "" Then
+        If CadB = "" Then
             lblIndicador.Caption = cadReg
         Else
             lblIndicador.Caption = "BUSQUEDA: " & cadReg
@@ -2021,9 +2267,9 @@ Private Sub printNou()
     With frmImprimir2
         .cadTabla2 = "sforpa"
         .Informe2 = "rManProductos.rpt"
-        If cadB <> "" Then
+        If CadB <> "" Then
             '.cadRegSelec = Replace(SQL2SF(CadB), "clientes", "clientes_1")
-            .cadRegSelec = SQL2SF(cadB)
+            .cadRegSelec = SQL2SF(CadB)
         Else
             .cadRegSelec = ""
         End If
@@ -2071,7 +2317,7 @@ Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     End If
 End Sub
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
 'Alvançar/Retrocedir els camps en les fleches de desplaçament del teclat.
     KEYdown KeyCode
 End Sub
@@ -2097,39 +2343,39 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim sql As String
-Dim Tabla As String
+Dim Sql As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'insecticidas
-            sql = "SELECT productos_insec.codprodu, productos_insec.numlinea, productos_insec.matactiva, productos_insec.nombre,"
-            sql = sql & " productos_insec.dosis, productos_insec.plagas, productos_insec.psdias, "
-            sql = sql & " productos_insec.cultivoaut "
-            sql = sql & " FROM productos_insec "
+            Sql = "SELECT productos_insec.codprodu, productos_insec.numlinea, productos_insec.matactiva, productos_insec.nombre,"
+            Sql = Sql & " productos_insec.dosis, productos_insec.plagas, productos_insec.psdias, "
+            Sql = Sql & " productos_insec.cultivoaut "
+            Sql = Sql & " FROM productos_insec "
             If enlaza Then
-                sql = sql & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                sql = sql & " WHERE productos_insec.codprodu = '-1'"
+                Sql = Sql & " WHERE productos_insec.codprodu = '-1'"
             End If
-            sql = sql & " ORDER BY productos_insec.numlinea"
+            Sql = Sql & " ORDER BY productos_insec.numlinea"
                
         Case 1 'herbicidas
-            sql = "SELECT productos_herb.codprodu, productos_herb.numlinea, productos_herb.matactiva, productos_herb.nombre,"
-            sql = sql & " productos_herb.dosis, productos_herb.plagas, "
-            sql = sql & " productos_herb.eshelicida,IF(eshelicida=1,'*','') as deshelicida "
-            sql = sql & " FROM productos_herb "
+            Sql = "SELECT productos_herb.codprodu, productos_herb.numlinea, productos_herb.matactiva, productos_herb.nombre,"
+            Sql = Sql & " productos_herb.dosis, productos_herb.plagas, "
+            Sql = Sql & " productos_herb.eshelicida,IF(eshelicida=1,'*','') as deshelicida "
+            Sql = Sql & " FROM productos_herb "
             If enlaza Then
-                sql = sql & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                sql = sql & " WHERE productos_herb.codprodu = '-1'"
+                Sql = Sql & " WHERE productos_herb.codprodu = '-1'"
             End If
-            sql = sql & " ORDER BY productos_herb.numlinea"
+            Sql = Sql & " ORDER BY productos_herb.numlinea"
             
     End Select
     
-    MontaSQLCarga = sql
+    MontaSQLCarga = Sql
 End Function
 
 Private Function ObtenerWhereCab(conW As Boolean) As String
@@ -2257,7 +2503,7 @@ Dim i As Integer
 '    Set frmMens = Nothing
     
     
-    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!numlinea)
+    LineaIntercalada = CInt(Me.AdoAux(Index).Recordset!NumLinea)
        
     NumTabMto = Index
     PonerModo 5, Index
@@ -2404,7 +2650,7 @@ End Sub
 
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim sql As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 
@@ -2443,21 +2689,21 @@ Dim Eliminar As Boolean
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'insecticidas
-            sql = "¿Seguro que desea el insecticida?"
-            sql = sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
-            If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea el insecticida?"
+            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                sql = "DELETE FROM productos_insec "
-                sql = sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = "DELETE FROM productos_insec "
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
         Case 1 'herbicidas
-            sql = "¿Seguro que desea el herbicida?"
-            sql = sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
-            If MsgBox(sql, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea el herbicida?"
+            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!Nombre
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                sql = "DELETE FROM productos_herb "
-                sql = sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = "DELETE FROM productos_herb "
+                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
     End Select
@@ -2465,7 +2711,7 @@ Dim Eliminar As Boolean
     If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
-        conn.Execute sql
+        conn.Execute Sql
         
         EliminarEnProductosGrupo CadenaProductos, CByte(Index)
         
@@ -2573,11 +2819,11 @@ EInsertarLinea:
 End Sub
 
 
-Private Function InsertarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
+Private Function InsertarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim sql As String
-Dim RS As ADODB.Recordset
+Dim Sql As String
+Dim Rs As ADODB.Recordset
 Dim SqlValues As String
 Dim i As Integer
 Dim SQLinsert As String
@@ -2592,15 +2838,15 @@ Dim SQLinsert As String
         InsertarEnProductosGrupo = True
         Exit Function
     Else
-        sql = "select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & adodc1.Recordset!codprodu
+        Sql = "select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & adodc1.Recordset!codprodu
     End If
-    Set RS = New ADODB.Recordset
+    Set Rs = New ADODB.Recordset
     
     SqlValues = ""
     
-    RS.Open sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not RS.EOF
-        SqlValues = SqlValues & "(" & DBSet(RS!codprodu, "N") & ","
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    While Not Rs.EOF
+        SqlValues = SqlValues & "(" & DBSet(Rs!codprodu, "N") & ","
         If Tipo = 0 Then
             For i = 1 To 6
                 If i = 1 Or i = 6 Then
@@ -2620,9 +2866,9 @@ Dim SQLinsert As String
             SqlValues = SqlValues & DBSet(Me.chkAux1(0).Value, "N") & ","
         End If
         SqlValues = Mid(SqlValues, 1, Len(SqlValues) - 1) & "),"
-        RS.MoveNext
+        Rs.MoveNext
     Wend
-    Set RS = Nothing
+    Set Rs = Nothing
 
     If SqlValues <> "" Then
         If Tipo = 0 Then
@@ -2641,11 +2887,11 @@ eInsertarEnProductosGrupo:
 End Function
 
 
-Private Function ModificarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
+Private Function ModificarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim sql As String
-Dim RS As ADODB.Recordset
+Dim Sql As String
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eModificarEnProductosGrupo
 
@@ -2657,25 +2903,25 @@ Dim RS As ADODB.Recordset
 '    If CADENA = "" Then Exit Function
 
     If Tipo = 0 Then
-        sql = "update productos_insec set "
-        sql = sql & "matactiva = " & DBSet(txtAux1(2).Text, "T")
-        sql = sql & ",nombre = " & DBSet(txtAux1(3).Text, "T")
-        sql = sql & ",dosis = " & DBSet(txtAux1(4).Text, "T")
-        sql = sql & ",plagas = " & DBSet(txtAux1(5).Text, "T")
-        sql = sql & ",psdias = " & DBSet(txtAux1(6).Text, "N")
-        sql = sql & ",cultivoaut = " & DBSet(txtAux1(7).Text, "T")
-        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux1(1).Text, "N")
+        Sql = "update productos_insec set "
+        Sql = Sql & "matactiva = " & DBSet(txtAux1(2).Text, "T")
+        Sql = Sql & ",nombre = " & DBSet(txtAux1(3).Text, "T")
+        Sql = Sql & ",dosis = " & DBSet(txtAux1(4).Text, "T")
+        Sql = Sql & ",plagas = " & DBSet(txtAux1(5).Text, "T")
+        Sql = Sql & ",psdias = " & DBSet(txtAux1(6).Text, "N")
+        Sql = Sql & ",cultivoaut = " & DBSet(txtAux1(7).Text, "T")
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux1(1).Text, "N")
     Else
-        sql = "update productos_herb set "
-        sql = sql & "matactiva = " & DBSet(txtAux3(2).Text, "T")
-        sql = sql & ",nombre = " & DBSet(txtAux3(3).Text, "T")
-        sql = sql & ",dosis = " & DBSet(txtAux3(4).Text, "T")
-        sql = sql & ",plagas = " & DBSet(txtAux3(5).Text, "T")
-        sql = sql & ",eshelicida = " & DBSet(chkAux1(0).Value, "N")
-        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux3(1).Text, "N")
+        Sql = "update productos_herb set "
+        Sql = Sql & "matactiva = " & DBSet(txtAux3(2).Text, "T")
+        Sql = Sql & ",nombre = " & DBSet(txtAux3(3).Text, "T")
+        Sql = Sql & ",dosis = " & DBSet(txtAux3(4).Text, "T")
+        Sql = Sql & ",plagas = " & DBSet(txtAux3(5).Text, "T")
+        Sql = Sql & ",eshelicida = " & DBSet(chkAux1(0).Value, "N")
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & " and codprodu <> " & DBSet(Kaki, "N") & " and codprodu <> " & Me.adodc1.Recordset!codprodu & ") and numlinea = " & DBSet(txtAux3(1).Text, "N")
     End If
             
-    conn.Execute sql
+    conn.Execute Sql
     Exit Function
     
 eModificarEnProductosGrupo:
@@ -2684,11 +2930,11 @@ eModificarEnProductosGrupo:
 End Function
 
 
-Private Function EliminarEnProductosGrupo(cadena As String, Tipo As Byte) As Boolean
+Private Function EliminarEnProductosGrupo(CADENA As String, Tipo As Byte) As Boolean
 ' tipo = 0 : insecticidas
 ' tipo = 1 : herbicidas
-Dim sql As String
-Dim RS As ADODB.Recordset
+Dim Sql As String
+Dim Rs As ADODB.Recordset
 
     On Error GoTo eModificarEnProductosGrupo
 
@@ -2697,14 +2943,14 @@ Dim RS As ADODB.Recordset
     If EsKaki(adodc1.Recordset!codprodu) Then Exit Function
 
     If Tipo = 0 Then
-        sql = "delete from productos_insec "
-        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!numlinea
+        Sql = "delete from productos_insec "
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(0).Recordset!NumLinea
     Else
-        sql = "delete from productos_herb "
-        sql = sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!numlinea
+        Sql = "delete from productos_herb "
+        Sql = Sql & " where codprodu in (select codprodu from productos where codgrupo = " & DBSet(Grupo, "N") & ") and codprodu <> " & DBSet(Kaki, "N") & " and numlinea = " & Me.AdoAux(1).Recordset!NumLinea
     End If
             
-    conn.Execute sql
+    conn.Execute Sql
     Exit Function
     
 eModificarEnProductosGrupo:
@@ -2781,8 +3027,8 @@ Private Sub LimpiarCampos()
 End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
-Dim RS As ADODB.Recordset
-Dim sql As String
+Dim Rs As ADODB.Recordset
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -2866,12 +3112,12 @@ Dim CPostal As String, desProvi As String, desPais As String
 End Sub
 
 Private Function EsKaki(Producto As String) As Boolean
-Dim sql As String
+Dim Sql As String
 
     EsKaki = False
     
-    sql = "select codprodukaki from rparam"
-    Kaki = DevuelveValor(sql)
+    Sql = "select codprodukaki from rparam"
+    Kaki = DevuelveValor(Sql)
     If Kaki <> 0 Then
         EsKaki = (Kaki = CLng(Producto))
     End If

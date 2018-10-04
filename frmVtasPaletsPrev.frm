@@ -2386,7 +2386,7 @@ Dim Estado As Integer
                 TotBruto = TotBruto + DBLet(Rs!pesobrut, "N")
                 TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
                         
-                If Estado = 3 Then
+                If Estado = 2 Then
                     IT.ForeColor = vbDarkBlue
                     IT.ListSubItems.item(1).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(2).ForeColor = vbDarkBlue
@@ -2398,7 +2398,7 @@ Dim Estado As Integer
                     IT.ListSubItems.item(8).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(9).ForeColor = vbDarkBlue
                 Else
-                    If Estado = 2 Then
+                    If Estado = 3 Then
                         IT.ForeColor = vbRed
                         IT.ListSubItems.item(1).ForeColor = vbRed
                         IT.ListSubItems.item(2).ForeColor = vbRed
@@ -2445,7 +2445,7 @@ End Sub
 Private Function PaletEnAlbaran(NPalet As String, Optional NPedido As String) As Boolean
 Dim Sql As String
 
-    If ComprobarCero(NPedido) <> "" Then
+    If ComprobarCero(NPedido) <> "0" Then
         Sql = "select numalbar from albaran where numpedid = " & DBSet(NPedido, "N")
         
         PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
@@ -2453,7 +2453,7 @@ Dim Sql As String
         Sql = "select palets.numpedid from palets, albaran where palets.numpalet = " & DBSet(NPalet, "N")
         Sql = Sql & " and palets.numpedid = albaran.numpedid "
         
-        PaletEnAlbaran = (DevuelveValor(Sql) = 0)
+        PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
     End If
 
 End Function

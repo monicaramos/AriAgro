@@ -919,7 +919,6 @@ On Error GoTo Err3
         mvarBDDestino = DBLet(Rs!BDDestino, "T")
 
 
-
         Leer = 0
         
     End If

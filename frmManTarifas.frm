@@ -819,10 +819,10 @@ Private Sub Form_Load()
     End With
 
     ' La Ayuda
-    With Me.ToolbarAyuda
-        .ImageList = frmPpal.imgListComun
-        .Buttons(1).Image = 12
-    End With
+'    With Me.ToolbarAyuda
+'        .ImageList = frmPpal.imgListComun
+'        .Buttons(1).Image = 12
+'    End With
 
 
     '## A mano

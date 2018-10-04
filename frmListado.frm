@@ -4711,14 +4711,14 @@ Dim Sql As String
         
         conn.Execute Sql
         
-        'albaran_palets
-        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_palets "
-        Sql = Sql & "(numalbar,numlinea,numpalet) "
-        Sql = Sql & " select numalbar,numlinea,numpalet "
-        Sql = Sql & " from albaran_palets "
-        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
-        
-        conn.Execute Sql
+'        'albaran_palets
+'        Sql = "insert into " & vParamAplic.BDDestino & ".albaran_palets "
+'        Sql = Sql & "(numalbar,numlinea,numpalet) "
+'        Sql = Sql & " select numalbar,numlinea,numpalet "
+'        Sql = Sql & " from albaran_palets "
+'        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+'
+'        conn.Execute Sql
         
         'albaran_costreal
         Sql = "insert into " & vParamAplic.BDDestino & ".albaran_costreal "
@@ -4788,13 +4788,13 @@ Dim Sql As String
         
         conn.Execute Sql
         
-        'albaran_palets
-        Sql = "update " & vParamAplic.BDDestino & ".albaran_palets dd, albaran_palets ff set "
-        Sql = Sql & "dd.numpalet=ff.numpalet "
-        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
-        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea=ff.numlinea"
-        
-        conn.Execute Sql
+'        'albaran_palets
+'        Sql = "update " & vParamAplic.BDDestino & ".albaran_palets dd, albaran_palets ff set "
+'        Sql = Sql & "dd.numpalet=ff.numpalet "
+'        Sql = Sql & " where dd.numalbar = " & DBSet(Albaran, "N")
+'        Sql = Sql & " and dd.numalbar = ff.numalbar and dd.numlinea=ff.numlinea"
+'
+'        conn.Execute Sql
         
         'albaran_costreal
         Sql = "update " & vParamAplic.BDDestino & ".albaran_costreal dd, albaran_costreal ff set "
@@ -5030,23 +5030,23 @@ Dim Rs As ADODB.Recordset
     
     Set Rs = Nothing
     
-    
-    'albaran_palets
-    Sql = "select * from albaran_palets where numalbar = " & DBSet(Albaran, "N")
-    
-    Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not Rs.EOF
-        'palets
-        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".palets", "numpalet", "numpalet", DBLet(Rs!numpalet, "N"), "N")
-        If Sql = "" Then
-            MsgBox "No existe el palet " & DBLet(Rs!numpalet, "N") & ". Revise.", vbExclamation
-            Exit Function
-        End If
-        Rs.MoveNext
-    Wend
-    
-    Set Rs = Nothing
+'[Monica]26/09/2018: no van a tener palets
+'    'albaran_palets
+'    Sql = "select * from albaran_palets where numalbar = " & DBSet(Albaran, "N")
+'
+'    Set Rs = New ADODB.Recordset
+'    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+'    While Not Rs.EOF
+'        'palets
+'        Sql = DevuelveDesdeBDNew(cAgro, vParamAplic.BDDestino & ".palets", "numpalet", "numpalet", DBLet(Rs!numpalet, "N"), "N")
+'        If Sql = "" Then
+'            MsgBox "No existe el palet " & DBLet(Rs!numpalet, "N") & ". Revise.", vbExclamation
+'            Exit Function
+'        End If
+'        Rs.MoveNext
+'    Wend
+'
+'    Set Rs = Nothing
     
     
     ComprobarReferenciales = True
