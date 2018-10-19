@@ -17,11 +17,31 @@ Begin VB.Form frmVtasPaletsPrev
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame3 
-      Height          =   1095
-      Left            =   12330
-      TabIndex        =   27
-      Top             =   945
-      Width           =   4965
+      Height          =   915
+      Left            =   10035
+      TabIndex        =   28
+      Top             =   45
+      Width           =   6900
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   9
+         Left            =   135
+         MaxLength       =   15
+         TabIndex        =   38
+         Text            =   "Text3"
+         Top             =   450
+         Width           =   1305
+      End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -35,12 +55,12 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   135
+         Left            =   1575
          MaxLength       =   15
-         TabIndex        =   30
+         TabIndex        =   31
          Text            =   "Text3"
          Top             =   450
-         Width           =   1530
+         Width           =   1440
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -55,12 +75,12 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   1710
+         Left            =   3105
          MaxLength       =   15
-         TabIndex        =   29
+         TabIndex        =   30
          Text            =   "Text3"
          Top             =   450
-         Width           =   1530
+         Width           =   1665
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -75,12 +95,30 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   3330
+         Left            =   4995
          MaxLength       =   15
-         TabIndex        =   28
+         TabIndex        =   29
          Text            =   "Text3"
          Top             =   450
-         Width           =   1530
+         Width           =   1755
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Palets"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   210
+         Index           =   2
+         Left            =   135
+         TabIndex        =   39
+         Top             =   180
+         Width           =   1275
       End
       Begin VB.Label Label1 
          Caption         =   "Cajas"
@@ -95,10 +133,10 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   210
          Index           =   14
-         Left            =   135
-         TabIndex        =   33
+         Left            =   1575
+         TabIndex        =   34
          Top             =   180
-         Width           =   1545
+         Width           =   1410
       End
       Begin VB.Label Label1 
          Caption         =   "Peso Bruto"
@@ -113,10 +151,10 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   210
          Index           =   3
-         Left            =   1710
-         TabIndex        =   32
+         Left            =   3105
+         TabIndex        =   33
          Top             =   180
-         Width           =   1500
+         Width           =   1635
       End
       Begin VB.Label Label1 
          Caption         =   "Peso Neto"
@@ -131,10 +169,10 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   210
          Index           =   4
-         Left            =   3330
-         TabIndex        =   31
+         Left            =   4995
+         TabIndex        =   32
          Top             =   180
-         Width           =   1545
+         Width           =   1680
       End
    End
    Begin VB.ComboBox Combo1 
@@ -149,9 +187,9 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   360
       Index           =   1
-      Left            =   4860
+      Left            =   5490
       Style           =   2  'Dropdown List
-      TabIndex        =   24
+      TabIndex        =   25
       Top             =   405
       Width           =   2070
    End
@@ -167,25 +205,25 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   360
       Index           =   0
-      Left            =   7020
+      Left            =   7650
       Style           =   2  'Dropdown List
-      TabIndex        =   22
+      TabIndex        =   23
       Top             =   405
       Width           =   2070
    End
    Begin VB.Frame FrameBotonGnral2 
       Height          =   705
       Left            =   3735
-      TabIndex        =   19
+      TabIndex        =   20
       Top             =   90
-      Width           =   795
+      Width           =   1425
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   180
-         Width           =   510
-         _ExtentX        =   900
+         Width           =   960
+         _ExtentX        =   1693
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -193,9 +231,12 @@ Begin VB.Form frmVtasPaletsPrev
          Style           =   1
          _Version        =   393216
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   1
+            NumButtons      =   2
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Object.ToolTipText     =   "Búsqueda Avanzada"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir Nota"
             EndProperty
          EndProperty
       End
@@ -203,13 +244,13 @@ Begin VB.Form frmVtasPaletsPrev
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   17
+      TabIndex        =   18
       Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -265,9 +306,52 @@ Begin VB.Form frmVtasPaletsPrev
    Begin VB.Frame Frame2 
       Height          =   1110
       Left            =   135
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   945
-      Width           =   12135
+      Width           =   16815
+      Begin VB.TextBox Text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   8
+         Left            =   13005
+         Locked          =   -1  'True
+         MaxLength       =   40
+         TabIndex        =   36
+         Text            =   "Text2"
+         Top             =   450
+         Width           =   3630
+      End
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   8
+         Left            =   12015
+         MaxLength       =   6
+         TabIndex        =   5
+         Tag             =   "Cod.Palet|N|S|||palets|codpalet|||"
+         Text            =   "Text1"
+         Top             =   450
+         Width           =   960
+      End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H80000013&
@@ -328,7 +412,7 @@ Begin VB.Form frmVtasPaletsPrev
          Left            =   9045
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   15
+         TabIndex        =   16
          Text            =   "Text2"
          Top             =   450
          Width           =   2910
@@ -410,16 +494,42 @@ Begin VB.Form frmVtasPaletsPrev
          Left            =   5085
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   11
+         TabIndex        =   12
          Text            =   "Text2"
          Top             =   450
          Width           =   2910
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Tipo Palet"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   1
+         Left            =   12015
+         TabIndex        =   37
+         Top             =   180
+         Width           =   990
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   3
+         Left            =   13050
+         ToolTipText     =   "Buscar Tipo Palet"
+         Top             =   180
+         Width           =   240
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
          Left            =   9090
-         ToolTipText     =   "Buscar Cámara"
+         ToolTipText     =   "Buscar Forfait"
          Top             =   180
          Width           =   240
       End
@@ -437,7 +547,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   255
          Index           =   19
          Left            =   8055
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   180
          Width           =   810
       End
@@ -472,7 +582,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   255
          Index           =   13
          Left            =   1350
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   180
          Width           =   1320
       End
@@ -490,7 +600,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   255
          Index           =   29
          Left            =   4185
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   180
          Width           =   870
       End
@@ -508,7 +618,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   255
          Index           =   6
          Left            =   3060
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   180
          Width           =   675
       End
@@ -516,7 +626,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   240
          Index           =   0
          Left            =   5130
-         ToolTipText     =   "Buscar Palet"
+         ToolTipText     =   "Buscar Variedad"
          Top             =   180
          Width           =   240
       End
@@ -534,7 +644,7 @@ Begin VB.Form frmVtasPaletsPrev
          Height          =   255
          Index           =   28
          Left            =   225
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   180
          Width           =   855
       End
@@ -543,7 +653,7 @@ Begin VB.Form frmVtasPaletsPrev
       Height          =   525
       Index           =   0
       Left            =   120
-      TabIndex        =   7
+      TabIndex        =   8
       Top             =   10395
       Width           =   2175
       Begin VB.Label lblIndicador 
@@ -560,7 +670,7 @@ Begin VB.Form frmVtasPaletsPrev
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   8
+         TabIndex        =   9
          Top             =   180
          Width           =   1755
       End
@@ -579,7 +689,7 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   375
       Left            =   16200
-      TabIndex        =   6
+      TabIndex        =   7
       Top             =   10395
       Width           =   1065
    End
@@ -596,7 +706,7 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   375
       Left            =   15030
-      TabIndex        =   5
+      TabIndex        =   6
       Top             =   10410
       Width           =   1065
    End
@@ -649,9 +759,9 @@ Begin VB.Form frmVtasPaletsPrev
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   16785
-      TabIndex        =   21
-      Top             =   180
+      Left            =   17010
+      TabIndex        =   22
+      Top             =   135
       Width           =   405
       _ExtentX        =   714
       _ExtentY        =   582
@@ -669,7 +779,7 @@ Begin VB.Form frmVtasPaletsPrev
    Begin MSComctlLib.ListView lw1 
       Height          =   7995
       Left            =   135
-      TabIndex        =   26
+      TabIndex        =   27
       Top             =   2115
       Width           =   17115
       _ExtentX        =   30189
@@ -699,7 +809,7 @@ Begin VB.Form frmVtasPaletsPrev
    Begin VB.Image imgAyuda 
       Height          =   240
       Index           =   0
-      Left            =   16965
+      Left            =   17100
       MousePointer    =   4  'Icon
       Tag             =   "-1"
       ToolTipText     =   "Ayuda"
@@ -720,10 +830,10 @@ Begin VB.Form frmVtasPaletsPrev
       Height          =   255
       Index           =   0
       Left            =   2520
-      TabIndex        =   34
+      TabIndex        =   35
       Top             =   10575
       Visible         =   0   'False
-      Width           =   4545
+      Width           =   6390
    End
    Begin VB.Label Label1 
       Caption         =   "Estado"
@@ -738,8 +848,8 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   255
       Index           =   5
-      Left            =   4860
-      TabIndex        =   25
+      Left            =   5490
+      TabIndex        =   26
       Top             =   135
       Width           =   1515
    End
@@ -756,8 +866,8 @@ Begin VB.Form frmVtasPaletsPrev
       EndProperty
       Height          =   255
       Index           =   27
-      Left            =   7020
-      TabIndex        =   23
+      Left            =   7650
+      TabIndex        =   24
       Top             =   135
       Width           =   1515
    End
@@ -1122,6 +1232,7 @@ Dim i As Integer
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
         .Buttons(1).Image = 26 'Busqueda Avanzada
+        .Buttons(2).Image = 28 'Imprimir ticket
     End With
     
     ' La Ayuda
@@ -1151,7 +1262,7 @@ End Sub
 
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 Dim i As Byte
 Dim miRsAux As ADODB.Recordset
     
@@ -1163,8 +1274,8 @@ Dim miRsAux As ADODB.Recordset
     Set miRsAux = New ADODB.Recordset
     
     ' camaras
-    Sql = "Select * from camaras order by codcamara"
-    miRsAux.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    SQL = "Select * from camaras order by codcamara"
+    miRsAux.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     
     Combo1(0).AddItem "Todas"
@@ -1204,6 +1315,8 @@ On Error Resume Next
     
     'limpiamos la condicion si las hubiera
     CadB = ""
+    
+    Label1(0).Caption = ""
     
     
     If Err.Number <> 0 Then Err.Clear
@@ -1254,14 +1367,13 @@ Private Sub frmMCam_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmMen_DatoSeleccionado(CadenaSeleccion As String)
-    Text1(5).Text = CadenaSeleccion
+    Text1(2).Text = CadenaSeleccion
 End Sub
 
 Private Sub frmMPal_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Palets de confecciones
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
-    Text2(3).Text = RecuperaValor(CadenaSeleccion, 3) 'Peso Palet confeccion
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
@@ -1322,6 +1434,17 @@ Dim Cad As String
             frmFor.Show vbModal
             Set frmFor = Nothing
             PonerFoco Text1(4)
+        
+        Case 3 ' tipo de palet
+            indice = 8
+            PonerFoco Text1(8)
+            Set frmMPal = New frmManPaleConf
+            frmMPal.DatosADevolverBusqueda = "0|1|"
+            frmMPal.Show vbModal
+            Set frmMPal = Nothing
+            PonerFoco Text1(indice)
+
+        
         
     End Select
     
@@ -1395,15 +1518,28 @@ Dim campo2 As Integer
         Case "Nombre Forfait", "Nombre Forfait v"
             nomColumna = "nomconfe"
             campo2 = 7
+            
+        '[Monica]10/10/2018: añadido
+        Case "Calibre", "Calibre v"
+            nomColumna = "nomcalib"
+            campo2 = 8
+        Case "Tipo Palet", "Tipo Palet v"
+            nomColumna = "nompalet"
+            campo2 = 9
+        Case "Categori", "Categori v"
+            nomColumna = "categori"
+            campo2 = 10
+            
+            
         Case "Cajas", "Cajas v"
             nomColumna = "numcajas"
-            campo2 = 8
+            campo2 = 11 '8
         Case "Peso Bruto", "Peso Bruto v"
             nomColumna = "pesobrut"
-            campo2 = 9
+            campo2 = 12 '9
         Case "Peso Neto", "Peso Neto v"
             nomColumna = "pesoneto"
-            campo2 = 10
+            campo2 = 13 '10
     End Select
     
     If campo2 = columna Then
@@ -1431,7 +1567,7 @@ Dim frmPal As frmVtasPalets
     
     Set frmPal = New frmVtasPalets
     
-    frmPal.DatosADevolverBusqueda = lw1.SelectedItem.Text
+    frmPal.DatosADevolverBusqueda = lw1.SelectedItem.Tag 'lw1.SelectedItem.Text
     frmPal.Show vbModal
     
     Set frmPal = Nothing
@@ -1440,7 +1576,50 @@ End Sub
 
 Private Sub lw1_ItemClick(ByVal item As MSComctlLib.ListItem)
     lblIndicador.Caption = PonerContRegistrosLw(lw1, item)
+    
+    VisualizarEstadoPedido
+    
 End Sub
+
+Private Sub VisualizarEstadoPedido()
+
+    If lw1.ListItems Is Nothing Or lw1.ListItems.Count = 0 Then Exit Sub
+
+    Label1(0).visible = True
+
+    If lw1.SelectedItem.SubItems(2) <> 0 Then
+        Label1(0).Caption = EstadoPedido(lw1.SelectedItem.SubItems(2))
+    Else
+        Label1(0).Caption = ""
+    End If
+    DoEvents
+    Me.Refresh
+
+End Sub
+
+Private Function EstadoPedido(Pedido As String) As String
+Dim SQL As String
+Dim vResult As String
+Dim PaletsAsoc As String
+Dim TotPalet As String
+
+    SQL = "select count(*) from palets where numpedid = " & DBSet(Pedido, "N")
+    PaletsAsoc = DevuelveValor(SQL)
+    
+    SQL = "select totpalet from pedidos where numpedid = " & DBSet(Pedido, "N")
+    TotPalet = DevuelveValor(SQL)
+    
+    vResult = ""
+    If CCur(PaletsAsoc) = CCur(TotPalet) Then
+        vResult = "Pedido completo"
+    Else
+        vResult = "Faltan " & CCur(TotPalet) - CCur(PaletsAsoc) & " palets de los " & TotPalet & " para completar el pedido "
+    End If
+    
+    EstadoPedido = vResult
+
+
+End Function
 
 Private Sub mnEliminar_Click()
     If Modo = 5 Then 'Eliminar lineas de Pedido
@@ -1454,10 +1633,24 @@ End Sub
 Private Sub mnImprimir_Click()
 'Imprimir Factura
     
+    If lw1.SelectedItem Is Nothing Then Exit Sub
+    
     If lw1.SelectedItem = 0 Then Exit Sub
     
     BotonImprimir
 End Sub
+
+Private Sub mnImprimir2_Click()
+'Imprimir Factura
+    
+    If lw1.SelectedItem Is Nothing Then Exit Sub
+    
+    If lw1.SelectedItem = 0 Then Exit Sub
+    
+    BotonImprimir2
+End Sub
+
+
 
 Private Sub mnBusquedaAvanzada_Click()
 Dim frmPal As frmVtasPalets
@@ -1504,15 +1697,15 @@ End Sub
 
 Private Function BloqueaAlbxFac() As Boolean
 'bloquea todos los albaranes de la factura
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EBloqueaAlb
     
     BloqueaAlbxFac = False
     'bloquear cabecera albaranes x factura
-    Sql = "select * FROM scafac1 "
-    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    SQL = "select * FROM scafac1 "
+    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute SQL, , adCmdText
     BloqueaAlbxFac = True
 
 EBloqueaAlb:
@@ -1522,15 +1715,15 @@ End Function
 
 Private Function BloqueaLineasFac() As Boolean
 'bloquea todas las lineas de la factura
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EBloqueaLin
 
     BloqueaLineasFac = False
     'bloquear cabecera albaranes x factura
-    Sql = "select * FROM slifac "
-    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    SQL = "select * FROM slifac "
+    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute SQL, , adCmdText
     BloqueaLineasFac = True
 
 EBloqueaLin:
@@ -1581,7 +1774,7 @@ End Sub
 Private Sub Text1_LostFocus(Index As Integer)
 Dim devuelve As String
 Dim cadMen As String
-Dim Sql As String
+Dim SQL As String
         
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
         
@@ -1625,7 +1818,7 @@ Dim cadAux As String
     CadB = ObtenerBusqueda(Me) ' antes obtenerbusqueda3(me,false)
         
     nomColumna = "fechaconf"
-    columna = 11 ' 1
+    columna = 14 ' 11 ' 1
     Orden = 1
     
     CargaListview nomColumna, CadB, False
@@ -1638,7 +1831,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, Numreg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -1686,7 +1879,7 @@ Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
 'la cabecera del Pedido
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EDatosOK
 
@@ -1748,9 +1941,9 @@ Dim Sql As String
     
     'comprobamos que el numero de pedido existe si no es nulo
     If b And Text1(5).Text <> "" Then
-        Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", Text1(5), "N")
-        If Sql = "" Then
+        SQL = ""
+        SQL = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", Text1(5), "N")
+        If SQL = "" Then
             MsgBox "El número de pedido no existe en la tabla de pedidos. Reintroduzca.", vbExclamation
             Text1(5).Text = ""
             b = False
@@ -1823,12 +2016,14 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
         Case 1
            mnBusquedaAvanzada_Click
+        Case 2
+           mnImprimir2_Click
     End Select
 End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim Sql As String, LEtra As String
+Dim SQL As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
     
@@ -1842,16 +2037,16 @@ Dim vTipoMov As CTiposMov
 
     'Eliminar en tablas de factura de Ariges
     '------------------------------------------
-    Sql = " " & ObtenerWhereCP(True)
+    SQL = " " & ObtenerWhereCP(True)
 
     'Lineas de calibres (palets_calibre)
-    conn.Execute "Delete from palets_calibre " & Sql
+    conn.Execute "Delete from palets_calibre " & SQL
 
     'Lineas de variedades
-    conn.Execute "Delete from palets_variedad " & Sql
+    conn.Execute "Delete from palets_variedad " & SQL
     
     'Cabecera de palets (palets)
-    conn.Execute "Delete from " & NombreTabla & Sql
+    conn.Execute "Delete from " & NombreTabla & SQL
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
@@ -1875,7 +2070,7 @@ FinEliminar:
 End Function
 
 Private Function EliminarLinea() As Boolean
-Dim Sql As String, LEtra As String
+Dim SQL As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
     
@@ -1889,14 +2084,14 @@ Dim vTipoMov As CTiposMov
 
     'Eliminar en tablas de paltes_variedad y palets_calibre
     '------------------------------------------
-    Sql = " where numpalet = " & Data3.Recordset.Fields(0)
-    Sql = Sql & " and numlinea = " & Data3.Recordset.Fields(1)
+    SQL = " where numpalet = " & Data3.Recordset.Fields(0)
+    SQL = SQL & " and numlinea = " & Data3.Recordset.Fields(1)
 
     'Lineas de calibres (palets_calibre)
-    conn.Execute "Delete from palets_calibre " & Sql
+    conn.Execute "Delete from palets_calibre " & SQL
 
     'Lineas de variedades
-    conn.Execute "Delete from palets_variedad " & Sql
+    conn.Execute "Delete from palets_variedad " & SQL
     
     b = True
     
@@ -1924,17 +2119,16 @@ End Sub
 
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim Sql As String
+Dim SQL As String
 
     On Error Resume Next
     
-    Sql = " numpalet= " & lw1.SelectedItem
-    If conWhere Then Sql = " WHERE " & Sql
-    ObtenerWhereCP = Sql
+    SQL = " numpalet= " & lw1.SelectedItem
+    If conWhere Then SQL = " WHERE " & SQL
+    ObtenerWhereCP = SQL
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
-
 
 
 
@@ -1971,6 +2165,13 @@ Dim i As Integer
         Toolbar1.Buttons(8).Enabled = b
         Me.mnImprimir.Enabled = b
 
+
+        '
+        b = (Modo = 2) And vParamAplic.Cooperativa = 18
+        'Imprimir2
+        Toolbar5.Buttons(2).Enabled = b
+
+
 End Sub
 
 
@@ -1984,7 +2185,7 @@ Dim cadselect As String 'select para insertar en tabla temporal
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
-Dim Sql As String
+Dim SQL As String
 
     If lw1.SelectedItem = 0 Then
         MsgBox "Debe seleccionar un Palet para Imprimir.", vbInformation
@@ -2019,10 +2220,74 @@ Dim Sql As String
     cadParam = cadParam & "|pImprimeBarras=""1""|"
     numParam = numParam + 1
     
-    Sql = ""
-    Sql = ClientePalet(lw1.SelectedItem)
+    SQL = ""
+    SQL = ClientePalet(lw1.SelectedItem)
     
-    cadParam = cadParam & "|pCliente=""" & Trim(Sql) & """|"
+    cadParam = cadParam & "|pCliente=""" & Trim(SQL) & """|"
+    numParam = numParam + 1
+   
+    If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
+     
+     With frmImprimir
+            .FormulaSeleccion = cadFormula
+            .OtrosParametros = cadParam
+            .NumeroParametros = numParam
+            .SoloImprimir = False
+            .EnvioEMail = False
+            .ConSubInforme = True
+            .Opcion = 0
+            .Titulo = "Impresión de Palet"
+            .Show vbModal
+    End With
+End Sub
+
+Private Sub BotonImprimir2()
+Dim cadFormula As String
+Dim cadParam As String
+Dim numParam As Byte
+Dim cadselect As String 'select para insertar en tabla temporal
+Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
+Dim nomDocu As String 'Nombre de Informe rpt de crystal
+Dim devuelve As String
+Dim SQL As String
+
+    If lw1.SelectedItem = 0 Then
+        MsgBox "Debe seleccionar un Palet para Imprimir.", vbInformation
+        Exit Sub
+    End If
+    
+    cadFormula = ""
+    cadParam = ""
+    cadselect = ""
+    numParam = 0
+    
+    '===================================================
+    '============ PARAMETROS ===========================
+    indRPT = 122 'Impresion de Palet
+    If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then Exit Sub
+      
+    'Nombre fichero .rpt a Imprimir
+    frmImprimir.NombreRPT = nomDocu
+        
+    '===================================================
+    '================= FORMULA =========================
+    'Cadena para seleccion Nº de palet
+    '---------------------------------------------------
+    If lw1.SelectedItem <> "" Then
+        'Nº palet
+        devuelve = "{" & NombreTabla & ".numpalet}=" & Val(lw1.SelectedItem)
+        If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
+        devuelve = "numpalet = " & Val(lw1.SelectedItem)
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
+    End If
+    
+    cadParam = cadParam & "|pImprimeBarras=""1""|"
+    numParam = numParam + 1
+    
+    SQL = ""
+    SQL = ClientePalet(lw1.SelectedItem)
+    
+    cadParam = cadParam & "|pCliente=""" & Trim(SQL) & """|"
     numParam = numParam + 1
    
     If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
@@ -2043,16 +2308,16 @@ End Sub
 
 Private Sub BotonImprimirTicket()
 Dim MIPATH As String
-Dim cadImpresion As String, Sql As String
+Dim cadImpresion As String, SQL As String
 Dim NomImpre As String
 Dim NomImpTi As String
 Dim bImpre As Boolean
 
     cadImpresion = "{scafac.codtipom}='" & Text1(1).Text & "' and {scafac.numfactu}=" & Text1(0).Text
-    Sql = cadImpresion & " and {scafac.fecfactu}=" & DBSet(Text1(2).Text, "F")
+    SQL = cadImpresion & " and {scafac.fecfactu}=" & DBSet(Text1(2).Text, "F")
     cadImpresion = cadImpresion & " and {scafac.fecfactu}=Date(" & Year(CDate(Text1(2).Text)) & "," & Month(CDate(Text1(2).Text)) & "," & Day(CDate(Text1(2).Text)) & ")"
     
-    If Not HayRegParaInforme("scafac", Sql) Then Exit Sub
+    If Not HayRegParaInforme("scafac", SQL) Then Exit Sub
     
 '    'Obtener que terminal es
 '     'Terminal con el que trabajaremos, leemos el nombre del ordenador
@@ -2148,18 +2413,18 @@ End Function
 
 Private Function ClientePalet(Palet As String) As String
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo eClientePalet
 
     ClientePalet = ""
-    Sql = "select pedidos.codclien, clientes.nomclien from palets, pedidos, clientes "
-    Sql = Sql & " where palets.numpalet = " & DBSet(Palet, "N")
-    Sql = Sql & " and palets.numpedid = pedidos.numpedid "
-    Sql = Sql & " and pedidos.codclien = clientes.codclien "
+    SQL = "select pedidos.codclien, clientes.nomclien from palets, pedidos, clientes "
+    SQL = SQL & " where palets.numpalet = " & DBSet(Palet, "N")
+    SQL = SQL & " and palets.numpedid = pedidos.numpedid "
+    SQL = SQL & " and pedidos.codclien = clientes.codclien "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
     If Not Rs.EOF Then
         ClientePalet = "Cliente : " & Format(DBLet(Rs.Fields(0).Value, "N"), "000000") & " " & DBLet(Rs.Fields(1).Value, "T")
@@ -2206,30 +2471,30 @@ Private Sub CargarColumnas()
     End If
     If columna = 4 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Variedad", 1300, 1
+            lw1.ColumnHeaders.Add , , "Variedad", 0 '1300, 1
         Else
-            lw1.ColumnHeaders.Add , , "Variedad v", 1300, 1
+            lw1.ColumnHeaders.Add , , "Variedad v", 0 ' 1300, 1
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Variedad", 1300, 1
+        lw1.ColumnHeaders.Add , , "Variedad", 0 '1300, 0
     End If
     If columna = 5 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Nombre Variedad", 2700, 0
+            lw1.ColumnHeaders.Add , , "Nombre Variedad", 2500, 0 ', 2700, 0
         Else
-            lw1.ColumnHeaders.Add , , "Nombre Variedad v", 2700, 0
+            lw1.ColumnHeaders.Add , , "Nombre Variedad v", 2500, 0 ', 2700, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Nombre Variedad", 2700, 0
+        lw1.ColumnHeaders.Add , , "Nombre Variedad", 2500, 0
     End If
     If columna = 6 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Forfait", 1400, 0
+            lw1.ColumnHeaders.Add , , "Forfait", 0 '1400, 0
         Else
-            lw1.ColumnHeaders.Add , , "Forfait v", 1400, 0
+            lw1.ColumnHeaders.Add , , "Forfait v", 0 '1400, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Forfait", 1400, 0
+        lw1.ColumnHeaders.Add , , "Forfait", 0 '1400, 0
     End If
     If columna = 7 Then
         If Orden = 0 Then
@@ -2240,34 +2505,67 @@ Private Sub CargarColumnas()
     Else
         lw1.ColumnHeaders.Add , , "Nombre Forfait", 2500, 0
     End If
+    
+    
     If columna = 8 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Cajas", 1400, 1
+            lw1.ColumnHeaders.Add , , "Calibre", 1400, 0
         Else
-            lw1.ColumnHeaders.Add , , "Cajas v", 1400, 1
+            lw1.ColumnHeaders.Add , , "Calibre v", 1400, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Cajas", 1500, 1
+        lw1.ColumnHeaders.Add , , "Calibre", 1400, 0
     End If
+    
     If columna = 9 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Peso Bruto", 1700, 1
+            lw1.ColumnHeaders.Add , , "Tipo Palet", 1800, 0
         Else
-            lw1.ColumnHeaders.Add , , "Peso Bruto v", 1700, 1
+            lw1.ColumnHeaders.Add , , "Tipo Palet v", 1800, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Peso Bruto", 1700, 1
+        lw1.ColumnHeaders.Add , , "Tipo Palet", 1800, 0
     End If
+    
     If columna = 10 Then
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Peso Neto", 1700, 1
+            lw1.ColumnHeaders.Add , , "Cat", 600, 0
         Else
-            lw1.ColumnHeaders.Add , , "Peso Neto v", 1700, 1
+            lw1.ColumnHeaders.Add , , "Cat", 600, 0
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Peso Neto", 1700, 1
+        lw1.ColumnHeaders.Add , , "Cat", 600, 0
     End If
-    If columna = 11 Then
+    
+    
+    If columna = 11 Then ' 8
+        If Orden = 0 Then
+            lw1.ColumnHeaders.Add , , "Cajas", 1000, 1 ' antes 1400
+        Else
+            lw1.ColumnHeaders.Add , , "Cajas v", 1000, 1 ' antes 1400
+        End If
+    Else
+        lw1.ColumnHeaders.Add , , "Cajas", 1000, 1 ' antes 1400
+    End If
+    If columna = 12 Then '9
+        If Orden = 0 Then
+            lw1.ColumnHeaders.Add , , "Peso Bruto", 1500, 1 ' antes 1700
+        Else
+            lw1.ColumnHeaders.Add , , "Peso Bruto v", 1500, 1
+        End If
+    Else
+        lw1.ColumnHeaders.Add , , "Peso Bruto", 1500, 1
+    End If
+    If columna = 13 Then '10
+        If Orden = 0 Then
+            lw1.ColumnHeaders.Add , , "Peso Neto", 1500, 1 ' antes 1700
+        Else
+            lw1.ColumnHeaders.Add , , "Peso Neto v", 1500, 1
+        End If
+    Else
+        lw1.ColumnHeaders.Add , , "Peso Neto", 1500, 1
+    End If
+    If columna = 14 Then '11
         If Orden = 0 Then
             lw1.ColumnHeaders.Add , , "Fecha", 0, 1
         Else
@@ -2288,7 +2586,7 @@ Private Sub CargaListview(scolumna1 As String, cadwhere As String, Refrescar As 
 Dim ItmX As ListItem
 Dim CampoOrden As String
 Dim Descen As String
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 Dim IT As ListItem
 Dim TotalArray As Long
@@ -2296,6 +2594,7 @@ Dim TotalArray As Long
 Dim TotCajas As Long
 Dim TotBruto As Long
 Dim TotNeto As Long
+Dim TotPalet As Long
 Dim Estado As Integer
 
 
@@ -2306,26 +2605,34 @@ Dim Estado As Integer
         DoEvents
     End If
 
-    Sql = "Select palets.numpalet, palets.fechaconf fecha, palets.numpedid, palets_variedad.codvarie, variedades.nomvarie,  "
-    Sql = Sql & " palets_variedad.codforfait, forfaits.nomconfe, "
-    Sql = Sql & " palets_variedad.numcajas, palets_variedad.pesobrut, palets_variedad.pesoneto "
-    Sql = Sql & ", concat(year(palets.fechaconf),right(concat('00',month(palets.fechaconf)),2),right(concat('00',day(palets.fechaconf)),2)) fechaconf"
-    Sql = Sql & " FROM ((palets left join palets_variedad on palets.numpalet = palets_variedad.numpalet) "
-    Sql = Sql & " LEFT JOIN variedades ON palets_variedad.codvarie = variedades.codvarie)"
-    Sql = Sql & " LEFT JOIN forfaits ON palets_variedad.codforfait = forfaits.codforfait "
+    SQL = "Select palets.numpalet, palets.fechaconf fecha, palets.numpedid, palets_variedad.codvarie, variedades.nomvarie,  "
+    SQL = SQL & " palets_variedad.codforfait, forfaits.nomconfe, "
+    SQL = SQL & " calibres.nomcalib , confpale.nompalet, palets_variedad.categori, "
+    SQL = SQL & " palets_variedad.numcajas, palets_variedad.pesobrut, palets_variedad.pesoneto "
+    SQL = SQL & ", concat(year(palets.fechaconf),right(concat('00',month(palets.fechaconf)),2),right(concat('00',day(palets.fechaconf)),2)) fechaconf"
+    SQL = SQL & " FROM (((((palets left join palets_variedad on palets.numpalet = palets_variedad.numpalet) "
+    SQL = SQL & " LEFT JOIN palets_calibre ON palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea) "
+    SQL = SQL & " LEFT JOIN variedades ON palets_variedad.codvarie = variedades.codvarie)"
+    SQL = SQL & " LEFT JOIN calibres ON palets_calibre.codvarie = calibres.codvarie and palets_calibre.codcalib = calibres.codcalib) "
+    SQL = SQL & " LEFT JOIN forfaits ON palets_variedad.codforfait = forfaits.codforfait) "
+    SQL = SQL & " LEFT JOIN confpale ON palets.codpalet = confpale.codpalet "
+    SQL = SQL & " where (1=1) "
     
-    Sql = Sql & " where (1=1) "
+    If cadwhere <> "" Then SQL = SQL & " and " & cadwhere
     
-    If cadwhere <> "" Then Sql = Sql & " and " & cadwhere
-    
-    If FiltroCamara <> "" Then Sql = Sql & " and " & FiltroCamara
+    If FiltroCamara <> "" Then SQL = SQL & " and " & FiltroCamara
     
     If scolumna1 <> "" Then
-        Sql = Sql & " order by "
-        If scolumna1 <> "" Then Sql = Sql & scolumna1
+        SQL = SQL & " order by "
+        If scolumna1 <> "" Then SQL = SQL & scolumna1
 
-        If Orden = 1 Then Sql = Sql & " desc "
+        If Orden = 1 Then SQL = SQL & " desc "
+    
+        SQL = SQL & ", numpalet "
+    
     End If
+
+
 
     If Refrescar Then
         If Orden = 0 Then
@@ -2335,7 +2642,7 @@ Dim Estado As Integer
         End If
         Orden = lw1.SortOrder
         If columna = 2 Then
-            lw1.SortKey = 10
+            lw1.SortKey = 13 '10
         Else
             lw1.SortKey = columna - 1
         End If
@@ -2350,9 +2657,17 @@ Dim Estado As Integer
         TotCajas = 0
         TotBruto = 0
         TotNeto = 0
+        TotPalet = 0
         
         Set Rs = New ADODB.Recordset
-        Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+        Dim i As Long
+        i = 0
+        
+        Dim PaletAnt As Long
+        PaletAnt = 0
+        
+        
         While Not Rs.EOF
             If PaletEnAlbaran(DBLet(Rs!numpalet, "T"), DBLet(Rs!numpedid, "T")) Then
                 Estado = 3
@@ -2373,19 +2688,33 @@ Dim Estado As Integer
                 IT.SubItems(2) = Format(DBLet(Rs!numpedid, "N"), "0000000")
                 IT.SubItems(3) = Format(DBLet(Rs!codvarie, "N"), "000000")
                 IT.SubItems(4) = DBLet(Rs!nomvarie, "T")
-                IT.ListSubItems.item(4).ToolTipText = DBLet(Rs!nomvarie, "T")
                 IT.SubItems(5) = DBLet(Rs!codforfait, "T")
                 IT.SubItems(6) = DBLet(Rs!nomconfe, "T")
-                IT.ListSubItems.item(6).ToolTipText = DBLet(Rs!nomconfe, "T")
-                IT.SubItems(7) = Format(DBLet(Rs!NumCajas, "N"), "###,###,###,##0")
-                IT.SubItems(8) = Format(DBLet(Rs!pesobrut, "N"), "###,###,###,##0")
-                IT.SubItems(9) = Format(DBLet(Rs!Pesoneto, "N"), "###,###,###,##0")
-                IT.SubItems(10) = DBLet(Rs!fechaconf, "T")
+    
+                IT.SubItems(7) = DBLet(Rs!nomcalib, "T")
+                IT.SubItems(8) = DBLet(Rs!nompalet, "T")
+                IT.SubItems(9) = DBLet(Rs!categori, "T")
+                If PaletAnt <> DBLet(Rs!numpalet, "N") Then
+                    IT.SubItems(10) = Format(DBLet(Rs!NumCajas, "N"), "###,###,###,##0") ' antes 7
+                    IT.SubItems(11) = Format(DBLet(Rs!pesobrut, "N"), "###,###,###,##0") ' antes 8
+                    IT.SubItems(12) = Format(DBLet(Rs!Pesoneto, "N"), "###,###,###,##0") ' antes 9
+                
+                
+                    TotCajas = TotCajas + DBLet(Rs!NumCajas, "N")
+                    TotBruto = TotBruto + DBLet(Rs!pesobrut, "N")
+                    TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
+                    
+                    PaletAnt = DBLet(Rs!numpalet, "T")
+                    
+                    TotPalet = TotPalet + 1
+                Else
+                    IT.SubItems(10) = ""
+                    IT.SubItems(11) = ""
+                    IT.SubItems(12) = ""
+                End If
+                IT.SubItems(13) = DBLet(Rs!fechaconf, "T") ' antes 10
                         
-                TotCajas = TotCajas + DBLet(Rs!NumCajas, "N")
-                TotBruto = TotBruto + DBLet(Rs!pesobrut, "N")
-                TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
-                        
+                
                 If Estado = 2 Then
                     IT.ForeColor = vbDarkBlue
                     IT.ListSubItems.item(1).ForeColor = vbDarkBlue
@@ -2397,6 +2726,10 @@ Dim Estado As Integer
                     IT.ListSubItems.item(7).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(8).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(9).ForeColor = vbDarkBlue
+                    '[Monica]10/10/2018: añadido
+                    IT.ListSubItems.item(10).ForeColor = vbDarkBlue
+                    IT.ListSubItems.item(11).ForeColor = vbDarkBlue
+                    IT.ListSubItems.item(12).ForeColor = vbDarkBlue
                 Else
                     If Estado = 3 Then
                         IT.ForeColor = vbRed
@@ -2409,8 +2742,16 @@ Dim Estado As Integer
                         IT.ListSubItems.item(7).ForeColor = vbRed
                         IT.ListSubItems.item(8).ForeColor = vbRed
                         IT.ListSubItems.item(9).ForeColor = vbRed
+                        '[Monica]10/10/2018: añadido
+                        IT.ListSubItems.item(10).ForeColor = vbRed
+                        IT.ListSubItems.item(11).ForeColor = vbRed
+                        IT.ListSubItems.item(12).ForeColor = vbRed
                     End If
                 End If
+                
+                IT.Tag = DBLet(Rs!numpalet, "N")
+                
+                i = i + 1
                 
                 TotalArray = TotalArray + 1
                 If TotalArray > 300 Then
@@ -2431,6 +2772,9 @@ Dim Estado As Integer
         Text1(5).Text = Format(TotCajas, "###,###,###,##0")
         Text1(6).Text = Format(TotBruto, "###,###,###,##0")
         Text1(7).Text = Format(TotNeto, "###,###,###,##0")
+    
+        Text1(9).Text = Format(TotPalet, "###,###,###,##0")
+    
     End If
     
     PonerModo 2
@@ -2440,20 +2784,23 @@ Dim Estado As Integer
     Label1(0).visible = False
     DoEvents
     
+    VisualizarEstadoPedido
+    
+    
 End Sub
 
 Private Function PaletEnAlbaran(NPalet As String, Optional NPedido As String) As Boolean
-Dim Sql As String
+Dim SQL As String
 
     If ComprobarCero(NPedido) <> "0" Then
-        Sql = "select numalbar from albaran where numpedid = " & DBSet(NPedido, "N")
+        SQL = "select numalbar from albaran where numpedid = " & DBSet(NPedido, "N")
         
-        PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
+        PaletEnAlbaran = (DevuelveValor(SQL) <> 0)
     Else
-        Sql = "select palets.numpedid from palets, albaran where palets.numpalet = " & DBSet(NPalet, "N")
-        Sql = Sql & " and palets.numpedid = albaran.numpedid "
+        SQL = "select palets.numpedid from palets, albaran where palets.numpalet = " & DBSet(NPalet, "N")
+        SQL = SQL & " and palets.numpedid = albaran.numpedid "
         
-        PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
+        PaletEnAlbaran = (DevuelveValor(SQL) <> 0)
     End If
 
 End Function

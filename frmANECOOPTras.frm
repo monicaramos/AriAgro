@@ -83,7 +83,7 @@ Begin VB.Form frmANECOOPTras
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4080
+         Left            =   4095
          TabIndex        =   2
          Top             =   3960
          Width           =   1065
@@ -302,7 +302,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Tabla1 As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
@@ -337,7 +337,7 @@ Dim Directorio As String
 Dim fec As String
 Dim nomDir As String
 
-Dim nRegs As Long
+Dim Nregs As Long
 Dim cadTABLA As String
 Dim NomFic1 As String
 
@@ -439,7 +439,7 @@ Dim PorPedido As Boolean
     SQL = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute SQL
 
-    SQL = "Select * from anecoop where (numlinea is null or numlinea = 0) and fecha_salida between " & DBSet(txtcodigo(14).Text, "F") & " and " & DBSet(txtcodigo(15).Text, "F")
+    SQL = "Select * from anecoop where (numlinea is null or numlinea = 0) and fecha_salida between " & DBSet(txtCodigo(14).Text, "F") & " and " & DBSet(txtCodigo(15).Text, "F")
     SQL = SQL & " and nombre_variedad <> '' "
     
     If TotalRegistrosConsulta(SQL) = 0 Then
@@ -562,7 +562,7 @@ Dim i As Integer
                     
                 Anyo = Mid(CStr(Year(vParam.FecIniCam)), 3, 2)
                     
-                Shell App.path & "\ConAnecoop " & txtcodigo(14).Text & " " & txtcodigo(15).Text & " " & Anyo & " v ", vbNormalFocus
+                Shell App.path & "\ConAnecoop " & txtCodigo(14).Text & " " & txtCodigo(15).Text & " " & Anyo & " v ", vbNormalFocus
                 
                 Screen.MousePointer = vbHourglass
                 
@@ -741,7 +741,7 @@ Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
 Dim Rs1 As ADODB.Recordset
-Dim Numreg As Long
+Dim NumReg As Long
 Dim SQL As String
 Dim SQL1 As String
 Dim Total As Long
@@ -863,10 +863,10 @@ Dim tipoMov As String
 
     b = True
     
-    If txtcodigo(14).Text = "" Or txtcodigo(15) = "" Then
+    If txtCodigo(14).Text = "" Or txtCodigo(15) = "" Then
         MsgBox "Debe de introducir las fechas de trapaso. Reintroduzca.", vbExclamation
         b = False
-        PonerFoco txtcodigo(14)
+        PonerFoco txtCodigo(14)
     End If
     
     DatosOk = b
@@ -875,7 +875,7 @@ End Function
 
 
 Private Sub frmC_Selec(vFecha As Date)
-    txtcodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtCodigo(CByte(imgFecha(0).Tag) + 14).Text = Format(vFecha, "dd/mm/yyyy") '<===
 End Sub
 
 Private Sub imgFecha_Click(Index As Integer)
@@ -904,18 +904,18 @@ Private Sub imgFecha_Click(Index As Integer)
 
     imgFecha(0).Tag = Index '<===
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtcodigo(Index + 14).Text <> "" Then frmC.NovaData = txtcodigo(Index + 14).Text
+    If txtCodigo(Index + 14).Text <> "" Then frmC.NovaData = txtCodigo(Index + 14).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtcodigo(CByte(imgFecha(0).Tag) + 14) '<===
+    PonerFoco txtCodigo(CByte(imgFecha(0).Tag) + 14) '<===
     ' ********************************************
 End Sub
 
 Private Sub txtCodigo_GotFocus(Index As Integer)
-    ConseguirFoco txtcodigo(Index), 3
+    ConseguirFoco txtCodigo(Index), 3
 End Sub
 
 Private Sub txtCodigo_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -942,7 +942,7 @@ Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
-    txtcodigo(Index).Text = Trim(txtcodigo(Index).Text)
+    txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -950,7 +950,7 @@ Dim Cad As String, cadTipo As String 'tipo cliente
 
     Select Case Index
         Case 14, 15 'FECHAS
-            If txtcodigo(Index).Text <> "" Then PonerFormatoFecha txtcodigo(Index)
+            If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
     End Select
 End Sub
 

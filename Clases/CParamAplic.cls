@@ -155,6 +155,7 @@ Private Mens As String    'Para los mensajes
 
 
 Private mvarBDDestino As String     ' Base de datos destino de Frutas Inma
+Private mvarBDSAT As String     ' Base de datos sat de Frutas Inma
 
 
 '------------------------------------------------
@@ -789,6 +790,17 @@ Public Property Get BDDestino() As String
      BDDestino = mvarBDDestino
 End Property
 
+'base de datos sat
+Public Property Let BDSat(ByVal vData As String)
+     mvarBDSAT = vData
+End Property
+
+Public Property Get BDSat() As String
+     BDSat = mvarBDSAT
+End Property
+
+
+
 
 
 
@@ -918,6 +930,8 @@ On Error GoTo Err3
         '[Monica]20/08/2018: base de datos destino
         mvarBDDestino = DBLet(Rs!BDDestino, "T")
 
+        '[Monica]16/10/2018: base de datos de la sat
+        mvarBDSAT = DBLet(Rs!BDSat, "T")
 
         Leer = 0
         
@@ -1034,6 +1048,9 @@ On Error GoTo EModificar
 
     '[Monica]20/08/2018: Base de datos destino para frutas Inma
     Sql = Sql & ", bddestino = " & DBSet(mvarBDDestino, "T")
+
+    '[Monica]16/10/2018: base de datos de la sat
+    Sql = Sql & ", bdsat = " & DBSet(mvarBDSAT, "T")
 
     conn.Execute Sql
 

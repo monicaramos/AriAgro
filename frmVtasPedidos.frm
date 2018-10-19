@@ -3820,8 +3820,13 @@ Dim Desc As String, devuelve As String
     Cad = ""
     Cad = Cad & "Nº.Pedido|pedidos.numpedid|N||15·"
     
-    Cad = Cad & "Cliente|pedidos.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+    If vParamAplic.Cooperativa <> 18 Then
+        Cad = Cad & "Cliente|pedidos.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
+        Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+    Else
+        Cad = Cad & "Nombre Cliente|clientes.nomclien|N||40·"
+        Cad = Cad & "Ref.Cliente|pedidos.refclien|N||15·"
+    End If
     Cad = Cad & ParaGrid(Text1(1), 15, "F.Pedido")
     Cad = Cad & ParaGrid(Text1(2), 15, "F.Carga")
     tabla = NombreTabla & " INNER JOIN clientes ON pedidos.codclien=clientes.codclien "

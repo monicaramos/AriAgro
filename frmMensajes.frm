@@ -19,8 +19,47 @@ Begin VB.Form frmMensajes
       Height          =   5880
       Left            =   0
       TabIndex        =   56
-      Top             =   0
+      Top             =   90
       Width           =   10655
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   6
+         Left            =   1335
+         MaxLength       =   6
+         TabIndex        =   98
+         Tag             =   "Pais|N|S|0|999|clientes|codpaise|000||"
+         Top             =   5220
+         Width           =   990
+      End
+      Begin VB.TextBox text2 
+         BackColor       =   &H80000018&
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   6
+         Left            =   2385
+         TabIndex        =   97
+         Top             =   5220
+         Width           =   4425
+      End
       Begin VB.CommandButton CmdPedSinAlb 
          Caption         =   "&Regresar"
          BeginProperty Font 
@@ -72,6 +111,32 @@ Begin VB.Form frmMensajes
             SubItemIndex    =   1
             Object.Width           =   2540
          EndProperty
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   0
+         Left            =   1020
+         ToolTipText     =   "Buscar Cliente"
+         Top             =   5250
+         Width           =   240
+      End
+      Begin VB.Label Label7 
+         Caption         =   "Cliente"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   0
+         Left            =   180
+         TabIndex        =   99
+         Top             =   5250
+         Width           =   735
       End
       Begin VB.Label Label1 
          Caption         =   "Pedidos sin Albarán Asignado:"
@@ -788,6 +853,7 @@ Begin VB.Form frmMensajes
       End
       Begin VB.TextBox Text1 
          Height          =   4335
+         Index           =   0
          Left            =   360
          MultiLine       =   -1  'True
          ScrollBars      =   3  'Both
@@ -1724,6 +1790,10 @@ Dim vCadena As String
 Dim Sql As String
 Dim vAnt As Integer
 
+
+Private WithEvents frmCli As frmBasico
+Attribute frmCli.VB_VarHelpID = -1
+
 Private Sub CmdAcepCalib_Click()
 Dim CADENA As String
     'Cargo las facturas a cuenta que hay que descontar
@@ -2374,6 +2444,11 @@ On Error Resume Next
     PulsadoSalir = True
     PrimeraVez = True
     
+    For H = 0 To Me.imgBuscar.Count - 1
+        Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next H
+    
+    
     
     Select Case OpcionMensaje
         Case 1 'Mensaje de Cobros Pendientes
@@ -2478,7 +2553,7 @@ On Error Resume Next
             H = 6000
             W = 8800
             PonerFrameVisible Me.FrameErrores, True, H, W
-            Me.Text1.Text = vCampos
+            Me.Text1(0).Text = vCampos
             Me.Caption = "Errores"
         
         Case 14 'Muestra Empresas del sistema
@@ -2513,6 +2588,10 @@ On Error Resume Next
             PonerFocoBtn Me.CmdAceptarPal
     
         Case 20 'Pedidos sin nro de albaran asociado
+            '[Monica]05/10/2018: cliente para poder seleccionarlo
+            Text1(6).Text = ""
+            Text2(6).Text = ""
+            
             
             PonerFramePedidosSinAlbaranVisible True, H, W
             CargarListaPedidosSinAlbaran
@@ -3477,6 +3556,23 @@ End Sub
 
 
 
+Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
+    Text1(6).Text = RecuperaValor(CadenaSeleccion, 1)
+    Text2(6).Text = RecuperaValor(CadenaSeleccion, 2)
+    CargarListaPedidosSinAlbaran
+End Sub
+
+Private Sub imgBuscar_Click(Index As Integer)
+    Select Case Index ' ayuda de clientes
+        Case 0
+            Set frmCli = New frmBasico
+            
+            AyudaClientes frmCli
+            
+            Set frmCli = Nothing
+    End Select
+End Sub
+
 Private Sub imgCheck_Click(Index As Integer)
 Dim b As Boolean
     Select Case Index
@@ -3836,6 +3932,36 @@ ETraspasarMantenimientos:
     MuestraError Err.Number
 End Function
 
+Private Sub Text1_GotFocus(Index As Integer)
+    ConseguirFoco Text1(Index), 3
+End Sub
+
+Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
+    KEYpress KeyAscii
+End Sub
+
+Private Sub Text1_LostFocus(Index As Integer)
+Dim devuelve As String
+Dim cadMen As String
+Dim Sql As String
+
+        
+    'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
+    'mostrar mensajes ni hacer nada
+    If Screen.ActiveForm.Name <> Me.Name Then Exit Sub
+          
+    'Si queremos hacer algo ..
+    Select Case Index
+        Case 6 'Cliente
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
+                CargarListaPedidosSinAlbaran
+            End If
+            
+    End Select
+
+End Sub
+
 Private Sub txtMante_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
@@ -3865,6 +3991,11 @@ Dim Sql As String
     On Error GoTo ECargarList
 
     Sql = cadwhere 'cadwhere ya le pasamos toda la SQL
+    
+    '[Monica]05/10/2018: si me ponen cliente muestro solo los de ese cliente
+    If Text1(6).Text <> "" Then Sql = Sql & " and pedidos.codclien = " & DBSet(Text1(6).Text, "N")
+    ListView6.ListItems.Clear
+    
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText

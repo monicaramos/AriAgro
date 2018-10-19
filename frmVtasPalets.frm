@@ -39,14 +39,14 @@ Begin VB.Form frmVtasPalets
       Left            =   3735
       TabIndex        =   90
       Top             =   90
-      Width           =   795
+      Width           =   1380
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
          TabIndex        =   91
          Top             =   180
-         Width           =   510
-         _ExtentX        =   900
+         Width           =   1005
+         _ExtentX        =   1773
          _ExtentY        =   582
          ButtonWidth     =   609
          ButtonHeight    =   582
@@ -54,9 +54,12 @@ Begin VB.Form frmVtasPalets
          Style           =   1
          _Version        =   393216
          BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-            NumButtons      =   1
+            NumButtons      =   2
             BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
                Object.ToolTipText     =   "Informe Palets en Cámaras"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Impresión Palet"
             EndProperty
          EndProperty
       End
@@ -125,7 +128,7 @@ Begin VB.Form frmVtasPalets
    End
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
-      Left            =   4635
+      Left            =   5175
       TabIndex        =   86
       Top             =   90
       Width           =   2415
@@ -2878,6 +2881,7 @@ Dim i As Integer
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
         .Buttons(1).Image = 26 'Informe de palets en camaras
+        .Buttons(2).Image = 28 'Impresion de palet
     End With
     
     ' desplazamiento
@@ -3210,6 +3214,16 @@ Private Sub mnImprimir_Click()
     BotonImprimir
 End Sub
 
+Private Sub mnImprimir2_Click()
+'Imprimir Factura
+    
+    If Data1.Recordset.EOF Then Exit Sub
+    
+    BotonImprimir2
+End Sub
+
+
+
 Private Sub mnInfCamaras_Click()
     AbrirListado 2
 End Sub
@@ -3245,15 +3259,15 @@ End Sub
 
 Private Function BloqueaAlbxFac() As Boolean
 'bloquea todos los albaranes de la factura
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EBloqueaAlb
     
     BloqueaAlbxFac = False
     'bloquear cabecera albaranes x factura
-    Sql = "select * FROM scafac1 "
-    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    SQL = "select * FROM scafac1 "
+    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute SQL, , adCmdText
     BloqueaAlbxFac = True
 
 EBloqueaAlb:
@@ -3263,15 +3277,15 @@ End Function
 
 Private Function BloqueaLineasFac() As Boolean
 'bloquea todas las lineas de la factura
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EBloqueaLin
 
     BloqueaLineasFac = False
     'bloquear cabecera albaranes x factura
-    Sql = "select * FROM slifac "
-    Sql = Sql & ObtenerWhereCP(True) & " FOR UPDATE"
-    conn.Execute Sql, , adCmdText
+    SQL = "select * FROM slifac "
+    SQL = SQL & ObtenerWhereCP(True) & " FOR UPDATE"
+    conn.Execute SQL, , adCmdText
     BloqueaLineasFac = True
 
 EBloqueaLin:
@@ -3336,7 +3350,7 @@ End Sub
 Private Sub Text1_LostFocus(Index As Integer)
 Dim devuelve As String
 Dim cadMen As String
-Dim Sql As String
+Dim SQL As String
         
     If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
         
@@ -3348,8 +3362,8 @@ Dim Sql As String
     Select Case Index
         Case 1, 16 ' codigo de linea de confeccion
             If Modo = 1 Then Exit Sub
-            Sql = DevuelveDesdeBDNew(cAgro, "cclinconf", "codlinconf", "codlinconf", Text1(Index).Text, "N")
-            If Sql = "" Then
+            SQL = DevuelveDesdeBDNew(cAgro, "cclinconf", "codlinconf", "codlinconf", Text1(Index).Text, "N")
+            If SQL = "" Then
                 MsgBox "No existe la línea de confección. Revise.", vbExclamation
                 PonerFoco Text1(Index)
             End If
@@ -3661,7 +3675,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, Numreg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -3684,9 +3698,9 @@ Dim b As Boolean
     End If
         
     'Poner Flechas de desplazamiento visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -3768,7 +3782,7 @@ Private Function DatosOk() As Boolean
 'Comprobar que los datos de la cabecera son correctos antes de Insertar o Modificar
 'la cabecera del Pedido
 Dim b As Boolean
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EDatosOK
 
@@ -3830,9 +3844,9 @@ Dim Sql As String
     
     'comprobamos que el numero de pedido existe si no es nulo
     If b And Text1(5).Text <> "" Then
-        Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", Text1(5), "N")
-        If Sql = "" Then
+        SQL = ""
+        SQL = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", Text1(5), "N")
+        If SQL = "" Then
             MsgBox "El número de pedido no existe en la tabla de pedidos. Reintroduzca.", vbExclamation
             Text1(5).Text = ""
             b = False
@@ -4137,7 +4151,7 @@ End Sub
 Private Sub CargaGrid(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, enlaza As Boolean)
 Dim b As Boolean
 Dim Opcion As Byte
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo ECargaGRid
 
@@ -4147,8 +4161,8 @@ Dim Sql As String
     Else
         Opcion = 2
     End If
-    Sql = MontaSQLCarga(enlaza, Opcion)
-    CargaGridGnral vDataGrid, vData, Sql, PrimeraVez
+    SQL = MontaSQLCarga(enlaza, Opcion)
+    CargaGridGnral vDataGrid, vData, SQL, PrimeraVez
     
     vDataGrid.RowHeight = 270
     
@@ -4210,6 +4224,8 @@ Private Sub Toolbar5_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
         Case 1
             mnInfCamaras_Click
+        Case 2
+            mnImprimir2_Click
     End Select
 End Sub
 
@@ -4279,7 +4295,7 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim Sql As String, LEtra As String
+Dim SQL As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
     
@@ -4293,16 +4309,16 @@ Dim vTipoMov As CTiposMov
 
     'Eliminar en tablas de factura de Ariges
     '------------------------------------------
-    Sql = " " & ObtenerWhereCP(True)
+    SQL = " " & ObtenerWhereCP(True)
 
     'Lineas de calibres (palets_calibre)
-    conn.Execute "Delete from palets_calibre " & Sql
+    conn.Execute "Delete from palets_calibre " & SQL
 
     'Lineas de variedades
-    conn.Execute "Delete from palets_variedad " & Sql
+    conn.Execute "Delete from palets_variedad " & SQL
     
     'Cabecera de palets (palets)
-    conn.Execute "Delete from " & NombreTabla & Sql
+    conn.Execute "Delete from " & NombreTabla & SQL
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
@@ -4326,7 +4342,7 @@ FinEliminar:
 End Function
 
 Private Function EliminarLinea() As Boolean
-Dim Sql As String, LEtra As String
+Dim SQL As String, LEtra As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
     
@@ -4340,14 +4356,14 @@ Dim vTipoMov As CTiposMov
 
     'Eliminar en tablas de paltes_variedad y palets_calibre
     '------------------------------------------
-    Sql = " where numpalet = " & Data3.Recordset.Fields(0)
-    Sql = Sql & " and numlinea = " & Data3.Recordset.Fields(1)
+    SQL = " where numpalet = " & Data3.Recordset.Fields(0)
+    SQL = SQL & " and numlinea = " & Data3.Recordset.Fields(1)
 
     'Lineas de calibres (palets_calibre)
-    conn.Execute "Delete from palets_calibre " & Sql
+    conn.Execute "Delete from palets_calibre " & SQL
 
     'Lineas de variedades
-    conn.Execute "Delete from palets_variedad " & Sql
+    conn.Execute "Delete from palets_variedad " & SQL
     
     b = True
     
@@ -4401,13 +4417,13 @@ End Sub
 
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim Sql As String
+Dim SQL As String
 
     On Error Resume Next
     
-    Sql = " numpalet= " & Text1(0).Text  'Data1.Recordset!numpalet  ' Text1(0).Text
-    If conWhere Then Sql = " WHERE " & Sql
-    ObtenerWhereCP = Sql
+    SQL = " numpalet= " & Text1(0).Text  'Data1.Recordset!numpalet  ' Text1(0).Text
+    If conWhere Then SQL = " WHERE " & SQL
+    ObtenerWhereCP = SQL
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -4422,32 +4438,32 @@ Private Function MontaSQLCarga(enlaza As Boolean, Opcion As Byte) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim Sql As String
+Dim SQL As String
     
     If Opcion = 1 Then
-        Sql = "SELECT numpalet, numlinea, numline1, palets_calibre.codvarie, palets_calibre.codcalib, nomcalib, numcajas "
-        Sql = Sql & " FROM palets_calibre, calibres WHERE palets_calibre.codvarie = calibres.codvarie and "
-        Sql = Sql & " palets_calibre.codcalib = calibres.codcalib "
+        SQL = "SELECT numpalet, numlinea, numline1, palets_calibre.codvarie, palets_calibre.codcalib, nomcalib, numcajas "
+        SQL = SQL & " FROM palets_calibre, calibres WHERE palets_calibre.codvarie = calibres.codvarie and "
+        SQL = SQL & " palets_calibre.codcalib = calibres.codcalib "
     ElseIf Opcion = 2 Then
-        Sql = "SELECT palets_variedad.numpalet, numlinea, palets_variedad.codvarie, a.nomvarie as nomvarie1, palets_variedad.codvarco, "
-        Sql = Sql & " b.nomvarie as nomvarie2, palets_variedad.codmarca, marcas.nommarca, palets_variedad.codforfait, forfaits.nomconfe, "
-        Sql = Sql & " categori, numcajas, pesobrut, pesoneto "
-        Sql = Sql & " FROM palets_variedad, variedades a, variedades b, marcas, forfaits " 'lineas de variedades del palet
-        Sql = Sql & " WHERE palets_variedad.codvarie = a.codvarie "
-        Sql = Sql & " and palets_variedad.codvarco = b.codvarie"
-        Sql = Sql & " and palets_variedad.codmarca = marcas.codmarca "
-        Sql = Sql & " and palets_variedad.codforfait = forfaits.codforfait "
+        SQL = "SELECT palets_variedad.numpalet, numlinea, palets_variedad.codvarie, a.nomvarie as nomvarie1, palets_variedad.codvarco, "
+        SQL = SQL & " b.nomvarie as nomvarie2, palets_variedad.codmarca, marcas.nommarca, palets_variedad.codforfait, forfaits.nomconfe, "
+        SQL = SQL & " categori, numcajas, pesobrut, pesoneto "
+        SQL = SQL & " FROM palets_variedad, variedades a, variedades b, marcas, forfaits " 'lineas de variedades del palet
+        SQL = SQL & " WHERE palets_variedad.codvarie = a.codvarie "
+        SQL = SQL & " and palets_variedad.codvarco = b.codvarie"
+        SQL = SQL & " and palets_variedad.codmarca = marcas.codmarca "
+        SQL = SQL & " and palets_variedad.codforfait = forfaits.codforfait "
     End If
     
     If enlaza Then
-        Sql = Sql & " and " & ObtenerWhereCP(False)
-        If Opcion = 1 Then Sql = Sql & " AND numlinea=" & Data3.Recordset.Fields!NumLinea
+        SQL = SQL & " and " & ObtenerWhereCP(False)
+        If Opcion = 1 Then SQL = SQL & " AND numlinea=" & Data3.Recordset.Fields!NumLinea
     Else
-        Sql = Sql & " and numpalet = -1"
+        SQL = SQL & " and numpalet = -1"
     End If
-    Sql = Sql & " ORDER BY numpalet"
-    If Opcion = 1 Then Sql = Sql & ", numlinea "
-    MontaSQLCarga = Sql
+    SQL = SQL & " ORDER BY numpalet"
+    If Opcion = 1 Then SQL = SQL & ", numlinea "
+    MontaSQLCarga = SQL
 End Function
 
 
@@ -4480,6 +4496,11 @@ Dim i As Integer
         Toolbar1.Buttons(8).Enabled = b
         Me.mnImprimir.Enabled = b
         
+        
+        b = (Modo = 2)
+        'Imprimir
+        Toolbar5.Buttons(2).Enabled = b And vParamAplic.Cooperativa = 18
+        
 
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
@@ -4506,7 +4527,7 @@ Dim cadselect As String 'select para insertar en tabla temporal
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
-Dim Sql As String
+Dim SQL As String
 
     If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Palet para Imprimir.", vbInformation
@@ -4541,10 +4562,10 @@ Dim Sql As String
     cadParam = cadParam & "|pImprimeBarras=""1""|"
     numParam = numParam + 1
     
-    Sql = ""
-    Sql = ClientePalet(Text1(0).Text)
+    SQL = ""
+    SQL = ClientePalet(Text1(0).Text)
     
-    cadParam = cadParam & "|pCliente=""" & Trim(Sql) & """|"
+    cadParam = cadParam & "|pCliente=""" & Trim(SQL) & """|"
     numParam = numParam + 1
    
     If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
@@ -4563,18 +4584,85 @@ Dim Sql As String
 End Sub
 
 
+Private Sub BotonImprimir2()
+Dim cadFormula As String
+Dim cadParam As String
+Dim numParam As Byte
+Dim cadselect As String 'select para insertar en tabla temporal
+Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
+Dim nomDocu As String 'Nombre de Informe rpt de crystal
+Dim devuelve As String
+Dim SQL As String
+
+    If Text1(0).Text = "" Then
+        MsgBox "Debe seleccionar un Palet para Imprimir.", vbInformation
+        Exit Sub
+    End If
+    
+    cadFormula = ""
+    cadParam = ""
+    cadselect = ""
+    numParam = 0
+    
+    '===================================================
+    '============ PARAMETROS ===========================
+    indRPT = 122 'Impresion de Palet
+    If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then Exit Sub
+      
+    'Nombre fichero .rpt a Imprimir
+    frmImprimir.NombreRPT = nomDocu
+        
+    '===================================================
+    '================= FORMULA =========================
+    'Cadena para seleccion Nº de palet
+    '---------------------------------------------------
+    If Text1(0).Text <> "" Then
+        'Nº palet
+        devuelve = "{" & NombreTabla & ".numpalet}=" & Val(Text1(0).Text)
+        If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
+        devuelve = "numpalet = " & Val(Text1(0).Text)
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
+    End If
+    
+    cadParam = cadParam & "|pImprimeBarras=""1""|"
+    numParam = numParam + 1
+    
+    SQL = ""
+    SQL = ClientePalet(Text1(0).Text)
+    
+    cadParam = cadParam & "|pCliente=""" & Trim(SQL) & """|"
+    numParam = numParam + 1
+   
+    If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
+     
+     With frmImprimir
+            .FormulaSeleccion = cadFormula
+            .OtrosParametros = cadParam
+            .NumeroParametros = numParam
+            .SoloImprimir = False
+            .EnvioEMail = False
+            .ConSubInforme = True
+            .Opcion = 0
+            .Titulo = "Impresión de Palet"
+            .Show vbModal
+    End With
+End Sub
+
+
+
+
 Private Sub BotonImprimirTicket()
 Dim MIPATH As String
-Dim cadImpresion As String, Sql As String
+Dim cadImpresion As String, SQL As String
 Dim NomImpre As String
 Dim NomImpTi As String
 Dim bImpre As Boolean
 
     cadImpresion = "{scafac.codtipom}='" & Text1(1).Text & "' and {scafac.numfactu}=" & Text1(0).Text
-    Sql = cadImpresion & " and {scafac.fecfactu}=" & DBSet(Text1(2).Text, "F")
+    SQL = cadImpresion & " and {scafac.fecfactu}=" & DBSet(Text1(2).Text, "F")
     cadImpresion = cadImpresion & " and {scafac.fecfactu}=Date(" & Year(CDate(Text1(2).Text)) & "," & Month(CDate(Text1(2).Text)) & "," & Day(CDate(Text1(2).Text)) & ")"
     
-    If Not HayRegParaInforme("scafac", Sql) Then Exit Sub
+    If Not HayRegParaInforme("scafac", SQL) Then Exit Sub
     
 '    'Obtener que terminal es
 '     'Terminal con el que trabajaremos, leemos el nombre del ordenador
@@ -4688,7 +4776,7 @@ End Function
 
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 Dim i As Byte
     
     Combo1(0).Clear
@@ -4709,16 +4797,16 @@ End Sub
 
 Private Sub InsertarCabecera()
 Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo EInsertarCab
     
     Set vTipoMov = New CTiposMov
     If vTipoMov.Leer(CodTipoMov) Then
         Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-        Sql = CadenaInsertarDesdeForm(Me)
-        If Sql <> "" Then
-            If InsertarOferta(Sql, vTipoMov) Then
+        SQL = CadenaInsertarDesdeForm(Me)
+        If SQL <> "" Then
+            If InsertarOferta(SQL, vTipoMov) Then
                 CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                 PonerCadenaBusqueda
                 PonerModo 2
@@ -4813,7 +4901,7 @@ End Function
 Private Sub CalcularTaraEnvase(NumLinea As String)
 Dim Valor As Currency
 Dim TotalCajas As Currency
-Dim Sql As String
+Dim SQL As String
 Dim Rs As ADODB.Recordset
 Dim TaraEnvase As String
 Dim Forfaits As String
@@ -4841,21 +4929,21 @@ Dim PesoCaja As String
 '    Rs.Close
 '    Set Rs = Nothing
     
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "palets_variedad", "numcajas", "numpalet", Data1.Recordset.Fields(0), "N", , "numlinea", NumLinea, "N")
-    If Sql = "" Then
+    SQL = ""
+    SQL = DevuelveDesdeBDNew(cAgro, "palets_variedad", "numcajas", "numpalet", Data1.Recordset.Fields(0), "N", , "numlinea", NumLinea, "N")
+    If SQL = "" Then
         TotalCajas = 0
     Else
-        TotalCajas = CLng(Sql)
+        TotalCajas = CLng(SQL)
     End If
     
     Forfaits = DevuelveDesdeBDNew(cAgro, "palets_variedad", "codforfait", "numpalet", Data1.Recordset.Fields(0), "N", , "numlinea", NumLinea, "N")
     
-    Sql = ""
-    Sql = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", Forfaits, "N")
+    SQL = ""
+    SQL = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", Forfaits, "N")
     PesoCaja = ""
-    If Sql <> "" Then
-        PesoCaja = Format(TransformaPuntosComas(Sql), "###,###,##0.00")
+    If SQL <> "" Then
+        PesoCaja = Format(TransformaPuntosComas(SQL), "###,###,##0.00")
     End If
         
     If PesoCaja <> "" Then
@@ -4875,17 +4963,17 @@ Dim PesoCaja As String
 
 
     'Calculo de totales
-    Sql = "select palets_variedad.numlinea, round(sum(palets_calibre.numcajas) * forfaits.pesocaja  ,2) "
-    Sql = Sql & " from palets_variedad, forfaits, palets_calibre "
-    Sql = Sql & " where palets_variedad.numpalet = " & Data1.Recordset.Fields(0) & " and "
-    Sql = Sql & " palets_variedad.numpalet = palets_calibre.numpalet and "
-    Sql = Sql & " palets_variedad.numlinea = palets_calibre.numlinea and "
-    Sql = Sql & " palets_variedad.codforfait = forfaits.codforfait "
-    Sql = Sql & " group by 1"
+    SQL = "select palets_variedad.numlinea, round(sum(palets_calibre.numcajas) * forfaits.pesocaja  ,2) "
+    SQL = SQL & " from palets_variedad, forfaits, palets_calibre "
+    SQL = SQL & " where palets_variedad.numpalet = " & Data1.Recordset.Fields(0) & " and "
+    SQL = SQL & " palets_variedad.numpalet = palets_calibre.numpalet and "
+    SQL = SQL & " palets_variedad.numlinea = palets_calibre.numlinea and "
+    SQL = SQL & " palets_variedad.codforfait = forfaits.codforfait "
+    SQL = SQL & " group by 1"
     
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TaraEnvase = 0
     While Not Rs.EOF
@@ -4905,18 +4993,18 @@ End Sub
 
 Private Function ClientePalet(Palet As String) As String
 Dim Rs As ADODB.Recordset
-Dim Sql As String
+Dim SQL As String
 
     On Error GoTo eClientePalet
 
     ClientePalet = ""
-    Sql = "select pedidos.codclien, clientes.nomclien from palets, pedidos, clientes "
-    Sql = Sql & " where palets.numpalet = " & DBSet(Palet, "N")
-    Sql = Sql & " and palets.numpedid = pedidos.numpedid "
-    Sql = Sql & " and pedidos.codclien = clientes.codclien "
+    SQL = "select pedidos.codclien, clientes.nomclien from palets, pedidos, clientes "
+    SQL = SQL & " where palets.numpalet = " & DBSet(Palet, "N")
+    SQL = SQL & " and palets.numpedid = pedidos.numpedid "
+    SQL = SQL & " and pedidos.codclien = clientes.codclien "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
     If Not Rs.EOF Then
         ClientePalet = "Cliente : " & Format(DBLet(Rs.Fields(0).Value, "N"), "000000") & " " & DBLet(Rs.Fields(1).Value, "T")
