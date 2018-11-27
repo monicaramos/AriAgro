@@ -3,16 +3,16 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasDiarioFact 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   5910
+   ClientHeight    =   6705
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   6645
+   ClientWidth     =   7395
    Icon            =   "frmVtasDiarioFact.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5910
-   ScaleWidth      =   6645
+   ScaleHeight     =   6705
+   ScaleWidth      =   7395
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin MSComDlg.CommonDialog cd1 
@@ -23,11 +23,11 @@ Begin VB.Form frmVtasDiarioFact
       _Version        =   393216
    End
    Begin VB.Frame FrameCobros 
-      Height          =   5850
+      Height          =   6615
       Left            =   45
       TabIndex        =   11
       Top             =   0
-      Width           =   6555
+      Width           =   7230
       Begin VB.Frame Frame1 
          Caption         =   "Orden"
          BeginProperty Font 
@@ -41,7 +41,7 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1320
-         Left            =   3825
+         Left            =   4770
          TabIndex        =   27
          Top             =   990
          Width           =   1995
@@ -96,7 +96,7 @@ Begin VB.Form frmVtasDiarioFact
          Height          =   240
          Left            =   495
          TabIndex        =   8
-         Top             =   5130
+         Top             =   5400
          Width           =   2220
       End
       Begin VB.TextBox txtCodigo 
@@ -112,7 +112,7 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   1
          TabIndex        =   1
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
@@ -132,7 +132,7 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   1
          TabIndex        =   0
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
@@ -152,11 +152,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   7
          TabIndex        =   3
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
-         Top             =   2340
+         Top             =   2565
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -172,11 +172,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   7
          TabIndex        =   2
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
-         Top             =   1995
+         Top             =   2175
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -192,11 +192,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   10
          TabIndex        =   5
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   3405
+         Top             =   3765
          Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
@@ -212,11 +212,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   10
          TabIndex        =   4
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   3060
+         Top             =   3375
          Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
@@ -231,9 +231,9 @@ Begin VB.Form frmVtasDiarioFact
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5040
+         Left            =   5715
          TabIndex        =   10
-         Top             =   5175
+         Top             =   5715
          Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
@@ -248,9 +248,9 @@ Begin VB.Form frmVtasDiarioFact
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   3870
+         Left            =   4545
          TabIndex        =   9
-         Top             =   5175
+         Top             =   5715
          Width           =   1065
       End
       Begin VB.TextBox txtCodigo 
@@ -266,11 +266,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   6
          TabIndex        =   6
-         Top             =   4035
-         Width           =   830
+         Top             =   4395
+         Width           =   875
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -285,11 +285,11 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   1800
+         Left            =   1890
          MaxLength       =   6
          TabIndex        =   7
-         Top             =   4410
-         Width           =   830
+         Top             =   4815
+         Width           =   875
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -305,12 +305,12 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   2700
+         Left            =   2790
          Locked          =   -1  'True
          TabIndex        =   13
          Text            =   "Text5"
-         Top             =   4035
-         Width           =   3135
+         Top             =   4395
+         Width           =   4080
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -326,12 +326,12 @@ Begin VB.Form frmVtasDiarioFact
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   2700
+         Left            =   2790
          Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "Text5"
-         Top             =   4410
-         Width           =   3135
+         Top             =   4815
+         Width           =   4080
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
@@ -421,7 +421,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   1
          Left            =   870
          TabIndex        =   22
-         Top             =   2340
+         Top             =   2565
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -439,7 +439,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   0
          Left            =   870
          TabIndex        =   21
-         Top             =   2025
+         Top             =   2205
          Width           =   690
       End
       Begin VB.Label Label4 
@@ -459,7 +459,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   2
          Left            =   495
          TabIndex        =   20
-         Top             =   1755
+         Top             =   1890
          Width           =   1170
       End
       Begin VB.Label Label4 
@@ -478,7 +478,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   16
          Left            =   465
          TabIndex        =   19
-         Top             =   2745
+         Top             =   3015
          Width           =   1815
       End
       Begin VB.Label Label4 
@@ -496,7 +496,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   15
          Left            =   870
          TabIndex        =   18
-         Top             =   3045
+         Top             =   3360
          Width           =   690
       End
       Begin VB.Label Label4 
@@ -514,25 +514,25 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   14
          Left            =   870
          TabIndex        =   17
-         Top             =   3405
+         Top             =   3765
          Width           =   645
       End
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   2
-         Left            =   1530
+         Left            =   1620
          Picture         =   "frmVtasDiarioFact.frx":000C
          ToolTipText     =   "Buscar fecha"
-         Top             =   3045
+         Top             =   3360
          Width           =   240
       End
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   3
-         Left            =   1530
+         Left            =   1620
          Picture         =   "frmVtasDiarioFact.frx":0097
          ToolTipText     =   "Buscar fecha"
-         Top             =   3405
+         Top             =   3765
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -550,7 +550,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   13
          Left            =   870
          TabIndex        =   16
-         Top             =   4035
+         Top             =   4395
          Width           =   690
       End
       Begin VB.Label Label4 
@@ -568,7 +568,7 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   12
          Left            =   870
          TabIndex        =   15
-         Top             =   4410
+         Top             =   4815
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -588,27 +588,27 @@ Begin VB.Form frmVtasDiarioFact
          Index           =   11
          Left            =   510
          TabIndex        =   14
-         Top             =   3795
+         Top             =   4110
          Width           =   675
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   1515
+         Left            =   1605
          MouseIcon       =   "frmVtasDiarioFact.frx":0122
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
-         Top             =   4035
+         Top             =   4395
          Width           =   240
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   1530
+         Left            =   1620
          MouseIcon       =   "frmVtasDiarioFact.frx":0274
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
-         Top             =   4410
+         Top             =   4815
          Width           =   240
       End
    End
@@ -940,8 +940,8 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 6390
-        Me.FrameCobros.Width = 6735
+        Me.FrameCobros.Height = 6615 '6390
+        Me.FrameCobros.Width = 7230 '6735
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
     End If
@@ -1049,19 +1049,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -1073,7 +1073,7 @@ Dim Rs As ADODB.Recordset
 End Function
 
 Private Function ProcesarCambios(cadwhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim i As Integer
 Dim HayReg As Integer
@@ -1091,14 +1091,14 @@ On Error GoTo eProcesarCambios
         cadwhere = QuitarCaracterACadena(cadwhere, "_1")
     End If
         
-    SQL = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.Codigo, "N")
-    SQL = SQL & ", albaran.numalbar from albaran, albaran_variedad where albaran.numalbar not in (select numalbar from tcafpa) "
-    SQL = SQL & " and albaran.numalbar = albaran_variedad.numalbar "
+    Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.Codigo, "N")
+    Sql = Sql & ", albaran.numalbar from albaran, albaran_variedad where albaran.numalbar not in (select numalbar from tcafpa) "
+    Sql = Sql & " and albaran.numalbar = albaran_variedad.numalbar "
     
-    If cadwhere <> "" Then SQL = SQL & " and " & cadwhere
+    If cadwhere <> "" Then Sql = Sql & " and " & cadwhere
     
     
-    conn.Execute SQL
+    conn.Execute Sql
         
     ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.Codigo)
 
@@ -1110,7 +1110,7 @@ End Function
 
 
 Private Sub InsertaLineaEnTemporal(ByRef ItmX As ListItem)
-Dim SQL As String
+Dim Sql As String
 Dim Codmacta As String
 Dim Rs As ADODB.Recordset
 Dim SQL1 As String

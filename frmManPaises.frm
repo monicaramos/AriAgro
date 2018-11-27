@@ -8,13 +8,13 @@ Begin VB.Form frmManPaises
    ClientHeight    =   9900
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   12000
+   ClientWidth     =   13005
    Icon            =   "frmManPaises.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   9900
-   ScaleWidth      =   12000
+   ScaleWidth      =   13005
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
@@ -198,7 +198,7 @@ Begin VB.Form frmManPaises
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   9510
+      Left            =   10545
       TabIndex        =   7
       Top             =   9195
       Visible         =   0   'False
@@ -217,7 +217,7 @@ Begin VB.Form frmManPaises
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10680
+      Left            =   11715
       TabIndex        =   8
       Top             =   9195
       Visible         =   0   'False
@@ -272,8 +272,8 @@ Begin VB.Form frmManPaises
       Left            =   120
       TabIndex        =   11
       Top             =   900
-      Width           =   11655
-      _ExtentX        =   20558
+      Width           =   12655
+      _ExtentX        =   22331
       _ExtentY        =   14367
       _Version        =   393216
       AllowUpdate     =   0   'False
@@ -348,7 +348,7 @@ Begin VB.Form frmManPaises
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   10665
+      Left            =   11700
       TabIndex        =   12
       Top             =   9180
       Visible         =   0   'False
@@ -957,7 +957,7 @@ Private Sub Form_Load()
     
     '****************** canviar la consulta *********************************+
     CadenaConsulta = "SELECT paises.codpaise, paises.nompaise, paises.intracom, "
-    CadenaConsulta = CadenaConsulta & "CASE paises.intracom WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
+    CadenaConsulta = CadenaConsulta & "CASE paises.intracom WHEN 0 THEN ""General"" WHEN 1 THEN ""Intracomunitaria"" WHEN 2 THEN ""Export-Import"" END, "
     CadenaConsulta = CadenaConsulta & " paises.intrastad, CASE paises.intrastad WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
     CadenaConsulta = CadenaConsulta & " paises.nommoned, paises.simmoned, paises.letraspais "
     
@@ -1059,7 +1059,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Código|1000|;S|txtAux(1)|T|Descripción|4100|;"
-    tots = tots & "N||||0|;S|Combo1(0)|C|Intrac|1100|;"
+    tots = tots & "N||||0|;S|Combo1(0)|C|Tipo Operacion|2100|;"
     tots = tots & "N||||0|;S|Combo1(1)|C|Intrastad|1350|;"
     tots = tots & "S|txtAux(2)|T|Moneda|1350|;S|txtAux(3)|T|Simb.|1100|;S|txtAux(4)|T|Letras|1100|;"
     
@@ -1113,10 +1113,16 @@ Dim Rs As ADODB.Recordset
     
     Combo1(0).Clear
     
-    Combo1(0).AddItem "No"
+    
+    '[Monica]12/11/2018: antes estaba 0=no 1 = si
+    '                    ahora como en la contabilidad 0=general 1=intracomunitario 2=export-import
+    
+    Combo1(0).AddItem "General" '"No"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 0
-    Combo1(0).AddItem "Si"
+    Combo1(0).AddItem "Intracomunitario" '"Si"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 1
+    Combo1(0).AddItem "Export-Import"
+    Combo1(0).ItemData(Combo1(0).NewIndex) = 2
     
     Combo1(1).Clear
     

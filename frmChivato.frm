@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmChivato 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Exportaciones a Chivato (Trazatec)"
@@ -17,8 +17,8 @@ Begin VB.Form frmChivato
    Begin VB.Frame Frame1 
       Caption         =   "Operación"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -29,19 +29,37 @@ Begin VB.Form frmChivato
       Height          =   735
       Left            =   540
       TabIndex        =   13
-      Top             =   3750
+      Top             =   3840
       Width           =   5625
       Begin VB.OptionButton Option1 
          Caption         =   "Modificar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   1
          Left            =   3690
          TabIndex        =   15
          Top             =   330
-         Width           =   1065
+         Width           =   1515
       End
       Begin VB.OptionButton Option1 
          Caption         =   "Insertar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   0
          Left            =   1440
@@ -52,18 +70,36 @@ Begin VB.Form frmChivato
    End
    Begin VB.CommandButton CmdCancel 
       Caption         =   "Cancelar"
-      Height          =   495
-      Left            =   4770
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   395
+      Left            =   5085
       TabIndex        =   3
-      Top             =   4860
-      Width           =   1335
+      Top             =   5040
+      Width           =   1065
    End
    Begin VB.TextBox txtNombre 
       BackColor       =   &H80000018&
       Enabled         =   0   'False
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
-      Left            =   2685
+      Left            =   2730
       Locked          =   -1  'True
       TabIndex        =   7
       Top             =   1005
@@ -72,9 +108,18 @@ Begin VB.Form frmChivato
    Begin VB.TextBox txtNombre 
       BackColor       =   &H80000018&
       Enabled         =   0   'False
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
-      Left            =   2685
+      Left            =   2730
       Locked          =   -1  'True
       TabIndex        =   6
       Top             =   630
@@ -82,23 +127,41 @@ Begin VB.Form frmChivato
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   1
       Left            =   1785
       MaxLength       =   6
       TabIndex        =   1
       Top             =   1005
-      Width           =   830
+      Width           =   915
    End
    Begin VB.TextBox txtCodigo 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   1785
       MaxLength       =   6
       TabIndex        =   0
       Top             =   630
-      Width           =   830
+      Width           =   915
    End
    Begin VB.CommandButton cmdPrueba 
       Caption         =   "Pruebas"
@@ -112,11 +175,20 @@ Begin VB.Form frmChivato
    End
    Begin VB.CommandButton cmdTodos 
       Caption         =   "&Aceptar"
-      Height          =   495
-      Left            =   3270
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   395
+      Left            =   3870
       TabIndex        =   2
-      Top             =   4860
-      Width           =   1335
+      Top             =   5040
+      Width           =   1065
    End
    Begin MSComctlLib.ListView ListView1 
       Height          =   2325
@@ -124,8 +196,8 @@ Begin VB.Form frmChivato
       Left            =   1800
       TabIndex        =   11
       Top             =   1410
-      Width           =   3375
-      _ExtentX        =   5953
+      Width           =   4320
+      _ExtentX        =   7620
       _ExtentY        =   4101
       View            =   3
       LabelEdit       =   1
@@ -137,6 +209,15 @@ Begin VB.Form frmChivato
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       NumItems        =   2
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Object.Width           =   2540
@@ -149,7 +230,7 @@ Begin VB.Form frmChivato
    Begin VB.Image Image1 
       Height          =   240
       Index           =   3
-      Left            =   1440
+      Left            =   1485
       Picture         =   "frmChivato.frx":6852
       ToolTipText     =   "Desmarcar todos"
       Top             =   1410
@@ -158,7 +239,7 @@ Begin VB.Form frmChivato
    Begin VB.Image Image1 
       Height          =   240
       Index           =   2
-      Left            =   1200
+      Left            =   1245
       Picture         =   "frmChivato.frx":7254
       ToolTipText     =   "Marcar todos"
       Top             =   1410
@@ -168,8 +249,8 @@ Begin VB.Form frmChivato
       AutoSize        =   -1  'True
       Caption         =   "Opción"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -177,12 +258,12 @@ Begin VB.Form frmChivato
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   195
+      Height          =   240
       Index           =   12
       Left            =   510
       TabIndex        =   12
       Top             =   1410
-      Width           =   495
+      Width           =   675
    End
    Begin VB.Image imgBuscar 
       Height          =   240
@@ -208,8 +289,8 @@ Begin VB.Form frmChivato
       AutoSize        =   -1  'True
       Caption         =   "Socio"
       BeginProperty Font 
-         Name            =   "Tahoma"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -217,36 +298,54 @@ Begin VB.Form frmChivato
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   195
+      Height          =   240
       Index           =   11
       Left            =   540
       TabIndex        =   10
-      Top             =   390
-      Width           =   375
+      Top             =   345
+      Width           =   540
    End
    Begin VB.Label Label4 
       Caption         =   "Hasta"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   195
       Index           =   12
-      Left            =   900
+      Left            =   810
       TabIndex        =   9
       Top             =   1005
-      Width           =   420
+      Width           =   645
    End
    Begin VB.Label Label4 
       Caption         =   "Desde"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   195
       Index           =   13
-      Left            =   900
+      Left            =   810
       TabIndex        =   8
       Top             =   630
-      Width           =   465
+      Width           =   690
    End
    Begin VB.Label lblInf 
       Height          =   255
       Left            =   570
       TabIndex        =   4
-      Top             =   4530
+      Top             =   4620
       Width           =   5565
    End
 End
@@ -263,7 +362,7 @@ Dim indCodigo As Integer
 Private WithEvents frmSoc As frmBasico
 Attribute frmSoc.VB_VarHelpID = -1
 
-Private Sub CmdCancel_Click()
+Private Sub cmdCancel_Click()
     Unload Me
 End Sub
 
@@ -283,10 +382,10 @@ Private Sub cmdPrueba_Click()
 End Sub
 
 Private Sub cmdTodos_Click()
-    Dim SQL As String
-    Dim RS As ADODB.Recordset
-    Dim I As Integer
-    Dim JJ As Integer
+    Dim Sql As String
+    Dim Rs As ADODB.Recordset
+    Dim i As Integer
+    Dim jj As Integer
     Dim vCadena As String
     Dim Produ As Long
     
@@ -306,172 +405,172 @@ Private Sub cmdTodos_Click()
 '        Wend
 '    End If
 
-    For JJ = 1 To ListView1(0).ListItems.Count
-         If ListView1(0).ListItems(JJ).Checked = True Then
-            Select Case JJ
+    For jj = 1 To ListView1(0).ListItems.Count
+         If ListView1(0).ListItems(jj).Checked = True Then
+            Select Case jj
                 Case 1
 
                     '-- Socios
-                    I = 0
-                    SQL = "select * from rsocios where 1=1 "
-                    If txtCodigo(0).Text <> "" Then SQL = SQL & " and codsocio >= " & DBSet(txtCodigo(0).Text, "N")
-                    If txtCodigo(1).Text <> "" Then SQL = SQL & " and codsocio <= " & DBSet(txtCodigo(1).Text, "N")
+                    i = 0
+                    Sql = "select * from rsocios where 1=1 "
+                    If txtCodigo(0).Text <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(0).Text, "N")
+                    If txtCodigo(1).Text <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(1).Text, "N")
                     
                     
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Socios --> " & CStr(I)
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Socios --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
                             
-                            If Option1(0).Value Then
-                                CargarUnSocio RS!CodSocio, "I"
+                            If option1(0).Value Then
+                                CargarUnSocio Rs!CodSocio, "I"
                             Else
-                                CargarUnSocio RS!CodSocio, "U"
+                                CargarUnSocio Rs!CodSocio, "U"
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
     
                 Case 2
                     '-- Cuadrillas
-                    I = 0
-                    SQL = "select * from rcapataz"
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Cuadrillas --> " & CStr(I)
+                    i = 0
+                    Sql = "select * from rcapataz"
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Cuadrillas --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnaCuadrilla RS!codcapat, "I"
+                            If option1(0).Value Then
+                                CargarUnaCuadrilla Rs!codcapat, "I"
                             Else
-                                CargarUnaCuadrilla RS!codcapat, "U"
+                                CargarUnaCuadrilla Rs!codcapat, "U"
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
     
                 Case 3
                     '-- Partidas
-                    I = 0
-                    SQL = "select * from rpartida"
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Partidas --> " & CStr(I)
+                    i = 0
+                    Sql = "select * from rpartida"
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Partidas --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnaPartida RS!codparti, "I"
+                            If option1(0).Value Then
+                                CargarUnaPartida Rs!codparti, "I"
                             Else
-                                CargarUnaPartida RS!codparti, "U"
+                                CargarUnaPartida Rs!codparti, "U"
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
     
                 Case 4
                     '-- Vehiculos
-                    I = 0
-                    SQL = "select * from rtransporte"
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Vehiculos --> " & CStr(I)
+                    i = 0
+                    Sql = "select * from rtransporte"
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Vehiculos --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnVehiculo RS!codTrans, "I"
+                            If option1(0).Value Then
+                                CargarUnVehiculo Rs!codTrans, "I"
                             Else
-                                CargarUnVehiculo RS!codTrans, "U"
+                                CargarUnVehiculo Rs!codTrans, "U"
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
                 Case 5
                     '-- Productos
-                    I = 0
-                    SQL = "select * from productos"
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Productos --> " & CStr(I)
+                    i = 0
+                    Sql = "select * from productos"
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Productos --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnProducto RS!codprodu, "I"
+                            If option1(0).Value Then
+                                CargarUnProducto Rs!codprodu, "I"
                             Else
-                                CargarUnProducto RS!codprodu, "U"
+                                CargarUnProducto Rs!codprodu, "U"
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
                 Case 6
                     '-- Variedades
-                    I = 0
-                    SQL = "select * from variedades"
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Variedades --> " & CStr(I)
+                    i = 0
+                    Sql = "select * from variedades"
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Variedades --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnaVariedad RS!codvarie, "I"
+                            If option1(0).Value Then
+                                CargarUnaVariedad Rs!codvarie, "I"
                             Else
                             
                                 '[Monica]18/09/2013: si estamos actualizando variedad en Picassent el claveant en 'PP&VVVV'
-                                vCadena = DBLet(RS!codprodu, "N") & "&" & DBLet(RS!codvarie, "N")
+                                vCadena = DBLet(Rs!codprodu, "N") & "&" & DBLet(Rs!codvarie, "N")
                             
-                                CargarUnaVariedad RS!codvarie, "U", vCadena
+                                CargarUnaVariedad Rs!codvarie, "U", vCadena
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
                 Case 7
                     '-- Campos
-                    I = 0
-                    SQL = "select * from rcampos where (1=1) "
-                    If txtCodigo(0).Text <> "" Then SQL = SQL & " and codsocio >= " & DBSet(txtCodigo(0).Text, "N")
-                    If txtCodigo(1).Text <> "" Then SQL = SQL & " and codsocio <= " & DBSet(txtCodigo(1).Text, "N")
+                    i = 0
+                    Sql = "select * from rcampos where (1=1) "
+                    If txtCodigo(0).Text <> "" Then Sql = Sql & " and codsocio >= " & DBSet(txtCodigo(0).Text, "N")
+                    If txtCodigo(1).Text <> "" Then Sql = Sql & " and codsocio <= " & DBSet(txtCodigo(1).Text, "N")
                     
-                    Set RS = dbAriagro.cursor(SQL)
-                    If Not RS.EOF Then
-                        RS.MoveFirst
-                        While Not RS.EOF
-                            I = I + 1
-                            lblInf.Caption = "Campos --> " & CStr(I)
+                    Set Rs = dbAriagro.cursor(Sql)
+                    If Not Rs.EOF Then
+                        Rs.MoveFirst
+                        While Not Rs.EOF
+                            i = i + 1
+                            lblInf.Caption = "Campos --> " & CStr(i)
                             lblInf.Refresh
                             DoEvents
-                            If Option1(0).Value Then
-                                CargarUnCampo RS!CodCampo, "I"
+                            If option1(0).Value Then
+                                CargarUnCampo Rs!codCampo, "I"
                             Else
                                '[Monica]17/09/2013:en el campo ant en picassent ponemos otra cosa
-                                Produ = DevuelveValor("select codprodu from variedades where codvarie = " & DBLet(RS!codvarie, "N"))
-                                vCadena = DBLet(RS!CodSocio, "N") & "&" & DBLet(RS!CodCampo, "N") & "&" & Produ & "&" & DBLet(RS!codvarie, "N")
+                                Produ = DevuelveValor("select codprodu from variedades where codvarie = " & DBLet(Rs!codvarie, "N"))
+                                vCadena = DBLet(Rs!CodSocio, "N") & "&" & DBLet(Rs!codCampo, "N") & "&" & Produ & "&" & DBLet(Rs!codvarie, "N")
 
-                                CargarUnCampo RS!CodCampo, "U", vCadena
+                                CargarUnCampo Rs!codCampo, "U", vCadena
                             End If
-                            RS.MoveNext
+                            Rs.MoveNext
                         Wend
                     End If
             End Select
         End If
-    Next JJ
+    Next jj
         
     MsgBox "Proceso finalizado", vbExclamation
     Unload Me
@@ -484,18 +583,18 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
-    For I = 0 To 1
-        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next I
+    For i = 0 To 1
+        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next i
 
     CargarListView (0)
     Image1_Click (2)
     Set dbAriagro = New BaseDatos
     dbAriagro.abrir_MYSQL vConfig.SERVER, vUsu.CadenaConexion, "root", "aritel"
 
-    Option1(0).Value = 1
+    option1(0).Value = 1
 
     
 End Sub
@@ -506,19 +605,19 @@ Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub Image1_Click(Index As Integer)
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     
     Select Case Index
         Case 2
-            For I = 1 To ListView1(0).ListItems.Count
-                ListView1(0).ListItems(I).Checked = True
-            Next I
+            For i = 1 To ListView1(0).ListItems.Count
+                ListView1(0).ListItems(i).Checked = True
+            Next i
         Case 3
-            For I = 1 To ListView1(0).ListItems.Count
-                ListView1(0).ListItems(I).Checked = False
-            Next I
+            For i = 1 To ListView1(0).ListItems.Count
+                ListView1(0).ListItems(i).Checked = False
+            Next i
     End Select
     
     Screen.MousePointer = vbDefault
@@ -547,9 +646,9 @@ End Sub
 Private Sub CargarListView(Index As Integer)
 'Muestra la lista Detallada de Facturas que dieron error al contabilizar
 'en un ListView
-Dim RS As ADODB.Recordset
+Dim Rs As ADODB.Recordset
 Dim ItmX As ListItem
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ECargarList
 
@@ -615,8 +714,8 @@ End Sub
 
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim Tabla As String
-Dim CodCampo As String, nomCampo As String
+Dim tabla As String
+Dim codCampo As String, nomCampo As String
 Dim TipCampo As String, Formato As String
 Dim Titulo As String
 Dim EsNomCod As Boolean 'Si es campo Cod-Descripcion llama a PonerNombreDeCod

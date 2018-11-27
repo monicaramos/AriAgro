@@ -700,6 +700,7 @@ Begin VB.Form frmComEntAlbaranes
       _ExtentY        =   9234
       _Version        =   393216
       Style           =   1
+      Tab             =   2
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -713,7 +714,7 @@ Begin VB.Form frmComEntAlbaranes
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComEntAlbaranes.frx":0199
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Label1(35)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label1(1)"
@@ -756,18 +757,26 @@ Begin VB.Form frmComEntAlbaranes
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":01B5
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FrameHco"
-      Tab(1).Control(1)=   "Text1(19)"
-      Tab(1).Control(2)=   "Text1(18)"
+      Tab(1).Control(0)=   "Label1(45)"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "Text1(15)"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Text1(16)"
+      Tab(1).Control(2).Enabled=   0   'False
       Tab(1).Control(3)=   "Text1(17)"
-      Tab(1).Control(4)=   "Text1(16)"
-      Tab(1).Control(5)=   "Text1(15)"
-      Tab(1).Control(6)=   "Label1(45)"
+      Tab(1).Control(3).Enabled=   0   'False
+      Tab(1).Control(4)=   "Text1(18)"
+      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(5)=   "Text1(19)"
+      Tab(1).Control(5).Enabled=   0   'False
+      Tab(1).Control(6)=   "FrameHco"
+      Tab(1).Control(6).Enabled=   0   'False
       Tab(1).ControlCount=   7
       TabCaption(2)   =   "Totales"
       TabPicture(2)   =   "frmComEntAlbaranes.frx":01D1
-      Tab(2).ControlEnabled=   0   'False
+      Tab(2).ControlEnabled=   -1  'True
       Tab(2).Control(0)=   "FrameFactura"
+      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -782,7 +791,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   9450
+         Left            =   -65550
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   106
@@ -803,7 +812,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   1620
+         Left            =   -73380
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   104
@@ -824,7 +833,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   1620
+         Left            =   -73380
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   35
@@ -957,7 +966,7 @@ Begin VB.Form frmComEntAlbaranes
       End
       Begin VB.Frame FrameFactura 
          Height          =   3570
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   55
          Top             =   600
          Width           =   11790
@@ -1568,7 +1577,7 @@ Begin VB.Form frmComEntAlbaranes
       End
       Begin VB.Frame FrameCliente 
          Height          =   1470
-         Left            =   225
+         Left            =   -74775
          TabIndex        =   39
          Top             =   315
          Width           =   11935
@@ -1954,7 +1963,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   2640
+         Left            =   -72360
          TabIndex        =   38
          ToolTipText     =   "Buscar artículo"
          Top             =   3540
@@ -1975,7 +1984,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   960
+         Left            =   -74040
          TabIndex        =   37
          ToolTipText     =   "Buscar almacen"
          Top             =   3540
@@ -1997,7 +2006,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   2
-         Left            =   2880
+         Left            =   -72120
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   29
@@ -2023,7 +2032,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   7
-         Left            =   9720
+         Left            =   -65280
          MaxLength       =   12
          TabIndex        =   34
          Tag             =   "Importe"
@@ -2048,7 +2057,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   6
-         Left            =   9120
+         Left            =   -65880
          MaxLength       =   30
          TabIndex        =   33
          Tag             =   "Descuento 2"
@@ -2073,7 +2082,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   5
-         Left            =   8520
+         Left            =   -66480
          MaxLength       =   5
          TabIndex        =   32
          Tag             =   "Descuento 1"
@@ -2098,7 +2107,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   4
-         Left            =   7440
+         Left            =   -67560
          MaxLength       =   12
          TabIndex        =   31
          Tag             =   "Precio"
@@ -2123,7 +2132,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   3
-         Left            =   6240
+         Left            =   -68760
          MaxLength       =   16
          TabIndex        =   30
          Tag             =   "Cantidad"
@@ -2147,7 +2156,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   1200
+         Left            =   -73800
          MaxLength       =   18
          TabIndex        =   28
          Tag             =   "Código Artículo"
@@ -2171,7 +2180,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   15
          TabIndex        =   27
          Tag             =   "Código Almacen"
@@ -2278,7 +2287,7 @@ Begin VB.Form frmComEntAlbaranes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmComEntAlbaranes.frx":04F3
          Height          =   2025
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   36
          Top             =   2205
          Width           =   11940
@@ -2347,7 +2356,7 @@ Begin VB.Form frmComEntAlbaranes
       Begin MSComctlLib.Toolbar ToolAux 
          Height          =   390
          Index           =   0
-         Left            =   225
+         Left            =   -74775
          TabIndex        =   103
          Top             =   1800
          Width           =   1110
@@ -2386,7 +2395,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   8595
+         Left            =   -66405
          TabIndex        =   107
          Top             =   4725
          Width           =   750
@@ -2404,7 +2413,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   1
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   105
          Top             =   4725
          Width           =   840
@@ -2422,7 +2431,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   35
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   93
          Top             =   4320
          Width           =   1335
@@ -3137,7 +3146,7 @@ Dim cArt As CArticulo
     'de nº de lote
 '    BloquearTxt Text2(17), (DBLet(Data2.Recordset!numlotes, "T") = "")
     Set cArt = New CArticulo
-    If cArt.LeerDatos(Data2.Recordset!CodArtic) Then
+    If cArt.LeerDatos(Data2.Recordset!codArtic) Then
         BloquearTxt Text2(17), Not cArt.TieneNumLote
     End If
     Set cArt = Nothing
@@ -3222,7 +3231,7 @@ Dim Sql As String
     Sql = "¿Seguro que desea eliminar la línea de Albaran?     "
     Sql = Sql & vbCrLf & "NumLinea:  " & Data2.Recordset!NumLinea & vbCrLf
     Sql = Sql & "Almacen:  " & Format(Data2.Recordset!codAlmac, "000")
-    Sql = Sql & vbCrLf & "Artículo:  " & Data2.Recordset!CodArtic & " - " & Data2.Recordset!NomArtic
+    Sql = Sql & vbCrLf & "Artículo:  " & Data2.Recordset!codArtic & " - " & Data2.Recordset!NomArtic
     
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
@@ -3288,7 +3297,7 @@ Dim cadLote As String
         Text2(16).Text = devuelve
         'poner el numero de lote
         Text2(17).Text = cadLote
-        CargarDatosArticulo (Data2.Recordset!CodArtic)
+        CargarDatosArticulo (Data2.Recordset!codArtic)
     End If
     If ModificaLineas = 1 Then
         Text2(16).Text = ""
@@ -5250,7 +5259,7 @@ Dim b As Boolean
     '==== Laura: 20/09/2006
     'Inicializar la clase para actualizar precio medio ponderado del Articulo
     Set cArt = New CArticulo
-    If Not cArt.LeerDatos(vCStock.CodArtic) Then Exit Function
+    If Not cArt.LeerDatos(vCStock.codArtic) Then Exit Function
     '====
     
     On Error GoTo EEliminarLinea
@@ -5322,12 +5331,12 @@ On Error Resume Next
     vCStock.Documento = Text1(0).Text
     
     If ModificaLineas = 1 Or (ModificaLineas = 2 And TipoM = "E") Then '1=Insertar, 2=Modificar
-        vCStock.CodArtic = txtAux(1).Text
+        vCStock.codArtic = txtAux(1).Text
         vCStock.codAlmac = CInt(txtAux(0).Text)
         vCStock.Cantidad = CSng(ComprobarCero(txtAux(3).Text))
         vCStock.Importe = CCur(ComprobarCero(txtAux(7).Text))
     Else
-        vCStock.CodArtic = Data2.Recordset!CodArtic
+        vCStock.codArtic = Data2.Recordset!codArtic
         vCStock.codAlmac = CInt(Data2.Recordset!codAlmac)
         vCStock.Cantidad = CSng(Data2.Recordset!Cantidad)
         vCStock.Importe = CCur(Data2.Recordset!ImporteL)
@@ -5369,7 +5378,7 @@ Dim Sql As String
         Set vCStock = New CStock
            If InicializarCStock(vCStock, "S", Rs!NumLinea) Then
                 'estos valores hay q leerlos del RS y no del data2
-                 vCStock.CodArtic = Rs!CodArtic
+                 vCStock.codArtic = Rs!codArtic
                  vCStock.codAlmac = CInt(Rs!codAlmac)
                  vCStock.Cantidad = CSng(Rs!Cantidad)
                  vCStock.Importe = CCur(Rs!ImporteL)
@@ -5378,7 +5387,7 @@ Dim Sql As String
                 '==== Laura 20/09/2006
                 'antes de actualizar el stock reestablecer el precio medio ponderado del articulo
                 Set cArt = New CArticulo
-                If cArt.LeerDatos(vCStock.CodArtic) Then
+                If cArt.LeerDatos(vCStock.codArtic) Then
                     'Laura 19/12/2006: Calcular precio medio pond. con precio con los descuentos (importe/cantidad)
                     'If Not cArt.ReestablecerPrecioMedPon(CCur(vCStock.Cantidad), CCur(RS!precioar)) Then b = False
                     If Not cArt.ReestablecerPrecioMedPon(CCur(vCStock.Cantidad), Round2(vCStock.Importe / vCStock.Cantidad, 4)) Then b = False
@@ -6270,15 +6279,15 @@ EComprobar:
 End Function
 
 
-Private Sub CargarDatosArticulo(CodArtic As String)
+Private Sub CargarDatosArticulo(codArtic As String)
 Dim Rs As ADODB.Recordset
 Dim Sql As String
         
     On Error GoTo eCargarDatosArticulo
         
-    If Trim(CodArtic) <> "" Then
+    If Trim(codArtic) <> "" Then
         Sql = "select nomfamia, nomunida from sartic, sfamia, sunida "
-        Sql = Sql & " where sartic.codartic = " & DBSet(CodArtic, "T")
+        Sql = Sql & " where sartic.codartic = " & DBSet(codArtic, "T")
         Sql = Sql & " and sartic.codfamia = sfamia.codfamia and sartic.codunida = sunida.codunida"
         
         Set Rs = New ADODB.Recordset

@@ -124,7 +124,7 @@ On Error GoTo Err_Carga
     'Conectar a la BD de la Empresa
     '####Descomentar
     For i = 1 To mrpt.Database.Tables.Count
-       If mrpt.Database.Tables(i).ConnectionProperties.item("DSN") = "vAriagro" Then
+       If mrpt.Database.Tables(i).ConnectionProperties.Item("DSN") = "vAriagro" Then
             mrpt.Database.Tables(i).SetLogOnInfo "vAriagro", vEmpresa.BDAriagro, "root", "aritel"
             If InStr(1, mrpt.Database.Tables(i).Name, "_cmd") = 0 And InStr(1, mrpt.Database.Tables(i).Name, "_alias") = 0 Then
                     mrpt.Database.Tables(i).Location = vEmpresa.BDAriagro & "." & mrpt.Database.Tables(i).Name
@@ -140,7 +140,12 @@ On Error GoTo Err_Carga
         For i = 1 To mrpt.Database.Tables.Count
            mrpt.Database.Tables(i).SetLogOnInfo "vconta", , "root", "aritel"
            If InStr(1, mrpt.Database.Tables(i).Name, "_") = 0 Then
+                '[Monica]19/11/2018: fallaba
+                If vParamAplic.ContabilidadNueva Then
+                   mrpt.Database.Tables(i).Location = "ariconta" & vParamAplic.NumeroConta & "." & mrpt.Database.Tables(i).Name
+                Else
                    mrpt.Database.Tables(i).Location = "conta" & vParamAplic.NumeroConta & "." & mrpt.Database.Tables(i).Name
+                End If
            End If
         Next i
     End If
@@ -148,8 +153,14 @@ On Error GoTo Err_Carga
     If SubInformeConta <> "" Then
         Set smrpt = mrpt.OpenSubreport(SubInformeConta)
         For i = 1 To smrpt.Database.Tables.Count
-            smrpt.Database.Tables(i).SetLogOnInfo "vConta", "conta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
-            smrpt.Database.Tables(i).Location = "conta" & vParamAplic.NumeroConta & "." & smrpt.Database.Tables(i).Name
+            '[Monica]19/11/2018: Fallaba
+            If vParamAplic.ContabilidadNueva Then
+                smrpt.Database.Tables(i).SetLogOnInfo "Ariconta6", "ariconta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
+                smrpt.Database.Tables(i).Location = "ariconta" & vParamAplic.NumeroConta & "." & smrpt.Database.Tables(i).Name
+            Else
+                smrpt.Database.Tables(i).SetLogOnInfo "vConta", "conta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
+                smrpt.Database.Tables(i).Location = "conta" & vParamAplic.NumeroConta & "." & smrpt.Database.Tables(i).Name
+            End If
         Next i
     End If
     
@@ -330,18 +341,18 @@ Private Sub Exportar()
 End Sub
 
 Private Sub PonerMargen()
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
     On Error GoTo EPon
-    cad = Dir(App.path & "\*.mrg")
-    If cad <> "" Then
-        i = InStr(1, cad, ".")
+    Cad = Dir(App.path & "\*.mrg")
+    If Cad <> "" Then
+        i = InStr(1, Cad, ".")
         If i > 0 Then
-            cad = Mid(cad, 1, i - 1)
-            If IsNumeric(cad) Then
-                If Val(cad) > 4000 Then cad = "4000"
-                If Val(cad) > 0 Then
-                    mrpt.BottomMargin = mrpt.BottomMargin + Val(cad)
+            Cad = Mid(Cad, 1, i - 1)
+            If IsNumeric(Cad) Then
+                If Val(Cad) > 4000 Then Cad = "4000"
+                If Val(Cad) > 0 Then
+                    mrpt.BottomMargin = mrpt.BottomMargin + Val(Cad)
                 End If
             End If
         End If
@@ -402,7 +413,7 @@ Dim i As Byte
                 Set smrpt = mrpt.OpenSubreport(crxSubreportObject.SubreportName)
                 For i = 1 To smrpt.Database.Tables.Count 'para cada tabla
                     '------ Añade Laura: 09/06/2005
-                    If smrpt.Database.Tables(i).ConnectionProperties.item("DSN") = "vAriagro" Then
+                    If smrpt.Database.Tables(i).ConnectionProperties.Item("DSN") = "vAriagro" Then
                         smrpt.Database.Tables(i).SetLogOnInfo "vAriagro", vEmpresa.BDAriagro, "root", "aritel"
                         If (InStr(1, smrpt.Database.Tables(i).Name, "_cmd") = 0) And (InStr(1, smrpt.Database.Tables(i).Name, "_alias") = 0) Then
                            smrpt.Database.Tables(i).Location = vEmpresa.BDAriagro & "." & smrpt.Database.Tables(i).Name
@@ -411,12 +422,12 @@ Dim i As Byte
                                 smrpt.Database.Tables(i).Location = vEmpresa.BDAriagro & "." & Replace(smrpt.Database.Tables(i).Name, "_alias", "")
                             End If
                         End If
-                    ElseIf smrpt.Database.Tables(i).ConnectionProperties.item("DSN") = "vConta" Then
+                    ElseIf smrpt.Database.Tables(i).ConnectionProperties.Item("DSN") = "vConta" Then
                         smrpt.Database.Tables(i).SetLogOnInfo "vConta", "conta" & vParamAplic.NumeroConta, vParamAplic.UsuarioConta, vParamAplic.PasswordConta
                         If (InStr(1, smrpt.Database.Tables(i).Name, "_") = 0) Then
                            smrpt.Database.Tables(i).Location = "conta" & vParamAplic.NumeroConta & "." & smrpt.Database.Tables(i).Name
                         End If
-                    ElseIf smrpt.Database.Tables(i).ConnectionProperties.item("DSN") = "vUsuarios" Then
+                    ElseIf smrpt.Database.Tables(i).ConnectionProperties.Item("DSN") = "vUsuarios" Then
                         smrpt.Database.Tables(i).SetLogOnInfo "vUsuarios", "usuarios", vParamAplic.UsuarioConta, vParamAplic.PasswordConta
                         If (InStr(1, smrpt.Database.Tables(i).Name, "_") = 0) Then
                            smrpt.Database.Tables(i).Location = "usuarios" & "." & smrpt.Database.Tables(i).Name

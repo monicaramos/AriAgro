@@ -2372,7 +2372,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, Numreg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 On Error GoTo EPonerModo
 
@@ -2697,9 +2697,13 @@ On Error GoTo ECargar
 '                SQL = "SELECT albaran.numalbar,albaran.fechaalb,albaran.matriveh,albaran.paletspag as totpalet, albaran.portespag "
                 Sql = "SELECT albaran.numalbar,albaran.fechaalb,albaran.matriveh,albaran.paletspag as totpalet, sum(albaran_costes.impcoste) as portesac, albaran.portespag "
             End If
-            Sql = Sql & " FROM albaran LEFT JOIN albaran_costes ON albaran.numalbar = albaran_costes.numalbar and albaran_costes.tipogasto = 2 "
+            Sql = Sql & " FROM albaran LEFT JOIN albaran_costes ON albaran.numalbar = albaran_costes.numalbar " ' and albaran_costes.tipogasto = 2 "
         '    SQL = SQL & " FROM albaran INNER JOIN clientes ON albaran.codclien=clientes.codclien "
             Sql = Sql & " WHERE " & cadwhere '& Text1(3).Text
+            
+            '[Monica]20/11/2018: bajamos la condicion abajo y ademas vamos a meter un indice por tipo de gasto
+            Sql = Sql & " and albaran_costes.tipogasto = 2 "
+            
             
 '[Monica] 04/01/2010 : un mismo albaran puede ser recepcionado varias veces por lo que el coste irá aumentando
 '            SQL = SQL & " and albaran.numalbar not in (select numalbar from albaran_costes where tipogasto = 2) "

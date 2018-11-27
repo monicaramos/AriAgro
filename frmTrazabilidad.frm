@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmTrazabilidad 
    BorderStyle     =   3  'Fixed Dialog
@@ -16,6 +16,13 @@ Begin VB.Form frmTrazabilidad
    ScaleWidth      =   6600
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin MSComDlg.CommonDialog cd1 
+      Left            =   7680
+      Top             =   5160
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
+   End
    Begin VB.Frame FrameTrasTraza 
       Height          =   4545
       Left            =   30
@@ -35,19 +42,37 @@ Begin VB.Form frmTrazabilidad
       End
       Begin VB.CommandButton cmdCancelTras 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   5145
          TabIndex        =   12
          Top             =   3690
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton cmdAcepTras 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   3930
          TabIndex        =   11
          Top             =   3720
-         Width           =   975
+         Width           =   1065
       End
       Begin MSComDlg.CommonDialog cmd2 
          Left            =   570
@@ -77,10 +102,10 @@ Begin VB.Form frmTrazabilidad
          Alignment       =   2  'Center
          Caption         =   "Proceso que realiza la lectura de expedientes de traza para incorporarlas a la aplicación."
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -224,13 +249,6 @@ Begin VB.Form frmTrazabilidad
          Width           =   6195
       End
    End
-   Begin MSComDlg.CommonDialog cd1 
-      Left            =   7680
-      Top             =   5160
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
-   End
 End
 Attribute VB_Name = "frmTrazabilidad"
 Attribute VB_GlobalNameSpace = False
@@ -264,16 +282,16 @@ Private HaDevueltoDatos As Boolean
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
 Dim indCodigo As Integer 'indice para txtCodigo
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim codigo As String 'Código para FormulaSelection de Crystal Report
+Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
-Dim cad As String
+Dim Cad As String
 Dim cadTABLA As String
 
 Dim vContad As Long
@@ -297,13 +315,13 @@ End Sub
 Private Sub cmdAceptar_Click()
 Dim Sql As String
 Dim i As Byte
-Dim cadWHERE As String
+Dim cadwhere As String
 Dim b As Boolean
 Dim CorrectoA As Boolean
 Dim CorrectoB As Boolean
 Dim CorrectoC As Boolean
 Dim NomFic As String
-Dim cadena As String
+Dim CADENA As String
 Dim cadena1 As String
 Dim Sql2 As String
 Dim Mens As String
@@ -332,7 +350,7 @@ On Error GoTo eError
         InicializarTabla
             '========= PARAMETROS  =============================
         'Añadir el parametro de Empresa
-        cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+        cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
         numParam = numParam + 1
 
 '        nompath = CargarPath(Me.CommonDialog1.FileName)
@@ -347,8 +365,8 @@ On Error GoTo eError
         b = (CorrectoA And CorrectoB And CorrectoC)
         
         If Not b Then Exit Sub
-        AnyadirAFormula cadFormula, "{tmpinformes.codusu} = " & vUsu.codigo
-        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+        AnyadirAFormula cadFormula, "{tmpinformes.codusu} = " & vUsu.Codigo
+        Sql = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
         
         If TotalRegistros(Sql) <> 0 Then
             MsgBox "Hay errores en el Traspaso de Trazabilidad. Debe corregirlos previamente.", vbExclamation
@@ -395,10 +413,10 @@ End Sub
 Private Sub cmdAcepTras_Click()
 Dim Sql As String
 Dim i As Byte
-Dim cadWHERE As String
+Dim cadwhere As String
 Dim b As Boolean
 Dim NomFic As String
-Dim cadena As String
+Dim CADENA As String
 Dim cadena1 As String
 Dim Directorio As String
 Dim fec As String
@@ -545,14 +563,14 @@ On Error GoTo eError
                 
                 '========= PARAMETROS  =============================
             'Añadir el parametro de Empresa
-            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomEmpre & """|"
+            cadParam = cadParam & "|pEmpresa=""" & vEmpresa.nomempre & """|"
             numParam = numParam + 1
     
             If ComprobarErrores2(pb1) Then
                 cadTABLA = "tmpinformes"
-                cadFormula = "{tmpinformes.codusu} = " & vUsu.codigo
+                cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
                 
-                Sql = "select count(*) from tmpinformes where codusu = " & vUsu.codigo
+                Sql = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
                 
                 If TotalRegistros(Sql) <> 0 Then
                     MsgBox "Hay errores en el Traspaso de Trazabilidad." & vbCrLf & "   Debe corregirlos previamente.", vbExclamation
@@ -695,7 +713,7 @@ End Sub
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -707,27 +725,27 @@ Dim NF As Integer
     RecuperaFichero = False
     NF = FreeFile
     Open App.path For Input As #NF ' & "\BV" & Format(CDate(txtcodigo(0).Text), "ddmmyy") & "." & Format(txtcodigo(1).Text, "000") For Input As #NF
-    Line Input #NF, cad
+    Line Input #NF, Cad
     Close #NF
-    If cad <> "" Then RecuperaFichero = True
+    If Cad <> "" Then RecuperaFichero = True
     
 End Function
 
 
 Private Function ProcesarFichero(nomFich As String, Opcion As Integer, ByRef Mens As String) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim NumReg As Long
 Dim Sql As String
 Dim Codclave As String
 Dim Codforpa As String
 
 
-Dim Fin As Integer
+Dim fin As Integer
 Dim campo As Integer
 
 Dim P_Pedido As String
@@ -792,133 +810,133 @@ Dim b As Boolean
     b = True
     
     Do While Not EOF(NF) And b
-        Line Input #NF, cad
+        Line Input #NF, Cad
          
         i = i + 1
         
-        Me.pb1.Value = Me.pb1.Value + Len(cad)
+        Me.pb1.Value = Me.pb1.Value + Len(Cad)
         lblProgres(1).Caption = "Linea " & i
         Me.Refresh
         
         'cargamos los valores a comprobar
         Select Case Opcion
             Case 0 ' fichero pedidos
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            P_Pedido = Mid(cad, 1, Fin - 1)
+                            P_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro envio
-                            P_envio = Mid(cad, 1, Fin - 1)
+                            P_envio = Mid(Cad, 1, fin - 1)
                         Case 3 'codclien
-                            P_cliente = Mid(cad, 1, Fin - 1)
+                            P_cliente = Mid(Cad, 1, fin - 1)
                         Case 4
-                            P_subcliente = Mid(cad, 1, Fin - 1)
+                            P_subcliente = Mid(Cad, 1, fin - 1)
                         Case 5 'fechaexped
-                            P_fechaexp = Mid(cad, 1, Fin - 1)
+                            P_fechaexp = Mid(Cad, 1, fin - 1)
                         Case 6 'codtrans
-                            P_codtrans = Mid(cad, 1, Fin - 1)
+                            P_codtrans = Mid(Cad, 1, fin - 1)
                         Case 7 'matricula veh
-                            P_matriveh = Mid(cad, 1, Fin - 1)
+                            P_matriveh = Mid(Cad, 1, fin - 1)
                         Case 8 'matricula rem
-                            P_matrirem = Mid(cad, 1, Fin - 1)
+                            P_matrirem = Mid(Cad, 1, fin - 1)
                         Case 9 'numpalet
-                            P_numpalet = Mid(cad, 1, Fin - 1)
+                            P_numpalet = Mid(Cad, 1, fin - 1)
                         Case 10 'codtimer
-                            P_codtimer = Mid(cad, 1, Fin - 1)
+                            P_codtimer = Mid(Cad, 1, fin - 1)
                         Case 11 'coddesti
-                            P_coddesti = Mid(cad, 1, Fin - 1)
+                            P_coddesti = Mid(Cad, 1, fin - 1)
                         Case 12 'observa1
-                            P_observa1 = Mid(cad, 1, Fin - 1)
+                            P_observa1 = Mid(Cad, 1, fin - 1)
                         Case 13 'observa2
-                            P_observa2 = Mid(cad, 1, Fin - 1)
+                            P_observa2 = Mid(Cad, 1, fin - 1)
                         Case 14 'observa3
-                            P_observa3 = Mid(cad, 1, Fin - 1)
+                            P_observa3 = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
             Case 1 ' fichero lineas
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            L_Pedido = Mid(cad, 1, Fin - 1)
+                            L_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro linea
-                            L_nrolinea = Mid(cad, 1, Fin - 1)
+                            L_nrolinea = Mid(Cad, 1, fin - 1)
                         Case 3 'codprodu
-                            L_codprodu = Mid(cad, 1, Fin - 1)
+                            L_codprodu = Mid(Cad, 1, fin - 1)
                         Case 4 'codvarie
-                            L_codvarie = Mid(cad, 1, Fin - 1)
+                            L_codvarie = Mid(Cad, 1, fin - 1)
                         Case 5 'codconfe
-                            L_codconfe = Mid(cad, 1, Fin - 1)
+                            L_codconfe = Mid(Cad, 1, fin - 1)
                         Case 6 'codmarca
-                            L_codmarca = Mid(cad, 1, Fin - 1)
+                            L_codmarca = Mid(Cad, 1, fin - 1)
                         Case 7 'categori
-                            L_categori = Mid(cad, 1, Fin - 1)
+                            L_categori = Mid(Cad, 1, fin - 1)
                         Case 8 'numcajas
-                            L_NumCajas = Mid(cad, 1, Fin - 1)
+                            L_NumCajas = Mid(Cad, 1, fin - 1)
                         Case 9 'pesobrut
-                            L_pesobrut = Mid(cad, 1, Fin - 1)
+                            L_pesobrut = Mid(Cad, 1, fin - 1)
                         Case 10 'pesoneto
-                            L_PesoNeto = Mid(cad, 1, Fin - 1)
+                            L_PesoNeto = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
                 
             
             Case 2 ' fichero sublineas
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            S_Pedido = Mid(cad, 1, Fin - 1)
+                            S_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro linea
-                            S_nrolinea = Mid(cad, 1, Fin - 1)
+                            S_nrolinea = Mid(Cad, 1, fin - 1)
                         Case 3 'sublinea
-                            S_sublinea = Mid(cad, 1, Fin - 1)
+                            S_sublinea = Mid(Cad, 1, fin - 1)
                         Case 4 'codprodu
-                            S_codprodu = Mid(cad, 1, Fin - 1)
+                            S_codprodu = Mid(Cad, 1, fin - 1)
                         Case 5 'codvarie
-                            S_codvarie = Mid(cad, 1, Fin - 1)
+                            S_codvarie = Mid(Cad, 1, fin - 1)
                         Case 6 'codcalib
-                            S_codcalib = Mid(cad, 1, Fin - 1)
+                            S_codcalib = Mid(Cad, 1, fin - 1)
                         Case 7 'pesobrut
-                            S_pesobrut = Mid(cad, 1, Fin - 1)
+                            S_pesobrut = Mid(Cad, 1, fin - 1)
                         Case 8 'pesoneto
-                            S_PesoNeto = Mid(cad, 1, Fin - 1)
+                            S_PesoNeto = Mid(Cad, 1, fin - 1)
                         Case 9 'numcajas
-                            S_NumCajas = Mid(cad, 1, Fin - 1)
+                            S_NumCajas = Mid(Cad, 1, fin - 1)
                         Case 10 'numunida
-                            S_numunida = Mid(cad, 1, Fin - 1)
+                            S_numunida = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
                 
         End Select
@@ -1020,7 +1038,7 @@ End Function
                 
 Private Function ComprobarErrores(nomFich As String, Opcion As Integer) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim J As Integer
 Dim Longitud As Long
@@ -1029,7 +1047,7 @@ Dim NumReg As Long
 Dim Sql As String
 Dim SeProcesaLinea As Boolean
 
-Dim Fin As Integer
+Dim fin As Integer
 Dim campo As Integer
 
 Dim P_Pedido As String
@@ -1100,133 +1118,133 @@ Dim Caracter As String
     Me.pb1.Value = 0
 
     Do While Not EOF(NF)
-        Line Input #NF, cad
+        Line Input #NF, Cad
          
         i = i + 1
         
-        Me.pb1.Value = Me.pb1.Value + Len(cad)
+        Me.pb1.Value = Me.pb1.Value + Len(Cad)
         lblProgres(1).Caption = "Linea " & i
         Me.Refresh
         
         'cargamos los valores a comprobar
         Select Case Opcion
             Case 0 ' fichero pedidos
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            P_Pedido = Mid(cad, 1, Fin - 1)
+                            P_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro envio
-                            P_envio = Mid(cad, 1, Fin - 1)
+                            P_envio = Mid(Cad, 1, fin - 1)
                         Case 3 'codclien
-                            P_cliente = Mid(cad, 1, Fin - 1)
+                            P_cliente = Mid(Cad, 1, fin - 1)
                         Case 4
-                            P_subcliente = Mid(cad, 1, Fin - 1)
+                            P_subcliente = Mid(Cad, 1, fin - 1)
                         Case 5 'fechaexped
-                            P_fechaexp = Mid(cad, 1, Fin - 1)
+                            P_fechaexp = Mid(Cad, 1, fin - 1)
                         Case 6 'codtrans
-                            P_codtrans = Mid(cad, 1, Fin - 1)
+                            P_codtrans = Mid(Cad, 1, fin - 1)
                         Case 7 'matricula veh
-                            P_matriveh = Mid(cad, 1, Fin - 1)
+                            P_matriveh = Mid(Cad, 1, fin - 1)
                         Case 8 'matricula rem
-                            P_matrirem = Mid(cad, 1, Fin - 1)
+                            P_matrirem = Mid(Cad, 1, fin - 1)
                         Case 9 'numpalet
-                            P_numpalet = Mid(cad, 1, Fin - 1)
+                            P_numpalet = Mid(Cad, 1, fin - 1)
                         Case 10 'codtimer
-                            P_codtimer = Mid(cad, 1, Fin - 1)
+                            P_codtimer = Mid(Cad, 1, fin - 1)
                         Case 11 'coddesti
-                            P_coddesti = Mid(cad, 1, Fin - 1)
+                            P_coddesti = Mid(Cad, 1, fin - 1)
                         Case 12 'observa1
-                            P_observa1 = Mid(cad, 1, Fin - 1)
+                            P_observa1 = Mid(Cad, 1, fin - 1)
                         Case 13 'observa2
-                            P_observa2 = Mid(cad, 1, Fin - 1)
+                            P_observa2 = Mid(Cad, 1, fin - 1)
                         Case 14 'observa3
-                            P_observa3 = Mid(cad, 1, Fin - 1)
+                            P_observa3 = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
             Case 1 ' fichero lineas
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            L_Pedido = Mid(cad, 1, Fin - 1)
+                            L_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro linea
-                            L_nrolinea = Mid(cad, 1, Fin - 1)
+                            L_nrolinea = Mid(Cad, 1, fin - 1)
                         Case 3 'codprodu
-                            L_codprodu = Mid(cad, 1, Fin - 1)
+                            L_codprodu = Mid(Cad, 1, fin - 1)
                         Case 4 'codvarie
-                            L_codvarie = Mid(cad, 1, Fin - 1)
+                            L_codvarie = Mid(Cad, 1, fin - 1)
                         Case 5 'codconfe
-                            L_codconfe = Mid(cad, 1, Fin - 1)
+                            L_codconfe = Mid(Cad, 1, fin - 1)
                         Case 6 'codmarca
-                            L_codmarca = Mid(cad, 1, Fin - 1)
+                            L_codmarca = Mid(Cad, 1, fin - 1)
                         Case 7 'categori
-                            L_categori = Mid(cad, 1, Fin - 1)
+                            L_categori = Mid(Cad, 1, fin - 1)
                         Case 8 'numcajas
-                            L_NumCajas = Mid(cad, 1, Fin - 1)
+                            L_NumCajas = Mid(Cad, 1, fin - 1)
                         Case 9 'pesobrut
-                            L_pesobrut = Mid(cad, 1, Fin - 1)
+                            L_pesobrut = Mid(Cad, 1, fin - 1)
                         Case 10 'pesoneto
-                            L_PesoNeto = Mid(cad, 1, Fin - 1)
+                            L_PesoNeto = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
                 
             
             Case 2 ' fichero sublineas
-                Fin = InStr(1, cad, "|")
+                fin = InStr(1, Cad, "|")
                 campo = 0
-                While Fin <> 0 Or cad <> ""
+                While fin <> 0 Or Cad <> ""
                     campo = campo + 1
                     Select Case campo
                         Case 1 'pedido
-                            S_Pedido = Mid(cad, 1, Fin - 1)
+                            S_Pedido = Mid(Cad, 1, fin - 1)
                         Case 2 'nro linea
-                            S_nrolinea = Mid(cad, 1, Fin - 1)
+                            S_nrolinea = Mid(Cad, 1, fin - 1)
                         Case 3 'sublinea
-                            S_sublinea = Mid(cad, 1, Fin - 1)
+                            S_sublinea = Mid(Cad, 1, fin - 1)
                         Case 4 'codprodu
-                            S_codprodu = Mid(cad, 1, Fin - 1)
+                            S_codprodu = Mid(Cad, 1, fin - 1)
                         Case 5 'codvarie
-                            S_codvarie = Mid(cad, 1, Fin - 1)
+                            S_codvarie = Mid(Cad, 1, fin - 1)
                         Case 6 'codcalib
-                            S_codcalib = Mid(cad, 1, Fin - 1)
+                            S_codcalib = Mid(Cad, 1, fin - 1)
                         Case 7 'pesobrut
-                            S_pesobrut = Mid(cad, 1, Fin - 1)
+                            S_pesobrut = Mid(Cad, 1, fin - 1)
                         Case 8 'pesoneto
-                            S_PesoNeto = Mid(cad, 1, Fin - 1)
+                            S_PesoNeto = Mid(Cad, 1, fin - 1)
                         Case 9 'numcajas
-                            S_NumCajas = Mid(cad, 1, Fin - 1)
+                            S_NumCajas = Mid(Cad, 1, fin - 1)
                         Case 10 'numunida
-                            S_numunida = Mid(cad, 1, Fin - 1)
+                            S_numunida = Mid(Cad, 1, fin - 1)
                     End Select
                     
-                    If (Fin + 1) < Len(cad) Then
-                        cad = Mid(cad, Fin + 1, Len(cad))
+                    If (fin + 1) < Len(Cad) Then
+                        Cad = Mid(Cad, fin + 1, Len(Cad))
                     Else
-                        cad = ""
+                        Cad = ""
                     End If
                     
-                    Fin = InStr(1, cad, "|")
+                    fin = InStr(1, Cad, "|")
                 Wend
                 
         End Select
@@ -1239,7 +1257,7 @@ Dim Caracter As String
                 Mens = "Existe el número de albarán " & P_Pedido
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1251,7 +1269,7 @@ Dim Caracter As String
                 Mens = "Existe el número de albarán " & L_Pedido
                 Mens1 = "Fichero Lineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1263,7 +1281,7 @@ Dim Caracter As String
                 Mens = "Existe el número de albarán " & S_Pedido
                 Mens1 = "Fichero Sublineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1276,7 +1294,7 @@ Dim Caracter As String
                 Mens = "No Existe el cliente " & P_cliente
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1288,7 +1306,7 @@ Dim Caracter As String
                 Mens = "No Existe la agencia de transporte " & P_codtrans
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1300,7 +1318,7 @@ Dim Caracter As String
                 Mens = "No Existe el tipo de mercado " & P_codtimer
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1312,7 +1330,7 @@ Dim Caracter As String
                 Mens = "No Existe el destino " & P_cliente & " " & P_coddesti
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1321,7 +1339,7 @@ Dim Caracter As String
                 Mens = "Fecha incorrecta"
                 Mens1 = "Fichero Pedido.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                 
                 conn.Execute Sql
             End If
@@ -1335,7 +1353,7 @@ Dim Caracter As String
                 Mens = "No Existe el producto " & L_codprodu
                 Mens1 = "Fichero Lineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1348,7 +1366,7 @@ Dim Caracter As String
                 Mens = "No Existe el producto " & S_codprodu
                 Mens1 = "Fichero Sublineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1361,7 +1379,7 @@ Dim Caracter As String
                 Mens = "No Existe la variedad " & L_codvarie
                 Mens1 = "Fichero Lineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1374,7 +1392,7 @@ Dim Caracter As String
                 Mens = "No Existe la variedad " & S_codprodu
                 Mens1 = "Fichero Sublineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1387,7 +1405,7 @@ Dim Caracter As String
                 Mens = "No Existe la confeccion " & L_codconfe
                 Mens1 = "Fichero Lineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1400,7 +1418,7 @@ Dim Caracter As String
                 Mens = "No Existe el calibre " & S_codvarie & " " & S_codcalib
                 Mens1 = "Fichero Sublineas.txt  Linea " & i
                 Sql = "insert into tmpinformes (codusu, nombre1, nombre2) values (" & _
-                      vUsu.codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
+                      vUsu.Codigo & "," & DBSet(Mens, "T") & "," & DBSet(Mens1, "T") & ")"
                       
                 conn.Execute Sql
             End If
@@ -1419,8 +1437,8 @@ Dim Caracter As String
 
 eComprobarErrores:
     If Err.Number <> 0 Then
-        cad = "Se ha producido un error en el proceso de comprobación"
-        MsgBox cad, vbExclamation
+        Cad = "Se ha producido un error en el proceso de comprobación"
+        MsgBox Cad, vbExclamation
     End If
 End Function
                 
@@ -1441,7 +1459,7 @@ End Sub
 
 Private Sub InicializarTabla()
 Dim Sql As String
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
     
     conn.Execute Sql
 End Sub
@@ -1584,14 +1602,14 @@ End Function
 
 Private Function ComprobarErrores2(ByRef pb1 As ProgressBar) As Boolean
 Dim NF As Long
-Dim cad As String
+Dim Cad As String
 Dim i As Integer
 Dim Longitud As Long
 Dim Rs As ADODB.Recordset
-Dim RS1 As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
 Dim NumReg As Long
 Dim Sql As String
-Dim Sql1 As String
+Dim SQL1 As String
 Dim Total As Long
 Dim v_cant As Currency
 Dim v_impo As Currency
@@ -1608,7 +1626,7 @@ Dim Nregs As Long
 
     ComprobarErrores2 = False
     
-    Sql = "delete from tmpinformes where codusu = " & vUsu.codigo
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
     conn.Execute Sql
 
     i = 0
@@ -1649,7 +1667,7 @@ Dim Nregs As Long
         If Not EsFechaOK(FechaEnt) Then
             Mens = "Fecha incorrecta"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1 ) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1662,7 +1680,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) <> 0 Then
             Mens = "Expediente ya existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1675,7 +1693,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Variedad no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1688,7 +1706,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Cliente no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1702,7 +1720,7 @@ Dim Nregs As Long
             If TotalRegistros(Sql) = 0 Then
                 Mens = "Comisionista no existe"
                 Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                      vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                      vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                       DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                       DBSet(Rs!MarcaFru, "T") & "," & _
                       DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1730,7 +1748,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Cliente sin destino"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1743,7 +1761,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Agencia transp.no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1757,7 +1775,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Tipo de Mercado no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2 , importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1770,7 +1788,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Confección no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1784,7 +1802,7 @@ Dim Nregs As Long
         If TotalRegistros(Sql) = 0 Then
             Mens = "Calibre no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1804,7 +1822,7 @@ Dim Nregs As Long
         If Not bAux Then
             Mens = "Marca no existe"
             Sql = "insert into tmpinformes (codusu, codigo1, importe1, fecha1, campo2, importe2, campo1, importe3, nombre2, importe4, importe5, nombre1) values (" & _
-                  vUsu.codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
+                  vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!codexped, "N") & "," & DBSet(FechaEnt, "F") & "," & _
                   DBSet(Rs!Codtimer, "N") & "," & DBSet(Rs!codforfait, "N") & "," & DBSet(Variedad, "N") & "," & DBSet(Rs!codcalib, "T") & "," & _
                   DBSet(Rs!MarcaFru, "T") & "," & _
                   DBSet(Rs!coddesti, "N") & "," & DBSet(Rs!codTrans, "N") & "," & _
@@ -1830,7 +1848,7 @@ End Function
 
 Private Function CargarExpedientes() As Boolean
 Dim Sql As String
-Dim Sql1 As String
+Dim SQL1 As String
 Dim Sql2 As String
 Dim Sql3 As String
 Dim Rs As ADODB.Recordset

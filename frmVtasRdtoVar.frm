@@ -122,7 +122,7 @@ Begin VB.Form frmVtasRdtoVar
             EndProperty
             Height          =   195
             Index           =   3
-            Left            =   750
+            Left            =   660
             TabIndex        =   27
             Top             =   345
             Width           =   780
@@ -140,7 +140,7 @@ Begin VB.Form frmVtasRdtoVar
             EndProperty
             Height          =   195
             Index           =   1
-            Left            =   750
+            Left            =   660
             TabIndex        =   26
             Top             =   750
             Width           =   735
@@ -607,6 +607,15 @@ Begin VB.Form frmVtasRdtoVar
       End
       Begin VB.Label Label4 
          Caption         =   "Cargando tabla temporal"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   195
          Index           =   27
          Left            =   390
@@ -820,7 +829,7 @@ InicializarVbles
 End Sub
 
 Private Function ProcesarCambios(cadTABLA, cadwhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim i As Integer
@@ -929,7 +938,7 @@ On Error GoTo eProcesarCambios
         A(i) = 0
     Next i
     
-    SQL = ""
+    Sql = ""
     
     While Not Rs.EOF
         IncrementarProgresNew Pb1, 1
@@ -981,28 +990,28 @@ On Error GoTo eProcesarCambios
            Rsx.MoveNext
         Wend
         
-        SQL = SQL & "(" & DBSet(vUsu.Codigo, "N") & ","
-        SQL = SQL & DBSet(Rs.Fields(0).Value, "F") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "N") & ","
-        SQL = SQL & DBSet(Rs.Fields(3).Value, "N") & "," 'numero de cajas
-        SQL = SQL & "0," & DBSet(Rs.Fields(4).Value, "N") & "," 'peso neto
-        SQL = SQL & DBSet(TotalGastos, "N") & "," & DBSet(ImpVenta, "N") & "," ' importe de venta
-        SQL = SQL & DBSet(Facturado, "N") & ","  'facturado o no
-        SQL = SQL & "0," 'cobrado o no
-        SQL = SQL & DBSet(Coste1, "N") & "," & DBSet(Gasto2, "N") & "," 'coste1 gasto1
-        SQL = SQL & "0,0,0,0,0,0,"
-        SQL = SQL & "0,"  ' gastos portes
-        SQL = SQL & "0)," ' gastos envases
+        Sql = Sql & "(" & DBSet(vUsu.Codigo, "N") & ","
+        Sql = Sql & DBSet(Rs.Fields(0).Value, "F") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "N") & ","
+        Sql = Sql & DBSet(Rs.Fields(3).Value, "N") & "," 'numero de cajas
+        Sql = Sql & "0," & DBSet(Rs.Fields(4).Value, "N") & "," 'peso neto
+        Sql = Sql & DBSet(TotalGastos, "N") & "," & DBSet(ImpVenta, "N") & "," ' importe de venta
+        Sql = Sql & DBSet(Facturado, "N") & ","  'facturado o no
+        Sql = Sql & "0," 'cobrado o no
+        Sql = Sql & DBSet(Coste1, "N") & "," & DBSet(Gasto2, "N") & "," 'coste1 gasto1
+        Sql = Sql & "0,0,0,0,0,0,"
+        Sql = Sql & "0,"  ' gastos portes
+        Sql = Sql & "0)," ' gastos envases
       
         Rs.MoveNext
     Wend
     
 '++monica: rapidez un solo insert
-    If SQL <> "" Then ' quitamos la ultima coma
-        SQL = Mid(SQL, 1, Len(SQL) - 1)
+    If Sql <> "" Then ' quitamos la ultima coma
+        Sql = Mid(Sql, 1, Len(Sql) - 1)
         
         Sql3 = "insert into tmpinfventas (codusu, fecalbar, numalbar, numlinea, numcajas, pesoreal, pesoneto, gastos, impventa, facturado, cobrado, "
         Sql3 = Sql3 & " codigo1, gastos1, codigo2, gastos2, codigo3, gastos3, codigo4, gastos4, gastosportes, gastosenvases) values "
-        Sql3 = Sql3 & SQL
+        Sql3 = Sql3 & Sql
    
        conn.Execute Sql3
     End If
@@ -1379,19 +1388,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -1403,7 +1412,7 @@ Dim Rs As ADODB.Recordset
 End Function
 
 Private Function ProcesarCambios2() As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim i As Integer
@@ -1450,12 +1459,12 @@ On Error GoTo eProcesarCambios
     
     Pb1.visible = True
         
-    SQL = "insert into tmpinformes (codusu, importe1, importe2, precio1, importe3, importe4) "
-    SQL = SQL & "select " & vUsu.Codigo & ", numalbar, kilosnet, prestimado, round(kilosnet * if(prestimado is null, 0, prestimado),2), 0 from rhisfruta where codvarie = " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(10).Text <> "" Then SQL = SQL & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
-    If txtCodigo(11).Text <> "" Then SQL = SQL & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
+    Sql = "insert into tmpinformes (codusu, importe1, importe2, precio1, importe3, importe4) "
+    Sql = Sql & "select " & vUsu.Codigo & ", numalbar, kilosnet, prestimado, round(kilosnet * if(prestimado is null, 0, prestimado),2), 0 from rhisfruta where codvarie = " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(10).Text <> "" Then Sql = Sql & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
+    If txtCodigo(11).Text <> "" Then Sql = Sql & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
     
-    conn.Execute SQL
+    conn.Execute Sql
     
     SQL1 = "select * from tmpinformes where codusu = " & vUsu.Codigo
         
@@ -1488,10 +1497,10 @@ On Error GoTo eProcesarCambios
         ImporteFacturado = ImporteAlbaranFacturadoaSocio(CStr(Rs!importe1))
         
         If ImporteFacturado <> 0 Then
-            SQL = "update tmpinformes set importe3 = 0, importe4 = " & DBSet(ImporteFacturado, "N")
-            SQL = SQL & " where codusu = " & vUsu.Codigo & " and importe1 = " & DBSet(Rs!importe1, "N")
+            Sql = "update tmpinformes set importe3 = 0, importe4 = " & DBSet(ImporteFacturado, "N")
+            Sql = Sql & " where codusu = " & vUsu.Codigo & " and importe1 = " & DBSet(Rs!importe1, "N")
             
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         
         Rs.MoveNext
@@ -1510,35 +1519,35 @@ eProcesarCambios:
 End Function
 
 Private Function ImporteAlbaranFacturadoaSocio(NumAlbar As String) As Currency
-Dim SQL As String
+Dim Sql As String
 Dim Importe As Currency
 Dim importe2 As Currency
 
-    SQL = "select sum(importel) from rlifter where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N")
-    If txtCodigo(10).Text <> "" Then SQL = SQL & " and fechaalb >= " & DBSet(txtCodigo(10).Text, "F")
-    If txtCodigo(11).Text <> "" Then SQL = SQL & " and fechaalb <= " & DBSet(txtCodigo(11).Text, "F")
-    Importe = DevuelveValor(SQL)
+    Sql = "select sum(importel) from rlifter where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N")
+    If txtCodigo(10).Text <> "" Then Sql = Sql & " and fechaalb >= " & DBSet(txtCodigo(10).Text, "F")
+    If txtCodigo(11).Text <> "" Then Sql = Sql & " and fechaalb <= " & DBSet(txtCodigo(11).Text, "F")
+    Importe = DevuelveValor(Sql)
     
-    SQL = "select sum(if(importe is null,0,importe) - if(imporgasto is null,0,imporgasto)) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 2)"
-    If txtCodigo(10).Text <> "" Then SQL = SQL & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
-    If txtCodigo(11).Text <> "" Then SQL = SQL & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
+    Sql = "select sum(if(importe is null,0,importe) - if(imporgasto is null,0,imporgasto)) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 2)"
+    If txtCodigo(10).Text <> "" Then Sql = Sql & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
+    If txtCodigo(11).Text <> "" Then Sql = Sql & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
     
-    SQL = SQL & " and not (rfactsoc_albaran.codtipom, rfactsoc_albaran.numfactu, rfactsoc_albaran.fecfactu) in (select rectif_codtipom,rectif_numfactu,rectif_fecfactu from rfactsoc "
-    SQL = SQL & " where not rectif_codtipom is null and not numfactu is null and not rectif_fecfactu is null)"
+    Sql = Sql & " and not (rfactsoc_albaran.codtipom, rfactsoc_albaran.numfactu, rfactsoc_albaran.fecfactu) in (select rectif_codtipom,rectif_numfactu,rectif_fecfactu from rfactsoc "
+    Sql = Sql & " where not rectif_codtipom is null and not numfactu is null and not rectif_fecfactu is null)"
     
-    importe2 = DevuelveValor(SQL)
+    importe2 = DevuelveValor(Sql)
     
     '[Monica]06/11/2013: si no esta liquidado cogemos todo lo que haya anticipado
     If Not AlbaranLiquidado(NumAlbar) Then
-        SQL = "select sum(if(importe is null,0,importe) - if(imporgasto is null,0,imporgasto)) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 1)"
+        Sql = "select sum(if(importe is null,0,importe) - if(imporgasto is null,0,imporgasto)) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 1)"
         
-        If txtCodigo(10).Text <> "" Then SQL = SQL & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
-        If txtCodigo(11).Text <> "" Then SQL = SQL & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
+        If txtCodigo(10).Text <> "" Then Sql = Sql & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
+        If txtCodigo(11).Text <> "" Then Sql = Sql & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
         
-        SQL = SQL & " and not (rfactsoc_albaran.codtipom, rfactsoc_albaran.numfactu, rfactsoc_albaran.fecfactu) in (select rectif_codtipom,rectif_numfactu,rectif_fecfactu from rfactsoc "
-        SQL = SQL & " where not rectif_codtipom is null and not numfactu is null and not rectif_fecfactu is null)"
+        Sql = Sql & " and not (rfactsoc_albaran.codtipom, rfactsoc_albaran.numfactu, rfactsoc_albaran.fecfactu) in (select rectif_codtipom,rectif_numfactu,rectif_fecfactu from rfactsoc "
+        Sql = Sql & " where not rectif_codtipom is null and not numfactu is null and not rectif_fecfactu is null)"
         
-        importe2 = DevuelveValor(SQL)
+        importe2 = DevuelveValor(Sql)
     End If
 
     ImporteAlbaranFacturadoaSocio = Importe + importe2
@@ -1546,13 +1555,13 @@ Dim importe2 As Currency
 End Function
 
 Private Function AlbaranLiquidado(NumAlbar As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 
-    SQL = "select count(*) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 2)"
-    If txtCodigo(10).Text <> "" Then SQL = SQL & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
-    If txtCodigo(11).Text <> "" Then SQL = SQL & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
+    Sql = "select count(*) from rfactsoc_albaran where numalbar = " & DBSet(NumAlbar, "N") & " and codvarie = " & DBSet(txtCodigo(2).Text, "N") & " and codtipom in (select codtipom from usuarios.stipom where tipodocu = 2)"
+    If txtCodigo(10).Text <> "" Then Sql = Sql & " and fecalbar >= " & DBSet(txtCodigo(10).Text, "F")
+    If txtCodigo(11).Text <> "" Then Sql = Sql & " and fecalbar <= " & DBSet(txtCodigo(11).Text, "F")
     
 
-    AlbaranLiquidado = (TotalRegistros(SQL) <> 0)
+    AlbaranLiquidado = (TotalRegistros(Sql) <> 0)
 
 End Function

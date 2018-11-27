@@ -5,7 +5,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManTipMerc 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Tipos de Mercado"
-   ClientHeight    =   9900
+   ClientHeight    =   7785
    ClientLeft      =   45
    ClientTop       =   30
    ClientWidth     =   8160
@@ -13,7 +13,7 @@ Begin VB.Form frmManTipMerc
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9900
+   ScaleHeight     =   7785
    ScaleWidth      =   8160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -116,7 +116,7 @@ Begin VB.Form frmManTipMerc
       Left            =   5640
       TabIndex        =   3
       Tag             =   "   "
-      Top             =   9195
+      Top             =   7080
       Visible         =   0   'False
       Width           =   1065
    End
@@ -135,7 +135,7 @@ Begin VB.Form frmManTipMerc
       Height          =   375
       Left            =   6840
       TabIndex        =   4
-      Top             =   9195
+      Top             =   7080
       Visible         =   0   'False
       Width           =   1065
    End
@@ -184,13 +184,13 @@ Begin VB.Form frmManTipMerc
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmManTipMerc.frx":0010
-      Height          =   8145
+      Height          =   5985
       Left            =   90
       TabIndex        =   7
       Top             =   900
       Width           =   7800
       _ExtentX        =   13758
-      _ExtentY        =   14367
+      _ExtentY        =   10557
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
@@ -266,7 +266,7 @@ Begin VB.Form frmManTipMerc
       Height          =   375
       Left            =   6840
       TabIndex        =   8
-      Top             =   9180
+      Top             =   7065
       Visible         =   0   'False
       Width           =   1095
    End
@@ -275,7 +275,7 @@ Begin VB.Form frmManTipMerc
       Index           =   1
       Left            =   45
       TabIndex        =   5
-      Top             =   9180
+      Top             =   7065
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1069,7 +1069,7 @@ End Sub
 Private Sub DataGrid1_GotFocus()
   WheelHook DataGrid1
 End Sub
-Private Sub DataGrid1_Lostfocus()
+Private Sub DataGrid1_LostFocus()
   WheelUnHook
 End Sub
 

@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Begin VB.Form frmTraerCalib 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Busqueda Calibres de Variedades"
@@ -17,15 +17,24 @@ Begin VB.Form frmTraerCalib
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
-      Height          =   285
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   360
       Index           =   0
       Left            =   1080
       MaxLength       =   12
       TabIndex        =   0
       Tag             =   "año del Folleto|N|N|||follviaj|anyfovia|||"
       Text            =   "123456789012"
-      Top             =   480
-      Width           =   1260
+      Top             =   495
+      Width           =   1620
    End
    Begin MSComctlLib.ListView ListView1 
       Height          =   1350
@@ -44,65 +53,94 @@ Begin VB.Form frmTraerCalib
       ForeColor       =   -2147483640
       BackColor       =   -2147483643
       Appearance      =   1
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       NumItems        =   0
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   4920
       TabIndex        =   1
       Top             =   2865
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
       Left            =   6180
       TabIndex        =   2
       Top             =   2865
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.Label Label1 
       Caption         =   "Datos de la Variedad"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00972E0B&
       Height          =   255
       Index           =   2
-      Left            =   360
+      Left            =   135
       TabIndex        =   6
-      Top             =   1080
-      Width           =   2010
+      Top             =   1035
+      Width           =   2415
    End
    Begin VB.Label Label1 
       Caption         =   "Calibre"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
+      ForeColor       =   &H00972E0B&
       Height          =   255
       Index           =   16
-      Left            =   360
+      Left            =   135
       TabIndex        =   5
       Top             =   480
-      Width           =   615
+      Width           =   1020
    End
    Begin VB.Label Label1 
       Caption         =   "Seleccione el calibre  que desee buscar:"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
          Weight          =   400
@@ -112,7 +150,7 @@ Begin VB.Form frmTraerCalib
       EndProperty
       Height          =   375
       Index           =   0
-      Left            =   240
+      Left            =   150
       TabIndex        =   3
       Top             =   120
       Width           =   6015
@@ -133,12 +171,12 @@ Public Event DatoSeleccionado(CadenaSeleccion As String)
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 
 Private Sub cmdAceptar_Click()
-Dim cad As Integer, cadAux As String
-Dim I As Integer
+Dim Cad As Integer, cadAux As String
+Dim i As Integer
 Dim NumF As Long
 Dim J As Integer
 Dim Aux As String
-Dim cadena As String
+Dim CADENA As String
     On Error Resume Next
     
     If Text1(0).Text = "" Then
@@ -153,25 +191,25 @@ Dim cadena As String
         Exit Sub
     End If
     Screen.MousePointer = vbHourglass
-    I = 1
-    cadena = ""
-    While (I <= Me.ListView1.ListItems.Count)
-        If Me.ListView1.ListItems(I).Checked Then
-            cad = Me.ListView1.ListItems(I)
-            cadena = cadena & " codvarie = " & Me.ListView1.ListItems(I) & " or "
+    i = 1
+    CADENA = ""
+    While (i <= Me.ListView1.ListItems.Count)
+        If Me.ListView1.ListItems(i).Checked Then
+            Cad = Me.ListView1.ListItems(i)
+            CADENA = CADENA & " codvarie = " & Me.ListView1.ListItems(i) & " or "
         End If
-        I = I + 1
+        i = i + 1
     Wend
     
-    If cadena = "" Then
+    If CADENA = "" Then
         Screen.MousePointer = vbDefault
         Exit Sub
     End If
     
-    cadena = "(" & Mid(cadena, 1, Len(cadena) - 3) & ")"
+    CADENA = "(" & Mid(CADENA, 1, Len(CADENA) - 3) & ")"
     
     
-    RaiseEvent Actualizar(cadena)
+    RaiseEvent Actualizar(CADENA)
     
     Screen.MousePointer = vbDefault
     Unload Me

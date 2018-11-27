@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasOrdenConfec 
    BorderStyle     =   3  'Fixed Dialog
@@ -16,6 +16,13 @@ Begin VB.Form frmVtasOrdenConfec
    ScaleWidth      =   8160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin MSComDlg.CommonDialog cd1 
+      Left            =   7680
+      Top             =   5160
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
+   End
    Begin VB.Frame FrameSeleccion 
       Height          =   5505
       Left            =   30
@@ -25,31 +32,58 @@ Begin VB.Form frmVtasOrdenConfec
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFC0C0&
-         Height          =   315
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
-         Left            =   6030
+         Left            =   5895
          TabIndex        =   10
          Text            =   "Text1"
          Top             =   4980
-         Width           =   1485
+         Width           =   1620
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   1
          Left            =   1500
          TabIndex        =   9
          Top             =   4980
-         Width           =   1095
+         Width           =   1065
       End
       Begin VB.CommandButton CmdAceptar 
          Caption         =   "Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   1
          Left            =   240
          TabIndex        =   8
          Top             =   4980
-         Width           =   1185
+         Width           =   1065
       End
       Begin MSComctlLib.ListView ListView1 
          Height          =   4425
@@ -68,6 +102,15 @@ Begin VB.Form frmVtasOrdenConfec
          BackColor       =   16777215
          BorderStyle     =   1
          Appearance      =   1
+         BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          NumItems        =   0
       End
       Begin VB.Image Image1 
@@ -98,15 +141,15 @@ Begin VB.Form frmVtasOrdenConfec
       Begin VB.Label Label1 
          Caption         =   "Pedidos Seleccionados"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00C00000&
+         ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   1
          Left            =   3240
@@ -123,40 +166,67 @@ Begin VB.Form frmVtasOrdenConfec
       Width           =   6375
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   6
          Left            =   3015
          MaxLength       =   10
          TabIndex        =   0
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   1755
-         Width           =   1050
+         Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   0
          Left            =   4890
          TabIndex        =   3
          Top             =   4485
-         Width           =   975
+         Width           =   1065
       End
       Begin VB.CommandButton CmdAceptar 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   0
-         Left            =   3720
+         Left            =   3735
          TabIndex        =   1
          Top             =   4485
-         Width           =   975
+         Width           =   1065
       End
       Begin MSComctlLib.ProgressBar Pb1 
          Height          =   255
          Left            =   360
          TabIndex        =   5
          Top             =   3825
-         Width           =   5430
-         _ExtentX        =   9578
+         Width           =   5610
+         _ExtentX        =   9895
          _ExtentY        =   450
          _Version        =   393216
          Appearance      =   1
@@ -164,10 +234,10 @@ Begin VB.Form frmVtasOrdenConfec
       Begin VB.Label Label4 
          Caption         =   "Fecha Carga"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
+            Name            =   "Verdana"
+            Size            =   14.25
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -178,7 +248,7 @@ Begin VB.Form frmVtasOrdenConfec
          Left            =   630
          TabIndex        =   4
          Top             =   1665
-         Width           =   1950
+         Width           =   1905
       End
       Begin VB.Image imgFec 
          Height          =   240
@@ -189,13 +259,6 @@ Begin VB.Form frmVtasOrdenConfec
          Top             =   1755
          Width           =   240
       End
-   End
-   Begin MSComDlg.CommonDialog cd1 
-      Left            =   7680
-      Top             =   5160
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
    End
 End
 Attribute VB_Name = "frmVtasOrdenConfec"
@@ -228,7 +291,7 @@ Attribute frmC.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String 'Cadena con los parametros para Crystal Report
 Private numParam As Byte 'Numero de parametros que se pasan a Crystal Report
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private cadTitulo As String 'Titulo para la ventana frmImprimir
 Private cadNombreRPT As String 'Nombre del informe
 
@@ -236,7 +299,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -262,15 +325,15 @@ Dim cadTABLA As String, cOrden As String
 Dim cadMen As String
 Dim i As Byte
 Dim Sql As String
-Dim tipo As Byte
-Dim nRegs As Integer
+Dim Tipo As Byte
+Dim Nregs As Integer
 Dim NumError As Long
 Dim db As BaseDatos
 
 Dim cadFormula As String
 Dim cadParam As String
 Dim numParam As Byte
-Dim cadSelect As String 'select para insertar en tabla temporal
+Dim cadselect As String 'select para insertar en tabla temporal
 Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 
@@ -293,7 +356,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
                 If ProcesarCambios Then
                        cadFormula = ""
                        cadParam = ""
-                       cadSelect = ""
+                       cadselect = ""
                        numParam = 0
                          
                        indRPT = 6 'Impresion de Orden de Confección
@@ -346,7 +409,7 @@ Private Sub Form_Activate()
 End Sub
 
 Private Sub Form_Load()
-Dim h As Integer, w As Integer
+Dim H As Integer, W As Integer
 Dim List As Collection
 Dim i As Integer
 
@@ -360,15 +423,15 @@ Dim i As Integer
     '###Descomentar
 '    CommitConexion
          
-    FrameCobrosVisible True, h, w
+    FrameCobrosVisible True, H, W
     indFrame = 5
     
     Pb1.visible = False
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
     Me.cmdCancel(0).Cancel = True
-    Me.Width = w + 70
-    Me.Height = h + 350
+    Me.Width = W + 70
+    Me.Height = H + 350
 End Sub
 
 
@@ -497,7 +560,7 @@ End Sub
 
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
-Dim cad As String, cadTipo As String 'tipo cliente
+Dim Cad As String, cadTipo As String 'tipo cliente
 
     'Quitar espacios en blanco por los lados
     txtCodigo(Index).Text = Trim(txtCodigo(Index).Text)
@@ -515,15 +578,15 @@ Dim cad As String, cadTipo As String 'tipo cliente
     End Select
 End Sub
 
-Private Sub FrameCobrosVisible(visible As Boolean, ByRef h As Integer, ByRef w As Integer)
+Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W As Integer)
     Me.FrameCobros.visible = visible
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
         Me.FrameCobros.Height = 6015
         Me.FrameCobros.Width = 6555
-        w = Me.FrameCobros.Width
-        h = Me.FrameCobros.Height
+        W = Me.FrameCobros.Width
+        H = Me.FrameCobros.Height
     End If
 End Sub
 

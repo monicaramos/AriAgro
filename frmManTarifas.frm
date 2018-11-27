@@ -5,23 +5,23 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmManTarifas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Tarifas de Transporte"
-   ClientHeight    =   6120
+   ClientHeight    =   7830
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   6375
+   ClientWidth     =   7545
    Icon            =   "frmManTarifas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6120
-   ScaleWidth      =   6375
+   ScaleHeight     =   7830
+   ScaleWidth      =   7545
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   45
       TabIndex        =   8
-      Top             =   45
+      Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
@@ -91,12 +91,12 @@ Begin VB.Form frmManTarifas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   3930
+      Left            =   4875
       TabIndex        =   2
       Tag             =   "   "
-      Top             =   5505
+      Top             =   7260
       Visible         =   0   'False
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -111,11 +111,11 @@ Begin VB.Form frmManTarifas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5100
+      Left            =   6165
       TabIndex        =   3
-      Top             =   5505
+      Top             =   7260
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.TextBox txtAux 
       Appearance      =   0  'Flat
@@ -129,7 +129,7 @@ Begin VB.Form frmManTarifas
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   1
       Left            =   900
       MaxLength       =   15
@@ -151,7 +151,7 @@ Begin VB.Form frmManTarifas
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   290
+      Height          =   330
       Index           =   0
       Left            =   60
       MaxLength       =   3
@@ -162,13 +162,13 @@ Begin VB.Form frmManTarifas
    End
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmManTarifas.frx":000C
-      Height          =   4545
-      Left            =   75
+      Height          =   5985
+      Left            =   90
       TabIndex        =   6
-      Top             =   810
-      Width           =   6130
-      _ExtentX        =   10821
-      _ExtentY        =   8017
+      Top             =   945
+      Width           =   7125
+      _ExtentX        =   12568
+      _ExtentY        =   10557
       _Version        =   393216
       AllowUpdate     =   0   'False
       BorderStyle     =   0
@@ -242,18 +242,18 @@ Begin VB.Form frmManTarifas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   5085
+      Left            =   6165
       TabIndex        =   7
-      Top             =   5490
+      Top             =   7245
       Visible         =   0   'False
-      Width           =   1095
+      Width           =   1065
    End
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   1
       Left            =   75
       TabIndex        =   4
-      Top             =   5370
+      Top             =   7125
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -449,6 +449,7 @@ Dim b As Boolean
     
     For i = 0 To txtAux.Count - 1
         txtAux(i).visible = Not b
+        txtAux(i).BackColor = vbWhite
     Next i
     
     cmdAceptar.visible = Not b
@@ -514,7 +515,7 @@ Private Sub BotonAnyadir()
          
     anc = DataGrid1.Top
     If DataGrid1.Row < 0 Then
-        anc = anc + 206
+        anc = anc + 240
     Else
         anc = anc + DataGrid1.RowTop(DataGrid1.Row) + 5
     End If
@@ -545,7 +546,7 @@ Private Sub BotonBuscar()
         txtAux(i).Text = ""
     Next i
 '    PosicionarCombo Combo1, "724"
-    LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.Top + 240, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
 End Sub
 
@@ -564,7 +565,7 @@ Private Sub BotonModificar()
     If DataGrid1.Row < 0 Then
         anc = 320
     Else
-        anc = DataGrid1.RowTop(DataGrid1.Row) + 545
+        anc = DataGrid1.RowTop(DataGrid1.Row) + DataGrid1.Top '+ 545
     End If
 
     'Llamamos al form
@@ -927,9 +928,9 @@ Private Sub CargaGrid(Optional vSQL As String)
     CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "S|txtAux(0)|T|Cód.|500|;S|txtAux(1)|T|Tarifa de Transporte|3800|;"
+    tots = "S|txtAux(0)|T|Código|1000|;S|txtAux(1)|T|Tarifa de Transporte|5400|;"
     
-    arregla tots, DataGrid1, Me
+    arregla tots, DataGrid1, Me, 350
     
     DataGrid1.ScrollBars = dbgAutomatic
     DataGrid1.Columns(0).Alignment = dbgRight
@@ -937,7 +938,7 @@ Private Sub CargaGrid(Optional vSQL As String)
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFocoLin txtAux(Index)
+    ConseguirFoco txtAux(Index), Modo
 End Sub
 
 
@@ -1026,7 +1027,7 @@ End Sub
 Private Sub DataGrid1_GotFocus()
   WheelHook DataGrid1
 End Sub
-Private Sub DataGrid1_Lostfocus()
+Private Sub DataGrid1_LostFocus()
   WheelUnHook
 End Sub
 
