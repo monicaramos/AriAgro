@@ -836,7 +836,7 @@ Begin VB.Form frmManFamilias
    End
    Begin VB.Label Label1 
       Alignment       =   1  'Right Justify
-      Caption         =   "Codigo"
+      Caption         =   "Código"
       BeginProperty Font 
          Name            =   "Verdana"
          Size            =   9.75

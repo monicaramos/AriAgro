@@ -79,7 +79,7 @@ Begin VB.Form frmListCyCRiesgo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5085
+         Left            =   5175
          TabIndex        =   5
          Top             =   3510
          Width           =   1020
@@ -96,7 +96,7 @@ Begin VB.Form frmListCyCRiesgo
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   3915
+         Left            =   4005
          TabIndex        =   4
          Top             =   3510
          Width           =   1020
@@ -158,7 +158,7 @@ Begin VB.Form frmListCyCRiesgo
          TabIndex        =   8
          Text            =   "Text5"
          Top             =   2325
-         Width           =   3180
+         Width           =   3585
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -179,7 +179,7 @@ Begin VB.Form frmListCyCRiesgo
          TabIndex        =   7
          Text            =   "Text5"
          Top             =   2745
-         Width           =   3180
+         Width           =   3585
       End
       Begin VB.Label Label1 
          Caption         =   "Listado de Riesgo"
@@ -194,7 +194,7 @@ Begin VB.Form frmListCyCRiesgo
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   345
-         Left            =   450
+         Left            =   465
          TabIndex        =   15
          Top             =   270
          Width           =   5160
@@ -213,7 +213,7 @@ Begin VB.Form frmListCyCRiesgo
          ForeColor       =   &H00972E0B&
          Height          =   255
          Index           =   16
-         Left            =   420
+         Left            =   465
          TabIndex        =   14
          Top             =   900
          Width           =   1815
@@ -260,7 +260,7 @@ Begin VB.Form frmListCyCRiesgo
          Left            =   1440
          Picture         =   "frmListCyCRiesgo.frx":000C
          ToolTipText     =   "Buscar fecha"
-         Top             =   1200
+         Top             =   1245
          Width           =   240
       End
       Begin VB.Image imgFec 
@@ -269,7 +269,7 @@ Begin VB.Form frmListCyCRiesgo
          Left            =   1440
          Picture         =   "frmListCyCRiesgo.frx":0097
          ToolTipText     =   "Buscar fecha"
-         Top             =   1560
+         Top             =   1650
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -394,7 +394,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -418,7 +418,7 @@ Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-Dim SQL As String
+Dim Sql As String
 
 InicializarVbles
     
@@ -443,7 +443,7 @@ InicializarVbles
     nHasta = txtNombre(1).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".codclien}"
+        Codigo = "{" & tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
     End If
@@ -454,12 +454,12 @@ InicializarVbles
     cHasta = Trim(txtCodigo(3).Text)
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & Tabla & ".fechaalb}"
+        Codigo = "{" & tabla & ".fechaalb}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
     End If
     
-    cadTABLA = Tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
+    cadTABLA = tabla & " INNER JOIN clientes ON albaran.codclien = clientes.codclien "
     
     
     cadParam = cadParam & "pNroPoliza=""" & Trim(vParamAplic.NroPolizaExp) & """|"
@@ -517,7 +517,7 @@ Dim List As Collection
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    Tabla = "albaran"
+    tabla = "albaran"
     Me.Refresh
         
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
@@ -781,19 +781,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -808,7 +808,7 @@ End Function
 ' necesario cargar la tabla temporal pq los importes son con el iva del cliente de la contabilidad
 
 Private Function CargarTemporal(cTabla As String, cadwhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim Codiva As String
@@ -850,7 +850,7 @@ On Error GoTo eCargarTemporal
     '                             ' tipo: 0 los asegurados (clientes con nro de seguro)
     '                             '       1 los no asegurados (clientes sin el nro de seguro)
                                   '(codusu, tipo,     pais,     albaran,  linea,  fecalbar,cliente, imp.factu,imp.provi,dias , baseimp    impoiva,    nrofactu, fecfactu,codtipom
-    SQL = "insert into tmpinformes (codusu, importe5, importe4, importe1, campo1, fecha1,  codigo1, importe2, importe3, campo2, importeb1, importeb2, importeb3, fecha2, nombre1) values "
+    Sql = "insert into tmpinformes (codusu, importe5, importe4, importe1, campo1, fecha1,  codigo1, importe2, importe3, campo2, importeb1, importeb2, importeb3, fecha2, nombre1) values "
     
     Sql2 = "select 0 tipo, clientes.codpaise, albaran.fechaalb, albaran.codclien, clientes.tipoiva, clientes.diasasegurados, albaran_variedad.* "
     Sql2 = Sql2 & " from albaran_variedad, albaran, clientes where albaran.numalbar = albaran_variedad.numalbar "
@@ -937,7 +937,7 @@ On Error GoTo eCargarTemporal
     If Len(Registro) > 0 Then
         Registro = Mid(Registro, 1, Len(Registro) - 1)
     
-        conn.Execute SQL & Registro
+        conn.Execute Sql & Registro
     End If
         
         

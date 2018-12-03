@@ -163,7 +163,7 @@ Begin VB.MDIForm MDIppal
             Style           =   5
             Object.Width           =   1058
             MinWidth        =   1058
-            TextSave        =   "11:49"
+            TextSave        =   "18:56"
          EndProperty
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -924,6 +924,8 @@ Begin VB.MDIForm MDIppal
       End
       Begin VB.Menu mnE_Soporte2 
          Caption         =   "&Acerca de"
+         Enabled         =   0   'False
+         Visible         =   0   'False
       End
    End
 End

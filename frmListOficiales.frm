@@ -46,7 +46,7 @@ Begin VB.Form frmListOficiales
          TabIndex        =   24
          Text            =   "Text5"
          Top             =   1395
-         Width           =   3180
+         Width           =   3675
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -67,7 +67,7 @@ Begin VB.Form frmListOficiales
          TabIndex        =   23
          Text            =   "Text5"
          Top             =   1020
-         Width           =   3180
+         Width           =   3675
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -310,7 +310,7 @@ Begin VB.Form frmListOficiales
          TabIndex        =   10
          Text            =   "Text5"
          Top             =   2115
-         Width           =   3180
+         Width           =   3675
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -331,7 +331,7 @@ Begin VB.Form frmListOficiales
          TabIndex        =   9
          Text            =   "Text5"
          Top             =   2490
-         Width           =   3180
+         Width           =   3675
       End
       Begin VB.Image imgBuscar 
          Height          =   240
@@ -674,7 +674,7 @@ Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 Dim cadSelect1 As String
-Dim SQL As String
+Dim Sql As String
 Dim NSocs As Long
 Dim Sql2 As String
 
@@ -846,29 +846,29 @@ End Sub
 
 
 Private Sub frmMensVariedad_DatoSeleccionado(CadenaSeleccion As String)
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        SQL = " {rhisfruta.codvarie} in (" & CadenaSeleccion & ")"
+        Sql = " {rhisfruta.codvarie} in (" & CadenaSeleccion & ")"
         Sql2 = " {rhisfruta.codvarie} in [" & CadenaSeleccion & "]"
     Else
-        SQL = " {rhisfruta.codvarie} = -1 "
+        Sql = " {rhisfruta.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 End Sub
 
 Private Sub frmMensProducto_DatoSeleccionado(CadenaSeleccion As String)
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        SQL = " {variedades.codprodu} in (" & CadenaSeleccion & ")"
+        Sql = " {variedades.codprodu} in (" & CadenaSeleccion & ")"
         Sql2 = " {variedades.codprodu} in [" & CadenaSeleccion & "]"
         SqlProds = " and variedades.codprodu in (" & CadenaSeleccion & ")"
     Else
-        SQL = " and variedades.codprodu = -1 "
+        Sql = " and variedades.codprodu = -1 "
         SqlProds = " and variedades.codprodu = -1 "
     End If
 End Sub
@@ -1153,7 +1153,7 @@ End Sub
 
 
 Private Function CargarTemporal(cTabla As String, cadwhere As String, cTABLA1 As String, cadwhere1 As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim Sql2 As String
 Dim Sql4 As String
@@ -1163,7 +1163,7 @@ Dim i As Integer
 Dim HayReg As Integer
 Dim b As Boolean
 Dim Registro As String
-Dim cadena As String
+Dim CADENA As String
 Dim vCliente As CCliente
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
@@ -1189,46 +1189,46 @@ On Error GoTo eCargarTemporal
     
     conn.Execute "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
         
-    SQL = "Select rhisfruta.codvarie FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select rhisfruta.codvarie FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cadwhere <> "" Then
         cadwhere = QuitarCaracterACadena(cadwhere, "{")
         cadwhere = QuitarCaracterACadena(cadwhere, "}")
         cadwhere = QuitarCaracterACadena(cadwhere, "_1")
-        SQL = SQL & " WHERE " & cadwhere
+        Sql = Sql & " WHERE " & cadwhere
     End If
     
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " union "
-    SQL = SQL & " Select albaran_variedad.codvarie FROM " & QuitarCaracterACadena(cTABLA1, "_1")
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " union "
+    Sql = Sql & " Select albaran_variedad.codvarie FROM " & QuitarCaracterACadena(cTABLA1, "_1")
     If cadwhere1 <> "" Then
         cadwhere1 = QuitarCaracterACadena(cadwhere1, "{")
         cadwhere1 = QuitarCaracterACadena(cadwhere1, "}")
         cadwhere1 = QuitarCaracterACadena(cadwhere1, "_1")
-        SQL = SQL & " WHERE " & cadwhere1
+        Sql = Sql & " WHERE " & cadwhere1
     End If
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " order by 1"
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " order by 1"
     
                                   '(codusu, variedad,  superficie,kilosnetEnt,kilosnetSal, kilosnetVC, kilosmer1, kilosmer2, kilosmer3, kilosmer4)
     Sql4 = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4,  importeb1, importeb2, importeb3, importeb4) values "
     
-    cadena = ""
+    CADENA = ""
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not Rs.EOF Then
         VarieAnt = DBLet(Rs!codvarie, "N")
                                   '(codusu, variedad)
-        cadena = "(" & vUsu.Codigo & ","
-        cadena = cadena & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
+        CADENA = "(" & vUsu.Codigo & ","
+        CADENA = CADENA & DBSet(Rs!codvarie, "N") & ",0,0,0,0,0,0,0,0),"
     End If
     
     While Not Rs.EOF
         Variedad = DBLet(Rs!codvarie, "N")
         If VarieAnt <> Variedad Then
-            cadena = cadena & "(" & vUsu.Codigo & ","
-            cadena = cadena & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
+            CADENA = CADENA & "(" & vUsu.Codigo & ","
+            CADENA = CADENA & DBSet(Variedad, "N") & ",0,0,0,0,0,0,0,0),"
             
             VarieAnt = DBLet(Variedad, "N")
         End If
@@ -1237,15 +1237,15 @@ On Error GoTo eCargarTemporal
     Wend
     Set Rs = Nothing
     
-    If cadena <> "" Then
+    If CADENA <> "" Then
                                       '(codusu, variedad, superficie,kilosnetEnt,kilosnetSal,kilosVC,  kilosmer1, kilosmer2, kilosmer3, kilosmer4)
-        SQL = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4, importeb1, importeb2, importeb3, importeb4) values "
-        SQL = SQL & Mid(cadena, 1, Len(cadena) - 1) ' quitamos la ultima coma
-        conn.Execute SQL
+        Sql = "insert into tmpinformes (codusu, codigo1,  importe1,  importe2,   importe3,   importe4, importeb1, importeb2, importeb3, importeb4) values "
+        Sql = Sql & Mid(CADENA, 1, Len(CADENA) - 1) ' quitamos la ultima coma
+        conn.Execute Sql
     
-        SQL = "select codigo1 from tmpinformes where codusu = " & vUsu.Codigo & " order by codigo1 "
+        Sql = "select codigo1 from tmpinformes where codusu = " & vUsu.Codigo & " order by codigo1 "
         Set Rs = New ADODB.Recordset
-        Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
         
         While Not Rs.EOF
             ' cargamos los kilos entrados distintos de venta campo y la superficie
@@ -1373,18 +1373,18 @@ On Error GoTo eCargarTemporal
             Wend
             Set Rs2 = Nothing
         
-            SQL = "update tmpinformes set importe1 = " & DBSet(Superficie, "N")
-            SQL = SQL & ", importe2 = " & DBSet(KilosNet, "N")
-            SQL = SQL & ", importe3 = " & DBSet((Interior + Exportacion + Industria + Retirada), "N")
-            SQL = SQL & ", importe4 = " & DBSet(KilosNetVC, "N")
-            SQL = SQL & ", importeb1 = " & DBSet(Interior, "N")
-            SQL = SQL & ", importeb2 = " & DBSet(Exportacion, "N")
-            SQL = SQL & ", importeb3 = " & DBSet(Industria, "N")
-            SQL = SQL & ", importeb4 = " & DBSet(Retirada, "N")
-            SQL = SQL & " where codusu = " & vUsu.Codigo
-            SQL = SQL & " and codigo1 = " & DBSet(Rs!Codigo1, "N")
+            Sql = "update tmpinformes set importe1 = " & DBSet(Superficie, "N")
+            Sql = Sql & ", importe2 = " & DBSet(KilosNet, "N")
+            Sql = Sql & ", importe3 = " & DBSet((Interior + Exportacion + Industria + Retirada), "N")
+            Sql = Sql & ", importe4 = " & DBSet(KilosNetVC, "N")
+            Sql = Sql & ", importeb1 = " & DBSet(Interior, "N")
+            Sql = Sql & ", importeb2 = " & DBSet(Exportacion, "N")
+            Sql = Sql & ", importeb3 = " & DBSet(Industria, "N")
+            Sql = Sql & ", importeb4 = " & DBSet(Retirada, "N")
+            Sql = Sql & " where codusu = " & vUsu.Codigo
+            Sql = Sql & " and codigo1 = " & DBSet(Rs!Codigo1, "N")
         
-            conn.Execute SQL
+            conn.Execute Sql
         
             Rs.MoveNext
         Wend
@@ -1409,29 +1409,29 @@ End Function
 
 Private Function HayRegistros(cTabla As String, cWhere As String, cTABLA1 As String, cWhere1 As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select rhisfruta.codvarie FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select rhisfruta.codvarie FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " union "
-    SQL = SQL & " Select albaran_variedad.codvarie FROM " & QuitarCaracterACadena(cTABLA1, "_1")
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " union "
+    Sql = Sql & " Select albaran_variedad.codvarie FROM " & QuitarCaracterACadena(cTABLA1, "_1")
     If cWhere1 <> "" Then
         cWhere1 = QuitarCaracterACadena(cWhere1, "{")
         cWhere1 = QuitarCaracterACadena(cWhere1, "}")
         cWhere1 = QuitarCaracterACadena(cWhere1, "_1")
-        SQL = SQL & " WHERE " & cWhere1
+        Sql = Sql & " WHERE " & cWhere1
     End If
-    SQL = SQL & " group by 1 "
+    Sql = Sql & " group by 1 "
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation

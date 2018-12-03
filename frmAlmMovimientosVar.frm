@@ -284,7 +284,7 @@ Begin VB.Form frmAlmMovimientosVar
       EndProperty
       Height          =   255
       Index           =   0
-      Left            =   4860
+      Left            =   5670
       TabIndex        =   3
       Tag             =   "Situación Impresión|N|N|||scamov|situacio||N|"
       Top             =   1320
@@ -307,7 +307,7 @@ Begin VB.Form frmAlmMovimientosVar
       TabIndex        =   0
       Tag             =   "Tipo|N|N|||scaser|clisoc||N|"
       Top             =   1230
-      Width           =   1860
+      Width           =   2625
    End
    Begin VB.TextBox Text1 
       Alignment       =   1  'Right Justify
@@ -392,7 +392,7 @@ Begin VB.Form frmAlmMovimientosVar
       EndProperty
       Height          =   360
       Index           =   5
-      Left            =   4830
+      Left            =   5640
       MaxLength       =   8
       TabIndex        =   4
       Tag             =   "Hora|H|N|||scaser|hormovim|hh:mm:ss|N|"
@@ -679,7 +679,7 @@ Begin VB.Form frmAlmMovimientosVar
       EndProperty
       Height          =   360
       Index           =   1
-      Left            =   3420
+      Left            =   4230
       MaxLength       =   10
       TabIndex        =   2
       Tag             =   "Fecha|F|N|||scaser|fecmovim|dd/mm/yyyy|N|"
@@ -817,7 +817,7 @@ Begin VB.Form frmAlmMovimientosVar
       EndProperty
       Height          =   360
       Index           =   0
-      Left            =   2040
+      Left            =   2850
       MaxLength       =   7
       TabIndex        =   1
       Tag             =   "Nº Movimiento|N|S|0||scaser|codservi|0000000|S|"
@@ -990,7 +990,7 @@ Begin VB.Form frmAlmMovimientosVar
    Begin VB.Image imgFec 
       Height          =   240
       Index           =   0
-      Left            =   4515
+      Left            =   5325
       Picture         =   "frmAlmMovimientosVar.frx":002B
       ToolTipText     =   "Buscar fecha"
       Top             =   930
@@ -1008,7 +1008,7 @@ Begin VB.Form frmAlmMovimientosVar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   4860
+      Left            =   5670
       TabIndex        =   31
       Top             =   930
       Width           =   735
@@ -1067,7 +1067,7 @@ Begin VB.Form frmAlmMovimientosVar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   3435
+      Left            =   4245
       TabIndex        =   22
       Top             =   945
       Width           =   675
@@ -1084,7 +1084,7 @@ Begin VB.Form frmAlmMovimientosVar
          Strikethrough   =   0   'False
       EndProperty
       Height          =   255
-      Left            =   2070
+      Left            =   2880
       TabIndex        =   14
       Top             =   960
       Width           =   1440
@@ -1278,7 +1278,7 @@ On Error GoTo Error1
                 CargaTxtAux False, False
                 Me.lblIndicador.Caption = ""
                 CargaGrid True
-                Data2.Recordset.Find (Data2.Recordset.Fields(1).Name & " =" & CInt(Me.cmdAceptar.Tag))
+                Data2.Recordset.Find (Data2.Recordset.Fields(1).Name & " =" & CInt(Me.CmdAceptar.Tag))
 '++monica: rollo
             PonerModo 2
             PonerCampos
@@ -1589,12 +1589,12 @@ On Error GoTo ECarga
     i = 3
     
     'Cod. Artículo
-    DataGrid1.Columns(i).Caption = "Cod. Articulo"
+    DataGrid1.Columns(i).Caption = "Cod. Artículo"
     DataGrid1.Columns(i).Width = 1700
     
     'Nombre Artículo
     i = i + 1
-    DataGrid1.Columns(i).Caption = "Nombre Articulo"
+    DataGrid1.Columns(i).Caption = "Nombre Artículo"
     DataGrid1.Columns(i).Width = 3000
     
     'Cantidad
@@ -1946,7 +1946,7 @@ End Sub
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
     If KeyAscii = 13 And Index = 3 And Modo = 1 Then
-        PonerFocoBtn cmdAceptar
+        PonerFocoBtn CmdAceptar
     Else
         KEYpress KeyAscii
     End If
@@ -2057,7 +2057,7 @@ End Sub
 
 Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 3 And KeyCode = 40 Then
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     Else
         KEYdown KeyCode
     End If
@@ -2065,7 +2065,7 @@ End Sub
 
 Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 3 And KeyAscii = 13 Then
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     Else
         KEYpress KeyAscii
     End If
@@ -2162,7 +2162,7 @@ End Sub
 
 
 Private Sub PonerModo(Kmodo As Byte)
-Dim i As Byte, Numreg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
     
     'Actualiza Iconos Insertar,Modificar,Eliminar
@@ -2181,9 +2181,9 @@ Dim b As Boolean
         cmdRegresar.visible = False
     End If
     
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -2202,7 +2202,7 @@ Dim b As Boolean
     '=================================================
     b = Modo <> 0 And Modo <> 2 '--monica: rollo toolbar And Modo <> 5
     cmdCancelar.visible = b
-    cmdAceptar.visible = b
+    CmdAceptar.visible = b
     
     For i = 0 To Me.imgFec.Count - 1
         Me.imgFec(i).Enabled = b And Modo <> 5
@@ -2455,7 +2455,7 @@ Dim vWhere As String
     '++monica
     
     vWhere = ObtenerWhereCP(False)
-    cmdAceptar.Tag = SugerirCodigoSiguienteStr("sliser", "numlinea", vWhere)
+    CmdAceptar.Tag = SugerirCodigoSiguienteStr("sliser", "numlinea", vWhere)
 '--monica: rollo toolbar
 '    PonerBotonCabecera False
 '    lblIndicador.Caption = "INSERTAR"
@@ -2510,7 +2510,7 @@ Dim i As Integer
         DataGrid1.Refresh
     End If
     
-    cmdAceptar.Tag = Data2.Recordset!NumLinea
+    CmdAceptar.Tag = Data2.Recordset!NumLinea
     
     CargaTxtAux True, False
     DataGrid1.Enabled = False
@@ -2797,7 +2797,7 @@ End Function
 
 Private Sub PonerBotonCabecera(b As Boolean)
 On Error Resume Next
-    Me.cmdAceptar.visible = Not b
+    Me.CmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -2827,7 +2827,7 @@ On Error GoTo EInsertarModificarLinea
             Sql = "INSERT INTO sliser (codservi,clisoc,numlinea,codartic,cantidad,tipomovi,motimovi, precioar, importel) "
             Sql = Sql & " VALUES (" & Val(Text1(0).Text) & ", "
             Sql = Sql & Combo1(0).ListIndex & ","
-            Sql = Sql & cmdAceptar.Tag & ", "
+            Sql = Sql & CmdAceptar.Tag & ", "
             Sql = Sql & DBSet(txtAux(0).Text, "T") & ", "
             Sql = Sql & DBSet(txtAux(2).Text, "N") & ", "
             If cboAux.ListIndex = -1 Then
@@ -2850,7 +2850,7 @@ On Error GoTo EInsertarModificarLinea
                 Sql = Sql & ", importel = " & DBSet(txtAux(5).Text, "N")
                 Sql = Sql & " WHERE codservi =" & Val(Text1(0).Text) & " AND "
                 Sql = Sql & " clisoc = " & Combo1(0).ListIndex & " AND "
-                Sql = Sql & " numlinea =" & Val(cmdAceptar.Tag)
+                Sql = Sql & " numlinea =" & Val(CmdAceptar.Tag)
             Else
                 InsertarModificarLinea = ModificarLineaHco
                 Exit Function
@@ -3635,10 +3635,10 @@ Dim i As Byte
     Combo1(0).AddItem "Clientes"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 1
     
-    Combo1(0).AddItem "Regulariz.Socios"
+    Combo1(0).AddItem "Regularización Socios"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 2
     
-    Combo1(0).AddItem "Regulariz.Clientes"
+    Combo1(0).AddItem "Regularización Clientes"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 3
     
 End Sub
@@ -3711,7 +3711,7 @@ Dim vEntSal As String
     Sql = Sql & ", importel = " & DBSet(txtAux(5).Text, "N")
     Sql = Sql & " WHERE codservi =" & Val(Text1(0).Text) & " AND "
     Sql = Sql & " clisoc = " & Combo1(0).ListIndex & " AND "
-    Sql = Sql & " numlinea =" & Val(cmdAceptar.Tag)
+    Sql = Sql & " numlinea =" & Val(CmdAceptar.Tag)
 
     If Sql <> "" Then
         dentroTRANSAC = True

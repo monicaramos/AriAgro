@@ -1,22 +1,142 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCCOrdenConfeccion 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Ordenes de Confección"
-   ClientHeight    =   9735
+   ClientHeight    =   10320
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   11580
+   ClientTop       =   30
+   ClientWidth     =   13575
    Icon            =   "frmCCOrdenConfeccion.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9735
-   ScaleWidth      =   11580
+   ScaleHeight     =   10320
+   ScaleWidth      =   13575
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   0
+      Left            =   10890
+      TabIndex        =   99
+      Top             =   315
+      Width           =   1605
+   End
+   Begin VB.Frame FrameDesplazamiento 
+      Height          =   705
+      Left            =   3735
+      TabIndex        =   97
+      Top             =   90
+      Width           =   2415
+      Begin MSComctlLib.Toolbar ToolbarDes 
+         Height          =   330
+         Left            =   240
+         TabIndex        =   98
+         Top             =   180
+         Width           =   1965
+         _ExtentX        =   3466
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   4
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Primero"
+               ImageIndex      =   6
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Anterior"
+               ImageIndex      =   7
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Siguiente"
+               ImageIndex      =   8
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Último"
+               ImageIndex      =   9
+            EndProperty
+         EndProperty
+      End
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   45
+      TabIndex        =   95
+      Top             =   90
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   96
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame FrameResumen 
       Caption         =   "RESUMEN"
       BeginProperty Font 
@@ -30,36 +150,45 @@ Begin VB.Form frmCCOrdenConfeccion
       EndProperty
       ForeColor       =   &H00C00000&
       Height          =   7065
-      Left            =   60
-      TabIndex        =   67
-      Top             =   2010
+      Left            =   45
+      TabIndex        =   65
+      Top             =   2520
       Visible         =   0   'False
-      Width           =   11445
+      Width           =   13445
       Begin VB.Frame FrameAux3 
          Caption         =   "Forfaits"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00C00000&
-         Height          =   2520
+         ForeColor       =   &H00972E0B&
+         Height          =   2655
          Left            =   1200
-         TabIndex        =   84
+         TabIndex        =   82
          Top             =   3450
-         Width           =   9420
+         Width           =   11420
          Begin VB.TextBox Text3 
             Alignment       =   1  'Right Justify
             BackColor       =   &H00FFFFC0&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   7
             Left            =   7605
-            TabIndex        =   92
+            TabIndex        =   90
             Text            =   "Text3"
             Top             =   2160
             Width           =   1200
@@ -68,10 +197,19 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             BackColor       =   &H00FFFFC0&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   6
             Left            =   4410
-            TabIndex        =   91
+            TabIndex        =   89
             Text            =   "Text3"
             Top             =   2160
             Width           =   1300
@@ -80,11 +218,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   43
             Left            =   3810
             MaxLength       =   10
-            TabIndex        =   90
+            TabIndex        =   88
             Tag             =   "Kilos|N|N|||cclinorden4|kilosnet|##,###,##0||"
             Text            =   "kilos"
             Top             =   1860
@@ -95,11 +242,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   41
             Left            =   750
             MaxLength       =   16
-            TabIndex        =   89
+            TabIndex        =   87
             Tag             =   "Linea|N|N|||cclinorden4|numlinea|00|S|"
             Text            =   "lin"
             Top             =   1830
@@ -111,10 +267,19 @@ Begin VB.Form frmCCOrdenConfeccion
             BackColor       =   &H80000018&
             BorderStyle     =   0  'None
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   4
             Left            =   1710
-            TabIndex        =   88
+            TabIndex        =   86
             Text            =   "nombre"
             Top             =   1830
             Visible         =   0   'False
@@ -124,11 +289,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   42
             Left            =   1110
             MaxLength       =   16
-            TabIndex        =   87
+            TabIndex        =   85
             Tag             =   "Codigo Forfait|T|N|||cclinorden4|codforfait|||"
             Text            =   "forfait"
             Top             =   1830
@@ -139,11 +313,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   44
             Left            =   5760
             MaxLength       =   10
-            TabIndex        =   86
+            TabIndex        =   84
             Tag             =   "Cajas|N|N|||cclinorden4|numcajon|##,###,##0||"
             Text            =   "cajas"
             Top             =   1860
@@ -154,11 +337,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   40
             Left            =   180
             MaxLength       =   16
-            TabIndex        =   85
+            TabIndex        =   83
             Tag             =   "Codigo Orden|N|N|||cclinorden4|codorden||S|"
             Text            =   "orden"
             Top             =   1830
@@ -169,7 +361,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   390
             Index           =   3
             Left            =   90
-            TabIndex        =   93
+            TabIndex        =   91
             Top             =   330
             Visible         =   0   'False
             Width           =   1200
@@ -201,28 +393,28 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   1710
             Index           =   3
             Left            =   180
-            TabIndex        =   94
+            TabIndex        =   92
             Top             =   360
-            Width           =   8880
-            _ExtentX        =   15663
+            Width           =   10880
+            _ExtentX        =   19182
             _ExtentY        =   3016
             _Version        =   393216
             AllowUpdate     =   0   'False
             BorderStyle     =   0
             HeadLines       =   1
-            RowHeight       =   15
+            RowHeight       =   19
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
-               Italic          =   0   'False
+               Italic          =   -1  'True
                Strikethrough   =   0   'False
             EndProperty
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -330,7 +522,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   330
             Index           =   7
             Left            =   6150
-            TabIndex        =   96
+            TabIndex        =   94
             Top             =   2160
             Width           =   1440
          End
@@ -349,7 +541,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   240
             Index           =   6
             Left            =   2610
-            TabIndex        =   95
+            TabIndex        =   93
             Top             =   2160
             Width           =   3420
          End
@@ -357,29 +549,38 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.Frame FrameAux1 
          Caption         =   "Categorias"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
+            Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00C00000&
-         Height          =   2520
+         ForeColor       =   &H00972E0B&
+         Height          =   2655
          Left            =   1200
-         TabIndex        =   68
+         TabIndex        =   66
          Top             =   630
-         Width           =   9420
+         Width           =   11420
          Begin VB.TextBox txtAux 
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   40
             Left            =   180
             MaxLength       =   16
-            TabIndex        =   79
+            TabIndex        =   77
             Tag             =   "Codigo Orden|N|N|||cclinorden2|codorden||S|"
             Text            =   "orden"
             Top             =   1830
@@ -390,11 +591,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   44
             Left            =   6360
             MaxLength       =   7
-            TabIndex        =   78
+            TabIndex        =   76
             Tag             =   "Horas|N|N|||cclinorden2|horas|###0.00||"
             Text            =   "horas"
             Top             =   1860
@@ -405,11 +615,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   42
             Left            =   1110
             MaxLength       =   4
-            TabIndex        =   77
+            TabIndex        =   75
             Tag             =   "Codigo Coste|N|N|||cclinorden2|codcoste|0000|S|"
             Text            =   "Cost"
             Top             =   1830
@@ -421,10 +640,19 @@ Begin VB.Form frmCCOrdenConfeccion
             BackColor       =   &H80000018&
             BorderStyle     =   0  'None
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   42
             Left            =   1710
-            TabIndex        =   76
+            TabIndex        =   74
             Text            =   "nombre"
             Top             =   1830
             Visible         =   0   'False
@@ -433,11 +661,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Begin VB.CommandButton btnBuscar 
             Appearance      =   0  'Flat
             Caption         =   "+"
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   1
             Left            =   1560
             MaskColor       =   &H00000000&
-            TabIndex        =   75
+            TabIndex        =   73
             ToolTipText     =   "Buscar zona"
             Top             =   1800
             Visible         =   0   'False
@@ -447,11 +684,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   41
             Left            =   750
             MaxLength       =   16
-            TabIndex        =   74
+            TabIndex        =   72
             Tag             =   "Linea|N|N|||cclinorden2|numlinea|00|S|"
             Text            =   "lin"
             Top             =   1830
@@ -461,11 +707,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Begin VB.CommandButton btnBuscar 
             Appearance      =   0  'Flat
             Caption         =   "+"
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   5
             Left            =   4380
             MaskColor       =   &H00000000&
-            TabIndex        =   73
+            TabIndex        =   71
             ToolTipText     =   "Buscar categoria"
             Top             =   1830
             Visible         =   0   'False
@@ -476,10 +731,19 @@ Begin VB.Form frmCCOrdenConfeccion
             BackColor       =   &H80000018&
             BorderStyle     =   0  'None
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   43
             Left            =   4590
-            TabIndex        =   72
+            TabIndex        =   70
             Text            =   "nombre"
             Top             =   1860
             Visible         =   0   'False
@@ -489,11 +753,20 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
             BorderStyle     =   0  'None
-            Height          =   290
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
             Index           =   43
             Left            =   3810
             MaxLength       =   2
-            TabIndex        =   71
+            TabIndex        =   69
             Tag             =   "Categoria|N|N|||cclinorden2|codcateg|00||"
             Text            =   "cate"
             Top             =   1860
@@ -504,10 +777,19 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             BackColor       =   &H00FFFFC0&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   1
             Left            =   4410
-            TabIndex        =   70
+            TabIndex        =   68
             Text            =   "Text3"
             Top             =   2160
             Width           =   1300
@@ -516,10 +798,19 @@ Begin VB.Form frmCCOrdenConfeccion
             Alignment       =   1  'Right Justify
             BackColor       =   &H00FFFFC0&
             Enabled         =   0   'False
-            Height          =   285
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
             Index           =   3
             Left            =   7605
-            TabIndex        =   69
+            TabIndex        =   67
             Text            =   "Text3"
             Top             =   2160
             Width           =   1200
@@ -528,7 +819,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   390
             Index           =   1
             Left            =   90
-            TabIndex        =   80
+            TabIndex        =   78
             Top             =   330
             Visible         =   0   'False
             Width           =   1200
@@ -560,28 +851,28 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   1710
             Index           =   1
             Left            =   180
-            TabIndex        =   81
+            TabIndex        =   79
             Top             =   360
-            Width           =   8880
-            _ExtentX        =   15663
+            Width           =   10880
+            _ExtentX        =   19182
             _ExtentY        =   3016
             _Version        =   393216
             AllowUpdate     =   0   'False
             BorderStyle     =   0
             HeadLines       =   1
-            RowHeight       =   15
+            RowHeight       =   19
             BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9
                Charset         =   0
                Weight          =   700
                Underline       =   0   'False
-               Italic          =   0   'False
+               Italic          =   -1  'True
                Strikethrough   =   0   'False
             EndProperty
             BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-               Name            =   "MS Sans Serif"
-               Size            =   8.25
+               Name            =   "Verdana"
+               Size            =   9.75
                Charset         =   0
                Weight          =   400
                Underline       =   0   'False
@@ -689,7 +980,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   240
             Index           =   1
             Left            =   2610
-            TabIndex        =   83
+            TabIndex        =   81
             Top             =   2160
             Width           =   3420
          End
@@ -708,7 +999,7 @@ Begin VB.Form frmCCOrdenConfeccion
             Height          =   330
             Index           =   3
             Left            =   6150
-            TabIndex        =   82
+            TabIndex        =   80
             Top             =   2160
             Width           =   1440
          End
@@ -728,7 +1019,7 @@ Begin VB.Form frmCCOrdenConfeccion
       ForeColor       =   &H00C00000&
       Height          =   3240
       Left            =   60
-      TabIndex        =   50
+      TabIndex        =   48
       Top             =   5820
       Width           =   11445
       Begin VB.TextBox txtAux1 
@@ -739,7 +1030,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   0
          Left            =   45
          MaxLength       =   16
-         TabIndex        =   59
+         TabIndex        =   57
          Tag             =   "CodigoOrden|N|N|||cclinorden3|codorden||S|"
          Text            =   "Orden"
          Top             =   2565
@@ -753,7 +1044,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   2
          Left            =   765
          MaxLength       =   6
-         TabIndex        =   58
+         TabIndex        =   56
          Tag             =   "Codigo Variedad|N|N|||cclinorden3|codvarie|000000|N|"
          Text            =   "varie"
          Top             =   2565
@@ -768,7 +1059,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   3
          Left            =   2040
          MaxLength       =   16
-         TabIndex        =   60
+         TabIndex        =   58
          Tag             =   "Forfait|T|N|||cclinorden3|codforfait|||"
          Text            =   "forfai"
          Top             =   2550
@@ -783,7 +1074,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   285
          Index           =   1
          Left            =   1440
-         TabIndex        =   57
+         TabIndex        =   55
          Top             =   2550
          Visible         =   0   'False
          Width           =   525
@@ -795,7 +1086,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   6
          Left            =   1200
          MaskColor       =   &H00000000&
-         TabIndex        =   56
+         TabIndex        =   54
          ToolTipText     =   "Buscar concepto coste"
          Top             =   2550
          Visible         =   0   'False
@@ -809,7 +1100,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   285
          Index           =   0
          Left            =   3045
-         TabIndex        =   55
+         TabIndex        =   53
          Top             =   2550
          Visible         =   0   'False
          Width           =   705
@@ -822,7 +1113,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   1
          Left            =   450
          MaxLength       =   16
-         TabIndex        =   54
+         TabIndex        =   52
          Tag             =   "Linea|N|N|||cclinorden3|numlinea|0000|S|"
          Text            =   "lin"
          Top             =   2565
@@ -836,7 +1127,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   7
          Left            =   2820
          MaskColor       =   &H00000000&
-         TabIndex        =   53
+         TabIndex        =   51
          ToolTipText     =   "Buscar trabajador"
          Top             =   2520
          Visible         =   0   'False
@@ -850,7 +1141,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   4
          Left            =   3810
          MaxLength       =   10
-         TabIndex        =   62
+         TabIndex        =   60
          Tag             =   "Kilos|N|N|||cclinorden3|kilosnet|##,###,##0||"
          Text            =   "kilos"
          Top             =   2550
@@ -865,7 +1156,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   5
          Left            =   4830
          MaxLength       =   10
-         TabIndex        =   64
+         TabIndex        =   62
          Tag             =   "Kilos|N|N|||cclinorden3|numcajon|##,###,##0||"
          Text            =   "cajas"
          Top             =   2520
@@ -879,7 +1170,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   285
          Index           =   5
          Left            =   9645
-         TabIndex        =   52
+         TabIndex        =   50
          Text            =   "Text3"
          Top             =   2850
          Width           =   1380
@@ -891,7 +1182,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   285
          Index           =   4
          Left            =   6150
-         TabIndex        =   51
+         TabIndex        =   49
          Text            =   "Text3"
          Top             =   2850
          Width           =   1300
@@ -900,7 +1191,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   390
          Index           =   2
          Left            =   135
-         TabIndex        =   61
+         TabIndex        =   59
          Top             =   285
          Width           =   1200
          _ExtentX        =   2117
@@ -978,7 +1269,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   2010
          Index           =   2
          Left            =   135
-         TabIndex        =   63
+         TabIndex        =   61
          Top             =   720
          Width           =   11160
          _ExtentX        =   19685
@@ -1059,7 +1350,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   360
          Index           =   5
          Left            =   8190
-         TabIndex        =   66
+         TabIndex        =   64
          Top             =   2850
          Width           =   1440
       End
@@ -1078,29 +1369,38 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   240
          Index           =   4
          Left            =   4350
-         TabIndex        =   65
+         TabIndex        =   63
          Top             =   2850
          Width           =   1995
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   1410
+      Height          =   1500
       Index           =   0
       Left            =   60
       TabIndex        =   11
-      Top             =   540
-      Width           =   11445
+      Top             =   900
+      Width           =   13445
       Begin VB.TextBox text1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   720
          Index           =   6
-         Left            =   6000
+         Left            =   6585
          MaxLength       =   250
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   6
          Tag             =   "Observaciones|T|S|||caborden|observac|||"
          Top             =   540
-         Width           =   5100
+         Width           =   6045
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -1108,79 +1408,142 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   7
          Left            =   7590
          MaxLength       =   6
-         TabIndex        =   49
+         TabIndex        =   47
          Text            =   "123456"
          Top             =   780
          Width           =   720
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   1
-         Left            =   1230
+         Left            =   1365
          MaxLength       =   10
          TabIndex        =   1
          Text            =   "1234567890"
          Top             =   540
-         Width           =   1005
+         Width           =   1350
       End
       Begin VB.TextBox text2 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   1980
-         TabIndex        =   32
+         Left            =   2340
+         TabIndex        =   30
          Text            =   "12345678901234567890"
          Top             =   960
-         Width           =   3870
+         Width           =   4095
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   3
-         Left            =   1230
+         Left            =   1365
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "Cliente|N|S|||cccaborden|codclien|000000||"
          Text            =   "123456"
          Top             =   960
-         Width           =   720
+         Width           =   900
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
-         Left            =   2370
+         Left            =   2775
          MaxLength       =   8
          TabIndex        =   2
          Text            =   "12345678"
          Top             =   540
-         Width           =   885
+         Width           =   1110
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   9
-         Left            =   4800
+         Left            =   5340
          MaxLength       =   8
          TabIndex        =   4
          Top             =   540
-         Width           =   1035
+         Width           =   1110
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   8
-         Left            =   3630
+         Left            =   3945
          MaxLength       =   10
          TabIndex        =   3
          Text            =   "1234567890"
          Top             =   540
-         Width           =   1005
+         Width           =   1350
       End
       Begin VB.TextBox text1 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   270
          MaxLength       =   7
@@ -1188,7 +1551,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Tag             =   "Código Orden|N|S|||cccaborden|codorden||S|"
          Text            =   "1234567"
          Top             =   540
-         Width           =   765
+         Width           =   945
       End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
@@ -1196,7 +1559,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   4
          Left            =   8250
          MaxLength       =   20
-         TabIndex        =   41
+         TabIndex        =   39
          Tag             =   "Fecha Inicio|FH|N|||cccaborden|fechaini|yyyy-mm-dd hh:mm:ss||"
          Text            =   "1234567890"
          Top             =   780
@@ -1208,7 +1571,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Index           =   5
          Left            =   7440
          MaxLength       =   20
-         TabIndex        =   42
+         TabIndex        =   40
          Tag             =   "Fecha Fin|FH|S|||cccaborden|fechafin|yyyy-mm-dd hh:mm:ss||"
          Text            =   "1234567890"
          Top             =   900
@@ -1217,7 +1580,7 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.Image imgDoc 
          Height          =   345
          Index           =   1
-         Left            =   10650
+         Left            =   12180
          ToolTipText     =   "Mostrar Resumen"
          Top             =   150
          Width           =   405
@@ -1225,7 +1588,7 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   1
-         Left            =   4380
+         Left            =   5040
          Picture         =   "frmCCOrdenConfeccion.frx":0054
          ToolTipText     =   "Buscar fecha"
          Top             =   270
@@ -1234,7 +1597,7 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   0
-         Left            =   1980
+         Left            =   2475
          Picture         =   "frmCCOrdenConfeccion.frx":00DF
          ToolTipText     =   "Buscar fecha"
          Top             =   270
@@ -1242,70 +1605,133 @@ Begin VB.Form frmCCOrdenConfeccion
       End
       Begin VB.Label Label10 
          Caption         =   "Cliente"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   270
-         TabIndex        =   33
+         TabIndex        =   31
          Top             =   960
-         Width           =   540
+         Width           =   720
       End
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   3
-         Left            =   960
+         Left            =   1095
          ToolTipText     =   "Buscar Variedad"
          Top             =   960
          Width           =   240
       End
       Begin VB.Label Label5 
          Caption         =   "Hora"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   4800
-         TabIndex        =   31
+         Left            =   5340
+         TabIndex        =   29
          Top             =   300
          Width           =   825
       End
       Begin VB.Label Label4 
          Caption         =   "Fecha Fin"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   3630
-         TabIndex        =   30
+         Left            =   3945
+         TabIndex        =   28
          Top             =   300
-         Width           =   840
+         Width           =   1065
       End
       Begin VB.Label Label3 
          Caption         =   "Hora"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   2400
-         TabIndex        =   29
+         Left            =   2805
+         TabIndex        =   27
          Top             =   300
          Width           =   780
       End
       Begin VB.Label Label29 
          Caption         =   "Observaciones"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   6030
-         TabIndex        =   17
+         Left            =   6570
+         TabIndex        =   15
          Top             =   300
-         Width           =   1125
+         Width           =   1485
       End
       Begin VB.Image imgZoom 
          Height          =   240
          Index           =   0
-         Left            =   7200
+         Left            =   8100
          ToolTipText     =   "Zoom descripción"
          Top             =   270
          Width           =   240
       End
       Begin VB.Label Label18 
          Caption         =   "Fec.Inicio"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
-         Left            =   1260
-         TabIndex        =   16
+         Left            =   1395
+         TabIndex        =   14
          Top             =   300
-         Width           =   930
+         Width           =   975
       End
       Begin VB.Label Label1 
          Caption         =   "Código"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Index           =   0
          Left            =   270
@@ -1314,56 +1740,209 @@ Begin VB.Form frmCCOrdenConfeccion
          Width           =   1095
       End
    End
-   Begin VB.Frame FrameAux0 
-      Caption         =   "Trabajadores"
+   Begin VB.Frame Frame1 
+      Height          =   555
+      Index           =   0
+      Left            =   90
+      TabIndex        =   9
+      Top             =   9630
+      Width           =   2865
+      Begin VB.Label lblIndicador 
+         Alignment       =   2  'Center
+         Caption         =   "Label2"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Left            =   120
+         TabIndex        =   10
+         Top             =   180
+         Width           =   2655
+      End
+   End
+   Begin VB.CommandButton cmdCancelar 
+      Cancel          =   -1  'True
+      Caption         =   "&Cancelar"
       BeginProperty Font 
-         Name            =   "MS Sans Serif"
+         Name            =   "Verdana"
          Size            =   9.75
          Charset         =   0
-         Weight          =   700
+         Weight          =   400
          Underline       =   0   'False
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ForeColor       =   &H00C00000&
+      Height          =   375
+      Left            =   12375
+      TabIndex        =   8
+      Top             =   9765
+      Width           =   1065
+   End
+   Begin VB.CommandButton cmdAceptar 
+      Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   11160
+      TabIndex        =   7
+      Top             =   9765
+      Width           =   1065
+   End
+   Begin MSAdodcLib.Adodc Data1 
+      Height          =   330
+      Left            =   660
+      Top             =   3630
+      Visible         =   0   'False
+      Width           =   2055
+      _ExtentX        =   3625
+      _ExtentY        =   582
+      ConnectMode     =   0
+      CursorLocation  =   3
+      IsolationLevel  =   -1
+      ConnectionTimeout=   15
+      CommandTimeout  =   30
+      CursorType      =   3
+      LockType        =   3
+      CommandType     =   8
+      CursorOptions   =   0
+      CacheSize       =   50
+      MaxRecords      =   0
+      BOFAction       =   0
+      EOFAction       =   0
+      ConnectStringType=   1
+      Appearance      =   1
+      BackColor       =   -2147483643
+      ForeColor       =   -2147483640
+      Orientation     =   0
+      Enabled         =   -1
+      Connect         =   ""
+      OLEDBString     =   ""
+      OLEDBFile       =   ""
+      DataSourceName  =   ""
+      OtherAttributes =   ""
+      UserName        =   ""
+      Password        =   ""
+      RecordSource    =   ""
+      Caption         =   "Adodc1"
+      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+         Name            =   "MS Sans Serif"
+         Size            =   8.25
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      _Version        =   393216
+   End
+   Begin VB.CommandButton cmdRegresar 
+      Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   12375
+      TabIndex        =   13
+      Top             =   9765
+      Visible         =   0   'False
+      Width           =   1065
+   End
+   Begin VB.Frame FrameAux0 
+      Caption         =   "Trabajadores"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   -1  'True
+         Strikethrough   =   0   'False
+      EndProperty
+      ForeColor       =   &H00972E0B&
       Height          =   3810
-      Left            =   60
-      TabIndex        =   18
-      Top             =   2010
-      Width           =   11445
+      Left            =   45
+      TabIndex        =   16
+      Top             =   2565
+      Width           =   13445
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFC0&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   0
          Left            =   6150
-         TabIndex        =   47
+         TabIndex        =   45
          Text            =   "Text3"
-         Top             =   3420
+         Top             =   3375
          Width           =   1300
       End
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFC0&
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   2
          Left            =   9645
-         TabIndex        =   45
+         TabIndex        =   43
          Text            =   "Text3"
-         Top             =   3420
+         Top             =   3375
          Width           =   1380
       End
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   10
          Left            =   8820
          MaxLength       =   20
-         TabIndex        =   44
+         TabIndex        =   42
          Tag             =   "Fecha Fin|FH|N|||cclinorden1|fechafin|yyyy-mm-dd hh:mm:ss||"
          Text            =   "f.fin"
          Top             =   2520
@@ -1374,11 +1953,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   9
          Left            =   7950
          MaxLength       =   20
-         TabIndex        =   43
+         TabIndex        =   41
          Tag             =   "Fecha Ini|FH|N|||cclinorden1|fechaini|yyyy-mm-dd hh:mm:ss||"
          Text            =   "f.ini"
          Top             =   2520
@@ -1389,11 +1977,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   8
          Left            =   7350
          MaxLength       =   7
-         TabIndex        =   26
+         TabIndex        =   24
          Tag             =   "Horas|N|N|||cclinorden1|horas|###0.00||"
          Text            =   "horas"
          Top             =   2490
@@ -1404,11 +2001,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   7
          Left            =   6540
          MaxLength       =   8
-         TabIndex        =   25
+         TabIndex        =   23
          Text            =   "h.fin"
          Top             =   2490
          Visible         =   0   'False
@@ -1417,11 +2023,20 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   4
          Left            =   6300
          MaskColor       =   &H00000000&
-         TabIndex        =   40
+         TabIndex        =   38
          ToolTipText     =   "Buscar fecha"
          Top             =   2490
          Visible         =   0   'False
@@ -1431,11 +2046,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   6
          Left            =   5580
          MaxLength       =   10
-         TabIndex        =   24
+         TabIndex        =   22
          Text            =   "f.fin"
          Top             =   2520
          Visible         =   0   'False
@@ -1445,11 +2069,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   5
          Left            =   4800
          MaxLength       =   8
-         TabIndex        =   23
+         TabIndex        =   21
          Text            =   "h.inic"
          Top             =   2520
          Visible         =   0   'False
@@ -1458,11 +2091,20 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   4590
          MaskColor       =   &H00000000&
-         TabIndex        =   39
+         TabIndex        =   37
          ToolTipText     =   "Buscar fecha"
          Top             =   2520
          Visible         =   0   'False
@@ -1472,11 +2114,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   4
          Left            =   3810
          MaxLength       =   10
-         TabIndex        =   22
+         TabIndex        =   20
          Text            =   "f.inic"
          Top             =   2550
          Visible         =   0   'False
@@ -1485,11 +2136,20 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   2820
          MaskColor       =   &H00000000&
-         TabIndex        =   38
+         TabIndex        =   36
          ToolTipText     =   "Buscar trabajador"
          Top             =   2520
          Visible         =   0   'False
@@ -1499,11 +2159,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   450
          MaxLength       =   16
-         TabIndex        =   37
+         TabIndex        =   35
          Tag             =   "Linea|N|N|||cclinorden1|numlinea|0000|S|"
          Text            =   "lin"
          Top             =   2565
@@ -1515,10 +2184,19 @@ Begin VB.Form frmCCOrdenConfeccion
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   3045
-         TabIndex        =   36
+         TabIndex        =   34
          Top             =   2550
          Visible         =   0   'False
          Width           =   705
@@ -1526,11 +2204,20 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   1200
          MaskColor       =   &H00000000&
-         TabIndex        =   35
+         TabIndex        =   33
          ToolTipText     =   "Buscar concepto coste"
          Top             =   2550
          Visible         =   0   'False
@@ -1541,10 +2228,19 @@ Begin VB.Form frmCCOrdenConfeccion
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   1440
-         TabIndex        =   34
+         TabIndex        =   32
          Top             =   2550
          Visible         =   0   'False
          Width           =   525
@@ -1553,11 +2249,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   2040
          MaxLength       =   6
-         TabIndex        =   21
+         TabIndex        =   19
          Tag             =   "Trabajador|N|N|||cclinorden1|codtraba|000000||"
          Text            =   "trabajado"
          Top             =   2550
@@ -1567,11 +2272,20 @@ Begin VB.Form frmCCOrdenConfeccion
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   765
          MaxLength       =   4
-         TabIndex        =   20
+         TabIndex        =   18
          Tag             =   "Concepto Coste|N|N|||cclinorden1|codcoste|0000|N|"
          Text            =   "Cost"
          Top             =   2565
@@ -1582,11 +2296,20 @@ Begin VB.Form frmCCOrdenConfeccion
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   45
          MaxLength       =   16
-         TabIndex        =   19
+         TabIndex        =   17
          Tag             =   "CodigoOrden|N|N|||cclinorden1|codorden||S|"
          Text            =   "Orden"
          Top             =   2565
@@ -1597,7 +2320,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   390
          Index           =   0
          Left            =   135
-         TabIndex        =   27
+         TabIndex        =   25
          Top             =   285
          Width           =   1200
          _ExtentX        =   2117
@@ -1675,28 +2398,28 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   2610
          Index           =   0
          Left            =   135
-         TabIndex        =   28
+         TabIndex        =   26
          Top             =   690
-         Width           =   11160
-         _ExtentX        =   19685
+         Width           =   13160
+         _ExtentX        =   23204
          _ExtentY        =   4604
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -1756,7 +2479,7 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   240
          Index           =   0
          Left            =   4350
-         TabIndex        =   48
+         TabIndex        =   46
          Top             =   3420
          Width           =   1995
       End
@@ -1775,220 +2498,34 @@ Begin VB.Form frmCCOrdenConfeccion
          Height          =   360
          Index           =   2
          Left            =   8190
-         TabIndex        =   46
+         TabIndex        =   44
          Top             =   3420
          Width           =   1440
       End
    End
-   Begin VB.Frame Frame1 
-      Height          =   555
-      Index           =   0
-      Left            =   90
-      TabIndex        =   9
-      Top             =   9090
-      Width           =   2865
-      Begin VB.Label lblIndicador 
-         Alignment       =   2  'Center
-         Caption         =   "Label2"
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   240
-         Left            =   120
-         TabIndex        =   10
-         Top             =   180
-         Width           =   2655
-      End
-   End
-   Begin VB.CommandButton cmdCancelar 
-      Cancel          =   -1  'True
-      Caption         =   "&Cancelar"
-      Height          =   375
-      Left            =   10440
-      TabIndex        =   8
-      Top             =   9240
-      Width           =   1035
-   End
-   Begin VB.CommandButton cmdAceptar 
-      Caption         =   "&Aceptar"
-      Height          =   375
-      Left            =   9270
-      TabIndex        =   7
-      Top             =   9240
-      Width           =   1035
-   End
-   Begin MSAdodcLib.Adodc Data1 
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   660
-      Top             =   3630
-      Visible         =   0   'False
-      Width           =   2055
-      _ExtentX        =   3625
+      Left            =   13005
+      TabIndex        =   100
+      Top             =   270
+      Width           =   405
+      _ExtentX        =   714
       _ExtentY        =   582
-      ConnectMode     =   0
-      CursorLocation  =   3
-      IsolationLevel  =   -1
-      ConnectionTimeout=   15
-      CommandTimeout  =   30
-      CursorType      =   3
-      LockType        =   3
-      CommandType     =   8
-      CursorOptions   =   0
-      CacheSize       =   50
-      MaxRecords      =   0
-      BOFAction       =   0
-      EOFAction       =   0
-      ConnectStringType=   1
-      Appearance      =   1
-      BackColor       =   -2147483643
-      ForeColor       =   -2147483640
-      Orientation     =   0
-      Enabled         =   -1
-      Connect         =   ""
-      OLEDBString     =   ""
-      OLEDBFile       =   ""
-      DataSourceName  =   ""
-      OtherAttributes =   ""
-      UserName        =   ""
-      Password        =   ""
-      RecordSource    =   ""
-      Caption         =   "Adodc1"
-      BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      _Version        =   393216
-   End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   14
-      Top             =   0
-      Width           =   11580
-      _ExtentX        =   20426
-      _ExtentY        =   635
       ButtonWidth     =   609
       ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
       Style           =   1
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   20
+         NumButtons      =   1
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Primero"
-            ImageIndex      =   6
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Anterior"
-            ImageIndex      =   7
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Siguiente"
-            ImageIndex      =   8
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Último"
-            ImageIndex      =   9
+            Object.ToolTipText     =   "Ayuda"
          EndProperty
       EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Index           =   0
-         Left            =   8520
-         TabIndex        =   15
-         Top             =   120
-         Width           =   1215
-      End
-   End
-   Begin VB.CommandButton cmdRegresar 
-      Caption         =   "&Regresar"
-      Height          =   375
-      Left            =   10440
-      TabIndex        =   13
-      Top             =   9240
-      Visible         =   0   'False
-      Width           =   1035
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -2126,8 +2663,8 @@ Private HaDevueltoDatos As Boolean
 
 Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la Toolbar1
 'Dim CadAncho() As Boolean  'array, per a quan cridem al form de llínies
-Dim Indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
-Dim cadB As String
+Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
+Dim CadB As String
 
 Dim CodTipoMov As String
 
@@ -2136,17 +2673,17 @@ Private Sub btnBuscar_Click(Index As Integer)
     TerminaBloquear
     Select Case Index
         Case 0 ' Concepto de coste
-            Indice = 2
+            indice = 2
             
             Set frmCos = New frmCCManConcep
-            frmCos.CodigoActual = txtAux(Indice).Text
+            frmCos.CodigoActual = txtAux(indice).Text
             frmCos.DatosADevolverBusqueda = "0|1"
             frmCos.Show vbModal
             Set frmCos = Nothing
             PonerFoco txtAux(2)
             
         Case 2 ' Trabajadores
-            Indice = 3
+            indice = 3
             Set frmTra = New frmBasico
             AyudaTrabajadores frmTra, txtAux(3)
             Set frmTra = Nothing
@@ -2159,36 +2696,36 @@ Private Sub btnBuscar_Click(Index As Integer)
             btnFec (4)
             
         Case 1 ' Zona de Categoria
-            Indice = 42
+            indice = 42
             Set frmZon = New frmBasico
             AyudaZonasCC frmZon, txtAux(42)
             Set frmZon = Nothing
             PonerFoco txtAux(42)
         
         Case 5 ' Categoria
-            Indice = 43
+            indice = 43
             Set frmCat = New frmBasico
             AyudaCategorias frmCat, txtAux(43)
             Set frmCat = Nothing
             PonerFoco txtAux(43)
             
         Case 6 ' Variedades
-            Indice = 2
+            indice = 2
             Set frmVar = New frmManVariedad
             frmVar.DatosADevolverBusqueda = "0|1|"
-            frmVar.CodigoActual = txtAux1(Indice).Text
+            frmVar.CodigoActual = txtAux1(indice).Text
             frmVar.Show vbModal
             Set frmVar = Nothing
-            PonerFoco txtAux1(Indice)
+            PonerFoco txtAux1(indice)
         
         Case 7 ' Forfaits
-            Indice = 3
+            indice = 3
             Set frmFor = New frmManForfaits
             frmFor.DatosADevolverBusqueda = "0|1|"
-            frmFor.CodigoActual = txtAux1(Indice).Text
+            frmFor.CodigoActual = txtAux1(indice).Text
             frmFor.Show vbModal
             Set frmFor = Nothing
-            PonerFoco txtAux1(Indice)
+            PonerFoco txtAux1(indice)
             
     End Select
     If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
@@ -2222,18 +2759,18 @@ Dim obj As Object
     btnBuscar(0).Tag = Index '<===
     Select Case Index
         Case 3
-            Indice = 4
+            indice = 4
         Case 4
-            Indice = 6
+            indice = 6
     End Select
     ' *** repasar si el camp es txtAux o Text1 ***
-    If txtAux(Indice).Text <> "" Then frmC1.NovaData = txtAux(Indice).Text
+    If txtAux(indice).Text <> "" Then frmC1.NovaData = txtAux(indice).Text
     ' ********************************************
 
     frmC1.Show vbModal
     Set frmC1 = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco txtAux(Indice) '<===
+    PonerFoco txtAux(indice) '<===
     ' ********************************************
 End Sub
 
@@ -2338,7 +2875,7 @@ Private Sub Form_Unload(Cancel As Integer)
 End Sub
 
 Private Sub Form_Load()
-Dim i As Integer
+Dim I As Integer
 
     PrimeraVez = True
     
@@ -2349,29 +2886,29 @@ Dim i As Integer
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
         'l'1 i el 2 son separadors
-        .Buttons(3).Image = 1   'Buscar
-        .Buttons(4).Image = 2   'Totss
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
         'el 5 i el 6 son separadors
-        .Buttons(7).Image = 3   'Insertar
-        .Buttons(8).Image = 4   'Modificar
-        .Buttons(9).Image = 5   'Borrar
-        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
-        .Buttons(12).Image = 26   'cambio de costes de confeccion
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+'        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
+'        .Buttons(12).Image = 26   'cambio de costes de confeccion
         
         'el 10 i el 11 son separadors
-        .Buttons(13).Image = 10  'Imprimir
-        .Buttons(14).Image = 11  'Eixir
-        'el 13 i el 14 son separadors
-        .Buttons(btnPrimero).Image = 6  'Primer
-        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-        .Buttons(btnPrimero + 2).Image = 8 'Següent
-        .Buttons(btnPrimero + 3).Image = 9 'Últim
+        .Buttons(8).Image = 10  'Imprimir
+'        .Buttons(14).Image = 11  'Eixir
+'        'el 13 i el 14 son separadors
+'        .Buttons(btnPrimero).Image = 6  'Primer
+'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
+'        .Buttons(btnPrimero + 2).Image = 8 'Següent
+'        .Buttons(btnPrimero + 3).Image = 9 'Últim
     End With
     
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
-    For i = 0 To ToolAux.Count - 1
-        With Me.ToolAux(i)
+    For I = 0 To ToolAux.Count - 1
+        With Me.ToolAux(I)
             .HotImageList = frmPpal.imgListComun_OM16
             .DisabledImageList = frmPpal.imgListComun_BN16
             .ImageList = frmPpal.imgListComun16
@@ -2379,13 +2916,13 @@ Dim i As Integer
             .Buttons(2).Image = 4   'Modificar
             .Buttons(3).Image = 5   'Borrar
         End With
-    Next i
+    Next I
     ' ***********************************
     
     'cargar IMAGES de busqueda
-    For i = 3 To 3
-        Me.imgBuscar(i).Picture = frmPpal.imgListImages16.ListImages(1).Picture
-    Next i
+    For I = 3 To 3
+        Me.imgBuscar(I).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+    Next I
    
     Me.imgDoc(1).Picture = frmPpal.imgListPpal.ListImages(16).Picture
    
@@ -2397,9 +2934,9 @@ Dim i As Integer
 '    Next i
     
     'IMAGES para zoom
-    For i = 0 To Me.imgZoom.Count - 1
-        Me.imgZoom(i).Picture = frmPpal.imgListImages16.ListImages(3).Picture
-    Next i
+    For I = 0 To Me.imgZoom.Count - 1
+        Me.imgZoom(I).Picture = frmPpal.imgListImages16.ListImages(3).Picture
+    Next I
     
     CodTipoMov = "ORD" 'hcoCodTipoM
     
@@ -2465,7 +3002,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, NumReg As Byte
+Dim I As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2494,12 +3031,13 @@ Dim b As Boolean
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+'    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
     cmdCancelar.visible = b
-    CmdAceptar.visible = b
+    cmdAceptar.visible = b
        
     'Bloqueja els camps Text1 si no estem modificant/Insertant Datos
     'Si estem en Insertar a més neteja els camps Text1
@@ -2507,17 +3045,17 @@ Dim b As Boolean
     
     b = (Modo = 3 Or Modo = 4 Or Modo = 1) '06/09/2005, lleve el modo 5 per a que no es puga modificar la capçalera mentre treballe en les llínies
         
-    For i = 1 To 9
-        If i = 1 Or i = 2 Or i = 8 Or i = 9 Or i = 4 Or i = 5 Then
-            text1(i).Locked = Not b  '((Not b) And (Modo <> 1))
+    For I = 1 To 9
+        If I = 1 Or I = 2 Or I = 8 Or I = 9 Or I = 4 Or I = 5 Then
+            text1(I).Locked = Not b  '((Not b) And (Modo <> 1))
             If b Then
-                 text1(i).BackColor = vbWhite
+                 text1(I).BackColor = vbWhite
             Else
-                 text1(i).BackColor = &H80000018 'groc
+                 text1(I).BackColor = &H80000018 'groc
             End If
-            If Modo = 3 Then text1(i).Text = "" 'Modo 3: Insertar (si vamos a Insertar ade+ Limpiamos el campo)
+            If Modo = 3 Then text1(I).Text = "" 'Modo 3: Insertar (si vamos a Insertar ade+ Limpiamos el campo)
         End If
-    Next i
+    Next I
     
     b = (Modo <> 1)
     'Campos Nº Pedido bloqueado y en azul
@@ -2536,14 +3074,14 @@ Dim b As Boolean
 '        BloquearTxt Text1(0), True 'si estic en  modificar, bloqueja la clau primaria
     ' **********************************************************************************
     
-    For i = 2 To 3
-        BloquearTxt txtAux(i), True
-        txtAux(i).Enabled = False
-    Next i
-    For i = 2 To 3
-        BloquearTxt txtAux(i), (Modo <> 1)
-        txtAux(i).Enabled = (Modo = 1)
-    Next i
+    For I = 2 To 3
+        BloquearTxt txtAux(I), True
+        txtAux(I).Enabled = False
+    Next I
+    For I = 2 To 3
+        BloquearTxt txtAux(I), (Modo <> 1)
+        txtAux(I).Enabled = (Modo = 1)
+    Next I
     
     
     
@@ -2582,6 +3120,12 @@ EPonerModo:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
 End Sub
 
+Private Sub DesplazamientoVisible(bol As Boolean)
+    FrameDesplazamiento.visible = bol
+    FrameDesplazamiento.Enabled = bol
+End Sub
+
+
 Private Sub PonerLongCampos()
 'Modificar el MaxLength del campo en funcion de si es modo de búsqueda o no
 'para los campos que permitan introducir criterios más largos del tamaño del campo
@@ -2599,51 +3143,51 @@ End Sub
 Private Sub PonerModoOpcionesMenu(Modo)
 'Actives unes Opcions de Menú i Toolbar según el modo en que estem
 Dim b As Boolean, bAux As Boolean
-Dim i As Byte
+Dim I As Byte
     
     'Barra de CAPÇALERA
     '------------------------------------------
     'b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     b = (Modo = 2 Or Modo = 0)
     'Buscar
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Vore Tots
-    Toolbar1.Buttons(4).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(7).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b = (Modo = 2 And Data1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(9).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     
     'Imprimir
-    Toolbar1.Buttons(13).Enabled = True And Not DeConsulta
+    Toolbar1.Buttons(8).Enabled = True And Not DeConsulta
        
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
 '    b = (Modo = 3 Or Modo = 4 Or Modo = 2) And Not DeConsulta
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
-    For i = 0 To ToolAux.Count - 1
-        ToolAux(i).Buttons(1).Enabled = b
-        If b Then bAux = (b And Me.AdoAux(i).Recordset.RecordCount > 0)
-        ToolAux(i).Buttons(2).Enabled = bAux
-        ToolAux(i).Buttons(3).Enabled = bAux
-    Next i
+    For I = 0 To ToolAux.Count - 1
+        ToolAux(I).Buttons(1).Enabled = b
+        If b Then bAux = (b And Me.AdoAux(I).Recordset.RecordCount > 0)
+        ToolAux(I).Buttons(2).Enabled = bAux
+        ToolAux(I).Buttons(3).Enabled = bAux
+    Next I
     
 End Sub
 
 Private Sub Desplazamiento(Index As Integer)
 'Botons de Desplaçament; per a desplaçar-se pels registres de control Data
     If Data1.Recordset.EOF Then Exit Sub
-    DesplazamientoData Data1, Index
+    DesplazamientoData Data1, Index, True
     PonerCampos
 End Sub
 
@@ -2657,7 +3201,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2727,12 +3271,12 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         Screen.MousePointer = vbHourglass
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
-        cadB = ""
+        CadB = ""
         Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
-        cadB = Aux
+        CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
-        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         ' **********************************
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -2741,55 +3285,55 @@ End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    text1(Indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    text1(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
     ' ********************************************
 End Sub
 
 Private Sub frmC1_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    txtAux(Indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    txtAux(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
     ' ********************************************
 End Sub
 
 Private Sub frmCat_DatoSeleccionado(CadenaSeleccion As String)
 'Categorias
-    txtAux(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'codigo de categoria
-    txtAux2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    txtAux(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'codigo de categoria
+    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmCos_DatoSeleccionado(CadenaSeleccion As String)
 'Concepto de coste
-    txtAux1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
-    txtAux2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'denominacion
+    txtAux1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
+    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'denominacion
 End Sub
 
 Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
 'Forfaits
-    txtAux1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
+    txtAux1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
     txtAux2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'denominacion
 End Sub
 
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Variedades
-    txtAux1(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'codvariedad
+    txtAux1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'codvariedad
     txtAux2(1).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
-     text1(Indice).Text = vCampo
+     text1(indice).Text = vCampo
 End Sub
 
 Private Sub frmZon_DatoSeleccionado(CadenaSeleccion As String)
 'Zonas
-    txtAux(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'codigo de zona
-    txtAux2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    txtAux(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") 'codigo de zona
+    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmTra_DatoSeleccionado(CadenaSeleccion As String)
 'Trabajadores
-    txtAux(Indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'codigo de trabajador
-    txtAux2(Indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    txtAux(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'codigo de trabajador
+    txtAux2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 
@@ -2841,18 +3385,18 @@ Private Sub imgFec_Click(Index As Integer)
     imgFec(0).Tag = Index '<===
     Select Case Index
         Case 0
-            Indice = 1
+            indice = 1
         Case 1
-            Indice = 8
+            indice = 8
     End Select
     ' *** repasar si el camp es txtAux o Text1 ***
-    If text1(Indice).Text <> "" Then frmC.NovaData = text1(Indice).Text
+    If text1(indice).Text <> "" Then frmC.NovaData = text1(indice).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco text1(Indice) '<===
+    PonerFoco text1(indice) '<===
     ' ********************************************
 
 End Sub
@@ -2862,15 +3406,15 @@ Private Sub imgZoom_Click(Index As Integer)
     Set frmZ = New frmZoom
 
     If Index = 0 Then
-        Indice = 6
+        indice = 6
         frmZ.pTitulo = "Observaciones de la Orden de Confección"
-        frmZ.pValor = text1(Indice).Text
+        frmZ.pValor = text1(indice).Text
         frmZ.pModo = Modo
     
         frmZ.Show vbModal
         Set frmZ = Nothing
             
-        PonerFoco text1(Indice)
+        PonerFoco text1(indice)
     End If
 End Sub
 
@@ -2913,28 +3457,23 @@ End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 3  'Búscar
+        Case 5  'Búscar
            mnBuscar_Click
-        Case 4  'Tots
+        Case 6  'Tots
             mnVerTodos_Click
-        Case 7  'Nou
+        Case 1  'Nou
             mnNuevo_Click
-        Case 8  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 9  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 13 'Imprimir
+        Case 8 'Imprimir
             mnImprimir_Click
-        Case 14    'Eixir
-            mnSalir_Click
-            
-        Case btnPrimero To btnPrimero + 3 'Fleches Desplaçament
-            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
 Private Sub BotonBuscar()
-Dim i As Integer
+Dim I As Integer
 Dim anc As Single
 
 ' ***** Si la clau primaria de la capçalera no es Text1(0), canviar-ho en <=== *****
@@ -3010,18 +3549,18 @@ Private Sub HacerBusqueda()
         End If
     End If
 
-    cadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, 1)
     
     text1(4).Tag = text1(4).ToolTipText
     text1(5).Tag = text1(5).ToolTipText
     
     
     If chkVistaPrevia(0) = 1 Then
-        MandaBusquedaPrevia cadB
-    ElseIf cadB <> "" Then
+        MandaBusquedaPrevia CadB
+    ElseIf CadB <> "" Then
 '        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & cadB & " " & Ordenacion
         CadenaConsulta = "select " & NombreTabla & ".* from " & NombreTabla & " LEFT JOIN cclinorden1 ON cccaborden.codorden=cclinorden1.codorden "
-        CadenaConsulta = CadenaConsulta & " WHERE " & cadB & " GROUP BY cccaborden.codorden " & Ordenacion
+        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY cccaborden.codorden " & Ordenacion
         
         PonerCadenaBusqueda
     Else
@@ -3031,30 +3570,30 @@ Private Sub HacerBusqueda()
     End If
 End Sub
 
-Private Sub MandaBusquedaPrevia(cadB As String)
-    Dim cad As String
+Private Sub MandaBusquedaPrevia(CadB As String)
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & ParaGrid(text1(0), 10, "Codigo")
-    cad = cad & "F.Inicio|fechaini|T|dd/mm/yyyy|15·"
-    cad = cad & "H.Inicio|fechaini|T|hh:mm:ss|10·"
-    cad = cad & "F.Fin|fechafin|T|dd/mm/yyyy|15·"
-    cad = cad & "H.Fin|fechafin|T|hh:mm:ss|10·"
-    cad = cad & "Codigo|cccaborden.codvarie|T|000000|10·"
+    Cad = ""
+    Cad = Cad & ParaGrid(text1(0), 10, "Codigo")
+    Cad = Cad & "F.Inicio|fechaini|T|dd/mm/yyyy|15·"
+    Cad = Cad & "H.Inicio|fechaini|T|hh:mm:ss|10·"
+    Cad = Cad & "F.Fin|fechafin|T|dd/mm/yyyy|15·"
+    Cad = Cad & "H.Fin|fechafin|T|hh:mm:ss|10·"
+    Cad = Cad & "Codigo|cccaborden.codvarie|T|000000|10·"
     
 '    cad = cad & ParaGrid(text1(2), 60, "Descripción")
-    cad = cad & "Variedad|nomvarie|T||28·"
-    If cad <> "" Then
+    Cad = Cad & "Variedad|nomvarie|T||28·"
+    If Cad <> "" Then
         
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        cad = NombreTabla & " left join variedades on cccaborden.codvarie = variedades.codvarie "
-        frmB.vtabla = cad 'NombreTabla
-        frmB.vSQL = cadB
+        frmB.vCampos = Cad
+        Cad = NombreTabla & " left join variedades on cccaborden.codvarie = variedades.codvarie "
+        frmB.vtabla = Cad 'NombreTabla
+        frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|" '*** els camps que volen que torne ***
         frmB.vTitulo = "Ordenes Confeccion" ' ***** repasa açò: títol de BuscaGrid *****
@@ -3074,9 +3613,9 @@ Private Sub MandaBusquedaPrevia(cadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 
     If Data1.Recordset.EOF Then
@@ -3084,18 +3623,18 @@ Dim J As Integer
         Exit Sub
     End If
     
-    cad = ""
-    i = 0
+    Cad = ""
+    I = 0
     Do
-        J = i + 1
-        i = InStr(J, DatosADevolverBusqueda, "|")
-        If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, i - J)
+        J = I + 1
+        I = InStr(J, DatosADevolverBusqueda, "|")
+        If I > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, I - J)
             J = Val(Aux)
-            cad = cad & text1(J).Text & "|"
+            Cad = Cad & text1(J).Text & "|"
         End If
-    Loop Until i = 0
-    RaiseEvent DatoSeleccionado(cad)
+    Loop Until I = 0
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -3132,7 +3671,7 @@ End Sub
 Private Sub BotonVerTodos()
 'Vore tots
     LimpiarCampos 'Neteja els Text1
-    cadB = ""
+    CadB = ""
     
     If chkVistaPrevia(0).Value = 1 Then
         MandaBusquedaPrevia ""
@@ -3179,7 +3718,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -3193,11 +3732,11 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar la Orden?"
-    cad = cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
-    cad = cad & vbCrLf & "Fecha: " & Data1.Recordset.Fields(1)
+    Cad = "¿Seguro que desea eliminar la Orden?"
+    Cad = Cad & vbCrLf & "Código: " & Data1.Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Fecha: " & Data1.Recordset.Fields(1)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = Data1.Recordset.AbsolutePosition
@@ -3219,7 +3758,7 @@ EEliminar:
 End Sub
 
 Private Sub PonerCampos()
-Dim i As Integer
+Dim I As Integer
 Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
@@ -3237,11 +3776,11 @@ Dim CPostal As String, desProvi As String, desPais As String
     
     ' *** si n'hi han llínies en datagrids ***
     'For i = 0 To DataGridAux.Count - 1
-    For i = 0 To 3
-        CargaGrid i, True
-        If Not AdoAux(i).Recordset.EOF Then _
-            PonerCamposForma2 Me, AdoAux(i), 2, "FrameAux" & i
-    Next i
+    For I = 0 To 3
+        CargaGrid I, True
+        If Not AdoAux(I).Recordset.EOF Then _
+            PonerCamposForma2 Me, AdoAux(I), 2, "FrameAux" & I
+    Next I
 
     
     ' ************* configurar els camps de les descripcions de la capçalera *************
@@ -3258,7 +3797,7 @@ Dim CPostal As String, desProvi As String, desPais As String
 End Sub
 
 Private Sub cmdCancelar_Click()
-Dim i As Integer
+Dim I As Integer
 Dim V
 
     Select Case Modo
@@ -3361,14 +3900,14 @@ EDatosOK:
 End Function
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(codorden=" & DBSet(text1(0).Text, "N") & ")"
+    Cad = "(codorden=" & DBSet(text1(0).Text, "N") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(Data1, cad, Indicador) Then
-    If SituarData(Data1, cad, Indicador) Then
+    If SituarData(Data1, Cad, Indicador) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -3500,9 +4039,9 @@ Dim cerrar As Boolean
     If cerrar Then Unload Me
 End Sub
 
-Private Sub KEYBusqueda(KeyAscii As Integer, Indice As Integer)
+Private Sub KEYBusqueda(KeyAscii As Integer, indice As Integer)
     KeyAscii = 0
-    imgBuscar_Click (Indice)
+    imgBuscar_Click (indice)
 End Sub
 
 
@@ -3613,7 +4152,7 @@ Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vtabla As String
 Dim anc As Single
-Dim i As Integer
+Dim I As Integer
     
     ModoLineas = 1 'Posem Modo Afegir Llínia
     
@@ -3647,7 +4186,7 @@ Dim i As Integer
     
             anc = DataGridAux(Index).Top
             If DataGridAux(Index).Row < 0 Then
-                anc = anc + 210
+                anc = anc + 240
             Else
                 anc = anc + DataGridAux(Index).RowTop(DataGridAux(Index).Row) + 5
             End If
@@ -3659,9 +4198,9 @@ Dim i As Integer
                 Case 0 'trabajadores
                     txtAux(0).Text = text1(0).Text 'codorden
                     txtAux(1).Text = NumF 'numlinea
-                    For i = 2 To 8
-                        txtAux(i).Text = ""
-                    Next i
+                    For I = 2 To 8
+                        txtAux(I).Text = ""
+                    Next I
                     txtAux2(2).Text = ""
                     txtAux2(3).Text = ""
                     
@@ -3694,7 +4233,7 @@ End Sub
 
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
-    Dim i As Integer
+    Dim I As Integer
     Dim J As Integer
     
     If AdoAux(Index).Recordset.EOF Then Exit Sub
@@ -3715,14 +4254,14 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         Case 0, 2 ' *** pose els index de llínies que tenen datagrid (en o sense tab) ***
             If DataGridAux(Index).Bookmark < DataGridAux(Index).FirstRow Or DataGridAux(Index).Bookmark > (DataGridAux(Index).FirstRow + DataGridAux(Index).VisibleRows - 1) Then
-                i = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
-                DataGridAux(Index).Scroll 0, i
+                I = DataGridAux(Index).Bookmark - DataGridAux(Index).FirstRow
+                DataGridAux(Index).Scroll 0, I
                 DataGridAux(Index).Refresh
             End If
               
             anc = DataGridAux(Index).Top
             If DataGridAux(Index).Row < 0 Then
-                anc = anc + 210
+                anc = anc + 240
             Else
                 anc = anc + DataGridAux(Index).RowTop(DataGridAux(Index).Row) + 5
             End If
@@ -3821,6 +4360,10 @@ Dim b As Boolean
     End Select
 End Sub
 
+Private Sub ToolbarDes_ButtonClick(ByVal Button As MSComctlLib.Button)
+    Desplazamiento (Button.Index)
+End Sub
+
 Private Sub txtAux_LostFocus(Index As Integer)
 Dim cadMen As String
 Dim Nuevo As Boolean
@@ -3843,7 +4386,7 @@ Dim Nuevo As Boolean
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmCos = New frmCCManConcep
                         
-                        Indice = Index
+                        indice = Index
                         txtAux(Index).Text = ""
                         
                         frmCos.DatosADevolverBusqueda = "0|1|"
@@ -3889,7 +4432,7 @@ Dim Nuevo As Boolean
             PonerFormatoHora txtAux(Index)
         
         Case 8, 44 ' horas
-            If PonerFormatoDecimal(txtAux(Index), 9) Then CmdAceptar.SetFocus
+            If PonerFormatoDecimal(txtAux(Index), 9) Then cmdAceptar.SetFocus
             
         Case 43 ' categoria
             If PonerFormatoEntero(txtAux(Index)) Then
@@ -3907,7 +4450,7 @@ Dim Nuevo As Boolean
             If txtAux(Index).Text <> "" Then
                 If PonerFormatoDecimal(txtAux(Index), 7) Then
                     CalcularPrecio
-                    CmdAceptar.SetFocus
+                    cmdAceptar.SetFocus
                 End If
             End If
     End Select
@@ -3932,7 +4475,7 @@ End Sub
 
 
 
-Private Sub TxtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
+Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Not txtAux(Index).MultiLine Then KEYdown KeyCode
 End Sub
 
@@ -4032,7 +4575,7 @@ Private Sub imgBuscar_Click(Index As Integer)
     
      Select Case Index
         Case 2 'forfaits
-            Indice = 4
+            indice = 4
             
             Set frmFor = New frmManForfaits
             frmFor.DatosADevolverBusqueda = "0|1|"
@@ -4042,7 +4585,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             PonerFoco text1(4)
             
         Case 3 'Variedades
-            Indice = 3
+            indice = 3
             
             Set frmVar = New frmManVariedad
             frmVar.DatosADevolverBusqueda = "0|1|"
@@ -4056,7 +4599,7 @@ Private Sub imgBuscar_Click(Index As Integer)
 End Sub
 
 Private Sub DataGridAux_RowColChange(Index As Integer, LastRow As Variant, ByVal LastCol As Integer)
-Dim i As Byte
+Dim I As Byte
 
     If ModoLineas <> 1 Then
         Select Case Index
@@ -4083,9 +4626,9 @@ Dim i As Byte
 '                txtAux(11).Text = ""
 '                txtAux(12).Text = ""
             Case 1 'departamentos
-                For i = 21 To 24
+                For I = 21 To 24
 '                   txtAux(i).Text = ""
-                Next i
+                Next I
 '               txtAux2(22).Text = ""
             Case 2 'Tarjetas
 '               txtAux(50).Text = ""
@@ -4106,7 +4649,7 @@ End Sub
 
 Private Sub CargaFrame(Index As Integer, enlaza As Boolean)
 Dim tip As Integer
-Dim i As Byte
+Dim I As Byte
 
     AdoAux(Index).ConnectionString = conn
     AdoAux(Index).RecordSource = MontaSQLCarga(Index, enlaza)
@@ -4142,7 +4685,7 @@ End Sub
 
 Private Sub CargaGrid(Index As Integer, enlaza As Boolean)
 Dim b As Boolean
-Dim i As Byte
+Dim I As Byte
 Dim tots As String
 
     On Error GoTo ECarga
@@ -4587,7 +5130,7 @@ Dim Sql As String
     On Error GoTo EInsertarCab
     
     Set vTipoMov = New CTiposMov
-    If vTipoMov.leer(CodTipoMov) Then
+    If vTipoMov.Leer(CodTipoMov) Then
         text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
         Sql = CadenaInsertarDesdeForm(Me)
         If Sql <> "" Then

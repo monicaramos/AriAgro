@@ -1,22 +1,102 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.1#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.2#0"; "MSCOMCTL.OCX"
 Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmCCCostesDiarios 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Entrada Costes Diarios"
-   ClientHeight    =   8655
+   ClientHeight    =   10050
    ClientLeft      =   45
-   ClientTop       =   330
-   ClientWidth     =   13920
+   ClientTop       =   30
+   ClientWidth     =   15915
    Icon            =   "frmCCCostesDiarios.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8655
-   ScaleWidth      =   13920
+   ScaleHeight     =   10050
+   ScaleWidth      =   15915
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CheckBox chkVistaPrevia 
+      Caption         =   "Vista previa"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   300
+      Index           =   0
+      Left            =   13185
+      TabIndex        =   50
+      Top             =   270
+      Width           =   1605
+   End
+   Begin VB.Frame FrameBotonGnral 
+      Height          =   705
+      Left            =   90
+      TabIndex        =   48
+      Top             =   135
+      Width           =   3585
+      Begin MSComctlLib.Toolbar Toolbar1 
+         Height          =   330
+         Left            =   210
+         TabIndex        =   49
+         Top             =   180
+         Width           =   3135
+         _ExtentX        =   5530
+         _ExtentY        =   582
+         ButtonWidth     =   609
+         ButtonHeight    =   582
+         AllowCustomize  =   0   'False
+         Style           =   1
+         _Version        =   393216
+         BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+            NumButtons      =   10
+            BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Nuevo"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Modificar"
+               Object.Tag             =   "2"
+            EndProperty
+            BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Eliminar"
+               Object.Tag             =   "2"
+               Object.Width           =   1e-4
+            EndProperty
+            BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Buscar"
+            EndProperty
+            BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Ver Todos"
+            EndProperty
+            BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Style           =   3
+            EndProperty
+            BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Object.ToolTipText     =   "Imprimir"
+            EndProperty
+            BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Object.ToolTipText     =   "Salir"
+            EndProperty
+            BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+               Enabled         =   0   'False
+               Object.Visible         =   0   'False
+               Style           =   3
+            EndProperty
+         EndProperty
+      End
+   End
    Begin VB.Frame FrameAux1 
       Caption         =   "Categorias"
       BeginProperty Font 
@@ -29,19 +109,28 @@ Begin VB.Form frmCCCostesDiarios
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00C00000&
-      Height          =   3960
-      Left            =   7800
-      TabIndex        =   22
-      Top             =   3990
-      Width           =   6030
+      Height          =   4770
+      Left            =   9270
+      TabIndex        =   20
+      Top             =   4440
+      Width           =   6530
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   41
          Left            =   780
          MaxLength       =   4
-         TabIndex        =   46
+         TabIndex        =   44
          Tag             =   "Código Coste|N|S|||cccabdia|codcoste||S|"
          Text            =   "cost"
          Top             =   2610
@@ -52,35 +141,62 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFFF&
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   3
          Left            =   4275
-         TabIndex        =   42
+         TabIndex        =   40
          Text            =   "Text3"
-         Top             =   3390
+         Top             =   4245
          Width           =   1200
       End
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFC0&
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   1
          Left            =   1710
-         TabIndex        =   38
+         TabIndex        =   36
          Text            =   "Text3"
-         Top             =   3390
+         Top             =   4245
          Width           =   1300
       End
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   43
          Left            =   1770
          MaxLength       =   2
-         TabIndex        =   24
+         TabIndex        =   22
          Tag             =   "Categoria|N|N|||cclindia2|codcateg|00||"
          Text            =   "cate"
          Top             =   2610
@@ -92,10 +208,19 @@ Begin VB.Form frmCCCostesDiarios
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   43
          Left            =   2550
-         TabIndex        =   35
+         TabIndex        =   33
          Text            =   "nombre"
          Top             =   2610
          Visible         =   0   'False
@@ -104,11 +229,20 @@ Begin VB.Form frmCCCostesDiarios
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   2340
          MaskColor       =   &H00000000&
-         TabIndex        =   34
+         TabIndex        =   32
          ToolTipText     =   "Buscar categoria"
          Top             =   2580
          Visible         =   0   'False
@@ -118,11 +252,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   42
          Left            =   1260
          MaxLength       =   16
-         TabIndex        =   33
+         TabIndex        =   31
          Tag             =   "Linea|N|N|||cclindia2|numlinea|00|S|"
          Text            =   "lin"
          Top             =   2610
@@ -133,11 +276,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   44
          Left            =   4320
          MaxLength       =   7
-         TabIndex        =   25
+         TabIndex        =   23
          Tag             =   "Horas|N|N|||cclindia2|horas|###0.00||"
          Text            =   "horas"
          Top             =   2610
@@ -148,11 +300,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   40
          Left            =   180
          MaxLength       =   16
-         TabIndex        =   23
+         TabIndex        =   21
          Tag             =   "Fecha|F|N|||cclindia2|fecha|dd/mm/yyyy|S|"
          Text            =   "orden"
          Top             =   2610
@@ -163,7 +324,7 @@ Begin VB.Form frmCCCostesDiarios
          Height          =   390
          Index           =   1
          Left            =   90
-         TabIndex        =   26
+         TabIndex        =   24
          Top             =   285
          Width           =   1200
          _ExtentX        =   2117
@@ -190,14 +351,14 @@ Begin VB.Form frmCCCostesDiarios
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
          Bindings        =   "frmCCCostesDiarios.frx":000C
-         Height          =   2610
+         Height          =   3375
          Index           =   1
          Left            =   90
-         TabIndex        =   27
+         TabIndex        =   25
          Top             =   690
          Width           =   5640
          _ExtentX        =   9948
-         _ExtentY        =   4604
+         _ExtentY        =   5953
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
@@ -322,8 +483,8 @@ Begin VB.Form frmCCCostesDiarios
          Height          =   360
          Index           =   3
          Left            =   3120
-         TabIndex        =   43
-         Top             =   3390
+         TabIndex        =   41
+         Top             =   4245
          Width           =   1440
       End
       Begin VB.Label Label11 
@@ -341,8 +502,8 @@ Begin VB.Form frmCCCostesDiarios
          Height          =   240
          Index           =   1
          Left            =   150
-         TabIndex        =   39
-         Top             =   3390
+         TabIndex        =   37
+         Top             =   4245
          Width           =   1740
       End
    End
@@ -358,44 +519,71 @@ Begin VB.Form frmCCCostesDiarios
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00C00000&
-      Height          =   3960
-      Left            =   120
-      TabIndex        =   13
-      Top             =   3990
-      Width           =   7635
+      Height          =   4770
+      Left            =   90
+      TabIndex        =   11
+      Top             =   4440
+      Width           =   9135
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFC0&
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   0
-         Left            =   2250
-         TabIndex        =   44
+         Left            =   2205
+         TabIndex        =   42
          Text            =   "Text3"
-         Top             =   3390
+         Top             =   4290
          Width           =   1300
       End
       Begin VB.TextBox Text3 
          Alignment       =   1  'Right Justify
          BackColor       =   &H00FFFFFF&
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   285
          Index           =   2
-         Left            =   5745
-         TabIndex        =   40
+         Left            =   5700
+         TabIndex        =   38
          Text            =   "Text3"
-         Top             =   3390
+         Top             =   4290
          Width           =   1200
       End
       Begin VB.TextBox txtAux 
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   8
          Left            =   6240
          MaxLength       =   20
-         TabIndex        =   37
+         TabIndex        =   35
          Tag             =   "Fecha Fin|FH|N|||cclindia1|fechafin|yyyy-mm-dd hh:mm:ss||"
          Text            =   "f.fin"
          Top             =   2550
@@ -406,11 +594,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   7
          Left            =   5400
          MaxLength       =   20
-         TabIndex        =   36
+         TabIndex        =   34
          Tag             =   "Fecha Ini|FH|N|||cclindia1|fechaini|yyyy-mm-dd hh:mm:ss||"
          Text            =   "f.ini"
          Top             =   2550
@@ -421,11 +618,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   6
          Left            =   4920
          MaxLength       =   7
-         TabIndex        =   19
+         TabIndex        =   17
          Tag             =   "Horas|N|N|||cclindia1|horas|###0.00||"
          Text            =   "horas"
          Top             =   2550
@@ -436,11 +642,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   5
          Left            =   4020
          MaxLength       =   8
-         TabIndex        =   18
+         TabIndex        =   16
          Text            =   "h.fin"
          Top             =   2550
          Visible         =   0   'False
@@ -450,11 +665,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   4
          Left            =   3090
          MaxLength       =   8
-         TabIndex        =   17
+         TabIndex        =   15
          Text            =   "h.inic"
          Top             =   2550
          Visible         =   0   'False
@@ -463,11 +687,20 @@ Begin VB.Form frmCCCostesDiarios
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   2040
          MaskColor       =   &H00000000&
-         TabIndex        =   32
+         TabIndex        =   30
          ToolTipText     =   "Buscar trabajador"
          Top             =   2520
          Visible         =   0   'False
@@ -477,11 +710,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   930
          MaxLength       =   16
-         TabIndex        =   31
+         TabIndex        =   29
          Tag             =   "Linea|N|N|||cclindia1|numlinea|0000|S|"
          Text            =   "lin"
          Top             =   2550
@@ -493,10 +735,19 @@ Begin VB.Form frmCCCostesDiarios
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   2265
-         TabIndex        =   30
+         TabIndex        =   28
          Top             =   2550
          Visible         =   0   'False
          Width           =   705
@@ -505,11 +756,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   3
          Left            =   1260
          MaxLength       =   6
-         TabIndex        =   16
+         TabIndex        =   14
          Tag             =   "Trabajador|N|N|||cclindia1|codtraba|000000||"
          Text            =   "trabajado"
          Top             =   2550
@@ -519,11 +779,20 @@ Begin VB.Form frmCCCostesDiarios
       Begin VB.TextBox txtAux 
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   450
          MaxLength       =   4
-         TabIndex        =   15
+         TabIndex        =   13
          Tag             =   "Código Coste|N|S|||cccabdia|codcoste||S|"
          Text            =   "cost"
          Top             =   2565
@@ -534,11 +803,20 @@ Begin VB.Form frmCCCostesDiarios
          Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   45
          MaxLength       =   16
-         TabIndex        =   14
+         TabIndex        =   12
          Tag             =   "Fecha|F|N|||cclindia1|fecha|dd/mm/yyyy|S|"
          Text            =   "Fecha"
          Top             =   2565
@@ -549,7 +827,7 @@ Begin VB.Form frmCCCostesDiarios
          Height          =   390
          Index           =   0
          Left            =   135
-         TabIndex        =   20
+         TabIndex        =   18
          Top             =   285
          Width           =   1200
          _ExtentX        =   2117
@@ -624,31 +902,31 @@ Begin VB.Form frmCCCostesDiarios
       End
       Begin MSDataGridLib.DataGrid DataGridAux 
          Bindings        =   "frmCCCostesDiarios.frx":0024
-         Height          =   2610
+         Height          =   3375
          Index           =   0
          Left            =   135
-         TabIndex        =   21
+         TabIndex        =   19
          Top             =   690
-         Width           =   7260
-         _ExtentX        =   12806
-         _ExtentY        =   4604
+         Width           =   8760
+         _ExtentX        =   15452
+         _ExtentY        =   5953
          _Version        =   393216
          AllowUpdate     =   0   'False
          BorderStyle     =   0
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -707,9 +985,9 @@ Begin VB.Form frmCCCostesDiarios
          ForeColor       =   &H00800000&
          Height          =   240
          Index           =   0
-         Left            =   450
-         TabIndex        =   45
-         Top             =   3390
+         Left            =   405
+         TabIndex        =   43
+         Top             =   4290
          Width           =   1995
       End
       Begin VB.Label Label11 
@@ -726,27 +1004,36 @@ Begin VB.Form frmCCCostesDiarios
          ForeColor       =   &H00800000&
          Height          =   360
          Index           =   2
-         Left            =   4290
-         TabIndex        =   41
-         Top             =   3390
+         Left            =   4245
+         TabIndex        =   39
+         Top             =   4290
          Width           =   1440
       End
    End
    Begin VB.Frame Frame2 
       Height          =   3420
       Index           =   0
-      Left            =   120
+      Left            =   75
       TabIndex        =   7
-      Top             =   525
-      Width           =   13695
+      Top             =   930
+      Width           =   15695
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   2340
          MaskColor       =   &H00000000&
-         TabIndex        =   49
+         TabIndex        =   47
          ToolTipText     =   "Buscar concepto"
          Top             =   2580
          Visible         =   0   'False
@@ -755,11 +1042,20 @@ Begin VB.Form frmCCCostesDiarios
       Begin VB.CommandButton btnBuscar 
          Appearance      =   0  'Flat
          Caption         =   "+"
-         Height          =   300
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   1260
          MaskColor       =   &H00000000&
-         TabIndex        =   48
+         TabIndex        =   46
          ToolTipText     =   "Buscar fecha"
          Top             =   2580
          Visible         =   0   'False
@@ -768,7 +1064,16 @@ Begin VB.Form frmCCCostesDiarios
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   0
          Left            =   180
          MaxLength       =   10
@@ -781,7 +1086,16 @@ Begin VB.Form frmCCCostesDiarios
       End
       Begin VB.TextBox text1 
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   2
          Left            =   4860
          MaxLength       =   250
@@ -796,10 +1110,19 @@ Begin VB.Form frmCCCostesDiarios
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
          Enabled         =   0   'False
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   2610
-         TabIndex        =   28
+         TabIndex        =   26
          Text            =   "12345678901234567890"
          Top             =   2580
          Visible         =   0   'False
@@ -807,7 +1130,16 @@ Begin VB.Form frmCCCostesDiarios
       End
       Begin VB.TextBox text1 
          BorderStyle     =   0  'None
-         Height          =   290
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   330
          Index           =   1
          Left            =   1590
          MaxLength       =   7
@@ -823,7 +1155,7 @@ Begin VB.Form frmCCCostesDiarios
          Height          =   2910
          Index           =   2
          Left            =   180
-         TabIndex        =   47
+         TabIndex        =   45
          Top             =   300
          Width           =   13170
          _ExtentX        =   23230
@@ -832,19 +1164,19 @@ Begin VB.Form frmCCCostesDiarios
          AllowUpdate     =   0   'False
          BorderStyle     =   0
          HeadLines       =   1
-         RowHeight       =   15
+         RowHeight       =   19
          BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
@@ -902,7 +1234,7 @@ Begin VB.Form frmCCCostesDiarios
          Caption         =   "Concepto"
          Height          =   255
          Left            =   2100
-         TabIndex        =   29
+         TabIndex        =   27
          Top             =   2790
          Width           =   690
       End
@@ -910,7 +1242,7 @@ Begin VB.Form frmCCCostesDiarios
          Caption         =   "Observaciones"
          Height          =   255
          Left            =   195
-         TabIndex        =   12
+         TabIndex        =   10
          Top             =   2820
          Width           =   1125
       End
@@ -926,7 +1258,7 @@ Begin VB.Form frmCCCostesDiarios
          Caption         =   "Fecha"
          Height          =   255
          Left            =   3000
-         TabIndex        =   11
+         TabIndex        =   9
          Top             =   2820
          Width           =   930
       End
@@ -934,16 +1266,16 @@ Begin VB.Form frmCCCostesDiarios
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   0
-      Left            =   120
+      Left            =   90
       TabIndex        =   5
-      Top             =   8040
+      Top             =   9270
       Width           =   2865
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -960,19 +1292,37 @@ Begin VB.Form frmCCCostesDiarios
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
       Caption         =   "&Cancelar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   12780
+      Left            =   14715
       TabIndex        =   4
-      Top             =   8190
-      Width           =   1035
+      Top             =   9315
+      Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
       Caption         =   "&Aceptar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
       Height          =   375
-      Left            =   11610
+      Left            =   13545
       TabIndex        =   3
-      Top             =   8190
-      Width           =   1035
+      Top             =   9315
+      Width           =   1065
    End
    Begin MSAdodcLib.Adodc AdoAux 
       Height          =   330
@@ -1022,129 +1372,47 @@ Begin VB.Form frmCCCostesDiarios
       EndProperty
       _Version        =   393216
    End
-   Begin MSComctlLib.Toolbar Toolbar1 
-      Align           =   1  'Align Top
-      Height          =   360
-      Left            =   0
-      TabIndex        =   9
-      Top             =   0
-      Width           =   13920
-      _ExtentX        =   24553
-      _ExtentY        =   635
+   Begin VB.CommandButton cmdRegresar 
+      Caption         =   "&Regresar"
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   375
+      Left            =   14715
+      TabIndex        =   8
+      Top             =   9315
+      Visible         =   0   'False
+      Width           =   1065
+   End
+   Begin MSComctlLib.Toolbar ToolbarAyuda 
+      Height          =   330
+      Left            =   15300
+      TabIndex        =   51
+      Top             =   225
+      Width           =   405
+      _ExtentX        =   714
+      _ExtentY        =   582
       ButtonWidth     =   609
       ButtonHeight    =   582
-      AllowCustomize  =   0   'False
-      Appearance      =   1
       Style           =   1
       _Version        =   393216
       BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
-         NumButtons      =   20
+         NumButtons      =   1
          BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Buscar"
-         EndProperty
-         BeginProperty Button4 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Ver todos"
-            ImageIndex      =   2
-         EndProperty
-         BeginProperty Button5 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button6 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Style           =   3
-         EndProperty
-         BeginProperty Button7 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Nuevo"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button8 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Modificar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Eliminar"
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button11 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button12 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.Tag             =   "2"
-         EndProperty
-         BeginProperty Button13 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Imprimir"
-         EndProperty
-         BeginProperty Button14 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.ToolTipText     =   "Salir"
-         EndProperty
-         BeginProperty Button15 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button16 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Style           =   3
-         EndProperty
-         BeginProperty Button17 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Primero"
-         EndProperty
-         BeginProperty Button18 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Anterior"
-         EndProperty
-         BeginProperty Button19 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Siguiente"
-         EndProperty
-         BeginProperty Button20 {66833FEA-8583-11D1-B16A-00C0F0283628} 
-            Enabled         =   0   'False
-            Object.Visible         =   0   'False
-            Object.ToolTipText     =   "Último"
+            Object.ToolTipText     =   "Ayuda"
          EndProperty
       EndProperty
-      BorderStyle     =   1
-      Begin VB.CheckBox chkVistaPrevia 
-         Caption         =   "Vista previa"
-         Height          =   195
-         Index           =   0
-         Left            =   8520
-         TabIndex        =   10
-         Top             =   120
-         Width           =   1215
-      End
-   End
-   Begin VB.CommandButton cmdRegresar 
-      Caption         =   "&Regresar"
-      Height          =   375
-      Left            =   12780
-      TabIndex        =   8
-      Top             =   8190
-      Visible         =   0   'False
-      Width           =   1035
    End
    Begin VB.Menu mnOpciones 
       Caption         =   "&Opciones"
+      Enabled         =   0   'False
+      Visible         =   0   'False
       Begin VB.Menu mnBuscar 
          Caption         =   "&Buscar"
          Shortcut        =   ^F
@@ -1466,24 +1734,20 @@ Dim I As Integer
         .DisabledImageList = frmPpal.imgListComun_BN
         .ImageList = frmPpal.imgListComun
         'l'1 i el 2 son separadors
-        .Buttons(3).Image = 1   'Buscar
-        .Buttons(4).Image = 2   'Totss
+        .Buttons(5).Image = 1   'Buscar
+        .Buttons(6).Image = 2   'Totss
         'el 5 i el 6 son separadors
-        .Buttons(7).Image = 3   'Insertar
-        .Buttons(8).Image = 4   'Modificar
-        .Buttons(9).Image = 5   'Borrar
-        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
-        .Buttons(12).Image = 26   'cambio de costes de confeccion
+        .Buttons(1).Image = 3   'Insertar
+        .Buttons(2).Image = 4   'Modificar
+        .Buttons(3).Image = 5   'Borrar
+'        .Buttons(11).Image = 19   'Expandir Añadir, Borrar y Modificar
+'        .Buttons(12).Image = 26   'cambio de costes de confeccion
         
         'el 10 i el 11 son separadors
-        .Buttons(13).Image = 10  'Imprimir
-        .Buttons(14).Image = 11  'Eixir
-        'el 13 i el 14 son separadors
-'        .Buttons(btnPrimero).Image = 6  'Primer
-'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-'        .Buttons(btnPrimero + 2).Image = 8 'Següent
-'        .Buttons(btnPrimero + 3).Image = 9 'Últim
+        .Buttons(8).Image = 10  'Imprimir
     End With
+    
+    
     
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
@@ -1548,7 +1812,6 @@ Private Sub LimpiarCampos()
     limpiar Me   'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
     
-
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
@@ -1603,8 +1866,6 @@ Dim b As Boolean
     End If
     
 '    text1(5).Enabled = True
-    
-    
     '=======================================
 '    b = (Modo = 2)
 '    'Posar Fleches de desplasament visibles
@@ -1702,26 +1963,26 @@ Dim I As Byte
     'b = (Modo = 2 Or Modo = 0 Or Modo = 1)
     b = (Modo = 2 Or Modo = 0)
     'Buscar
-    Toolbar1.Buttons(3).Enabled = b
+    Toolbar1.Buttons(5).Enabled = b
     Me.mnBuscar.Enabled = b
     'Vore Tots
-    Toolbar1.Buttons(4).Enabled = b
+    Toolbar1.Buttons(6).Enabled = b
     Me.mnVerTodos.Enabled = b
     
     'Insertar
-    Toolbar1.Buttons(7).Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(1).Enabled = b And Not DeConsulta
     Me.mnNuevo.Enabled = b And Not DeConsulta
     
     b = (Modo = 2 And AdoAux(2).Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(8).Enabled = b
+    Toolbar1.Buttons(2).Enabled = b
     Me.mnModificar.Enabled = b
     'eliminar
-    Toolbar1.Buttons(9).Enabled = b
+    Toolbar1.Buttons(3).Enabled = b
     Me.mnEliminar.Enabled = b
     
     'Imprimir
-    Toolbar1.Buttons(13).Enabled = True And Not DeConsulta
+    Toolbar1.Buttons(8).Enabled = True And Not DeConsulta
        
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
@@ -1753,7 +2014,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -1967,23 +2228,18 @@ End Sub
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 
     Select Case Button.Index
-        Case 3  'Búscar
-           mnBuscar_Click
-        Case 4  'Tots
-            mnVerTodos_Click
-        Case 7  'Nou
+        Case 1  'Nou
             mnNuevo_Click
-        Case 8  'Modificar
+        Case 2  'Modificar
             mnModificar_Click
-        Case 9  'Borrar
+        Case 3  'Borrar
             mnEliminar_Click
-        Case 13 'Imprimir
+        Case 5  'Búscar
+           mnBuscar_Click
+        Case 6  'Tots
+            mnVerTodos_Click
+        Case 8 'Imprimir
             mnImprimir_Click
-        Case 14    'Eixir
-            mnSalir_Click
-            
-'        Case btnPrimero To btnPrimero + 3 'Fleches Desplaçament
-'            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
 
@@ -1997,7 +2253,7 @@ Dim anc As Single
         
         anc = DataGridAux(2).Top
         If DataGridAux(2).Row < 0 Then
-            anc = anc + 210
+            anc = anc + 240
         Else
             anc = anc + DataGridAux(2).RowTop(DataGridAux(2).Row) + 5
         End If
@@ -2037,24 +2293,24 @@ Private Sub HacerBusqueda()
 End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim cad As String
+    Dim Cad As String
         
     'Cridem al form
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    cad = ""
-    cad = cad & "Fecha|fecha|T|dd/mm/yyyy|15·"
-    cad = cad & "Código|cccabdia.codcoste|N|000000|10·"
-    cad = cad & "Denominacion|ccconcostes.nomcoste|T||36·"
-    cad = cad & "Observaciones|cccabdia.observac|T||39·"
+    Cad = ""
+    Cad = Cad & "Fecha|fecha|T|dd/mm/yyyy|15·"
+    Cad = Cad & "Código|cccabdia.codcoste|N|000000|10·"
+    Cad = Cad & "Denominacion|ccconcostes.nomcoste|T||36·"
+    Cad = Cad & "Observaciones|cccabdia.observac|T||39·"
     
-    If cad <> "" Then
+    If Cad <> "" Then
         
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
-        frmB.vCampos = cad
-        cad = NombreTabla & " left join ccconcostes on cccabdia.codcoste = ccconcostes.codcoste "
-        frmB.vtabla = cad 'NombreTabla
+        frmB.vCampos = Cad
+        Cad = NombreTabla & " left join ccconcostes on cccabdia.codcoste = ccconcostes.codcoste "
+        frmB.vtabla = Cad 'NombreTabla
         frmB.vSQL = CadB
         HaDevueltoDatos = False
         frmB.vDevuelve = "0|1|" '*** els camps que volen que torne ***
@@ -2075,28 +2331,28 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 End Sub
 
 Private Sub cmdRegresar_Click()
-Dim cad As String
+Dim Cad As String
 Dim Aux As String
 Dim I As Integer
-Dim j As Integer
+Dim J As Integer
 
     If AdoAux(2).Recordset.EOF Then
         MsgBox "Ningún registro devuelto.", vbExclamation
         Exit Sub
     End If
     
-    cad = ""
+    Cad = ""
     I = 0
     Do
-        j = I + 1
-        I = InStr(j, DatosADevolverBusqueda, "|")
+        J = I + 1
+        I = InStr(J, DatosADevolverBusqueda, "|")
         If I > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, j, I - j)
-            j = Val(Aux)
-            cad = cad & text1(j).Text & "|"
+            Aux = Mid(DatosADevolverBusqueda, J, I - J)
+            J = Val(Aux)
+            Cad = Cad & text1(J).Text & "|"
         End If
     Loop Until I = 0
-    RaiseEvent DatoSeleccionado(cad)
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -2187,7 +2443,7 @@ Private Sub BotonModificar()
 End Sub
 
 Private Sub BotonEliminar()
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo EEliminar
 
@@ -2205,15 +2461,15 @@ Dim cad As String
     ' ***************************************************************************
 
     ' *************** canviar la pregunta ****************
-    cad = "¿Seguro que desea eliminar el Coste Diario?"
-    cad = cad & vbCrLf & "Fecha: " & AdoAux(2).Recordset.Fields(0)
-    cad = cad & vbCrLf & "Coste: " & AdoAux(2).Recordset.Fields(1) & " " & AdoAux(2).Recordset.Fields(2)
+    Cad = "¿Seguro que desea eliminar el Coste Diario?"
+    Cad = Cad & vbCrLf & "Fecha: " & AdoAux(2).Recordset.Fields(0)
+    Cad = Cad & vbCrLf & "Coste: " & AdoAux(2).Recordset.Fields(1) & " " & AdoAux(2).Recordset.Fields(2)
     
-    If MsgBox(cad, vbQuestion + vbYesNo) = vbYes Then
+    If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
         On Error GoTo EEliminar
         Screen.MousePointer = vbHourglass
         NumRegElim = AdoAux(2).Recordset.AbsolutePosition
-        If Not eliminar Then
+        If Not Eliminar Then
             Screen.MousePointer = vbDefault
             Exit Sub
         ElseIf SituarDataTrasEliminar(AdoAux(2), NumRegElim, True) Then
@@ -2232,7 +2488,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim I As Integer
-Dim codPobla As String, desPobla As String
+Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If AdoAux(2).Recordset.EOF Then Exit Sub
@@ -2361,14 +2617,14 @@ EDatosOK:
 End Function
 
 Private Sub PosicionarData()
-Dim cad As String, Indicador As String
+Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    cad = "(fecha=" & DBSet(text1(0).Text, "F") & " and codcoste = " & DBSet(text1(1).Text, "N") & " )"
+    Cad = "(fecha=" & DBSet(text1(0).Text, "F") & " and codcoste = " & DBSet(text1(1).Text, "N") & " )"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(adoaux(2), cad, Indicador) Then
-    If SituarDataMULTI(AdoAux(2), cad, Indicador, True) Then
+    If SituarDataMULTI(AdoAux(2), Cad, Indicador, True) Then
         If ModoLineas <> 1 Then PonerModo 2
         lblIndicador.Caption = Indicador
     Else
@@ -2377,7 +2633,7 @@ Dim cad As String, Indicador As String
     End If
 End Sub
 
-Private Function eliminar() As Boolean
+Private Function Eliminar() As Boolean
 Dim vWhere As String
 Dim vTipoMov As CTiposMov
 
@@ -2401,10 +2657,10 @@ FinEliminar:
     If Err.Number <> 0 Then
         MuestraError Err.Number, "Eliminar"
         conn.RollbackTrans
-        eliminar = False
+        Eliminar = False
     Else
         conn.CommitTrans
-        eliminar = True
+        Eliminar = True
     End If
     CargaGrid
 End Function
@@ -2507,7 +2763,7 @@ End Sub
 Private Sub BotonEliminarLinea(Index As Integer)
 Dim Sql As String
 Dim vWhere As String
-Dim eliminar As Boolean
+Dim Eliminar As Boolean
 
     On Error GoTo Error2
 
@@ -2528,7 +2784,7 @@ Dim eliminar As Boolean
     text1(1).Text = AdoAux(2).Recordset!codCoste
     
     NumTabMto = Index
-    eliminar = False
+    Eliminar = False
    
     vWhere = ObtenerWhereCab(True)
     
@@ -2539,23 +2795,23 @@ Dim eliminar As Boolean
             Sql = "¿ Seguro que desea eliminar el trabajador del coste diario ?"
             Sql = Sql & vbCrLf & "Trabajador: " & AdoAux(Index).Recordset!codtraba & " " & AdoAux(Index).Recordset!NomTraba
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
-                eliminar = True
+                Eliminar = True
                 Sql = "DELETE FROM cclindia1 "
-                Sql = Sql & Replace(vWhere, "cccabdia", "cclindia1") & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = Sql & Replace(vWhere, "cccabdia", "cclindia1") & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
         Case 1 'categoria
             Sql = "¿ Seguro que desea eliminar la categoria ?"
             Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!nomcateg
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
-                eliminar = True
+                Eliminar = True
                 Sql = "DELETE FROM cclindia2 "
-                Sql = Sql & Replace(vWhere, "cccabdia", "cclindia2") & " AND numlinea= " & AdoAux(Index).Recordset!numlinea
+                Sql = Sql & Replace(vWhere, "cccabdia", "cclindia2") & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
             End If
             
     End Select
 
-    If eliminar Then
+    If Eliminar Then
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
         conn.Execute Sql
@@ -2704,7 +2960,7 @@ End Sub
 Private Sub BotonModificarLinea(Index As Integer)
     Dim anc As Single
     Dim I As Integer
-    Dim j As Integer
+    Dim J As Integer
     
     If Index = 2 Then
         text1(0).Text = Format(Me.AdoAux(2).Recordset!fecha, "dd/mm/yyyy")
@@ -2721,15 +2977,15 @@ Private Sub BotonModificarLinea(Index As Integer)
           
         anc = DataGridAux(Index).Top
         If DataGridAux(Index).Row < 0 Then
-            anc = anc + 210
+            anc = anc + 240
         Else
             anc = anc + DataGridAux(Index).RowTop(DataGridAux(Index).Row) + 5
         End If
         LLamaLineas 2, 4, anc
     
-        For j = 0 To 1
-            text1(j).Text = DataGridAux(Index).Columns(j).Text
-        Next j
+        For J = 0 To 1
+            text1(J).Text = DataGridAux(Index).Columns(J).Text
+        Next J
         text2(1).Text = DataGridAux(Index).Columns(2).Text
         text1(2).Text = DataGridAux(Index).Columns(3).Text
     
@@ -2771,9 +3027,9 @@ Private Sub BotonModificarLinea(Index As Integer)
               ' *** valor per defecte al modificar dels camps del grid ***
               Case 0 ' trabajadores
               
-                  For j = 0 To 2
-                      txtAux(j).Text = DataGridAux(Index).Columns(j).Text
-                  Next j
+                  For J = 0 To 2
+                      txtAux(J).Text = DataGridAux(Index).Columns(J).Text
+                  Next J
                   txtAux(3).Text = DataGridAux(Index).Columns(3).Text
                   txtAux2(3).Text = DataGridAux(Index).Columns(4).Text
                   txtAux(4).Text = DataGridAux(Index).Columns(5).Text
@@ -2785,9 +3041,9 @@ Private Sub BotonModificarLinea(Index As Integer)
                   BloquearbtnBuscar Me, Modo, 1, "FrameAux0"
                   
               Case 1 'categorias
-                  For j = 40 To 42
-                      txtAux(j).Text = DataGridAux(Index).Columns(j - 40).Text
-                  Next j
+                  For J = 40 To 42
+                      txtAux(J).Text = DataGridAux(Index).Columns(J - 40).Text
+                  Next J
                   txtAux(43).Text = DataGridAux(Index).Columns(3).Text
                   txtAux2(43).Text = DataGridAux(Index).Columns(4).Text
                   txtAux(44).Text = DataGridAux(Index).Columns(5).Text
@@ -3128,11 +3384,8 @@ Private Sub CargaGrid(Optional vSQL As String)
     DataGridAux(2).Columns(3).Alignment = dbgLeft
     
     b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
-        
-    
     
 End Sub
-
 
 
 Private Sub CargaGrid2(Index As Integer, enlaza As Boolean)
@@ -3153,11 +3406,11 @@ Dim tots As String
         
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;N||||0|;N||||0|;" 'fecha,codorden, numlinea
-            tots = tots & "S|txtAux(3)|T|Código|800|;S|btnBuscar(2)|B|||;"
-            tots = tots & "S|txtAux2(3)|T|Trabajador|3300|;S|txtAux(4)|T|H.Inicio|800|;"
-            tots = tots & "S|txtAux(5)|T|H.Fin|800|;S|txtAux(6)|T|Horas|1000|;N||||0|;N||||0|;"
+            tots = tots & "S|txtAux(3)|T|Código|1000|;S|btnBuscar(2)|B|||;"
+            tots = tots & "S|txtAux2(3)|T|Trabajador|4000|;S|txtAux(4)|T|H.Inicio|1000|;"
+            tots = tots & "S|txtAux(5)|T|H.Fin|1000|;S|txtAux(6)|T|Horas|1300|;N||||0|;N||||0|;"
             
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
         
 '            DataGridAux(0).Columns(6).NumberFormat = "dd/mm/yyyy"
 '            DataGridAux(0).Columns(8).NumberFormat = "dd/mm/yyyy"
@@ -3175,7 +3428,7 @@ Dim tots As String
         Case 1 'categorias
             'si es visible|control|tipo campo|nombre campo|ancho control|
             tots = "N||||0|;N||||0|;N||||0|;" 'fecha,codorden,numlinea
-            tots = tots & "S|txtAux(43)|T|Cat.|500|;S|btnBuscar(3)|B||195|;"
+            tots = tots & "S|txtAux(43)|T|Categoria|1000|;S|btnBuscar(3)|B||195|;"
             tots = tots & "S|txtAux2(43)|T|Denominación|3380|;"
             tots = tots & "S|txtAux(44)|T|Horas|1200|;"
             
@@ -3188,7 +3441,7 @@ Dim tots As String
             
         Case 2 ' cabecera de costes
             tots = "S|text1(0)|T|Fecha|1200|;S|btnBuscar(0)|B||195|;"
-            tots = tots & "S|text1(1)|T|Concepto|1200|;S|btnBuscar(1)|B||195|;S|text2(1)|T|Descripcion|2450|;"
+            tots = tots & "S|text1(1)|T|Concepto|2200|;S|btnBuscar(1)|B||195|;S|text2(1)|T|Descripcion|3450|;"
             tots = tots & "S|text1(2)|T|Observaciones|7500|;"
             
             arregla tots, DataGridAux(Index), Me
@@ -3214,7 +3467,7 @@ ECarga:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGridAux(Index).Tag, Err.Description
 End Sub
 
-Private Sub ModificarCategorias(eliminar As Boolean)
+Private Sub ModificarCategorias(Eliminar As Boolean)
 Dim Sql As String
 Dim Sql2 As String
 Dim Categoria As Integer
@@ -3509,7 +3762,7 @@ Dim Sql As String
     On Error GoTo EInsertarCab
     
     Set vTipoMov = New CTiposMov
-    If vTipoMov.leer(CodTipoMov) Then
+    If vTipoMov.Leer(CodTipoMov) Then
         text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
         Sql = CadenaInsertarDesdeForm(Me)
         If Sql <> "" Then

@@ -136,7 +136,7 @@ Begin VB.Form frmANECOOPTrasFras
          EndProperty
          ForeColor       =   &H00800000&
          Height          =   345
-         Left            =   450
+         Left            =   360
          TabIndex        =   13
          Top             =   420
          Width           =   5430
@@ -192,7 +192,7 @@ Begin VB.Form frmANECOOPTrasFras
          ForeColor       =   &H00972E0B&
          Height          =   240
          Index           =   23
-         Left            =   450
+         Left            =   360
          TabIndex        =   10
          Top             =   1620
          Width           =   600
@@ -842,7 +842,7 @@ Dim b As Boolean
             vCStock.Documento = RSEnvases!NumFactu 'CLng(RSEnvases!NumFactu) 'Nº Factura
             vCStock.Fechamov = DBLet(RSEnvases!FecFactu) 'Fecha de la Factura
             
-            vCStock.CodArtic = vParamAplic.EnvAnecoop
+            vCStock.codArtic = vParamAplic.EnvAnecoop
             vCStock.codAlmac = CInt(vParamAplic.Almacen)
             vCStock.Cantidad = DBLet(RSEnvases!peso_neto)
             vCStock.Importe = DBLet(RSEnvases!importe_liq)

@@ -457,6 +457,7 @@ Dim PrimeraVez As Boolean
 
 Private Sub PonerModo(vModo)
 Dim b As Boolean
+Dim I As Integer
 
     Modo = vModo
     
@@ -467,10 +468,10 @@ Dim b As Boolean
         PonerIndicador lblIndicador, Modo
     End If
     
-    For i = 0 To txtAux.Count - 1
-        txtAux(i).visible = Not b
-        txtAux(i).BackColor = vbWhite
-    Next i
+    For I = 0 To txtAux.Count - 1
+        txtAux(I).visible = Not b
+        txtAux(I).BackColor = vbWhite
+    Next I
     
     Combo1.visible = Not b
     
@@ -573,13 +574,13 @@ End Sub
 
 Private Sub BotonModificar()
     Dim anc As Single
-    Dim i As Integer
+    Dim I As Integer
     
     Screen.MousePointer = vbHourglass
     
     If DataGrid1.Bookmark < DataGrid1.FirstRow Or DataGrid1.Bookmark > (DataGrid1.FirstRow + DataGrid1.VisibleRows - 1) Then
-        i = DataGrid1.Bookmark - DataGrid1.FirstRow
-        DataGrid1.Scroll 0, i
+        I = DataGrid1.Bookmark - DataGrid1.FirstRow
+        DataGrid1.Scroll 0, I
         DataGrid1.Refresh
     End If
     
@@ -595,7 +596,7 @@ Private Sub BotonModificar()
     ' ***** canviar-ho pel nom del camp del combo *********
     SelComboBool DataGrid1.Columns(2).Text, Combo1
     ' *****************************************************
-    PosicionarCombo Me.Combo1, i
+    PosicionarCombo Me.Combo1, I
 '    For j = 0 To Combo1.ListCount - 1
 '        If Combo1.ItemData(j) = i Then
 '            Combo1.ListIndex = j
@@ -674,7 +675,7 @@ Private Sub PonerLongCampos()
 End Sub
 
 Private Sub cmdAceptar_Click()
-    Dim i As Integer
+    Dim I As Integer
 
     Select Case Modo
         Case 1 'BUSQUEDA
@@ -708,7 +709,7 @@ Private Sub cmdAceptar_Click()
             If DatosOk Then
                 If ModificaDesdeFormulario(Me) Then
                     TerminaBloquear
-                    i = adodc1.Recordset.Fields(0)
+                    I = adodc1.Recordset.Fields(0)
                     PonerModo 2
                     CargaGrid CadB
 '                    If CadB <> "" Then
@@ -718,7 +719,7 @@ Private Sub cmdAceptar_Click()
 '                        CargaGrid
 '                        lblIndicador.Caption = ""
 '                    End If
-                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
+                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
                     PonerFocoGrid Me.DataGrid1
                 End If
             End If
@@ -753,7 +754,7 @@ End Sub
 
 Private Sub cmdRegresar_Click()
 Dim Cad As String
-Dim i As Integer
+Dim I As Integer
 Dim J As Integer
 Dim Aux As String
 
@@ -762,16 +763,16 @@ Dim Aux As String
         Exit Sub
     End If
     Cad = ""
-    i = 0
+    I = 0
     Do
-        J = i + 1
-        i = InStr(J, DatosADevolverBusqueda, "|")
-        If i > 0 Then
-            Aux = Mid(DatosADevolverBusqueda, J, i - J)
+        J = I + 1
+        I = InStr(J, DatosADevolverBusqueda, "|")
+        If I > 0 Then
+            Aux = Mid(DatosADevolverBusqueda, J, I - J)
             J = Val(Aux)
             Cad = Cad & adodc1.Recordset.Fields(J) & "|"
         End If
-    Loop Until i = 0
+    Loop Until I = 0
     RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
@@ -1048,12 +1049,12 @@ Dim cadReg As String
 End Sub
 
 Private Sub SelComboBool(Valor As Integer, combo As ComboBox)
-    Dim i As Integer
+    Dim I As Integer
     Dim J As Integer
 
-    i = Valor
+    I = Valor
     For J = 0 To combo.ListCount - 1
-        If combo.ItemData(J) = i Then
+        If combo.ItemData(J) = I Then
             combo.ListIndex = J
             Exit For
         End If

@@ -23,9 +23,18 @@ Begin VB.Form frmListadoPed
       Width           =   6435
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
-         Left            =   1935
+         Left            =   2025
          MaxLength       =   3
          TabIndex        =   1
          Top             =   2715
@@ -33,9 +42,18 @@ Begin VB.Form frmListadoPed
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   5
-         Left            =   2700
+         Left            =   2790
          Locked          =   -1  'True
          TabIndex        =   9
          Text            =   "Text5"
@@ -43,9 +61,18 @@ Begin VB.Form frmListadoPed
          Width           =   3330
       End
       Begin VB.TextBox txtCodigo 
-         Height          =   285
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
          Index           =   25
-         Left            =   1935
+         Left            =   2025
          MaxLength       =   10
          TabIndex        =   0
          Top             =   2085
@@ -54,6 +81,15 @@ Begin VB.Form frmListadoPed
       Begin VB.CheckBox chkImpAlbaran 
          Caption         =   "Imprimir Albaran"
          Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   255
          Left            =   540
          TabIndex        =   2
@@ -63,6 +99,15 @@ Begin VB.Form frmListadoPed
       End
       Begin VB.CommandButton cmdAceptarGenAlb 
          Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Left            =   3480
          TabIndex        =   3
@@ -71,6 +116,15 @@ Begin VB.Form frmListadoPed
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
          Height          =   375
          Index           =   3
          Left            =   4560
@@ -82,46 +136,46 @@ Begin VB.Form frmListadoPed
          AutoSize        =   -1  'True
          Caption         =   "Incidencia"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   195
+         Height          =   240
          Index           =   12
          Left            =   540
          TabIndex        =   10
          Top             =   2715
-         Width           =   720
+         Width           =   1005
       End
       Begin VB.Image imgBuscarOfer 
          Height          =   240
          Index           =   0
-         Left            =   1620
-         Top             =   2715
+         Left            =   1755
+         Top             =   2745
          Width           =   240
       End
       Begin VB.Label Label4 
          AutoSize        =   -1  'True
          Caption         =   "Fecha Albaran"
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   400
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   195
+         Height          =   240
          Index           =   32
          Left            =   540
          TabIndex        =   8
          Top             =   2085
-         Width           =   1035
+         Width           =   1410
       End
       Begin VB.Image imgFecha 
          Height          =   240
@@ -153,21 +207,21 @@ Begin VB.Form frmListadoPed
          AutoSize        =   -1  'True
          Caption         =   "Introduzca los siguiente campos para el Albaran: "
          BeginProperty Font 
-            Name            =   "Tahoma"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
-         ForeColor       =   &H00000080&
-         Height          =   195
+         ForeColor       =   &H00972E0B&
+         Height          =   240
          Index           =   14
          Left            =   600
          TabIndex        =   6
          Top             =   1200
-         Width           =   4170
+         Width           =   4980
       End
    End
    Begin MSComDlg.CommonDialog cd1 
@@ -187,7 +241,7 @@ Option Explicit
 
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
-Public OpcionListado As Integer
+Public Opcionlistado As Integer
 '(ver opciones en frmListado)
       
 Public NumCod As String 'Para indicar cod. Traspaso,Movimiento, etc. que llama
@@ -216,7 +270,7 @@ Attribute frmF.VB_VarHelpID = -1
 Private cadFormula As String 'Cadena con la FormulaSelection para Crystal Report
 Private cadParam As String
 Private numParam As Byte
-Private cadSelect As String 'Cadena para comprobar si hay datos antes de abrir Informe
+Private cadselect As String 'Cadena para comprobar si hay datos antes de abrir Informe
 Private Titulo As String 'Titulo informe que se pasa a frmImprimir
 Private nomRPT As String 'nombre del fichero .rpt a imprimir
 Private conSubRPT As Boolean 'si tiene subinformes para enlazarlos a las tablas correctas
@@ -247,7 +301,7 @@ End Sub
 
 Private Sub cmdAceptarGenAlb_Click()
 'Solicitar datos para Generar Albaran a partir de un Pedido
-Dim cad As String
+Dim Cad As String
 
     'DAVID
     'Comprobar que me han puesto algun dato
@@ -257,10 +311,10 @@ Dim cad As String
         Exit Sub
     End If
     
-    cad = cad & txtCodigo(25).Text & "|"
-    cad = cad & Me.chkImpAlbaran.Value & "|"
-    cad = cad & txtCodigo(5).Text & "|"  'codigo de incidencia
-    RaiseEvent DatoSeleccionado(cad)
+    Cad = Cad & txtCodigo(25).Text & "|"
+    Cad = Cad & Me.chkImpAlbaran.Value & "|"
+    Cad = Cad & txtCodigo(5).Text & "|"  'codigo de incidencia
+    RaiseEvent DatoSeleccionado(Cad)
     Unload Me
 End Sub
 
@@ -273,7 +327,7 @@ End Sub
 Private Sub Form_Activate()
     If PrimeraVez Then
         PrimeraVez = False
-        Select Case OpcionListado
+        Select Case Opcionlistado
             Case 43 '43: Generar Albaran desde Pedido (NO IMPRIME LISTADO)
                 txtCodigo(5).Text = 0
                 txtNombre(5) = PonerNombreDeCod(txtCodigo(5), "inciden", "nomincid", "codincid", "N")
@@ -302,7 +356,7 @@ Dim indFrame As Single
     NomTabla = "scaped"
     NomTablaLin = "sliped"
         
-    Select Case OpcionListado
+    Select Case Opcionlistado
         'LISTADOS DE FACTURACION
         '-----------------------
             
@@ -419,8 +473,8 @@ End Sub
 
 Private Sub txtCodigo_LostFocus(Index As Integer)
 Dim devuelve As String
-Dim codCampo As String, nomcampo As String
-Dim Tabla As String
+Dim codCampo As String, nomCampo As String
+Dim tabla As String
       
     Select Case Index
         Case 5 ' codigo de incidencia
@@ -448,39 +502,39 @@ Dim Tabla As String
 End Sub
 
 
-Private Function AnyadirParametroDH(cad As String, indD As Byte, indH As Byte) As String
+Private Function AnyadirParametroDH(Cad As String, indD As Byte, indH As Byte) As String
 On Error Resume Next
 
     If txtCodigo(indD).Text <> "" And txtCodigo(indH).Text <> "" Then
         If txtCodigo(indD).Text = txtCodigo(indH).Text Then
-            cad = cad & txtCodigo(indD).Text
-            If txtNombre(indD).Text <> "" Then cad = cad & " - " & txtNombre(indD).Text
-            AnyadirParametroDH = cad
+            Cad = Cad & txtCodigo(indD).Text
+            If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
+            AnyadirParametroDH = Cad
             Exit Function
         End If
     End If
     
     If txtCodigo(indD).Text <> "" Then
-        cad = cad & "desde " & txtCodigo(indD).Text
-        If txtNombre(indD).Text <> "" Then cad = cad & " - " & txtNombre(indD).Text
+        Cad = Cad & "desde " & txtCodigo(indD).Text
+        If txtNombre(indD).Text <> "" Then Cad = Cad & " - " & txtNombre(indD).Text
     End If
     If txtCodigo(indH).Text <> "" Then
-        cad = cad & "  hasta " & txtCodigo(indH).Text
-        If txtNombre(indH).Text <> "" Then cad = cad & " - " & txtNombre(indH).Text
+        Cad = Cad & "  hasta " & txtCodigo(indH).Text
+        If txtNombre(indH).Text <> "" Then Cad = Cad & " - " & txtNombre(indH).Text
     End If
-    AnyadirParametroDH = cad
+    AnyadirParametroDH = Cad
 End Function
 
 
-Private Function PonerDesdeHasta(campo As String, tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
+Private Function PonerDesdeHasta(campo As String, Tipo As String, indD As Byte, indH As Byte, param As String) As Boolean
 Dim devuelve As String
 
     PonerDesdeHasta = False
-    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, tipo)
+    devuelve = CadenaDesdeHasta(txtCodigo(indD).Text, txtCodigo(indH).Text, campo, Tipo)
     If devuelve = "Error" Then Exit Function
     If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Function
-    If tipo <> "F" Then
-        If Not AnyadirAFormula(cadSelect, devuelve) Then Exit Function
+    If Tipo <> "F" Then
+        If Not AnyadirAFormula(cadselect, devuelve) Then Exit Function
     End If
     If devuelve <> "" Then
         If param <> "" Then
@@ -495,7 +549,7 @@ End Function
 
 Private Sub InicializarVbles()
     cadFormula = ""
-    cadSelect = ""
+    cadselect = ""
     cadParam = ""
     numParam = 0
 End Sub
@@ -508,9 +562,9 @@ Private Sub LlamarImprimir()
         .NumeroParametros = numParam
         .SoloImprimir = False
         .EnvioEMail = False
-        .Opcion = OpcionListado
+        .Opcion = Opcionlistado
         .Titulo = Titulo
-        .ConSubinforme = conSubRPT
+        .ConSubInforme = conSubRPT
         .NombreRPT = nomRPT  'nombre del informe
         .Show vbModal
     End With

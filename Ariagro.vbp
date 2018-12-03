@@ -183,7 +183,6 @@ Form=frmManVariedad.frm
 Form=frmOperaEnv.frm
 Form=frmTipIVAConta.frm
 Form=frmTrazabilidad.frm
-Form=frmManTraba.frm
 Form=frmVtasAlbFact.frm
 Form=frmVtasAlbPdtesFact.frm
 Form=frmVtasDiarioFact.frm
