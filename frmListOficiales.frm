@@ -14,13 +14,6 @@ Begin VB.Form frmListOficiales
    ScaleWidth      =   6630
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin MSComDlg.CommonDialog cd1 
-      Left            =   7680
-      Top             =   5160
-      _ExtentX        =   847
-      _ExtentY        =   847
-      _Version        =   393216
-   End
    Begin VB.Frame FrameCobros 
       Height          =   6510
       Left            =   45
@@ -593,6 +586,13 @@ Begin VB.Form frmListOficiales
          Top             =   2490
          Width           =   240
       End
+   End
+   Begin MSComDlg.CommonDialog cd1 
+      Left            =   7680
+      Top             =   5160
+      _ExtentX        =   847
+      _ExtentY        =   847
+      _Version        =   393216
    End
 End
 Attribute VB_Name = "frmListOficiales"

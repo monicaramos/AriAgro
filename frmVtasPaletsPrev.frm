@@ -1065,8 +1065,8 @@ Dim anc As Single
         PonerModo 1
         
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco text1(0)
-        text1(0).BackColor = vbLightBlue 'vbYellow
+        PonerFoco Text1(0)
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     End If
 End Sub
 
@@ -1094,6 +1094,14 @@ Dim NroAlbar As String
 
     'Ciertas comprobaciones
     If lw1.SelectedItem Is Nothing Then Exit Sub
+    
+    '[Monica]13/12/2018: para el caso de Frutas Inma si el palet esta en el albaran no se puede modificar
+    If vParamAplic.Cooperativa = 18 Then
+        If PaletEnAlbaran(lw1.SelectedItem.Text) Then
+            MsgBox "No se permite eliminar un palet que esté albaranado", vbExclamation
+            Exit Sub
+        End If
+    End If
     
     NroAlbar = NroAlbaranAsignado(lw1.SelectedItem.Text, 0)
     If NroAlbar <> "" Then
@@ -1335,54 +1343,54 @@ End Sub
 
 Private Sub frmC_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Clientes
-    text1(4).Text = RecuperaValor(CadenaSeleccion, 1)  'Cod Clien
+    Text1(4).Text = RecuperaValor(CadenaSeleccion, 1)  'Cod Clien
 End Sub
 
 Private Sub frmBas_DatoSeleccionado(CadenaSeleccion As String)
-    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) ' codigo de linea de confeccion
+    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) ' codigo de linea de confeccion
 End Sub
 
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
-    text1(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
+    Text1(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
     ' ********************************************
 End Sub
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Variedades
     If CadenaSeleccion <> "" Then
-        text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvariedad
-        text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+        Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvariedad
+        Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
     End If
 End Sub
 
 Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
 'Forfaits
     If CadenaSeleccion <> "" Then
-        text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
-        text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+        Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
+        Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
     End If
 End Sub
 
 Private Sub frmMCam_DatoSeleccionado(CadenaSeleccion As String)
     If CadenaSeleccion <> "" Then
-        text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
-        text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
+        Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
+        Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
     End If
 End Sub
 
 Private Sub frmMen_DatoSeleccionado(CadenaSeleccion As String)
-    text1(2).Text = CadenaSeleccion
+    Text1(2).Text = CadenaSeleccion
 End Sub
 
 Private Sub frmMPal_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Palets de confecciones
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Palet
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Palets
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
-     text1(indice).Text = vCampo
+     Text1(indice).Text = vCampo
 End Sub
 
 Private Sub imgAyuda_Click(Index As Integer)
@@ -1412,10 +1420,10 @@ Dim Cad As String
             indice = 3
             Set frmVar = New frmManVariedad
             frmVar.DatosADevolverBusqueda = "0|1|"
-            frmVar.CodigoActual = text1(indice).Text
+            frmVar.CodigoActual = Text1(indice).Text
             frmVar.Show vbModal
             Set frmVar = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             
         Case 1 'Ayuda de pedidos que no tengan asignado nro de albaran
             'mostramos los palets asociados al pedido
@@ -1435,19 +1443,19 @@ Dim Cad As String
             indice = 4
             Set frmFor = New frmManForfaits
             frmFor.DatosADevolverBusqueda = "0|1|"
-            frmFor.CodigoActual = text1(4).Text
+            frmFor.CodigoActual = Text1(4).Text
             frmFor.Show vbModal
             Set frmFor = Nothing
-            PonerFoco text1(4)
+            PonerFoco Text1(4)
         
         Case 3 ' tipo de palet
             indice = 8
-            PonerFoco text1(8)
+            PonerFoco Text1(8)
             Set frmMPal = New frmManPaleConf
             frmMPal.DatosADevolverBusqueda = "0|1|"
             frmMPal.Show vbModal
             Set frmMPal = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
 
         
         
@@ -1486,13 +1494,13 @@ Private Sub imgFec_Click(Index As Integer)
             indice = Index + 1
     End Select
     ' *** repasar si el camp es txtAux o Text1 ***
-    If text1(indice).Text <> "" Then frmC.NovaData = text1(indice).Text
+    If Text1(indice).Text <> "" Then frmC.NovaData = Text1(indice).Text
     ' ********************************************
 
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
-    PonerFoco text1(indice) '<===
+    PonerFoco Text1(indice) '<===
     ' ********************************************
 End Sub
 
@@ -1718,12 +1726,28 @@ Dim frmPal As frmVtasPalets
     
 End Sub
 
+Private Function PaletAlbaranado(NumPalet As String) As Boolean
+Dim Sql As String
+
+
+End Function
+
+
 
 Private Sub mnModificar_Click()
 Dim frmPal As frmVtasPalets
 Dim vItem As String
     
+    
     vItem = lw1.SelectedItem.Text
+    
+    '[Monica]13/12/2018: para el caso de frutas inma si el palet esta en el albaran no se puede modificar
+    If vParamAplic.Cooperativa = 18 Then
+        If PaletEnAlbaran(vItem) Then
+            MsgBox "No se permite modificar un palet que esté albaranado.", vbExclamation
+            Exit Sub
+        End If
+    End If
     
     Set frmPal = New frmVtasPalets
     
@@ -1793,7 +1817,7 @@ End Sub
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
     If Index = 9 Then HaCambiadoCP = False 'CPostal
-    ConseguirFoco text1(Index), Modo
+    ConseguirFoco Text1(Index), Modo
 End Sub
 
 
@@ -1804,7 +1828,7 @@ End Sub
 
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    If Index <> 7 Or (Index = 7 And text1(7).Text = "") Then KEYpress KeyAscii
+    If Index <> 7 Or (Index = 7 And Text1(7).Text = "") Then KEYpress KeyAscii
 End Sub
 
 
@@ -1821,7 +1845,7 @@ Dim devuelve As String
 Dim cadMen As String
 Dim Sql As String
         
-    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
         
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1830,26 +1854,26 @@ Dim Sql As String
     'Si queremos hacer algo ..
     Select Case Index
         Case 0 'numero de palet
-            PonerFormatoEntero text1(Index)
+            PonerFormatoEntero Text1(Index)
         
         Case 1 'Fecha de confeccion
-            If text1(Index).Text <> "" Then
-                PonerFormatoFecha text1(Index), True
+            If Text1(Index).Text <> "" Then
+                PonerFormatoFecha Text1(Index), True
             End If
                 
         
         Case 3 'Variedad
-            If PonerFormatoEntero(text1(Index)) Then
-                text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", text1(Index).Text, "N")
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(Index).Text, "N")
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
                 
         Case 4 'Forfait
-            If text1(Index).Text <> "" Then
-                text2(Index) = PonerNombreDeCod(text1(Index), "forfaits", "nomconfe")
+            If Text1(Index).Text <> "" Then
+                Text2(Index) = PonerNombreDeCod(Text1(Index), "forfaits", "nomconfe")
             Else
-                text2(Index).Text = ""
+                Text2(Index).Text = ""
             End If
         
     End Select
@@ -1933,23 +1957,23 @@ Dim Sql As String
 '    ComprobarDatosTotales
 
     'concatenamos en el text1(6) y text1(8) la fechahora
-    text1(8).Text = Format(text1(2).Text, "dd/mm/yyyy") & " " & Format(text1(9).Text, "HH:MM:SS")
-    If text1(3).Text <> "" And text1(10).Text <> "" Then
-        text1(6).Text = Format(text1(3).Text, "dd/mm/yyyy") & " " & Format(text1(10).Text, "HH:MM:SS")
+    Text1(8).Text = Format(Text1(2).Text, "dd/mm/yyyy") & " " & Format(Text1(9).Text, "HH:MM:SS")
+    If Text1(3).Text <> "" And Text1(10).Text <> "" Then
+        Text1(6).Text = Format(Text1(3).Text, "dd/mm/yyyy") & " " & Format(Text1(10).Text, "HH:MM:SS")
     Else
-        text1(6).Text = ""
+        Text1(6).Text = ""
     End If
     
-    If text1(13).Text <> "" And text1(12).Text <> "" Then
-        text1(14).Text = Format(text1(13).Text, "dd/mm/yyyy") & " " & Format(text1(12).Text, "HH:MM:SS")
+    If Text1(13).Text <> "" And Text1(12).Text <> "" Then
+        Text1(14).Text = Format(Text1(13).Text, "dd/mm/yyyy") & " " & Format(Text1(12).Text, "HH:MM:SS")
     Else
-        text1(14).Text = ""
+        Text1(14).Text = ""
     End If
     
-    If text1(13).Text <> "" And text1(11).Text <> "" Then
-        text1(15).Text = Format(text1(13).Text, "dd/mm/yyyy") & " " & Format(text1(11).Text, "HH:MM:SS")
+    If Text1(13).Text <> "" And Text1(11).Text <> "" Then
+        Text1(15).Text = Format(Text1(13).Text, "dd/mm/yyyy") & " " & Format(Text1(11).Text, "HH:MM:SS")
     Else
-        text1(15).Text = ""
+        Text1(15).Text = ""
     End If
     
     'comprobamos datos OK de la tabla palets
@@ -1958,41 +1982,41 @@ Dim Sql As String
     
     
     ' comprobamos los rangos de fechas
-    If b And text1(3).Text <> "" Then
-        If CDate(text1(2).Text) > CDate(text1(3).Text) Then
+    If b And Text1(3).Text <> "" Then
+        If CDate(Text1(2).Text) > CDate(Text1(3).Text) Then
             MsgBox "La fecha de inicio no puede ser superior a la fecha fin. Revise.", vbExclamation
             b = False
-            PonerFoco text1(9)
+            PonerFoco Text1(9)
         End If
     End If
     
-    If b And text1(6).Text <> "" Then
-        If CDate(text1(8).Text) > CDate(text1(6).Text) Then
+    If b And Text1(6).Text <> "" Then
+        If CDate(Text1(8).Text) > CDate(Text1(6).Text) Then
             MsgBox "La hora de inicio no puede ser superior a la de fin. Revise.", vbExclamation
             b = False
-            PonerFoco text1(9)
+            PonerFoco Text1(9)
         End If
     End If
     
-    If b And text1(15).Text <> "" Then
-        If CDate(text1(14).Text) > CDate(text1(15).Text) Then
+    If b And Text1(15).Text <> "" Then
+        If CDate(Text1(14).Text) > CDate(Text1(15).Text) Then
             MsgBox "La hora de inicio de confección no puede ser superior a la de fin. Revise.", vbExclamation
             b = False
-            PonerFoco text1(12)
+            PonerFoco Text1(12)
         End If
     End If
     
     
     
     'comprobamos que el numero de pedido existe si no es nulo
-    If b And text1(5).Text <> "" Then
+    If b And Text1(5).Text <> "" Then
         Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", text1(5), "N")
+        Sql = DevuelveDesdeBDNew(cAgro, "pedidos", "numpedid", "numpedid", Text1(5), "N")
         If Sql = "" Then
             MsgBox "El número de pedido no existe en la tabla de pedidos. Reintroduzca.", vbExclamation
-            text1(5).Text = ""
+            Text1(5).Text = ""
             b = False
-            PonerFoco text1(5)
+            PonerFoco Text1(5)
         End If
     End If
     
@@ -2095,7 +2119,7 @@ Dim vTipoMov As CTiposMov
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
-    vTipoMov.DevolverContador "PAL", Val(text1(0).Text)
+    vTipoMov.DevolverContador "PAL", Val(Text1(0).Text)
     Set vTipoMov = Nothing
     
     b = True
@@ -2358,9 +2382,9 @@ Dim NomImpre As String
 Dim NomImpTi As String
 Dim bImpre As Boolean
 
-    cadImpresion = "{scafac.codtipom}='" & text1(1).Text & "' and {scafac.numfactu}=" & text1(0).Text
-    Sql = cadImpresion & " and {scafac.fecfactu}=" & DBSet(text1(2).Text, "F")
-    cadImpresion = cadImpresion & " and {scafac.fecfactu}=Date(" & Year(CDate(text1(2).Text)) & "," & Month(CDate(text1(2).Text)) & "," & Day(CDate(text1(2).Text)) & ")"
+    cadImpresion = "{scafac.codtipom}='" & Text1(1).Text & "' and {scafac.numfactu}=" & Text1(0).Text
+    Sql = cadImpresion & " and {scafac.fecfactu}=" & DBSet(Text1(2).Text, "F")
+    cadImpresion = cadImpresion & " and {scafac.fecfactu}=Date(" & Year(CDate(Text1(2).Text)) & "," & Month(CDate(Text1(2).Text)) & "," & Day(CDate(Text1(2).Text)) & ")"
     
     If Not HayRegParaInforme("scafac", Sql) Then Exit Sub
     
@@ -2704,9 +2728,9 @@ Dim NewEstado As Integer
         lw1.ListItems.Clear
         
         '[Monica]11/07/2018: limpiamos los totales
-        text1(5).Text = ""
-        text1(6).Text = ""
-        text1(7).Text = ""
+        Text1(5).Text = ""
+        Text1(6).Text = ""
+        Text1(7).Text = ""
         TotCajas = 0
         TotBruto = 0
         TotNeto = 0
@@ -2774,7 +2798,7 @@ Dim NewEstado As Integer
             If Combo1(1).ListIndex = 0 Or (Combo1(1).ListIndex = 1 And Estado = 1) Or (Combo1(1).ListIndex = 2 And Estado = 2) Or (Combo1(1).ListIndex = 3 And Estado = 3) Or (Combo1(1).ListIndex = 4 And NewEstado = 4) Then
                 Set IT = lw1.ListItems.Add
                 
-                IT.Text = Format(DBLet(Rs!numpalet, "N"), "0000000")
+                IT.Text = Format(DBLet(Rs!NumPalet, "N"), "0000000")
                 IT.SubItems(1) = DBLet(Rs!fecha, "F")
                 IT.SubItems(2) = Format(DBLet(Rs!numpedid, "N"), "0000000")
                 IT.SubItems(3) = Format(DBLet(Rs!codvarie, "N"), "000000")
@@ -2784,7 +2808,7 @@ Dim NewEstado As Integer
                 IT.SubItems(7) = DBLet(Rs!nomcalib, "T")
                 IT.SubItems(8) = DBLet(Rs!nompalet, "T")
                 IT.SubItems(9) = DBLet(Rs!categori, "T")
-                If PaletAnt <> DBLet(Rs!numpalet, "N") Then
+                If PaletAnt <> DBLet(Rs!NumPalet, "N") Then
                     IT.SubItems(10) = Format(DBLet(Rs!NumCajas, "N"), "###,###,###,##0") ' antes 7
                     IT.SubItems(11) = Format(DBLet(Rs!pesobrut, "N"), "###,###,###,##0") ' antes 8
                     IT.SubItems(12) = Format(DBLet(Rs!Pesoneto, "N"), "###,###,###,##0") ' antes 9
@@ -2793,7 +2817,7 @@ Dim NewEstado As Integer
                     TotBruto = TotBruto + DBLet(Rs!pesobrut, "N")
                     TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
                     
-                    PaletAnt = DBLet(Rs!numpalet, "T")
+                    PaletAnt = DBLet(Rs!NumPalet, "T")
                     
                     TotPalet = TotPalet + 1
                 Else
@@ -2838,7 +2862,7 @@ Dim NewEstado As Integer
                     End If
                 End If
                 
-                IT.Tag = DBLet(Rs!numpalet, "N")
+                IT.Tag = DBLet(Rs!NumPalet, "N")
                 
                 i = i + 1
                 
@@ -2863,11 +2887,11 @@ Dim NewEstado As Integer
         Label1(0).Refresh
     
         ' cargamos los totales
-        text1(5).Text = Format(TotCajas, "###,###,###,##0")
-        text1(6).Text = Format(TotBruto, "###,###,###,##0")
-        text1(7).Text = Format(TotNeto, "###,###,###,##0")
+        Text1(5).Text = Format(TotCajas, "###,###,###,##0")
+        Text1(6).Text = Format(TotBruto, "###,###,###,##0")
+        Text1(7).Text = Format(TotNeto, "###,###,###,##0")
     
-        text1(9).Text = Format(TotPalet, "###,###,###,##0")
+        Text1(9).Text = Format(TotPalet, "###,###,###,##0")
     
     End If
     

@@ -15,6 +15,362 @@ Begin VB.Form frmMensajes
    ScaleWidth      =   14160
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.Frame FrameDatosFactura 
+      Height          =   3525
+      Left            =   0
+      TabIndex        =   106
+      Top             =   0
+      Width           =   7365
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         Left            =   2205
+         MaxLength       =   10
+         TabIndex        =   108
+         Top             =   1125
+         Width           =   1350
+      End
+      Begin VB.CommandButton CmdAcepFacturar 
+         Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   4725
+         TabIndex        =   116
+         Top             =   2760
+         Width           =   1065
+      End
+      Begin VB.CommandButton CmdCancel 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   5
+         Left            =   5880
+         TabIndex        =   118
+         Top             =   2760
+         Width           =   1065
+      End
+      Begin VB.TextBox Text2 
+         BackColor       =   &H80000018&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   3
+         Left            =   3150
+         Locked          =   -1  'True
+         TabIndex        =   107
+         Text            =   "Text5"
+         Top             =   2205
+         Width           =   3825
+      End
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   3
+         Left            =   2205
+         MaxLength       =   6
+         TabIndex        =   114
+         Top             =   2205
+         Width           =   875
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         Left            =   2205
+         Style           =   2  'Dropdown List
+         TabIndex        =   110
+         Tag             =   "Tipo Variedad|N|N|||variedades|tipovariedad||N|"
+         Top             =   1620
+         Width           =   1620
+      End
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   2
+         Left            =   5625
+         MaxLength       =   10
+         TabIndex        =   112
+         Top             =   1620
+         Width           =   1350
+      End
+      Begin VB.Image imgFecha 
+         Height          =   240
+         Index           =   2
+         Left            =   1935
+         Picture         =   "frmMensajes.frx":000C
+         Top             =   1170
+         Width           =   240
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Fecha Factura"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   24
+         Left            =   450
+         TabIndex        =   117
+         Top             =   1125
+         Width           =   1440
+      End
+      Begin VB.Label Label7 
+         Caption         =   "Generación de Factura"
+         BeginProperty Font 
+            Name            =   "Tahoma"
+            Size            =   14.25
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00800000&
+         Height          =   345
+         Index           =   2
+         Left            =   450
+         TabIndex        =   115
+         Top             =   480
+         Width           =   4725
+      End
+      Begin VB.Image imgBuscar 
+         Height          =   240
+         Index           =   14
+         Left            =   1905
+         MouseIcon       =   "frmMensajes.frx":0097
+         MousePointer    =   4  'Icon
+         ToolTipText     =   "Buscar forma pago"
+         Top             =   2220
+         Width           =   240
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Forma Pago"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   25
+         Left            =   450
+         TabIndex        =   113
+         Top             =   2205
+         Width           =   1155
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Tipo Divisa"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   26
+         Left            =   450
+         TabIndex        =   111
+         Top             =   1665
+         Width           =   1065
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Cambio Divisa"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   27
+         Left            =   4095
+         TabIndex        =   109
+         Top             =   1665
+         Width           =   1350
+      End
+   End
+   Begin VB.Frame FramePortesComision 
+      Height          =   2535
+      Left            =   0
+      TabIndex        =   100
+      Top             =   0
+      Width           =   6240
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   19
+         Left            =   1395
+         MaxLength       =   10
+         TabIndex        =   103
+         Top             =   945
+         Width           =   1350
+      End
+      Begin VB.CommandButton CmdCancel 
+         Caption         =   "&Cancelar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Index           =   9
+         Left            =   4665
+         TabIndex        =   102
+         Top             =   1680
+         Width           =   1065
+      End
+      Begin VB.CommandButton CmdAcepPortesComis 
+         Caption         =   "&Aceptar"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   375
+         Left            =   3510
+         TabIndex        =   101
+         Top             =   1680
+         Width           =   1065
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Introduzca el porte para el albaran"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   -1  'True
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   28
+         Left            =   405
+         TabIndex        =   105
+         Top             =   360
+         Width           =   5490
+      End
+      Begin VB.Label Label2 
+         AutoSize        =   -1  'True
+         Caption         =   "Importe"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         ForeColor       =   &H00972E0B&
+         Height          =   240
+         Index           =   29
+         Left            =   405
+         TabIndex        =   104
+         Top             =   945
+         Width           =   765
+      End
+   End
    Begin VB.Frame FrameVariedades 
       Height          =   5790
       Left            =   -45
@@ -98,7 +454,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   5
          Left            =   600
-         Picture         =   "frmMensajes.frx":000C
+         Picture         =   "frmMensajes.frx":01E9
          Top             =   5160
          Width           =   240
       End
@@ -106,7 +462,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   4
          Left            =   240
-         Picture         =   "frmMensajes.frx":0156
+         Picture         =   "frmMensajes.frx":0333
          Top             =   5160
          Width           =   240
       End
@@ -204,7 +560,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   13
          Left            =   600
-         Picture         =   "frmMensajes.frx":02A0
+         Picture         =   "frmMensajes.frx":047D
          Top             =   5160
          Width           =   240
       End
@@ -212,7 +568,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   12
          Left            =   240
-         Picture         =   "frmMensajes.frx":03EA
+         Picture         =   "frmMensajes.frx":05C7
          Top             =   5160
          Width           =   240
       End
@@ -239,7 +595,7 @@ Begin VB.Form frmMensajes
          Left            =   240
          MultiLine       =   -1  'True
          TabIndex        =   23
-         Text            =   "frmMensajes.frx":0534
+         Text            =   "frmMensajes.frx":0711
          Top             =   240
          Width           =   6615
       End
@@ -422,9 +778,9 @@ Begin VB.Form frmMensajes
       Width           =   12975
       Begin VB.ComboBox cmbActualizarTar 
          Height          =   315
-         ItemData        =   "frmMensajes.frx":053A
+         ItemData        =   "frmMensajes.frx":0717
          Left            =   7800
-         List            =   "frmMensajes.frx":0547
+         List            =   "frmMensajes.frx":0724
          Style           =   2  'Dropdown List
          TabIndex        =   41
          Top             =   5960
@@ -541,7 +897,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   2
          Left            =   11760
-         Picture         =   "frmMensajes.frx":057D
+         Picture         =   "frmMensajes.frx":075A
          Top             =   240
          Width           =   240
       End
@@ -549,7 +905,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   3
          Left            =   12360
-         Picture         =   "frmMensajes.frx":06C7
+         Picture         =   "frmMensajes.frx":08A4
          Top             =   240
          Width           =   240
       End
@@ -602,7 +958,7 @@ Begin VB.Form frmMensajes
          MultiLine       =   -1  'True
          ScrollBars      =   3  'Both
          TabIndex        =   28
-         Text            =   "frmMensajes.frx":0811
+         Text            =   "frmMensajes.frx":09EE
          Top             =   360
          Width           =   7695
       End
@@ -1056,7 +1412,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   11
          Left            =   240
-         Picture         =   "frmMensajes.frx":0817
+         Picture         =   "frmMensajes.frx":09F4
          Top             =   5160
          Width           =   240
       End
@@ -1064,7 +1420,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   10
          Left            =   600
-         Picture         =   "frmMensajes.frx":0961
+         Picture         =   "frmMensajes.frx":0B3E
          Top             =   5160
          Width           =   240
       End
@@ -1152,7 +1508,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   7
          Left            =   240
-         Picture         =   "frmMensajes.frx":0AAB
+         Picture         =   "frmMensajes.frx":0C88
          Top             =   5160
          Width           =   240
       End
@@ -1160,7 +1516,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   6
          Left            =   600
-         Picture         =   "frmMensajes.frx":0BF5
+         Picture         =   "frmMensajes.frx":0DD2
          Top             =   5160
          Width           =   240
       End
@@ -1281,7 +1637,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   9
          Left            =   240
-         Picture         =   "frmMensajes.frx":0D3F
+         Picture         =   "frmMensajes.frx":0F1C
          Top             =   6000
          Width           =   240
       End
@@ -1289,7 +1645,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   8
          Left            =   600
-         Picture         =   "frmMensajes.frx":0E89
+         Picture         =   "frmMensajes.frx":1066
          Top             =   6000
          Width           =   240
       End
@@ -1308,7 +1664,7 @@ Begin VB.Form frmMensajes
          Top             =   5160
          Width           =   1215
       End
-      Begin VB.CommandButton cmdcancel 
+      Begin VB.CommandButton CmdCancel 
          Caption         =   "Cancelar"
          Height          =   375
          Index           =   1
@@ -1437,7 +1793,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   1
          Left            =   600
-         Picture         =   "frmMensajes.frx":0FD3
+         Picture         =   "frmMensajes.frx":11B0
          Top             =   6960
          Width           =   240
       End
@@ -1445,7 +1801,7 @@ Begin VB.Form frmMensajes
          Height          =   240
          Index           =   0
          Left            =   240
-         Picture         =   "frmMensajes.frx":111D
+         Picture         =   "frmMensajes.frx":12FA
          Top             =   6960
          Width           =   240
       End
@@ -1476,7 +1832,7 @@ Begin VB.Form frmMensajes
          Top             =   5220
          Width           =   990
       End
-      Begin VB.TextBox text2 
+      Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
          BeginProperty Font 
@@ -1612,9 +1968,9 @@ Begin VB.Form frmMensajes
          EndProperty
          Height          =   360
          Index           =   0
-         ItemData        =   "frmMensajes.frx":1267
+         ItemData        =   "frmMensajes.frx":1444
          Left            =   240
-         List            =   "frmMensajes.frx":1271
+         List            =   "frmMensajes.frx":144E
          Style           =   2  'Dropdown List
          TabIndex        =   96
          Tag             =   "Tipo de cliente|N|N|0|2|ssocio|tipsocio|||"
@@ -1762,6 +2118,8 @@ Public OpcionMensaje As Byte
 
 '30 .- Facturas pendientes de contabilizar
 
+'31 .- Introduccion de portes de albafran o de comision en la factura
+'32 .- Generacion de facturas a partir del albaran, pedimos el cambio y la divisa
 
 
 Public cadwhere As String 'Cadena para pasarle la WHERE de la SELECT de los cobros pendientes o de Pedido(para comp. stock)
@@ -1793,6 +2151,9 @@ Dim vAnt As Integer
 
 Private WithEvents frmCli As frmBasico
 Attribute frmCli.VB_VarHelpID = -1
+Private WithEvents frmFPag As frmManFpago
+Attribute frmFPag.VB_VarHelpID = -1
+
 
 Private Sub CmdAcepCalib_Click()
 Dim CADENA As String
@@ -1804,6 +2165,46 @@ Dim CADENA As String
     RaiseEvent DatoSeleccionado(CADENA)
     
     Unload Me
+End Sub
+
+Private Sub CmdAcepFacturar_Click()
+Dim Sql As String
+Dim vResult As String
+
+    ' Obligatorio poner la fecha de factura
+    If Text1(1).Text = "" Then
+        MsgBox "Debe introducir obligatoriamente la fecha de factura. Reintroduzca.", vbExclamation
+        PonerFoco Text1(1)
+        Exit Sub
+    Else
+        If EsFechaOK(Text1(1).Text) Then
+            '[Monica]20/06/2017: control de fechas que antes no estaba
+            If vParamAplic.NumeroConta <> 0 Then
+                ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(1).Text))
+                If ResultadoFechaContaOK > 0 Then
+                    If ResultadoFechaContaOK <> 4 Then MsgBox MensajeFechaOkConta, vbExclamation
+                    Exit Sub
+                End If
+            End If
+        End If
+    End If
+    
+    ' se debe un valor de cambio siempre
+    If Combo1(1).ListIndex = 0 Then
+        Text1(2).Text = "1"
+    Else
+        If Text1(2).Text = "" Then
+            MsgBox "Debe introducir un valor en el cabio de divisa. Revise.", vbExclamation
+            PonerFoco Text1(2)
+            Exit Sub
+        End If
+    End If
+
+    vResult = Text1(1).Text & "|" & Combo1(1).ListIndex & "|" & ImporteSinFormato(Text1(2).Text) & "|" & Text1(3).Text & "|"
+
+    RaiseEvent DatoSeleccionado(vResult)
+    Unload Me
+
 End Sub
 
 Private Sub CmdAcepFrasAnecoop_Click()
@@ -1825,6 +2226,11 @@ Dim CADENA As String
     RaiseEvent DatoSeleccionado(CADENA)
     Unload Me
 
+End Sub
+
+Private Sub CmdAcepPortesComis_Click()
+    RaiseEvent DatoSeleccionado(Text1(19))
+    Unload Me
 End Sub
 
 Private Sub CmdAcepProductos_Click()
@@ -2047,7 +2453,6 @@ Dim C1 As String * 10, c2 As String * 10, c3 As String * 10
       Unload Me
 End Sub
 
-
 Private Sub cmdacepVariedades_Click()
 Dim CADENA As String
     'Cargo las variedades marcadas
@@ -2083,7 +2488,6 @@ Private Sub cmdCancel_Click(Index As Integer)
     RaiseEvent DatoSeleccionado("")
     Unload Me
 End Sub
-
 
 Private Sub cmdCancelarCobros_Click()
     vCampos = "0"
@@ -2332,6 +2736,9 @@ Private Sub Combo1_Click(Index As Integer)
         Case 0
             If vAnt <> Combo1(0).ListIndex Then CargarFacturasPendientesContabilizar
             vAnt = Combo1(0).ListIndex
+        Case 1
+            Text1(2).Enabled = (Combo1(Index).ListIndex <> 0)
+            If Not Text1(2).Enabled Then Text1(2).Text = ""
     End Select
 End Sub
 
@@ -2340,6 +2747,10 @@ Private Sub Combo1_GotFocus(Index As Integer)
         Case 0
             vAnt = Combo1(0).ListIndex
     End Select
+End Sub
+
+Private Sub Combo1_KeyPress(Index As Integer, KeyAscii As Integer)
+    KEYpress KeyAscii
 End Sub
 
 Private Sub Form_Activate()
@@ -2410,6 +2821,15 @@ Dim OK As Boolean
             
             Combo1(0).ListIndex = 0
             
+        Case 31 'pedir portes comision
+            PonerFoco Text1(19)
+            
+        Case 32 ' datos para la generacion de factura
+            CargarCombo
+            Combo1(1).ListIndex = 0
+            Text1(1).Text = Format(Now, "dd/mm/yyyy")
+            PonerFoco Text1(1)
+        
     End Select
     
     Screen.MousePointer = vbDefault
@@ -2440,14 +2860,17 @@ On Error Resume Next
     FrameProductos.visible = False
     FrameAnecoop.visible = False
     FrameFrasPteContabilizar.visible = False
-
+    FramePortesComision.visible = False
+    Me.FramePortesComision.visible = False
+    FrameDatosFactura.visible = False
+    
     PulsadoSalir = True
     PrimeraVez = True
     
-    For H = 0 To Me.imgBuscar.Count - 1
+    For H = 0 To 0
         Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     Next H
-    
+    Me.imgBuscar(14).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     
     
     Select Case OpcionMensaje
@@ -2649,6 +3072,21 @@ On Error Resume Next
             PonerFrameVisible FrameFrasPteContabilizar, True, H, W
         
             CargarCombo
+    
+        '[Monica]14/12/2018: datos de importe de portes o de comision
+        Case 31 ' importe de portes o comision
+            H = 2535
+            W = 6240
+            PonerFrameVisible FramePortesComision, True, H, W
+            Label2(28).Caption = CADENA
+            DoEvents
+    
+        '[Monica]14/12/2018: pedir datos de la factura cuando se genera factura a partir de albaran
+        Case 32 ' Creacion de factura a partir de albaran
+            H = 3525
+            W = 7365
+            PonerFrameVisible FrameDatosFactura, True, H, W
+            
         
     End Select
     'Me.cmdCancel(indFrame).Cancel = True
@@ -3368,7 +3806,7 @@ Dim Sql As String
     
         While Not Rs.EOF
             Set ItmX = ListView5.ListItems.Add
-            ItmX.Text = Format(Rs!numpalet, "000000")
+            ItmX.Text = Format(Rs!NumPalet, "000000")
             ItmX.SubItems(1) = Format(Rs!linconfe, "00")
             ItmX.SubItems(2) = Rs!FechaIni
             ItmX.SubItems(3) = Format(Rs!HoraIni, "hh:mm:ss")
@@ -3558,10 +3996,17 @@ End Sub
 
 
 
+
+
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     Text1(6).Text = RecuperaValor(CadenaSeleccion, 1)
     Text2(6).Text = RecuperaValor(CadenaSeleccion, 2)
     CargarListaPedidosSinAlbaran
+End Sub
+
+Private Sub frmFPag_DatoSeleccionado(CadenaSeleccion As String)
+    Text1(3).Text = RecuperaValor(CadenaSeleccion, 1)
+    Text2(3).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -3572,6 +4017,14 @@ Private Sub imgBuscar_Click(Index As Integer)
             AyudaClientes frmCli
             
             Set frmCli = Nothing
+            
+        Case 1 'formas de pago
+            Set frmFPag = New frmManFpago
+            
+            frmFPag.DatosADevolverBusqueda = "0|1|"
+            frmFPag.Show vbModal
+            
+            Set frmFPag = Nothing
     End Select
 End Sub
 
@@ -3954,15 +4407,36 @@ Dim Sql As String
           
     'Si queremos hacer algo ..
     Select Case Index
+        Case 1 ' Fecha de factura
+            PonerFormatoFecha Text1(1)
+            
+        Case 2 ' cambio de divisa
+            PonerFormatoDecimal Text1(Index), 7
+            
+        Case 3 ' forma de pago
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
+            End If
+            
         Case 6 'Cliente
             If PonerFormatoEntero(Text1(Index)) Then
                 Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
                 CargarListaPedidosSinAlbaran
             End If
             
+        '[Monica]14/12/2018: para recepcion de factura de transporte
+        Case 19 ' importe de portes o comision
+            If Label2(29).Caption = "Palets" Then
+                PonerFormatoEntero Text1(Index)
+            Else
+                PonerFormatoDecimal Text1(Index), 3
+            End If
     End Select
 
 End Sub
+
+
+
 
 Private Sub txtMante_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
@@ -4631,8 +5105,16 @@ End Sub
 
 
 Private Sub CargarCombo()
+Dim i As Integer
+Dim Cad As String
+Dim Rs As ADODB.Recordset
+    
+    On Error GoTo eCargarCombo
+    
     ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
-    Combo1(0).Clear
+    For i = 0 To Combo1.Count - 1
+        Combo1(i).Clear
+    Next i
     
     Combo1(0).AddItem "Todas"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 0
@@ -4645,4 +5127,21 @@ Private Sub CargarCombo()
     Combo1(0).AddItem "Transportista"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 4
 
+    'Tipo de divisa
+    Cad = "SELECT * FROM rmoneda ORDER BY codmoneda"
+    Set Rs = New ADODB.Recordset
+'    Rs.Open Cad, conn, OpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenDynamic, adLockReadOnly, adCmdText
+    
+    While Not Rs.EOF
+        Combo1(1).AddItem Rs!nommoneda
+        Combo1(1).ItemData(Combo1(1).NewIndex) = Rs!codmoneda
+        Rs.MoveNext
+    Wend
+    Rs.Close
+    Set Rs = Nothing
+    Exit Sub
+    
+eCargarCombo:
+    MuestraError Err.Number, "Cargar Combo", Err.Description
 End Sub

@@ -43,7 +43,7 @@ Begin VB.Form frmAlmGrabChep
          Height          =   360
          Index           =   6
          Left            =   1740
-         MaxLength       =   3
+         MaxLength       =   4
          TabIndex        =   2
          Top             =   2340
          Width           =   830
@@ -62,7 +62,7 @@ Begin VB.Form frmAlmGrabChep
          Height          =   360
          Index           =   7
          Left            =   1740
-         MaxLength       =   3
+         MaxLength       =   4
          TabIndex        =   3
          Top             =   2715
          Width           =   830
@@ -730,7 +730,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim Tabla As String
+Dim tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -738,7 +738,7 @@ Dim Orden2 As String 'Campo de Ordenacion (por nombre) para Cristal Report
 
 Dim PrimeraVez As Boolean
 
-Dim SQL As String
+Dim Sql As String
 Dim SqlDestino As String
 
 
@@ -776,20 +776,20 @@ Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-Dim nRegs As Long
+Dim Nregs As Long
 Dim b As Byte
 Dim vsqlDestino As String
 
 
 '    If Not DatosOK Then Exit Sub
-    SQL = "SELECT  count(*) "
-    SQL = SQL & " from albaran_envase, albaran, sartic "
-    SQL = SQL & " where sartic.codtipar = 1 " ' el tipo de archivos es solamente cheps
-    SQL = SQL & " and albaran.numalbar <> 0 "
-    SQL = SQL & " and albaran_envase.tipomovi = 0 "
+    Sql = "SELECT  count(*) "
+    Sql = Sql & " from albaran_envase, albaran, sartic "
+    Sql = Sql & " where sartic.codtipar = 1 " ' el tipo de archivos es solamente cheps
+    Sql = Sql & " and albaran.numalbar <> 0 "
+    Sql = Sql & " and albaran_envase.tipomovi = 0 "
     
-    If txtCodigo(0).Text <> "" Then SQL = SQL & " and albaran.codclien >= " & DBSet(txtCodigo(0).Text, "N")
-    If txtCodigo(1).Text <> "" Then SQL = SQL & " and albaran.codclien <= " & DBSet(txtCodigo(1).Text, "N")
+    If txtCodigo(0).Text <> "" Then Sql = Sql & " and albaran.codclien >= " & DBSet(txtCodigo(0).Text, "N")
+    If txtCodigo(1).Text <> "" Then Sql = Sql & " and albaran.codclien <= " & DBSet(txtCodigo(1).Text, "N")
     
     '[Monica]07/01/2015: añadimos el destino
     'D/H Destino
@@ -818,31 +818,31 @@ Dim vsqlDestino As String
 
         Set frmMensDestino = Nothing
         
-        SQL = SQL & SqlDestino
+        Sql = Sql & SqlDestino
     End If
     
     
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and albaran.fechaalb >= " & DBSet(txtCodigo(2).Text, "F")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and albaran.fechaalb <= " & DBSet(txtCodigo(3).Text, "F")
+    If txtCodigo(2).Text <> "" Then Sql = Sql & " and albaran.fechaalb >= " & DBSet(txtCodigo(2).Text, "F")
+    If txtCodigo(3).Text <> "" Then Sql = Sql & " and albaran.fechaalb <= " & DBSet(txtCodigo(3).Text, "F")
     
-    If txtCodigo(4).Text <> "" Then SQL = SQL & " and albaran_envase.codartic >= " & DBSet(txtCodigo(4).Text, "T")
-    If txtCodigo(5).Text <> "" Then SQL = SQL & " and albaran_envase.codartic <= " & DBSet(txtCodigo(5).Text, "T")
+    If txtCodigo(4).Text <> "" Then Sql = Sql & " and albaran_envase.codartic >= " & DBSet(txtCodigo(4).Text, "T")
+    If txtCodigo(5).Text <> "" Then Sql = Sql & " and albaran_envase.codartic <= " & DBSet(txtCodigo(5).Text, "T")
     
-    SQL = SQL & " and albaran.numalbar = albaran_envase.numalbar "
-    SQL = SQL & " and albaran_envase.codartic = sartic.codartic "
+    Sql = Sql & " and albaran.numalbar = albaran_envase.numalbar "
+    Sql = Sql & " and albaran_envase.codartic = sartic.codartic "
 
     '[Monica]20/08/2012: quitamos los que no tienen codpalet o codcajas
-    SQL = SQL & " and (albaran.codclien, albaran.coddesti)  in (select codclien, coddesti from destinos where trim(codpalet) <> '' or trim(codcajas) <> '') "
+    Sql = Sql & " and (albaran.codclien, albaran.coddesti)  in (select codclien, coddesti from destinos where trim(codpalet) <> '' or trim(codcajas) <> '') "
 
 
-    nRegs = TotalRegistros(SQL)
+    Nregs = TotalRegistros(Sql)
 
-    If nRegs <> 0 Then
+    If Nregs <> 0 Then
         Pb1.visible = True
-        Pb1.Max = nRegs
+        Pb1.Max = Nregs
         Pb1.Value = 0
         
-        If GeneraFichero(nRegs) Then
+        If GeneraFichero(Nregs) Then
             If CopiarFichero Then
                 If MsgBox("¿Proceso realizado correctamente para actualizar?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                     vParamAplic.NroLote = vParamAplic.NroLote + 1
@@ -1075,7 +1075,7 @@ Dim Cad As String, cadTipo As String 'tipo cliente
         Case 6, 7 'DESTINO
             If txtCodigo(0).Text <> "" And txtCodigo(0).Text = txtCodigo(1).Text Then
                 txtNombre(Index).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", txtCodigo(0).Text, "N", , "coddesti", txtCodigo(Index).Text, "N")
-                If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
+                If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "0000")
             End If
     
     
@@ -1217,21 +1217,21 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
-    SQL = SQL & " group by 1 "
-    SQL = SQL & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
+    Sql = Sql & " group by 1 "
+    Sql = Sql & " having sum(totalfac) > " & DBSet(txtCodigo(6).Text, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -1242,12 +1242,12 @@ Dim Rs As ADODB.Recordset
 
 End Function
 
-Private Function GeneraFichero(Numreg As Long) As Boolean
+Private Function GeneraFichero(NumReg As Long) As Boolean
 Dim NFich1 As Integer
 Dim NFich2 As Integer
 Dim Rs As ADODB.Recordset
 Dim Cad As String
-Dim SQL As String
+Dim Sql As String
 Dim AntLetraSer As String
 Dim ActLetraSer As String
 Dim AntNumfactu As Long
@@ -1278,44 +1278,44 @@ Dim Insertar As Boolean
     Set Rs = New ADODB.Recordset
     
     'partimos de la tabla de lineas de albaranes
-    SQL = "SELECT albaran.fechaalb, albaran_envase.cantidad, albaran.numalbar, albaran.coddesti, "
-    SQL = SQL & " albaran.codclien, albaran_envase.codartic, sartic.codigoea, "
-    SQL = SQL & " destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla, "
-    SQL = SQL & " destinos.prodesti, paises.letraspais, "
-    SQL = SQL & " albaran.codalmac, destinos.codpalet, destinos.codcajas "
-    SQL = SQL & " from albaran_envase, albaran, sartic, destinos, paises "
-    SQL = SQL & " where sartic.codtipar = '1' " ' el tipo de archivos es solamente cheps
-    SQL = SQL & " and albaran.numalbar <> 0 "
-    SQL = SQL & " and albaran_envase.tipomovi = 0 "
+    Sql = "SELECT albaran.fechaalb, albaran_envase.cantidad, albaran.numalbar, albaran.coddesti, "
+    Sql = Sql & " albaran.codclien, albaran_envase.codartic, sartic.codigoea, "
+    Sql = Sql & " destinos.nomdesti, destinos.domdesti, destinos.pobdesti, destinos.codpobla, "
+    Sql = Sql & " destinos.prodesti, paises.letraspais, "
+    Sql = Sql & " albaran.codalmac, destinos.codpalet, destinos.codcajas "
+    Sql = Sql & " from albaran_envase, albaran, sartic, destinos, paises "
+    Sql = Sql & " where sartic.codtipar = '1' " ' el tipo de archivos es solamente cheps
+    Sql = Sql & " and albaran.numalbar <> 0 "
+    Sql = Sql & " and albaran_envase.tipomovi = 0 "
     
-    If txtCodigo(0).Text <> "" Then SQL = SQL & " and albaran.codclien >= " & DBSet(txtCodigo(0).Text, "N")
-    If txtCodigo(1).Text <> "" Then SQL = SQL & " and albaran.codclien <= " & DBSet(txtCodigo(1).Text, "N")
+    If txtCodigo(0).Text <> "" Then Sql = Sql & " and albaran.codclien >= " & DBSet(txtCodigo(0).Text, "N")
+    If txtCodigo(1).Text <> "" Then Sql = Sql & " and albaran.codclien <= " & DBSet(txtCodigo(1).Text, "N")
     
-    If txtCodigo(2).Text <> "" Then SQL = SQL & " and albaran.fechaalb >= " & DBSet(txtCodigo(2).Text, "F")
-    If txtCodigo(3).Text <> "" Then SQL = SQL & " and albaran.fechaalb <= " & DBSet(txtCodigo(3).Text, "F")
+    If txtCodigo(2).Text <> "" Then Sql = Sql & " and albaran.fechaalb >= " & DBSet(txtCodigo(2).Text, "F")
+    If txtCodigo(3).Text <> "" Then Sql = Sql & " and albaran.fechaalb <= " & DBSet(txtCodigo(3).Text, "F")
     
-    If txtCodigo(4).Text <> "" Then SQL = SQL & " and albaran_envase.codartic >= " & DBSet(txtCodigo(4).Text, "T")
-    If txtCodigo(5).Text <> "" Then SQL = SQL & " and albaran_envase.codartic <= " & DBSet(txtCodigo(5).Text, "T")
+    If txtCodigo(4).Text <> "" Then Sql = Sql & " and albaran_envase.codartic >= " & DBSet(txtCodigo(4).Text, "T")
+    If txtCodigo(5).Text <> "" Then Sql = Sql & " and albaran_envase.codartic <= " & DBSet(txtCodigo(5).Text, "T")
     
     '[Monica]07/01/2015: añadimos el destino
-    If txtCodigo(6).Text <> "" Then SQL = SQL & " and albaran.coddesti >= " & DBSet(txtCodigo(6).Text, "N")
-    If txtCodigo(7).Text <> "" Then SQL = SQL & " and albaran.coddesti <= " & DBSet(txtCodigo(7).Text, "N")
+    If txtCodigo(6).Text <> "" Then Sql = Sql & " and albaran.coddesti >= " & DBSet(txtCodigo(6).Text, "N")
+    If txtCodigo(7).Text <> "" Then Sql = Sql & " and albaran.coddesti <= " & DBSet(txtCodigo(7).Text, "N")
     
-    SQL = SQL & " and albaran.numalbar = albaran_envase.numalbar "
-    SQL = SQL & " and albaran_envase.codartic = sartic.codartic "
-    SQL = SQL & " and albaran.codclien = destinos.codclien and albaran.coddesti = destinos.coddesti "
-    SQL = SQL & " and destinos.codpaise = paises.codpaise "
+    Sql = Sql & " and albaran.numalbar = albaran_envase.numalbar "
+    Sql = Sql & " and albaran_envase.codartic = sartic.codartic "
+    Sql = Sql & " and albaran.codclien = destinos.codclien and albaran.coddesti = destinos.coddesti "
+    Sql = Sql & " and destinos.codpaise = paises.codpaise "
     
     '[Monica]20/08/2012: quitamos los destinos que no tienen codpalet o codcajas
-    SQL = SQL & " and (trim(destinos.codpalet) <> '' or trim(destinos.codcajas) <> '') "
+    Sql = Sql & " and (trim(destinos.codpalet) <> '' or trim(destinos.codcajas) <> '') "
     
     '[Monica]07/01/2015: añadimos el destino
-    If SqlDestino <> "" Then SQL = SQL & SqlDestino
+    If SqlDestino <> "" Then Sql = Sql & SqlDestino
     
     
-    SQL = SQL & " order by 1, 3"
+    Sql = Sql & " order by 1, 3"
 
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     ' cabecera
     Cad = "*****+FROM+CHEP-ES"                          '   column 0,"*****+FROM+CHEP-ES",
@@ -1326,7 +1326,7 @@ Dim Insertar As Boolean
     Cad = Cad & "+FREF+"                                '   column 42,"+FREF+",
     Cad = Cad & Format(vParamAplic.NroLote + 1, "0000")   '   column 48,numelote using "&&&&",
     Cad = Cad & "+NORC+"                                '   column 52,"+NORC+",
-    Cad = Cad & Format(Numreg, "000000")              '   column 58,v_numreg using "&&&&&&",
+    Cad = Cad & Format(NumReg, "000000")              '   column 58,v_numreg using "&&&&&&",
     Cad = Cad & "+SEPR+"                                '   column 64,"+SEPR+",
     Cad = Cad & "%"                                     '   column 70,"%",
     Cad = Cad & "+VERS+1.03+*****"                      '   column 71,"+VERS+1.03+*****",
@@ -1439,7 +1439,7 @@ Dim Insertar As Boolean
    
     If v_Hayreg = 1 Then
         Cad = "*****+NORC+"                             '   column  0,"*****+NORC+",
-        Cad = Cad & Format(Numreg, "000000")            '   column 11,v_numreg using "&&&&&&",
+        Cad = Cad & Format(NumReg, "000000")            '   column 11,v_numreg using "&&&&&&",
         Cad = Cad & "+SQTY+"                            '   column 17,"+SQTY+",
         Cad = Cad & Format(CanTotal, "000000")          '   column 23,t_totale using "&&&&&&",
         Cad = Cad & "+EOF"                              '   column 29,"+EOF",

@@ -2573,7 +2573,7 @@ End Sub
 Private Sub BotonModificar()
 Dim NroAlbar As String
 Dim Cad As String
-    NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
+    NroAlbar = NroAlbaranAsignado(Data1.Recordset!NumPalet, 0)
     If NroAlbar <> "" Then
         Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
         Cad = Cad & "                     ¿ Desea continuar ?"
@@ -2704,7 +2704,16 @@ Dim NroAlbar As String
     'Ciertas comprobaciones
     If Data1.Recordset.EOF Then Exit Sub
     
-    NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
+    NroAlbar = NroAlbaranAsignado(Data1.Recordset!NumPalet, 0)
+    
+    '[Monica]13/12/2018: para el caso de Frutas Inma si el palet esta en el albaran no se puede modificar
+    If vParamAplic.Cooperativa = 18 Then
+        If NroAlbar <> "" Then
+            MsgBox "No se permite eliminar un palet que esté albaranado", vbExclamation
+            Exit Sub
+        End If
+    End If
+    
     If NroAlbar <> "" Then
         Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
         Cad = Cad & "         ¿ Desea continuar ?"
@@ -3212,6 +3221,7 @@ End Sub
 
 
 Private Sub mnEliminar_Click()
+
     If Modo = 5 Then 'Eliminar lineas de Pedido
 '         BotonEliminarLinea
     Else   'Eliminar Pedido
@@ -3250,8 +3260,33 @@ Private Sub mnLineas_Click()
     BotonMtoLineas 1, "Facturas"
 End Sub
 
+Private Function PaletEnAlbaran(NPalet As String, Optional NPedido As String) As Boolean
+Dim Sql As String
+
+
+    If ComprobarCero(NPedido) <> "0" Then
+        Sql = "select numalbar from albaran where numpedid = " & DBSet(NPedido, "N")
+        
+        PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
+    Else
+        Sql = "select palets.numpedid from palets, albaran where palets.numpalet = " & DBSet(NPalet, "N")
+        Sql = Sql & " and palets.numpedid = albaran.numpedid "
+        
+        PaletEnAlbaran = (DevuelveValor(Sql) <> 0)
+    End If
+
+End Function
 
 Private Sub mnModificar_Click()
+
+    '[Monica]13/12/2018: para el caso de Frutas Inma si el palet esta en el albaran no se puede modificar
+    If vParamAplic.Cooperativa = 18 Then
+        If PaletEnAlbaran(Text1(0)) Then
+            MsgBox "No se permite modificar un palet que esté albaranado", vbExclamation
+            Exit Sub
+        End If
+    End If
+
     If Modo = 5 Then 'Modificar lineas
         'bloquea la tabla cabecera de factura: scafac
         If BLOQUEADesdeFormulario(Me) Then
@@ -3260,7 +3295,6 @@ Private Sub mnModificar_Click()
                 If BloqueaLineasFac Then BotonModificarLinea
             End If
         End If
-         
     Else   'Modificar Pedido
         'bloquea la tabla cabecera de factura: scafac
         If BLOQUEADesdeFormulario(Me) Then
@@ -3929,7 +3963,16 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 Dim NroAlbar As String
 Dim Cad As String
 
-    NroAlbar = NroAlbaranAsignado(Data1.Recordset!numpalet, 0)
+    NroAlbar = NroAlbaranAsignado(Data1.Recordset!NumPalet, 0)
+    
+    '[Monica]13/12/2018: para el caso de Frutas Inma si el palet esta en el albaran no se puede modificar
+    If vParamAplic.Cooperativa = 18 Then
+        If NroAlbar <> "" Then
+            MsgBox "No se permite modificar/eliminar un palet que esté albaranado", vbExclamation
+            Exit Sub
+        End If
+    End If
+    
     If NroAlbar <> "" Then
         Cad = "El pedido asociado a este palet se encuentra asignado al albarán " & NroAlbar & "." & vbCrLf
         Cad = Cad & "                     ¿ Desea continuar ?"
@@ -3938,7 +3981,7 @@ Dim Cad As String
         End If
     End If
 
-    If BloqueaRegistro(NombreTabla, "numpalet = " & Data1.Recordset!numpalet) Then
+    If BloqueaRegistro(NombreTabla, "numpalet = " & Data1.Recordset!NumPalet) Then
 '    If BLOQUEADesdeFormulario2(Me, Data1, 1) Then
         Select Case Button.Index
             Case 1 'añadir variedad

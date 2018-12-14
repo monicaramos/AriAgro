@@ -2194,6 +2194,9 @@ Dim TotPaletAnt As String
 
 Dim VarieAnt As String
 
+'[Monica]11/12/2018: solo si modificamos cajas recalculamos
+Dim CajasLinAnt As Currency
+Dim UniLinAnt As Currency
 
 Private BuscaChekc As String
 
@@ -2479,10 +2482,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(frameAux As String)
+Private Sub LimpiarCamposLin(FrameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -2493,7 +2496,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, Numreg As Byte
+Dim i As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2520,11 +2523,11 @@ Dim b As Boolean
     '=======================================
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
@@ -2663,29 +2666,29 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaça en el data1
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
 Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
                
         Case 0 'CALIBRES
-            SQL = "SELECT albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, "
-            SQL = SQL & "albaran_calibre.codvarie, albaran_calibre.codcalib, calibres.nomcalib, albaran_calibre.numcajas, albaran_calibre.unidades,  "
-            SQL = SQL & "albaran_calibre.pesobrut, albaran_calibre.pesoneto, round(albaran_calibre.pesoneto / albaran_calibre.numcajas,2), albaran_calibre.preciopro "
-            SQL = SQL & " FROM albaran_calibre, calibres "
+            Sql = "SELECT albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, "
+            Sql = Sql & "albaran_calibre.codvarie, albaran_calibre.codcalib, calibres.nomcalib, albaran_calibre.numcajas, albaran_calibre.unidades,  "
+            Sql = Sql & "albaran_calibre.pesobrut, albaran_calibre.pesoneto, round(albaran_calibre.pesoneto / albaran_calibre.numcajas,2), albaran_calibre.preciopro "
+            Sql = Sql & " FROM albaran_calibre, calibres "
             If enlaza Then
-                SQL = SQL & ObtenerWhereCab(True)
+                Sql = Sql & ObtenerWhereCab(True)
             Else
-                SQL = SQL & " WHERE albaran_calibre.numalbar = '-1'"
+                Sql = Sql & " WHERE albaran_calibre.numalbar = '-1'"
             End If
-            SQL = SQL & " and albaran_calibre.codcalib = calibres.codcalib"
-            SQL = SQL & " and albaran_calibre.codvarie = calibres.codvarie"
-            SQL = SQL & " ORDER BY albaran_calibre.codcalib"
+            Sql = Sql & " and albaran_calibre.codcalib = calibres.codcalib"
+            Sql = Sql & " and albaran_calibre.codvarie = calibres.codvarie"
+            Sql = Sql & " ORDER BY albaran_calibre.codcalib"
                
     End Select
     
-    MontaSQLCarga = SQL
+    MontaSQLCarga = Sql
 End Function
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -3057,7 +3060,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim i As Integer
-Dim codPobla As String, desPobla As String
+Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -3190,7 +3193,7 @@ End Sub
 
 Private Function DatosOk() As Boolean
 Dim b As Boolean
-Dim SQL As String
+Dim Sql As String
 'Dim Datos As String
 
     On Error GoTo EDatosOK
@@ -3202,9 +3205,9 @@ Dim SQL As String
     ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
     If (Modo = 3) Then 'insertar
         'comprobar si existe ya el cod. del campo clave primaria
-        SQL = ""
-        SQL = DevuelveDesdeBDNew(cAgro, "albaran_calibre", "numalbar", "numalbar", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
-        If SQL <> "" Then
+        Sql = ""
+        Sql = DevuelveDesdeBDNew(cAgro, "albaran_calibre", "numalbar", "numalbar", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
+        If Sql <> "" Then
             MsgBox "Ya existe el numero de linea para este albarán", vbExclamation
             b = False
         End If
@@ -3243,18 +3246,18 @@ End Function
 
 Private Function ExistenMismosCalibres() As Boolean
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 Dim b As Boolean
 
     On Error GoTo eExistenMismosCalibres
 
 
-    SQL = "select codcalib from albaran_calibre where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(Linea, "N")
+    Sql = "select codcalib from albaran_calibre where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(Linea, "N")
 
     b = True
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     While Not Rs.EOF And b
         Sql2 = "select count(*) from calibres where codvarie = " & DBSet(Text1(2).Text, "N")
         Sql2 = Sql2 & " and codcalib = " & DBSet(Rs!codcalib, "N")
@@ -3571,7 +3574,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 End Sub
 
 Private Sub BotonEliminarLinea(Index As Integer)
-Dim SQL As String
+Dim Sql As String
 Dim vWhere As String
 Dim Eliminar As Boolean
 Dim bol As Boolean
@@ -3600,12 +3603,12 @@ Dim MenError As String
     ' canviar els noms, els formats i el DELETE *****
     Select Case Index
         Case 0 'calibres
-            SQL = "¿Seguro que desea eliminar el Calibre?"
-            SQL = SQL & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
-            If MsgBox(SQL, vbQuestion + vbYesNo) = vbYes Then
+            Sql = "¿Seguro que desea eliminar el Calibre?"
+            Sql = Sql & vbCrLf & "Calibre: " & AdoAux(Index).Recordset!codcalib
+            If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
-                SQL = "DELETE FROM albaran_calibre "
-                SQL = SQL & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
+                Sql = "DELETE FROM albaran_calibre "
+                Sql = Sql & vWhere & " AND numline1= " & AdoAux(Index).Recordset!numline1
             End If
             
     End Select
@@ -3617,7 +3620,7 @@ Dim MenError As String
         '++monica
         conn.BeginTrans
         
-        conn.Execute SQL
+        conn.Execute Sql
         
         bol = True
         If bol Then
@@ -3791,6 +3794,9 @@ Private Sub BotonModificarLinea(Index As Integer)
             
             txtAux(9).Text = DataGridAux(Index).Columns(11).Text
             
+            '[Monica]11/12/2018: guardamos el valor de cajas de lineas de calibre
+            CajasLinAnt = txtAux(2).Text
+            UniLinAnt = txtAux(8).Text
             
             For i = 1 To 1
                 BloquearTxt txtAux(i), True
@@ -3845,7 +3851,7 @@ Private Sub txtAux_LostFocus(Index As Integer)
 Dim cadMen As String
 Dim Nuevo As Boolean
 Dim Forfait As String
-Dim SQL As String
+Dim Sql As String
 Dim KilosUni As Currency
 
     If Not PerderFocoGnral(txtAux(Index), Modo) Then Exit Sub
@@ -3888,13 +3894,18 @@ Dim KilosUni As Currency
         Case 2 ' cajas
             If txtAux(Index).Text <> "" Then PonerFormatoEntero txtAux(Index)
             
+            
+            
             '[Monica]27/01/2014: preguntamos si recalculamos pesos solo si es Montifrut
             If vParamAplic.Cooperativa = 12 Then
                 If MsgBox("¿ Desea calcular peso neto ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
                     CalculoPesoNeto
                 End If
             Else
-                CalculoPesoNeto
+                '[Monica]11/12/2018: solo en el caso de que me modifiquen las cajas o inserten linea
+                If (ModoLineas = 2 And CajasLinAnt <> ComprobarCero(txtAux(Index))) Or ModoLineas = 1 Then
+                    CalculoPesoNeto
+                End If
             End If
             
         Case 6 ' peso bruto
@@ -3911,11 +3922,15 @@ Dim KilosUni As Currency
             ' en el caso de que metan unidades el pesoneto = unidades * forfaits.kilosuni
             If txtAux(Index).Text <> "" Then
                 PonerFormatoEntero txtAux(Index)
-                Forfait = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "codforfait", "numalbar", Data1.Recordset!NumAlbar, "N", , "numlinea", Data1.Recordset!NumLinea, "N")
-                SQL = DevuelveDesdeBDNew(cAgro, "forfaits", "kilosuni", "codforfait", Forfait, "T")
-                If SQL <> "" Then
-                    txtAux(7).Text = Round2(ImporteSinFormato(SQL) * txtAux(Index), 0)
-                    PonerFormatoEntero txtAux(7)
+                
+                '[Monica]11/12/2018: solo en el caso de que me modifiquen las cajas o inserten linea
+                If (ModoLineas = 2 And CajasLinAnt <> ComprobarCero(txtAux(Index))) Or ModoLineas = 1 Then
+                    Forfait = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "codforfait", "numalbar", Data1.Recordset!NumAlbar, "N", , "numlinea", Data1.Recordset!NumLinea, "N")
+                    Sql = DevuelveDesdeBDNew(cAgro, "forfaits", "kilosuni", "codforfait", Forfait, "T")
+                    If Sql <> "" Then
+                        txtAux(7).Text = Round2(ImporteSinFormato(Sql) * txtAux(Index), 0)
+                        PonerFormatoEntero txtAux(7)
+                    End If
                 End If
             End If
     
@@ -3936,15 +3951,15 @@ Dim KilosUni As Currency
 End Sub
 
 Private Sub CalculoPesoNeto()
-Dim SQL As String
+Dim Sql As String
 Dim Kilos1 As Currency
 Dim Kilos2 As Currency
 Dim Rs As ADODB.Recordset
 
-    SQL = "select kiloscaj, kilosuni  from forfaits where codforfait = " & DBSet(Text1(5).Text, "T")
+    Sql = "select kiloscaj, kilosuni  from forfaits where codforfait = " & DBSet(Text1(5).Text, "T")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     Kilos1 = 0
     Kilos2 = 0
     If Not Rs.EOF Then
@@ -4002,7 +4017,7 @@ End Sub
 
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim b As Boolean
 Dim Cant As Integer
 Dim Mens As String
@@ -4437,7 +4452,7 @@ End Sub
 
 Private Sub CalcularTotales()
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim TotalEnvases As String
 Dim TotalCostes As String
 Dim Valor As Currency
@@ -4445,12 +4460,12 @@ Dim Valor As Currency
     On Error Resume Next
 
     'total importes de envases para ese forfait
-    SQL = "select sum(numcajas) "
-    SQL = SQL & " from albaran_calibre where numalbar = " & DBSet(Text1(0).Text, "N")
-    SQL = SQL & " and numlinea = " & DBSet(Text1(1).Text, "N")
+    Sql = "select sum(numcajas) "
+    Sql = Sql & " from albaran_calibre where numalbar = " & DBSet(Text1(0).Text, "N")
+    Sql = Sql & " and numlinea = " & DBSet(Text1(1).Text, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     TotalEnvases = 0
     If Not Rs.EOF Then
@@ -4467,20 +4482,20 @@ Dim Valor As Currency
 End Sub
 
 Private Function ObtenerWhereCP(conW As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 On Error Resume Next
     
-    SQL = ""
-    If conW Then SQL = " WHERE "
-    SQL = SQL & NombreTabla & ".numalbar= " & DBSet(Text1(0).Text, "N")
-    SQL = SQL & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
-    ObtenerWhereCP = SQL
+    Sql = ""
+    If conW Then Sql = " WHERE "
+    Sql = Sql & NombreTabla & ".numalbar= " & DBSet(Text1(0).Text, "N")
+    Sql = Sql & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
+    ObtenerWhereCP = Sql
 End Function
 
 
 
 Private Function ActualizarVariedades(Albaran As String, Linea As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim SQL1 As String
 Dim PrecioMedioProv As Currency
@@ -4497,62 +4512,62 @@ Dim PrecioMedioProv As Currency
     
     If Not Rs.EOF Then
         If DBLet(Rs.Fields(0).Value, "N") = 0 Then
-            SQL = "update albaran_variedad set pesobrut = null "
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set pesobrut = null "
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(1).Value, "N") = 0 Then
-            SQL = "update albaran_variedad set pesoneto = null "
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set pesoneto = null "
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(2).Value, "N") = 0 Then
-            SQL = "update albaran_variedad set numcajas = null "
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set numcajas = null "
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(3).Value, "N") = 0 Then
-            SQL = "update albaran_variedad set unidades = null "
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set unidades = null "
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         
         If DBLet(Rs.Fields(0).Value, "N") <> 0 Then
-            SQL = "update albaran_variedad set pesobrut = " & DBSet(Rs.Fields(0).Value, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set pesobrut = " & DBSet(Rs.Fields(0).Value, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         
         If DBLet(Rs.Fields(1).Value, "N") <> 0 Then
-            SQL = "update albaran_variedad set pesoneto = " & DBSet(Rs.Fields(1).Value, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set pesoneto = " & DBSet(Rs.Fields(1).Value, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(2).Value, "N") <> 0 Then
-            SQL = "update albaran_variedad set numcajas = " & DBSet(Rs.Fields(2).Value, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set numcajas = " & DBSet(Rs.Fields(2).Value, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
         If DBLet(Rs.Fields(3).Value, "N") <> 0 Then
-            SQL = "update albaran_variedad set unidades = " & DBSet(Rs.Fields(3).Value, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+            Sql = "update albaran_variedad set unidades = " & DBSet(Rs.Fields(3).Value, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-            conn.Execute SQL
+            conn.Execute Sql
         End If
     
     End If
@@ -4566,7 +4581,7 @@ End Function
 
 
 Private Function ActualizarCalibres(Albaran As String, Linea As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 Dim SQL1 As String
 
@@ -4694,7 +4709,7 @@ End Sub
 
 Private Function ActualizarPrecioProv(Albaran As String, Linea As String)
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim PrecioMedioProv As Currency
 
@@ -4711,18 +4726,18 @@ Dim PrecioMedioProv As Currency
     
     If Not Rs.EOF Then
         '[Monica]06/06/2013: en el caso de que me hayan metido un precio provisional recalculo
-        SQL = "select round(sum( if(preciopro is null, 0, preciopro) * if (pesoneto is null, 0, pesoneto) ) / sum(if(pesoneto is null,0,pesoneto)),4) "
-        SQL = SQL & " from albaran_calibre "
-        SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-        SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+        Sql = "select round(sum( if(preciopro is null, 0, preciopro) * if (pesoneto is null, 0, pesoneto) ) / sum(if(pesoneto is null,0,pesoneto)),4) "
+        Sql = Sql & " from albaran_calibre "
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
     
-        PrecioMedioProv = DevuelveValor(SQL)
+        PrecioMedioProv = DevuelveValor(Sql)
     
-        SQL = "update albaran_variedad set preciopro = " & DBSet(PrecioMedioProv, "N")
-        SQL = SQL & " where numalbar = " & DBSet(Albaran, "N")
-        SQL = SQL & " and numlinea = " & DBSet(Linea, "N")
+        Sql = "update albaran_variedad set preciopro = " & DBSet(PrecioMedioProv, "N")
+        Sql = Sql & " where numalbar = " & DBSet(Albaran, "N")
+        Sql = Sql & " and numlinea = " & DBSet(Linea, "N")
 
-        conn.Execute SQL
+        conn.Execute Sql
     End If
     Rs.Close
     Set Rs = Nothing

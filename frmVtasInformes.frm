@@ -959,7 +959,7 @@ Begin VB.Form frmVtasInformes
          Height          =   360
          Index           =   7
          Left            =   1785
-         MaxLength       =   3
+         MaxLength       =   4
          TabIndex        =   7
          Top             =   4275
          Width           =   860
@@ -978,9 +978,9 @@ Begin VB.Form frmVtasInformes
          Height          =   360
          Index           =   6
          Left            =   1785
-         MaxLength       =   3
+         MaxLength       =   4
          TabIndex        =   6
-         Top             =   3900
+         Top             =   3915
          Width           =   860
       End
       Begin VB.TextBox txtCodigo 
@@ -3952,7 +3952,7 @@ End Sub
 
 Private Sub frmDes_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de Destinos
-    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
+    txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "0000") '[Monica]05/12/2018: ampliamos mascara
     txtNombre(indCodigo).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -4423,7 +4423,8 @@ Dim Cad As String, cadTipo As String 'tipo cliente
         Case 6, 7 'DESTINO
             If txtCodigo(4).Text <> "" And txtCodigo(4).Text = txtCodigo(5).Text Then
                 txtNombre(Index).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", txtCodigo(4).Text, "N", , "coddesti", txtCodigo(Index).Text, "N")
-                If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000")
+                '[Monica]05/12/2018: ampliamos mascara
+                If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "0000")
             End If
             
         Case 16, 17 'FECHAS

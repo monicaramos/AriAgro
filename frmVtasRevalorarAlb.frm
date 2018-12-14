@@ -855,8 +855,8 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 6060
-        Me.FrameCobros.Width = 6930
+        Me.FrameCobros.Height = 7095
+        Me.FrameCobros.Width = 7455
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
     End If

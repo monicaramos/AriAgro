@@ -17,6 +17,28 @@ Begin VB.Form frmVtasRecFactTrans2
    ScaleWidth      =   10410
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox txtAux2 
+      Appearance      =   0  'Flat
+      BackColor       =   &H80000018&
+      BorderStyle     =   0  'None
+      Enabled         =   0   'False
+      BeginProperty Font 
+         Name            =   "Verdana"
+         Size            =   9.75
+         Charset         =   0
+         Weight          =   400
+         Underline       =   0   'False
+         Italic          =   0   'False
+         Strikethrough   =   0   'False
+      EndProperty
+      Height          =   330
+      Index           =   2
+      Left            =   6705
+      TabIndex        =   14
+      Top             =   4725
+      Visible         =   0   'False
+      Width           =   615
+   End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   135
@@ -184,7 +206,7 @@ Begin VB.Form frmVtasRecFactTrans2
       EndProperty
       Height          =   330
       Index           =   2
-      Left            =   6570
+      Left            =   7515
       MaxLength       =   12
       TabIndex        =   2
       Tag             =   "Portes|N|N|||tmpalbaranes|portespag|###,##0.00|N|"
@@ -243,19 +265,19 @@ Begin VB.Form frmVtasRecFactTrans2
       AllowUpdate     =   0   'False
       BorderStyle     =   0
       HeadLines       =   1
-      RowHeight       =   15
+      RowHeight       =   19
       BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9
          Charset         =   0
          Weight          =   700
          Underline       =   0   'False
-         Italic          =   0   'False
+         Italic          =   -1  'True
          Strikethrough   =   0   'False
       EndProperty
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
-         Name            =   "MS Sans Serif"
-         Size            =   8.25
+         Name            =   "Verdana"
+         Size            =   9.75
          Charset         =   0
          Weight          =   400
          Underline       =   0   'False
@@ -634,7 +656,7 @@ Private Sub BotonBuscar()
         txtAux(i).Text = ""
     Next i
 '    PosicionarCombo Combo1, "724"
-    LLamaLineas DataGrid1.Top + 206, 1 'Pone el form en Modo=1, Buscar
+    LLamaLineas DataGrid1.Top + 240, 1 'Pone el form en Modo=1, Buscar
     PonerFoco txtAux(0)
 End Sub
 
@@ -660,7 +682,7 @@ Private Sub BotonModificar()
     txtAux(3).Text = DataGrid1.Columns(0).Text
     txtAux(0).Text = DataGrid1.Columns(1).Text
     txtAux(1).Text = DataGrid1.Columns(2).Text
-    txtAux(2).Text = DataGrid1.Columns(5).Text
+    txtAux(2).Text = DataGrid1.Columns(6).Text
     ' ***** canviar-ho pel nom del camp del combo *********
 '    SelComboBool DataGrid1.Columns(2).Text, Combo1(0)
     ' *****************************************************
@@ -741,7 +763,7 @@ End Sub
 
 Private Sub cmdAceptar_Click()
     Dim i As Long
-
+    Dim J As Long
     Select Case Modo
         Case 1 'BUSQUEDA
             CadB = ObtenerBusqueda(Me)
@@ -774,7 +796,8 @@ Private Sub cmdAceptar_Click()
             If DatosOk Then
                 If ModificaDesdeFormulario(Me) Then
                     TerminaBloquear
-                    i = adodc1.Recordset.Fields(0)
+                    i = adodc1.Recordset.Fields(1)
+                    J = adodc1.Recordset.Fields(2)
                     PonerModo 2
                     CargaGrid CadB
 '                    If CadB <> "" Then
@@ -784,7 +807,8 @@ Private Sub cmdAceptar_Click()
 '                        CargaGrid
 '                        lblIndicador.Caption = ""
 '                    End If
-'                    adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & I)
+                    SituarDataMULTI adodc1, adodc1.Recordset.Fields(1).Name & " =" & i & " and " & adodc1.Recordset.Fields(2).Name & " =" & J, Me.lblIndicador, True
+                    'adodc1.Recordset.Find (adodc1.Recordset.Fields(0).Name & " =" & i)
                     PonerFocoGrid Me.DataGrid1
                 End If
             End If
@@ -911,7 +935,7 @@ Private Sub Form_Load()
 '    chkVistaPrevia.Value = CheckValueLeer(Name)
     
     '****************** canviar la consulta *********************************+
-    CadenaConsulta = "SELECT " & vUsu.Codigo & ",tmpalbaranes.numalbar, tmpalbaranes.numlinea, variedades.nomvarie, forfaits.nomconfe, tmpalbaranes.portespag "
+    CadenaConsulta = "SELECT " & vUsu.Codigo & ",tmpalbaranes.numalbar, tmpalbaranes.numlinea, variedades.nomvarie, forfaits.nomconfe, albaran_variedad.numcajas, tmpalbaranes.portespag "
     CadenaConsulta = CadenaConsulta & " FROM tmpalbaranes, albaran_variedad, variedades, forfaits"
     CadenaConsulta = CadenaConsulta & " WHERE tmpalbaranes.numalbar = albaran_variedad.numalbar and tmpalbaranes.numlinea = albaran_variedad.numlinea and "
     CadenaConsulta = CadenaConsulta & " albaran_variedad.codvarie = variedades.codvarie and albaran_variedad.codforfait = forfaits.codforfait and "
@@ -932,11 +956,12 @@ Private Sub Form_Unload(Cancel As Integer)
 '    CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
     If Modo = 4 Then TerminaBloquear
     Screen.MousePointer = vbDefault
-    Dim albaranes As String
-    albaranes = ""
-    If Not ImportesLineasCuadrados(albaranes) Then
-        MsgBox "No coinciden los importes por albarán con las líneas en los siguientes albaranes: " & vbCrLf & albaranes, vbExclamation
-        Cancel = True
+    Dim Albaranes As String
+    Albaranes = ""
+    If Not ImportesLineasCuadrados(Albaranes) Then
+        MsgBox "No coinciden los importes por albarán con las líneas en los siguientes albaranes: " & vbCrLf & Albaranes, vbExclamation
+        
+        If MsgBox("¿ Desea salir de todos modos ?", vbQuestion + vbYesNo + vbDefaultButton2) = vbNo Then Cancel = True
     End If
     
     
@@ -1019,14 +1044,14 @@ Private Sub CargaGrid(Optional vSQL As String)
     CargaGridGnral Me.DataGrid1, Me.adodc1, Sql, PrimeraVez
     
     ' *******************canviar els noms i si fa falta la cantitat********************
-    tots = "N|txtAux(3)|T|Usuario|1100|;S|txtAux(0)|T|Albaran|1500|;S|txtAux(1)|T|Linea|800|;S|txtAux2(0)|T|Variedad|2500|;S|txtAux2(1)|T|Forfait|2500|;S|txtAux(2)|T|Portes|2100|;"
+    tots = "N|txtAux(3)|T|Usuario|1100|;S|txtAux(0)|T|Albaran|1500|;S|txtAux(1)|T|Linea|800|;S|txtAux2(0)|T|Variedad|2100|;S|txtAux2(1)|T|Forfait|2500|;S|txtAux2(2)|T|Cajas|1000|;S|txtAux(2)|T|Portes|1500|;"
     
     arregla tots, DataGrid1, Me, 350
 
     
     DataGrid1.ScrollBars = dbgAutomatic
     DataGrid1.Columns(0).Alignment = dbgRight
-'   DataGrid1.Columns(2).Alignment = dbgRight
+    DataGrid1.Columns(5).Alignment = dbgRight
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
@@ -1139,12 +1164,12 @@ Dim cerrar As Boolean
     If cerrar Then Unload Me
 End Sub
 
-Private Function ImportesLineasCuadrados(ByRef albaranes As String) As Boolean
+Private Function ImportesLineasCuadrados(ByRef Albaranes As String) As Boolean
 Dim Sql As String
 Dim i As Long
 
 
-    albaranes = ""
+    Albaranes = ""
 
     For i = 1 To Me.lw1.ListItems.Count
         If CCur(lw1.ListItems(i).SubItems(5)) <> 0 Then
@@ -1152,14 +1177,14 @@ Dim i As Long
             Sql = Sql & " and numalbar = " & DBSet(lw1.ListItems(i).Text, "N")
             
             If CCur(DevuelveValor(Sql)) <> CCur(Me.lw1.ListItems(i).SubItems(5)) Then
-                albaranes = albaranes & Me.lw1.ListItems(i).Text & ","
+                Albaranes = Albaranes & Me.lw1.ListItems(i).Text & ","
             End If
         End If
     Next i
     
-    If albaranes <> "" Then albaranes = Mid(albaranes, 1, Len(albaranes) - 1)
+    If Albaranes <> "" Then Albaranes = Mid(Albaranes, 1, Len(Albaranes) - 1)
     
-    ImportesLineasCuadrados = (albaranes = "")
+    ImportesLineasCuadrados = (Albaranes = "")
 
 End Function
 
