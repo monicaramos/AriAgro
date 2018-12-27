@@ -3795,8 +3795,8 @@ Private Sub BotonModificarLinea(Index As Integer)
             txtAux(9).Text = DataGridAux(Index).Columns(11).Text
             
             '[Monica]11/12/2018: guardamos el valor de cajas de lineas de calibre
-            CajasLinAnt = txtAux(2).Text
-            UniLinAnt = txtAux(8).Text
+            CajasLinAnt = ComprobarCero(txtAux(2).Text)
+            UniLinAnt = ComprobarCero(txtAux(8).Text)
             
             For i = 1 To 1
                 BloquearTxt txtAux(i), True

@@ -1614,41 +1614,41 @@ Begin VB.Form frmVtasAlbaranes
       TabCaption(0)   =   "Variedades"
       TabPicture(0)   =   "frmVtasAlbaranes.frx":015A
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label3"
-      Tab(0).Control(1)=   "imgFact(2)"
-      Tab(0).Control(2)=   "Label9(2)"
-      Tab(0).Control(3)=   "Label8(2)"
-      Tab(0).Control(4)=   "DataGrid1"
-      Tab(0).Control(5)=   "DataGrid2"
-      Tab(0).Control(6)=   "ToolAux(0)"
-      Tab(0).Control(7)=   "txtAux(7)"
-      Tab(0).Control(8)=   "txtAux3(15)"
-      Tab(0).Control(9)=   "txtAux3(14)"
-      Tab(0).Control(10)=   "txtAux3(13)"
-      Tab(0).Control(11)=   "txtAux3(12)"
-      Tab(0).Control(12)=   "txtAux3(11)"
-      Tab(0).Control(13)=   "txtAux3(6)"
-      Tab(0).Control(14)=   "txtAux3(10)"
-      Tab(0).Control(15)=   "txtAux3(9)"
-      Tab(0).Control(16)=   "txtAux3(8)"
+      Tab(0).Control(0)=   "Text2(41)"
+      Tab(0).Control(1)=   "Text2(40)"
+      Tab(0).Control(2)=   "txtAux3(16)"
+      Tab(0).Control(3)=   "txtAux(22)"
+      Tab(0).Control(4)=   "txtAux3(2)"
+      Tab(0).Control(5)=   "txtAux3(1)"
+      Tab(0).Control(6)=   "txtAux3(0)"
+      Tab(0).Control(7)=   "txtAux(4)"
+      Tab(0).Control(8)=   "txtAux(3)"
+      Tab(0).Control(9)=   "txtAux(2)"
+      Tab(0).Control(10)=   "txtAux(1)"
+      Tab(0).Control(11)=   "txtAux(0)"
+      Tab(0).Control(12)=   "txtAux(5)"
+      Tab(0).Control(13)=   "txtAux(6)"
+      Tab(0).Control(14)=   "txtAux3(3)"
+      Tab(0).Control(15)=   "txtAux3(4)"
+      Tab(0).Control(16)=   "txtAux3(5)"
       Tab(0).Control(17)=   "txtAux3(7)"
-      Tab(0).Control(18)=   "txtAux3(5)"
-      Tab(0).Control(19)=   "txtAux3(4)"
-      Tab(0).Control(20)=   "txtAux3(3)"
-      Tab(0).Control(21)=   "txtAux(6)"
-      Tab(0).Control(22)=   "txtAux(5)"
-      Tab(0).Control(23)=   "txtAux(0)"
-      Tab(0).Control(24)=   "txtAux(1)"
-      Tab(0).Control(25)=   "txtAux(2)"
-      Tab(0).Control(26)=   "txtAux(3)"
-      Tab(0).Control(27)=   "txtAux(4)"
-      Tab(0).Control(28)=   "txtAux3(0)"
-      Tab(0).Control(29)=   "txtAux3(1)"
-      Tab(0).Control(30)=   "txtAux3(2)"
-      Tab(0).Control(31)=   "txtAux(22)"
-      Tab(0).Control(32)=   "txtAux3(16)"
-      Tab(0).Control(33)=   "Text2(40)"
-      Tab(0).Control(34)=   "Text2(41)"
+      Tab(0).Control(18)=   "txtAux3(8)"
+      Tab(0).Control(19)=   "txtAux3(9)"
+      Tab(0).Control(20)=   "txtAux3(10)"
+      Tab(0).Control(21)=   "txtAux3(6)"
+      Tab(0).Control(22)=   "txtAux3(11)"
+      Tab(0).Control(23)=   "txtAux3(12)"
+      Tab(0).Control(24)=   "txtAux3(13)"
+      Tab(0).Control(25)=   "txtAux3(14)"
+      Tab(0).Control(26)=   "txtAux3(15)"
+      Tab(0).Control(27)=   "txtAux(7)"
+      Tab(0).Control(28)=   "ToolAux(0)"
+      Tab(0).Control(29)=   "DataGrid2"
+      Tab(0).Control(30)=   "DataGrid1"
+      Tab(0).Control(31)=   "Label8(2)"
+      Tab(0).Control(32)=   "Label9(2)"
+      Tab(0).Control(33)=   "imgFact(2)"
+      Tab(0).Control(34)=   "Label3"
       Tab(0).ControlCount=   35
       TabCaption(1)   =   "Envases Paletización"
       TabPicture(1)   =   "frmVtasAlbaranes.frx":0176
@@ -1669,8 +1669,8 @@ Begin VB.Form frmVtasAlbaranes
       TabCaption(4)   =   "Resultados"
       TabPicture(4)   =   "frmVtasAlbaranes.frx":01CA
       Tab(4).ControlEnabled=   0   'False
-      Tab(4).Control(0)=   "Frame4"
-      Tab(4).Control(1)=   "ListView1"
+      Tab(4).Control(0)=   "ListView1"
+      Tab(4).Control(1)=   "Frame4"
       Tab(4).ControlCount=   2
       Begin VB.TextBox Text2 
          Alignment       =   1  'Right Justify
@@ -5610,7 +5610,8 @@ Private WithEvents frmMens2 As frmMensajes ' mensajes para password
 Attribute frmMens2.VB_VarHelpID = -1
 Private WithEvents frmDatos As frmMensajes ' pedimos la fecha y el cambio en divisas
 Attribute frmDatos.VB_VarHelpID = -1
-
+Private WithEvents frmAlb As frmBasico2 ' ayuda de albaranes
+Attribute frmAlb.VB_VarHelpID = -1
 Private Modo As Byte
 '-----------------------------
 'Se distinguen varios modos
@@ -6730,6 +6731,21 @@ End Sub
 
 
 
+Private Sub frmAlb_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "numalbar = " & RecuperaValor(CadenaSeleccion, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod almacen
     Text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
@@ -7544,51 +7560,58 @@ Dim Cad As String
 Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & "Nº.Albaran|albaran.numalbar|N||15·"
-    
-    Cad = Cad & "Cliente|albaran.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-    Cad = Cad & ParaGrid(Text1(1), 15, "F.Albarán")
-    tabla = NombreTabla & " INNER JOIN clientes ON albaran.codclien=clientes.codclien "
-    
-    Titulo = "Albaranes"
-    devuelve = "0|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-'        If EsCabecera Then
-'            PonerCadenaBusqueda
-'            Text1(0).Text = Format(Text1(0).Text, "0000000")
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & "Nº.Albaran|albaran.numalbar|N||15·"
+'
+'    Cad = Cad & "Cliente|albaran.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
+'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Albarán")
+'    tabla = NombreTabla & " INNER JOIN clientes ON albaran.codclien=clientes.codclien "
+'
+'    Titulo = "Albaranes"
+'    devuelve = "0|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
+'        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+''        If EsCabecera Then
+''            PonerCadenaBusqueda
+''            Text1(0).Text = Format(Text1(0).Text, "0000000")
+''        End If
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
 '        End If
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+'    End If
+'    Screen.MousePointer = vbDefault
+
+    Set frmAlb = New frmBasico2
+
+    AyudaAlbaranes frmAlb, Text1(0), CadB
+    
+    Set frmAlb = Nothing
+    
 End Sub
 
 
@@ -8151,28 +8174,6 @@ EEliminarLinea:
 End Sub
 
 
-
-'Private Sub Text3_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
-'    KEYdown KeyCode
-'End Sub
-'
-'Private Sub Text3_KeyPress(Index As Integer, KeyAscii As Integer)
-'    KEYpress KeyAscii
-'End Sub
-'
-'Private Sub Text3_LostFocus(Index As Integer)
-'    Select Case Index
-'        Case 0, 1, 2 'trabajador
-'            Text2(Index).Text = PonerNombreDeCod(Text3(Index), conAri, "straba", "nomtraba", "codtraba", "Cod. Trabajador", "N")
-'        Case 3 'cod. envio
-'            Text2(Index).Text = PonerNombreDeCod(Text3(Index), conAri, "senvio", "nomenvio", "codenvio", "Cod. Envio", "N")
-'            If Screen.ActiveControl.TabIndex <> 27 Then PonerFocoBtn Me.cmdAceptar
-'        Case 13 'observa 5
-'            PonerFocoBtn Me.cmdAceptar
-'    End Select
-'End Sub
-'
-
 Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
     Select Case Button.Index
         Case 1  'Añadir
@@ -8202,7 +8203,6 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
 '            Desplazamiento (Button.Index - btnPrimero)
     End Select
 End Sub
-
 
 Private Sub PonerOpcionesMenu()
     PonerOpcionesMenuGeneral Me
@@ -8319,7 +8319,7 @@ Dim b As Boolean
 Dim Opcion As Byte
 Dim Sql As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     b = DataGrid1.Enabled
     Select Case vDataGrid.Name
@@ -8350,7 +8350,7 @@ Dim Sql As String
    
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -8358,7 +8358,7 @@ End Sub
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim tots As String
     
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     Select Case vDataGrid.Name
         Case "DataGrid1" 'albaran_calibres
@@ -8414,7 +8414,7 @@ Dim tots As String
     vDataGrid.HoldFields
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -8916,6 +8916,8 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 Dim NroCopias As Integer
 
+Dim ImprimeDesdePalets As Boolean
+
     If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Albarán para Imprimir.", vbInformation
         Exit Sub
@@ -8926,12 +8928,23 @@ Dim NroCopias As Integer
     cadselect = ""
     numParam = 0
     
-    If MsgBox("¿Desea imprimir calibres?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
-        cadParam = cadParam & "|pCalibre=1|"
-        numParam = numParam + 1
-    Else
-        cadParam = cadParam & "|pCalibre=0|"
-        numParam = numParam + 1
+    '[Monica]20/12/2018: para el caso de imprimir desde palets o no
+    ImprimeDesdePalets = False
+    If vParamAplic.Cooperativa = 18 Then
+        If MsgBox("¿ Desea imprimir desde palets ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
+            ImprimeDesdePalets = True
+        End If
+    End If
+    
+'    ImprimeDesdePalets = False
+    If Not ImprimeDesdePalets Or vParamAplic.Cooperativa <> 18 Then
+        If MsgBox("¿Desea imprimir calibres?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
+            cadParam = cadParam & "|pCalibre=1|"
+            numParam = numParam + 1
+        Else
+            cadParam = cadParam & "|pCalibre=0|"
+            numParam = numParam + 1
+        End If
     End If
     
     '[Monica]30/01/2012: Solo para el caso de picassent preguntamos si quiere imprimir la variedad comercial
@@ -8957,7 +8970,13 @@ Dim NroCopias As Integer
         numParam = numParam + 1
     
         If Not LimpiarTemporal Then Exit Sub
-        If Not CargarTemporalPalets(Text1(0).Text) Then Exit Sub
+        If Not CargarTemporalPalets(Text1(0).Text, ImprimeDesdePalets) Then Exit Sub
+        
+        If ImprimeDesdePalets Then
+            devuelve = "{tmpinformes.codusu}=" & vUsu.Codigo
+            If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
+        End If
+        
     End If
     
     
@@ -8968,6 +8987,9 @@ Dim NroCopias As Integer
       
     'Nombre fichero .rpt a Imprimir
     frmImprimir.NombreRPT = nomDocu
+        
+        
+    If ImprimeDesdePalets Then frmImprimir.NombreRPT = Replace(nomDocu, ".rpt", "desdePal.rpt")
         
     '===================================================
     '================= FORMULA =========================
@@ -10042,7 +10064,6 @@ End Sub
 
 Private Sub BotonGenerarFactura(Albaran As String)
 Dim Sql As String
-Dim FecFactu As String
 Dim vFacturaVta As CFacturaVta
 Dim b As Boolean
 Dim Observaciones As String
@@ -10092,7 +10113,12 @@ Dim Observaciones As String
         Dim cTipoM As String
         Dim numFac As String
         Dim fecFac As String
+        
+        vFacturaVta.ForPago = ForPago
+        vFacturaVta.TipoMoneda = TipoMoneda
+        vFacturaVta.CambioDivisa = CambioDivisa
         b = vFacturaVta.PasarAlbaranAFactura("albaran.numalbar=" & Albaran, FecFactu, , cTipoM, numFac, fecFac)
+
         If b Then
             Data3.Refresh
             MsgBox "Proceso realizado correctamente.", vbExclamation

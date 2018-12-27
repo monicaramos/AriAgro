@@ -168,32 +168,32 @@ Begin VB.Form frmVtasHcoFactTra
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmVtasHcoFactTra.frx":0028
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Text3(2)"
-      Tab(1).Control(1)=   "txtAux3(1)"
-      Tab(1).Control(2)=   "txtAux3(0)"
-      Tab(1).Control(3)=   "txtAux(3)"
-      Tab(1).Control(4)=   "txtAux(2)"
-      Tab(1).Control(5)=   "txtAux(1)"
-      Tab(1).Control(6)=   "txtAux(0)"
-      Tab(1).Control(7)=   "cmdObserva"
-      Tab(1).Control(8)=   "txtAux(4)"
-      Tab(1).Control(9)=   "txtAux(5)"
-      Tab(1).Control(10)=   "txtAux(6)"
-      Tab(1).Control(11)=   "txtAux(7)"
-      Tab(1).Control(12)=   "DataGrid1"
-      Tab(1).Control(13)=   "DataGrid2"
-      Tab(1).Control(14)=   "FrameObserva"
-      Tab(1).Control(15)=   "Label1(6)"
+      Tab(1).Control(0)=   "Label1(6)"
+      Tab(1).Control(1)=   "FrameObserva"
+      Tab(1).Control(2)=   "DataGrid2"
+      Tab(1).Control(3)=   "DataGrid1"
+      Tab(1).Control(4)=   "txtAux(7)"
+      Tab(1).Control(5)=   "txtAux(6)"
+      Tab(1).Control(6)=   "txtAux(5)"
+      Tab(1).Control(7)=   "txtAux(4)"
+      Tab(1).Control(8)=   "cmdObserva"
+      Tab(1).Control(9)=   "txtAux(0)"
+      Tab(1).Control(10)=   "txtAux(1)"
+      Tab(1).Control(11)=   "txtAux(2)"
+      Tab(1).Control(12)=   "txtAux(3)"
+      Tab(1).Control(13)=   "txtAux3(0)"
+      Tab(1).Control(14)=   "txtAux3(1)"
+      Tab(1).Control(15)=   "Text3(2)"
       Tab(1).ControlCount=   16
       TabCaption(2)   =   "Portes Vuelta"
       TabPicture(2)   =   "frmVtasHcoFactTra.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Label1(13)"
-      Tab(2).Control(1)=   "DataGrid3"
-      Tab(2).Control(2)=   "Text4(0)"
-      Tab(2).Control(3)=   "Text4(1)"
-      Tab(2).Control(4)=   "Text4(2)"
-      Tab(2).Control(5)=   "Text5"
+      Tab(2).Control(0)=   "Text5"
+      Tab(2).Control(1)=   "Text4(2)"
+      Tab(2).Control(2)=   "Text4(1)"
+      Tab(2).Control(3)=   "Text4(0)"
+      Tab(2).Control(4)=   "DataGrid3"
+      Tab(2).Control(5)=   "Label1(13)"
       Tab(2).ControlCount=   6
       Begin VB.TextBox Text5 
          Alignment       =   1  'Right Justify
@@ -2800,7 +2800,8 @@ Private WithEvents frmFP As frmManFpago 'Form Mto Formas de Pago
 Attribute frmFP.VB_VarHelpID = -1
 '--monica
 'Private WithEvents frmT As frmAdmTrabajadores  'Form Mto Trabajadores
-
+Private WithEvents frmFac As frmBasico2  'manda busqueda previa
+Attribute frmFac.VB_VarHelpID = -1
 
 Private Modo As Byte
 '-----------------------------
@@ -3528,6 +3529,23 @@ Dim Aux As String
     Screen.MousePointer = vbDefault
 End Sub
 
+Private Sub frmFac_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codtrans = " & DBSet(RecuperaValor(CadenaSeleccion, 3), "N")
+        CadB = CadB & " and numfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+        CadB = CadB & " and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 2), "F")
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 '--monica
 'Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 ''Formulario Mantenimiento C. Postales
@@ -3884,46 +3902,55 @@ Dim devuelve As String
     
     'Llamamos a al form
     '##A mano
-    Cad = ""
-'        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
-        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
-        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
-        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
-        tabla = NombreTabla
-        Titulo = "Facturas"
-        devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-'        frmB.vDevuelve = "0|1|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'--monica
-'        frmB.vConexionGrid = conAri  'Conexión a BD: Ariges
+'    Cad = ""
+''        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
+'        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
+'        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
+'        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
+'        tabla = NombreTabla
+'        Titulo = "Facturas"
+'        devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+''        frmB.vDevuelve = "0|1|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''--monica
+''        frmB.vConexionGrid = conAri  'Conexión a BD: Ariges
+'
+''        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+''        If HaDevueltoDatos Then
+''''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            PonerFoco Text1(kCampo)
+'        'End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-        'End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmFac = New frmBasico2
+    
+    AyudaFacturasTransporte frmFac
+    
+    Set frmFac = Nothing
+
+
+
 End Sub
 
 

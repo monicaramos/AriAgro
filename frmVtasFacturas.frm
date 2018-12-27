@@ -6,28 +6,28 @@ Object = "{BDC217C8-ED16-11CD-956C-0000C04E4C0A}#1.1#0"; "TABCTL32.OCX"
 Begin VB.Form frmVtasFacturas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Facturas Clientes"
-   ClientHeight    =   9735
+   ClientHeight    =   11055
    ClientLeft      =   45
    ClientTop       =   4035
-   ClientWidth     =   15885
+   ClientWidth     =   17850
    Icon            =   "frmVtasFacturas.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   9735
-   ScaleWidth      =   15885
+   ScaleHeight     =   11055
+   ScaleWidth      =   17850
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   145
+      TabIndex        =   147
       Top             =   45
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   146
+         TabIndex        =   148
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -83,13 +83,13 @@ Begin VB.Form frmVtasFacturas
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   3720
-      TabIndex        =   143
+      TabIndex        =   145
       Top             =   45
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   144
+         TabIndex        =   146
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -132,9 +132,9 @@ Begin VB.Form frmVtasFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   13185
-      TabIndex        =   142
-      Top             =   270
+      Left            =   15075
+      TabIndex        =   144
+      Top             =   315
       Width           =   1605
    End
    Begin VB.CheckBox chkBio 
@@ -150,7 +150,7 @@ Begin VB.Form frmVtasFacturas
       EndProperty
       Height          =   195
       Left            =   6930
-      TabIndex        =   141
+      TabIndex        =   143
       Top             =   315
       Width           =   1215
    End
@@ -167,16 +167,57 @@ Begin VB.Form frmVtasFacturas
       EndProperty
       Height          =   240
       Left            =   8235
-      TabIndex        =   140
+      TabIndex        =   142
       Top             =   315
       Width           =   1665
    End
    Begin VB.Frame Frame2 
-      Height          =   3420
+      Height          =   4185
       Left            =   90
-      TabIndex        =   35
+      TabIndex        =   37
       Top             =   810
-      Width           =   15605
+      Width           =   17605
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BackColor       =   &H8000000E&
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   32
+         Left            =   2295
+         MaxLength       =   7
+         TabIndex        =   6
+         Tag             =   "Cambio Divisa|N|N|||facturas|cambiodivisa|###0.0000||"
+         Text            =   "Text1 7"
+         Top             =   1890
+         Width           =   980
+      End
+      Begin VB.ComboBox Combo1 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         Left            =   225
+         Style           =   2  'Dropdown List
+         TabIndex        =   5
+         Tag             =   "Tipo Moneda|N|N|||facturas|codmoneda||N|"
+         Top             =   1890
+         Width           =   1980
+      End
       Begin VB.CheckBox Check1 
          Caption         =   "FacturaE"
          BeginProperty Font 
@@ -190,10 +231,10 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   5940
-         TabIndex        =   12
+         Left            =   6300
+         TabIndex        =   14
          Tag             =   "FacturaE|N|N|0|1|facturas|enfacturae|||"
-         Top             =   2250
+         Top             =   2655
          Width           =   1725
       End
       Begin VB.CheckBox Check1 
@@ -209,10 +250,10 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   240
          Index           =   2
-         Left            =   5940
-         TabIndex        =   11
+         Left            =   6300
+         TabIndex        =   13
          Tag             =   "Pasa Edicom|N|N|||facturas|pasedicom|0||"
-         Top             =   2010
+         Top             =   2325
          Width           =   1635
       End
       Begin VB.TextBox Text1 
@@ -228,7 +269,7 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   6300
+         Left            =   6705
          MaxLength       =   10
          TabIndex        =   3
          Tag             =   "Fecha Factura|F|N|||facturas|fecfactu|dd/mm/yyyy|S|"
@@ -249,9 +290,9 @@ Begin VB.Form frmVtasFacturas
          Index           =   0
          Left            =   225
          Style           =   2  'Dropdown List
-         TabIndex        =   5
+         TabIndex        =   7
          Tag             =   "Tipo Iva|N|N|||facturas|tipoivac||N|"
-         Top             =   1890
+         Top             =   2520
          Width           =   1980
       End
       Begin VB.TextBox Text1 
@@ -267,7 +308,7 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   1305
+         Left            =   1350
          MaxLength       =   12
          TabIndex        =   1
          Tag             =   "Tipo Movimiento|T|N|||facturas|codtipom||S|"
@@ -287,10 +328,10 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   240
          Index           =   1
-         Left            =   5940
-         TabIndex        =   9
+         Left            =   6300
+         TabIndex        =   11
          Tag             =   "Contabilizado|N|N|||facturas|intconta|0||"
-         Top             =   1530
+         Top             =   1665
          Width           =   1725
       End
       Begin VB.CheckBox Check1 
@@ -306,10 +347,10 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   240
          Index           =   0
-         Left            =   5940
-         TabIndex        =   10
+         Left            =   6300
+         TabIndex        =   12
          Tag             =   "Pasa Aridoc|N|N|||facturas|pasaridoc|0||"
-         Top             =   1770
+         Top             =   1995
          Width           =   1635
       End
       Begin VB.TextBox Text1 
@@ -325,7 +366,7 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   1305
+         Left            =   1350
          MaxLength       =   6
          TabIndex        =   4
          Tag             =   "Forma Pago|N|N|0|999|facturas|codforpa|000||"
@@ -347,13 +388,13 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   2160
+         Left            =   2295
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   44
+         TabIndex        =   46
          Text            =   "Text2"
          Top             =   1170
-         Width           =   5475
+         Width           =   5745
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -368,11 +409,11 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   3285
+         Left            =   3375
          MaxLength       =   5
-         TabIndex        =   7
+         TabIndex        =   9
          Tag             =   "%Dto 2|N|S|0|100|facturas|dtocom2|##0.00||"
-         Top             =   1890
+         Top             =   2520
          Width           =   945
       End
       Begin VB.TextBox Text1 
@@ -390,9 +431,9 @@ Begin VB.Form frmVtasFacturas
          Index           =   7
          Left            =   2295
          MaxLength       =   5
-         TabIndex        =   6
+         TabIndex        =   8
          Tag             =   "%Dto 1|N|S|0|100|facturas|dtocom1|##0.00||"
-         Top             =   1890
+         Top             =   2520
          Width           =   945
       End
       Begin VB.TextBox Text1 
@@ -408,12 +449,12 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   4275
+         Left            =   4455
          MaxLength       =   10
-         TabIndex        =   8
+         TabIndex        =   10
          Tag             =   "Importe Dto|N|S|||facturas|impdtoc|###,##0.00||"
          Text            =   "Text3"
-         Top             =   1890
+         Top             =   2520
          Width           =   1500
       End
       Begin VB.TextBox Text2 
@@ -430,13 +471,13 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   2160
+         Left            =   2295
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   39
+         TabIndex        =   41
          Text            =   "Text2"
          Top             =   270
-         Width           =   5520
+         Width           =   5790
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -454,10 +495,10 @@ Begin VB.Form frmVtasFacturas
          MaxLength       =   500
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
-         TabIndex        =   13
+         TabIndex        =   15
          Tag             =   "Observaciones|T|S|||facturas|observac|||"
-         Top             =   2640
-         Width           =   7410
+         Top             =   3270
+         Width           =   7815
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -472,7 +513,7 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   1305
+         Left            =   1350
          MaxLength       =   6
          TabIndex        =   0
          Tag             =   "Cod. Cliente|N|N|0|999999|facturas|codclien|000000||"
@@ -494,7 +535,7 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   3330
+         Left            =   3465
          MaxLength       =   7
          TabIndex        =   2
          Tag             =   "Nº Factura|N|S|||facturas|numfactu|0000000|S|"
@@ -503,11 +544,11 @@ Begin VB.Form frmVtasFacturas
          Width           =   980
       End
       Begin VB.Frame FrameFactura 
-         Height          =   3195
-         Left            =   7875
-         TabIndex        =   49
-         Top             =   135
-         Width           =   7450
+         Height          =   3780
+         Left            =   8460
+         TabIndex        =   51
+         Top             =   180
+         Width           =   8450
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -521,12 +562,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   31
-            Left            =   4890
+            Left            =   5475
             MaxLength       =   5
-            TabIndex        =   115
+            TabIndex        =   117
             Tag             =   "% REC 1|N|S|0|99.90|facturas|porcrec1|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1425
+            Top             =   1560
             Width           =   660
          End
          Begin VB.TextBox Text1 
@@ -543,12 +584,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   30
-            Left            =   5580
+            Left            =   6300
             MaxLength       =   15
-            TabIndex        =   114
+            TabIndex        =   116
             Tag             =   "Importe REC 1|N|S|0||facturas|imporec1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1425
+            Top             =   1560
             Width           =   1650
          End
          Begin VB.TextBox Text1 
@@ -564,12 +605,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   29
-            Left            =   4890
+            Left            =   5475
             MaxLength       =   5
-            TabIndex        =   113
+            TabIndex        =   115
             Tag             =   "% REC 2|N|S|0|99.90|facturas|porcrec2|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1830
+            Top             =   2010
             Width           =   660
          End
          Begin VB.TextBox Text1 
@@ -586,12 +627,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   28
-            Left            =   5580
+            Left            =   6300
             MaxLength       =   15
-            TabIndex        =   112
+            TabIndex        =   114
             Tag             =   "Importe REC 2|N|S|0||facturas|imporec2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1830
+            Top             =   2010
             Width           =   1650
          End
          Begin VB.TextBox Text1 
@@ -607,12 +648,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   27
-            Left            =   4890
+            Left            =   5475
             MaxLength       =   5
-            TabIndex        =   111
+            TabIndex        =   113
             Tag             =   "% REC 3|N|S|0|99.90|facturas|porcrec3|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2250
+            Top             =   2475
             Width           =   660
          End
          Begin VB.TextBox Text1 
@@ -629,12 +670,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   26
-            Left            =   5580
+            Left            =   6300
             MaxLength       =   15
-            TabIndex        =   110
+            TabIndex        =   112
             Tag             =   "Importe REC 3|N|S|0||facturas|imporec3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2250
+            Top             =   2475
             Width           =   1650
          End
          Begin VB.TextBox Text1 
@@ -651,12 +692,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   350
             Index           =   25
-            Left            =   5580
+            Left            =   6300
             MaxLength       =   15
-            TabIndex        =   29
+            TabIndex        =   31
             Tag             =   "Total Factura|N|S|0||facturas|totalfac|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2685
+            Top             =   3225
             Width           =   1650
          End
          Begin VB.TextBox Text1 
@@ -673,13 +714,13 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   24
-            Left            =   3270
+            Left            =   3585
             MaxLength       =   15
-            TabIndex        =   28
+            TabIndex        =   30
             Tag             =   "Importe IVA 3|N|S|0||facturas|impoiva3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2250
-            Width           =   1530
+            Top             =   2475
+            Width           =   1710
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -694,12 +735,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   22
-            Left            =   2475
+            Left            =   2790
             MaxLength       =   5
-            TabIndex        =   26
+            TabIndex        =   28
             Tag             =   "% IVA 3|N|S|0|99.90|facturas|porciva3|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2250
+            Top             =   2475
             Width           =   705
          End
          Begin VB.TextBox Text1 
@@ -715,12 +756,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   23
-            Left            =   675
+            Left            =   855
             MaxLength       =   15
-            TabIndex        =   27
+            TabIndex        =   29
             Tag             =   "Base Imponible 3|N|S|0||facturas|baseimp3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   2250
+            Top             =   2475
             Width           =   1710
          End
          Begin VB.TextBox Text1 
@@ -737,13 +778,13 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   20
-            Left            =   3270
+            Left            =   3585
             MaxLength       =   15
-            TabIndex        =   24
+            TabIndex        =   26
             Tag             =   "Importe IVA 2|N|S|0||facturas|impoiva2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1830
-            Width           =   1530
+            Top             =   2010
+            Width           =   1710
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -758,12 +799,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   18
-            Left            =   2460
+            Left            =   2775
             MaxLength       =   5
-            TabIndex        =   22
+            TabIndex        =   24
             Tag             =   "& IVA 2|N|S|0|99.90|facturas|porciva2|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1830
+            Top             =   2010
             Width           =   705
          End
          Begin VB.TextBox Text1 
@@ -779,12 +820,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   19
-            Left            =   675
+            Left            =   855
             MaxLength       =   15
-            TabIndex        =   23
+            TabIndex        =   25
             Tag             =   "Base Imponible 2 |N|S|0||facturas|baseimp2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1845
+            Top             =   2025
             Width           =   1710
          End
          Begin VB.TextBox Text1 
@@ -801,13 +842,13 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   16
-            Left            =   3270
+            Left            =   3585
             MaxLength       =   15
-            TabIndex        =   20
+            TabIndex        =   22
             Tag             =   "Importe IVA 1|N|S|0||facturas|impoiva1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1425
-            Width           =   1530
+            Top             =   1560
+            Width           =   1710
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -822,12 +863,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   14
-            Left            =   2460
+            Left            =   2775
             MaxLength       =   5
-            TabIndex        =   18
+            TabIndex        =   20
             Tag             =   "% IVA 1|N|S|0|99.90|facturas|porciva1|#0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1425
+            Top             =   1560
             Width           =   705
          End
          Begin VB.TextBox Text1 
@@ -843,12 +884,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   15
-            Left            =   675
+            Left            =   855
             MaxLength       =   15
-            TabIndex        =   19
+            TabIndex        =   21
             Tag             =   "Base Imponible 1|N|S|0||facturas|baseimp1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
-            Top             =   1425
+            Top             =   1560
             Width           =   1710
          End
          Begin VB.TextBox Text1 
@@ -864,12 +905,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   13
-            Left            =   120
+            Left            =   300
             MaxLength       =   5
-            TabIndex        =   17
+            TabIndex        =   19
             Tag             =   "IVA 1|N|S|0|9|facturas|codiiva1|0|N|"
             Text            =   "Text1 7"
-            Top             =   1425
+            Top             =   1560
             Width           =   500
          End
          Begin VB.TextBox Text1 
@@ -885,12 +926,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   17
-            Left            =   120
+            Left            =   300
             MaxLength       =   5
-            TabIndex        =   21
+            TabIndex        =   23
             Tag             =   "IVA 2|N|S|0|9|facturas|codiiva2|0|N|"
             Text            =   "Text1 7"
-            Top             =   1830
+            Top             =   2010
             Width           =   500
          End
          Begin VB.TextBox Text1 
@@ -906,12 +947,12 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   21
-            Left            =   120
+            Left            =   300
             MaxLength       =   5
-            TabIndex        =   25
+            TabIndex        =   27
             Tag             =   "IVA 3|N|S|0|9|facturas|codiiva3|0|N|"
             Text            =   "Text1 7"
-            Top             =   2250
+            Top             =   2475
             Width           =   500
          End
          Begin VB.TextBox Text1 
@@ -927,9 +968,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   9
-            Left            =   675
+            Left            =   855
             MaxLength       =   15
-            TabIndex        =   14
+            TabIndex        =   16
             Tag             =   "Bruto Factura|N|S|0||facturas|brutofac|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   540
@@ -948,9 +989,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   3285
+            Left            =   3600
             MaxLength       =   15
-            TabIndex        =   15
+            TabIndex        =   17
             Tag             =   "Impòrte Descuento|N|S|0||facturas|impordto|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   540
@@ -970,18 +1011,18 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   360
             Index           =   12
-            Left            =   5580
+            Left            =   6300
             MaxLength       =   15
-            TabIndex        =   16
+            TabIndex        =   18
             Text            =   "Text1 7"
             Top             =   540
             Width           =   1650
          End
          Begin VB.Line Line1 
-            X1              =   5580
-            X2              =   7200
-            Y1              =   945
-            Y2              =   945
+            X1              =   6300
+            X2              =   7920
+            Y1              =   990
+            Y2              =   990
          End
          Begin VB.Label Label1 
             Caption         =   "Importe Recargo"
@@ -996,9 +1037,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   16
-            Left            =   5580
-            TabIndex        =   117
-            Top             =   1170
+            Left            =   6300
+            TabIndex        =   119
+            Top             =   1260
             Width           =   1650
          End
          Begin VB.Label Label1 
@@ -1014,9 +1055,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   15
-            Left            =   4890
-            TabIndex        =   116
-            Top             =   1170
+            Left            =   5475
+            TabIndex        =   118
+            Top             =   1260
             Width           =   660
          End
          Begin VB.Label Label1 
@@ -1032,9 +1073,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   41
-            Left            =   2460
-            TabIndex        =   60
-            Top             =   1170
+            Left            =   2775
+            TabIndex        =   62
+            Top             =   1260
             Width           =   810
          End
          Begin VB.Label Label1 
@@ -1051,9 +1092,9 @@ Begin VB.Form frmVtasFacturas
             ForeColor       =   &H00972E0B&
             Height          =   255
             Index           =   39
-            Left            =   3240
-            TabIndex        =   59
-            Top             =   2745
+            Left            =   4005
+            TabIndex        =   61
+            Top             =   3285
             Width           =   2025
          End
          Begin VB.Label Label1 
@@ -1070,7 +1111,7 @@ Begin VB.Form frmVtasFacturas
             Height          =   255
             Index           =   36
             Left            =   11880
-            TabIndex        =   58
+            TabIndex        =   60
             Top             =   2160
             Width           =   135
          End
@@ -1087,9 +1128,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   210
             Index           =   37
-            Left            =   6300
-            TabIndex        =   57
-            Top             =   945
+            Left            =   7020
+            TabIndex        =   59
+            Top             =   990
             Width           =   210
          End
          Begin VB.Label Label1 
@@ -1105,9 +1146,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   33
-            Left            =   3270
-            TabIndex        =   56
-            Top             =   1170
+            Left            =   3585
+            TabIndex        =   58
+            Top             =   1260
             Width           =   1425
          End
          Begin VB.Label Label1 
@@ -1123,9 +1164,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   13
-            Left            =   690
-            TabIndex        =   55
-            Top             =   1140
+            Left            =   870
+            TabIndex        =   57
+            Top             =   1230
             Width           =   1530
          End
          Begin VB.Label Label1 
@@ -1141,9 +1182,9 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   12
-            Left            =   120
-            TabIndex        =   54
-            Top             =   1140
+            Left            =   300
+            TabIndex        =   56
+            Top             =   1230
             Width           =   495
          End
          Begin VB.Label Label1 
@@ -1159,8 +1200,8 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   5
-            Left            =   675
-            TabIndex        =   53
+            Left            =   855
+            TabIndex        =   55
             Top             =   270
             Width           =   1110
          End
@@ -1177,8 +1218,8 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   7
-            Left            =   5580
-            TabIndex        =   52
+            Left            =   6300
+            TabIndex        =   54
             Top             =   270
             Width           =   1530
          End
@@ -1195,8 +1236,8 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   1
-            Left            =   3285
-            TabIndex        =   51
+            Left            =   3600
+            TabIndex        =   53
             Top             =   270
             Width           =   1710
          End
@@ -1213,11 +1254,47 @@ Begin VB.Form frmVtasFacturas
             EndProperty
             Height          =   255
             Index           =   9
-            Left            =   2835
-            TabIndex        =   50
+            Left            =   3150
+            TabIndex        =   52
             Top             =   540
             Width           =   135
          End
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Cambio Divisa"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   17
+         Left            =   2295
+         TabIndex        =   151
+         Top             =   1620
+         Width           =   1620
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Tipo Moneda"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   11
+         Left            =   225
+         TabIndex        =   150
+         Top             =   1620
+         Width           =   1575
       End
       Begin VB.Label Label1 
          Caption         =   "Tipo Fact."
@@ -1233,7 +1310,7 @@ Begin VB.Form frmVtasFacturas
          Height          =   255
          Index           =   3
          Left            =   225
-         TabIndex        =   48
+         TabIndex        =   50
          Top             =   765
          Width           =   1140
       End
@@ -1251,8 +1328,8 @@ Begin VB.Form frmVtasFacturas
          Height          =   255
          Index           =   14
          Left            =   225
-         TabIndex        =   46
-         Top             =   1620
+         TabIndex        =   48
+         Top             =   2250
          Width           =   810
       End
       Begin VB.Image imgBuscar 
@@ -1277,7 +1354,7 @@ Begin VB.Form frmVtasFacturas
          Height          =   255
          Index           =   8
          Left            =   225
-         TabIndex        =   45
+         TabIndex        =   47
          Top             =   1215
          Width           =   720
       End
@@ -1294,9 +1371,9 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Index           =   4
-         Left            =   3285
-         TabIndex        =   43
-         Top             =   1665
+         Left            =   3375
+         TabIndex        =   45
+         Top             =   2295
          Width           =   1050
       End
       Begin VB.Label Label1 
@@ -1312,10 +1389,10 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Index           =   29
-         Left            =   4410
-         TabIndex        =   42
+         Left            =   4905
+         TabIndex        =   44
          Top             =   780
-         Width           =   1590
+         Width           =   1500
       End
       Begin VB.Label Label1 
          Caption         =   "%Dto 1"
@@ -1331,14 +1408,14 @@ Begin VB.Form frmVtasFacturas
          Height          =   255
          Index           =   2
          Left            =   2295
-         TabIndex        =   41
-         Top             =   1665
+         TabIndex        =   43
+         Top             =   2295
          Width           =   1140
       End
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   0
-         Left            =   6030
+         Left            =   6435
          Picture         =   "frmVtasFacturas.frx":000C
          ToolTipText     =   "Buscar fecha"
          Top             =   765
@@ -1357,9 +1434,9 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   4320
-         TabIndex        =   40
-         Top             =   1665
+         Left            =   4500
+         TabIndex        =   42
+         Top             =   2295
          Width           =   1290
       End
       Begin VB.Image imgZoom 
@@ -1367,7 +1444,7 @@ Begin VB.Form frmVtasFacturas
          Index           =   0
          Left            =   1710
          ToolTipText     =   "Zoom descripción"
-         Top             =   2340
+         Top             =   2970
          Width           =   240
       End
       Begin VB.Label Label29 
@@ -1383,8 +1460,8 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Left            =   225
-         TabIndex        =   38
-         Top             =   2340
+         TabIndex        =   40
+         Top             =   2970
          Width           =   1485
       End
       Begin VB.Label Label1 
@@ -1401,7 +1478,7 @@ Begin VB.Form frmVtasFacturas
          Height          =   255
          Index           =   0
          Left            =   225
-         TabIndex        =   37
+         TabIndex        =   39
          Top             =   315
          Width           =   765
       End
@@ -1426,20 +1503,20 @@ Begin VB.Form frmVtasFacturas
          EndProperty
          Height          =   255
          Index           =   28
-         Left            =   2205
-         TabIndex        =   36
+         Left            =   2340
+         TabIndex        =   38
          Top             =   780
          Width           =   1125
       End
    End
    Begin TabDlg.SSTab SSTab1 
-      Height          =   4695
-      Left            =   60
-      TabIndex        =   47
-      Top             =   4305
-      Width           =   15615
-      _ExtentX        =   27543
-      _ExtentY        =   8281
+      Height          =   5100
+      Left            =   90
+      TabIndex        =   49
+      Top             =   5175
+      Width           =   17610
+      _ExtentX        =   31062
+      _ExtentY        =   8996
       _Version        =   393216
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -1477,7 +1554,7 @@ Begin VB.Form frmVtasFacturas
          Index           =   13
          Left            =   -63450
          MaxLength       =   10
-         TabIndex        =   139
+         TabIndex        =   141
          Tag             =   "Fecha Albaran|F|S|||facturas_envase|fecalbar|dd/mm/yyyy||"
          Text            =   "Fec.Alb"
          Top             =   2580
@@ -1488,9 +1565,9 @@ Begin VB.Form frmVtasFacturas
          BorderStyle     =   0  'None
          Height          =   4155
          Left            =   -74955
-         TabIndex        =   120
+         TabIndex        =   122
          Top             =   345
-         Width           =   14625
+         Width           =   16625
          Begin VB.TextBox txtAux1 
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
@@ -1509,7 +1586,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   11
             Left            =   10260
             MaxLength       =   12
-            TabIndex        =   135
+            TabIndex        =   137
             Tag             =   "Importe REC 1|N|S|0||facturas|imporec1|#,###,###,##0.00|N|"
             Text            =   "Impor.Rec"
             Top             =   2250
@@ -1534,7 +1611,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   10
             Left            =   9570
             MaxLength       =   12
-            TabIndex        =   134
+            TabIndex        =   136
             Tag             =   "% REC 1|N|S|0|99.90|facturas|porcrec1|#0.00|N|"
             Text            =   "%rec"
             Top             =   2250
@@ -1559,7 +1636,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   9
             Left            =   8550
             MaxLength       =   12
-            TabIndex        =   133
+            TabIndex        =   135
             Tag             =   "Importe IVA 1|N|S|0||facturas|impoiva1|#,###,###,##0.00|N|"
             Text            =   "importe iva"
             Top             =   2250
@@ -1584,7 +1661,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   8
             Left            =   7920
             MaxLength       =   12
-            TabIndex        =   132
+            TabIndex        =   134
             Tag             =   "% IVA 1|N|S|0|99.90|facturas|porciva1|#0.00|N|"
             Text            =   "%iva"
             Top             =   2250
@@ -1609,7 +1686,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   7
             Left            =   6630
             MaxLength       =   12
-            TabIndex        =   131
+            TabIndex        =   133
             Tag             =   "Base Imponible|N|N|||facturas_acuenta|totalfaccta|###,##0.00||"
             Text            =   "Baseimp"
             Top             =   2250
@@ -1632,7 +1709,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   2
             Left            =   4680
             MaskColor       =   &H00000000&
-            TabIndex        =   128
+            TabIndex        =   130
             ToolTipText     =   "Buscar Fecha"
             Top             =   2250
             Visible         =   0   'False
@@ -1656,7 +1733,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   0
             Left            =   270
             MaxLength       =   12
-            TabIndex        =   127
+            TabIndex        =   129
             Tag             =   "Tipo Movim.|T|N|||facturas_acuenta|codtipom||S|"
             Text            =   "TipoMov"
             Top             =   2250
@@ -1681,7 +1758,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   1
             Left            =   990
             MaxLength       =   7
-            TabIndex        =   126
+            TabIndex        =   128
             Tag             =   "Num.Factura|N|N|||facturas_acuenta|numfactu|0000000|S|"
             Text            =   "NumFact"
             Top             =   2250
@@ -1705,7 +1782,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   5
             Left            =   3645
             MaxLength       =   12
-            TabIndex        =   125
+            TabIndex        =   127
             Tag             =   "Fec.Factu|F|N|||facturas_acuenta|fecfactucta|dd/mm/yyyy|S|"
             Text            =   "Fecfac"
             Top             =   2250
@@ -1730,7 +1807,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   6
             Left            =   4980
             MaxLength       =   12
-            TabIndex        =   124
+            TabIndex        =   126
             Tag             =   "Total Factura|N|N|||facturas_acuenta|totalfaccta|###,##0.00||"
             Text            =   "totalfac"
             Top             =   2250
@@ -1755,7 +1832,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   2
             Left            =   1710
             MaxLength       =   12
-            TabIndex        =   123
+            TabIndex        =   125
             Tag             =   "Fec.Factu|F|N|||facturas_acuenta|fecfactu|dd/mm/yyyy|S|"
             Text            =   "FecFact"
             Top             =   2250
@@ -1780,7 +1857,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   3
             Left            =   2430
             MaxLength       =   12
-            TabIndex        =   122
+            TabIndex        =   124
             Tag             =   "Cod.Tipo Movimiento|T|N|||facturas_acuenta|codtipomcta||S|"
             Text            =   "Tipom"
             Top             =   2250
@@ -1805,7 +1882,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   4
             Left            =   3105
             MaxLength       =   7
-            TabIndex        =   121
+            TabIndex        =   123
             Tag             =   "Num.Factura|N|N|||facturas_acuenta|numfactucta|0000000|S|"
             Text            =   "Fac"
             Top             =   2250
@@ -1816,7 +1893,7 @@ Begin VB.Form frmVtasFacturas
             Height          =   390
             Index           =   2
             Left            =   90
-            TabIndex        =   129
+            TabIndex        =   131
             Top             =   135
             Width           =   1110
             _ExtentX        =   1958
@@ -1847,10 +1924,10 @@ Begin VB.Form frmVtasFacturas
             Bindings        =   "frmVtasFacturas.frx":00EB
             Height          =   3480
             Left            =   90
-            TabIndex        =   130
+            TabIndex        =   132
             Top             =   630
-            Width           =   14490
-            _ExtentX        =   25559
+            Width           =   16490
+            _ExtentX        =   29078
             _ExtentY        =   6138
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -1965,9 +2042,9 @@ Begin VB.Form frmVtasFacturas
          BorderStyle     =   0  'None
          Height          =   4290
          Left            =   -74955
-         TabIndex        =   77
+         TabIndex        =   79
          Top             =   345
-         Width           =   14825
+         Width           =   16825
          Begin VB.TextBox txtAux 
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
@@ -1986,7 +2063,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   12
             Left            =   10860
             MaxLength       =   7
-            TabIndex        =   138
+            TabIndex        =   140
             Tag             =   "Lin.Albaran|N|S|||facturas_envase|numlinealbar|00||"
             Text            =   "linealb"
             Top             =   2250
@@ -2011,7 +2088,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   11
             Left            =   10260
             MaxLength       =   7
-            TabIndex        =   137
+            TabIndex        =   139
             Tag             =   "Num.Albaran|N|S|||facturas_envase|numalbar|0000000||"
             Text            =   "albaran"
             Top             =   2250
@@ -2036,7 +2113,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   4
             Left            =   3105
             MaxLength       =   3
-            TabIndex        =   89
+            TabIndex        =   91
             Tag             =   "Almacen|N|N|||facturas_envase|codalmac|000||"
             Text            =   "Alm"
             Top             =   2250
@@ -2059,9 +2136,9 @@ Begin VB.Form frmVtasFacturas
             Left            =   1575
             Locked          =   -1  'True
             MaxLength       =   500
-            TabIndex        =   94
+            TabIndex        =   96
             Text            =   "Text2 wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwqa"
-            Top             =   3885
+            Top             =   3975
             Width           =   9915
          End
          Begin VB.TextBox txtAux 
@@ -2082,7 +2159,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   10
             Left            =   9630
             MaxLength       =   2
-            TabIndex        =   87
+            TabIndex        =   89
             Tag             =   "CodIva|N|N|||facturas_envase|codigiva|00||"
             Text            =   "Codiva"
             Top             =   2250
@@ -2107,7 +2184,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   9
             Left            =   8820
             MaxLength       =   12
-            TabIndex        =   95
+            TabIndex        =   97
             Tag             =   "Importe|N|N|||facturas_envase|importel|##,###,##0.00||"
             Text            =   "Importe"
             Top             =   2250
@@ -2132,7 +2209,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   8
             Left            =   8010
             MaxLength       =   5
-            TabIndex        =   93
+            TabIndex        =   95
             Tag             =   "Dto.Linea|N|N|||facturas_envase|dtolinea|#0.00||"
             Text            =   "Dto.Linea"
             Top             =   2250
@@ -2157,7 +2234,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   7
             Left            =   7155
             MaxLength       =   12
-            TabIndex        =   92
+            TabIndex        =   94
             Tag             =   "Precio|N|N|||facturas_envase|precioar|###,##0.0000||"
             Text            =   "Precio"
             Top             =   2250
@@ -2182,7 +2259,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   3
             Left            =   2430
             MaxLength       =   12
-            TabIndex        =   86
+            TabIndex        =   88
             Tag             =   "Num.Linea|N|N|||facturas_variedad|numlinea|000|S|"
             Text            =   "Linea"
             Top             =   2250
@@ -2207,7 +2284,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   2
             Left            =   1710
             MaxLength       =   12
-            TabIndex        =   85
+            TabIndex        =   87
             Tag             =   "Fec.Factu|F|N|||facturas_variedad|fecfactu||S|"
             Text            =   "FecFact"
             Top             =   2250
@@ -2232,7 +2309,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   6
             Left            =   6255
             MaxLength       =   12
-            TabIndex        =   91
+            TabIndex        =   93
             Tag             =   "Cantidad|N|N|||facturas_envase|cantidad|###,##0.00||"
             Text            =   "cantidad"
             Top             =   2250
@@ -2256,7 +2333,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   5
             Left            =   3645
             MaxLength       =   16
-            TabIndex        =   90
+            TabIndex        =   92
             Tag             =   "Artículo|T|N|||facturas_envase|codartic||N|"
             Text            =   "Articulo"
             Top             =   2250
@@ -2281,7 +2358,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   1
             Left            =   1020
             MaxLength       =   12
-            TabIndex        =   81
+            TabIndex        =   83
             Tag             =   "Num.Factura|N|N|||facturas_variedad|numfactu|0000000|S|"
             Text            =   "NumFact"
             Top             =   2250
@@ -2306,7 +2383,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   0
             Left            =   270
             MaxLength       =   12
-            TabIndex        =   80
+            TabIndex        =   82
             Tag             =   "Tipo Movim.|T|N|||facturas_variedad|codtipom||S|"
             Text            =   "TipoMov"
             Top             =   2250
@@ -2331,7 +2408,7 @@ Begin VB.Form frmVtasFacturas
             Left            =   4905
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   79
+            TabIndex        =   81
             Text            =   "Nombre articulo"
             Top             =   2250
             Width           =   1200
@@ -2352,7 +2429,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   0
             Left            =   4680
             MaskColor       =   &H00000000&
-            TabIndex        =   78
+            TabIndex        =   80
             ToolTipText     =   "Buscar Envase"
             Top             =   2250
             Visible         =   0   'False
@@ -2362,7 +2439,7 @@ Begin VB.Form frmVtasFacturas
             Height          =   390
             Index           =   1
             Left            =   90
-            TabIndex        =   82
+            TabIndex        =   84
             Top             =   135
             Width           =   1500
             _ExtentX        =   2646
@@ -2395,10 +2472,10 @@ Begin VB.Form frmVtasFacturas
             Bindings        =   "frmVtasFacturas.frx":0100
             Height          =   3105
             Left            =   90
-            TabIndex        =   83
+            TabIndex        =   85
             Top             =   630
-            Width           =   14595
-            _ExtentX        =   25744
+            Width           =   16595
+            _ExtentX        =   29263
             _ExtentY        =   5477
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -2522,8 +2599,8 @@ Begin VB.Form frmVtasFacturas
             Height          =   255
             Index           =   35
             Left            =   225
-            TabIndex        =   88
-            Top             =   3930
+            TabIndex        =   90
+            Top             =   4020
             Width           =   1335
          End
       End
@@ -2531,9 +2608,9 @@ Begin VB.Form frmVtasFacturas
          BorderStyle     =   0  'None
          Height          =   4065
          Left            =   45
-         TabIndex        =   61
+         TabIndex        =   63
          Top             =   420
-         Width           =   15405
+         Width           =   17430
          Begin VB.TextBox txtAux3 
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
@@ -2552,7 +2629,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   15
             Left            =   5670
             MaxLength       =   11
-            TabIndex        =   70
+            TabIndex        =   72
             Tag             =   "Unidades|N|S|||facturas_variedad|unidades|#,##0||"
             Text            =   "Unidades"
             Top             =   1800
@@ -2577,7 +2654,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   14
             Left            =   7380
             MaxLength       =   11
-            TabIndex        =   109
+            TabIndex        =   111
             Tag             =   "Iva|N|N|||facturas_variedad|codigiva|00|N|"
             Text            =   "Iva"
             Top             =   2250
@@ -2602,7 +2679,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   13
             Left            =   6660
             MaxLength       =   11
-            TabIndex        =   108
+            TabIndex        =   110
             Tag             =   "Dto2|N|S|||facturas_variedad|dtocom2|##0.00|N|"
             Text            =   "Dto2"
             Top             =   2250
@@ -2627,7 +2704,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   12
             Left            =   5940
             MaxLength       =   11
-            TabIndex        =   107
+            TabIndex        =   109
             Tag             =   "Dto1|N|S|||facturas_variedad|dtocom1|##0.00|N|"
             Text            =   "Dto1"
             Top             =   2250
@@ -2646,10 +2723,10 @@ Begin VB.Form frmVtasFacturas
                Strikethrough   =   0   'False
             EndProperty
             Height          =   3615
-            Left            =   11245
-            TabIndex        =   96
+            Left            =   11295
+            TabIndex        =   98
             Top             =   360
-            Width           =   4070
+            Width           =   5595
             Begin VB.TextBox Text3 
                BackColor       =   &H80000018&
                Enabled         =   0   'False
@@ -2664,12 +2741,12 @@ Begin VB.Form frmVtasFacturas
                EndProperty
                Height          =   360
                Index           =   4
-               Left            =   180
+               Left            =   450
                MaxLength       =   30
-               TabIndex        =   106
+               TabIndex        =   108
                Text            =   "Text1 7"
                Top             =   2790
-               Width           =   3690
+               Width           =   4680
             End
             Begin VB.TextBox Text3 
                BackColor       =   &H80000018&
@@ -2685,12 +2762,12 @@ Begin VB.Form frmVtasFacturas
                EndProperty
                Height          =   360
                Index           =   3
-               Left            =   180
+               Left            =   450
                MaxLength       =   15
-               TabIndex        =   104
+               TabIndex        =   106
                Text            =   "Text1 7"
                Top             =   2070
-               Width           =   3690
+               Width           =   4680
             End
             Begin VB.TextBox Text3 
                BackColor       =   &H80000018&
@@ -2706,12 +2783,12 @@ Begin VB.Form frmVtasFacturas
                EndProperty
                Height          =   360
                Index           =   2
-               Left            =   180
+               Left            =   450
                MaxLength       =   30
-               TabIndex        =   102
+               TabIndex        =   104
                Text            =   "Text1 7"
                Top             =   1350
-               Width           =   3690
+               Width           =   4680
             End
             Begin VB.TextBox Text3 
                BackColor       =   &H80000018&
@@ -2727,11 +2804,11 @@ Begin VB.Form frmVtasFacturas
                EndProperty
                Height          =   360
                Index           =   1
-               Left            =   1800
+               Left            =   3060
                MaxLength       =   12
-               TabIndex        =   100
+               TabIndex        =   102
                Text            =   "Text1 7"
-               Top             =   630
+               Top             =   585
                Width           =   2070
             End
             Begin VB.TextBox Text3 
@@ -2748,9 +2825,9 @@ Begin VB.Form frmVtasFacturas
                EndProperty
                Height          =   360
                Index           =   0
-               Left            =   180
+               Left            =   450
                MaxLength       =   10
-               TabIndex        =   99
+               TabIndex        =   101
                Text            =   "Text1 7"
                Top             =   630
                Width           =   1400
@@ -2767,8 +2844,8 @@ Begin VB.Form frmVtasFacturas
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   195
-               Left            =   180
-               TabIndex        =   105
+               Left            =   450
+               TabIndex        =   107
                Top             =   2520
                Width           =   1365
             End
@@ -2784,8 +2861,8 @@ Begin VB.Form frmVtasFacturas
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   195
-               Left            =   180
-               TabIndex        =   103
+               Left            =   450
+               TabIndex        =   105
                Top             =   1800
                Width           =   915
             End
@@ -2801,8 +2878,8 @@ Begin VB.Form frmVtasFacturas
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   195
-               Left            =   180
-               TabIndex        =   101
+               Left            =   450
+               TabIndex        =   103
                Top             =   1080
                Width           =   915
             End
@@ -2818,9 +2895,9 @@ Begin VB.Form frmVtasFacturas
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   195
-               Left            =   1800
-               TabIndex        =   98
-               Top             =   360
+               Left            =   3060
+               TabIndex        =   100
+               Top             =   315
                Width           =   1455
             End
             Begin VB.Label Label2 
@@ -2835,8 +2912,8 @@ Begin VB.Form frmVtasFacturas
                   Strikethrough   =   0   'False
                EndProperty
                Height          =   195
-               Left            =   180
-               TabIndex        =   97
+               Left            =   450
+               TabIndex        =   99
                Top             =   360
                Width           =   1455
             End
@@ -2857,7 +2934,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   1
             Left            =   4005
             MaskColor       =   &H00000000&
-            TabIndex        =   84
+            TabIndex        =   86
             ToolTipText     =   "Buscar Línea Albarán"
             Top             =   1800
             Visible         =   0   'False
@@ -2881,7 +2958,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   5
             Left            =   3420
             MaxLength       =   3
-            TabIndex        =   67
+            TabIndex        =   69
             Tag             =   "Lin.Albaran|N|N|||facturas_variedad|numlinealbar|000||"
             Text            =   "Lin.Alb"
             Top             =   1800
@@ -2906,7 +2983,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   11
             Left            =   8415
             MaxLength       =   11
-            TabIndex        =   74
+            TabIndex        =   76
             Tag             =   "Imp.Neto|N|N|||facturas_variedad|impornet|##,###,##0.00|N|"
             Text            =   "Imp.Neto"
             Top             =   1800
@@ -2931,7 +3008,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   10
             Left            =   7785
             MaxLength       =   11
-            TabIndex        =   73
+            TabIndex        =   75
             Tag             =   "Imp.Bruto|N|N|||facturas_variedad|imporbru|##,###,##0.00|N|"
             Text            =   "Imp.Brut"
             Top             =   1800
@@ -2956,7 +3033,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   6
             Left            =   4185
             MaxLength       =   8
-            TabIndex        =   68
+            TabIndex        =   70
             Tag             =   "Cant.Real|N|N|||facturas_variedad|cantreal|###,##0||"
             Text            =   "Cant.R"
             Top             =   1800
@@ -2981,7 +3058,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   9
             Left            =   7200
             MaxLength       =   11
-            TabIndex        =   72
+            TabIndex        =   74
             Tag             =   "Precio Neto|N|N|||facturas_variedad|precinet|###,##0.0000||"
             Text            =   "Prec.Neto"
             Top             =   1800
@@ -3006,7 +3083,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   8
             Left            =   6435
             MaxLength       =   11
-            TabIndex        =   71
+            TabIndex        =   73
             Tag             =   "Precio Bruto|N|N|||facturas_variedad|precibru|###,##0.0000||"
             Text            =   "Prec.Bruto"
             Top             =   1800
@@ -3031,7 +3108,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   7
             Left            =   4950
             MaxLength       =   8
-            TabIndex        =   69
+            TabIndex        =   71
             Tag             =   "Cant.Fact|N|N|||facturas_variedad|cantfact|###,##0||"
             Text            =   "Cant.Fact"
             Top             =   1800
@@ -3056,7 +3133,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   4
             Left            =   2745
             MaxLength       =   7
-            TabIndex        =   66
+            TabIndex        =   68
             Tag             =   "Num.Albaran|N|N|||facturas_variedad|numalbar|000000||"
             Text            =   "Albaran"
             Top             =   1800
@@ -3081,7 +3158,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   3
             Left            =   2205
             MaxLength       =   30
-            TabIndex        =   65
+            TabIndex        =   67
             Tag             =   "Num.Linea|N|N|||facturas_variedad|numlinea|000|S|"
             Text            =   "Linea"
             Top             =   1800
@@ -3106,7 +3183,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   0
             Left            =   225
             MaxLength       =   7
-            TabIndex        =   64
+            TabIndex        =   66
             Tag             =   "Tipo Movim.|T|N|||facturas_variedad|codtipom||S|"
             Text            =   "Tipomov"
             Top             =   1800
@@ -3131,7 +3208,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   1
             Left            =   855
             MaxLength       =   15
-            TabIndex        =   63
+            TabIndex        =   65
             Tag             =   "Num.Factura|N|N|||facturas_variedad|numfactu|0000000|S|"
             Text            =   "Factura"
             Top             =   1800
@@ -3156,7 +3233,7 @@ Begin VB.Form frmVtasFacturas
             Index           =   2
             Left            =   1440
             MaxLength       =   30
-            TabIndex        =   62
+            TabIndex        =   64
             Tag             =   "Fec.Factu|F|N|||facturas_variedad|fecfactu||S|"
             Text            =   "Fec.Factu"
             Top             =   1800
@@ -3167,7 +3244,7 @@ Begin VB.Form frmVtasFacturas
             Height          =   390
             Index           =   0
             Left            =   135
-            TabIndex        =   75
+            TabIndex        =   77
             Top             =   45
             Width           =   1140
             _ExtentX        =   2011
@@ -3196,7 +3273,7 @@ Begin VB.Form frmVtasFacturas
             Bindings        =   "frmVtasFacturas.frx":0115
             Height          =   3480
             Left            =   135
-            TabIndex        =   76
+            TabIndex        =   78
             Top             =   495
             Width           =   10965
             _ExtentX        =   19341
@@ -3314,9 +3391,9 @@ Begin VB.Form frmVtasFacturas
    Begin VB.Frame Frame1 
       Height          =   475
       Index           =   0
-      Left            =   45
-      TabIndex        =   33
-      Top             =   9135
+      Left            =   90
+      TabIndex        =   35
+      Top             =   10395
       Width           =   2490
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -3331,9 +3408,9 @@ Begin VB.Form frmVtasFacturas
             Strikethrough   =   0   'False
          EndProperty
          Height          =   240
-         Left            =   240
-         TabIndex        =   34
-         Top             =   135
+         Left            =   135
+         TabIndex        =   36
+         Top             =   180
          Width           =   2025
       End
    End
@@ -3350,9 +3427,9 @@ Begin VB.Form frmVtasFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14580
-      TabIndex        =   31
-      Top             =   9180
+      Left            =   16515
+      TabIndex        =   33
+      Top             =   10485
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -3367,9 +3444,9 @@ Begin VB.Form frmVtasFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   13410
-      TabIndex        =   30
-      Top             =   9180
+      Left            =   15345
+      TabIndex        =   32
+      Top             =   10485
       Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
@@ -3384,9 +3461,9 @@ Begin VB.Form frmVtasFacturas
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   14580
-      TabIndex        =   32
-      Top             =   9180
+      Left            =   16515
+      TabIndex        =   34
+      Top             =   10485
       Visible         =   0   'False
       Width           =   1065
    End
@@ -3537,16 +3614,16 @@ Begin VB.Form frmVtasFacturas
       Index           =   11
       Left            =   6705
       MaxLength       =   15
-      TabIndex        =   118
+      TabIndex        =   120
       Text            =   "Text1 7"
       Top             =   1710
       Width           =   1485
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   15225
-      TabIndex        =   147
-      Top             =   210
+      Left            =   17115
+      TabIndex        =   149
+      Top             =   255
       Width           =   405
       _ExtentX        =   714
       _ExtentY        =   582
@@ -3574,9 +3651,9 @@ Begin VB.Form frmVtasFacturas
       EndProperty
       ForeColor       =   &H00972E0B&
       Height          =   315
-      Left            =   2745
-      TabIndex        =   136
-      Top             =   9255
+      Left            =   2790
+      TabIndex        =   138
+      Top             =   10515
       Visible         =   0   'False
       Width           =   4965
    End
@@ -3585,7 +3662,7 @@ Begin VB.Form frmVtasFacturas
       Height          =   255
       Index           =   10
       Left            =   6705
-      TabIndex        =   119
+      TabIndex        =   121
       Top             =   1440
       Width           =   1215
    End
@@ -3671,6 +3748,10 @@ Private WithEvents frmFPag As frmManFpago 'Form Mto de Formas de Pago
 Attribute frmFPag.VB_VarHelpID = -1
 Private WithEvents frmAlm As frmManAlmProp 'Form Mto de almacenes propios
 Attribute frmAlm.VB_VarHelpID = -1
+
+Private WithEvents frmFac As frmBasico2 'manda busqueda previa facturas
+Attribute frmFac.VB_VarHelpID = -1
+
 
 Private WithEvents frmMens As frmMensajes ' devolvemos las facturas a cuenta que vamos a descontar
 Attribute frmMens.VB_VarHelpID = -1
@@ -3946,6 +4027,10 @@ Private Sub BotonAnyadir()
 '    cmbAux(0).ListIndex = -1
     
     Text1(1).Text = Format(Now, "dd/mm/yyyy")
+        
+    '[Monica]17/12/2018: tipo de moneda y cambio de divisa por defecdto euro y 1
+    Combo1(1).ListIndex = 0
+    Text1(32).Text = Format(1, "###0.0000")
         
     LimpiarDataGrids
     
@@ -4364,12 +4449,20 @@ Dim Cad As String
     End If
 End Sub
 
+Private Sub Combo1_Click(Index As Integer)
+   Select Case Index
+        Case 1
+            Text1(32).Enabled = (Combo1(Index).ListIndex <> 0)
+            If Not Text1(32).Enabled Then Text1(32).Text = "1,0000"
+    End Select
+End Sub
+
 Private Sub Combo1_GotFocus(Index As Integer)
-    If Modo = 1 Then Combo1(Index).BackColor = vbYellow
+    If Modo = 1 Then Combo1(Index).BackColor = vbLightBlue
 End Sub
 
 Private Sub Combo1_LostFocus(Index As Integer)
-    If Combo1(Index).BackColor = vbYellow Then Combo1(Index).BackColor = vbWhite
+    If Combo1(Index).BackColor = vbLightBlue Then Combo1(Index).BackColor = vbWhite
 End Sub
 
 Private Sub Combo1_KeyPress(Index As Integer, KeyAscii As Integer)
@@ -4430,25 +4523,6 @@ Dim i As Integer
     Next kCampo
 
     ' ICONITOS DE LA BARRA
-    btnPrimero = 13
-'    With Me.Toolbar1
-'        .HotImageList = frmPpal.imgListComun_OM
-'        .DisabledImageList = frmPpal.imgListComun_BN
-'        .ImageList = frmPpal.imgListComun
-'        .Buttons(1).Image = 1   'Botón Buscar
-'        .Buttons(2).Image = 2   'Botón Todos
-'        .Buttons(4).Image = 3   'Insertar
-'        .Buttons(5).Image = 4   'Modificar
-'        .Buttons(6).Image = 5   'Borrar
-'        .Buttons(8).Image = 10  'Impresión de albaran
-'        .Buttons(10).Image = 11  'Salir
-'        .Buttons(btnPrimero).Image = 6  'Primero
-'        .Buttons(btnPrimero + 1).Image = 7 'Anterior
-'        .Buttons(btnPrimero + 2).Image = 8 'Siguiente
-'        .Buttons(btnPrimero + 3).Image = 9 'Último
-'    End With
-    
-    
     With Me.Toolbar1
         .HotImageList = frmPpal.imgListComun_OM
         .DisabledImageList = frmPpal.imgListComun_BN
@@ -4570,6 +4644,7 @@ On Error Resume Next
     'Aqui va el especifico de cada form es
     '### a mano
     Me.Combo1(0).ListIndex = -1
+    Me.Combo1(1).ListIndex = -1
     For i = 0 To 3
         Me.Check1(i).Value = 0
     Next i
@@ -4648,6 +4723,23 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
     PonerFoco Text1(indice)
+End Sub
+
+Private Sub frmFac_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codtipom = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+        CadB = CadB & " and numfactu = " & RecuperaValor(CadenaSeleccion, 2)
+        CadB = CadB & " and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 3), "F")
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
 End Sub
 
 Private Sub frmFPag_DatoSeleccionado(CadenaSeleccion As String)
@@ -5058,6 +5150,9 @@ Dim vTipoMov As CTiposMov
             If Modo = 1 Then Exit Sub
             If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 3
     
+         Case 32 ' cambio de divisa
+            PonerFormatoDecimal Text1(Index), 7
+    
 
     End Select
 End Sub
@@ -5110,51 +5205,61 @@ Dim Cad As String
 Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
-    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
-    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
-    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
-    
-    Titulo = "Facturas"
-    devuelve = "0|1|4|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|4|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-'        If EsCabecera Then
-'            PonerCadenaBusqueda
-'            Text1(0).Text = Format(Text1(0).Text, "0000000")
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
+'    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
+'    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
+'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
+'    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
+'
+'    Titulo = "Facturas"
+'    devuelve = "0|1|4|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|4|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
+'        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+''        If EsCabecera Then
+''            PonerCadenaBusqueda
+''            Text1(0).Text = Format(Text1(0).Text, "0000000")
+''        End If
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
 '        End If
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+'    End If
+'    Screen.MousePointer = vbDefault
+'
+    Set frmFac = New frmBasico2
+
+    AyudaFacturas frmFac
+
+    Set frmFac = Nothing
+
+
+
+
 End Sub
 
 
@@ -5339,6 +5444,7 @@ Dim b As Boolean
     BloquearTxt Text1(1), b 'fechafactura
     BloquearTxt Text1(3), b 'cliente
     BloquearCmb Me.Combo1(0), (Modo <> 1)
+    BloquearCmb Me.Combo1(1), Not (Modo = 1 Or Modo = 3 Or Modo = 4)
     BloquearChk Me.Check1(0), (Modo <> 1)
     BloquearChk Me.Check1(1), (Modo <> 1)
     
@@ -5690,7 +5796,7 @@ Dim Precio As Currency
         txtAux(2).Text = Text1(1).Text
         txtAux(3).Text = NumLinea
         txtAux(4).Text = vParamAplic.Almacen
-        txtAux(5).Text = DBLet(Rs!CodArtic)
+        txtAux(5).Text = DBLet(Rs!codArtic)
         txtAux(6).Text = DBLet(Rs!Cantidad)
         txtAux(7).Text = Precio
         txtAux(8).Text = "0"
@@ -5976,7 +6082,7 @@ Dim b As Boolean
 Dim Opcion As Byte
 Dim Sql As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     b = DataGrid3.Enabled
     Select Case vDataGrid.Name
@@ -6002,7 +6108,7 @@ Dim Sql As String
    
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -6010,7 +6116,7 @@ End Sub
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim tots As String
     
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     Select Case vDataGrid.Name
                        
@@ -6030,8 +6136,8 @@ Dim tots As String
 'select codtipom,numfactu,fecfactu,numlinea,codartic,sartic.nomartic,cantidad,precioar,dtolinea,importel,ampliaci,codigiva,numalbar,numlinea
             tots = "N||||0|;N||||0|;N||||0|;N||||0|;S|txtAux(4)|T|Alm|700|;"
             tots = tots & "S|txtAux(5)|T|Articulo|2000|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|Text2(0)|T|Nombre|4000|;S|txtAux(6)|T|Cantidad|1600|;"
-            tots = tots & "S|txtAux(7)|T|Precio|1600|;S|txtAux(8)|T|Dto|1000|;S|txtAux(9)|T|Importe|1600|;N||||0|;N||||0|;S|txtAux(11)|T|Albaran|1450|;N||||0|;N||||0|;"
+            tots = tots & "S|Text2(0)|T|Nombre|5000|;S|txtAux(6)|T|Cantidad|1900|;"
+            tots = tots & "S|txtAux(7)|T|Precio|1900|;S|txtAux(8)|T|Dto|1100|;S|txtAux(9)|T|Importe|1900|;N||||0|;N||||0|;S|txtAux(11)|T|Albaran|1450|;N||||0|;N||||0|;"
             arregla tots, DataGrid3, Me, 350
             
             
@@ -6041,9 +6147,9 @@ Dim tots As String
          Case "DataGrid1" 'facturas_acuenta
 'select codtipom,numfactu,fecfactu,numlinea,codartic,sartic.nomartic,cantidad,precioar,dtolinea,importel,ampliaci,codigiva
             tots = "N||||0|;N||||0|;N||||0|;S|txtAux1(3)|T|Tipo Mov.|1100|;"
-            tots = tots & "S|txtAux1(4)|T|Factura|1500|;S|txtAux1(5)|T|Fecha |1500|;S|btnBuscar(2)|B|||;S|txtAux1(6)|T|Total Factura|2000|;"
-            tots = tots & "S|txtAux1(7)|T|Base Imponible|2000|;S|txtAux1(8)|T|%Iva|850|;S|txtAux1(9)|T|Importe Iva|2000|;S|txtAux1(10)|T|%Rec|850|;"
-            tots = tots & "S|txtAux1(11)|T|Imp.Retencion|2000|;"
+            tots = tots & "S|txtAux1(4)|T|Factura|1500|;S|txtAux1(5)|T|Fecha |1500|;S|btnBuscar(2)|B|||;S|txtAux1(6)|T|Total Factura|2500|;"
+            tots = tots & "S|txtAux1(7)|T|Base Imponible|2500|;S|txtAux1(8)|T|%Iva|850|;S|txtAux1(9)|T|Importe Iva|2500|;S|txtAux1(10)|T|%Rec|850|;"
+            tots = tots & "S|txtAux1(11)|T|Imp.Retencion|2500|;"
             arregla tots, DataGrid1, Me, 350
             
     End Select
@@ -6051,7 +6157,7 @@ Dim tots As String
     vDataGrid.HoldFields
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -6115,7 +6221,7 @@ Dim vCStock As CStock
         
             devuelve = ""
             If ModificaLineas = 2 Then
-                If Not AdoAux(1).Recordset.EOF Then devuelve = AdoAux(1).Recordset!CodArtic
+                If Not AdoAux(1).Recordset.EOF Then devuelve = AdoAux(1).Recordset!codArtic
             End If
         
             If Not PonerArticulo(txtAux(5), Text2(0), txtAux(4).Text, CodTipoMov, ModificaLineas, devuelve) Then
@@ -6656,6 +6762,11 @@ Dim NroCopias As Integer
     '[Monica]05/10/2018: en cso de que sea una factura en B no lleva ni iva ni logos
     If Text1(6).Text = TipoFactB Then nomDocu = Replace(nomDocu, ".rpt", "B.rpt")
       
+      
+    '[Monica]18/12/2018: en el caso de que sea una factura extranjera
+    If Combo1(1).ListIndex > 0 Then nomDocu = Replace(nomDocu, ".rpt", "Extr.rpt")
+    
+      
     'Nombre fichero .rpt a Imprimir
     frmImprimir.NombreRPT = nomDocu
     
@@ -6936,7 +7047,8 @@ Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim i As Byte
-    
+Dim Cad As String
+
     Combo1(0).Clear
     
     Combo1(0).AddItem "Normal"
@@ -6947,6 +7059,23 @@ Dim i As Byte
     
     Combo1(0).AddItem "Recargo Equiv."
     Combo1(0).ItemData(Combo1(0).NewIndex) = 2
+    
+    'Tipo de divisa
+    Combo1(1).Clear
+    
+    Cad = "SELECT * FROM moneda ORDER BY codmoneda"
+    Set Rs = New ADODB.Recordset
+'    Rs.Open Cad, conn, OpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenDynamic, adLockReadOnly, adCmdText
+    
+    While Not Rs.EOF
+        Combo1(1).AddItem Rs!nommoneda
+        Combo1(1).ItemData(Combo1(1).NewIndex) = Rs!codmoneda
+        Rs.MoveNext
+    Wend
+    Rs.Close
+    Set Rs = Nothing
+    
     
 End Sub
 
@@ -8064,12 +8193,12 @@ Private Function InicializarCStock(ByRef vCStock As CStock, TipoM As String, Opt
     
     '1=Insertar, 2=Modificar
     If ModificaLineas = 1 Or (ModificaLineas = 2 And TipoM = "S") Then
-        vCStock.CodArtic = txtAux(5).Text
+        vCStock.codArtic = txtAux(5).Text
         vCStock.codAlmac = CInt(txtAux(4).Text)
         If ModificaLineas = 1 Then '1=Insertar
             vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
         Else '2=Modificar(Debe haber en stock la diferencia)
-            If AdoAux(1).Recordset!CodArtic = txtAux(5).Text Then
+            If AdoAux(1).Recordset!codArtic = txtAux(5).Text Then
                 vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text)) - AdoAux(1).Recordset!Cantidad
             Else
                 vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
@@ -8077,7 +8206,7 @@ Private Function InicializarCStock(ByRef vCStock As CStock, TipoM As String, Opt
         End If
         vCStock.Importe = CCur(ComprobarCero(txtAux(9).Text))
     Else
-        vCStock.CodArtic = AdoAux(1).Recordset!CodArtic
+        vCStock.codArtic = AdoAux(1).Recordset!codArtic
         vCStock.codAlmac = CInt(AdoAux(1).Recordset!codAlmac)
         vCStock.Cantidad = CSng(AdoAux(1).Recordset!Cantidad)
         vCStock.Importe = CCur(AdoAux(1).Recordset!ImporteL)
@@ -8144,7 +8273,7 @@ Dim b As Boolean
         
         vCStock.Cantidad = DBLet(Rs!Cantidad, "N")
         vCStock.codAlmac = DBLet(Rs!codAlmac, "N")
-        vCStock.CodArtic = DBLet(Rs!CodArtic, "T")
+        vCStock.codArtic = DBLet(Rs!codArtic, "T")
         '[Monica]20/03/2012: lo que se guardó es el numero de albaran
         If DBLet(Rs!NumAlbar, "N") <> 0 And EsFacturaEnvases(Text1(6).Text, Text1(0).Text, Text1(1).Text) Then
             vCStock.Documento = CLng(DBLet(Rs!NumAlbar, "N"))

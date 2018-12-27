@@ -333,7 +333,7 @@ Begin VB.Form frmBasico2
             Name            =   "Verdana"
             Size            =   9.75
             Charset         =   0
-            Weight          =   400
+            Weight          =   700
             Underline       =   0   'False
             Italic          =   0   'False
             Strikethrough   =   0   'False
@@ -870,7 +870,7 @@ Private Sub Form_Activate()
             BotonAnyadir
         Else
             PonerModo 2
-             If Me.CodigoActual <> "" Then
+            If Me.CodigoActual <> "" Then
                 SituarData Me.adodc1, CampoCP & "=" & DBSet(Me.CodigoActual, Me.TipoCP), "", True
             End If
         End If
@@ -1020,7 +1020,7 @@ Private Sub CargaGrid(Optional vSQL As String)
 End Sub
 
 Private Sub CargaGridGnral(ByRef vDataGrid As DataGrid, ByRef vData As Adodc, Sql As String, PrimeraVez As Boolean)
-On Error GoTo ECargaGrid
+On Error GoTo ECargaGRid
 
     vDataGrid.Enabled = True
     '    vdata.Recordset.Cancel
@@ -1042,7 +1042,7 @@ On Error GoTo ECargaGrid
         vDataGrid.Refresh
     End If
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "CargaGrid", Err.Description
 End Sub
 
@@ -1116,12 +1116,12 @@ End Sub
 
 
 ' ### [DavidV] 26/04/2006: Activar/desactivar la rueda del ratón.
-Private Sub DataGrid1_GotFocus()
-  WheelHook DataGrid1
-End Sub
-Private Sub DataGrid1_LostFocus()
-  WheelUnHook
-End Sub
+'Private Sub DataGrid1_GotFocus()
+'  WheelHook DataGrid1
+'End Sub
+'Private Sub DataGrid1_LostFocus()
+'  WheelUnHook
+'End Sub
 
 Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii

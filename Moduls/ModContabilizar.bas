@@ -12,6 +12,7 @@ Private DtoGnral As Currency
 Private DtoPPago As Currency
 Private BaseImp As Currency
 Private IvaImp As Currency
+Private RecImp As Currency
 Private TotalFac As Currency
 Private CCoste As String
 Private conCtaAlt As Boolean 'el cliente utiliza cuentas alternativas
@@ -1404,6 +1405,7 @@ Dim CadenaInsertFaclin2 As String
         DtoGnral = 0
         BaseImp = Rs!baseimp1 + CCur(DBLet(Rs!baseimp2, "N")) + CCur(DBLet(Rs!baseimp3, "N"))
         IvaImp = DBLet(Rs!impoiva1, "N") + DBLet(Rs!impoiva2, "N") + DBLet(Rs!impoiva3, "N")
+        RecImp = DBLet(Rs!imporec1, "N") + DBLet(Rs!imporec2, "N") + DBLet(Rs!imporec3, "N")
         '---- Laura 10/10/2006:  añadir el totalfac para utilizarlo en insertar lineas
         TotalFac = Rs!TotalFac
         '----
@@ -1457,7 +1459,7 @@ Dim CadenaInsertFaclin2 As String
             If LetraPais = "" Then LetraPais = "ES"
             
             Sql = Sql & DBSet(Rs!Codforpa, "N") & "," & DBSet(BaseImp, "N") & "," & ValorNulo & "," & DBSet(IvaImp, "N") & ","
-            Sql = Sql & ValorNulo & "," & DBSet(Rs!TotalFac, "N") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0," & DBSet(Rs!FecFactu, "F") & ","
+            Sql = Sql & DBSet(RecImp, "N") & "," & DBSet(Rs!TotalFac, "N") & "," & ValorNulo & "," & ValorNulo & "," & ValorNulo & ",0," & DBSet(Rs!FecFactu, "F") & ","
             Sql = Sql & DBSet(Rs!Nomclien, "T") & "," & DBSet(Rs!domclien, "T") & "," & DBSet(Rs!codpobla, "T") & "," & DBSet(Rs!pobclien, "T") & ","
             Sql = Sql & DBSet(Rs!proclien, "T") & "," & DBSet(Rs!cifClien, "T") & "," & DBSet(LetraPais, "T") & ",1"
             
@@ -1492,15 +1494,18 @@ Dim CadenaInsertFaclin2 As String
         'IVA 1, siempre existe
         Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
         Sql2 = Sql2 & "1," & DBSet(Rs!baseimp1, "N") & "," & Rs!codiiva1 & "," & DBSet(Rs!porciva1, "N") & ","
-        Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva1, "N") & "," & ValorNulo
+        Sql2 = Sql2 & DBSet(Rs!porcrec1, "N", "S") & "," & DBSet(Rs!impoiva1, "N") & "," & DBSet(Rs!imporec1, "N", "S")
         CadenaInsertFaclin2 = CadenaInsertFaclin2 & "(" & Sql2 & ")"
         
         'para las lineas
         vTipoIva(0) = Rs!codiiva1
         vPorcIva(0) = Rs!porciva1
-        vPorcRec(0) = 0
+        '[Monica]20/12/2018: se mandaba un 0
+        vPorcRec(0) = DBLet(Rs!porcrec1, "N") '0
         vImpIva(0) = Rs!impoiva1
-        vImpRec(0) = 0
+        '[Monica]20/12/2018: se mandaba un 0
+        vImpRec(0) = DBLet(Rs!imporec1, "N") '0
+        
         vBaseIva(0) = Rs!baseimp1
         
         vTipoIva(1) = 0: vTipoIva(2) = 0
@@ -1508,25 +1513,25 @@ Dim CadenaInsertFaclin2 As String
         If Not IsNull(Rs!porciva2) Then
             Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
             Sql2 = Sql2 & "2," & DBSet(Rs!baseimp2, "N") & "," & Rs!codiiva2 & "," & DBSet(Rs!porciva2, "N") & ","
-            Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva2, "N") & "," & ValorNulo
+            Sql2 = Sql2 & DBSet(Rs!porcrec2, "N", "S") & "," & DBSet(Rs!impoiva2, "N") & "," & DBSet(Rs!imporec2, "N", "S")
             CadenaInsertFaclin2 = CadenaInsertFaclin2 & " , (" & Sql2 & ")"
             vTipoIva(1) = Rs!codiiva2
             vPorcIva(1) = Rs!porciva2
-            vPorcRec(1) = 0
+            vPorcRec(1) = DBLet(Rs!porcrec2, "N") '0
             vImpIva(1) = Rs!impoiva2
-            vImpRec(1) = 0
+            vImpRec(1) = DBLet(Rs!imporec2, "N") '0
             vBaseIva(1) = Rs!baseimp2
         End If
         If Not IsNull(Rs!porciva3) Then
             Sql2 = "'" & Rs!letraser & "'," & Rs!NumFactu & "," & DBSet(Rs!FecFactu, "F") & "," & Year(Rs!FecFactu) & ","
             Sql2 = Sql2 & "3," & DBSet(Rs!baseimp3, "N") & "," & Rs!codiiva3 & "," & DBSet(Rs!porciva3, "N") & ","
-            Sql2 = Sql2 & ValorNulo & "," & DBSet(Rs!impoiva3, "N") & "," & ValorNulo
+            Sql2 = Sql2 & DBSet(Rs!porcrec3, "N", "S") & "," & DBSet(Rs!impoiva3, "N") & "," & DBSet(Rs!imporec3, "N", "S")
             CadenaInsertFaclin2 = CadenaInsertFaclin2 & " , (" & Sql2 & ")"
             vTipoIva(2) = Rs!codiiva3
             vPorcIva(2) = Rs!porciva3
-            vPorcRec(2) = 0
+            vPorcRec(2) = DBLet(Rs!porcrec3, "N") '0
             vImpIva(2) = Rs!impoiva3
-            vImpRec(2) = 0
+            vImpRec(2) = DBLet(Rs!imporec3, "N") '0
             vBaseIva(2) = Rs!baseimp3
         End If
 
@@ -3971,7 +3976,7 @@ Dim SeccionHorto As Integer
                     
                         CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                         CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                        CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
+                        CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifsocio, "T") & ",'ES'"
                         CadValues2 = CadValues2 & "),"
                     
                     Else
@@ -4005,7 +4010,7 @@ Dim SeccionHorto As Integer
                         
                             CadValues2 = CadValues2 & DBSet(ImpVenci, "N") & ", " & DBSet(CtaBan, "T") & ", " & DBSet(vvIban, "T", "S") & ","
                             CadValues2 = CadValues2 & ValorNulo & "," & ValorNulo & "," & text33csb & "," & DBSet(text41csb, "T") & ",1,"
-                            CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifSocio, "T") & ",'ES'"
+                            CadValues2 = CadValues2 & DBSet(Rs4!nomsocio, "T") & "," & DBSet(Rs4!dirsocio, "T") & "," & DBSet(Rs4!pobsocio, "T") & "," & DBSet(Rs4!codPostal, "T") & "," & DBSet(Rs4!prosocio, "T") & "," & DBSet(Rs4!nifsocio, "T") & ",'ES'"
                             CadValues2 = CadValues2 & "),"
                         
                         Else

@@ -4521,7 +4521,7 @@ Dim List As Collection
     List.Add 19
     
     
-    For H = 0 To 14
+    For H = 0 To 13
         Me.imgBuscar(H).Picture = frmPpal.imgListImages16.ListImages(1).Picture
     Next H
     For H = 16 To 19
@@ -4610,7 +4610,7 @@ Dim List As Collection
         
     End Select
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.CmdCancel(indFrame).Cancel = True
+    Me.cmdCancel(indFrame).Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub

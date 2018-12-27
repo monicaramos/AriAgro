@@ -471,7 +471,7 @@ Begin VB.Form frmVtasRecFactTrans
          Alignment       =   1  'Right Justify
          Height          =   360
          Index           =   27
-         Left            =   6795
+         Left            =   6750
          MaxLength       =   10
          TabIndex        =   3
          Tag             =   "Fecha Factura|F|N|||tcafpc|fecfactu|dd/mm/yyyy|S|"
@@ -492,7 +492,7 @@ Begin VB.Form frmVtasRecFactTrans
          Alignment       =   1  'Right Justify
          Height          =   360
          Index           =   26
-         Left            =   8280
+         Left            =   8415
          MaxLength       =   6
          TabIndex        =   4
          Text            =   "Text1"
@@ -504,13 +504,13 @@ Begin VB.Form frmVtasRecFactTrans
          Enabled         =   0   'False
          Height          =   360
          Index           =   26
-         Left            =   9180
+         Left            =   9315
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   58
          Text            =   "Text2"
          Top             =   585
-         Width           =   4425
+         Width           =   4290
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -541,19 +541,19 @@ Begin VB.Form frmVtasRecFactTrans
          Enabled         =   0   'False
          Height          =   360
          Index           =   5
-         Left            =   9165
+         Left            =   9300
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   12
          Text            =   "Text2"
          Top             =   1320
-         Width           =   4425
+         Width           =   4290
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
          Height          =   360
          Index           =   5
-         Left            =   8265
+         Left            =   8400
          MaxLength       =   5
          TabIndex        =   6
          Text            =   "Text1"
@@ -617,21 +617,21 @@ Begin VB.Form frmVtasRecFactTrans
          Width           =   1380
       End
       Begin VB.Label Label1 
-         Caption         =   "Fecha alb"
+         Caption         =   "Desde F.Alb"
          Height          =   345
          Index           =   18
-         Left            =   6795
+         Left            =   6750
          TabIndex        =   84
          Top             =   270
-         Width           =   1005
+         Width           =   1185
       End
       Begin VB.Image imgFecha 
          Height          =   240
          Index           =   2
-         Left            =   7830
+         Left            =   7965
          Picture         =   "frmVtasRecFactTrans.frx":005C
          ToolTipText     =   "Buscar fecha"
-         Top             =   225
+         Top             =   270
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -647,7 +647,7 @@ Begin VB.Form frmVtasRecFactTrans
          Caption         =   "Cliente"
          Height          =   210
          Index           =   16
-         Left            =   8280
+         Left            =   8415
          TabIndex        =   59
          Top             =   270
          Width           =   720
@@ -655,7 +655,7 @@ Begin VB.Form frmVtasRecFactTrans
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   3
-         Left            =   9000
+         Left            =   9135
          ToolTipText     =   "Buscar cliente"
          Top             =   270
          Width           =   240
@@ -681,7 +681,7 @@ Begin VB.Form frmVtasRecFactTrans
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   10485
+         Left            =   10620
          ToolTipText     =   "Buscar banco propio"
          Top             =   1035
          Width           =   240
@@ -707,7 +707,7 @@ Begin VB.Form frmVtasRecFactTrans
          Caption         =   "Cuenta Prevista Pago"
          Height          =   255
          Index           =   2
-         Left            =   8265
+         Left            =   8400
          TabIndex        =   11
          Top             =   1035
          Width           =   2790
@@ -1672,7 +1672,7 @@ Dim i As Integer
     CargaGrid 0, False
     
     '[Monica]14/12/2018: asignamos la fecha de inicio de campaña a la fecha inicio de campaña
-    Text1(27).Text = DateAdd("d", 1, DateAdd("yyyy", -3, vParam.FecFinCam))
+    Text1(27).Text = DateAdd("d", 1, DateAdd("yyyy", -1, vParam.FecFinCam))
     FechaAnt = Text1(27).Text
     
     PrimeraVez = False
@@ -2821,13 +2821,13 @@ Dim Nombre As String
     SSTab1.Enabled = False
     FrameFactura.Enabled = False
 
-    '[Monica]14/12/2018: en el caso de no queramos inicializarlo todo
-    If Text1(3).Text <> "" Then
-        If MsgBox("¿ Desea inicializar los datos ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
-            PonerModo 3
-            Exit Sub
-        End If
-    End If
+'    '[Monica]14/12/2018: en el caso de no queramos inicializarlo todo
+'    If Text1(3).Text <> "" Then
+'        If MsgBox("¿ Desea inicializar los datos ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
+'            PonerModo 3
+'            Exit Sub
+'        End If
+'    End If
 
     'Vaciamos todos los Text
     LimpiarCampos

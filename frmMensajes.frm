@@ -91,7 +91,6 @@ Begin VB.Form frmMensajes
          Left            =   3150
          Locked          =   -1  'True
          TabIndex        =   107
-         Text            =   "Text5"
          Top             =   2205
          Width           =   3825
       End
@@ -111,6 +110,7 @@ Begin VB.Form frmMensajes
          Left            =   2205
          MaxLength       =   6
          TabIndex        =   114
+         Tag             =   "Forma Pago|N|N|0|999|facturas|codforpa|000||"
          Top             =   2205
          Width           =   875
       End
@@ -4018,7 +4018,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             
             Set frmCli = Nothing
             
-        Case 1 'formas de pago
+        Case 14 'formas de pago
             Set frmFPag = New frmManFpago
             
             frmFPag.DatosADevolverBusqueda = "0|1|"
@@ -5128,7 +5128,7 @@ Dim Rs As ADODB.Recordset
     Combo1(0).ItemData(Combo1(0).NewIndex) = 4
 
     'Tipo de divisa
-    Cad = "SELECT * FROM rmoneda ORDER BY codmoneda"
+    Cad = "SELECT * FROM moneda ORDER BY codmoneda"
     Set Rs = New ADODB.Recordset
 '    Rs.Open Cad, conn, OpenForwardOnly, adLockPessimistic, adCmdText
     Rs.Open Cad, conn, adOpenDynamic, adLockReadOnly, adCmdText
