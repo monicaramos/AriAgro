@@ -3748,7 +3748,7 @@ Dim SQLinsert As String
     
         Sql = " select " & DBSet(vUsu.Codigo, "N") & "," & DBSet(vAlbaran, "N") & ", pp.numpalet, vv.numlinea, vv.codvarie, vv.codmarca, vv.codforfait, vv.categori, cc.codcalib, cc.numcajas, vv.pesobrut, vv.pesoneto, ac.preciopro "
         Sql = Sql & " from " & vParamAplic.BDSat & ".palets_variedad vv, " & vParamAplic.BDSat & ".palets pp, " & vParamAplic.BDSat & ".palets_calibre cc, albaran_calibre ac, albaran_variedad av "
-        Sql = Sql & " where pp.numpedid = " & vPedido & " and cc1.numalbar = " & DBSet(vAlbaran, "N")
+        Sql = Sql & " where pp.numpedid = " & vPedido & " and ac.numalbar = " & DBSet(vAlbaran, "N")
         Sql = Sql & " and pp.numpalet = vv.numpalet and vv.numpalet = cc.numpalet and vv.numlinea = cc.numlinea "
         Sql = Sql & " and ac.numalbar = " & DBSet(vAlbaran, "N") & " and cc.codvarie = ac.codvarie and cc.codcalib = ac.codcalib"
         Sql = Sql & " and av.numalbar = ac.numalbar and av.codvarie = ac.codvarie and av.codforfait = vv.codforfait and av.codmarca = vv.codmarca and ac.numlinea = av.numlinea"

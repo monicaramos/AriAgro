@@ -1537,8 +1537,8 @@ Begin VB.Form frmVtasFacturas
       TabCaption(1)   =   "Envases"
       TabPicture(1)   =   "frmVtasFacturas.frx":00B3
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "txtAux(13)"
-      Tab(1).Control(1)=   "FrameAux1"
+      Tab(1).Control(0)=   "FrameAux1"
+      Tab(1).Control(1)=   "txtAux(13)"
       Tab(1).ControlCount=   2
       TabCaption(2)   =   "Facturas a Cuenta"
       TabPicture(2)   =   "frmVtasFacturas.frx":00CF
@@ -5253,7 +5253,7 @@ Dim Desc As String, devuelve As String
 '
     Set frmFac = New frmBasico2
 
-    AyudaFacturas frmFac
+    AyudaFacturas frmFac, , CadB
 
     Set frmFac = Nothing
 
