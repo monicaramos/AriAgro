@@ -1752,13 +1752,21 @@ Dim NumFactuAnt As String
             b = InsertarLineasFactu(cadSQL, vCliente)
             If Not b Then Exit Function
                          
+'[Monica]25/01/2019: las lineas de calibre las metemos despues del recalculo de dtos
+'            '[Monica]04/04/2012: faltaba las lineas de calibre
+'            'Insertamos las lineas de calibre de cada una de las lineas de factura
+'            b = InsertarLineasCalibreFactu(cadSQL)
+'            If Not b Then Exit Function
+                         
+            b = RecalcularDtos(vCliente)
+            If Not b Then Exit Function
+            
             '[Monica]04/04/2012: faltaba las lineas de calibre
             'Insertamos las lineas de calibre de cada una de las lineas de factura
             b = InsertarLineasCalibreFactu(cadSQL)
             If Not b Then Exit Function
-                         
-            b = RecalcularDtos(vCliente)
-            If Not b Then Exit Function
+            
+            
             
             '[Monica]25/10/2011
             b = DescontarFacturasACuenta(codTipoM, NumFactu, FecFactu, Rs.Fields(0).Value)
