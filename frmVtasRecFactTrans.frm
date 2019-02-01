@@ -71,7 +71,6 @@ Begin VB.Form frmVtasRecFactTrans
       _ExtentY        =   9313
       _Version        =   393216
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -85,13 +84,13 @@ Begin VB.Form frmVtasRecFactTrans
       EndProperty
       TabCaption(0)   =   "Albaranes"
       TabPicture(0)   =   "frmVtasRecFactTrans.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "ListView1"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Portes de Vuelta"
       TabPicture(1)   =   "frmVtasRecFactTrans.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FrameAux0"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
@@ -107,7 +106,7 @@ Begin VB.Form frmVtasRecFactTrans
             Strikethrough   =   0   'False
          EndProperty
          Height          =   4695
-         Left            =   135
+         Left            =   -74865
          TabIndex        =   62
          Top             =   360
          Width           =   7540
@@ -425,7 +424,7 @@ Begin VB.Form frmVtasRecFactTrans
       End
       Begin MSComctlLib.ListView ListView1 
          Height          =   4545
-         Left            =   -74910
+         Left            =   90
          TabIndex        =   61
          Top             =   450
          Width           =   8140
@@ -2217,7 +2216,8 @@ Dim i As Long
                         PaletsLinea = Round2(DBLet(Rs1.Fields(1).Value, "N") / DBLet(Rs1.Fields(3).Value, "N"), 2)
                         
                         If ListView1.ListItems(i).SubItems(3) <> 0 Then
-                            PortesLinea = Round2(ListView1.ListItems(i).SubItems(5) * PaletsLinea / DBLet(Rs1!paletspag, "N"), 4)
+                            '[Monica]28/01/2019: Portes por linea, se redondea a 2 (antes estaba a 4)
+                            PortesLinea = Round2(ListView1.ListItems(i).SubItems(5) * PaletsLinea / DBLet(Rs1!paletspag, "N"), 2)
                         End If
                         ' --monica:cambiado por lo de arriba pq ahora tenemos en cuenta el numero de palets de la linea de albaran.
                         'PortesLinea = Round2(DBLet(Rs!portespag, "N") / DBLet(Rs1.Fields(3).Value, "N") * DBLet(Rs1.Fields(1).Value, "N"), 4)

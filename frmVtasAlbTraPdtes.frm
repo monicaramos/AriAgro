@@ -574,7 +574,7 @@ Begin VB.Form frmVtasAlbTraPdtes
          Picture         =   "frmVtasAlbTraPdtes.frx":0554
          ToolTipText     =   "Buscar fecha"
          Top             =   1380
-         Width           =   375
+         Width           =   240
       End
       Begin VB.Image imgFec 
          Height          =   240
@@ -583,7 +583,7 @@ Begin VB.Form frmVtasAlbTraPdtes
          Picture         =   "frmVtasAlbTraPdtes.frx":05DF
          ToolTipText     =   "Buscar fecha"
          Top             =   1785
-         Width           =   375
+         Width           =   240
       End
       Begin VB.Label Label4 
          Caption         =   "Desde"
@@ -1008,7 +1008,7 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 6660
+        Me.FrameCobros.Height = 7155
         Me.FrameCobros.Width = 6930
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height

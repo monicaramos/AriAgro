@@ -5,7 +5,7 @@ Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmVtasPedidos 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Pedidos de Clientes"
-   ClientHeight    =   8865
+   ClientHeight    =   10365
    ClientLeft      =   45
    ClientTop       =   4035
    ClientWidth     =   16680
@@ -13,7 +13,7 @@ Begin VB.Form frmVtasPedidos
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8865
+   ScaleHeight     =   10365
    ScaleWidth      =   16680
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -170,7 +170,7 @@ Begin VB.Form frmVtasPedidos
       End
    End
    Begin VB.Frame Frame2 
-      Height          =   2745
+      Height          =   3690
       Left            =   135
       TabIndex        =   23
       Top             =   810
@@ -193,7 +193,7 @@ Begin VB.Form frmVtasPedidos
          MaxLength       =   40
          TabIndex        =   75
          Text            =   "Text2"
-         Top             =   2295
+         Top             =   3015
          Width           =   4800
       End
       Begin VB.TextBox Text1 
@@ -214,7 +214,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   8
          Tag             =   "Cod.Almacen|N|N|0|999|pedidos|codalmac|000||"
          Text            =   "Text1"
-         Top             =   2295
+         Top             =   3015
          Width           =   890
       End
       Begin VB.CheckBox Check1 
@@ -230,10 +230,10 @@ Begin VB.Form frmVtasPedidos
          EndProperty
          Height          =   195
          Index           =   0
-         Left            =   14130
+         Left            =   14265
          TabIndex        =   71
          Tag             =   "Impresor|N|N|||pedidos|impresor|0||"
-         Top             =   1620
+         Top             =   1215
          Width           =   1095
       End
       Begin VB.TextBox Text1 
@@ -254,7 +254,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   15
          Tag             =   "Nro.Acta|N|S|||pedidos|nroactas|##0||"
          Text            =   "Text3"
-         Top             =   1170
+         Top             =   1305
          Width           =   1140
       End
       Begin VB.TextBox Text1 
@@ -274,7 +274,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   14
          Tag             =   "Nro.Contrato|T|S|||pedidos|nrocontra|||"
          Text            =   "123456789012345"
-         Top             =   1170
+         Top             =   1305
          Width           =   1905
       End
       Begin VB.TextBox Text1 
@@ -295,7 +295,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   16
          Tag             =   "Nro.Palets|N|S|||pedidos|totpalet|##0||"
          Text            =   "Text3"
-         Top             =   1170
+         Top             =   1305
          Width           =   1140
       End
       Begin VB.TextBox Text1 
@@ -316,7 +316,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   7
          Tag             =   "Cod.Agencia|N|N|0|999|pedidos|codtrans|000||"
          Text            =   "Text1"
-         Top             =   1935
+         Top             =   2520
          Width           =   890
       End
       Begin VB.TextBox Text2 
@@ -337,7 +337,7 @@ Begin VB.Form frmVtasPedidos
          MaxLength       =   40
          TabIndex        =   62
          Text            =   "Text2"
-         Top             =   1935
+         Top             =   2520
          Width           =   4800
       End
       Begin VB.TextBox Text1 
@@ -358,7 +358,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   6
          Tag             =   "Tipo Mercado|N|N|0|999|pedidos|codtimer|000||"
          Text            =   "Text1"
-         Top             =   1575
+         Top             =   2025
          Width           =   890
       End
       Begin VB.TextBox Text2 
@@ -379,7 +379,7 @@ Begin VB.Form frmVtasPedidos
          MaxLength       =   40
          TabIndex        =   60
          Text            =   "Text2"
-         Top             =   1575
+         Top             =   2025
          Width           =   4800
       End
       Begin VB.TextBox Text1 
@@ -420,7 +420,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   5
          Tag             =   "Cod.Destino|N|N|0|9999|pedidos|coddesti|0000||"
          Text            =   "Text1"
-         Top             =   1215
+         Top             =   1485
          Width           =   890
       End
       Begin VB.TextBox Text2 
@@ -441,7 +441,7 @@ Begin VB.Form frmVtasPedidos
          MaxLength       =   40
          TabIndex        =   58
          Text            =   "Text2"
-         Top             =   1215
+         Top             =   1485
          Width           =   4800
       End
       Begin VB.TextBox Text1 
@@ -564,7 +564,7 @@ Begin VB.Form frmVtasPedidos
          MaxLength       =   40
          TabIndex        =   39
          Text            =   "Text2"
-         Top             =   855
+         Top             =   945
          Width           =   4800
       End
       Begin VB.TextBox Text1 
@@ -577,7 +577,7 @@ Begin VB.Form frmVtasPedidos
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   645
+         Height          =   1320
          Index           =   15
          Left            =   7560
          MaxLength       =   200
@@ -585,7 +585,7 @@ Begin VB.Form frmVtasPedidos
          ScrollBars      =   2  'Vertical
          TabIndex        =   17
          Tag             =   "Observaciones|T|S|||pedidos|observac|||"
-         Top             =   1980
+         Top             =   2025
          Width           =   8085
       End
       Begin VB.ComboBox Combo1 
@@ -625,7 +625,7 @@ Begin VB.Form frmVtasPedidos
          TabIndex        =   4
          Tag             =   "Cod. Cliente|N|N|0|999999|pedidos|codclien|000000||"
          Text            =   "Text1"
-         Top             =   855
+         Top             =   945
          Width           =   890
       End
       Begin VB.TextBox Text1 
@@ -829,7 +829,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   9
          Left            =   225
          TabIndex        =   76
-         Top             =   2340
+         Top             =   3060
          Width           =   810
       End
       Begin VB.Image imgBuscar 
@@ -837,7 +837,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   4
          Left            =   1305
          ToolTipText     =   "Buscar Agencia"
-         Top             =   2340
+         Top             =   3060
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -855,7 +855,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   18
          Left            =   9495
          TabIndex        =   66
-         Top             =   900
+         Top             =   1035
          Width           =   1065
       End
       Begin VB.Label Label1 
@@ -873,7 +873,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   17
          Left            =   7560
          TabIndex        =   65
-         Top             =   900
+         Top             =   1035
          Width           =   1335
       End
       Begin VB.Label Label1 
@@ -891,7 +891,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   16
          Left            =   11250
          TabIndex        =   64
-         Top             =   900
+         Top             =   1035
          Width           =   1155
       End
       Begin VB.Image imgBuscar 
@@ -899,7 +899,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   3
          Left            =   1305
          ToolTipText     =   "Buscar Agencia"
-         Top             =   1980
+         Top             =   2565
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -917,7 +917,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   15
          Left            =   225
          TabIndex        =   63
-         Top             =   1980
+         Top             =   2565
          Width           =   810
       End
       Begin VB.Image imgBuscar 
@@ -925,7 +925,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   2
          Left            =   1305
          ToolTipText     =   "Buscar T.Mercado"
-         Top             =   1620
+         Top             =   2070
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -943,7 +943,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   14
          Left            =   225
          TabIndex        =   61
-         Top             =   1620
+         Top             =   2070
          Width           =   1080
       End
       Begin VB.Image imgFec 
@@ -960,7 +960,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   1
          Left            =   1305
          ToolTipText     =   "Buscar Destino"
-         Top             =   1260
+         Top             =   1530
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -978,7 +978,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   8
          Left            =   225
          TabIndex        =   59
-         Top             =   1260
+         Top             =   1530
          Width           =   765
       End
       Begin VB.Image imgFec 
@@ -1004,7 +1004,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   0
          Left            =   9135
          ToolTipText     =   "Zoom descripción"
-         Top             =   1710
+         Top             =   1755
          Width           =   240
       End
       Begin VB.Label Label29 
@@ -1021,7 +1021,7 @@ Begin VB.Form frmVtasPedidos
          Height          =   255
          Left            =   7560
          TabIndex        =   38
-         Top             =   1710
+         Top             =   1755
          Width           =   1440
       End
       Begin VB.Label Label1 
@@ -1057,7 +1057,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   0
          Left            =   225
          TabIndex        =   24
-         Top             =   900
+         Top             =   990
          Width           =   810
       End
       Begin VB.Image imgBuscar 
@@ -1065,7 +1065,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   0
          Left            =   1305
          ToolTipText     =   "Buscar Cliente"
-         Top             =   900
+         Top             =   990
          Width           =   240
       End
    End
@@ -1108,12 +1108,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   8
-      Left            =   12015
+      Left            =   11970
       MaxLength       =   30
       TabIndex        =   78
       Tag             =   "Unidades|N|N|0||pedidos_calibre|unidades|#,##0||"
       Text            =   "unidades"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   495
    End
@@ -1133,12 +1133,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   16
-      Left            =   9135
+      Left            =   9180
       MaxLength       =   30
       TabIndex        =   77
       Tag             =   "Unidades|N|S|||pedidos_variedad|unidades|#,##0|N|"
       Text            =   "unidades"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   675
    End
@@ -1158,12 +1158,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   7
-      Left            =   12645
+      Left            =   12600
       MaxLength       =   30
       TabIndex        =   70
       Tag             =   "Peso Neto|N|N|0||pedidos_calibre|pesoneto|###,##0||"
       Text            =   "pesoneto"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   495
    End
@@ -1183,12 +1183,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   15
-      Left            =   10530
+      Left            =   10575
       MaxLength       =   30
       TabIndex        =   69
       Tag             =   "Prec.Profes.|N|S|||pedidos_variedad|preciopro|#0.0000|N|"
       Text            =   "precio prof"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1208,12 +1208,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   14
-      Left            =   9810
+      Left            =   9855
       MaxLength       =   30
       TabIndex        =   68
       Tag             =   "Total Palets|N|S|||pedidos_variedad|totpalet|##0|N|"
       Text            =   "tot.palet"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   765
    End
@@ -1233,12 +1233,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   13
-      Left            =   8460
+      Left            =   8505
       MaxLength       =   30
       TabIndex        =   67
       Tag             =   "Num.Cajas|N|S|||pedidos_variedad|numcajas|#,##0|N|"
       Text            =   "num.caj"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   675
    End
@@ -1258,11 +1258,11 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   12
-      Left            =   5850
+      Left            =   5895
       MaxLength       =   30
       TabIndex        =   50
       Text            =   "nom forf"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   585
    End
@@ -1282,11 +1282,11 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   11
-      Left            =   4590
+      Left            =   4635
       MaxLength       =   30
       TabIndex        =   49
       Text            =   "nom marca"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1302,7 +1302,7 @@ Begin VB.Form frmVtasPedidos
       TabIndex        =   48
       Tag             =   "Marca|N|N|||pedidos_variedad|codmarca|000||"
       Text            =   "marca"
-      Top             =   4905
+      Top             =   6705
       Visible         =   0   'False
       Width           =   405
    End
@@ -1311,7 +1311,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   0
       Left            =   135
       TabIndex        =   47
-      Top             =   3690
+      Top             =   4725
       Width           =   1110
       _ExtentX        =   1958
       _ExtentY        =   688
@@ -1351,12 +1351,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   10
-      Left            =   7695
+      Left            =   7740
       MaxLength       =   30
       TabIndex        =   46
       Tag             =   "Peso Neto|N|S|||pedidos_variedad|pesoneto|###,##0|N|"
       Text            =   "peso neto"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   765
    End
@@ -1376,12 +1376,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   9
-      Left            =   6930
+      Left            =   6975
       MaxLength       =   30
       TabIndex        =   45
       Tag             =   "Peso Bruto|N|N|||pedidos_variedad|pesobrut|###,##0||"
       Text            =   "peso bruto"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1401,12 +1401,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   8
-      Left            =   6120
+      Left            =   6165
       MaxLength       =   30
       TabIndex        =   44
       Tag             =   "Categoria|T|S|||pedidos_variedad|categori|||"
       Text            =   "categ"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1426,12 +1426,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   7
-      Left            =   5310
+      Left            =   5355
       MaxLength       =   30
       TabIndex        =   43
       Tag             =   "Forfait|T|N|||pedidos_variedad|codforfait|||"
       Text            =   "forfait"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   585
    End
@@ -1451,11 +1451,11 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   5
-      Left            =   3600
+      Left            =   3645
       MaxLength       =   30
       TabIndex        =   42
       Text            =   "nom.var.comer"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1475,12 +1475,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   4
-      Left            =   2835
+      Left            =   2880
       MaxLength       =   30
       TabIndex        =   41
       Tag             =   "Variedad Comercial|N|N|||pedidos_variedad|codvarco|||"
       Text            =   "var.comer."
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1500,11 +1500,11 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   3
-      Left            =   2160
+      Left            =   2250
       MaxLength       =   30
       TabIndex        =   40
       Text            =   "nomvarie"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1524,12 +1524,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   6
-      Left            =   11415
+      Left            =   11370
       MaxLength       =   30
       TabIndex        =   34
       Tag             =   "Num.Cajas|N|N|0||pedidos_calibre|numcajas|#,##0||"
       Text            =   "numcajas"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   495
    End
@@ -1549,11 +1549,11 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   5
-      Left            =   10665
+      Left            =   10620
       MaxLength       =   5
       TabIndex        =   33
       Text            =   "nomca"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   615
    End
@@ -1573,12 +1573,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   0
-      Left            =   6060
+      Left            =   6015
       MaxLength       =   12
       TabIndex        =   32
       Tag             =   "Num.Palet|N|N|||pedidos_calibre|numpalet||S|"
       Text            =   "numpedid"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   855
    End
@@ -1598,12 +1598,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   1
-      Left            =   7020
+      Left            =   6975
       MaxLength       =   12
       TabIndex        =   31
       Tag             =   "Num.Linea|N|N|||pedidos_calibre|numlinea|00|N|"
       Text            =   "numlinea"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   735
    End
@@ -1622,12 +1622,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   2
-      Left            =   7830
+      Left            =   7785
       MaxLength       =   12
       TabIndex        =   30
       Tag             =   "Num.Linea 1|N|N|||pedidos_calibre|numline1||N|"
       Text            =   "numline1"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   975
    End
@@ -1647,12 +1647,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   3
-      Left            =   8910
+      Left            =   8865
       MaxLength       =   12
       TabIndex        =   29
       Tag             =   "Variedad|N|N|||pedidos_calibre|codvarie|000000|N|"
       Text            =   "variedad"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   735
    End
@@ -1672,12 +1672,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   4
-      Left            =   9975
+      Left            =   9930
       MaxLength       =   5
       TabIndex        =   28
       Tag             =   "Calibre|N|N|||pedidos_calibre|codcalib|00|N|"
       Text            =   "calib"
-      Top             =   6885
+      Top             =   8595
       Visible         =   0   'False
       Width           =   615
    End
@@ -1697,12 +1697,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   0
-      Left            =   450
+      Left            =   495
       MaxLength       =   7
       TabIndex        =   27
       Tag             =   "Num.Pedido|N|N|||pedidos_variedad|numpedid||S|"
       Text            =   "numpedi"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   615
    End
@@ -1722,12 +1722,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   1
-      Left            =   810
+      Left            =   855
       MaxLength       =   15
       TabIndex        =   26
       Tag             =   "Num.Linea|N|N|||pedidos_variedad|numlinea|00|S|"
       Text            =   "numlinea"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1747,12 +1747,12 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       Height          =   315
       Index           =   2
-      Left            =   1485
+      Left            =   1530
       MaxLength       =   30
       TabIndex        =   25
       Tag             =   "Variedad|N|N|||pedidos_variedad|codvarie||N|"
       Text            =   "variedad"
-      Top             =   4905
+      Top             =   6660
       Visible         =   0   'False
       Width           =   855
    End
@@ -1761,7 +1761,7 @@ Begin VB.Form frmVtasPedidos
       Index           =   0
       Left            =   165
       TabIndex        =   21
-      Top             =   8055
+      Top             =   9675
       Width           =   2175
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1797,7 +1797,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   15435
       TabIndex        =   19
-      Top             =   8145
+      Top             =   9765
       Width           =   1065
    End
    Begin VB.CommandButton cmdAceptar 
@@ -1814,7 +1814,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   14265
       TabIndex        =   18
-      Top             =   8160
+      Top             =   9780
       Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
@@ -1831,7 +1831,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   375
       Left            =   15435
       TabIndex        =   20
-      Top             =   8145
+      Top             =   9765
       Visible         =   0   'False
       Width           =   1035
    End
@@ -1981,7 +1981,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   2055
       Left            =   135
       TabIndex        =   36
-      Top             =   4140
+      Top             =   5265
       Width           =   16350
       _ExtentX        =   28840
       _ExtentY        =   3625
@@ -2048,9 +2048,9 @@ Begin VB.Form frmVtasPedidos
    Begin MSDataGridLib.DataGrid DataGrid1 
       Bindings        =   "frmVtasPedidos.frx":01C2
       Height          =   1680
-      Left            =   5940
+      Left            =   5805
       TabIndex        =   35
-      Top             =   6345
+      Top             =   7560
       Width           =   10545
       _ExtentX        =   18600
       _ExtentY        =   2963
@@ -2145,9 +2145,9 @@ Begin VB.Form frmVtasPedidos
       EndProperty
       ForeColor       =   &H00000080&
       Height          =   3300
-      Left            =   7695
+      Left            =   6075
       TabIndex        =   51
-      Top             =   4095
+      Top             =   3510
       Visible         =   0   'False
       Width           =   3930
       Begin VB.TextBox Text2 
@@ -2341,7 +2341,7 @@ Begin VB.Form frmVtasPedidos
       Height          =   645
       Left            =   540
       TabIndex        =   74
-      Top             =   6885
+      Top             =   8505
       Width           =   5190
    End
    Begin VB.Menu mnOpciones 
@@ -4580,7 +4580,7 @@ Dim b As Boolean
 Dim Opcion As Byte
 Dim Sql As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     b = DataGrid1.Enabled
     If vDataGrid.Name = "DataGrid1" Then
@@ -4602,7 +4602,7 @@ Dim Sql As String
    
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -4610,7 +4610,7 @@ End Sub
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim tots As String
     
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     Select Case vDataGrid.Name
         Case "DataGrid1" 'Pedidos_calibres
@@ -4643,7 +4643,7 @@ Dim tots As String
     vDataGrid.HoldFields
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 

@@ -1516,6 +1516,9 @@ Attribute frmFPag.VB_VarHelpID = -1
 Private WithEvents frmMer As frmManTipMerc 'Form Mto de Tipos de Mercado
 Attribute frmMer.VB_VarHelpID = -1
 
+Private WithEvents frmFac As frmBasico2 'manda busqueda previa facturas
+Attribute frmFac.VB_VarHelpID = -1
+
 
 
 Private Modo As Byte
@@ -2023,6 +2026,23 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
     PonerFoco Text1(indice)
 End Sub
 
+Private Sub frmFac_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codtipom = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+        CadB = CadB & " and numfactu = " & RecuperaValor(CadenaSeleccion, 2)
+        CadB = CadB & " and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 3), "F")
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
+
 Private Sub frmFPag_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'Codigo
@@ -2241,7 +2261,7 @@ End Sub
 Private Sub Text1_LostFocus(Index As Integer)
 Dim devuelve As String
 Dim cadMen As String
-Dim SQL As String
+Dim Sql As String
 Dim Nregs As Long
 Dim vTipoMov As CTiposMov
         
@@ -2392,51 +2412,61 @@ Dim Cad As String
 Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
-    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
-    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
-    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
-    
-    Titulo = "Facturas"
-    devuelve = "0|1|4|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|4|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-'        If EsCabecera Then
-'            PonerCadenaBusqueda
-'            Text1(0).Text = Format(Text1(0).Text, "0000000")
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+'    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
+'    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
+'    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
+'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
+'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
+'    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
+'
+'    Titulo = "Facturas"
+'    devuelve = "0|1|4|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|4|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
+'        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+''        If EsCabecera Then
+''            PonerCadenaBusqueda
+''            Text1(0).Text = Format(Text1(0).Text, "0000000")
+''        End If
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+'            PonerFoco Text1(kCampo)
 '        End If
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+'    End If
+'    Screen.MousePointer = vbDefault
+
+
+    Set frmFac = New frmBasico2
+
+    AyudaFacturas frmFac, , CadB
+
+    Set frmFac = Nothing
+
+
+
 End Sub
 
 
@@ -2519,7 +2549,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Byte, Numreg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2543,9 +2573,9 @@ Dim b As Boolean
     End If
         
     'Poner Flechas de desplazamiento visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -2623,7 +2653,7 @@ Private Function DatosOk() As Boolean
 'la cabecera del Pedido
 Dim b As Boolean
 Dim Serie As String
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EDatosOK
 
@@ -2644,9 +2674,9 @@ Dim SQL As String
 '        End If
 
         'comprobamos que no exista ya la factura en la tabla facturas de ariagro
-        SQL = ""
-        SQL = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
-        If SQL <> "" Then
+        Sql = ""
+        Sql = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
+        If Sql <> "" Then
             MsgBox "Factura ya existente. Reintroduzca.", vbExclamation
             PonerFoco Text1(0)
             b = False
@@ -2660,13 +2690,13 @@ Dim SQL As String
         Serie = ObtenerLetraSerie(Text1(6).Text)
 '++
         If Serie <> "" Then
-            SQL = ""
+            Sql = ""
             If vParamAplic.ContabilidadNueva Then
-                SQL = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Mid(Text1(1).Text, 7, 4), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Mid(Text1(1).Text, 7, 4), "N")
             Else
-                SQL = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", Text1(0).Text, "N", "fecfaccl", Mid(Text1(1).Text, 7, 4), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", Text1(0).Text, "N", "fecfaccl", Mid(Text1(1).Text, 7, 4), "N")
             End If
-            If SQL <> "" Then
+            If Sql <> "" Then
                 MsgBox "Factura existente en contabilidad. Reintroduzca.", vbExclamation
                 PonerFoco Text1(0)
                 b = False
@@ -2840,7 +2870,7 @@ End Sub
 
 
 Private Function Eliminar() As Boolean
-Dim SQL As String, LEtra As String, Sql2 As String
+Dim Sql As String, LEtra As String, Sql2 As String
 Dim b As Boolean
 Dim vTipoMov As CTiposMov
 Dim Mens As String
@@ -2853,10 +2883,10 @@ Dim Mens As String
         
     'Eliminar en tablas de cabecera de albaran
     '------------------------------------------
-    SQL = " " & ObtenerWhereCP(True)
+    Sql = " " & ObtenerWhereCP(True)
     
     'Cabecera de factura
-    conn.Execute "Delete from " & NombreTabla & SQL
+    conn.Execute "Delete from " & NombreTabla & Sql
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
@@ -2903,13 +2933,13 @@ End Sub
 
 
 Private Function ObtenerWhereCP(conWhere As Boolean) As String
-Dim SQL As String
+Dim Sql As String
 
     On Error Resume Next
     
-    SQL = "codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & DBSet(Text1(0).Text, "N") & " and fecfactu= " & DBSet(Text1(1).Text, "F")
-    If conWhere Then SQL = " WHERE " & SQL
-    ObtenerWhereCP = SQL
+    Sql = "codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & DBSet(Text1(0).Text, "N") & " and fecfactu= " & DBSet(Text1(1).Text, "F")
+    If conWhere Then Sql = " WHERE " & Sql
+    ObtenerWhereCP = Sql
     
     If Err.Number <> 0 Then MuestraError Err.Number, "Obteniendo cadena WHERE.", Err.Description
 End Function
@@ -3014,7 +3044,7 @@ End Sub
 
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim i As Byte
     
     Combo1(0).Clear
@@ -3059,7 +3089,7 @@ End Function
 
 Private Sub InsertarCabecera()
 Dim vTipoMov As CTiposMov 'Clase Tipo Movimiento
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EInsertarCab
     
@@ -3068,9 +3098,9 @@ Dim SQL As String
     Set vTipoMov = New CTiposMov
     If vTipoMov.Leer(CodTipoMov) Then
         Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-        SQL = CadenaInsertarDesdeForm(Me)
-        If SQL <> "" Then
-            If InsertarOferta(SQL, vTipoMov) Then
+        Sql = CadenaInsertarDesdeForm(Me)
+        If Sql <> "" Then
+            If InsertarOferta(Sql, vTipoMov) Then
                 CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                 PonerCadenaBusqueda
                 PonerModo 2
@@ -3226,7 +3256,7 @@ Private Function CalcularDatosFacturaVenta() As Boolean
 Dim Rs As ADODB.Recordset
 Dim i As Integer
 
-Dim SQL As String
+Dim Sql As String
 Dim cadAux As String
 Dim cadAux1 As String
 
@@ -3459,15 +3489,15 @@ End Function
 
 
 Private Function FacturaDescontada(TipoM As String, NumFact As Long, FecFact As Date) As Boolean
-Dim SQL As String
+Dim Sql As String
     
     FacturaDescontada = False
     
-    SQL = "select count(*) from facturas_acuenta where codtipomcta = " & DBSet(TipoM, "T")
-    SQL = SQL & " and numfactucta = " & DBSet(NumFact, "N")
-    SQL = SQL & " and fecfactucta = " & DBSet(FecFact, "F")
+    Sql = "select count(*) from facturas_acuenta where codtipomcta = " & DBSet(TipoM, "T")
+    Sql = Sql & " and numfactucta = " & DBSet(NumFact, "N")
+    Sql = Sql & " and fecfactucta = " & DBSet(FecFact, "F")
     
-    FacturaDescontada = (TotalRegistros(SQL) <> 0)
+    FacturaDescontada = (TotalRegistros(Sql) <> 0)
 
 End Function
 

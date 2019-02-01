@@ -45,7 +45,7 @@ Begin VB.Form frmListCyCRiesgo
          TabIndex        =   1
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   1650
-         Width           =   1095
+         Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -65,7 +65,7 @@ Begin VB.Form frmListCyCRiesgo
          TabIndex        =   0
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
          Top             =   1245
-         Width           =   1095
+         Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
          Caption         =   "&Cancelar"
