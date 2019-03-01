@@ -292,7 +292,6 @@ Begin VB.Form frmManArtic
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   6
       TabHeight       =   520
       ShowFocusRect   =   0   'False
@@ -307,7 +306,7 @@ Begin VB.Form frmManArtic
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmManArtic.frx":000C
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "Label2(11)"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).Control(1)=   "Label2(2)"
@@ -389,7 +388,7 @@ Begin VB.Form frmManArtic
       Tab(0).ControlCount=   39
       TabCaption(1)   =   "Stocks Almacenes"
       TabPicture(1)   =   "frmManArtic.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FrameAux0"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
@@ -398,7 +397,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   16
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   63
          Text            =   "Text1"
@@ -411,7 +410,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   14
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   62
          Text            =   "Text1"
@@ -424,7 +423,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   12
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   61
          Text            =   "Text1"
@@ -437,7 +436,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   11
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   60
          Text            =   "Text1"
@@ -450,7 +449,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   9
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   59
          Text            =   "Text1"
@@ -463,7 +462,7 @@ Begin VB.Form frmManArtic
          Enabled         =   0   'False
          Height          =   315
          Index           =   4
-         Left            =   -64920
+         Left            =   10080
          MaxLength       =   6
          TabIndex        =   58
          Text            =   "Text1"
@@ -484,7 +483,7 @@ Begin VB.Form frmManArtic
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1995
-         Left            =   -65985
+         Left            =   9015
          TabIndex        =   43
          Top             =   1755
          Width           =   4575
@@ -667,7 +666,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   -72075
+         Left            =   2925
          Locked          =   -1  'True
          MaxLength       =   30
          TabIndex        =   42
@@ -688,7 +687,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   -73050
+         Left            =   1950
          MaxLength       =   2
          TabIndex        =   4
          Tag             =   "Cod. Tipo Unidad|N|N|0|99|sartic|codunida|00|N|"
@@ -709,7 +708,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   -73050
+         Left            =   1950
          MaxLength       =   6
          TabIndex        =   2
          Tag             =   "Cod. Proveedor|N|N|0|999999|sartic|codprove|000000|N|"
@@ -730,7 +729,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   -73050
+         Left            =   1950
          MaxLength       =   4
          TabIndex        =   3
          Tag             =   "Cod. Familia|N|N|0|9999|sartic|codfamia|0000|N|"
@@ -751,7 +750,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   -73050
+         Left            =   1950
          MaxLength       =   2
          TabIndex        =   6
          Tag             =   "Tipo de IVA|N|N|0|99|sartic|codigiva||N|"
@@ -772,7 +771,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   -72075
+         Left            =   2925
          Locked          =   -1  'True
          MaxLength       =   30
          TabIndex        =   41
@@ -793,7 +792,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   -72075
+         Left            =   2925
          Locked          =   -1  'True
          MaxLength       =   30
          TabIndex        =   40
@@ -814,7 +813,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   -72075
+         Left            =   2925
          Locked          =   -1  'True
          MaxLength       =   30
          TabIndex        =   39
@@ -835,7 +834,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   -72075
+         Left            =   2925
          Locked          =   -1  'True
          MaxLength       =   30
          TabIndex        =   38
@@ -856,7 +855,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   -73050
+         Left            =   1950
          MaxLength       =   2
          TabIndex        =   5
          Tag             =   "Cod. Tipo Artículo|T|N|||sartic|codtipar||N|"
@@ -876,7 +875,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   -63915
+         Left            =   11085
          MaxLength       =   13
          TabIndex        =   9
          Tag             =   "Código de Barras|T|S|||sartic|codigoea||N|"
@@ -896,7 +895,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   -63915
+         Left            =   11085
          MaxLength       =   10
          TabIndex        =   10
          Tag             =   "Fecha de Alta|F|N|||sartic|fecaltas|dd/mm/yyyy|N|"
@@ -917,7 +916,7 @@ Begin VB.Form frmManArtic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   360
-         Left            =   -63420
+         Left            =   11580
          Locked          =   -1  'True
          MaxLength       =   13
          TabIndex        =   37
@@ -938,7 +937,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   315
          Index           =   0
-         Left            =   -65805
+         Left            =   9195
          TabIndex        =   15
          Tag             =   "Control de stock|N|N|0|1|sartic|ctrstock||N|"
          Top             =   3870
@@ -956,7 +955,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   870
          Index           =   20
-         Left            =   -74715
+         Left            =   285
          MaxLength       =   200
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
@@ -977,7 +976,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   825
          Index           =   19
-         Left            =   -74715
+         Left            =   285
          MaxLength       =   200
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
@@ -989,7 +988,7 @@ Begin VB.Form frmManArtic
       Begin VB.Frame FrameAux0 
          BorderStyle     =   0  'None
          Height          =   4440
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   34
          Top             =   480
          Width           =   13920
@@ -1440,7 +1439,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   3
-         Left            =   -73350
+         Left            =   1650
          ToolTipText     =   "Buscar tipo unidad"
          Top             =   1395
          Width           =   240
@@ -1458,7 +1457,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   17
-         Left            =   -74730
+         Left            =   270
          TabIndex        =   57
          Top             =   1395
          Width           =   1335
@@ -1476,7 +1475,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   8
-         Left            =   -74730
+         Left            =   270
          TabIndex        =   56
          Top             =   2205
          Width           =   1095
@@ -1494,7 +1493,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   6
-         Left            =   -74730
+         Left            =   270
          TabIndex        =   55
          Top             =   990
          Width           =   855
@@ -1512,7 +1511,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   5
-         Left            =   -74730
+         Left            =   270
          TabIndex        =   54
          Top             =   585
          Width           =   1260
@@ -1520,7 +1519,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   -73350
+         Left            =   1650
          Tag             =   "-1"
          ToolTipText     =   "Buscar proveedor"
          Top             =   585
@@ -1529,7 +1528,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   -73350
+         Left            =   1650
          ToolTipText     =   "Buscar familia"
          Top             =   990
          Width           =   240
@@ -1537,7 +1536,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   -73350
+         Left            =   1650
          ToolTipText     =   "Buscar tipo IVA"
          Top             =   2205
          Width           =   240
@@ -1545,7 +1544,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   4
-         Left            =   -73350
+         Left            =   1650
          ToolTipText     =   "Buscar tipo artículo"
          Top             =   1800
          Width           =   240
@@ -1563,7 +1562,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   9
-         Left            =   -74730
+         Left            =   270
          TabIndex        =   53
          Top             =   1800
          Width           =   1335
@@ -1581,7 +1580,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   -65745
+         Left            =   9255
          TabIndex        =   52
          Top             =   855
          Width           =   1695
@@ -1599,7 +1598,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   255
          Index           =   16
-         Left            =   -65745
+         Left            =   9255
          TabIndex        =   51
          Top             =   1260
          Width           =   1095
@@ -1607,7 +1606,7 @@ Begin VB.Form frmManArtic
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   0
-         Left            =   -64185
+         Left            =   10815
          Picture         =   "frmManArtic.frx":00E7
          ToolTipText     =   "Buscar fecha"
          Top             =   1260
@@ -1625,7 +1624,7 @@ Begin VB.Form frmManArtic
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   -65805
+         Left            =   9195
          TabIndex        =   50
          Top             =   4305
          Width           =   2370
@@ -1643,7 +1642,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   240
          Index           =   2
-         Left            =   -74715
+         Left            =   285
          TabIndex        =   49
          Top             =   3900
          Width           =   2340
@@ -1661,7 +1660,7 @@ Begin VB.Form frmManArtic
          EndProperty
          Height          =   240
          Index           =   11
-         Left            =   -74715
+         Left            =   285
          TabIndex        =   48
          Top             =   2655
          Width           =   1890
@@ -1852,6 +1851,8 @@ Attribute frmCtas.VB_VarHelpID = -1
 Private WithEvents frmTipIva As frmTipIVAConta  'Tipos de IVA de la contabilidad
 Attribute frmTipIva.VB_VarHelpID = -1
 ' *****************************************************
+Private WithEvents frmArt As frmBasico2 'manda busqueda previa
+Attribute frmArt.VB_VarHelpID = -1
 
 
 Private Modo As Byte
@@ -2148,14 +2149,14 @@ Private Sub LimpiarCampos()
     
     limpiar Me   'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
-    chkctrstock(0).Value = 0
+    chkCtrStock(0).Value = 0
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(frameAux As String)
+Private Sub LimpiarCamposLin(FrameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -2166,7 +2167,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, Numreg As Byte
+Dim i As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -2188,9 +2189,9 @@ Dim b As Boolean
     '=======================================
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -2218,7 +2219,7 @@ Dim b As Boolean
     BloquearImgBuscar Me, Modo, ModoLineas
     BloquearImgFec Me, 0, Modo
     BloquearImgFec Me, 1, Modo
-    BloquearChk chkctrstock(0), (Modo = 0 Or Modo = 2 Or Modo = 5)
+    BloquearChk chkCtrStock(0), (Modo = 0 Or Modo = 2 Or Modo = 5)
     
     chkVistaPrevia(0).Enabled = (Modo <= 2)
     
@@ -2321,7 +2322,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2347,6 +2348,22 @@ Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
     Text3(1).Text = RecuperaValor(CadenaSeleccion, 1) 'codalmacen
     FormateaCampo Text3(1)
     txtAux2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'nomalmacen
+End Sub
+
+Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codartic = '" & RecuperaValor(CadenaSeleccion, 1) & "'"
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
 End Sub
 
 Private Sub frmB_Selecionado(CadenaDevuelta As String)
@@ -2598,37 +2615,44 @@ Private Sub HacerBusqueda()
 End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim Cad As String
-        
-    'Cridem al form
-    ' **************** arreglar-ho per a vore lo que es desije ****************
-    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 25, "Código")
-    Cad = Cad & ParaGrid(Text1(1), 50, "Nombre")
-    Cad = Cad & ParaGrid(Text1(2), 25, "EAN")
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = NombreTabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
-        frmB.vTitulo = "Articulos" ' ***** repasa açò: títol de BuscaGrid *****
-        frmB.vSelElem = 1
+'    Dim Cad As String
+'
+'    'Cridem al form
+'    ' **************** arreglar-ho per a vore lo que es desije ****************
+'    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(0), 25, "Código")
+'    Cad = Cad & ParaGrid(Text1(1), 50, "Nombre")
+'    Cad = Cad & ParaGrid(Text1(2), 25, "EAN")
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = NombreTabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
+'        frmB.vTitulo = "Articulos" ' ***** repasa açò: títol de BuscaGrid *****
+'        frmB.vSelElem = 1
+'
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha posat valors i tenim que es formulari de búsqueda llavors
+'        'tindrem que tancar el form llançant l'event
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha retornat datos, es a decir NO ha retornat datos
+'            PonerFoco Text1(kCampo)
+'        End If
+'    End If
 
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha posat valors i tenim que es formulari de búsqueda llavors
-        'tindrem que tancar el form llançant l'event
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha retornat datos, es a decir NO ha retornat datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
+    Set frmArt = New frmBasico2
+    
+    AyudaArticulosPrev frmArt
+    
+    Set frmArt = Nothing
+
 End Sub
 
 Private Sub cmdRegresar_Click()
@@ -2771,7 +2795,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim i As Integer
-Dim codPobla As String, desPobla As String
+Dim codpobla As String, despobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub

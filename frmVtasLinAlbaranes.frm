@@ -2667,7 +2667,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2981,6 +2981,8 @@ Private Sub BotonAnyadir()
     Text1(27).Locked = True
     
     Combo1.ListIndex = 0
+    '[Monica]13/02/2019: para el caso de Natural quiere que por defecto sea globalgap, luego ellos ya lo cambiaran
+    If vParamAplic.Cooperativa = 9 Then Combo1.ListIndex = 3
     
     Check1(1).Value = 1
     

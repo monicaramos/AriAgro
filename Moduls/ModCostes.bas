@@ -414,11 +414,6 @@ EBorrarEnvases:
     End If
 End Function
 
-
-
-
-
-
 'Private Sub CalcularPrecio()
 '    txtAux2(1).Text = ""
 '    If txtAux(2).Text <> "" And txtAux2(0).Text <> "" Then
@@ -506,7 +501,7 @@ Dim b As Boolean
     
     b = True
     While Not Rs.EOF And b
-        b = ActualizarCostes(Albaran, DBLet(Rs!numlinea, "N"), False, DBLet(Rs!codforfait, "T"), DBLet(Rs!CodPalet, "N"))
+        b = ActualizarCostes(Albaran, DBLet(Rs!NumLinea, "N"), False, DBLet(Rs!codforfait, "T"), DBLet(Rs!CodPalet, "N"))
         Rs.MoveNext
     Wend
 
@@ -536,7 +531,7 @@ Dim b As Boolean
     
     b = True
     While Not Rs.EOF And b
-        b = ActualizarCostes(Albaran, DBLet(Rs!numlinea, "N"), True, DBLet(Rs!codforfait, "T"), DBLet(Rs!CodPalet, "N"))
+        b = ActualizarCostes(Albaran, DBLet(Rs!NumLinea, "N"), True, DBLet(Rs!codforfait, "T"), DBLet(Rs!CodPalet, "N"))
         Rs.MoveNext
     Wend
 
@@ -804,17 +799,17 @@ Dim Total As Currency
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    cad = ""
+    Cad = ""
     While Not Rs.EOF
-        cad = cad & "(" & DBSet(Rs.Fields(0).Value, "T") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "F") & "),"
+        Cad = Cad & "(" & DBSet(Rs.Fields(0).Value, "T") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "F") & "),"
         
         Rs.MoveNext
     Wend
     ' quitamos la ultima ,
-    If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
+    If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
     
     '[Monica]05/03/2013: indicamos la tabla pq sino da error en el vista previa
-    FacturasdeAlbaran = "(facturas.codtipom, facturas.numfactu, facturas.fecfactu) in (" & cad & ")"
+    FacturasdeAlbaran = "(facturas.codtipom, facturas.numfactu, facturas.fecfactu) in (" & Cad & ")"
     Exit Function
     
 eFacturasdeAlbaran:
@@ -994,17 +989,17 @@ Dim Total As Currency
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    cad = ""
+    Cad = ""
     While Not Rs.EOF
-        cad = cad & "(" & DBSet(Rs.Fields(0).Value, "T") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "F") & "),"
+        Cad = Cad & "(" & DBSet(Rs.Fields(0).Value, "T") & "," & DBSet(Rs.Fields(1).Value, "N") & "," & DBSet(Rs.Fields(2).Value, "F") & "),"
         
         Rs.MoveNext
     Wend
     ' quitamos la ultima ,
-    If cad <> "" Then cad = Mid(cad, 1, Len(cad) - 1)
+    If Cad <> "" Then Cad = Mid(Cad, 1, Len(Cad) - 1)
     
     '[Monica]05/03/2013: indicamos la tabla pq sino da error en el vista previa
-    FacturasdeAlbaranSOCIO = "(facturassocio.codtipom, facturassocio.numfactu, facturassocio.fecfactu) in (" & cad & ")"
+    FacturasdeAlbaranSOCIO = "(facturassocio.codtipom, facturassocio.numfactu, facturassocio.fecfactu) in (" & Cad & ")"
     Exit Function
     
 eFacturasdeAlbaranSOCIO:
@@ -1020,7 +1015,7 @@ Dim Sql As String
 Dim Rs As ADODB.Recordset, Rs1 As ADODB.Recordset
 Dim Total As Currency
 Dim ImporteCobrado As Currency
-Dim cad As String
+Dim Cad As String
 
     On Error GoTo eImporteAlbaranFacturadoNoCobrado
 
@@ -1032,10 +1027,10 @@ Dim cad As String
     Sql = Sql & " where facturas_variedad.numalbar = " & Albaran
     Sql = Sql & " and facturas_variedad.numlinealbar = " & Linea
     
-    cad = FacturasCobradasEnTesoreria(Albaran, Linea, Total, ImporteCobrado)
+    Cad = FacturasCobradasEnTesoreria(Albaran, Linea, Total, ImporteCobrado)
     '[Monica]10/04/2012: he añadido la condicion de factura contabilizada
-    If cad <> "" And FacturaContabilizada(Albaran, Linea) Then
-        Sql = Sql & " and (codtipom, numfactu, fecfactu) not in (" & cad & ")"
+    If Cad <> "" And FacturaContabilizada(Albaran, Linea) Then
+        Sql = Sql & " and (codtipom, numfactu, fecfactu) not in (" & Cad & ")"
     End If
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText

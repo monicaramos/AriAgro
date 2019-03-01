@@ -156,7 +156,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   1725
+         Left            =   1905
          MaxLength       =   8
          TabIndex        =   0
          Tag             =   "Código Proveedor|N|N|0|999999|proveedor|codprove|000000|S|"
@@ -204,7 +204,7 @@ Begin VB.Form frmManProve
          Width           =   2670
       End
       Begin VB.Label Label1 
-         Caption         =   "Cod. Proveedor"
+         Caption         =   "Código Proveedor"
          BeginProperty Font 
             Name            =   "Verdana"
             Size            =   9.75
@@ -219,7 +219,7 @@ Begin VB.Form frmManProve
          Left            =   120
          TabIndex        =   40
          Top             =   225
-         Width           =   1575
+         Width           =   1800
       End
       Begin VB.Label Label1 
          Caption         =   "Nombre"
@@ -391,93 +391,93 @@ Begin VB.Form frmManProve
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmManProve.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label1(21)"
+      Tab(0).Control(0)=   "Text1(29)"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "imgFec(1)"
+      Tab(0).Control(1)=   "Text1(6)"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "imgFec(0)"
+      Tab(0).Control(2)=   "Text1(4)"
       Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "imgBuscar(0)"
+      Tab(0).Control(3)=   "Text1(3)"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "Label1(19)"
+      Tab(0).Control(4)=   "Text1(2)"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "Label1(13)"
+      Tab(0).Control(5)=   "Text1(7)"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "Label1(14)"
+      Tab(0).Control(6)=   "Text1(8)"
       Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "imgBuscar(2)"
+      Tab(0).Control(7)=   "Text1(9)"
       Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "Label1(12)"
+      Tab(0).Control(8)=   "Text1(10)"
       Tab(0).Control(8).Enabled=   0   'False
-      Tab(0).Control(9)=   "Label1(20)"
+      Tab(0).Control(9)=   "Combo1(1)"
       Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "imgBuscar(1)"
+      Tab(0).Control(10)=   "Text1(14)"
       Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "Label1(10)"
+      Tab(0).Control(11)=   "Text1(15)"
       Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "Label1(11)"
+      Tab(0).Control(12)=   "Text1(16)"
       Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "Label1(9)"
+      Tab(0).Control(13)=   "Text1(17)"
       Tab(0).Control(13).Enabled=   0   'False
-      Tab(0).Control(14)=   "Label1(8)"
+      Tab(0).Control(14)=   "Text1(18)"
       Tab(0).Control(14).Enabled=   0   'False
-      Tab(0).Control(15)=   "Label1(7)"
+      Tab(0).Control(15)=   "Text1(13)"
       Tab(0).Control(15).Enabled=   0   'False
-      Tab(0).Control(16)=   "Label1(2)"
+      Tab(0).Control(16)=   "Text1(12)"
       Tab(0).Control(16).Enabled=   0   'False
-      Tab(0).Control(17)=   "Label1(5)"
+      Tab(0).Control(17)=   "Text2(13)"
       Tab(0).Control(17).Enabled=   0   'False
-      Tab(0).Control(18)=   "Label1(3)"
+      Tab(0).Control(18)=   "Text2(14)"
       Tab(0).Control(18).Enabled=   0   'False
-      Tab(0).Control(19)=   "Label1(4)"
+      Tab(0).Control(19)=   "Text1(11)"
       Tab(0).Control(19).Enabled=   0   'False
-      Tab(0).Control(20)=   "Label1(6)"
+      Tab(0).Control(20)=   "Text1(5)"
       Tab(0).Control(20).Enabled=   0   'False
-      Tab(0).Control(21)=   "Text2(12)"
+      Tab(0).Control(21)=   "Combo1(0)"
       Tab(0).Control(21).Enabled=   0   'False
-      Tab(0).Control(22)=   "Combo1(0)"
+      Tab(0).Control(22)=   "Text2(12)"
       Tab(0).Control(22).Enabled=   0   'False
-      Tab(0).Control(23)=   "Text1(5)"
+      Tab(0).Control(23)=   "Label1(6)"
       Tab(0).Control(23).Enabled=   0   'False
-      Tab(0).Control(24)=   "Text1(11)"
+      Tab(0).Control(24)=   "Label1(4)"
       Tab(0).Control(24).Enabled=   0   'False
-      Tab(0).Control(25)=   "Text2(14)"
+      Tab(0).Control(25)=   "Label1(3)"
       Tab(0).Control(25).Enabled=   0   'False
-      Tab(0).Control(26)=   "Text2(13)"
+      Tab(0).Control(26)=   "Label1(5)"
       Tab(0).Control(26).Enabled=   0   'False
-      Tab(0).Control(27)=   "Text1(12)"
+      Tab(0).Control(27)=   "Label1(2)"
       Tab(0).Control(27).Enabled=   0   'False
-      Tab(0).Control(28)=   "Text1(13)"
+      Tab(0).Control(28)=   "Label1(7)"
       Tab(0).Control(28).Enabled=   0   'False
-      Tab(0).Control(29)=   "Text1(18)"
+      Tab(0).Control(29)=   "Label1(8)"
       Tab(0).Control(29).Enabled=   0   'False
-      Tab(0).Control(30)=   "Text1(17)"
+      Tab(0).Control(30)=   "Label1(9)"
       Tab(0).Control(30).Enabled=   0   'False
-      Tab(0).Control(31)=   "Text1(16)"
+      Tab(0).Control(31)=   "Label1(11)"
       Tab(0).Control(31).Enabled=   0   'False
-      Tab(0).Control(32)=   "Text1(15)"
+      Tab(0).Control(32)=   "Label1(10)"
       Tab(0).Control(32).Enabled=   0   'False
-      Tab(0).Control(33)=   "Text1(14)"
+      Tab(0).Control(33)=   "imgBuscar(1)"
       Tab(0).Control(33).Enabled=   0   'False
-      Tab(0).Control(34)=   "Combo1(1)"
+      Tab(0).Control(34)=   "Label1(20)"
       Tab(0).Control(34).Enabled=   0   'False
-      Tab(0).Control(35)=   "Text1(10)"
+      Tab(0).Control(35)=   "Label1(12)"
       Tab(0).Control(35).Enabled=   0   'False
-      Tab(0).Control(36)=   "Text1(9)"
+      Tab(0).Control(36)=   "imgBuscar(2)"
       Tab(0).Control(36).Enabled=   0   'False
-      Tab(0).Control(37)=   "Text1(8)"
+      Tab(0).Control(37)=   "Label1(14)"
       Tab(0).Control(37).Enabled=   0   'False
-      Tab(0).Control(38)=   "Text1(7)"
+      Tab(0).Control(38)=   "Label1(13)"
       Tab(0).Control(38).Enabled=   0   'False
-      Tab(0).Control(39)=   "Text1(2)"
+      Tab(0).Control(39)=   "Label1(19)"
       Tab(0).Control(39).Enabled=   0   'False
-      Tab(0).Control(40)=   "Text1(3)"
+      Tab(0).Control(40)=   "imgBuscar(0)"
       Tab(0).Control(40).Enabled=   0   'False
-      Tab(0).Control(41)=   "Text1(4)"
+      Tab(0).Control(41)=   "imgFec(0)"
       Tab(0).Control(41).Enabled=   0   'False
-      Tab(0).Control(42)=   "Text1(6)"
+      Tab(0).Control(42)=   "imgFec(1)"
       Tab(0).Control(42).Enabled=   0   'False
-      Tab(0).Control(43)=   "Text1(29)"
+      Tab(0).Control(43)=   "Label1(21)"
       Tab(0).Control(43).Enabled=   0   'False
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Datos Contacto"
@@ -503,19 +503,19 @@ Begin VB.Form frmManProve
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmManProve.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "imgFec1(0)"
+      Tab(2).Control(0)=   "Text3(0)"
       Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "Label17"
+      Tab(2).Control(1)=   "Toolbar2"
       Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "Label16"
+      Tab(2).Control(2)=   "lw1"
       Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Toolbar3"
       Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "lw1"
+      Tab(2).Control(4)=   "Label16"
       Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Toolbar2"
+      Tab(2).Control(5)=   "Label17"
       Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "Text3(0)"
+      Tab(2).Control(6)=   "imgFec1(0)"
       Tab(2).Control(6).Enabled=   0   'False
       Tab(2).ControlCount=   7
       Begin VB.TextBox Text1 
@@ -2107,6 +2107,8 @@ Attribute frmAlb.VB_VarHelpID = -1
 Private WithEvents frmPed As frmComEntPedidos ' pedidos de compra
 Attribute frmPed.VB_VarHelpID = -1
 ' *****************************************************
+Private WithEvents frmPro As frmBasico2 ' manda busqueda previa
+Attribute frmPro.VB_VarHelpID = -1
 
 
 Private Modo As Byte
@@ -2316,8 +2318,8 @@ Dim i As Integer
     Next i
     
     'carga IMAGES de mail
-    For i = 0 To Me.ImgMail.Count - 1
-        Me.ImgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
+    For i = 0 To Me.imgMail.Count - 1
+        Me.imgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
     Next i
     
     'IMAGES para zoom
@@ -2582,6 +2584,22 @@ Private Sub frmC1_Selec(vFecha As Date)
     ' ********
 End Sub
 
+Private Sub frmPro_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codprove = " & RecuperaValor(CadenaSeleccion, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub frmZ_Actualizar(vCampo As String)
      Text1(indice).Text = vCampo
 End Sub
@@ -2796,37 +2814,46 @@ Private Sub HacerBusqueda()
 End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim Cad As String
-        
-    'Cridem al form
-    ' **************** arreglar-ho per a vore lo que es desije ****************
-    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 15, "Cód.")
-    Cad = Cad & ParaGrid(Text1(1), 60, "Nombre")
-    Cad = Cad & ParaGrid(Text1(7), 25, "N.I.F.")
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = NombreTabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
-        frmB.vTitulo = "Proveedor" ' ***** repasa açò: títol de BuscaGrid *****
-        frmB.vSelElem = 1
+'    Dim Cad As String
+'
+'    'Cridem al form
+'    ' **************** arreglar-ho per a vore lo que es desije ****************
+'    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
+'    Cad = ""
+'    Cad = Cad & ParaGrid(Text1(0), 15, "Cód.")
+'    Cad = Cad & ParaGrid(Text1(1), 60, "Nombre")
+'    Cad = Cad & ParaGrid(Text1(7), 25, "N.I.F.")
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = NombreTabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
+'        frmB.vTitulo = "Proveedor" ' ***** repasa açò: títol de BuscaGrid *****
+'        frmB.vSelElem = 1
+'
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha posat valors i tenim que es formulari de búsqueda llavors
+'        'tindrem que tancar el form llançant l'event
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha retornat datos, es a decir NO ha retornat datos
+'            PonerFoco Text1(kCampo)
+'        End If
+'    End If
 
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha posat valors i tenim que es formulari de búsqueda llavors
-        'tindrem que tancar el form llançant l'event
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha retornat datos, es a decir NO ha retornat datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
+    Set frmPro = New frmBasico2
+    
+    AyudaProveedoresPrev frmPro
+    
+    Set frmPro = Nothing
+
+
+
 End Sub
 
 Private Sub cmdRegresar_Click()

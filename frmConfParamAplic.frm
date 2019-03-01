@@ -246,7 +246,7 @@ Begin VB.Form frmConfParamAplic
          Left            =   1620
          MaxLength       =   14
          TabIndex        =   151
-         Tag             =   "Número GNN|N|S|||rparam|numeroggn|#############0||"
+         Tag             =   "Número GNN|N|S|||sparam|numeroggn|#############0||"
          Text            =   "12345678901234"
          Top             =   3750
          Width           =   1380

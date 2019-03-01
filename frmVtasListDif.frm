@@ -4,16 +4,16 @@ Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "COMDLG32.OCX"
 Begin VB.Form frmVtasListDif 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Informes"
-   ClientHeight    =   5340
+   ClientHeight    =   6105
    ClientLeft      =   45
    ClientTop       =   2430
-   ClientWidth     =   6570
+   ClientWidth     =   7545
    Icon            =   "frmVtasListDif.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   5340
-   ScaleWidth      =   6570
+   ScaleHeight     =   6105
+   ScaleWidth      =   7545
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin MSComDlg.CommonDialog cd1 
@@ -24,11 +24,11 @@ Begin VB.Form frmVtasListDif
       _Version        =   393216
    End
    Begin VB.Frame FrameCobros 
-      Height          =   5250
+      Height          =   6015
       Left            =   45
       TabIndex        =   8
       Top             =   0
-      Width           =   6555
+      Width           =   7365
       Begin VB.CheckBox Check3 
          Caption         =   "Resumido"
          BeginProperty Font 
@@ -43,7 +43,7 @@ Begin VB.Form frmVtasListDif
          Height          =   195
          Left            =   450
          TabIndex        =   21
-         Top             =   3720
+         Top             =   4080
          Width           =   2355
       End
       Begin VB.CheckBox Check2 
@@ -60,7 +60,7 @@ Begin VB.Form frmVtasListDif
          Height          =   195
          Left            =   3720
          TabIndex        =   5
-         Top             =   3375
+         Top             =   3735
          Width           =   2355
       End
       Begin VB.CheckBox Check1 
@@ -77,7 +77,7 @@ Begin VB.Form frmVtasListDif
          Height          =   240
          Left            =   450
          TabIndex        =   4
-         Top             =   3330
+         Top             =   3690
          Width           =   2355
       End
       Begin VB.TextBox txtNombre 
@@ -98,8 +98,8 @@ Begin VB.Form frmVtasListDif
          Locked          =   -1  'True
          TabIndex        =   13
          Text            =   "Text5"
-         Top             =   1740
-         Width           =   3540
+         Top             =   1920
+         Width           =   4215
       End
       Begin VB.TextBox txtNombre 
          BackColor       =   &H80000018&
@@ -119,8 +119,8 @@ Begin VB.Form frmVtasListDif
          Locked          =   -1  'True
          TabIndex        =   12
          Text            =   "Text5"
-         Top             =   1365
-         Width           =   3540
+         Top             =   1500
+         Width           =   4215
       End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
@@ -138,7 +138,7 @@ Begin VB.Form frmVtasListDif
          Left            =   1800
          MaxLength       =   6
          TabIndex        =   1
-         Top             =   1755
+         Top             =   1935
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -157,7 +157,7 @@ Begin VB.Form frmVtasListDif
          Left            =   1800
          MaxLength       =   6
          TabIndex        =   0
-         Top             =   1365
+         Top             =   1500
          Width           =   830
       End
       Begin VB.TextBox txtCodigo 
@@ -177,7 +177,7 @@ Begin VB.Form frmVtasListDif
          MaxLength       =   10
          TabIndex        =   3
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   2775
+         Top             =   3090
          Width           =   1350
       End
       Begin VB.TextBox txtCodigo 
@@ -197,7 +197,7 @@ Begin VB.Form frmVtasListDif
          MaxLength       =   10
          TabIndex        =   2
          Tag             =   "Código Postal|T|S|||clientes|codposta|||"
-         Top             =   2415
+         Top             =   2685
          Width           =   1350
       End
       Begin VB.CommandButton cmdCancel 
@@ -212,9 +212,9 @@ Begin VB.Form frmVtasListDif
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   5205
+         Left            =   5790
          TabIndex        =   7
-         Top             =   4545
+         Top             =   5310
          Width           =   1065
       End
       Begin VB.CommandButton cmdAceptar 
@@ -229,18 +229,18 @@ Begin VB.Form frmVtasListDif
             Strikethrough   =   0   'False
          EndProperty
          Height          =   375
-         Left            =   4020
+         Left            =   4605
          TabIndex        =   6
-         Top             =   4545
+         Top             =   5310
          Width           =   1065
       End
       Begin MSComctlLib.ProgressBar Pb1 
          Height          =   255
          Left            =   420
          TabIndex        =   19
-         Top             =   4080
-         Width           =   5880
-         _ExtentX        =   10372
+         Top             =   4845
+         Width           =   6465
+         _ExtentX        =   11404
          _ExtentY        =   450
          _Version        =   393216
          Appearance      =   1
@@ -256,11 +256,11 @@ Begin VB.Form frmVtasListDif
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   195
+         Height          =   330
          Index           =   27
          Left            =   450
          TabIndex        =   20
-         Top             =   4365
+         Top             =   5085
          Width           =   3390
       End
       Begin VB.Label Label2 
@@ -278,7 +278,7 @@ Begin VB.Form frmVtasListDif
          Height          =   555
          Left            =   450
          TabIndex        =   18
-         Top             =   4140
+         Top             =   4860
          Width           =   4740
       End
       Begin VB.Label Label1 
@@ -306,7 +306,7 @@ Begin VB.Form frmVtasListDif
          MouseIcon       =   "frmVtasListDif.frx":000C
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar variedad"
-         Top             =   1740
+         Top             =   1920
          Width           =   240
       End
       Begin VB.Image imgBuscar 
@@ -316,7 +316,7 @@ Begin VB.Form frmVtasListDif
          MouseIcon       =   "frmVtasListDif.frx":015E
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar variedad"
-         Top             =   1365
+         Top             =   1500
          Width           =   240
       End
       Begin VB.Label Label4 
@@ -336,7 +336,7 @@ Begin VB.Form frmVtasListDif
          Index           =   2
          Left            =   495
          TabIndex        =   16
-         Top             =   1035
+         Top             =   1125
          Width           =   855
       End
       Begin VB.Label Label4 
@@ -354,7 +354,7 @@ Begin VB.Form frmVtasListDif
          Index           =   1
          Left            =   735
          TabIndex        =   15
-         Top             =   1740
+         Top             =   1920
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -372,7 +372,7 @@ Begin VB.Form frmVtasListDif
          Index           =   0
          Left            =   735
          TabIndex        =   14
-         Top             =   1365
+         Top             =   1500
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -391,7 +391,7 @@ Begin VB.Form frmVtasListDif
          Index           =   16
          Left            =   510
          TabIndex        =   11
-         Top             =   2115
+         Top             =   2340
          Width           =   1815
       End
       Begin VB.Label Label4 
@@ -409,7 +409,7 @@ Begin VB.Form frmVtasListDif
          Index           =   15
          Left            =   735
          TabIndex        =   10
-         Top             =   2415
+         Top             =   2685
          Width           =   645
       End
       Begin VB.Label Label4 
@@ -427,7 +427,7 @@ Begin VB.Form frmVtasListDif
          Index           =   14
          Left            =   735
          TabIndex        =   9
-         Top             =   2775
+         Top             =   3090
          Width           =   600
       End
       Begin VB.Image imgFec 
@@ -436,7 +436,7 @@ Begin VB.Form frmVtasListDif
          Left            =   1485
          Picture         =   "frmVtasListDif.frx":02B0
          ToolTipText     =   "Buscar fecha"
-         Top             =   2415
+         Top             =   2685
          Width           =   240
       End
       Begin VB.Image imgFec 
@@ -445,7 +445,7 @@ Begin VB.Form frmVtasListDif
          Left            =   1485
          Picture         =   "frmVtasListDif.frx":033B
          ToolTipText     =   "Buscar fecha"
-         Top             =   2775
+         Top             =   3090
          Width           =   240
       End
    End
@@ -816,8 +816,8 @@ Private Sub FrameCobrosVisible(visible As Boolean, ByRef H As Integer, ByRef W A
     If visible = True Then
         Me.FrameCobros.Top = -90
         Me.FrameCobros.Left = 0
-        Me.FrameCobros.Height = 5130
-        Me.FrameCobros.Width = 6660
+        Me.FrameCobros.Height = 6015
+        Me.FrameCobros.Width = 7365
         W = Me.FrameCobros.Width
         H = Me.FrameCobros.Height
     End If

@@ -1582,7 +1582,7 @@ Private Sub btnBuscar_Click(Index As Integer)
             frmBas.Tag2 = "Descripción|T|N|||ccareas|nomarea|||"
             frmBas.Maxlen1 = 4
             frmBas.Maxlen2 = 50
-            frmBas.tabla = "ccareas"
+            frmBas.Tabla = "ccareas"
             frmBas.CampoCP = "codarea"
             frmBas.Report = "rManCCAreas.rpt"
             frmBas.Caption = "Áreas"
@@ -1869,10 +1869,13 @@ Private Sub Form_Load()
     ' ****** Si n'hi han camps fora del grid ******
 '    CargaForaGrid
     ' *********************************************
-    
-    CargaGridAux 1, True
-    CargaGridAux 2, True
-
+    If Me.adodc1.Recordset.RecordCount <> 0 Then
+        CargaGridAux 1, True
+        CargaGridAux 2, True
+    Else
+        CargaGridAux 1, False
+        CargaGridAux 2, False
+    End If
 '    If (DatosADevolverBusqueda <> "") And NuevoCodigo <> "" Then
 '        BotonAnyadir
 '    Else
@@ -2328,7 +2331,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index

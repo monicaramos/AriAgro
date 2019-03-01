@@ -368,7 +368,7 @@ Begin VB.Form frmClientes
       _Version        =   393216
       Style           =   1
       Tabs            =   6
-      Tab             =   4
+      Tab             =   1
       TabsPerRow      =   9
       TabHeight       =   520
       ShowFocusRect   =   0   'False
@@ -384,39 +384,43 @@ Begin VB.Form frmClientes
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmClientes.frx":000C
       Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Label5"
-      Tab(0).Control(1)=   "Label6(0)"
-      Tab(0).Control(2)=   "imgWeb(0)"
-      Tab(0).Control(3)=   "Label9"
-      Tab(0).Control(4)=   "Label29"
-      Tab(0).Control(5)=   "imgZoom(0)"
-      Tab(0).Control(6)=   "imgBuscar(0)"
-      Tab(0).Control(7)=   "Label7"
-      Tab(0).Control(8)=   "Label28"
-      Tab(0).Control(9)=   "Label1(26)"
-      Tab(0).Control(10)=   "imgBuscar(1)"
-      Tab(0).Control(11)=   "imgBuscar(8)"
+      Tab(0).Control(0)=   "FrameDatosDtoAdministracion"
+      Tab(0).Control(1)=   "Text1(22)"
+      Tab(0).Control(2)=   "Text1(18)"
+      Tab(0).Control(3)=   "text2(6)"
+      Tab(0).Control(4)=   "Text1(6)"
+      Tab(0).Control(5)=   "Text1(5)"
+      Tab(0).Control(6)=   "Text1(21)"
+      Tab(0).Control(7)=   "Text1(9)"
+      Tab(0).Control(8)=   "Text1(4)"
+      Tab(0).Control(9)=   "Text1(3)"
+      Tab(0).Control(10)=   "Text1(8)"
+      Tab(0).Control(11)=   "Text1(7)"
       Tab(0).Control(12)=   "Label40"
-      Tab(0).Control(13)=   "Text1(7)"
-      Tab(0).Control(14)=   "Text1(8)"
-      Tab(0).Control(15)=   "Text1(3)"
-      Tab(0).Control(16)=   "Text1(4)"
-      Tab(0).Control(17)=   "Text1(9)"
-      Tab(0).Control(18)=   "Text1(21)"
-      Tab(0).Control(19)=   "Text1(5)"
-      Tab(0).Control(20)=   "Text1(6)"
-      Tab(0).Control(21)=   "text2(6)"
-      Tab(0).Control(22)=   "Text1(18)"
-      Tab(0).Control(23)=   "Text1(22)"
-      Tab(0).Control(24)=   "FrameDatosDtoAdministracion"
+      Tab(0).Control(13)=   "imgBuscar(8)"
+      Tab(0).Control(14)=   "imgBuscar(1)"
+      Tab(0).Control(15)=   "Label1(26)"
+      Tab(0).Control(16)=   "Label28"
+      Tab(0).Control(17)=   "Label7"
+      Tab(0).Control(18)=   "imgBuscar(0)"
+      Tab(0).Control(19)=   "imgZoom(0)"
+      Tab(0).Control(20)=   "Label29"
+      Tab(0).Control(21)=   "Label9"
+      Tab(0).Control(22)=   "imgWeb(0)"
+      Tab(0).Control(23)=   "Label6(0)"
+      Tab(0).Control(24)=   "Label5"
       Tab(0).ControlCount=   25
       TabCaption(1)   =   "Direcciones"
       TabPicture(1)   =   "frmClientes.frx":0028
-      Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "Frame5"
-      Tab(1).Control(1)=   "Frame4"
-      Tab(1).Control(2)=   "FrameDatosContacto"
-      Tab(1).Control(3)=   "Frame3"
+      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).Control(0)=   "Frame3"
+      Tab(1).Control(0).Enabled=   0   'False
+      Tab(1).Control(1)=   "FrameDatosContacto"
+      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(2)=   "Frame4"
+      Tab(1).Control(2).Enabled=   0   'False
+      Tab(1).Control(3)=   "Frame5"
+      Tab(1).Control(3).Enabled=   0   'False
       Tab(1).ControlCount=   4
       TabCaption(2)   =   "Destinos"
       TabPicture(2)   =   "frmClientes.frx":0044
@@ -436,19 +440,13 @@ Begin VB.Form frmClientes
       Tab(3).ControlCount=   7
       TabCaption(4)   =   "Datos Seguros"
       TabPicture(4)   =   "frmClientes.frx":007C
-      Tab(4).ControlEnabled=   -1  'True
-      Tab(4).Control(0)=   "Label46"
-      Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "Label47"
-      Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).Control(2)=   "Label48"
-      Tab(4).Control(2).Enabled=   0   'False
-      Tab(4).Control(3)=   "Text1(34)"
-      Tab(4).Control(3).Enabled=   0   'False
-      Tab(4).Control(4)=   "Text1(35)"
-      Tab(4).Control(4).Enabled=   0   'False
-      Tab(4).Control(5)=   "Text1(36)"
-      Tab(4).Control(5).Enabled=   0   'False
+      Tab(4).ControlEnabled=   0   'False
+      Tab(4).Control(0)=   "Text1(36)"
+      Tab(4).Control(1)=   "Text1(35)"
+      Tab(4).Control(2)=   "Text1(34)"
+      Tab(4).Control(3)=   "Label48"
+      Tab(4).Control(4)=   "Label47"
+      Tab(4).Control(5)=   "Label46"
       Tab(4).ControlCount=   6
       TabCaption(5)   =   "Precios"
       TabPicture(5)   =   "frmClientes.frx":0098
@@ -468,7 +466,7 @@ Begin VB.Form frmClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2400
-         Left            =   -66945
+         Left            =   8055
          TabIndex        =   152
          Top             =   3345
          Width           =   7440
@@ -830,7 +828,7 @@ Begin VB.Form frmClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2400
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   140
          Top             =   3345
          Width           =   7425
@@ -978,7 +976,7 @@ Begin VB.Form frmClientes
          EndProperty
          Height          =   360
          Index           =   36
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   15
          TabIndex        =   136
          Tag             =   "Limite Riesgos|N|S|||clientes|limiteriesgos|###,##0.00||"
@@ -998,7 +996,7 @@ Begin VB.Form frmClientes
          EndProperty
          Height          =   360
          Index           =   35
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   4
          TabIndex        =   135
          Tag             =   "Días Asegurados|N|S|||clientes|diasasegurados|##0||"
@@ -1017,7 +1015,7 @@ Begin VB.Form frmClientes
          EndProperty
          Height          =   360
          Index           =   34
-         Left            =   2160
+         Left            =   -72840
          MaxLength       =   15
          TabIndex        =   134
          Tag             =   "Nro.Seguro|T|S|||clientes|nroseguro|||"
@@ -1057,7 +1055,7 @@ Begin VB.Form frmClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2505
-         Left            =   -74820
+         Left            =   180
          TabIndex        =   111
          Top             =   675
          Width           =   7440
@@ -1098,7 +1096,7 @@ Begin VB.Form frmClientes
             Tag             =   "Fax|T|S|||clientes|faxclie1|||"
             Text            =   "123456789012345"
             Top             =   915
-            Width           =   1680
+            Width           =   1950
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1112,12 +1110,12 @@ Begin VB.Form frmClientes
             EndProperty
             Height          =   360
             Index           =   12
-            Left            =   5400
+            Left            =   4770
             MaxLength       =   10
             TabIndex        =   32
             Tag             =   "Móvil|T|S|||clientes|movclie1|||"
             Top             =   420
-            Width           =   1455
+            Width           =   1995
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1137,7 +1135,7 @@ Begin VB.Form frmClientes
             Tag             =   "Teléfono|T|S|||clientes|telclie1|||"
             Text            =   "123456789012345"
             Top             =   420
-            Width           =   1680
+            Width           =   1995
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1204,7 +1202,7 @@ Begin VB.Form frmClientes
                Strikethrough   =   0   'False
             EndProperty
             Height          =   255
-            Left            =   4815
+            Left            =   4140
             TabIndex        =   114
             Top             =   420
             Width           =   495
@@ -1264,7 +1262,7 @@ Begin VB.Form frmClientes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   2505
-         Left            =   -66945
+         Left            =   8055
          TabIndex        =   105
          Top             =   675
          Width           =   7440
@@ -1305,7 +1303,7 @@ Begin VB.Form frmClientes
             Tag             =   "Teléfono|T|S|||clientes|telclie2|||"
             Text            =   "123456789012345"
             Top             =   420
-            Width           =   1635
+            Width           =   1950
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1319,12 +1317,12 @@ Begin VB.Form frmClientes
             EndProperty
             Height          =   360
             Index           =   17
-            Left            =   5400
+            Left            =   4860
             MaxLength       =   10
             TabIndex        =   37
             Tag             =   "Móvil|T|S|||clientes|movclie2|||"
             Top             =   405
-            Width           =   1455
+            Width           =   1995
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1344,7 +1342,7 @@ Begin VB.Form frmClientes
             Tag             =   "Fax|T|S|||clientes|faxclie2|||"
             Text            =   "123456789012345"
             Top             =   915
-            Width           =   1635
+            Width           =   1950
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1418,7 +1416,7 @@ Begin VB.Form frmClientes
                Strikethrough   =   0   'False
             EndProperty
             Height          =   255
-            Left            =   4815
+            Left            =   4230
             TabIndex        =   108
             Top             =   420
             Width           =   495
@@ -3117,7 +3115,7 @@ Begin VB.Form frmClientes
          Tag             =   "NIF / CIF|T|N|||clientes|cifclien|||"
          Text            =   "123456789012345"
          Top             =   480
-         Width           =   1635
+         Width           =   1995
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -3278,7 +3276,7 @@ Begin VB.Form frmClientes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   450
+         Left            =   -74550
          TabIndex        =   139
          Top             =   1770
          Width           =   1500
@@ -3295,7 +3293,7 @@ Begin VB.Form frmClientes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   450
+         Left            =   -74550
          TabIndex        =   138
          Top             =   1230
          Width           =   1695
@@ -3312,7 +3310,7 @@ Begin VB.Form frmClientes
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   450
+         Left            =   -74550
          TabIndex        =   137
          Top             =   720
          Width           =   1305
@@ -3675,6 +3673,11 @@ Attribute frmDest.VB_VarHelpID = -1
 ' *****************************************************
 Private WithEvents frmPais2 As frmManPaises 'paises
 Attribute frmPais2.VB_VarHelpID = -1
+
+
+Private WithEvents frmCli As frmBasico2 'ayuda
+Attribute frmCli.VB_VarHelpID = -1
+
 
 
 Private Modo As Byte
@@ -4326,6 +4329,22 @@ Private Sub frmCad_DatoSeleccionado(CadenaSeleccion As String)
     txtAux2(1).Text = RecuperaValor(CadenaSeleccion, 2) 'nomcadena
 End Sub
 
+Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codclien = " & RecuperaValor(CadenaSeleccion, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 Private Sub frmDest_DatoSeleccionado(CadenaSeleccion As String)
     If CadenaSeleccion <> "" Then
         AdoAux(0).Recordset.Find (AdoAux(0).Recordset.Fields(1).Name & " =" & RecuperaValor(CadenaSeleccion, 1))
@@ -4574,43 +4593,50 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim Cad As String
-        
-    'Cridem al form
-    ' **************** arreglar-ho per a vore lo que es desije ****************
-    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    Cad = ""  'Albaran|rhisfruta.numalbar|N||11·
-    Cad = Cad & "Nombre|clientes.nomclien|N||45·" 'ParaGrid(Text1(2), 45, "Nombre")
-    Cad = Cad & "Cód.|clientes.codclien|N||10·" 'ParaGrid(Text1(0), 10, "Cód.")
-    Cad = Cad & "NIF.|clientes.cifclien|N||15·" 'ParaGrid(Text1(3), 15, "NIF")
-    Cad = Cad & "Teléfono|clientes.telclie1|N||15·" 'ParaGrid(Text1(11), 15, "Teléfono")
-    Cad = Cad & "Móvil|clientes.movclie1|N||15·" 'ParaGrid(Text1(12), 15, "Móvil")
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = NombreTabla & " left join destinos on clientes.codclien = destinos.codclien "
-        If CadB = "" Then
-            frmB.vSQL = CadB & "(1=1)  group by 1,2,3,4,5"
-        Else
-            frmB.vSQL = CadB & "  group by 1,2,3,4,5"
-        End If
-        HaDevueltoDatos = False
-        frmB.vDevuelve = "1|" '*** els camps que volen que torne ***
-        frmB.vTitulo = "Clientes" ' ***** repasa açò: títol de BuscaGrid *****
-        frmB.vSelElem = 0
+'    Dim Cad As String
+'
+'    'Cridem al form
+'    ' **************** arreglar-ho per a vore lo que es desije ****************
+'    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
+'    Cad = ""  'Albaran|rhisfruta.numalbar|N||11·
+'    Cad = Cad & "Nombre|clientes.nomclien|N||45·" 'ParaGrid(Text1(2), 45, "Nombre")
+'    Cad = Cad & "Cód.|clientes.codclien|N||10·" 'ParaGrid(Text1(0), 10, "Cód.")
+'    Cad = Cad & "NIF.|clientes.cifclien|N||15·" 'ParaGrid(Text1(3), 15, "NIF")
+'    Cad = Cad & "Teléfono|clientes.telclie1|N||15·" 'ParaGrid(Text1(11), 15, "Teléfono")
+'    Cad = Cad & "Móvil|clientes.movclie1|N||15·" 'ParaGrid(Text1(12), 15, "Móvil")
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = NombreTabla & " left join destinos on clientes.codclien = destinos.codclien "
+'        If CadB = "" Then
+'            frmB.vSql = CadB & "(1=1)  group by 1,2,3,4,5"
+'        Else
+'            frmB.vSql = CadB & "  group by 1,2,3,4,5"
+'        End If
+'        HaDevueltoDatos = False
+'        frmB.vDevuelve = "1|" '*** els camps que volen que torne ***
+'        frmB.vTitulo = "Clientes" ' ***** repasa açò: títol de BuscaGrid *****
+'        frmB.vSelElem = 0
+'
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha posat valors i tenim que es formulari de búsqueda llavors
+'        'tindrem que tancar el form llançant l'event
+'        If HaDevueltoDatos Then
+'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'                cmdRegresar_Click
+'        Else   'de ha retornat datos, es a decir NO ha retornat datos
+'            PonerFoco Text1(kCampo)
+'        End If
+'    End If
 
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha posat valors i tenim que es formulari de búsqueda llavors
-        'tindrem que tancar el form llançant l'event
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha retornat datos, es a decir NO ha retornat datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
+    Set frmCli = New frmBasico2
+
+    AyudaClientesPrev frmCli, Text1(0), CadB
+    
+    Set frmCli = Nothing
+
 End Sub
 
 

@@ -7,18 +7,18 @@ Begin VB.Form frmVtasPaletsPrev
    ClientHeight    =   11070
    ClientLeft      =   45
    ClientTop       =   4035
-   ClientWidth     =   17460
+   ClientWidth     =   17955
    Icon            =   "frmVtasPaletsPrev.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   11070
-   ScaleWidth      =   17460
+   ScaleWidth      =   17955
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame3 
       Height          =   915
-      Left            =   10035
+      Left            =   10305
       TabIndex        =   28
       Top             =   45
       Width           =   6900
@@ -308,7 +308,7 @@ Begin VB.Form frmVtasPaletsPrev
       Left            =   135
       TabIndex        =   10
       Top             =   945
-      Width           =   16815
+      Width           =   17580
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
          Enabled         =   0   'False
@@ -329,7 +329,7 @@ Begin VB.Form frmVtasPaletsPrev
          TabIndex        =   36
          Text            =   "Text2"
          Top             =   450
-         Width           =   3630
+         Width           =   4170
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -688,7 +688,7 @@ Begin VB.Form frmVtasPaletsPrev
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   16200
+      Left            =   16695
       TabIndex        =   7
       Top             =   10410
       Width           =   1065
@@ -705,7 +705,7 @@ Begin VB.Form frmVtasPaletsPrev
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   15030
+      Left            =   15525
       TabIndex        =   6
       Top             =   10410
       Width           =   1065
@@ -759,7 +759,7 @@ Begin VB.Form frmVtasPaletsPrev
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   17010
+      Left            =   17325
       TabIndex        =   22
       Top             =   135
       Width           =   405
@@ -781,8 +781,8 @@ Begin VB.Form frmVtasPaletsPrev
       Left            =   135
       TabIndex        =   27
       Top             =   2115
-      Width           =   17115
-      _ExtentX        =   30189
+      Width           =   17615
+      _ExtentX        =   31062
       _ExtentY        =   14102
       View            =   3
       LabelEdit       =   1
@@ -808,7 +808,7 @@ Begin VB.Form frmVtasPaletsPrev
    Begin VB.Image imgAyuda 
       Height          =   240
       Index           =   0
-      Left            =   17100
+      Left            =   17415
       MousePointer    =   4  'Icon
       Tag             =   "-1"
       ToolTipText     =   "Ayuda"
@@ -1314,6 +1314,8 @@ Dim miRsAux As ADODB.Recordset
     Combo1(1).AddItem "Sin Asignar/En Pedido"
     Combo1(1).ItemData(Combo1(1).NewIndex) = 4
     
+    Combo1(1).AddItem "No Acabado"
+    Combo1(1).ItemData(Combo1(1).NewIndex) = 5
     
     
 End Sub
@@ -1553,6 +1555,9 @@ Dim campo2 As Integer
         Case "Peso Neto", "Peso Neto v"
             nomColumna = "pesoneto"
             campo2 = 13 '10
+        Case "NoAc", "NoAc v"
+            nomColumna = "noacabado"
+            campo2 = 14 '10
     End Select
     
     If campo2 = columna Then
@@ -2609,12 +2614,12 @@ Private Sub CargarColumnas()
     
     If columna = 11 Then ' 8
         If Orden = 0 Then
-            lw1.ColumnHeaders.Add , , "Cajas", 1000, 1 ' antes 1400
+            lw1.ColumnHeaders.Add , , "Cajas", 800, 1 ' antes 1400
         Else
-            lw1.ColumnHeaders.Add , , "Cajas v", 1000, 1 ' antes 1400
+            lw1.ColumnHeaders.Add , , "Cajas v", 800, 1 ' antes 1400
         End If
     Else
-        lw1.ColumnHeaders.Add , , "Cajas", 1000, 1 ' antes 1400
+        lw1.ColumnHeaders.Add , , "Cajas", 800, 1 ' antes 1400
     End If
     If columna = 12 Then '9
         If Orden = 0 Then
@@ -2634,7 +2639,33 @@ Private Sub CargarColumnas()
     Else
         lw1.ColumnHeaders.Add , , "Peso Neto", 1500, 1
     End If
+    
+    
+    '[Monica]27/02/2019: palet no acabado
     If columna = 14 Then '11
+        If Orden = 0 Then
+            lw1.ColumnHeaders.Add , , "NoAc", 700, 1
+        Else
+            lw1.ColumnHeaders.Add , , "NoAc v", 700, 1
+        End If
+    Else
+        lw1.ColumnHeaders.Add , , "NoAc", 700, 1
+    End If
+    
+    
+    If columna = 15 Then '11
+        If Orden = 0 Then
+            lw1.ColumnHeaders.Add , , "Albaran", 0, 1
+        Else
+            lw1.ColumnHeaders.Add , , "Albaran v", 0, 1
+        End If
+    Else
+        lw1.ColumnHeaders.Add , , "Albaran", 0, 1
+    End If
+    
+    
+    
+    If columna = 16 Then '11
         If Orden = 0 Then
             lw1.ColumnHeaders.Add , , "Fecha", 0, 1
         Else
@@ -2643,6 +2674,7 @@ Private Sub CargarColumnas()
     Else
         lw1.ColumnHeaders.Add , , "Fecha", 0, 1
     End If
+    
     
     lw1.SmallIcons = frmPpal.imgListPpal
 
@@ -2686,7 +2718,7 @@ Dim NewEstado As Integer
     Sql = "Select palets.numpalet, palets.fechaconf fecha, palets.numpedid, palets_variedad.codvarie, variedades.nomvarie,  "
     Sql = Sql & " palets_variedad.codforfait, forfaits.nomconfe, "
     Sql = Sql & " calibres.nomcalib , confpale.nompalet, palets_variedad.categori, "
-    Sql = Sql & " palets_variedad.numcajas, palets_variedad.pesobrut, palets_variedad.pesoneto, pedidos.numalbar "
+    Sql = Sql & " palets_variedad.numcajas, palets_variedad.pesobrut, palets_variedad.pesoneto, if(palets.noacabado,'*','') noacabado, pedidos.numalbar "
     Sql = Sql & ", concat(year(palets.fechaconf),right(concat('00',month(palets.fechaconf)),2),right(concat('00',day(palets.fechaconf)),2)) fechaconf"
     Sql = Sql & " FROM ((((((palets left join palets_variedad on palets.numpalet = palets_variedad.numpalet) "
     Sql = Sql & " left JOIN palets_calibre ON palets_variedad.numpalet = palets_calibre.numpalet and palets_variedad.numlinea = palets_calibre.numlinea) "
@@ -2719,7 +2751,7 @@ Dim NewEstado As Integer
         End If
         Orden = lw1.SortOrder
         If columna = 2 Then
-            lw1.SortKey = 13 '10
+            lw1.SortKey = 14 '10
         Else
             lw1.SortKey = columna - 1
         End If
@@ -2770,16 +2802,9 @@ Dim NewEstado As Integer
                 End If
              End If
             
-'[Monica]12/11/2018: de david, lo quitamos para ver velocidad
-'            Sql2 = "numpedid = " & DBLet(Rs!numpedid, "N")
-'            If DBLet(Rs!numpedid, "N") = 0 Then
-'                Estado = 1
-'            Else
-'                Estado = 2
-'                Rs2.Find Sql2, , adSearchForward, 1
-'                If Not Rs2.EOF Then Estado = 3
-'            End If
-
+             '[Monica]27/02/2019: no acabado
+             If DBLet(Rs!noacabado) = "*" Then Estado = 4
+            
 
             
 '            If PaletEnAlbaran(DBLet(Rs!numpalet, "T"), DBLet(Rs!numpedid, "T")) Then
@@ -2795,7 +2820,7 @@ Dim NewEstado As Integer
             NewEstado = 0
             If Estado = 1 Or Estado = 2 Then NewEstado = 4
         
-            If Combo1(1).ListIndex = 0 Or (Combo1(1).ListIndex = 1 And Estado = 1) Or (Combo1(1).ListIndex = 2 And Estado = 2) Or (Combo1(1).ListIndex = 3 And Estado = 3) Or (Combo1(1).ListIndex = 4 And NewEstado = 4) Then
+            If Combo1(1).ListIndex = 0 Or (Combo1(1).ListIndex = 1 And Estado = 1) Or (Combo1(1).ListIndex = 2 And Estado = 2) Or (Combo1(1).ListIndex = 3 And Estado = 3) Or (Combo1(1).ListIndex = 5 And Estado = 4) Or (Combo1(1).ListIndex = 4 And NewEstado = 4) Then
                 Set IT = lw1.ListItems.Add
                 
                 IT.Text = Format(DBLet(Rs!NumPalet, "N"), "0000000")
@@ -2812,7 +2837,17 @@ Dim NewEstado As Integer
                     IT.SubItems(10) = Format(DBLet(Rs!NumCajas, "N"), "###,###,###,##0") ' antes 7
                     IT.SubItems(11) = Format(DBLet(Rs!pesobrut, "N"), "###,###,###,##0") ' antes 8
                     IT.SubItems(12) = Format(DBLet(Rs!Pesoneto, "N"), "###,###,###,##0") ' antes 9
-                
+                    '[Monica]27/02/2019
+                    If DBLet(Rs!noacabado, "T") = "" Then
+                        IT.SubItems(13) = " "
+                    Else
+                        IT.SubItems(13) = DBLet(Rs!noacabado, "T")
+                    End If
+                    If DBLet(Rs!noacabado, "T") = "*" Then
+                        IT.ListSubItems(13).ToolTipText = "No acabado"
+                    Else
+                        IT.ListSubItems(13).ToolTipText = "Acabado"
+                    End If
                     TotCajas = TotCajas + DBLet(Rs!NumCajas, "N")
                     TotBruto = TotBruto + DBLet(Rs!pesobrut, "N")
                     TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
@@ -2821,11 +2856,15 @@ Dim NewEstado As Integer
                     
                     TotPalet = TotPalet + 1
                 Else
-                    IT.SubItems(10) = ""
-                    IT.SubItems(11) = ""
-                    IT.SubItems(12) = ""
+                    IT.SubItems(10) = " "
+                    IT.SubItems(11) = " "
+                    IT.SubItems(12) = " "
+                    '[Monica]27/02/2019
+                    IT.SubItems(13) = " "
                 End If
-                IT.SubItems(13) = DBLet(Rs!fechaconf, "T") ' antes 10
+                '[Monica]27/02/2019
+                IT.SubItems(14) = DBLet(Rs!NumAlbar, "T") ' antes 13
+                IT.SubItems(15) = DBLet(Rs!fechaconf, "T") ' antes 13
                         
                 
                 If Estado = 2 Then
@@ -2843,6 +2882,7 @@ Dim NewEstado As Integer
                     IT.ListSubItems.item(10).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(11).ForeColor = vbDarkBlue
                     IT.ListSubItems.item(12).ForeColor = vbDarkBlue
+                    IT.ListSubItems.item(13).ForeColor = vbDarkBlue
                 Else
                     If Estado = 3 Then
                         IT.ForeColor = vbRed
@@ -2859,6 +2899,7 @@ Dim NewEstado As Integer
                         IT.ListSubItems.item(10).ForeColor = vbRed
                         IT.ListSubItems.item(11).ForeColor = vbRed
                         IT.ListSubItems.item(12).ForeColor = vbRed
+                        IT.ListSubItems.item(13).ForeColor = vbRed
                     End If
                 End If
                 

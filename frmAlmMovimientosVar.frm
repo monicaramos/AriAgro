@@ -267,7 +267,7 @@ Begin VB.Form frmAlmMovimientosVar
       TabIndex        =   5
       Tag             =   "Cod.Socio|N|S|||scaser|codsocio|000000|N|"
       Text            =   "Text1"
-      Top             =   1740
+      Top             =   1755
       Width           =   870
    End
    Begin VB.CheckBox chkImpresion 
@@ -1178,7 +1178,8 @@ Private WithEvents frmSoc As frmBasico  'Form accedemos a recoleccion
 Attribute frmSoc.VB_VarHelpID = -1
 Private WithEvents frmCli As frmClientes  'Form Clientes
 Attribute frmCli.VB_VarHelpID = -1
-
+Private WithEvents frmMovVar As frmBasico2 ' manda busqueda previa
+Attribute frmMovVar.VB_VarHelpID = -1
 
 Dim NombreTabla As String
 Dim NomTablaLineas As String
@@ -1278,7 +1279,7 @@ On Error GoTo Error1
                 CargaTxtAux False, False
                 Me.lblIndicador.Caption = ""
                 CargaGrid True
-                Data2.Recordset.Find (Data2.Recordset.Fields(1).Name & " =" & CInt(Me.CmdAceptar.Tag))
+                Data2.Recordset.Find (Data2.Recordset.Fields(1).Name & " =" & CInt(Me.cmdAceptar.Tag))
 '++monica: rollo
             PonerModo 2
             PonerCampos
@@ -1376,7 +1377,6 @@ Private Sub cmdRegresar_KeyPress(KeyAscii As Integer)
     End If
 End Sub
 
-
 Private Sub Combo1_Change(Index As Integer)
     PonerSocioVisible
     If Modo <> 1 Then PonerFoco Text1(1)
@@ -1420,6 +1420,7 @@ Dim i As Integer
     'ICONOS de La toolbar
     btnAnyadir = 5 'Posicion del boton Añadir en la toolbar1
     btnPrimero = 15 'Posicion del Boton Primero en la toolbar (+ 3 siguientes)
+
 '    With Toolbar1
 '        .ImageList = frmPpal.imgListComun
 '        .DisabledImageList = frmPpal.imgListComun_BN
@@ -1478,10 +1479,7 @@ Dim i As Integer
 '        .ImageList = frmPpal.imgListComun
 '        .Buttons(1).Image = 12
 '    End With
-
-
-
-
+    
     ' ******* si n'hi han llínies *******
     'ICONETS DE LES BARRES ALS TABS DE LLÍNIA
     For i = 0 To ToolAux.Count - 1
@@ -1627,7 +1625,6 @@ On Error GoTo ECarga
     DataGrid1.Columns(i).Alignment = dbgCenter
     
     
-    
     'Observaciones
     i = i + 1
     DataGrid1.Columns(i).Caption = "Observaciones"
@@ -1639,6 +1636,10 @@ On Error GoTo ECarga
 '--monica: rollo toolbar
 '    DataGrid1.Enabled = b
     DataGrid1.ScrollBars = dbgAutomatic
+    
+    DataGrid1.RowHeight = 350
+    
+    
     
 ECarga:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid: " & DataGrid1.Tag, Err.Description
@@ -1695,7 +1696,7 @@ Dim alto As Single
         End If
         
         If DataGrid1.Row < 0 Then
-            alto = DataGrid1.Top + 220
+            alto = DataGrid1.Top + 240
         Else
             alto = DataGrid1.Top + DataGrid1.RowTop(DataGrid1.Row) + 10
         End If
@@ -1787,9 +1788,6 @@ Dim Aux As String
     Screen.MousePointer = vbDefault
 End Sub
 
-
-
-
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
 'Mantenimiento de clientes
     Text1(3).Text = RecuperaValor(CadenaSeleccion, 1) 'Cod cliente
@@ -1800,6 +1798,22 @@ Private Sub frmF_Selec(vFecha As Date)
 Dim indice As Byte
     indice = CByte(Me.imgFec(0).Tag) + 1
     Text1(indice).Text = Format(vFecha, "dd/mm/yyyy")
+End Sub
+
+Private Sub frmMovVar_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codservi = " & RecuperaValor(CadenaSeleccion, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
 End Sub
 
 Private Sub frmSoc_DatoSeleccionado(CadenaSeleccion As String)
@@ -1946,7 +1960,7 @@ End Sub
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
     If KeyAscii = 13 And Index = 3 And Modo = 1 Then
-        PonerFocoBtn CmdAceptar
+        PonerFocoBtn cmdAceptar
     Else
         KEYpress KeyAscii
     End If
@@ -2057,7 +2071,7 @@ End Sub
 
 Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
     If Index = 3 And KeyCode = 40 Then
-        PonerFocoBtn Me.CmdAceptar
+        PonerFocoBtn Me.cmdAceptar
     Else
         KEYdown KeyCode
     End If
@@ -2065,7 +2079,7 @@ End Sub
 
 Private Sub txtAux_KeyPress(Index As Integer, KeyAscii As Integer)
     If Index = 3 And KeyAscii = 13 Then
-        PonerFocoBtn Me.CmdAceptar
+        PonerFocoBtn Me.cmdAceptar
     Else
         KEYpress KeyAscii
     End If
@@ -2202,7 +2216,7 @@ Dim b As Boolean
     '=================================================
     b = Modo <> 0 And Modo <> 2 '--monica: rollo toolbar And Modo <> 5
     cmdCancelar.visible = b
-    CmdAceptar.visible = b
+    cmdAceptar.visible = b
     
     For i = 0 To Me.imgFec.Count - 1
         Me.imgFec(i).Enabled = b And Modo <> 5
@@ -2243,11 +2257,12 @@ Dim i As Byte
         '++monica: rollo toolbar he puesto condicion
         If i <> 9 Then Toolbar1.Buttons(i).Enabled = Not EsHistorico
     Next i
-    Me.mnNuevo.visible = Not EsHistorico
-    Me.mnModificar.visible = Not EsHistorico
-    Me.mnEliminar.visible = Not EsHistorico
-    Me.mnBarra2.visible = Not EsHistorico
+    Me.mnNuevo.Enabled = Not EsHistorico
+    Me.mnModificar.Enabled = Not EsHistorico
+    Me.mnEliminar.Enabled = Not EsHistorico
+    Me.mnBarra2.Enabled = Not EsHistorico
     
+    Toolbar5.Buttons(1).Enabled = Not EsHistorico
     
     If Not EsHistorico Then
         'Modo 2. Hay datos y estamos visualizandolos
@@ -2329,22 +2344,22 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
-    tabla = NomTablaLineas
+    Tabla = NomTablaLineas
 
-    Sql = "SELECT " & tabla & ".codservi, " & tabla & ".clisoc, "
-    Sql = Sql & tabla & ".numlinea, " & tabla & ".codartic, Articulos.nomartic, "
-    Sql = Sql & tabla & ".cantidad, " & tabla & ".precioar, " & tabla & ".importel,  if(" & tabla & ".tipomovi=0,""S"",""E"") as tipomovi, "
-    Sql = Sql & tabla & ".motimovi "
-    Sql = Sql & " FROM ((" & tabla & " LEFT JOIN sartic AS Articulos ON " & tabla & ".codartic ="
+    Sql = "SELECT " & Tabla & ".codservi, " & Tabla & ".clisoc, "
+    Sql = Sql & Tabla & ".numlinea, " & Tabla & ".codartic, Articulos.nomartic, "
+    Sql = Sql & Tabla & ".cantidad, " & Tabla & ".precioar, " & Tabla & ".importel,  if(" & Tabla & ".tipomovi=0,""S"",""E"") as tipomovi, "
+    Sql = Sql & Tabla & ".motimovi "
+    Sql = Sql & " FROM ((" & Tabla & " LEFT JOIN sartic AS Articulos ON " & Tabla & ".codartic ="
     Sql = Sql & " Articulos.codartic))"
     If enlaza Then
         Sql = Sql & " WHERE codservi = " & Data1.Recordset!codservi & " and clisoc = " & Data1.Recordset!clisoc
     Else
         Sql = Sql & " WHERE codservi = -1"
     End If
-    Sql = Sql & " ORDER BY " & tabla & ".numlinea"
+    Sql = Sql & " ORDER BY " & Tabla & ".numlinea"
     MontaSQLCarga = Sql
 End Function
 
@@ -2455,7 +2470,7 @@ Dim vWhere As String
     '++monica
     
     vWhere = ObtenerWhereCP(False)
-    CmdAceptar.Tag = SugerirCodigoSiguienteStr("sliser", "numlinea", vWhere)
+    cmdAceptar.Tag = SugerirCodigoSiguienteStr("sliser", "numlinea", vWhere)
 '--monica: rollo toolbar
 '    PonerBotonCabecera False
 '    lblIndicador.Caption = "INSERTAR"
@@ -2510,7 +2525,7 @@ Dim i As Integer
         DataGrid1.Refresh
     End If
     
-    CmdAceptar.Tag = Data2.Recordset!NumLinea
+    cmdAceptar.Tag = Data2.Recordset!NumLinea
     
     CargaTxtAux True, False
     DataGrid1.Enabled = False
@@ -2624,7 +2639,7 @@ On Error GoTo Error2
     
     '### a mano
     Sql = "Seguro que desea eliminar la línea del Artículo:"
-    Sql = Sql & vbCrLf & "Código: " & Data2.Recordset!CodArtic
+    Sql = Sql & vbCrLf & "Código: " & Data2.Recordset!codArtic
     Sql = Sql & vbCrLf & "Descripción: " & Data2.Recordset.Fields(3)
     
     If MsgBox(Sql, vbQuestion + vbYesNoCancel) = vbYes Then
@@ -2632,7 +2647,7 @@ On Error GoTo Error2
         Sql = "Delete from sliser where codservi=" & Data2.Recordset!codservi
         Sql = Sql & " and clisoc = " & Data2.Recordset!clisoc
         Sql = Sql & " and numlinea=" & Data2.Recordset!NumLinea
-        Sql = Sql & " and codartic=" & DBSet(Data2.Recordset!CodArtic, "T")
+        Sql = Sql & " and codartic=" & DBSet(Data2.Recordset!codArtic, "T")
         '++ monica: rollo
         NumRegElim = Data2.Recordset.AbsolutePosition
         TerminaBloquear
@@ -2725,7 +2740,7 @@ Dim b As Boolean
         
         While Not Data2.Recordset.EOF And b
             If Data2.Recordset!tipomovi = "S" Then 'Mov. de salida
-                b = ComprobarStock(Data2.Recordset!CodArtic, Text1(6).Text, Data2.Recordset!Cantidad, CodTipoMov)
+                b = ComprobarStock(Data2.Recordset!codArtic, Text1(6).Text, Data2.Recordset!Cantidad, CodTipoMov)
             End If
             Data2.Recordset.MoveNext
         Wend
@@ -2797,7 +2812,7 @@ End Function
 
 Private Sub PonerBotonCabecera(b As Boolean)
 On Error Resume Next
-    Me.CmdAceptar.visible = Not b
+    Me.cmdAceptar.visible = Not b
     Me.cmdCancelar.visible = Not b
     Me.cmdRegresar.visible = b
     Me.cmdRegresar.Caption = "Cabecera"
@@ -2827,7 +2842,7 @@ On Error GoTo EInsertarModificarLinea
             Sql = "INSERT INTO sliser (codservi,clisoc,numlinea,codartic,cantidad,tipomovi,motimovi, precioar, importel) "
             Sql = Sql & " VALUES (" & Val(Text1(0).Text) & ", "
             Sql = Sql & Combo1(0).ListIndex & ","
-            Sql = Sql & CmdAceptar.Tag & ", "
+            Sql = Sql & cmdAceptar.Tag & ", "
             Sql = Sql & DBSet(txtAux(0).Text, "T") & ", "
             Sql = Sql & DBSet(txtAux(2).Text, "N") & ", "
             If cboAux.ListIndex = -1 Then
@@ -2850,7 +2865,7 @@ On Error GoTo EInsertarModificarLinea
                 Sql = Sql & ", importel = " & DBSet(txtAux(5).Text, "N")
                 Sql = Sql & " WHERE codservi =" & Val(Text1(0).Text) & " AND "
                 Sql = Sql & " clisoc = " & Combo1(0).ListIndex & " AND "
-                Sql = Sql & " numlinea =" & Val(CmdAceptar.Tag)
+                Sql = Sql & " numlinea =" & Val(cmdAceptar.Tag)
             Else
                 InsertarModificarLinea = ModificarLineaHco
                 Exit Function
@@ -2878,61 +2893,70 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'
+'    'Llamamos a al form
+'    Cad = ""
+'    'Registro de la tabla de cabeceras: scaser
+'    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Mov.")
+'
+'    If NombreTabla = "scaser" Then
+'        Cad = Cad & "Tipo|if(scaser.clisoc=0,'Socio','Cliente')|N||10·"
+'    Else
+'        Cad = Cad & "Tipo|if(schser.clisoc=0,'Socio','Cliente')|N||10·"
+'    End If
+'
+'    Cad = Cad & ParaGrid(Text1(1), 20, "Fecha")
+'    Cad = Cad & "Almacen|salmpr.codalmac|N||10·"
+'    Cad = Cad & "Desc. Alm. Orig|nomalmac|T||40·"
+'
+'    Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
+'    Titulo = Me.Caption
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+'        frmB.vDevuelve = "0|1|"
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''**quitado
+''        frmB.vConexionGrid = cAgro 'Conexion a BD Ariges
+'
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+'        If HaDevueltoDatos Then
+'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+'''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            If Modo = 5 Then
+''                PonerFoco txtAux(0)
+''            Else
+'                PonerFoco Text1(kCampo)
+''            End If
+'        End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-    'Llamamos a al form
-    Cad = ""
-    'Registro de la tabla de cabeceras: scaser
-    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Mov.")
+    Set frmMovVar = New frmBasico2
     
-    If NombreTabla = "scaser" Then
-        Cad = Cad & "Tipo|if(scaser.clisoc=0,'Socio','Cliente')|N||10·"
-    Else
-        Cad = Cad & "Tipo|if(schser.clisoc=0,'Socio','Cliente')|N||10·"
-    End If
+    AyudaMovimientosVariosPrev frmMovVar, , , EsHistorico
     
-    Cad = Cad & ParaGrid(Text1(1), 20, "Fecha")
-    Cad = Cad & "Almacen|salmpr.codalmac|N||10·"
-    Cad = Cad & "Desc. Alm. Orig|nomalmac|T||40·"
+    Set frmMovVar = Nothing
+    
 
-    tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
-    Titulo = Me.Caption
 
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'**quitado
-'        frmB.vConexionGrid = cAgro 'Conexion a BD Ariges
-
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
 End Sub
 
 
@@ -3016,7 +3040,7 @@ Dim devuelve As String
     ActualizarStocks = False
     While Not Data2.Recordset.EOF
         'Actualizar el stock si el articulo tiene control de stock
-        devuelve = DevuelveDesdeBDNew(cAgro, "sartic", "ctrstock", "codartic", Data2.Recordset!CodArtic, "T")
+        devuelve = DevuelveDesdeBDNew(cAgro, "sartic", "ctrstock", "codartic", Data2.Recordset!codArtic, "T")
         If Val(devuelve) = 1 Then 'Hay control de stock
 
             Cantidad = Data2.Recordset!Cantidad 'Cant a traspasar
@@ -3024,28 +3048,28 @@ Dim devuelve As String
             If Data2.Recordset!tipomovi = "E" Then 'Mov. de Entrada
                 '==== Aumentar el stock en el Almacen
                 'Comprobar que existe el articulo en Almacen Destino
-                EnAlmDest = DevuelveDesdeBDNew(cAgro, "salmac", "codartic", "codartic", Data2.Recordset!CodArtic, "T", , "codalmac", Text1(6).Text, "N")
+                EnAlmDest = DevuelveDesdeBDNew(cAgro, "salmac", "codartic", "codartic", Data2.Recordset!codArtic, "T", , "codalmac", Text1(6).Text, "N")
                 If EnAlmDest = "" Then 'No hay de ese artículo en Almacen
                     Sql = "INSERT INTO salmac (codartic,codalmac,ubialmac,canstock,stockmin,puntoped,stockmax,stockinv,fechainv,horainve,statusin)"
-                    Sql = Sql & " VALUES (" & DBSet(Data2.Recordset!CodArtic, "T") & "," & Val(Text1(6).Text) & ",''," & DBSet(Cantidad, "N") & ",0,0,0,0,NULL,NULL,0)"
+                    Sql = Sql & " VALUES (" & DBSet(Data2.Recordset!codArtic, "T") & "," & Val(Text1(6).Text) & ",''," & DBSet(Cantidad, "N") & ",0,0,0,0,NULL,NULL,0)"
                 Else 'Existe el artic en almac. Dest -> Aumentar stock
                     Sql = "UPDATE salmac Set canstock = canstock + " & DBSet(Cantidad, "N") ' ++monica:añadido el dbset, fallaba en decimales
-                    Sql = Sql & " WHERE codartic =" & DBSet(Data2.Recordset!CodArtic, "T") & " AND "
+                    Sql = Sql & " WHERE codartic =" & DBSet(Data2.Recordset!codArtic, "T") & " AND "
                     Sql = Sql & " codalmac =" & Data1.Recordset!codAlmac
                 End If
                 
             Else 'Mov. de Salida
                 '==== Disminuir Stock en Almacen Origen
-                EnAlmDest = DevuelveDesdeBDNew(cAgro, "salmac", "canstock", "codartic", Data2.Recordset!CodArtic, "T", , "codalmac", Text1(6).Text, "N")
+                EnAlmDest = DevuelveDesdeBDNew(cAgro, "salmac", "canstock", "codartic", Data2.Recordset!codArtic, "T", , "codalmac", Text1(6).Text, "N")
                 If EnAlmDest = "" Then 'No hay de ese artículo en Almacen
                     devuelve = "No existe en el Almacen: " & Data1.Recordset!codAlmac & vbCrLf
-                    devuelve = devuelve & "El Artículo: " & Data2.Recordset!CodArtic
+                    devuelve = devuelve & "El Artículo: " & Data2.Recordset!codArtic
                     MsgBox devuelve, vbExclamation
                 Else 'Existe el artic en almac. Dest -> Disminuir stock
                     vStock = CLng(EnAlmDest)
-                    If ComprobarHayStock(vStock, Cantidad, Data2.Recordset!CodArtic, Data2.Recordset!NomArtic, CodTipoMov) Then
+                    If ComprobarHayStock(vStock, Cantidad, Data2.Recordset!codArtic, Data2.Recordset!NomArtic, CodTipoMov) Then
                         Sql = "UPDATE salmac Set canstock = canstock - " & DBSet(Cantidad, "N") '++monica:añadido el dbset, fallaba en decimales
-                        Sql = Sql & " WHERE codartic =" & DBSet(Data2.Recordset!CodArtic, "T") & " AND "
+                        Sql = Sql & " WHERE codartic =" & DBSet(Data2.Recordset!codArtic, "T") & " AND "
                         Sql = Sql & " codalmac =" & Data1.Recordset!codAlmac
                     End If
                 End If
@@ -3364,11 +3388,11 @@ On Error GoTo EInsertar
 '                vImporte = 0
 '            End If
             
-            vPrecioVenta = DevuelveDesdeBDNew(cAgro, "sartic", "preciomp", "codartic", Rs.Fields!CodArtic, "T", Cad)
+            vPrecioVenta = DevuelveDesdeBDNew(cAgro, "sartic", "preciomp", "codartic", Rs.Fields!codArtic, "T", Cad)
             
             If Val(Cad) = 1 Then
                 Sql = "INSERT INTO smoval (codartic, codalmac, fechamov, horamovi, tipomovi, detamovi, cantidad, impormov, codigope, letraser, document, numlinea) "
-                Sql = Sql & " VALUES (" & DBSet(Rs.Fields!CodArtic, "T") & ", " & Rs.Fields!codAlmac & ", '" & Format(Rs.Fields!fecmovim, "yyyy-mm-dd") & "', '"
+                Sql = Sql & " VALUES (" & DBSet(Rs.Fields!codArtic, "T") & ", " & Rs.Fields!codAlmac & ", '" & Format(Rs.Fields!fecmovim, "yyyy-mm-dd") & "', '"
                 Sql = Sql & Format(Rs.Fields!fecmovim & " " & Time, "yyyy-mm-dd hh:mm:ss") & "', " & Rs.Fields!tipomovi & ", '" & vTipoMov.TipoMovimiento & "', " & DBSet(Rs.Fields!Cantidad, "N") & ", " & DBSet(Rs.Fields!ImporteL, "N") & ", "
                 If Data1.Recordset!clisoc = 0 Or Data1.Recordset!clisoc = 2 Then
                     Sql = Sql & DBSet(Rs.Fields!CodSocio, "N") & ",'"
@@ -3711,7 +3735,7 @@ Dim vEntSal As String
     Sql = Sql & ", importel = " & DBSet(txtAux(5).Text, "N")
     Sql = Sql & " WHERE codservi =" & Val(Text1(0).Text) & " AND "
     Sql = Sql & " clisoc = " & Combo1(0).ListIndex & " AND "
-    Sql = Sql & " numlinea =" & Val(CmdAceptar.Tag)
+    Sql = Sql & " numlinea =" & Val(cmdAceptar.Tag)
 
     If Sql <> "" Then
         dentroTRANSAC = True
@@ -3787,7 +3811,7 @@ On Error Resume Next
     vCStock.Fechamov = Text1(1).Text
     vCStock.Documento = Text1(0).Text
     
-    vCStock.CodArtic = Data2.Recordset!CodArtic
+    vCStock.codArtic = Data2.Recordset!codArtic
     vCStock.codAlmac = CInt(Data1.Recordset!codAlmac)
     vCStock.Cantidad = CSng(ImporteSinFormato(txtAux(2).Text))
     vCStock.Importe = CCur(ImporteSinFormato(txtAux(5).Text))

@@ -92,7 +92,6 @@ Begin VB.Form frmVtasRecFactTrans
       TabPicture(1)   =   "frmVtasRecFactTrans.frx":0028
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FrameAux0"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       Begin VB.Frame FrameAux0 
          BorderStyle     =   0  'None
@@ -2501,6 +2500,15 @@ Dim Sql3 As String
                         '--monica:080908
                         'PonerModo 5
                         '--
+                        '[Monica]06/02/2019: añado control de que tiene que tener cuenta contable
+                        If AgenciaSinCtaContable(Text1(3)) Then
+                            Text1(3).Text = ""
+                            PonerFoco Text1(3)
+                            Screen.MousePointer = vbDefault
+                            Exit Sub
+                        End If
+                        
+                        
                         Label1(19).visible = True
                         Label1(19).Caption = "Inicializando albaranes"
                         DoEvents
@@ -2539,7 +2547,7 @@ Dim Sql3 As String
             End If
             
             '++monica:080908
-            If Not ExisteFacturaEnHco Then
+            If Not ExisteFacturaEnHco And Text1(3) <> "" Then
                 PonerModo 5
                 PonerFocoLw Me.ListView1
             End If
@@ -2564,6 +2572,26 @@ Dim Sql3 As String
     
     End Select
 End Sub
+
+
+Private Function AgenciaSinCtaContable(vCodigo As String) As Boolean
+Dim vSql As String
+
+    AgenciaSinCtaContable = True
+
+    vSql = DevuelveDesdeBDNew(cAgro, "agencias", "codmacta", "codtrans", vCodigo, "N")
+    If vSql <> "" Then
+        vSql = DevuelveDesdeBDNew(cConta, "cuentas", "nommacta", "codmacta", vSql, "T")
+        If vSql = "" Then
+            MsgBox "Cuenta contable no existe en contabilidad.", vbExclamation
+        Else
+            AgenciaSinCtaContable = False
+        End If
+    Else
+        MsgBox "La Agencia de transporte/comisionista no tiene asignada una cuenta contable. Revise.", vbExclamation
+    End If
+
+End Function
 
 
 '----------------------------------------------------------------

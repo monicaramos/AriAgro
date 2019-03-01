@@ -171,7 +171,6 @@ Begin VB.Form frmComHcoFacturas
       TabPicture(0)   =   "frmComHcoFacturas.frx":000C
       Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "Frame2(1)"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Albaranes"
       TabPicture(1)   =   "frmComHcoFacturas.frx":0028
@@ -2577,6 +2576,9 @@ Private WithEvents frmFP As frmManFpago 'Form Mto Formas de Pago
 Attribute frmFP.VB_VarHelpID = -1
 '--monica
 'Private WithEvents frmT As frmAdmTrabajadores  'Form Mto Trabajadores
+Private WithEvents frmFac As frmBasico2
+Attribute frmFac.VB_VarHelpID = -1
+
 
 
 Private Modo As Byte
@@ -3273,6 +3275,22 @@ Dim Aux As String
     Screen.MousePointer = vbDefault
 End Sub
 
+Private Sub frmFac_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "numfactu = '" & RecuperaValor(CadenaSeleccion, 1) & "' and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 2), "F") & " and codprove = " & RecuperaValor(CadenaSeleccion, 3)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
+
 '--monica
 'Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
 ''Formulario Mantenimiento C. Postales
@@ -3618,54 +3636,62 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
-Dim devuelve As String
-    
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-'        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
-        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
-        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
-        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
-        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
-        tabla = NombreTabla
-        Titulo = "Facturas"
-        devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-'        frmB.vDevuelve = "0|1|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'--monica
-'        frmB.vConexionGrid = conAri  'Conexión a BD: Ariges
+''Carga el formulario frmBuscaGrid con los valores correspondientes
+'Dim Cad As String
+'Dim Tabla As String
+'Dim Titulo As String
+'Dim devuelve As String
+'
+'    'Llamamos a al form
+'    '##A mano
+'    Cad = ""
+''        cad = cad & ParaGrid(Text1(1), 10, "Tipo Fac.")
+'        Cad = Cad & ParaGrid(Text1(0), 18, "Nº Factura")
+'        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Fac.")
+'        Cad = Cad & ParaGrid(Text1(2), 12, "Prov.")
+'        Cad = Cad & ParaGrid(Text1(3), 55, "Nombre Prov")
+'        Tabla = NombreTabla
+'        Titulo = "Facturas"
+'        devuelve = "0|1|2|"
+'
+'    If Cad <> "" Then
+'        Screen.MousePointer = vbHourglass
+'        Set frmB = New frmBuscaGrid
+'        frmB.vCampos = Cad
+'        frmB.vtabla = Tabla
+'        frmB.vSQL = CadB
+'        HaDevueltoDatos = False
+'        '###A mano
+''        frmB.vDevuelve = "0|1|"
+'        frmB.vDevuelve = devuelve
+'        frmB.vTitulo = Titulo
+'        frmB.vSelElem = 0
+''--monica
+''        frmB.vConexionGrid = conAri  'Conexión a BD: Ariges
+'
+''        If Not EsCabecera Then frmB.Label1.FontSize = 11
+''        frmB.vBuscaPrevia = chkVistaPrevia
+'        '#
+'        frmB.Show vbModal
+'        Set frmB = Nothing
+'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
+'        'tendremos que cerrar el form lanzando el evento
+''        If HaDevueltoDatos Then
+''''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
+''''                cmdRegresar_Click
+''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
+''            PonerFoco Text1(kCampo)
+'        'End If
+'    End If
+'    Screen.MousePointer = vbDefault
 
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-        'End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmFac = New frmBasico2
+    
+    AyudaFacturasCompraPrev frmFac
+    
+    Set frmFac = Nothing
+
+
 End Sub
 
 
@@ -4093,7 +4119,7 @@ Dim b As Boolean
 Dim Opcion As Byte
 Dim Sql As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
 '    b = DataGrid1.Enabled
 
@@ -4114,7 +4140,7 @@ Dim Sql As String
     PrimeraVez = False
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -4122,7 +4148,7 @@ End Sub
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim tots As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
     
     vData.Refresh
     Select Case vDataGrid.Name
@@ -4152,7 +4178,7 @@ Dim tots As String
     
     vDataGrid.HoldFields
     Exit Sub
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 

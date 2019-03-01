@@ -2194,6 +2194,10 @@ Attribute frmOpEnv.VB_VarHelpID = -1
 Private WithEvents frmCEan As frmCodEAN 'Codigos Ean
 Attribute frmCEan.VB_VarHelpID = -1
 
+Private WithEvents frmFor As frmBasico2 'Mandabusquedaprevia
+Attribute frmFor.VB_VarHelpID = -1
+
+
 '*****************************************************
 Private Modo As Byte
 '*************** MODOS ********************
@@ -2713,7 +2717,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -2796,6 +2800,21 @@ Private Sub frmEnv_DatoSeleccionado(CadenaSeleccion As String)
 'tipos de envase
     Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codtipen
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+End Sub
+
+Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codforfait = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
 End Sub
 
 Private Sub frmMar_DatoSeleccionado(CadenaSeleccion As String)
@@ -3007,40 +3026,13 @@ Private Sub HacerBusqueda()
 End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim Cad As String
-        
-    'Cridem al form
-    ' **************** arreglar-ho per a vore lo que es desije ****************
-    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-    Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
-    Cad = Cad & ParaGrid(Text1(1), 50, "Confección")
-'    cad = cad & ParaGrid(text1(2), 60, "Descripción")
-    Cad = Cad & "Variedad|nomvarie|T||30·"
-    If Cad <> "" Then
-        
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        Cad = NombreTabla & " left join variedades on forfaits.codvarie = variedades.codvarie "
-        frmB.vtabla = Cad 'NombreTabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        frmB.vDevuelve = "0|1|2|" '*** els camps que volen que torne ***
-        frmB.vTitulo = "Forfaits" ' ***** repasa açò: títol de BuscaGrid *****
-        frmB.vSelElem = 1
 
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha posat valors i tenim que es formulari de búsqueda llavors
-        'tindrem que tancar el form llançant l'event
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha retornat datos, es a decir NO ha retornat datos
-            PonerFoco Text1(kCampo)
-        End If
-    End If
+    Set frmFor = New frmBasico2
+    
+    AyudaForfaits frmFor
+    
+    Set frmFor = Nothing
+   
 End Sub
 
 Private Sub cmdRegresar_Click()
@@ -3745,7 +3737,7 @@ Dim Eliminar As Boolean
     Select Case Index
         Case 0 'envases
             Sql = "¿Seguro que desea eliminar el Envase?"
-            Sql = Sql & vbCrLf & "Envase: " & AdoAux(Index).Recordset!CodArtic
+            Sql = Sql & vbCrLf & "Envase: " & AdoAux(Index).Recordset!codArtic
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 Sql = "DELETE FROM forfaits_envases "

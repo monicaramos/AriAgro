@@ -622,6 +622,9 @@ Attribute frmA.VB_VarHelpID = -1
 Private WithEvents frmArtic As frmManArtic  'Articulos
 Attribute frmArtic.VB_VarHelpID = -1
 
+Private WithEvents frmHinve As frmBasico2 ' historico de inventario
+Attribute frmHinve.VB_VarHelpID = -1
+
 Dim NombreTabla As String
 Dim Ordenacion As String
 Private Modo As Byte
@@ -807,13 +810,13 @@ End Sub
 Private Sub CargaGrid(enlaza As Boolean)
 Dim b As Boolean
 Dim tots As String
-Dim SQL As String
+Dim Sql As String
 On Error GoTo ECarga
 
     b = DataGrid1.Enabled
      
-    SQL = MontaSQLCarga(enlaza)
-    CargaGridGnral DataGrid1, Me.Data2, SQL, PrimeraVez
+    Sql = MontaSQLCarga(enlaza)
+    CargaGridGnral DataGrid1, Me.Data2, Sql, PrimeraVez
     
     'SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc
     tots = "N||||0|;S|txtAux(0)|T|Almacén|1000|;S|cmdAux|B||0|;S|txtAux2(0)|T|Nombre|5200|;S|txtAux(1)|T|Fecha|1550|;"
@@ -868,6 +871,21 @@ Dim codArtic As String
     Screen.MousePointer = vbDefault
 End Sub
 
+
+Private Sub frmHinve_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codartic = '" & RecuperaValor(CadenaSeleccion, 1) & "'"
+        CadenaConsulta = "select distinct codartic from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
 
@@ -997,7 +1015,7 @@ End Sub
 Private Sub PonerModo(Kmodo As Byte)
 Dim i As Byte
 Dim b As Boolean
-Dim Numreg As Byte
+Dim NumReg As Byte
 
     Modo = Kmodo
     'Modo 2. Hay datos y estamos visualizandolos
@@ -1005,9 +1023,9 @@ Dim Numreg As Byte
     
     PonerIndicador Me.lblIndicador, Modo
     
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Solo es para saber q hay + de 1 registro
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Solo es para saber q hay + de 1 registro
     End If
 '    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
     DesplazamientoVisible b And Data1.Recordset.RecordCount > 1
@@ -1083,26 +1101,26 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 ' Si ENLAZA -> Enlaza con el data1
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
-Dim SQL As String
+Dim Sql As String
 
-    SQL = "SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc "
-    SQL = SQL & " FROM (shinve INNER JOIN salmpr on shinve.codalmac=salmpr.codalmac)"
+    Sql = "SELECT shinve.codartic, shinve.codalmac, salmpr.nomalmac, shinve.fechainv, shinve.horainve,existenc "
+    Sql = Sql & " FROM (shinve INNER JOIN salmpr on shinve.codalmac=salmpr.codalmac)"
     If enlaza Then
         If EsBusqueda And CadenaBusqueda <> "" Then
 '            If Data1.Recordset.RecordCount > 1 Then
             'Si devuelve + de 1 registro en el DataGrid poner la info del primer articulo
-                SQL = SQL & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
+                Sql = Sql & CadenaBusqueda & " AND codartic=" & DBSet(Text1(0).Text, "T")
 '            Else
 '                SQL = SQL & CadenaBusqueda
 '            End If
         Else
-            SQL = SQL & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
+            Sql = Sql & " WHERE codartic = " & DBSet(Text1(0).Text, "T")
         End If
     Else
-        SQL = SQL & " WHERE codartic = '-1'"
+        Sql = Sql & " WHERE codartic = '-1'"
     End If
-    SQL = SQL & " " & Ordenacion & " DESC "
-    MontaSQLCarga = SQL
+    Sql = Sql & " " & Ordenacion & " DESC "
+    MontaSQLCarga = Sql
 End Function
 
 
@@ -1263,50 +1281,14 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-            
-'    cad = cad & "Articulo|shinve|codartic|T||25·Denominacion|sartic|nomartic|T||70·"
-    Cad = Cad & "Articulo|shinve.codartic|T||25·Denominacion|nomartic|T||70·"
+    Set frmHinve = New frmBasico2
     
+    AyudaHistoricoInventarioPrev frmHinve
     
-    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
-'        tabla = tabla & " GROUP BY shinve.codartic "
-    'tabla = "sartic"
-    Titulo = "Histórico Inventario"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = cAgro 'Conexion a BD Ariagro
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-'            Toolbar1.Buttons(5).Enabled = True 'Imprimir
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmHinve = Nothing
+    
+
 End Sub
 
 
@@ -1339,15 +1321,15 @@ End Sub
 
 
 Private Function ModificarLinea() As Boolean
-Dim SQL As String
+Dim Sql As String
 On Error GoTo EModificar
 
     ModificarLinea = False
-    SQL = "UPDATE " & NombreTabla & " SET fechainv=" & DBSet(txtAux(1).Text, "F")
-    SQL = SQL & ", horainve='" & Format(txtAux(1).Text & " " & txtAux(2).Text, "yyyy-mm-dd hh:mm:ss") & "'"
-    SQL = SQL & ", existenc=" & DBSet(txtAux(3).Text, "N")
-    SQL = SQL & " WHERE codartic=" & DBSet(Text1(0).Text, "T") & " AND codalmac=" & Me.Data2.Recordset.Fields(1).Value
-    conn.Execute SQL
+    Sql = "UPDATE " & NombreTabla & " SET fechainv=" & DBSet(txtAux(1).Text, "F")
+    Sql = Sql & ", horainve='" & Format(txtAux(1).Text & " " & txtAux(2).Text, "yyyy-mm-dd hh:mm:ss") & "'"
+    Sql = Sql & ", existenc=" & DBSet(txtAux(3).Text, "N")
+    Sql = Sql & " WHERE codartic=" & DBSet(Text1(0).Text, "T") & " AND codalmac=" & Me.Data2.Recordset.Fields(1).Value
+    conn.Execute Sql
     ModificarLinea = True
 EModificar:
     If Err.Number <> 0 Then MuestraError Err.Number, "Modificar Linea", Err.Description
