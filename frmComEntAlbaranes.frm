@@ -700,7 +700,6 @@ Begin VB.Form frmComEntAlbaranes
       _ExtentY        =   9234
       _Version        =   393216
       Style           =   1
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -714,30 +713,49 @@ Begin VB.Form frmComEntAlbaranes
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmComEntAlbaranes.frx":0199
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Text2(1)"
-      Tab(0).Control(1)=   "Text2(0)"
-      Tab(0).Control(2)=   "Text2(16)"
-      Tab(0).Control(3)=   "FrameCliente"
-      Tab(0).Control(4)=   "cmdAux(1)"
-      Tab(0).Control(5)=   "cmdAux(0)"
-      Tab(0).Control(6)=   "txtAux(2)"
-      Tab(0).Control(7)=   "txtAux(7)"
-      Tab(0).Control(8)=   "txtAux(6)"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "Label1(35)"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "Label1(1)"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "Label1(3)"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "ToolAux(0)"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "DataGrid1"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "txtAux(0)"
+      Tab(0).Control(5).Enabled=   0   'False
+      Tab(0).Control(6)=   "txtAux(1)"
+      Tab(0).Control(6).Enabled=   0   'False
+      Tab(0).Control(7)=   "txtAux(3)"
+      Tab(0).Control(7).Enabled=   0   'False
+      Tab(0).Control(8)=   "txtAux(4)"
+      Tab(0).Control(8).Enabled=   0   'False
       Tab(0).Control(9)=   "txtAux(5)"
-      Tab(0).Control(10)=   "txtAux(4)"
-      Tab(0).Control(11)=   "txtAux(3)"
-      Tab(0).Control(12)=   "txtAux(1)"
-      Tab(0).Control(13)=   "txtAux(0)"
-      Tab(0).Control(14)=   "DataGrid1"
-      Tab(0).Control(15)=   "ToolAux(0)"
-      Tab(0).Control(16)=   "Label1(3)"
-      Tab(0).Control(17)=   "Label1(1)"
-      Tab(0).Control(18)=   "Label1(35)"
+      Tab(0).Control(9).Enabled=   0   'False
+      Tab(0).Control(10)=   "txtAux(6)"
+      Tab(0).Control(10).Enabled=   0   'False
+      Tab(0).Control(11)=   "txtAux(7)"
+      Tab(0).Control(11).Enabled=   0   'False
+      Tab(0).Control(12)=   "txtAux(2)"
+      Tab(0).Control(12).Enabled=   0   'False
+      Tab(0).Control(13)=   "cmdAux(0)"
+      Tab(0).Control(13).Enabled=   0   'False
+      Tab(0).Control(14)=   "cmdAux(1)"
+      Tab(0).Control(14).Enabled=   0   'False
+      Tab(0).Control(15)=   "FrameCliente"
+      Tab(0).Control(15).Enabled=   0   'False
+      Tab(0).Control(16)=   "Text2(16)"
+      Tab(0).Control(16).Enabled=   0   'False
+      Tab(0).Control(17)=   "Text2(0)"
+      Tab(0).Control(17).Enabled=   0   'False
+      Tab(0).Control(18)=   "Text2(1)"
+      Tab(0).Control(18).Enabled=   0   'False
       Tab(0).ControlCount=   19
       TabCaption(1)   =   "Otros Datos"
       TabPicture(1)   =   "frmComEntAlbaranes.frx":01B5
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "Label1(45)"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Text1(15)"
@@ -771,7 +789,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   -65550
+         Left            =   9450
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   106
@@ -792,7 +810,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   -73380
+         Left            =   1620
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   104
@@ -813,7 +831,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   -73380
+         Left            =   1620
          Locked          =   -1  'True
          MaxLength       =   60
          TabIndex        =   35
@@ -834,7 +852,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          ForeColor       =   &H00972E0B&
          Height          =   1350
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   87
          Top             =   405
          Width           =   6855
@@ -1557,7 +1575,7 @@ Begin VB.Form frmComEntAlbaranes
       End
       Begin VB.Frame FrameCliente 
          Height          =   1470
-         Left            =   -74775
+         Left            =   225
          TabIndex        =   39
          Top             =   315
          Width           =   12935
@@ -1943,7 +1961,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   -72360
+         Left            =   2640
          TabIndex        =   38
          ToolTipText     =   "Buscar artículo"
          Top             =   3540
@@ -1964,7 +1982,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   -74040
+         Left            =   960
          TabIndex        =   37
          ToolTipText     =   "Buscar almacen"
          Top             =   3540
@@ -1986,7 +2004,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   2
-         Left            =   -72120
+         Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   29
@@ -2012,7 +2030,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   7
-         Left            =   -65280
+         Left            =   9720
          MaxLength       =   12
          TabIndex        =   34
          Tag             =   "Importe"
@@ -2037,7 +2055,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   6
-         Left            =   -65880
+         Left            =   9120
          MaxLength       =   30
          TabIndex        =   33
          Tag             =   "Descuento 2"
@@ -2062,7 +2080,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   5
-         Left            =   -66480
+         Left            =   8520
          MaxLength       =   5
          TabIndex        =   32
          Tag             =   "Descuento 1"
@@ -2087,7 +2105,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   4
-         Left            =   -67560
+         Left            =   7440
          MaxLength       =   12
          TabIndex        =   31
          Tag             =   "Precio"
@@ -2112,7 +2130,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   3
-         Left            =   -68760
+         Left            =   6240
          MaxLength       =   16
          TabIndex        =   30
          Tag             =   "Cantidad"
@@ -2136,7 +2154,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   1
-         Left            =   -73800
+         Left            =   1200
          MaxLength       =   18
          TabIndex        =   28
          Tag             =   "Código Artículo"
@@ -2160,7 +2178,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   330
          Index           =   0
-         Left            =   -74640
+         Left            =   360
          MaxLength       =   15
          TabIndex        =   27
          Tag             =   "Código Almacen"
@@ -2181,7 +2199,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   19
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   80
          TabIndex        =   19
          Tag             =   "Observación 5|T|S|||scaalp|observa5||N|"
@@ -2200,7 +2218,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   18
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   80
          TabIndex        =   18
          Tag             =   "Observación 4|T|S|||scaalp|observa4||N|"
@@ -2219,7 +2237,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   17
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   80
          TabIndex        =   17
          Tag             =   "Observación 3|T|S|||scaalp|observa3||N|"
@@ -2238,7 +2256,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   80
          TabIndex        =   16
          Tag             =   "Observación 2|T|S|||scaalp|observa2||N|"
@@ -2257,7 +2275,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   360
+         Left            =   -74640
          MaxLength       =   80
          TabIndex        =   15
          Tag             =   "Observación 1|T|S|||scaalp|observa1||N|"
@@ -2267,7 +2285,7 @@ Begin VB.Form frmComEntAlbaranes
       Begin MSDataGridLib.DataGrid DataGrid1 
          Bindings        =   "frmComEntAlbaranes.frx":04F3
          Height          =   2025
-         Left            =   -74760
+         Left            =   240
          TabIndex        =   36
          Top             =   2205
          Width           =   12940
@@ -2336,7 +2354,7 @@ Begin VB.Form frmComEntAlbaranes
       Begin MSComctlLib.Toolbar ToolAux 
          Height          =   390
          Index           =   0
-         Left            =   -74775
+         Left            =   225
          TabIndex        =   103
          Top             =   1800
          Width           =   1110
@@ -2375,7 +2393,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   -66405
+         Left            =   8595
          TabIndex        =   107
          Top             =   4725
          Width           =   750
@@ -2393,7 +2411,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   1
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   105
          Top             =   4725
          Width           =   840
@@ -2411,7 +2429,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   35
-         Left            =   -74640
+         Left            =   360
          TabIndex        =   93
          Top             =   4320
          Width           =   1335
@@ -2429,7 +2447,7 @@ Begin VB.Form frmComEntAlbaranes
          EndProperty
          Height          =   255
          Index           =   45
-         Left            =   360
+         Left            =   -74640
          TabIndex        =   26
          Top             =   1920
          Width           =   1680
@@ -2833,7 +2851,7 @@ Dim b As Boolean
         'seleccionar todas las lineas de ese albaran para actualizar la fecha (slialp)
         Sql = "SELECT * FROM " & NomTablaLineas & " WHERE numalbar=" & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         
         Set Rs = New ADODB.Recordset
         Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -2856,21 +2874,21 @@ Dim b As Boolean
         'Eliminamos las lineas que tenia ese albaran (slialp) para volverlas a insertar con la fecha nueva
         Sql = "DELETE from slialp WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la cabecera (scaalp)
         Sql = "UPDATE scaalp SET fechaalb = " & DBSet(Text1(1).Text, "F")
         Sql = Sql & " WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la tabla smoval
         Sql = "UPDATE smoval SET fechamov=" & DBSet(Text1(1).Text, "F")
         Sql = Sql & " WHERE document = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechamov=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codigope=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codigope=" & Data1.Recordset!CodProve
         Sql = Sql & " AND detamovi='" & CodTipoMov & "'"
         conn.Execute Sql
         
@@ -5781,28 +5799,28 @@ End Sub
 
 
 
-Private Sub PonerDatosProveedor(codProve As String, Optional nifProve As String)
+Private Sub PonerDatosProveedor(CodProve As String, Optional nifProve As String)
 Dim vProve As CProveedor
 Dim Observaciones As String
     
     On Error GoTo EPonerDatos
     
-    If codProve = "" Then
+    If CodProve = "" Then
         LimpiarDatosProve
         Exit Sub
     End If
 
     Set vProve = New CProveedor
     'si se ha modificado el proveedor volver a cargar los datos
-    If vProve.Existe(codProve) Then
-        If vProve.LeerDatos(codProve) Then
+    If vProve.Existe(CodProve) Then
+        If vProve.LeerDatos(CodProve) Then
            
             EsDeVarios = vProve.DeVarios
             BloquearDatosProve (EsDeVarios)
         
             If Modo = 4 And EsDeVarios Then 'Modificar
                 'si no se ha modificado el proveedor no hacer nada
-                If CLng(Text1(4).Text) = CLng(Data1.Recordset!codProve) Then
+                If CLng(Text1(4).Text) = CLng(Data1.Recordset!CodProve) Then
                     Set vProve = Nothing
                     Exit Sub
                 End If
@@ -6200,14 +6218,14 @@ Dim b As Boolean
     If Data1.Recordset.EOF Then Exit Function
 
     
-    If (CDate(Text1(4).Text) <> CDate(Data1.Recordset!codProve)) Then
+    If (CDate(Text1(4).Text) <> CDate(Data1.Recordset!CodProve)) Then
     'si ha modificado el codigo de proveedor
         On Error GoTo EComprobar
         
         'seleccionar todas las lineas de ese albaran para actualizar la fecha (slialp)
         Sql = "SELECT * FROM " & NomTablaLineas & " WHERE numalbar=" & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         
         Set Rs = New ADODB.Recordset
         Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -6230,21 +6248,21 @@ Dim b As Boolean
         'Eliminamos las lineas que tenia ese albaran (slialp) para volverlas a insertar con el proveedor nuevo
         Sql = "DELETE from slialp WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la cabecera (scaalp)
         Sql = "UPDATE scaalp SET codprove = " & DBSet(Text1(4).Text, "N")
         Sql = Sql & " WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la tabla smoval
         Sql = "UPDATE smoval SET codigope=" & DBSet(Text1(4).Text, "N")
         Sql = Sql & " WHERE document = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechamov=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codigope=" & Data1.Recordset!codProve
+        Sql = Sql & " AND codigope=" & Data1.Recordset!CodProve
         Sql = Sql & " AND detamovi='" & CodTipoMov & "'"
         conn.Execute Sql
         

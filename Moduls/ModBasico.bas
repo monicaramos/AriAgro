@@ -21,7 +21,7 @@ Public Sub AyudaFamilias(frmCom As frmBasico2, Optional CodActual As String, Opt
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "sfamia"
+    frmCom.tabla = "sfamia"
     frmCom.CampoCP = "codfamia"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Familias"
@@ -59,7 +59,7 @@ Public Sub AyudaPalets(frmCom As frmBasico2, Optional CodActual As String, Optio
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "palets inner join confpale ON palets.codpalet=confpale.codpalet "
+    frmCom.tabla = "palets inner join confpale ON palets.codpalet=confpale.codpalet "
     frmCom.CampoCP = "palets.numpalet"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Palets"
@@ -96,7 +96,7 @@ Public Sub AyudaAlbaranes(frmCom As frmBasico2, Optional CodActual As String, Op
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "albaran inner join clientes ON albaran.codclien=clientes.codclien "
+    frmCom.tabla = "albaran inner join clientes ON albaran.codclien=clientes.codclien "
     frmCom.CampoCP = "numalbar"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Albaranes de Clientes"
@@ -134,7 +134,7 @@ Public Sub AyudaAlbaranesSocio(frmCom As frmBasico2, Optional CodActual As Strin
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "albaran inner join rsocios ON albaran.codsocio=rsocios.codsocio "
+    frmCom.tabla = "albaran inner join rsocios ON albaran.codsocio=rsocios.codsocio "
     frmCom.CampoCP = "numalbar"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Albaranes Venta de Socios"
@@ -175,7 +175,7 @@ Public Sub AyudaPedidos(frmCom As frmBasico2, Optional CodActual As String, Opti
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "pedidos inner join clientes ON pedidos.codclien=clientes.codclien "
+    frmCom.tabla = "pedidos inner join clientes ON pedidos.codclien=clientes.codclien "
     frmCom.CampoCP = "numpedid"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Pedidos"
@@ -214,7 +214,7 @@ Public Sub AyudaFacturas(frmCom As frmBasico2, Optional CodActual As String, Opt
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "facturas inner join clientes ON facturas.codclien=clientes.codclien "
+    frmCom.tabla = "facturas inner join clientes ON facturas.codclien=clientes.codclien "
     frmCom.CampoCP = "numfactu"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Facturas"
@@ -254,7 +254,7 @@ Public Sub AyudaFacturasTransporte(frmCom As frmBasico2, Optional CodActual As S
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "tcafpc inner join agencias ON tcafpc.codtrans=agencias.codtrans "
+    frmCom.tabla = "tcafpc inner join agencias ON tcafpc.codtrans=agencias.codtrans "
     frmCom.CampoCP = "numfactu"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Facturas Transporte/Comisionista"
@@ -291,7 +291,7 @@ Public Sub AyudaAlbaranEnvases(frmCom As frmBasico2, Optional CodActual As Strin
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "scaalb inner join clientes ON scaalb.codclien=clientes.codclien "
+    frmCom.tabla = "scaalb inner join clientes ON scaalb.codclien=clientes.codclien "
     frmCom.CampoCP = "numalbar"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Albaranes Venta Envases"
@@ -330,7 +330,7 @@ Public Sub AyudaClientesPrev(frmCom As frmBasico2, Optional CodActual As String,
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "clientes "
+    frmCom.tabla = "clientes "
     frmCom.CampoCP = "codclien"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Clientes"
@@ -363,7 +363,7 @@ Public Sub AyudaArticulosPrev(frmCom As frmBasico2, Optional CodActual As String
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "sartic"
+    frmCom.tabla = "sartic"
     frmCom.CampoCP = "codartic"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Artículos"
@@ -400,7 +400,7 @@ Public Sub AyudaForfaits(frmCom As frmBasico2, Optional CodActual As String, Opt
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "forfaits"
+    frmCom.tabla = "forfaits"
     frmCom.CampoCP = "codforfait"
     frmCom.TipoCP = "T"
     frmCom.Caption = "Forfaits"
@@ -440,7 +440,7 @@ Public Sub AyudaProveedoresPrev(frmCom As frmBasico2, Optional CodActual As Stri
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "proveedor"
+    frmCom.tabla = "proveedor"
     frmCom.CampoCP = "codprove"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Proveedores"
@@ -477,7 +477,7 @@ Public Sub AyudaPedidosCompraPrev(frmCom As frmBasico2, Optional CodActual As St
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "scappr"
+    frmCom.tabla = "scappr"
     frmCom.CampoCP = "numpedpr"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Pedidos Proveedores"
@@ -513,7 +513,7 @@ Public Sub AyudaAlbaranesCompraPrev(frmCom As frmBasico2, Optional CodActual As 
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "scaalp"
+    frmCom.tabla = "scaalp"
     frmCom.CampoCP = "numalbar"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Albaranes Proveedores"
@@ -551,7 +551,7 @@ Public Sub AyudaFacturasCompraPrev(frmCom As frmBasico2, Optional CodActual As S
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "scafpc"
+    frmCom.tabla = "scafpc"
     frmCom.CampoCP = "numfactu"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Facturas Proveedores"
@@ -589,7 +589,7 @@ Public Sub AyudaFacturasSociosPrev(frmCom As frmBasico2, Optional CodActual As S
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "facturassocio"
+    frmCom.tabla = "facturassocio"
     frmCom.CampoCP = "numfactu"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Facturas Venta Socio"
@@ -641,9 +641,9 @@ Public Sub AyudaTraspasoAlmacenesPrev(frmCom As frmBasico2, Optional CodActual A
     
     frmCom.pConn = cAgro
     If Not EsHistorico Then
-        frmCom.Tabla = "scatra"
+        frmCom.tabla = "scatra"
     Else
-        frmCom.Tabla = "schtra"
+        frmCom.tabla = "schtra"
     End If
     frmCom.CampoCP = "codtrasp"
     frmCom.TipoCP = "N"
@@ -693,9 +693,9 @@ Public Sub AyudaMovimientosAlmacenPrev(frmCom As frmBasico2, Optional CodActual 
     
     frmCom.pConn = cAgro
     If Not EsHistorico Then
-        frmCom.Tabla = "scamov"
+        frmCom.tabla = "scamov"
     Else
-        frmCom.Tabla = "schmov"
+        frmCom.tabla = "schmov"
     End If
     frmCom.CampoCP = "codmovim"
     frmCom.TipoCP = "N"
@@ -753,9 +753,9 @@ Public Sub AyudaMovimientosVariosPrev(frmCom As frmBasico2, Optional CodActual A
     
     frmCom.pConn = cAgro
     If Not EsHistorico Then
-        frmCom.Tabla = "scaser"
+        frmCom.tabla = "scaser"
     Else
-        frmCom.Tabla = "schser"
+        frmCom.tabla = "schser"
     End If
     frmCom.CampoCP = "codservi"
     frmCom.TipoCP = "N"
@@ -792,7 +792,7 @@ Public Sub AyudaHistoricoInventarioPrev(frmCom As frmBasico2, Optional CodActual
     
     frmCom.pConn = cAgro
     
-    frmCom.Tabla = "shinve"
+    frmCom.tabla = "shinve"
     frmCom.CampoCP = "codartic"
     frmCom.TipoCP = "N"
     frmCom.Caption = "Histórico Inventario"
@@ -808,6 +808,45 @@ Public Sub AyudaHistoricoInventarioPrev(frmCom As frmBasico2, Optional CodActual
 End Sub
 
 
+
+Public Sub AyudaVariedad(frmBas As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmBas.CadenaTots = "S|txtAux(0)|T|Código|1405|;S|txtAux(1)|T|Descripción|3000|;S|txtAux(2)|T|Producto|2595|;"
+    frmBas.CadenaConsulta = "SELECT variedades.codvarie, variedades.nomvarie, productos.nomprodu "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " FROM variedades inner join productos on variedades.codprodu = productos.codprodu "
+    frmBas.CadenaConsulta = frmBas.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmBas.CadenaConsulta = frmBas.CadenaConsulta & " and " & cWhere
+    
+    frmBas.Tag1 = "Código |N|N|||variedades|codvarie|000000|S|"
+    frmBas.Tag2 = "Descripción|T|N|||variedades|nomvarie|||"
+    frmBas.Tag3 = "Producto|T|N|||variedades|nomprodu|||"
+    
+    frmBas.Maxlen1 = 4
+    frmBas.Maxlen2 = 30
+    frmBas.Maxlen3 = 100
+    
+    frmBas.pConn = cAgro
+    
+    frmBas.tabla = "variedades"
+    frmBas.CampoCP = "codvarie"
+    frmBas.TipoCP = "N"
+    frmBas.Caption = "Variedades"
+    frmBas.DeConsulta = True
+    
+    frmBas.DatosADevolverBusqueda = "0|1|"
+    frmBas.CodigoActual = 0
+    If CodActual <> "" Then frmBas.CodigoActual = CodActual
+    
+    '[Monica]17/04/2018: añadimos en este caso los botones de busqueda
+    frmBas.DataGrid1.Height = 7420
+    frmBas.DataGrid1.Top = 870
+    frmBas.FrameBotonGnral.visible = True
+    frmBas.FrameBotonGnral.Enabled = True
+    ' hasta aqui
+    
+    frmBas.Show vbModal
+
+    
+End Sub
 
 
 

@@ -376,7 +376,6 @@ Begin VB.Form frmManProve
       _ExtentY        =   10451
       _Version        =   393216
       Style           =   1
-      Tab             =   1
       TabsPerRow      =   4
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -390,99 +389,99 @@ Begin VB.Form frmManProve
       EndProperty
       TabCaption(0)   =   "Datos básicos"
       TabPicture(0)   =   "frmManProve.frx":000C
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "Text1(29)"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "Label1(21)"
       Tab(0).Control(0).Enabled=   0   'False
-      Tab(0).Control(1)=   "Text1(6)"
+      Tab(0).Control(1)=   "imgFec(1)"
       Tab(0).Control(1).Enabled=   0   'False
-      Tab(0).Control(2)=   "Text1(4)"
+      Tab(0).Control(2)=   "imgFec(0)"
       Tab(0).Control(2).Enabled=   0   'False
-      Tab(0).Control(3)=   "Text1(3)"
+      Tab(0).Control(3)=   "imgBuscar(0)"
       Tab(0).Control(3).Enabled=   0   'False
-      Tab(0).Control(4)=   "Text1(2)"
+      Tab(0).Control(4)=   "Label1(19)"
       Tab(0).Control(4).Enabled=   0   'False
-      Tab(0).Control(5)=   "Text1(7)"
+      Tab(0).Control(5)=   "Label1(13)"
       Tab(0).Control(5).Enabled=   0   'False
-      Tab(0).Control(6)=   "Text1(8)"
+      Tab(0).Control(6)=   "Label1(14)"
       Tab(0).Control(6).Enabled=   0   'False
-      Tab(0).Control(7)=   "Text1(9)"
+      Tab(0).Control(7)=   "imgBuscar(2)"
       Tab(0).Control(7).Enabled=   0   'False
-      Tab(0).Control(8)=   "Text1(10)"
+      Tab(0).Control(8)=   "Label1(12)"
       Tab(0).Control(8).Enabled=   0   'False
-      Tab(0).Control(9)=   "Combo1(1)"
+      Tab(0).Control(9)=   "Label1(20)"
       Tab(0).Control(9).Enabled=   0   'False
-      Tab(0).Control(10)=   "Text1(14)"
+      Tab(0).Control(10)=   "imgBuscar(1)"
       Tab(0).Control(10).Enabled=   0   'False
-      Tab(0).Control(11)=   "Text1(15)"
+      Tab(0).Control(11)=   "Label1(10)"
       Tab(0).Control(11).Enabled=   0   'False
-      Tab(0).Control(12)=   "Text1(16)"
+      Tab(0).Control(12)=   "Label1(11)"
       Tab(0).Control(12).Enabled=   0   'False
-      Tab(0).Control(13)=   "Text1(17)"
+      Tab(0).Control(13)=   "Label1(9)"
       Tab(0).Control(13).Enabled=   0   'False
-      Tab(0).Control(14)=   "Text1(18)"
+      Tab(0).Control(14)=   "Label1(8)"
       Tab(0).Control(14).Enabled=   0   'False
-      Tab(0).Control(15)=   "Text1(13)"
+      Tab(0).Control(15)=   "Label1(7)"
       Tab(0).Control(15).Enabled=   0   'False
-      Tab(0).Control(16)=   "Text1(12)"
+      Tab(0).Control(16)=   "Label1(2)"
       Tab(0).Control(16).Enabled=   0   'False
-      Tab(0).Control(17)=   "Text2(13)"
+      Tab(0).Control(17)=   "Label1(5)"
       Tab(0).Control(17).Enabled=   0   'False
-      Tab(0).Control(18)=   "Text2(14)"
+      Tab(0).Control(18)=   "Label1(3)"
       Tab(0).Control(18).Enabled=   0   'False
-      Tab(0).Control(19)=   "Text1(11)"
+      Tab(0).Control(19)=   "Label1(4)"
       Tab(0).Control(19).Enabled=   0   'False
-      Tab(0).Control(20)=   "Text1(5)"
+      Tab(0).Control(20)=   "Label1(6)"
       Tab(0).Control(20).Enabled=   0   'False
-      Tab(0).Control(21)=   "Combo1(0)"
+      Tab(0).Control(21)=   "Text2(12)"
       Tab(0).Control(21).Enabled=   0   'False
-      Tab(0).Control(22)=   "Text2(12)"
+      Tab(0).Control(22)=   "Combo1(0)"
       Tab(0).Control(22).Enabled=   0   'False
-      Tab(0).Control(23)=   "Label1(6)"
+      Tab(0).Control(23)=   "Text1(5)"
       Tab(0).Control(23).Enabled=   0   'False
-      Tab(0).Control(24)=   "Label1(4)"
+      Tab(0).Control(24)=   "Text1(11)"
       Tab(0).Control(24).Enabled=   0   'False
-      Tab(0).Control(25)=   "Label1(3)"
+      Tab(0).Control(25)=   "Text2(14)"
       Tab(0).Control(25).Enabled=   0   'False
-      Tab(0).Control(26)=   "Label1(5)"
+      Tab(0).Control(26)=   "Text2(13)"
       Tab(0).Control(26).Enabled=   0   'False
-      Tab(0).Control(27)=   "Label1(2)"
+      Tab(0).Control(27)=   "Text1(12)"
       Tab(0).Control(27).Enabled=   0   'False
-      Tab(0).Control(28)=   "Label1(7)"
+      Tab(0).Control(28)=   "Text1(13)"
       Tab(0).Control(28).Enabled=   0   'False
-      Tab(0).Control(29)=   "Label1(8)"
+      Tab(0).Control(29)=   "Text1(18)"
       Tab(0).Control(29).Enabled=   0   'False
-      Tab(0).Control(30)=   "Label1(9)"
+      Tab(0).Control(30)=   "Text1(17)"
       Tab(0).Control(30).Enabled=   0   'False
-      Tab(0).Control(31)=   "Label1(11)"
+      Tab(0).Control(31)=   "Text1(16)"
       Tab(0).Control(31).Enabled=   0   'False
-      Tab(0).Control(32)=   "Label1(10)"
+      Tab(0).Control(32)=   "Text1(15)"
       Tab(0).Control(32).Enabled=   0   'False
-      Tab(0).Control(33)=   "imgBuscar(1)"
+      Tab(0).Control(33)=   "Text1(14)"
       Tab(0).Control(33).Enabled=   0   'False
-      Tab(0).Control(34)=   "Label1(20)"
+      Tab(0).Control(34)=   "Combo1(1)"
       Tab(0).Control(34).Enabled=   0   'False
-      Tab(0).Control(35)=   "Label1(12)"
+      Tab(0).Control(35)=   "Text1(10)"
       Tab(0).Control(35).Enabled=   0   'False
-      Tab(0).Control(36)=   "imgBuscar(2)"
+      Tab(0).Control(36)=   "Text1(9)"
       Tab(0).Control(36).Enabled=   0   'False
-      Tab(0).Control(37)=   "Label1(14)"
+      Tab(0).Control(37)=   "Text1(8)"
       Tab(0).Control(37).Enabled=   0   'False
-      Tab(0).Control(38)=   "Label1(13)"
+      Tab(0).Control(38)=   "Text1(7)"
       Tab(0).Control(38).Enabled=   0   'False
-      Tab(0).Control(39)=   "Label1(19)"
+      Tab(0).Control(39)=   "Text1(2)"
       Tab(0).Control(39).Enabled=   0   'False
-      Tab(0).Control(40)=   "imgBuscar(0)"
+      Tab(0).Control(40)=   "Text1(3)"
       Tab(0).Control(40).Enabled=   0   'False
-      Tab(0).Control(41)=   "imgFec(0)"
+      Tab(0).Control(41)=   "Text1(4)"
       Tab(0).Control(41).Enabled=   0   'False
-      Tab(0).Control(42)=   "imgFec(1)"
+      Tab(0).Control(42)=   "Text1(6)"
       Tab(0).Control(42).Enabled=   0   'False
-      Tab(0).Control(43)=   "Label1(21)"
+      Tab(0).Control(43)=   "Text1(29)"
       Tab(0).Control(43).Enabled=   0   'False
       Tab(0).ControlCount=   44
       TabCaption(1)   =   "Datos Contacto"
       TabPicture(1)   =   "frmManProve.frx":0028
-      Tab(1).ControlEnabled=   -1  'True
+      Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "imgWeb"
       Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "Label2(11)"
@@ -503,19 +502,19 @@ Begin VB.Form frmManProve
       TabCaption(2)   =   "Documentos"
       TabPicture(2)   =   "frmManProve.frx":0044
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "Text3(0)"
+      Tab(2).Control(0)=   "imgFec1(0)"
       Tab(2).Control(0).Enabled=   0   'False
-      Tab(2).Control(1)=   "Toolbar2"
+      Tab(2).Control(1)=   "Label17"
       Tab(2).Control(1).Enabled=   0   'False
-      Tab(2).Control(2)=   "lw1"
+      Tab(2).Control(2)=   "Label16"
       Tab(2).Control(2).Enabled=   0   'False
       Tab(2).Control(3)=   "Toolbar3"
       Tab(2).Control(3).Enabled=   0   'False
-      Tab(2).Control(4)=   "Label16"
+      Tab(2).Control(4)=   "lw1"
       Tab(2).Control(4).Enabled=   0   'False
-      Tab(2).Control(5)=   "Label17"
+      Tab(2).Control(5)=   "Toolbar2"
       Tab(2).Control(5).Enabled=   0   'False
-      Tab(2).Control(6)=   "imgFec1(0)"
+      Tab(2).Control(6)=   "Text3(0)"
       Tab(2).Control(6).Enabled=   0   'False
       Tab(2).ControlCount=   7
       Begin VB.TextBox Text1 
@@ -530,7 +529,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   29
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   4
          TabIndex        =   9
          Tag             =   "IBAN|T|S|||proveedor|iban|||"
@@ -571,7 +570,7 @@ Begin VB.Form frmManProve
          ForeColor       =   &H00972E0B&
          Height          =   2670
          Index           =   2
-         Left            =   180
+         Left            =   -74820
          TabIndex        =   50
          Top             =   450
          Width           =   6015
@@ -749,7 +748,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   6
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   30
          TabIndex        =   7
          Tag             =   "Provincia|T|N|||proveedor|proprove|||"
@@ -769,7 +768,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   4
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   6
          TabIndex        =   5
          Tag             =   "CPostal|T|N|||proveedor|codpobla||N|"
@@ -789,7 +788,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   3
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   35
          TabIndex        =   4
          Tag             =   "Domicilio|T|S|||proveedor|domprove||N|"
@@ -809,7 +808,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   2
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   30
          TabIndex        =   3
          Tag             =   "Nombre Comercial|T|N|||proveedor|nomcomer||N|"
@@ -829,7 +828,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   7
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   15
          TabIndex        =   8
          Tag             =   "N.I.F.|T|N|||proveedor|nifprove|||"
@@ -849,7 +848,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   27
-         Left            =   240
+         Left            =   -74760
          MaxLength       =   40
          TabIndex        =   32
          Tag             =   "Web|T|S|||proveedor|wwwprove|||"
@@ -869,7 +868,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   580
          Index           =   28
-         Left            =   240
+         Left            =   -74760
          MaxLength       =   200
          TabIndex        =   31
          Tag             =   "Observaciones|T|S|||proveedor|observac|||"
@@ -891,7 +890,7 @@ Begin VB.Form frmManProve
          ForeColor       =   &H00972E0B&
          Height          =   2670
          Index           =   13
-         Left            =   6360
+         Left            =   -68640
          TabIndex        =   45
          Top             =   450
          Width           =   6015
@@ -1078,7 +1077,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   8
-         Left            =   -64815
+         Left            =   10185
          MaxLength       =   10
          TabIndex        =   18
          Tag             =   "Fecha de Alta|F|N|||proveedor|fecprove|dd/mm/yyyy||"
@@ -1107,7 +1106,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   9
-         Left            =   -64815
+         Left            =   10185
          MaxLength       =   10
          TabIndex        =   19
          Tag             =   "Fecha última compra|F|S|||proveedor|fechamov|dd/mm/yyyy||"
@@ -1137,7 +1136,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   10
-         Left            =   -64815
+         Left            =   10185
          MaxLength       =   5
          TabIndex        =   21
          Tag             =   "Dto. Pronto Pago|N|S|0|99.90|proveedor|dtoppago|#0.00||"
@@ -1157,7 +1156,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   1
-         Left            =   -64815
+         Left            =   10185
          Style           =   2  'Dropdown List
          TabIndex        =   20
          Tag             =   "Tipo Descuento|N|N|||proveedor|tipodtos||N|"
@@ -1177,7 +1176,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   14
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   4
          TabIndex        =   16
          Tag             =   "Banco Propio|N|N|0|9999|proveedor|codbanpr|0000||"
@@ -1197,7 +1196,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   15
-         Left            =   -72030
+         Left            =   2970
          MaxLength       =   4
          TabIndex        =   10
          Tag             =   "Banco|N|S|0|9999|proveedor|codbanco|0000||"
@@ -1217,7 +1216,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   16
-         Left            =   -71190
+         Left            =   3810
          MaxLength       =   4
          TabIndex        =   11
          Tag             =   "Sucursal|N|S|0|9999|proveedor|codsucur|0000||"
@@ -1237,7 +1236,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   17
-         Left            =   -70335
+         Left            =   4665
          MaxLength       =   2
          TabIndex        =   12
          Tag             =   "Digito Control|T|S|||proveedor|digcontr|00||"
@@ -1257,7 +1256,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   18
-         Left            =   -69615
+         Left            =   5385
          MaxLength       =   10
          TabIndex        =   13
          Tag             =   "Cuenta Bancaria|T|S|||proveedor|cuentaba|0000000000||"
@@ -1278,7 +1277,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   3
          TabIndex        =   15
          Tag             =   "Forma Pago|N|N|0|999|proveedor|codforpa|000|N|"
@@ -1298,7 +1297,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   -72870
+         Left            =   2130
          MaxLength       =   10
          TabIndex        =   14
          Tag             =   "Cuenta Contable|T|S|||proveedor|codmacta|||"
@@ -1320,7 +1319,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   13
-         Left            =   -72240
+         Left            =   2760
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   44
@@ -1342,7 +1341,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   14
-         Left            =   -72240
+         Left            =   2760
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   43
@@ -1372,7 +1371,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   11
-         Left            =   -64815
+         Left            =   10185
          MaxLength       =   5
          TabIndex        =   22
          Tag             =   "Dto. General|N|S|0|99.90|proveedor|dtognral|#0.00||"
@@ -1392,7 +1391,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   -71040
+         Left            =   3960
          MaxLength       =   30
          TabIndex        =   6
          Tag             =   "Población|T|N|||proveedor|pobprove||N|"
@@ -1412,7 +1411,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   0
-         Left            =   -64815
+         Left            =   10185
          TabIndex        =   17
          Tag             =   "Tipo de Proveedor|N|N|||proveedor|tipprove||N|"
          Text            =   "Combo1"
@@ -1433,7 +1432,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   12
-         Left            =   -71520
+         Left            =   3480
          Locked          =   -1  'True
          MaxLength       =   40
          TabIndex        =   42
@@ -1599,7 +1598,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgZoom 
          Height          =   240
          Index           =   0
-         Left            =   1800
+         Left            =   -73200
          ToolTipText     =   "Zoom descripción"
          Top             =   3285
          Width           =   240
@@ -1617,7 +1616,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   240
          Index           =   6
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   55
          Top             =   1980
          Width           =   1095
@@ -1635,7 +1634,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   4
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   56
          Top             =   1515
          Width           =   1215
@@ -1653,7 +1652,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   3
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   57
          Top             =   1065
          Width           =   1005
@@ -1671,7 +1670,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   360
          Index           =   5
-         Left            =   -72015
+         Left            =   2985
          TabIndex        =   58
          Top             =   1515
          Width           =   1005
@@ -1689,7 +1688,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   2
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   72
          Top             =   600
          Width           =   1785
@@ -1707,7 +1706,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   7
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   71
          Top             =   2445
          Width           =   645
@@ -1725,7 +1724,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   240
          Index           =   10
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   70
          Top             =   4200
          Width           =   465
@@ -1743,7 +1742,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   240
          Index           =   11
-         Left            =   240
+         Left            =   -74760
          TabIndex        =   69
          Top             =   3300
          Width           =   1575
@@ -1761,7 +1760,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   195
          Index           =   8
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   68
          Top             =   1050
          Width           =   1080
@@ -1779,7 +1778,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   240
          Index           =   9
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   67
          Top             =   1515
          Width           =   1905
@@ -1797,7 +1796,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   195
          Index           =   11
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   66
          Top             =   3510
          Width           =   1335
@@ -1815,7 +1814,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   10
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   65
          Top             =   3990
          Width           =   1320
@@ -1823,7 +1822,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   1
-         Left            =   -73170
+         Left            =   1830
          ToolTipText     =   "Buscar forma de pago"
          Top             =   4020
          Width           =   240
@@ -1841,7 +1840,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   20
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   64
          Top             =   1965
          Width           =   1620
@@ -1859,7 +1858,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   285
          Index           =   12
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   63
          Top             =   2430
          Width           =   1815
@@ -1867,7 +1866,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   2
-         Left            =   -73170
+         Left            =   1830
          ToolTipText     =   "Buscar banco propio"
          Top             =   4515
          Width           =   240
@@ -1885,7 +1884,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   240
          Index           =   14
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   62
          Top             =   4470
          Width           =   1350
@@ -1903,7 +1902,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   195
          Index           =   13
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   61
          Top             =   2895
          Width           =   2040
@@ -1921,7 +1920,7 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   255
          Index           =   19
-         Left            =   -67020
+         Left            =   7980
          TabIndex        =   60
          Top             =   585
          Width           =   1515
@@ -1929,7 +1928,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgBuscar 
          Height          =   240
          Index           =   0
-         Left            =   -73170
+         Left            =   1830
          Tag             =   "-1"
          ToolTipText     =   "Buscar cuenta contable"
          Top             =   3555
@@ -1938,7 +1937,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   0
-         Left            =   -65100
+         Left            =   9900
          Picture         =   "frmManProve.frx":00EB
          ToolTipText     =   "Buscar fecha"
          Top             =   1020
@@ -1947,7 +1946,7 @@ Begin VB.Form frmManProve
       Begin VB.Image imgFec 
          Height          =   240
          Index           =   1
-         Left            =   -65100
+         Left            =   9900
          Picture         =   "frmManProve.frx":0176
          ToolTipText     =   "Buscar fecha"
          Top             =   1515
@@ -1966,14 +1965,14 @@ Begin VB.Form frmManProve
          EndProperty
          Height          =   195
          Index           =   21
-         Left            =   -74745
+         Left            =   255
          TabIndex        =   59
          Top             =   3045
          Width           =   1635
       End
       Begin VB.Image imgWeb 
          Height          =   255
-         Left            =   810
+         Left            =   -74190
          Picture         =   "frmManProve.frx":0201
          Stretch         =   -1  'True
          Tag             =   "-1"

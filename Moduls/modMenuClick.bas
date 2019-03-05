@@ -451,6 +451,11 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         Case 19: frmListado2.Opcionlistado = 223
                  frmListado2.CadTag = "A"
                  frmListado2.Show vbModal
+        '[Monica]05/03/2019: facturas de compra de variedades
+        Case 21: frmFacturasCompra.Show vbModal
+        Case 22: ' integracion contable
+'                 DeCompra = True
+                 AbrirListado2 (224)
     End Select
 End Sub
 
@@ -629,7 +634,7 @@ Private Sub AbrirFormularioAreasCC()
     frmBas.Tag2 = "Descripción|T|N|||ccareas|nomarea|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 50
-    frmBas.tabla = "ccareas"
+    frmBas.Tabla = "ccareas"
     frmBas.CampoCP = "codarea"
     frmBas.Report = "rManCCAreas.rpt"
     frmBas.Caption = "Áreas"
@@ -652,7 +657,7 @@ Private Sub AbrirFormularioZonasCC()
     frmBas.Tag2 = "Descripción|T|N|||cczonas|nomzona|||"
     frmBas.Maxlen1 = 4
     frmBas.Maxlen2 = 30
-    frmBas.tabla = "cczonas"
+    frmBas.Tabla = "cczonas"
     frmBas.CampoCP = "codzona"
     frmBas.Report = "rManCCZonas.rpt"
     frmBas.Caption = "Zonas"
@@ -674,7 +679,7 @@ Private Sub AbrirFormularioLineasCC()
     frmBas.Tag2 = "Descripción|T|N|||cclinconf|nomlinconf|||"
     frmBas.Maxlen1 = 2
     frmBas.Maxlen2 = 40
-    frmBas.tabla = "cclinconf"
+    frmBas.Tabla = "cclinconf"
     frmBas.CampoCP = "codlinconf"
     frmBas.Report = "rManCCLineasConf.rpt"
     frmBas.Caption = "Lineas de Confección"
