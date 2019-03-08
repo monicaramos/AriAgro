@@ -21,13 +21,13 @@ Begin VB.Form frmFacturasCompra
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   68
+      TabIndex        =   67
       Top             =   45
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   69
+         TabIndex        =   68
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -83,13 +83,13 @@ Begin VB.Form frmFacturasCompra
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   3720
-      TabIndex        =   66
+      TabIndex        =   65
       Top             =   45
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   67
+         TabIndex        =   66
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -133,26 +133,9 @@ Begin VB.Form frmFacturasCompra
       EndProperty
       Height          =   300
       Left            =   15075
-      TabIndex        =   65
-      Top             =   315
-      Width           =   1605
-   End
-   Begin VB.CheckBox chkRectifica 
-      Caption         =   "Rectificativa"
-      BeginProperty Font 
-         Name            =   "Verdana"
-         Size            =   9.75
-         Charset         =   0
-         Weight          =   400
-         Underline       =   0   'False
-         Italic          =   0   'False
-         Strikethrough   =   0   'False
-      EndProperty
-      Height          =   240
-      Left            =   6660
       TabIndex        =   64
       Top             =   315
-      Width           =   1665
+      Width           =   1605
    End
    Begin VB.Frame Frame2 
       Height          =   4230
@@ -175,7 +158,7 @@ Begin VB.Form frmFacturasCompra
          Index           =   1
          Left            =   4050
          MaxLength       =   10
-         TabIndex        =   3
+         TabIndex        =   2
          Tag             =   "Fecha Factura|F|N|||facturascom|fecfactu|dd/mm/yyyy|S|"
          Top             =   810
          Width           =   1350
@@ -195,7 +178,7 @@ Begin VB.Form frmFacturasCompra
          Index           =   6
          Left            =   6930
          MaxLength       =   12
-         TabIndex        =   1
+         TabIndex        =   3
          Tag             =   "Fecha Recepción|F|N|||facturascom|fecrecep|dd/mm/yyyy||"
          Top             =   810
          Width           =   1350
@@ -341,7 +324,7 @@ Begin VB.Form frmFacturasCompra
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   8
-         Tag             =   "Observaciones|T|S|||facturas|observac|||"
+         Tag             =   "Observaciones|T|S|||facturascom|observac|||"
          Top             =   2730
          Width           =   8040
       End
@@ -367,7 +350,6 @@ Begin VB.Form frmFacturasCompra
          Width           =   1080
       End
       Begin VB.TextBox Text1 
-         Alignment       =   1  'Right Justify
          BackColor       =   &H8000000E&
          BeginProperty Font 
             Name            =   "Verdana"
@@ -381,8 +363,8 @@ Begin VB.Form frmFacturasCompra
          Height          =   360
          Index           =   0
          Left            =   1350
-         MaxLength       =   7
-         TabIndex        =   2
+         MaxLength       =   10
+         TabIndex        =   1
          Tag             =   "Nº Factura|T|S|||facturascom|numfactu||S|"
          Text            =   "Text1 7"
          Top             =   855
@@ -390,10 +372,31 @@ Begin VB.Form frmFacturasCompra
       End
       Begin VB.Frame FrameFactura 
          Height          =   3825
-         Left            =   8415
+         Left            =   8685
          TabIndex        =   42
-         Top             =   225
+         Top             =   270
          Width           =   8450
+         Begin VB.TextBox Text1 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   32
+            Left            =   4365
+            MaxLength       =   15
+            TabIndex        =   92
+            Tag             =   "Importe DtoGnral|N|S|0||facturascom|impgnral|#,###,###,##0.00|N|"
+            Text            =   "Text1 7"
+            Top             =   540
+            Width           =   1260
+         End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -410,7 +413,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   5475
             MaxLength       =   5
             TabIndex        =   59
-            Tag             =   "% REC 1|N|S|0|99.90|facturas|porcrec1|#0.00|N|"
+            Tag             =   "% REC 1|N|S|0|99.90|facturascom|porcrec1|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   660
@@ -432,7 +435,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   6300
             MaxLength       =   15
             TabIndex        =   58
-            Tag             =   "Importe REC 1|N|S|0||facturas|imporec1|#,###,###,##0.00|N|"
+            Tag             =   "Importe REC 1|N|S|0||facturascom|imporec1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   1650
@@ -453,7 +456,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   5475
             MaxLength       =   5
             TabIndex        =   57
-            Tag             =   "% REC 2|N|S|0|99.90|facturas|porcrec2|#0.00|N|"
+            Tag             =   "% REC 2|N|S|0|99.90|facturascom|porcrec2|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   2010
             Width           =   660
@@ -475,7 +478,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   6300
             MaxLength       =   15
             TabIndex        =   56
-            Tag             =   "Importe REC 2|N|S|0||facturas|imporec2|#,###,###,##0.00|N|"
+            Tag             =   "Importe REC 2|N|S|0||facturascom|imporec2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2010
             Width           =   1650
@@ -496,7 +499,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   5475
             MaxLength       =   5
             TabIndex        =   55
-            Tag             =   "% REC 3|N|S|0|99.90|facturas|porcrec3|#0.00|N|"
+            Tag             =   "% REC 3|N|S|0|99.90|facturascom|porcrec3|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   660
@@ -518,7 +521,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   6300
             MaxLength       =   15
             TabIndex        =   54
-            Tag             =   "Importe REC 3|N|S|0||facturas|imporec3|#,###,###,##0.00|N|"
+            Tag             =   "Importe REC 3|N|S|0||facturascom|imporec3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   1650
@@ -540,7 +543,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   6300
             MaxLength       =   15
             TabIndex        =   24
-            Tag             =   "Total Factura|N|S|0||facturas|totalfac|#,###,###,##0.00|N|"
+            Tag             =   "Total Factura|N|S|0||facturascom|totalfac|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   3225
             Width           =   1650
@@ -562,7 +565,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   3585
             MaxLength       =   15
             TabIndex        =   23
-            Tag             =   "Importe IVA 3|N|S|0||facturas|impoiva3|#,###,###,##0.00|N|"
+            Tag             =   "Importe IVA 3|N|S|0||facturascom|impoiva3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   1710
@@ -583,7 +586,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   2790
             MaxLength       =   5
             TabIndex        =   21
-            Tag             =   "% IVA 3|N|S|0|99.90|facturas|porciva3|#0.00|N|"
+            Tag             =   "% IVA 3|N|S|0|99.90|facturascom|porciva3|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   705
@@ -604,7 +607,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   855
             MaxLength       =   15
             TabIndex        =   22
-            Tag             =   "Base Imponible 3|N|S|0||facturas|baseimp3|#,###,###,##0.00|N|"
+            Tag             =   "Base Imponible 3|N|S|0||facturascom|baseimp3|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   1710
@@ -626,7 +629,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   3585
             MaxLength       =   15
             TabIndex        =   19
-            Tag             =   "Importe IVA 2|N|S|0||facturas|impoiva2|#,###,###,##0.00|N|"
+            Tag             =   "Importe IVA 2|N|S|0||facturascom|impoiva2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2010
             Width           =   1710
@@ -647,7 +650,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   2775
             MaxLength       =   5
             TabIndex        =   17
-            Tag             =   "& IVA 2|N|S|0|99.90|facturas|porciva2|#0.00|N|"
+            Tag             =   "& IVA 2|N|S|0|99.90|facturascom|porciva2|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   2010
             Width           =   705
@@ -668,7 +671,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   855
             MaxLength       =   15
             TabIndex        =   18
-            Tag             =   "Base Imponible 2 |N|S|0||facturas|baseimp2|#,###,###,##0.00|N|"
+            Tag             =   "Base Imponible 2 |N|S|0||facturascom|baseimp2|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   2025
             Width           =   1710
@@ -690,7 +693,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   3585
             MaxLength       =   15
             TabIndex        =   15
-            Tag             =   "Importe IVA 1|N|S|0||facturas|impoiva1|#,###,###,##0.00|N|"
+            Tag             =   "Importe IVA 1|N|S|0||facturascom|impoiva1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   1710
@@ -711,7 +714,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   2775
             MaxLength       =   5
             TabIndex        =   13
-            Tag             =   "% IVA 1|N|S|0|99.90|facturas|porciva1|#0.00|N|"
+            Tag             =   "% IVA 1|N|S|0|99.90|facturascom|porciva1|#0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   705
@@ -732,7 +735,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   855
             MaxLength       =   15
             TabIndex        =   14
-            Tag             =   "Base Imponible 1|N|S|0||facturas|baseimp1|#,###,###,##0.00|N|"
+            Tag             =   "Base Imponible 1|N|S|0||facturascom|baseimp1|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   1710
@@ -753,7 +756,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   300
             MaxLength       =   5
             TabIndex        =   12
-            Tag             =   "IVA 1|N|S|0|9|facturas|codiiva1|0|N|"
+            Tag             =   "IVA 1|N|S|0|9|facturascom|codiiva1|0|N|"
             Text            =   "Text1 7"
             Top             =   1560
             Width           =   500
@@ -774,7 +777,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   300
             MaxLength       =   5
             TabIndex        =   16
-            Tag             =   "IVA 2|N|S|0|9|facturas|codiiva2|0|N|"
+            Tag             =   "IVA 2|N|S|0|9|facturascom|codiiva2|0|N|"
             Text            =   "Text1 7"
             Top             =   2010
             Width           =   500
@@ -795,7 +798,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   300
             MaxLength       =   5
             TabIndex        =   20
-            Tag             =   "IVA 3|N|S|0|9|facturas|codiiva3|0|N|"
+            Tag             =   "IVA 3|N|S|0|9|facturascom|codiiva3|0|N|"
             Text            =   "Text1 7"
             Top             =   2475
             Width           =   500
@@ -816,7 +819,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   855
             MaxLength       =   15
             TabIndex        =   9
-            Tag             =   "Bruto Factura|N|S|0||facturas|brutofac|#,###,###,##0.00|N|"
+            Tag             =   "Bruto Factura|N|S|0||facturascom|brutofac|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   540
             Width           =   1710
@@ -834,13 +837,13 @@ Begin VB.Form frmFacturasCompra
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   3600
+            Left            =   2790
             MaxLength       =   15
             TabIndex        =   10
-            Tag             =   "Impòrte Descuento|N|S|0||facturas|impordto|#,###,###,##0.00|N|"
+            Tag             =   "Importe Dto.PPago|N|S|0||facturascom|impppago|#,###,###,##0.00|N|"
             Text            =   "Text1 7"
             Top             =   540
-            Width           =   1665
+            Width           =   1260
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -862,6 +865,60 @@ Begin VB.Form frmFacturasCompra
             Text            =   "Text1 7"
             Top             =   540
             Width           =   1650
+         End
+         Begin VB.Label Label1 
+            Caption         =   "="
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   14
+            Left            =   5895
+            TabIndex        =   95
+            Top             =   540
+            Width           =   135
+         End
+         Begin VB.Label Label1 
+            Caption         =   "-"
+            BeginProperty Font 
+               Name            =   "MS Sans Serif"
+               Size            =   12
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   11
+            Left            =   4185
+            TabIndex        =   94
+            Top             =   540
+            Width           =   135
+         End
+         Begin VB.Label Label1 
+            Caption         =   "Imp.DtoGnral"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   255
+            Index           =   6
+            Left            =   4365
+            TabIndex        =   93
+            Top             =   270
+            Width           =   1710
          End
          Begin VB.Line Line1 
             X1              =   6300
@@ -1048,7 +1105,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   855
             TabIndex        =   46
             Top             =   270
-            Width           =   1110
+            Width           =   1695
          End
          Begin VB.Label Label1 
             Caption         =   "Base Imponible"
@@ -1069,7 +1126,7 @@ Begin VB.Form frmFacturasCompra
             Width           =   1530
          End
          Begin VB.Label Label1 
-            Caption         =   "Imp.Descuento"
+            Caption         =   "Imp.PPago"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -1081,7 +1138,7 @@ Begin VB.Form frmFacturasCompra
             EndProperty
             Height          =   255
             Index           =   1
-            Left            =   3600
+            Left            =   2790
             TabIndex        =   44
             Top             =   270
             Width           =   1710
@@ -1099,11 +1156,30 @@ Begin VB.Form frmFacturasCompra
             EndProperty
             Height          =   255
             Index           =   9
-            Left            =   3105
+            Left            =   2655
             TabIndex        =   43
             Top             =   540
             Width           =   135
          End
+      End
+      Begin VB.TextBox Text1 
+         Alignment       =   1  'Right Justify
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   5
+         Left            =   5040
+         MaxLength       =   5
+         TabIndex        =   91
+         Top             =   3195
+         Width           =   945
       End
       Begin VB.Image imgFec 
          Height          =   240
@@ -1268,7 +1344,7 @@ Begin VB.Form frmFacturasCompra
          Height          =   240
          Index           =   0
          Left            =   1350
-         ToolTipText     =   "Buscar Cliente"
+         ToolTipText     =   "Buscar Proveedor"
          Top             =   315
          Width           =   240
       End
@@ -1321,9 +1397,9 @@ Begin VB.Form frmFacturasCompra
          BorderStyle     =   0  'None
          Height          =   4290
          Left            =   135
-         TabIndex        =   71
+         TabIndex        =   70
          Top             =   480
-         Width           =   16825
+         Width           =   17190
          Begin VB.TextBox txtAux 
             Alignment       =   1  'Right Justify
             Appearance      =   0  'Flat
@@ -1342,7 +1418,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   13
             Left            =   11070
             MaxLength       =   5
-            TabIndex        =   91
+            TabIndex        =   78
             Tag             =   "Dto.Linea2|N|N|||facturascom_variedad|dtoline2|#0.00||"
             Text            =   "Dto.Linea"
             Top             =   2250
@@ -1483,7 +1559,7 @@ Begin VB.Form frmFacturasCompra
             Left            =   1020
             MaxLength       =   12
             TabIndex        =   83
-            Tag             =   "Num.Factura|N|N|||facturascom_variedad|numfactu|0000000|S|"
+            Tag             =   "Num.Factura|T|N|||facturascom_variedad|numfactu|0000000|S|"
             Text            =   "NumFact"
             Top             =   2250
             Visible         =   0   'False
@@ -1506,7 +1582,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   5
             Left            =   5040
             MaxLength       =   16
-            TabIndex        =   73
+            TabIndex        =   72
             Tag             =   "Forfait|T|N|||facturascom_variedad|codforfait|||"
             Text            =   "Forfait"
             Top             =   2250
@@ -1531,7 +1607,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   6
             Left            =   7470
             MaxLength       =   12
-            TabIndex        =   74
+            TabIndex        =   73
             Tag             =   "Cajas|N|N|||facturascom_variedad|numcajas|###,##0||"
             Text            =   "cajas"
             Top             =   2250
@@ -1581,7 +1657,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   3
             Left            =   2430
             MaxLength       =   12
-            TabIndex        =   79
+            TabIndex        =   80
             Tag             =   "Num.Linea|N|N|||facturascom_variedad|numlinea|000|S|"
             Text            =   "Linea"
             Top             =   2250
@@ -1606,7 +1682,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   7
             Left            =   9495
             MaxLength       =   12
-            TabIndex        =   77
+            TabIndex        =   76
             Tag             =   "Precio|N|N|||facturascom_variedad|precio|###,##0.0000||"
             Text            =   "Precio"
             Top             =   2250
@@ -1631,7 +1707,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   8
             Left            =   10305
             MaxLength       =   5
-            TabIndex        =   78
+            TabIndex        =   77
             Tag             =   "Dto.Linea|N|N|||facturascom_variedad|dtoline1|#0.00||"
             Text            =   "Dto.Linea"
             Top             =   2250
@@ -1656,7 +1732,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   9
             Left            =   11835
             MaxLength       =   12
-            TabIndex        =   80
+            TabIndex        =   79
             Tag             =   "Importe|N|N|||facturascom_variedad|importe|##,###,##0.00||"
             Text            =   "Importe"
             Top             =   2250
@@ -1706,7 +1782,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   4
             Left            =   3105
             MaxLength       =   6
-            TabIndex        =   72
+            TabIndex        =   71
             Tag             =   "Variedad|N|N|||facturascom_variedad|codvarie|000000||"
             Text            =   "Varied"
             Top             =   2250
@@ -1731,7 +1807,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   11
             Left            =   8280
             MaxLength       =   7
-            TabIndex        =   75
+            TabIndex        =   74
             Tag             =   "Peso Bruto|N|S|||facturascom_variedad|pesobrut|###,##0||"
             Text            =   "P.Bruto"
             Top             =   2250
@@ -1756,7 +1832,7 @@ Begin VB.Form frmFacturasCompra
             Index           =   12
             Left            =   8910
             MaxLength       =   7
-            TabIndex        =   76
+            TabIndex        =   75
             Tag             =   "Peso Neto|N|S|||facturascom_variedad|pesoneto|###,##0||"
             Text            =   "Peso Ne"
             Top             =   2250
@@ -1798,8 +1874,8 @@ Begin VB.Form frmFacturasCompra
             Left            =   90
             TabIndex        =   88
             Top             =   630
-            Width           =   16595
-            _ExtentX        =   29263
+            Width           =   16860
+            _ExtentX        =   29739
             _ExtentY        =   5477
             _Version        =   393216
             AllowUpdate     =   0   'False
@@ -2145,7 +2221,7 @@ Begin VB.Form frmFacturasCompra
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
       Left            =   17115
-      TabIndex        =   70
+      TabIndex        =   69
       Top             =   255
       Width           =   405
       _ExtentX        =   714
@@ -2430,10 +2506,10 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid1.AllowAddNew = False
-                        If Not Adoaux(0).Recordset.EOF Then Adoaux(0).Recordset.MoveFirst
+                        If Not Adoaux(1).Recordset.EOF Then Adoaux(1).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
-                    LLamaLineas Modo, 0, "DataGrid2"
+                    LLamaLineas Modo, 0, "DataGrid1"
                     PonerModo 2
                     DataGrid1.Enabled = True
                     If Not Data1.Recordset.EOF Then _
@@ -2511,12 +2587,12 @@ End Sub
 Private Sub BotonVerTodos()
     If chkVistaPrevia.Value = 1 Then
         EsCabecera = True
-        MandaBusquedaPrevia "facturas.codtipom <> 'EAC'"
+        MandaBusquedaPrevia ""
     Else
         LimpiarCampos
         LimpiarDataGrids
-        CadenaConsulta = "Select facturas.* "
-        CadenaConsulta = CadenaConsulta & "from " & NombreTabla & " where codtipom <> 'EAC' " & Ordenacion
+        CadenaConsulta = "Select facturascom.* "
+        CadenaConsulta = CadenaConsulta & "from " & NombreTabla & " where (1=1) " & Ordenacion
 '        CadenaConsulta = CadenaConsulta & " WHERE scafac.codtipom='" & CodTipoMov & "'"
         PonerCadenaBusqueda
     End If
@@ -2592,7 +2668,7 @@ Dim J As Byte
     
     
     NumTabMto = Index
-    If Index = 2 Then NumTabMto = 3
+    'If Index = 2 Then NumTabMto = 3
     PonerModo 5, Index
  
 
@@ -2614,47 +2690,32 @@ Dim J As Byte
         '    anc = ObtenerAlto(Me.DataGrid1)
             anc = DataGrid1.Top
             If DataGrid1.Row < 0 Then
-                anc = anc + 210
+                anc = anc + 240
             Else
                 anc = anc + DataGrid1.RowTop(DataGrid1.Row) + 10
             End If
         
-            For J = 0 To 5
+            For J = 0 To 4
                 txtAux(J).Text = DataGrid1.Columns(J).Text
             Next J
-            For J = 7 To 10
-                txtAux(J - 1).Text = DataGrid1.Columns(J).Text
-            Next J
             
-            Text2(0).Text = DataGrid1.Columns(6).Text  ' nombre de articulo
-            Text2(16).Text = DataGrid1.Columns(11).Text ' ampliacion
             
-'            cmbAux(0).Text = DataGrid3.Columns(7).Text
-            txtAux(10).Text = DataGrid1.Columns(12).Text
+            Text2(0).Text = DataGrid1.Columns(5).Text  ' nombre de variedad
+            txtAux(5).Text = DataGrid1.Columns(6).Text
+            Text2(1).Text = DataGrid1.Columns(7).Text  ' nombre de forfait
+            txtAux(6).Text = DataGrid1.Columns(8).Text
+            txtAux(11).Text = DataGrid1.Columns(9).Text
+            txtAux(12).Text = DataGrid1.Columns(10).Text
+            txtAux(7).Text = DataGrid1.Columns(11).Text
+            txtAux(8).Text = DataGrid1.Columns(12).Text
+            txtAux(13).Text = DataGrid1.Columns(13).Text
+            txtAux(9).Text = DataGrid1.Columns(14).Text
+            txtAux(10).Text = DataGrid1.Columns(15).Text
             
-            '[Monica]20/03/2012: numero de albaran y linea de albaran
-            txtAux(11).Text = DataGrid1.Columns(13).Text
-            txtAux(12).Text = DataGrid1.Columns(14).Text
-            txtAux(13).Text = DataGrid1.Columns(15).Text
-
-            BloquearTxt txtAux(4), True
-'[Monica]13/05/2015: dejamos modificar el articulo
-'            BloquearTxt txtAux(5), True
-'[Monica]28/07/2014: dejamos modificar el precio
-'            BloquearTxt txtAux(7), True
-            BloquearTxt txtAux(9), True
-            txtAux(4).Enabled = False
-'[Monica]13/05/2015: dejamos modificar el articulo
-'            txtAux(5).Enabled = False
-'[Monica]28/07/2014: dejamos modificar el precio
-'            txtAux(7).Enabled = False
-            txtAux(9).Enabled = False
-            
-            BloquearTxt txtAux(6), False
-            BloquearTxt txtAux(8), False
             
 '[Monica]13/05/2015: dejamos modificar la variedad
            BloquearBtn Me.btnBuscar(0), False
+           BloquearBtn Me.btnBuscar(1), False
             
             ModificaLineas = 2 'Modificar
             LLamaLineas ModificaLineas, anc, "DataGrid1"
@@ -2685,7 +2746,7 @@ Dim b As Boolean
         Case "DataGrid1"
             DeseleccionaGrid Me.DataGrid1
             b = (xModo = 1 Or xModo = 2)
-            For jj = 4 To 12
+            For jj = 4 To 13
                 txtAux(jj).Height = DataGrid1.RowHeight - 10
                 txtAux(jj).Top = alto + 5
                 txtAux(jj).visible = b
@@ -2896,7 +2957,7 @@ Dim i As Integer
     LimpiarDataGrids
     
     SSTab1.Tab = 0
-    
+    NumTabMto = 1
 '    If DatosADevolverBusqueda <> "" Then
 '        Text1(0).Text = DatosADevolverBusqueda
 '        HacerBusqueda
@@ -2945,6 +3006,7 @@ Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
     Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod almacen
     Text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
 End Sub
+
 
 Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
 'Forfaits
@@ -3010,9 +3072,9 @@ Dim Aux As String
     If CadenaSeleccion <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        CadB = "codprove = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "N")
-        CadB = CadB & " and numfactu = " & RecuperaValor(CadenaSeleccion, 2)
-        CadB = CadB & " and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 3), "F")
+        CadB = "codprove = " & DBSet(RecuperaValor(CadenaSeleccion, 3), "N")
+        CadB = CadB & " and numfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 1), "T")
+        CadB = CadB & " and fecfactu = " & DBSet(RecuperaValor(CadenaSeleccion, 2), "F")
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
@@ -3136,10 +3198,7 @@ End Sub
 
 Private Sub mnImprimir_Click()
 'Imprimir Factura
-    
-    If Data1.Recordset.EOF Then Exit Sub
-    
-    BotonImprimir
+    AbrirListado (17)
 End Sub
 
 Private Sub mnNuevo_Click()
@@ -3285,14 +3344,14 @@ Dim vTipoMov As CTiposMov
           
     'Si queremos hacer algo ..
     Select Case Index
-        Case 1 'Fecha factura
+        Case 1, 6 'Fecha factura
             If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
             
-        Case 3 'Cliente
+        Case 3 'Proveedor
             If PonerFormatoEntero(Text1(Index)) Then
                 '[Monica]28/08/2013: añado or modo= 4
                 If Modo = 1 Or Modo = 4 Then
-                    Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
+                    Text2(Index).Text = PonerNombreDeCod(Text1(Index), "proveedor", "nomprove")
                 Else
                     PonerDatosProveedor (Text1(Index).Text)
                     If Text2(Index).Text = "" Then
@@ -3336,44 +3395,9 @@ Dim vTipoMov As CTiposMov
                 End If
             End If
             
-         Case 6 ' tipo de movimiento
-            If Modo = 1 Then Exit Sub
-            If Text1(Index).Text <> "" Then
-                Text1(Index).Text = UCase(Text1(Index).Text)
-'--monica:10/02/2009 stipom
-'                SQL = ""
-'                SQL = DevuelveDesdeBDNew(cAgro, "stipom", "contador", "codtipom", Text1(Index).Text, "T")
-'                If SQL = "" Then
-'++monica:10/02/2009 stipom
-                Nregs = TotalRegistros("select count(*) from usuarios.stipom stipom where codtipom = " & DBSet(Text1(Index).Text, "T"))
-                If Nregs = 0 Then
-'++
-                    MsgBox "No existe el tipo de movimiento. Reintroduzca.", vbExclamation
-                    PonerFoco Text1(Index)
-                Else
-                    If TipoFactura = 1 Then
-                        Set vTipoMov = New CTiposMov
-                        If vTipoMov.Leer(Text1(6).Text) Then
-                            Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
-                            PonerFoco Text1(0)
-                        End If
-                        Set vTipoMov = Nothing
-                    End If
-                    
-                End If
-            End If
-            
          Case 7, 8 'descuentos
             If Modo = 1 Then Exit Sub
             If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 4
-            
-         Case 5 ' importe de descuento
-            If Modo = 1 Then Exit Sub
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 3
-    
-         Case 32 ' cambio de divisa
-            PonerFormatoDecimal Text1(Index), 7
-    
 
     End Select
 End Sub
@@ -3401,19 +3425,12 @@ Dim cadAux As String
         CadB = Facturas
     End If
     
-    '[Monica]22/06/2010 seleccionamos unicamente las facturas que no sean de tipo a cuenta
-    If CadB <> "" Then
-        CadB = CadB & " and facturas.codtipom <> 'EAC' "
-    Else
-        CadB = "facturas.codtipom <> 'EAC'"
-    End If
-
     If chkVistaPrevia = 1 Then
         EsCabecera = True
         MandaBusquedaPrevia CadB
     ElseIf CadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select facturas.* from " & NombreTabla
+        CadenaConsulta = "select facturascom.* from " & NombreTabla
         CadenaConsulta = CadenaConsulta & " WHERE " & CadB & Ordenacion
         PonerCadenaBusqueda
     End If
@@ -3474,7 +3491,7 @@ Dim Desc As String, devuelve As String
 '
     Set frmFac = New frmBasico2
 
-    AyudaFacturas frmFac, , CadB
+    AyudaFacturasComprasPrev frmFac, , CadB
 
     Set frmFac = Nothing
 
@@ -3534,9 +3551,9 @@ Dim i As Integer
         Select Case i
             Case 0 'variedades
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid1, Adoaux(0), True
+                    CargaGrid DataGrid1, Adoaux(1), True
                 Else
-                    CargaGrid DataGrid1, Adoaux(0), False
+                    CargaGrid DataGrid1, Adoaux(1), False
                 End If
         End Select
     Next i
@@ -3571,9 +3588,8 @@ Dim b As Boolean
     'poner descripcion campos
     Modo = 4
     
-    TipoFactura = DevuelveDesdeBDNew(cAgro, "clientes", "tipofact", "codclien", Text1(3).Text, "N")
     
-    Text2(3).Text = PonerNombreDeCod(Text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
+    Text2(3).Text = PonerNombreDeCod(Text1(3), "proveedor", "nomprove", "codprove", "N") 'proveedores
     Text2(4).Text = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", Text1(4), "N") 'forma de pago
 '    Text2(18).Text = PonerNombreDeCod(Text1(16), "salmpr", "nomalmac", "codalmac", "N") 'almacen
     
@@ -3631,7 +3647,7 @@ Dim b As Boolean
     'si estamos en modificar bloquea las compos que son clave primaria
     BloquearText1 Me, Modo
     
-    For i = 9 To 31
+    For i = 9 To 32
         BloquearTxt Text1(i), Not (Modo = 1)
         Text1(i).Enabled = (Modo = 1)
     Next i
@@ -3643,7 +3659,7 @@ Dim b As Boolean
     BloquearTxt Text1(0), b, True 'And (TipoFactura = 0)  'numero factura
     BloquearTxt Text1(6), b 'And (TipoFactura = 0) 'fecha recepcion
     BloquearTxt Text1(1), b 'fechafactura
-    BloquearTxt Text1(3), b 'cliente
+    BloquearTxt Text1(3), b 'proveedor
     BloquearChk Me.Check1(0), (Modo <> 1)
     
     imgFec(0).Enabled = b
@@ -3669,10 +3685,6 @@ Dim b As Boolean
     
     Me.imgZoom(0).Enabled = Not (Modo = 0)
     
-    If Modo = 3 Then
-        Text1(0).Enabled = (TipoFactura = 1)
-        Text1(6).Enabled = (TipoFactura = 1)
-    End If
     
     'Si no es modo lineas Boquear los TxtAux
     For i = 0 To txtAux.Count - 1
@@ -3680,7 +3692,7 @@ Dim b As Boolean
         BloquearTxt txtAux(i), True
     Next i
     
-    For i = 0 To 0
+    For i = 0 To 1
         Text2(i).visible = ((Modo = 5) And (indFrame = 1))
         Text2(i).Enabled = False
     Next i
@@ -3703,10 +3715,10 @@ Dim b As Boolean
     
     
     ' *** si n'hi han llínies i algún tab que no te datagrid ***
-    Select Case NumTabMto
-        Case 0
+'    Select Case NumTabMto
+'        Case 1
             BloquearFrameAux Me, "FrameAux1", Modo, NumTabMto
-    End Select
+'    End Select
     'If Modo = 3 And Me.chkRectifica.Value = 1 Then Me.SSTab1.Tab = 3
     
     ' ***************************
@@ -3777,7 +3789,7 @@ Dim Codmacta As String
             Sql = ""
             '[Monica]04/03/2013: en la contabilidad hemos de mirar el año de la factura, no la fecha
             If vParamAplic.ContabilidadNueva Then
-                Sql = DevuelveDesdeBDNew(cConta, "factpr", "numfactu", "codmacta", Codmacta, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(CDate(Text1(1).Text)), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "factpro", "numfactu", "codmacta", Codmacta, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(CDate(Text1(1).Text)), "N")
             Else
                 Sql = DevuelveDesdeBDNew(cConta, "cabfactprov", "numfacpr", "codmacta", Codmacta, "T", , "codfacpr", Text1(0).Text, "N", "anofacpr", Year(CDate(Text1(1).Text)), "N")
             End If
@@ -3795,7 +3807,7 @@ Dim Codmacta As String
     
         '[Monica]20/06/2017: control de fechas que antes no estaba
         If vParamAplic.NumeroConta <> 0 Then
-            ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(1).Text))
+            ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(6).Text))
             If ResultadoFechaContaOK > 0 Then
                 If ResultadoFechaContaOK <> 4 Then MsgBox MensajeFechaOkConta, vbExclamation
                 Exit Function
@@ -3857,11 +3869,11 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
 
     '[Monica]28/08/2013: añadida la pregunta de continuar a pesar de estar en la contabilidad y arimoney
         '[Monica]05/10/2018: en el caso de que sea b no damos mensajes
-    If Check1(0).Value = 1 And Text1(6).Text <> TipoFactB Then
+    If Check1(0).Value = 1 Then
         If MsgBox("Esta factura está en Contabilidad y Arimoney. " & vbCrLf & vbCrLf & "Si la modifica realice los cambios en estas aplicaciones." & vbCrLf & vbCrLf & "¿ Desea continuar ?", vbQuestion + vbYesNo + vbDefaultButton1) = vbNo Then
             Exit Sub
         Else
-            If CDate(Text1(1).Text) <= vEmpresa.FechaUltIVA Then
+            If CDate(Text1(6).Text) <= vEmpresa.FechaUltIVA Then
                 If MsgBox("La factura es de un período liquidado. " & vbCrLf & vbCrLf & "¿ Seguro que desea continuar ?", vbQuestion + vbYesNo + vbDefaultButton2) = vbNo Then
                     Exit Sub
                 End If
@@ -3959,7 +3971,7 @@ Private Sub Toolbar1_ButtonClick(ByVal Button As MSComctlLib.Button)
             mnBuscar_Click
         Case 6  'Todos
             BotonVerTodos
-        Case 8  ' Impresion de albaran
+        Case 8  ' Listado de facturas
             mnImprimir_Click
     End Select
 End Sub
@@ -4040,10 +4052,10 @@ Dim tots As String
                        
          Case "DataGrid1" 'facturascom_variedad
 'select codtipom,numfactu,fecfactu,numlinea,codartic,sartic.nomartic,cantidad,precioar,dtolinea,importel,ampliaci,codigiva,numalbar,numlinea
-            tots = "N||||0|;N||||0|;N||||0|;N||||0|;S|txtAux(4)|T|Codigo|900|;S|Text2(0)|T|Variedad|2500|;S|btnBuscar(0)|B|||;"
-            tots = tots & "S|txtAux(5)|T|Forfait|2000|;S|btnBuscar(1)|B|||;"
-            tots = tots & "S|Text2(1)|T|Nombre|3000|;S|txtAux(6)|T|Cajas|1200|;S|txtAux(11)|T|Peso Bruto|1500|;S|txtAux(12)|T|Peso Neto|1500|;"
-            tots = tots & "S|txtAux(7)|T|Precio|1900|;S|txtAux(8)|T|Dto1|1100|;S|txtAux(13)|T|Dto2|1100|;S|txtAux(9)|T|Importe|1900|;N||||0|;"
+            tots = "N||||0|;N||||0|;N||||0|;N||||0|;S|txtAux(4)|T|Codigo|1000|;S|btnBuscar(0)|B|||;S|Text2(0)|T|Variedad|2400|;"
+            tots = tots & "S|txtAux(5)|T|Forfait|1500|;S|btnBuscar(1)|B|||;"
+            tots = tots & "S|Text2(1)|T|Nombre|3000|;S|txtAux(6)|T|Cajas|1200|;S|txtAux(11)|T|Peso Bruto|1400|;S|txtAux(12)|T|Peso Neto|1400|;"
+            tots = tots & "S|txtAux(7)|T|Precio|1000|;S|txtAux(8)|T|Dto1|700|;S|txtAux(13)|T|Dto2|700|;S|txtAux(9)|T|Importe|1900|;N||||0|;"
             arregla tots, DataGrid1, Me, 350
             
             
@@ -4089,6 +4101,8 @@ Dim Sql As String
 Dim devuelve As String
 Dim b As Boolean
 Dim TipoDto As Byte
+Dim Variedad As String
+
 
 
     'Quitar espacios en blanco
@@ -4096,45 +4110,102 @@ Dim TipoDto As Byte
     
     Select Case Index
         Case 4 'variedad
-            If txtAux(4).Text = "" Then
-                MsgBox "Debe seleccionar una variedad.", vbInformation
-                PonerFoco txtAux(4)
-                Exit Sub
+            If PonerFormatoEntero(txtAux(Index)) Then
+                Text2(0).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", txtAux(Index).Text, "N")
+                If Text2(Index).Text = "" Then
+                    cadMen = "No existe la Variedad: " & Text1(Index).Text & vbCrLf
+                    cadMen = cadMen & "¿Desea crearla?" & vbCrLf
+                    If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
+                        indice = Index + 2
+                        Set frmVar = New frmManVariedad
+                        frmVar.DatosADevolverBusqueda = "0|1|"
+                        frmVar.NuevoCodigo = Text1(Index).Text
+                        Text1(Index).Text = ""
+                        TerminaBloquear
+                        
+                        frmVar.Show vbModal
+                        Set frmVar = Nothing
+                        '++monica
+                        BloqueaRegistro "facturascom", "numfactu = " & Text1(0).Text
+'                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
+                    Else
+                        txtAux(Index).Text = ""
+                    End If
+                    PonerFoco Text1(Index)
+                End If
+            Else
+                Text2(0).Text = ""
             End If
-            If txtAux(Index).Text <> "" Then PonerFormatoEntero txtAux(Index)
-        
-            devuelve = ""
-            If ModificaLineas = 2 Then
-                If Not Adoaux(1).Recordset.EOF Then devuelve = Adoaux(1).Recordset!codvarie
-            End If
-        
             
             '[Monica]15/05/2015: si modificamos no traemos nada
             If ModificaLineas = 2 Then Exit Sub
             
             txtAux(10).Text = DevuelveDesdeBDNew(cAgro, "variedades", "codigiva", "codvarie", txtAux(4), "N")
+            
+            
+        Case 5 'forfait
+            If txtAux(Index).Text <> "" Then
+                Text2(1) = PonerNombreDeCod(txtAux(Index), "forfaits", "nomconfe", , "T")
+                If Text2(1).Text = "" Then
+                    cadMen = "No existe el Forfait: " & txtAux(Index).Text & vbCrLf
+                    cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
+                    If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
+                        indice = Index + 2
+                        Set frmFor = New frmManForfaits
+                        frmFor.DatosADevolverBusqueda = "0|1|"
+                        frmFor.NuevoCodigo = txtAux(Index).Text
+                        txtAux(Index).Text = ""
+                        TerminaBloquear
+                        
+                        frmFor.Show vbModal
+                        Set frmFor = Nothing
+                        '++monica
+                        BloqueaRegistro "facturascom", "numfactu = " & Text1(0).Text
+'                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
+                    Else
+                        txtAux(Index).Text = ""
+                    End If
+                    PonerFoco txtAux(Index)
+                '++monica:02/12/2008 control d que el forfait sea de la variedad introducida
+                Else
+                    Variedad = ""
+                    Variedad = DevuelveDesdeBDNew(cAgro, "forfaits", "codvarie", "codforfait", txtAux(Index).Text, "T")
+                    If Variedad <> "" Then
+                        If CInt(Variedad) <> CInt(txtAux(4).Text) Then
+                            MsgBox "El Forfait no es de la Variedad introducida.", vbExclamation
+                        End If
+                    End If
+                '++
+                End If
+            Else
+                Text2(1).Text = ""
+            End If
         
+            
         Case 11, 12 'peso bruto, peso neto
             PonerFormatoEntero txtAux(Index)
         
         Case 7 ' Precio
             PonerFormatoDecimal txtAux(Index), 10
             
-        Case 8  'Descuentos
+        Case 8, 13  'Descuentos
             PonerFormatoDecimal txtAux(Index), 4 'Tipo 4: Decimal(4,2)
             
         Case 9 'Importe Linea
-            PonerFormatoDecimal txtAux(Index), 3 'Tipo 3: Decimal(10,2)
+            If PonerFormatoDecimal(txtAux(Index), 3) Then   'Tipo 3: Decimal(10,2)
+                PonerFocoBtn cmdAceptar
+            End If
             
             
     End Select
-    If (Index = 12 Or Index = 7 Or Index = 8 Or Index = 9) Then 'Cant., Precio, Dto1, Dto2
+    If (Index = 12 Or Index = 13 Or Index = 7 Or Index = 8 Or Index = 9) Then 'Cant., Precio, Dto1, Dto2
 '        If Trim(TxtAux(3).Text) = "" Or Trim(TxtAux(4).Text) = "" Then Exit Sub
 '        If Trim(TxtAux(6).Text) = "" Or Trim(TxtAux(7).Text) = "" Then Exit Sub
         If txtAux(8).Text = "" Then txtAux(8).Text = 0
+        If txtAux(13).Text = "" Then txtAux(13).Text = 0
         TipoDto = DevuelveDesdeBDNew(cAgro, "proveedor", "tipodtos", "codprove", Text1(3).Text, "N")
         
-        txtAux(9).Text = CalcularImporte(txtAux(11).Text, txtAux(7).Text, txtAux(8).Text, 0, TipoDto, 0)
+        txtAux(9).Text = CalcularImporte(txtAux(12).Text, txtAux(7).Text, txtAux(8).Text, txtAux(13).Text, TipoDto, 0)
         PonerFormatoDecimal txtAux(9), 3
     End If
     
@@ -4196,7 +4267,7 @@ Dim CADENA As String
 
     On Error GoTo FinEliminar
 
-    b = False
+    b = True
     If Adoaux(1).Recordset.EOF Then Exit Function
         
     conn.BeginTrans
@@ -4220,10 +4291,10 @@ Dim CADENA As String
     
     'Eliminar en tablas de facturascom_variedad
     '------------------------------------------
-    Sql = " where codprove = " & DBSet(Adoaux(1).Recordset.Fields(0), "N")
-    Sql = Sql & " and numfactu = " & Adoaux(1).Recordset.Fields(1)
+    Sql = " where codprove = " & Adoaux(1).Recordset.Fields(0)
+    Sql = Sql & " and numfactu = " & DBSet(Adoaux(1).Recordset.Fields(1), "T")
     Sql = Sql & " and fecfactu = " & DBSet(Adoaux(1).Recordset.Fields(2), "F")
-    Sql = Sql & " and numlinea = " & DBSet(Adoaux(1).Recordset.Fields(3), "N")
+    Sql = Sql & " and numlinea = " & Adoaux(1).Recordset.Fields(3)
 
 
     'Lineas de variedades
@@ -4400,7 +4471,7 @@ Dim Sql As String
 
     On Error Resume Next
     
-    Sql = "facturascom.codprove = " & DBSet(Text1(3).Text, "T") & " and facturascom.numfactu= " & DBSet(Text1(0).Text, "N") & " and facturascom.fecfactu= " & DBSet(Text1(1).Text, "F")
+    Sql = "facturascom.codprove = " & DBSet(Text1(3).Text, "N") & " and facturascom.numfactu= " & DBSet(Text1(0).Text, "T") & " and facturascom.fecfactu= " & DBSet(Text1(1).Text, "F")
     If conWhere Then Sql = " WHERE " & Sql
     ObtenerWhereCP = Sql
     
@@ -4426,7 +4497,8 @@ Dim Sql As String
             Sql = "SELECT facturascom_variedad.codprove, numfactu,fecfactu, facturascom_variedad.numlinea,"
             Sql = Sql & " facturascom_variedad.codvarie, variedades.nomvarie, facturascom_variedad.codforfait,"
             Sql = Sql & " forfaits.nomconfe, facturascom_variedad.numcajas, facturascom_variedad.pesobrut,"
-            Sql = Sql & " facturascom_variedad.pesoneto, facturascom_variedad.precio, facturascom_variedad.importe,"
+            Sql = Sql & " facturascom_variedad.pesoneto, facturascom_variedad.precio, facturascom_variedad.dtoline1,"
+            Sql = Sql & " facturascom_variedad.dtoline2, facturascom_variedad.importe,"
             Sql = Sql & " facturascom_variedad.codigiva  "
             Sql = Sql & " FROM facturascom_variedad, variedades, forfaits " 'lineas de variedades de la factura
             Sql = Sql & " WHERE facturascom_variedad.codvarie = variedades.codvarie "
@@ -4451,51 +4523,48 @@ Private Sub PonerModoOpcionesMenu(Modo As Byte)
 Dim b As Boolean, bAux As Boolean
 Dim i As Integer
 
-        b = ((Modo = 2) Or (Modo = 0)) And (Facturas = "") And (hcoCodProve = "") 'Or (Modo = 5 And ModificaLineas = 0)
-        'Buscar
-        Toolbar1.Buttons(5).Enabled = b
-        Me.mnBuscar.Enabled = b
-        'Vore Tots
-        Toolbar1.Buttons(6).Enabled = b
-        Me.mnVerTodos.Enabled = b
-        'Añadir
-        Toolbar1.Buttons(1).Enabled = b
-        Me.mnModificar.Enabled = b
-        
-        
-        b = (Modo = 2 And Data1.Recordset.RecordCount > 0) And (Facturas = "") And (hcoCodProve = "")
-        'Modificar
-        '[Monica]28/08/2013: dejo modificar la factura aunque esté contabilizada y demas
-        '                    quito la condicion de todos los checks
-        Toolbar1.Buttons(2).Enabled = b 'And Not (Check1(0).Value = 1 Or Check1(1).Value = 1 Or Check1(2).Value = 1)
-        Me.mnModificar.Enabled = b 'And Not (Check1(0).Value = 1 Or Check1(1).Value = 1 Or Check1(2).Value = 1)
-        'eliminar
-        Toolbar1.Buttons(3).Enabled = b
-        Me.mnEliminar.Enabled = b
-        'Impresión de factura
-        Toolbar1.Buttons(8).Enabled = ((Modo = 2) And (Facturas = "")) Or (hcoCodProve <> "")
-        Me.mnImprimir.Enabled = ((Modo = 2) And (Facturas = "")) Or (hcoCodProve <> "")
+    b = ((Modo = 2) Or (Modo = 0)) And (Facturas = "") And (hcoCodProve = "") 'Or (Modo = 5 And ModificaLineas = 0)
+    'Buscar
+    Toolbar1.Buttons(5).Enabled = b
+    Me.mnBuscar.Enabled = b
+    'Vore Tots
+    Toolbar1.Buttons(6).Enabled = b
+    Me.mnVerTodos.Enabled = b
+    'Añadir
+    Toolbar1.Buttons(1).Enabled = b
+    Me.mnModificar.Enabled = b
+    
+    
+    b = (Modo = 2 And Data1.Recordset.RecordCount > 0) And (Facturas = "") And (hcoCodProve = "")
+    'Modificar
+    '[Monica]28/08/2013: dejo modificar la factura aunque esté contabilizada y demas
+    '                    quito la condicion de todos los checks
+    Toolbar1.Buttons(2).Enabled = b 'And Not (Check1(0).Value = 1 )
+    Me.mnModificar.Enabled = b 'And Not (Check1(0).Value = 1 Or Check1(1).Value = 1 Or Check1(2).Value = 1)
+    'eliminar
+    Toolbar1.Buttons(3).Enabled = b
+    Me.mnEliminar.Enabled = b
+    'Impresión de factura
+    Toolbar1.Buttons(8).Enabled = True '((Modo = 2) And (Facturas = "")) Or (hcoCodProve <> "")
+    Me.mnImprimir.Enabled = True '((Modo = 2) And (Facturas = "")) Or (hcoCodProve <> "")
 
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
     
     '[Monica]28/08/2013: dejo modificar la factura aunque esté contabilizada y demas
     '                    quito la condicion de todos los checks
     b = (Modo = 2) And (Facturas = "") And (hcoCodProve = "")  ' And Not (Check1(0).Value = 1 Or (Check1(1).Value = 1 And vUsu.Nivel >= 1) Or Check1(2).Value = 1)
-    For i = 0 To ToolAux.Count - 1
+    For i = 1 To ToolAux.Count
         ToolAux(i).Buttons(1).Enabled = b
         
         If b Then
             Select Case i
-              Case 0
-                bAux = (b And Me.Adoaux(0).Recordset.RecordCount > 0)
+              Case 1
+                bAux = (b And Me.Adoaux(1).Recordset.RecordCount > 0)
             End Select
         End If
         ToolAux(i).Buttons(2).Enabled = bAux
         ToolAux(i).Buttons(3).Enabled = bAux
     Next i
-    '[Monica]25/06/2012: actualizar precios de fianza
-    ToolAux(1).Buttons(4).Enabled = b And (Me.Adoaux(1).Recordset.RecordCount = 0)
-
 
 End Sub
 
@@ -4510,10 +4579,6 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 Dim NroCopias As Integer
 
-    If Text1(0).Text = "" Then
-        MsgBox "Debe seleccionar una Factura para Imprimir.", vbInformation
-        Exit Sub
-    End If
     
     cadFormula = ""
     cadParam = ""
@@ -4528,11 +4593,9 @@ Dim NroCopias As Integer
     '[Monica]05/10/2018: en cso de que sea una factura en B no lleva ni iva ni logos
     If Text1(6).Text = TipoFactB Then nomDocu = Replace(nomDocu, ".rpt", "B.rpt")
       
-    
       
     'Nombre fichero .rpt a Imprimir
     frmImprimir.NombreRPT = nomDocu
-    
     
         
     '===================================================
@@ -4692,13 +4755,14 @@ Dim Sql As String
     Sql = CadenaInsertarDesdeForm(Me)
     conn.Execute Sql
 
+
     CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
     PonerCadenaBusqueda
     PonerModo 2
     'Ponerse en Modo Insertar Lineas
 '                BotonMtoLineas 0, "Variedades"
     
-    BotonAnyadirLinea 0
+    BotonAnyadirLinea 1
     
 EInsertarCab:
     Screen.MousePointer = vbDefault
@@ -4718,7 +4782,7 @@ Dim CADENA As String
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
     Select Case Index
-        Case 0: nomFrame = "FrameAux0" 'variedades
+        Case 1: nomFrame = "FrameAux1" 'variedades
     End Select
     ' ***************************************************************
     
@@ -4728,7 +4792,7 @@ Dim CADENA As String
         TerminaBloquear
         
         Select Case Index
-            Case 0
+            Case 1
                 '[Monica]22/02/2012: insertamos la transaccion
                 conn.BeginTrans
                 If InsertarDesdeForm2(Me, 2, nomFrame) Then
@@ -4759,10 +4823,10 @@ Dim CADENA As String
                         
                         CalcularDatosFactura
                         ' *************************************************
-                        b = BloqueaRegistro("facturascom", "codprove = " & DBSet(Data1.Recordset!codProve, "N") & " and numfactu = " & DBSet(Data1.Recordset!NumFactu, "N") & " and fecfactu = " & DBSet(Data1.Recordset!FecFactu, "F"))
+                        b = BloqueaRegistro("facturascom", "codprove = " & DBSet(Data1.Recordset!codProve, "N") & " and numfactu = " & DBSet(Data1.Recordset!NumFactu, "T") & " and fecfactu = " & DBSet(Data1.Recordset!FecFactu, "F"))
                         CargaGrid DataGrid1, Adoaux(1), True
                         If b Then BotonAnyadirLinea NumTabMto
-                        SSTab1.Tab = NumTabMto
+                        'SSTab1.Tab = NumTabMto
                     Else
                         conn.RollbackTrans
                     End If
@@ -4803,7 +4867,7 @@ Dim i As Integer
     
     ' *** bloquejar la clau primaria de la capçalera ***
     BloquearTxt Text1(0), True
-    BloquearTxt Text1(6), True
+    BloquearTxt Text1(3), True
     BloquearTxt Text1(1), True
     
     
@@ -4811,7 +4875,7 @@ Dim i As Integer
 
     ' *** posar el nom del les distintes taules de llínies ***
     Select Case NumTabMto
-        Case 0: vtabla = "facturascom_variedad"
+        Case 1: vtabla = "facturascom_variedad"
     End Select
     ' ********************************************************
     
@@ -4834,19 +4898,20 @@ Dim i As Integer
             LLamaLineas ModificaLineas, anc, "DataGrid1"
         
             LimpiarCamposLin "FrameAux1"
-            txtAux(0).Text = Text1(6).Text 'codtipom
+            txtAux(0).Text = Text1(3).Text 'codprove
             txtAux(1).Text = Text1(0).Text 'numfactu
             txtAux(2).Text = Text1(1).Text 'fecfactu
             txtAux(3).Text = NumF
             PonerFoco txtAux(4)
-            For i = 0 To 0
+            For i = 0 To 1
                 Text2(i).Text = ""
             Next i
             txtAux(10).Enabled = False
             txtAux(10).visible = False
-            BloquearTxt txtAux(9), True
-            BloquearTxt Text2(16), False
+'            BloquearTxt txtAux(9), True
+'            BloquearTxt Text2(16), False
             BloquearBtn Me.btnBuscar(0), False
+            BloquearBtn Me.btnBuscar(1), False
         ' ******************************************
         
         ' *** si n'hi han llínies sense datagrid ***
@@ -4881,7 +4946,7 @@ Dim CADENA As String
 
     ' *** posa els noms del frames, tant si son de grid com si no ***
     Select Case NumTabMto
-        Case 0: nomFrame = "FrameAux0" 'variedades
+        Case 1: nomFrame = "FrameAux1" 'variedades
     End Select
     ' **************************************************************
 
@@ -4889,7 +4954,7 @@ Dim CADENA As String
         TerminaBloquear
         
         Select Case NumTabMto
-        Case 0
+        Case 1
             conn.BeginTrans
         
             '[Monica]28/08/2013: insertamos en el log que hemos eliminado una linea en una factura contabilizada
@@ -4994,7 +5059,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codprove = " & DBSet(Text1(3).Text, "T") & " and numfactu= " & Val(Text1(0).Text) & " and fecfactu = " & DBSet(Text1(1).Text, "F")
+    vWhere = vWhere & " codprove = " & DBSet(Text1(3).Text, "N") & " and numfactu= " & DBSet(Text1(0).Text, "T") & " and fecfactu = " & DBSet(Text1(1).Text, "F")
     ' *******************************************************
     
     ObtenerWhereCab = vWhere
@@ -5030,7 +5095,7 @@ Dim Observaciones As String
             FormateaCampo Text1(3)
             If (Modo = 3) Or (Modo = 4) Then
                 Text2(3).Text = vProveedor.Nombre  'Nom clien
-                Text1(4).Text = vProveedor.ForPago
+                Text1(4).Text = vProveedor.Forpago
                 Text2(4).Text = PonerNombreDeCod(Text1(4), "forpago", "nomforpa")
                 Text1(7).Text = Format(vProveedor.DtoPPago, FormatoDescuento)
                 Text1(8).Text = Format(vProveedor.DtoGnral, FormatoDescuento)
@@ -5109,7 +5174,388 @@ End Sub
 '
 '##Monica
 '
-Private Function CalcularDatosFacturaCompra(cadwhere As String, NomTabla As String, NomTablaLin As String) As Boolean
+'Private Function CalcularDatosFacturaCompra_old(cadwhere As String, NomTabla As String, NomTablaLin As String) As Boolean
+''cadWhere: cad para la where de la SQL que selecciona las lineas del albaran o la factura
+''nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
+''           segun llamemos desde recepcion de facturas o desde Hco de Facturas
+'Dim Rs As ADODB.Recordset
+'Dim i As Integer
+'
+'Dim Sql As String
+'Dim cadAux As String
+'Dim cadAux1 As String
+'
+''Aqui vamos acumulando los totales
+'Dim TotBruto As Currency
+'Dim TotNeto As Currency
+'Dim TotImpIVA As Currency
+'
+'Dim ImpAux As Currency
+'Dim impiva As Currency
+'Dim ImpREC As Currency
+'Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
+'
+'Dim vBruto As Currency
+'Dim vNeto As Currency
+'
+'Dim exentoIVA As Boolean
+'Dim conDesplaz As Boolean
+'
+'Dim BaseImp As Currency
+'Dim BaseIVA1 As Currency
+'Dim BaseIVA2 As Currency
+'Dim BaseIVA3 As Currency
+'
+'Dim BrutoFac As Currency
+'
+'Dim ImpIVA1 As Currency
+'Dim ImpIVA2 As Currency
+'Dim ImpIVA3 As Currency
+'
+'Dim PorceIVA1 As Currency
+'Dim PorceIVA2 As Currency
+'Dim PorceIVA3 As Currency
+'
+'Dim ImpREC1 As Currency
+'Dim ImpREC2 As Currency
+'Dim ImpREC3 As Currency
+'
+'Dim PorceREC1 As Currency
+'Dim PorceREC2 As Currency
+'Dim PorceREC3 As Currency
+'
+'Dim TipoIVA1 As Currency
+'Dim TipoIVA2 As Currency
+'Dim TipoIVA3 As Currency
+'
+'Dim ImpDto1 As Currency
+'Dim ImpDto2 As Currency
+'Dim TotalFac As Currency
+'
+'Dim IvaAnt As Integer
+'Dim cadwhere1 As String
+'
+'Dim Nulo2 As String
+'Dim Nulo3 As String
+'
+'    CalcularDatosFacturaCompra_old = False
+'    On Error GoTo ECalcular
+'
+'    BaseImp = 0
+'    BaseIVA1 = 0
+'    BaseIVA2 = 0
+'    BaseIVA3 = 0
+'
+'    BrutoFac = 0
+'
+'    ImpIVA1 = 0
+'    ImpIVA2 = 0
+'    ImpIVA3 = 0
+'
+'    PorceIVA1 = 0
+'    PorceIVA2 = 0
+'    PorceIVA3 = 0
+'
+'    ImpREC1 = 0
+'    ImpREC2 = 0
+'    ImpREC3 = 0
+'
+'    PorceREC1 = 0
+'    PorceREC2 = 0
+'    PorceREC3 = 0
+'
+'    TipoIVA1 = 0
+'    TipoIVA2 = 0
+'    TipoIVA3 = 0
+'
+'    ImpDto1 = 0
+'    ImpDto2 = 0
+'    TotalFac = 0
+'
+'    'Agrupar el importe bruto por tipos de iva
+'    cadwhere1 = Replace(cadwhere, "facturascom", "facturascom_variedad")
+'    Sql = "SELECT facturascom_variedad.codigiva, sum(importe) as bruto"
+'    Sql = Sql & " FROM facturascom_variedad "
+'    Sql = Sql & " WHERE " & cadwhere1
+'    Sql = Sql & " GROUP BY 1 "
+'    Sql = Sql & " ORDER BY 1 "
+'
+'    Set Rs = New ADODB.Recordset
+'    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+'
+'    TotBruto = 0
+'    TotNeto = 0
+'    TotImpIVA = 0
+'    vBruto = 0
+'    vNeto = 0
+'    i = 1
+'
+'    '[Monica]23/08/2013: he metido en el if la instruccion de ivaant
+'    If Not Rs.EOF Then
+'        Rs.MoveFirst
+'        IvaAnt = Rs.Fields(0).Value
+'
+'    Else
+'        '[Monica]23/08/2013 añado el else
+'
+'        Sql = "update facturascom "
+'        Sql = Sql & "set baseimp1 = " & ValorNulo
+'        Sql = Sql & ",impoiva1 = " & ValorNulo
+'        Sql = Sql & ",imporec1 = " & ValorNulo
+'        Sql = Sql & ",porciva1 = " & ValorNulo
+'        Sql = Sql & ",porcrec1 = " & ValorNulo
+'        Sql = Sql & ",codiiva1 = " & ValorNulo
+'        Nulo2 = "N"
+'        Nulo3 = "N"
+'        If DBSet(TipoIVA2, "N", "S") = ValorNulo Then Nulo2 = "S"
+'        If DBSet(TipoIVA3, "N", "S") = ValorNulo Then Nulo3 = "S"
+'        Sql = Sql & ",baseimp2 = " & ValorNulo
+'        Sql = Sql & ",impoiva2 = " & ValorNulo
+'        Sql = Sql & ",imporec2 = " & ValorNulo
+'        Sql = Sql & ",porciva2 = " & ValorNulo
+'        Sql = Sql & ",porcrec2 = " & ValorNulo
+'        Sql = Sql & ",codiiva2 = " & ValorNulo
+'        Sql = Sql & ",baseimp3 = " & ValorNulo
+'        Sql = Sql & ",impoiva3 = " & ValorNulo
+'        Sql = Sql & ",imporec3 = " & ValorNulo
+'        Sql = Sql & ",porciva3 = " & ValorNulo
+'        Sql = Sql & ",porcrec3 = " & ValorNulo
+'        Sql = Sql & ",codiiva3 = " & ValorNulo
+'        Sql = Sql & ",brutofac = " & ValorNulo
+'        Sql = Sql & ",impordto = " & ValorNulo
+'        Sql = Sql & ",totalfac = " & ValorNulo
+'        Sql = Sql & " where " & cadwhere
+'
+'        conn.Execute Sql
+'
+'        CalcularDatosFacturaCompra = True
+'        Exit Function
+'
+'    End If
+'    While Not Rs.EOF
+'                                        '[Monica]05/05/2015: añadimos la condicion de que la suma de brutos de la factura sea distinta de
+'                                        '                    para que no llegue como base a la contabilidad
+'        If IvaAnt <> Rs.Fields(0).Value And vBruto <> 0 Then
+'            TotBruto = TotBruto + vBruto
+'            TotNeto = TotNeto + vNeto
+'            ImpBImIVA = vNeto
+'
+'
+'            'Obtener el % de IVA
+'            cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", CStr(IvaAnt), "N")
+'
+'            'aplicar el IVA a la base imponible de ese tipo
+'            impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
+'
+'            'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
+'            'los vamos acumulando
+'            TotImpIVA = TotImpIVA + impiva
+'
+'            If CInt(Data1.Recordset!TipoIvac) = 2 Then
+'                'Obtener el % de RECARGO
+'                cadAux1 = DevuelveDesdeBDNew(cConta, "tiposiva", "porcerec", "codigiva", CStr(IvaAnt), "N")
+'
+'                'aplicar el RECARGO a la base imponible de ese tipo
+'                ImpREC = CalcularPorcentaje(ImpBImIVA, CCur(cadAux1), 2)
+'
+'                'sumamos todos los RECARGOS para sumarselo a la base imponible total de la factura
+'                'los vamos acumulando
+'                TotImpIVA = TotImpIVA + ImpREC
+'            Else
+'                cadAux1 = "0"
+'                ImpREC = 0
+'            End If
+'
+'
+'            Select Case i
+'                Case 1  'IVA 1
+'                    TipoIVA1 = IvaAnt 'RS!codigiva
+'
+'                    BaseIVA1 = ImpBImIVA 'BASE IMPONIBLE
+'
+'                    PorceIVA1 = cadAux '% de IVA
+'
+'                    'Importe total con IVA
+'                    ImpIVA1 = impiva
+'
+'                    PorceREC1 = cadAux1 '% de REC
+'
+'                    'Importe total con RECARGO
+'                    ImpREC1 = ImpREC
+'
+'                Case 2  'IVA 2
+'                    TipoIVA2 = IvaAnt 'RS!codigiva
+'
+'                    BaseIVA2 = ImpBImIVA 'BASE IMPONIBLE
+'
+'                    PorceIVA2 = cadAux '% de IVA
+'
+'                    'Importe total con IVA
+'                    ImpIVA2 = impiva
+'
+'                    PorceREC2 = cadAux1 '% de REC
+'
+'                    'Importe total con RECARGO
+'                    ImpREC2 = ImpREC
+'                Case 3  'IVA 3
+'                    TipoIVA3 = IvaAnt 'RS!codigiva
+'
+'                    BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
+'
+'                    PorceIVA3 = cadAux '% de IVA
+'
+'                    'Importe total con IVA
+'                    ImpIVA3 = impiva
+'
+'                    PorceREC3 = cadAux1 '% de REC
+'
+'                    'Importe total con RECARGO
+'                    ImpREC3 = ImpREC
+'            End Select
+'
+'
+'            i = i + 1
+'            IvaAnt = Rs.Fields(0).Value
+'            vBruto = DBLet(Rs.Fields(1).Value, "N")
+''            vNeto = DBLet(Rs.Fields(2).Value, "N")
+'        Else
+'            vBruto = vBruto + DBLet(Rs.Fields(1).Value, "N")
+''            vNeto = vNeto + DBLet(Rs.Fields(2).Value, "N")
+'        End If
+'
+'
+'        Rs.MoveNext
+'    Wend
+'    Rs.Close
+'    Set Rs = Nothing
+'
+'    ' ULTIMO REGISTRO
+'    TotBruto = TotBruto + vBruto
+'    TotNeto = TotNeto + vNeto
+'    ImpBImIVA = vNeto
+'
+'
+'    'Obtener el % de IVA
+'    cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", CStr(IvaAnt), "N")
+'
+'    'aplicar el IVA a la base imponible de ese tipo
+'    '[Monica]23/08/2013: añado el comprobar cero
+'    impiva = CalcularPorcentaje(ImpBImIVA, CCur(ComprobarCero(cadAux)), 2)
+'
+'    'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
+'    'los vamos acumulando
+'    TotImpIVA = TotImpIVA + impiva
+'
+'    If CInt(Data1.Recordset!TipoIvac) = 2 Then
+'        'Obtener el % de RECARGO
+'        cadAux1 = DevuelveDesdeBDNew(cConta, "tiposiva", "porcerec", "codigiva", CStr(IvaAnt), "N")
+'
+'        'aplicar el RECARGO a la base imponible de ese tipo
+'        ImpREC = CalcularPorcentaje(ImpBImIVA, CCur(cadAux1), 2)
+'    Else
+'        cadAux1 = "0"
+'        ImpREC = 0
+'    End If
+'    'sumamos todos los RECARGOS para sumarselo a la base imponible total de la factura
+'    'los vamos acumulando
+'    TotImpIVA = TotImpIVA + ImpREC
+'
+'
+'
+'    Select Case i
+'        Case 1  'IVA 1
+'            TipoIVA1 = IvaAnt
+'
+'            BaseIVA1 = ImpBImIVA 'BASE IMPONIBLE
+'
+'            PorceIVA1 = cadAux '% de IVA
+'
+'            'Importe total con IVA
+'            ImpIVA1 = impiva
+'
+'            PorceREC1 = cadAux1 '% de REC
+'
+'            'Importe total con RECARGO
+'            ImpREC1 = ImpREC
+'
+'        Case 2  'IVA 2
+'            TipoIVA2 = IvaAnt
+'
+'            BaseIVA2 = ImpBImIVA 'BASE IMPONIBLE
+'
+'            PorceIVA2 = cadAux '% de IVA
+'
+'            'Importe total con IVA
+'            ImpIVA2 = impiva
+'
+'            PorceREC2 = cadAux1 '% de REC
+'
+'            'Importe total con RECARGO
+'            ImpREC2 = ImpREC
+'        Case 3  'IVA 3
+'            TipoIVA3 = IvaAnt
+'
+'            BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
+'
+'            PorceIVA3 = cadAux '% de IVA
+'
+'            'Importe total con IVA
+'            ImpIVA3 = impiva
+'
+'            PorceREC3 = cadAux1 '% de REC
+'
+'            'Importe total con RECARGO
+'            ImpREC3 = ImpREC
+'    End Select
+'
+'    'Base Imponible
+'    BaseImp = TotNeto
+'
+'    'TOTAL de la factura
+'    TotalFac = BaseImp + TotImpIVA
+'
+'    'ACTUALIZAMOS LA FACTURA (tabla facturas)
+'    Sql = "update facturascom "
+'    Sql = Sql & "set baseimp1 = " & DBSet(BaseIVA1, "N")
+'    Sql = Sql & ",impoiva1 = " & DBSet(ImpIVA1, "N")
+'    Sql = Sql & ",imporec1 = " & DBSet(ImpREC1, "N")
+'    Sql = Sql & ",porciva1 = " & DBSet(PorceIVA1, "N")
+'    Sql = Sql & ",porcrec1 = " & DBSet(PorceREC1, "N")
+'    Sql = Sql & ",codiiva1 = " & DBSet(TipoIVA1, "N")
+'    Nulo2 = "N"
+'    Nulo3 = "N"
+'    If DBSet(TipoIVA2, "N", "S") = ValorNulo Then Nulo2 = "S"
+'    If DBSet(TipoIVA3, "N", "S") = ValorNulo Then Nulo3 = "S"
+'    Sql = Sql & ",baseimp2 = " & DBSet(BaseIVA2, "N", Nulo2)
+'    Sql = Sql & ",impoiva2 = " & DBSet(ImpIVA2, "N", Nulo2)
+'    Sql = Sql & ",imporec2 = " & DBSet(ImpREC2, "N", Nulo2)
+'    Sql = Sql & ",porciva2 = " & DBSet(PorceIVA2, "N", Nulo2)
+'    Sql = Sql & ",porcrec2 = " & DBSet(PorceREC2, "N", Nulo2)
+'    Sql = Sql & ",codiiva2 = " & DBSet(TipoIVA2, "N", Nulo2)
+'    Sql = Sql & ",baseimp3 = " & DBSet(BaseIVA3, "N", Nulo3)
+'    Sql = Sql & ",impoiva3 = " & DBSet(ImpIVA3, "N", Nulo3)
+'    Sql = Sql & ",imporec3 = " & DBSet(ImpREC3, "N", Nulo3)
+'    Sql = Sql & ",porciva3 = " & DBSet(PorceIVA3, "N", Nulo3)
+'    Sql = Sql & ",porcrec3 = " & DBSet(PorceREC3, "N", Nulo3)
+'    Sql = Sql & ",codiiva3 = " & DBSet(TipoIVA3, "N", Nulo3)
+'    Sql = Sql & ",brutofac = " & DBSet(TotBruto, "N")
+'    Sql = Sql & ",impordto = " & DBSet(Round2(TotBruto - TotNeto, 2), "N")
+'    Sql = Sql & ",totalfac = " & DBSet(TotalFac, "N")
+'    Sql = Sql & " where " & cadwhere
+'
+'    conn.Execute Sql
+'
+'    CalcularDatosFacturaCompra_old = True
+'
+'ECalcular:
+'    If Err.Number <> 0 Then
+'        CalcularDatosFacturaCompra_old = False
+'    Else
+'        CalcularDatosFacturaCompra_old = True
+'    End If
+'End Function
+
+Public Function CalcularDatosFacturaCompra(cadwhere As String, NomTabla As String, NomTablaLin As String) As Boolean
 'cadWhere: cad para la where de la SQL que selecciona las lineas del albaran o la factura
 'nomTabla: nombre de la tabla de albaranes(scaalp) o de AlbaranesXFactura(scafpa)
 '           segun llamemos desde recepcion de facturas o desde Hco de Facturas
@@ -5118,24 +5564,18 @@ Dim i As Integer
 
 Dim Sql As String
 Dim cadAux As String
-Dim cadAux1 As String
+Dim cadwhere1 As String
 
 'Aqui vamos acumulando los totales
 Dim TotBruto As Currency
-Dim TotNeto As Currency
 Dim TotImpIVA As Currency
 
 Dim ImpAux As Currency
 Dim impiva As Currency
-Dim ImpREC As Currency
 Dim ImpBImIVA As Currency 'Importe Base imponible a la que hay q aplicar el IVA
 
-Dim vBruto As Currency
-Dim vNeto As Currency
-
-Dim exentoIVA As Boolean
-Dim conDesplaz As Boolean
-    
+Dim DtoPPago As Currency
+Dim DtoGnral As Currency
 Dim BaseImp As Currency
 Dim BaseIVA1 As Currency
 Dim BaseIVA2 As Currency
@@ -5162,293 +5602,144 @@ Dim PorceREC3 As Currency
 Dim TipoIVA1 As Currency
 Dim TipoIVA2 As Currency
 Dim TipoIVA3 As Currency
-    
-Dim ImpDto1 As Currency
-Dim ImpDto2 As Currency
-Dim TotalFac As Currency
 
-Dim IvaAnt As Integer
-Dim cadwhere1 As String
-    
+Dim ImpPPago As Currency
+Dim ImpGnral As Currency
+
+Dim TotalFac As Currency
 Dim Nulo2 As String
 Dim Nulo3 As String
+
 
     CalcularDatosFacturaCompra = False
     On Error GoTo ECalcular
 
-    BaseImp = 0
-    BaseIVA1 = 0
-    BaseIVA2 = 0
-    BaseIVA3 = 0
-    
-    BrutoFac = 0
-    
-    ImpIVA1 = 0
-    ImpIVA2 = 0
-    ImpIVA3 = 0
-    
-    PorceIVA1 = 0
-    PorceIVA2 = 0
-    PorceIVA3 = 0
-    
-    ImpREC1 = 0
-    ImpREC2 = 0
-    ImpREC3 = 0
-    
-    PorceREC1 = 0
-    PorceREC2 = 0
-    PorceREC3 = 0
-    
-    TipoIVA1 = 0
-    TipoIVA2 = 0
-    TipoIVA3 = 0
-    
-    ImpDto1 = 0
-    ImpDto2 = 0
-    TotalFac = 0
-
-    'Agrupar el importe bruto por tipos de iva
+   
+    DtoPPago = ComprobarCero(Text1(7))
+    DtoGnral = ComprobarCero(Text1(8))
+   
     cadwhere1 = Replace(cadwhere, "facturascom", "facturascom_variedad")
-    Sql = "SELECT facturascom_variedad.codigiva, sum(imporbru) as bruto, sum(impornet) as neto"
+    Sql = "SELECT facturascom_variedad.codigiva, sum(importe) as bruto"
     Sql = Sql & " FROM facturascom_variedad "
     Sql = Sql & " WHERE " & cadwhere1
     Sql = Sql & " GROUP BY 1 "
     Sql = Sql & " ORDER BY 1 "
-
+    
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
-
+    
     TotBruto = 0
-    TotNeto = 0
-    TotImpIVA = 0
-    vBruto = 0
-    vNeto = 0
     i = 1
-
-    '[Monica]23/08/2013: he metido en el if la instruccion de ivaant
-    If Not Rs.EOF Then
-        Rs.MoveFirst
-        IvaAnt = Rs.Fields(0).Value
-        
-    Else
-        '[Monica]23/08/2013 añado el else
-        
-        Sql = "update facturascom "
-        Sql = Sql & "set baseimp1 = " & ValorNulo
-        Sql = Sql & ",impoiva1 = " & ValorNulo
-        Sql = Sql & ",imporec1 = " & ValorNulo
-        Sql = Sql & ",porciva1 = " & ValorNulo
-        Sql = Sql & ",porcrec1 = " & ValorNulo
-        Sql = Sql & ",codiiva1 = " & ValorNulo
-        Nulo2 = "N"
-        Nulo3 = "N"
-        If DBSet(TipoIVA2, "N", "S") = ValorNulo Then Nulo2 = "S"
-        If DBSet(TipoIVA3, "N", "S") = ValorNulo Then Nulo3 = "S"
-        Sql = Sql & ",baseimp2 = " & ValorNulo
-        Sql = Sql & ",impoiva2 = " & ValorNulo
-        Sql = Sql & ",imporec2 = " & ValorNulo
-        Sql = Sql & ",porciva2 = " & ValorNulo
-        Sql = Sql & ",porcrec2 = " & ValorNulo
-        Sql = Sql & ",codiiva2 = " & ValorNulo
-        Sql = Sql & ",baseimp3 = " & ValorNulo
-        Sql = Sql & ",impoiva3 = " & ValorNulo
-        Sql = Sql & ",imporec3 = " & ValorNulo
-        Sql = Sql & ",porciva3 = " & ValorNulo
-        Sql = Sql & ",porcrec3 = " & ValorNulo
-        Sql = Sql & ",codiiva3 = " & ValorNulo
-        Sql = Sql & ",brutofac = " & ValorNulo
-        Sql = Sql & ",impordto = " & ValorNulo
-        Sql = Sql & ",totalfac = " & ValorNulo
-        Sql = Sql & " where " & cadwhere
-        
-        conn.Execute Sql
-    
-        CalcularDatosFacturaCompra = True
-        Exit Function
-        
-    End If
     While Not Rs.EOF
-                                        '[Monica]05/05/2015: añadimos la condicion de que la suma de brutos de la factura sea distinta de
-                                        '                    para que no llegue como base a la contabilidad
-        If IvaAnt <> Rs.Fields(0).Value And vBruto <> 0 Then
-            TotBruto = TotBruto + vBruto
-            TotNeto = TotNeto + vNeto
-            ImpBImIVA = vNeto
+        'Aqui vamos acumulando la suma del importe bruto de las lineas
+        TotBruto = TotBruto + Rs!Bruto
+        ImpBImIVA = Rs!Bruto
         
-
-            'Obtener el % de IVA
-            cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", CStr(IvaAnt), "N")
-
-            'aplicar el IVA a la base imponible de ese tipo
-            impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
-            
-            'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
-            'los vamos acumulando
-            TotImpIVA = TotImpIVA + impiva
-
-            If CInt(Data1.Recordset!TipoIvac) = 2 Then
-                'Obtener el % de RECARGO
-                cadAux1 = DevuelveDesdeBDNew(cConta, "tiposiva", "porcerec", "codigiva", CStr(IvaAnt), "N")
-    
-                'aplicar el RECARGO a la base imponible de ese tipo
-                ImpREC = CalcularPorcentaje(ImpBImIVA, CCur(cadAux1), 2)
-                
-                'sumamos todos los RECARGOS para sumarselo a la base imponible total de la factura
-                'los vamos acumulando
-                TotImpIVA = TotImpIVA + ImpREC
-            Else
-                cadAux1 = "0"
-                ImpREC = 0
-            End If
-
-
-            Select Case i
-                Case 1  'IVA 1
-                    TipoIVA1 = IvaAnt 'RS!codigiva
-
-                    BaseIVA1 = ImpBImIVA 'BASE IMPONIBLE
-
-                    PorceIVA1 = cadAux '% de IVA
-
-                    'Importe total con IVA
-                    ImpIVA1 = impiva
-                    
-                    PorceREC1 = cadAux1 '% de REC
-
-                    'Importe total con RECARGO
-                    ImpREC1 = ImpREC
-
-                Case 2  'IVA 2
-                    TipoIVA2 = IvaAnt 'RS!codigiva
-
-                    BaseIVA2 = ImpBImIVA 'BASE IMPONIBLE
-
-                    PorceIVA2 = cadAux '% de IVA
-
-                    'Importe total con IVA
-                    ImpIVA2 = impiva
-
-                    PorceREC2 = cadAux1 '% de REC
-
-                    'Importe total con RECARGO
-                    ImpREC2 = ImpREC
-                Case 3  'IVA 3
-                    TipoIVA3 = IvaAnt 'RS!codigiva
-
-                    BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
-
-                    PorceIVA3 = cadAux '% de IVA
-
-                    'Importe total con IVA
-                    ImpIVA3 = impiva
-                    
-                    PorceREC3 = cadAux1 '% de REC
-
-                    'Importe total con RECARGO
-                    ImpREC3 = ImpREC
-            End Select
-            
-            
-            i = i + 1
-            IvaAnt = Rs.Fields(0).Value
-            vBruto = DBLet(Rs.Fields(1).Value, "N")
-            vNeto = DBLet(Rs.Fields(2).Value, "N")
+        'Aplicarle el dto ppago
+'        ImpAux = CCur(CalcularDto(CStr(RS!bruto), CStr(DtoPPago)))
+'        '---- Laura: 27/09/2006
+'        ImpAux = Round(ImpAux, 2)
+'        '----
+        '---- Laura: 24/10/2006
+        ImpAux = CalcularPorcentaje(Rs!Bruto, DtoPPago, 2)
+        ImpBImIVA = ImpBImIVA - ImpAux '(bruto - DtoPP)
+        
+        'Aplicarle el dto grnal
+'        ImpAux = CCur(CalcularDto(CStr(RS!bruto), CStr(DtoGnral)))
+'        '---- Laura: 27/09/2006
+'        ImpAux = Round(ImpAux, 2)
+'        '----
+        '---- Laura: 24/10/2006
+        ImpAux = CalcularPorcentaje(Rs!Bruto, DtoGnral, 2)
+        ImpBImIVA = ImpBImIVA - ImpAux '(bruto - Dtogn)
+        
+        'Obtener el % de IVA
+        If vParamAplic.NumeroConta <> 0 Then
+            cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", CStr(Rs!Codigiva), "N")
         Else
-            vBruto = vBruto + DBLet(Rs.Fields(1).Value, "N")
-            vNeto = vNeto + DBLet(Rs.Fields(2).Value, "N")
+            cadAux = DevuelveDesdeBDNew(cAgro, "tiposiva", "porceiva", "codigiva", CStr(Rs!Codigiva), "N")
         End If
         
+        'aplicar el IVA a la base imponible de ese tipo
+'        ImpAux = CalcularDto(CStr(ImpBImIVA), cadAux)
+'        '---- Laura: modificado 27/09/2006
+''        ImpIVA = ImpAux
+'        ImpIVA = Round(ImpAux, 2)
+        '----
+        '---- Laura: 24/10/2006
+        If cadAux = "" Then cadAux = "0"
+        impiva = CalcularPorcentaje(ImpBImIVA, CCur(cadAux), 2)
         
+        'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
+        'los vamos acumulando
+        TotImpIVA = TotImpIVA + impiva
+        
+        
+        Select Case i
+            Case 1  'IVA 1
+                TipoIVA1 = Rs!Codigiva
+                
+                BaseIVA1 = ImpBImIVA 'BASE IMPONIBLE
+                
+                PorceIVA1 = cadAux '% de IVA
+                
+                'Importe total con IVA
+                ImpIVA1 = impiva
+                
+            Case 2  'IVA 2
+                TipoIVA2 = Rs!Codigiva
+                
+                BaseIVA2 = ImpBImIVA 'BASE IMPONIBLE
+                
+                PorceIVA2 = cadAux '% de IVA
+                
+                'Importe total con IVA
+                ImpIVA2 = impiva
+
+            Case 3  'IVA 3
+                TipoIVA3 = Rs!Codigiva
+                
+                BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
+                
+                PorceIVA3 = cadAux '% de IVA
+                
+                'Importe total con IVA
+                ImpIVA3 = impiva
+        End Select
+        i = i + 1
         Rs.MoveNext
     Wend
+    
     Rs.Close
     Set Rs = Nothing
 
-    ' ULTIMO REGISTRO
-    TotBruto = TotBruto + vBruto
-    TotNeto = TotNeto + vNeto
-    ImpBImIVA = vNeto
-
-
-    'Obtener el % de IVA
-    cadAux = DevuelveDesdeBDNew(cConta, "tiposiva", "porceiva", "codigiva", CStr(IvaAnt), "N")
-
-    'aplicar el IVA a la base imponible de ese tipo
-    '[Monica]23/08/2013: añado el comprobar cero
-    impiva = CalcularPorcentaje(ImpBImIVA, CCur(ComprobarCero(cadAux)), 2)
+    'TOTALES
+    BrutoFac = TotBruto
     
-    'sumamos todos los IVAS para sumarselo a la base imponible total de la factura
-    'los vamos acumulando
-    TotImpIVA = TotImpIVA + impiva
+    'Aplicarle el dto ppago
+'    ImpPPago = CCur(CalcularDto(CStr(TotBruto), CStr(DtoPPago)))
+'    '---- Laura: 27/09/2006
+'    ImpPPago = Round(ImpPPago, 2)
+'    '----
+    '---- Laura: 24/10/2006
+    ImpPPago = CalcularPorcentaje(TotBruto, DtoPPago, 2)
+    '----
     
-    If CInt(Data1.Recordset!TipoIvac) = 2 Then
-        'Obtener el % de RECARGO
-        cadAux1 = DevuelveDesdeBDNew(cConta, "tiposiva", "porcerec", "codigiva", CStr(IvaAnt), "N")
+    'Aplicarle el dto general
+'    ImpGnral = CCur(CalcularDto(CStr(TotBruto), CStr(DtoGnral)))
+'    '---- Laura: 27/09/2006
+'    ImpGnral = Round(ImpGnral, 2)
+'    '----
+    '---- Laura: 24/10/2006
+    ImpGnral = CalcularPorcentaje(TotBruto, DtoGnral, 2)
+    '----
     
-        'aplicar el RECARGO a la base imponible de ese tipo
-        ImpREC = CalcularPorcentaje(ImpBImIVA, CCur(cadAux1), 2)
-    Else
-        cadAux1 = "0"
-        ImpREC = 0
-    End If
-    'sumamos todos los RECARGOS para sumarselo a la base imponible total de la factura
-    'los vamos acumulando
-    TotImpIVA = TotImpIVA + ImpREC
-
-
-
-    Select Case i
-        Case 1  'IVA 1
-            TipoIVA1 = IvaAnt
-
-            BaseIVA1 = ImpBImIVA 'BASE IMPONIBLE
-
-            PorceIVA1 = cadAux '% de IVA
-
-            'Importe total con IVA
-            ImpIVA1 = impiva
-            
-            PorceREC1 = cadAux1 '% de REC
-
-            'Importe total con RECARGO
-            ImpREC1 = ImpREC
-
-        Case 2  'IVA 2
-            TipoIVA2 = IvaAnt
-
-            BaseIVA2 = ImpBImIVA 'BASE IMPONIBLE
-
-            PorceIVA2 = cadAux '% de IVA
-
-            'Importe total con IVA
-            ImpIVA2 = impiva
-
-            PorceREC2 = cadAux1 '% de REC
-
-            'Importe total con RECARGO
-            ImpREC2 = ImpREC
-        Case 3  'IVA 3
-            TipoIVA3 = IvaAnt
-
-            BaseIVA3 = ImpBImIVA 'BASE IMPONIBLE
-
-            PorceIVA3 = cadAux '% de IVA
-
-            'Importe total con IVA
-            ImpIVA3 = impiva
-            
-            PorceREC3 = cadAux1 '% de REC
-
-            'Importe total con RECARGO
-            ImpREC3 = ImpREC
-    End Select
-
     'Base Imponible
-    BaseImp = TotNeto
-
+    BaseImp = TotBruto - ImpPPago - ImpGnral
+    
     'TOTAL de la factura
     TotalFac = BaseImp + TotImpIVA
-
+    
     'ACTUALIZAMOS LA FACTURA (tabla facturas)
     Sql = "update facturascom "
     Sql = Sql & "set baseimp1 = " & DBSet(BaseIVA1, "N")
@@ -5474,14 +5765,18 @@ Dim Nulo3 As String
     Sql = Sql & ",porcrec3 = " & DBSet(PorceREC3, "N", Nulo3)
     Sql = Sql & ",codiiva3 = " & DBSet(TipoIVA3, "N", Nulo3)
     Sql = Sql & ",brutofac = " & DBSet(TotBruto, "N")
-    Sql = Sql & ",impordto = " & DBSet(Round2(TotBruto - TotNeto, 2), "N")
+    Sql = Sql & ",impppago = " & DBSet(Round2(ImpPPago), "N")
+    Sql = Sql & ",impgnral = " & DBSet(Round2(ImpGnral), "N")
     Sql = Sql & ",totalfac = " & DBSet(TotalFac, "N")
     Sql = Sql & " where " & cadwhere
     
     conn.Execute Sql
 
+    
+    
+    
     CalcularDatosFacturaCompra = True
-
+    
 ECalcular:
     If Err.Number <> 0 Then
         CalcularDatosFacturaCompra = False
@@ -5586,7 +5881,7 @@ On Error GoTo EComprobarPagoArimoney
                     If DBLet(vR!transfer, "N") = 1 Then
                         Cad = "Esta en una transferencia"
                     Else
-                       If DBLet(vR!imppago, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!imppago
+                       If DBLet(vR!ImpPago, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!ImpPago
                     
                         
                                 'Si hubeira que poner mas coas iria aqui
@@ -5599,7 +5894,7 @@ On Error GoTo EComprobarPagoArimoney
                         If DBLet(vR!transfer, "N") = 1 Then
                             Cad = "Esta en una transferencia"
                         Else
-                           If DBLet(vR!imppago, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!imppago
+                           If DBLet(vR!ImpPago, "N") > 0 Then Cad = "Esta parcialmente pagado: " & vR!ImpPago
                         
                             
                                     'Si hubeira que poner mas coas iria aqui

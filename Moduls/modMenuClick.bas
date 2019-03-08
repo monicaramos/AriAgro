@@ -4,6 +4,7 @@ Option Explicit
 Dim DeTransporte As Boolean
 Dim DeServicios As Boolean
 Dim frmBas As frmBasico
+Dim frmList2 As frmListado2
 
 Private Sub Construc(Nom As String)
     MsgBox Nom & ": en construcció..."
@@ -454,8 +455,11 @@ Public Sub SubmnC_GV_Facturas_Click(Index As Integer)
         '[Monica]05/03/2019: facturas de compra de variedades
         Case 21: frmFacturasCompra.Show vbModal
         Case 22: ' integracion contable
-'                 DeCompra = True
-                 AbrirListado2 (224)
+                 Set frmList2 = New frmListado2
+                 frmList2.DeCompra = True
+                 frmList2.Opcionlistado = 224
+                 frmList2.Show vbModal
+                 Set frmList2 = Nothing
     End Select
 End Sub
 

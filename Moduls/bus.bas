@@ -332,6 +332,11 @@ Dim frmMens As frmMensajes
         If vEmpresa.TieneSII Then
             Sql = Sql & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
         End If
+        Sql = Sql & " union "
+        Sql = Sql & " select " & vUsu.Codigo & ",'Facturas Compras' tipofact,4, numfactu,fecrecep,'" & BBDD & "' aa, proveedor.nomprove, totalfac from " & BBDD & ".facturascom, " & BBDD & ".proveedor  where intconta = 0 and facturascom.codprove = proveedor.codprove "
+        If vEmpresa.TieneSII Then
+            Sql = Sql & " and fecrecep >= " & DBSet(vEmpresa.SIIFechaInicio, "F") & " and fecrecep <= " & DBSet(DateAdd("d", -1, Now), "F")
+        End If
 
         '[Monica]04/03/2019: eliminamos el blqueo de tablas que producia, poniendolo en un insert values
         Set Rs = New ADODB.Recordset
