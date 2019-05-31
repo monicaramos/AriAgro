@@ -2400,64 +2400,10 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-''Carga el formulario frmBuscaGrid con los valores correspondientes
-'Dim Cad As String
-'Dim Tabla As String
-'Dim Titulo As String
-'
-'    'Llamamos a al form
-'    Cad = ""
-'    If Modo <> 5 Then 'Estamos en Modo de Cabeceras
-'    'Registro de la tabla de cabeceras: scatra
-'        Cad = Cad & ParaGrid(Text1(0), 12, "Nº Trasp.")
-'        Cad = Cad & ParaGrid(Text1(1), 15, "Fecha")
-'        Cad = Cad & ParaGrid(Text1(2), 7, "Orig.")
-'        Cad = Cad & "Desc. Alm. Orig|salmpr.nomalmac|T||30·"
-'        Cad = Cad & ParaGrid(Text1(3), 7, "Dest.")
-'        Cad = Cad & "Alm. Dest|AlmDestino.nomalmac as almdest|T||29·"
-'
-'        Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".almaorig=salmpr.codalmac" & ")"
-'        Tabla = Tabla & " LEFT JOIN salmpr AS AlmDestino ON " & NombreTabla & ".almadest=AlmDestino.codalmac "
-'        'tabla = tabla & NombreTabla & ".coddirec=sdirec.coddirec"
-'
-'        ' tabla = "scatra"
-'        Titulo = Me.Caption
-'    Else 'Estamos en modo Lineas
-'        Cad = Cad & "Código|sartic|codartic|T||30·Denominacion|sartic|nomartic|T||70·"
-'        Tabla = "sartic"
-'        Titulo = "Articulos"
-'    End If
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = Tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro 'Conexion a BD Ariagro
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-''        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-''            PonerFoco Text1(kCampo)
-''        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmAlm = New frmBasico2
     
-    AyudaTraspasoAlmacenesPrev frmAlm, , , EsHistorico
+    AyudaTraspasoAlmacenesPrev frmAlm, , CadB, EsHistorico
     
     Set frmAlm = Nothing
 

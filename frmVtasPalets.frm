@@ -30,20 +30,20 @@ Begin VB.Form frmVtasPalets
       EndProperty
       Height          =   300
       Left            =   13455
-      TabIndex        =   92
+      TabIndex        =   93
       Top             =   285
       Width           =   1605
    End
    Begin VB.Frame FrameBotonGnral2 
       Height          =   705
       Left            =   3735
-      TabIndex        =   90
+      TabIndex        =   91
       Top             =   90
       Width           =   1380
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
-         TabIndex        =   91
+         TabIndex        =   92
          Top             =   180
          Width           =   1005
          _ExtentX        =   1773
@@ -67,13 +67,13 @@ Begin VB.Form frmVtasPalets
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   88
+      TabIndex        =   89
       Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   89
+         TabIndex        =   90
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -129,13 +129,13 @@ Begin VB.Form frmVtasPalets
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   5175
-      TabIndex        =   86
+      TabIndex        =   87
       Top             =   90
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   87
+         TabIndex        =   88
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -184,7 +184,7 @@ Begin VB.Form frmVtasPalets
       Index           =   13
       Left            =   9180
       MaxLength       =   30
-      TabIndex        =   72
+      TabIndex        =   75
       Tag             =   "NumCajas|N|N|||palets_variedad|numcajas|#,##0|N|"
       Text            =   "Cajas"
       Top             =   6255
@@ -208,7 +208,7 @@ Begin VB.Form frmVtasPalets
       Left            =   12645
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   70
+      TabIndex        =   73
       Text            =   "Text2"
       Top             =   7695
       Width           =   1245
@@ -226,7 +226,7 @@ Begin VB.Form frmVtasPalets
       ForeColor       =   &H00000080&
       Height          =   2175
       Left            =   11070
-      TabIndex        =   64
+      TabIndex        =   67
       Top             =   8145
       Width           =   4875
       Begin VB.TextBox Text2 
@@ -246,7 +246,7 @@ Begin VB.Form frmVtasPalets
          Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   69
+         TabIndex        =   72
          Text            =   "Text2"
          Top             =   945
          Width           =   1515
@@ -268,7 +268,7 @@ Begin VB.Form frmVtasPalets
          Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   68
+         TabIndex        =   71
          Text            =   "Text2"
          Top             =   1575
          Width           =   1515
@@ -290,7 +290,7 @@ Begin VB.Form frmVtasPalets
          Left            =   2880
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   66
+         TabIndex        =   69
          Text            =   "Text2"
          Top             =   360
          Width           =   1515
@@ -309,7 +309,7 @@ Begin VB.Form frmVtasPalets
          ForeColor       =   &H00972E0B&
          Height          =   330
          Left            =   180
-         TabIndex        =   71
+         TabIndex        =   74
          Top             =   1620
          Width           =   1860
       End
@@ -328,7 +328,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   12
          Left            =   180
-         TabIndex        =   67
+         TabIndex        =   70
          Top             =   405
          Width           =   1530
       End
@@ -352,7 +352,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   1
          Left            =   180
-         TabIndex        =   65
+         TabIndex        =   68
          Top             =   990
          Width           =   1215
       End
@@ -374,7 +374,7 @@ Begin VB.Form frmVtasPalets
       Left            =   14175
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   60
+      TabIndex        =   63
       Text            =   "Text2"
       Top             =   7695
       Width           =   1245
@@ -396,7 +396,7 @@ Begin VB.Form frmVtasPalets
       Left            =   11160
       Locked          =   -1  'True
       MaxLength       =   40
-      TabIndex        =   58
+      TabIndex        =   61
       Text            =   "Text2"
       Top             =   7695
       Width           =   1275
@@ -419,7 +419,7 @@ Begin VB.Form frmVtasPalets
       Index           =   12
       Left            =   7455
       MaxLength       =   30
-      TabIndex        =   57
+      TabIndex        =   60
       Tag             =   "Marca|N|N|||palets_variedad|codmarca|000||"
       Text            =   "nom forf"
       Top             =   6255
@@ -444,7 +444,7 @@ Begin VB.Form frmVtasPalets
       Index           =   11
       Left            =   5925
       MaxLength       =   30
-      TabIndex        =   56
+      TabIndex        =   59
       Tag             =   "Marca|N|N|||palets_variedad|codmarca|000||"
       Text            =   "nom marca"
       Top             =   6255
@@ -469,7 +469,7 @@ Begin VB.Form frmVtasPalets
       Index           =   6
       Left            =   5625
       MaxLength       =   30
-      TabIndex        =   49
+      TabIndex        =   52
       Tag             =   "Marca|N|N|||palets_variedad|codmarca|000||"
       Text            =   "marca"
       Top             =   6255
@@ -480,7 +480,7 @@ Begin VB.Form frmVtasPalets
       Height          =   390
       Index           =   0
       Left            =   135
-      TabIndex        =   48
+      TabIndex        =   51
       Top             =   4230
       Width           =   1110
       _ExtentX        =   1958
@@ -523,7 +523,7 @@ Begin VB.Form frmVtasPalets
       Index           =   10
       Left            =   11055
       MaxLength       =   30
-      TabIndex        =   47
+      TabIndex        =   50
       Tag             =   "Peso Neto|N|S|||palets_variedad|pesoneto|###,##0|N|"
       Text            =   "peso neto"
       Top             =   6255
@@ -548,7 +548,7 @@ Begin VB.Form frmVtasPalets
       Index           =   9
       Left            =   10110
       MaxLength       =   30
-      TabIndex        =   46
+      TabIndex        =   49
       Tag             =   "Peso Bruto|N|N|||palets_variedad|pesobrut|###,##0||"
       Text            =   "peso bruto"
       Top             =   6255
@@ -573,7 +573,7 @@ Begin VB.Form frmVtasPalets
       Index           =   8
       Left            =   8220
       MaxLength       =   30
-      TabIndex        =   45
+      TabIndex        =   48
       Tag             =   "Categoria|T|S|||palets_variedad|categori|||"
       Text            =   "categ"
       Top             =   6255
@@ -598,7 +598,7 @@ Begin VB.Form frmVtasPalets
       Index           =   7
       Left            =   6825
       MaxLength       =   30
-      TabIndex        =   44
+      TabIndex        =   47
       Tag             =   "Forfait|N|N|||palets_variedad|codforfait|||"
       Text            =   "forfait"
       Top             =   6255
@@ -623,7 +623,7 @@ Begin VB.Form frmVtasPalets
       Index           =   5
       Left            =   4710
       MaxLength       =   30
-      TabIndex        =   43
+      TabIndex        =   46
       Text            =   "nom.var.comer"
       Top             =   6255
       Visible         =   0   'False
@@ -647,7 +647,7 @@ Begin VB.Form frmVtasPalets
       Index           =   4
       Left            =   3810
       MaxLength       =   30
-      TabIndex        =   42
+      TabIndex        =   45
       Tag             =   "Variedad Comercial|N|N|||palets_variedad|codvarco|||"
       Text            =   "var.comer."
       Top             =   6255
@@ -672,7 +672,7 @@ Begin VB.Form frmVtasPalets
       Index           =   3
       Left            =   2865
       MaxLength       =   30
-      TabIndex        =   41
+      TabIndex        =   44
       Text            =   "nomvarie"
       Top             =   6255
       Visible         =   0   'False
@@ -696,7 +696,7 @@ Begin VB.Form frmVtasPalets
       Index           =   6
       Left            =   6375
       MaxLength       =   30
-      TabIndex        =   33
+      TabIndex        =   36
       Tag             =   "Num.Cajas|N|N|0||palets_calibre|numcajas|#,##0||"
       Text            =   "numcajas"
       Top             =   8055
@@ -721,7 +721,7 @@ Begin VB.Form frmVtasPalets
       Index           =   5
       Left            =   5625
       MaxLength       =   5
-      TabIndex        =   32
+      TabIndex        =   35
       Text            =   "nomca"
       Top             =   8055
       Visible         =   0   'False
@@ -745,7 +745,7 @@ Begin VB.Form frmVtasPalets
       Index           =   0
       Left            =   255
       MaxLength       =   12
-      TabIndex        =   31
+      TabIndex        =   34
       Tag             =   "Num.Palet|N|N|||palets_calibre|numpalet||S|"
       Text            =   "numpalet"
       Top             =   8055
@@ -770,7 +770,7 @@ Begin VB.Form frmVtasPalets
       Index           =   1
       Left            =   1215
       MaxLength       =   12
-      TabIndex        =   30
+      TabIndex        =   33
       Tag             =   "Num.Linea|N|N|||palets_calibre|numlinea|00|N|"
       Text            =   "numlinea"
       Top             =   8055
@@ -794,7 +794,7 @@ Begin VB.Form frmVtasPalets
       Index           =   2
       Left            =   2025
       MaxLength       =   12
-      TabIndex        =   29
+      TabIndex        =   32
       Tag             =   "Num.Linea 1|N|N|||palets_calibre|numline1||N|"
       Text            =   "numline1"
       Top             =   8055
@@ -819,7 +819,7 @@ Begin VB.Form frmVtasPalets
       Index           =   3
       Left            =   3105
       MaxLength       =   12
-      TabIndex        =   28
+      TabIndex        =   31
       Tag             =   "Variedad|N|N|||palets_calibre|codvarie|000000|N|"
       Text            =   "variedad"
       Top             =   8055
@@ -844,7 +844,7 @@ Begin VB.Form frmVtasPalets
       Index           =   4
       Left            =   4935
       MaxLength       =   5
-      TabIndex        =   27
+      TabIndex        =   30
       Tag             =   "Calibre|N|N|||palets_calibre|codcalib|00|N|"
       Text            =   "calib"
       Top             =   8055
@@ -869,7 +869,7 @@ Begin VB.Form frmVtasPalets
       Index           =   0
       Left            =   450
       MaxLength       =   7
-      TabIndex        =   26
+      TabIndex        =   29
       Tag             =   "Num.Palet|N|N|||palets_variedad|numpalet||S|"
       Text            =   "numpale"
       Top             =   6255
@@ -894,7 +894,7 @@ Begin VB.Form frmVtasPalets
       Index           =   1
       Left            =   1035
       MaxLength       =   15
-      TabIndex        =   25
+      TabIndex        =   28
       Tag             =   "Num.Linea|N|N|||palets_variedad|numlinea|00|S|"
       Text            =   "numlinea"
       Top             =   6255
@@ -919,7 +919,7 @@ Begin VB.Form frmVtasPalets
       Index           =   2
       Left            =   1920
       MaxLength       =   30
-      TabIndex        =   24
+      TabIndex        =   27
       Tag             =   "Variedad|N|N|||palets_variedad|variedad||N|"
       Text            =   "variedad"
       Top             =   6255
@@ -929,7 +929,7 @@ Begin VB.Form frmVtasPalets
    Begin VB.Frame Frame2 
       Height          =   3180
       Left            =   135
-      TabIndex        =   21
+      TabIndex        =   24
       Top             =   855
       Width           =   15820
       Begin VB.CheckBox Check1 
@@ -945,7 +945,7 @@ Begin VB.Form frmVtasPalets
          EndProperty
          Height          =   240
          Left            =   14040
-         TabIndex        =   94
+         TabIndex        =   17
          Tag             =   "No Acabado|N|N|||albaran|noacabado|0||"
          Top             =   2565
          Width           =   1635
@@ -965,7 +965,7 @@ Begin VB.Form frmVtasPalets
          Index           =   20
          Left            =   10530
          MaxLength       =   6
-         TabIndex        =   84
+         TabIndex        =   15
          Tag             =   "Cod.Camara|N|S|0|999|palets|codcamara|000||"
          Text            =   "Text1"
          Top             =   1935
@@ -988,7 +988,7 @@ Begin VB.Form frmVtasPalets
          Left            =   11340
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   83
+         TabIndex        =   85
          Text            =   "Text2"
          Top             =   1935
          Width           =   2100
@@ -1008,7 +1008,7 @@ Begin VB.Form frmVtasPalets
          Index           =   19
          Left            =   14010
          MaxLength       =   15
-         TabIndex        =   82
+         TabIndex        =   16
          Tag             =   "IdPalet|N|S|||palets|idpalet|||"
          Text            =   "Text3"
          Top             =   1935
@@ -1163,7 +1163,7 @@ Begin VB.Form frmVtasPalets
          Index           =   6
          Left            =   12375
          MaxLength       =   40
-         TabIndex        =   53
+         TabIndex        =   56
          Tag             =   "Hora Fin|FH|S|||palets|horafin|yyyy-mm-dd hh:mm:ss||"
          Text            =   "Text3"
          Top             =   450
@@ -1195,7 +1195,7 @@ Begin VB.Form frmVtasPalets
          Index           =   8
          Left            =   8595
          MaxLength       =   40
-         TabIndex        =   50
+         TabIndex        =   53
          Tag             =   "Hora Inicio|FH|N|||palets|horaini|yyyy-mm-dd hh:mm:ss||"
          Text            =   "Text3"
          Top             =   450
@@ -1238,7 +1238,7 @@ Begin VB.Form frmVtasPalets
          Left            =   7425
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   39
+         TabIndex        =   42
          Text            =   "Text2"
          Top             =   1935
          Width           =   2370
@@ -1259,7 +1259,7 @@ Begin VB.Form frmVtasPalets
          MaxLength       =   250
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
-         TabIndex        =   15
+         TabIndex        =   18
          Tag             =   "Observaciones|T|S|||palets|observac|||"
          Top             =   1215
          Width           =   6015
@@ -1380,11 +1380,11 @@ Begin VB.Form frmVtasPalets
          EndProperty
          Height          =   360
          Index           =   11
-         Left            =   10515
+         Left            =   10530
          MaxLength       =   40
          TabIndex        =   11
          Text            =   "Text3"
-         Top             =   1170
+         Top             =   1215
          Width           =   1035
       End
       Begin VB.TextBox Text1 
@@ -1393,7 +1393,7 @@ Begin VB.Form frmVtasPalets
          Index           =   14
          Left            =   8595
          MaxLength       =   40
-         TabIndex        =   76
+         TabIndex        =   79
          Tag             =   "Hora Inicio conf|FH|N|||palets|horaiconf|yyyy-mm-dd hh:mm:ss||"
          Text            =   "Text3"
          Top             =   1260
@@ -1405,7 +1405,7 @@ Begin VB.Form frmVtasPalets
          Index           =   15
          Left            =   10755
          MaxLength       =   40
-         TabIndex        =   77
+         TabIndex        =   80
          Tag             =   "Hora Fin Confec|FH|N|||palets|horafconf|yyyy-mm-dd hh:mm:ss||"
          Text            =   "Text3"
          Top             =   1215
@@ -1433,7 +1433,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   19
          Left            =   10530
-         TabIndex        =   85
+         TabIndex        =   86
          Top             =   1665
          Width           =   810
       End
@@ -1451,7 +1451,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   18
          Left            =   14010
-         TabIndex        =   81
+         TabIndex        =   84
          Top             =   1695
          Width           =   810
       End
@@ -1469,7 +1469,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   17
          Left            =   14010
-         TabIndex        =   80
+         TabIndex        =   83
          Top             =   915
          Width           =   990
       End
@@ -1487,7 +1487,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   16
          Left            =   12375
-         TabIndex        =   79
+         TabIndex        =   82
          Top             =   915
          Width           =   1035
       End
@@ -1505,7 +1505,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   15
          Left            =   14010
-         TabIndex        =   78
+         TabIndex        =   81
          Top             =   180
          Width           =   900
       End
@@ -1556,7 +1556,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   14
          Left            =   8550
-         TabIndex        =   75
+         TabIndex        =   78
          Top             =   945
          Width           =   1275
       End
@@ -1574,7 +1574,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   13
          Left            =   6570
-         TabIndex        =   74
+         TabIndex        =   77
          Top             =   945
          Width           =   1320
       End
@@ -1592,7 +1592,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   8
          Left            =   10530
-         TabIndex        =   73
+         TabIndex        =   76
          Top             =   900
          Width           =   915
       End
@@ -1610,7 +1610,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   3
          Left            =   10530
-         TabIndex        =   55
+         TabIndex        =   58
          Top             =   180
          Width           =   1050
       End
@@ -1628,7 +1628,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   4
          Left            =   12390
-         TabIndex        =   54
+         TabIndex        =   57
          Top             =   180
          Width           =   915
       End
@@ -1655,7 +1655,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   29
          Left            =   6570
-         TabIndex        =   52
+         TabIndex        =   55
          Top             =   180
          Width           =   1230
       End
@@ -1673,7 +1673,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   2
          Left            =   8550
-         TabIndex        =   51
+         TabIndex        =   54
          Top             =   180
          Width           =   1275
       End
@@ -1700,7 +1700,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   6
          Left            =   3060
-         TabIndex        =   40
+         TabIndex        =   43
          Top             =   180
          Width           =   675
       End
@@ -1725,7 +1725,7 @@ Begin VB.Form frmVtasPalets
          EndProperty
          Height          =   255
          Left            =   225
-         TabIndex        =   38
+         TabIndex        =   41
          Top             =   855
          Width           =   1485
       End
@@ -1743,7 +1743,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   5
          Left            =   1395
-         TabIndex        =   37
+         TabIndex        =   40
          Top             =   180
          Width           =   1560
       End
@@ -1761,7 +1761,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   27
          Left            =   4185
-         TabIndex        =   36
+         TabIndex        =   39
          Top             =   180
          Width           =   1515
       End
@@ -1779,7 +1779,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   0
          Left            =   6570
-         TabIndex        =   23
+         TabIndex        =   26
          Top             =   1665
          Width           =   990
       End
@@ -1805,7 +1805,7 @@ Begin VB.Form frmVtasPalets
          Height          =   255
          Index           =   28
          Left            =   225
-         TabIndex        =   22
+         TabIndex        =   25
          Top             =   180
          Width           =   855
       End
@@ -1814,7 +1814,7 @@ Begin VB.Form frmVtasPalets
       Height          =   525
       Index           =   0
       Left            =   120
-      TabIndex        =   19
+      TabIndex        =   22
       Top             =   10395
       Width           =   2175
       Begin VB.Label lblIndicador 
@@ -1831,7 +1831,7 @@ Begin VB.Form frmVtasPalets
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   20
+         TabIndex        =   23
          Top             =   180
          Width           =   1755
       End
@@ -1850,7 +1850,7 @@ Begin VB.Form frmVtasPalets
       EndProperty
       Height          =   375
       Left            =   14940
-      TabIndex        =   17
+      TabIndex        =   20
       Top             =   10500
       Width           =   1065
    End
@@ -1867,7 +1867,7 @@ Begin VB.Form frmVtasPalets
       EndProperty
       Height          =   375
       Left            =   13770
-      TabIndex        =   16
+      TabIndex        =   19
       Top             =   10500
       Width           =   1065
    End
@@ -1884,7 +1884,7 @@ Begin VB.Form frmVtasPalets
       EndProperty
       Height          =   375
       Left            =   14940
-      TabIndex        =   18
+      TabIndex        =   21
       Top             =   10530
       Visible         =   0   'False
       Width           =   1065
@@ -1940,7 +1940,7 @@ Begin VB.Form frmVtasPalets
       Bindings        =   "frmVtasPalets.frx":01AD
       Height          =   2745
       Left            =   135
-      TabIndex        =   34
+      TabIndex        =   37
       Top             =   7560
       Width           =   10785
       _ExtentX        =   19024
@@ -2009,7 +2009,7 @@ Begin VB.Form frmVtasPalets
       Bindings        =   "frmVtasPalets.frx":01C2
       Height          =   2400
       Left            =   135
-      TabIndex        =   35
+      TabIndex        =   38
       Top             =   4725
       Width           =   15465
       _ExtentX        =   27279
@@ -2171,7 +2171,7 @@ Begin VB.Form frmVtasPalets
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
       Left            =   15495
-      TabIndex        =   93
+      TabIndex        =   94
       Top             =   225
       Width           =   405
       _ExtentX        =   714
@@ -2202,7 +2202,7 @@ Begin VB.Form frmVtasPalets
       Height          =   255
       Index           =   11
       Left            =   14175
-      TabIndex        =   63
+      TabIndex        =   66
       Top             =   7425
       Width           =   1530
    End
@@ -2212,7 +2212,7 @@ Begin VB.Form frmVtasPalets
       Height          =   300
       Index           =   10
       Left            =   14040
-      TabIndex        =   62
+      TabIndex        =   65
       Top             =   7740
       Width           =   180
    End
@@ -2231,7 +2231,7 @@ Begin VB.Form frmVtasPalets
       Height          =   255
       Index           =   9
       Left            =   12645
-      TabIndex        =   61
+      TabIndex        =   64
       Top             =   7425
       Width           =   1305
    End
@@ -2250,7 +2250,7 @@ Begin VB.Form frmVtasPalets
       Height          =   255
       Index           =   7
       Left            =   11205
-      TabIndex        =   59
+      TabIndex        =   62
       Top             =   7425
       Width           =   1215
    End
@@ -2375,8 +2375,6 @@ Dim TituloLinea As String 'Descripcion de la linea que estamos en Mantenimiento
 Dim PrimeraVez As Boolean
 
 Dim EsCabecera As Boolean
-'Para saber en MandaBusquedaPrevia si busca en la tabla scapla o en la tabla sdirec
-
 
 Dim EsDeVarios As Boolean
 'Si el cliente mostrado es de Varios o No
@@ -3145,7 +3143,7 @@ Dim Cad As String
             frmBas.Tag2 = "Descripción|T|N|||cclinconf|nomlinconf|||"
             frmBas.Maxlen1 = 2
             frmBas.Maxlen2 = 40
-            frmBas.Tabla = "cclinconf"
+            frmBas.tabla = "cclinconf"
             frmBas.CampoCP = "codlinconf"
             frmBas.Report = "rManCCLineasConf.rpt"
             frmBas.Caption = "Lineas de Confección"
@@ -3432,6 +3430,13 @@ Dim Sql As String
             If Sql = "" Then
                 MsgBox "No existe la línea de confección. Revise.", vbExclamation
                 PonerFoco Text1(Index)
+            Else
+                '[Monica]24/04/2019: lo copiamos todo a las lineas de confeccion de costes, entrada y salida
+                If Modo = 3 And Index = 1 And vParamAplic.Cooperativa = 18 Then
+                    Text1(16).Text = Text1(1)
+                    Text1(17).Text = Text1(1)
+                    Text1(18).Text = Text1(1)
+                End If
             End If
     
         Case 2, 3 'Fecha inicio y fecha de fin
@@ -3583,59 +3588,13 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim Tabla As String
+Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-'    Cad = ""
-'    Cad = Cad & "Nº.Palet|palets.numpalet|N||15·"
-'
-'    Cad = Cad & ParaGrid(Text1(1), 10, "Conf.")
-'    Cad = Cad & "Palet|confpale.nompalet|N||35·"
-'    Cad = Cad & ParaGrid(Text1(2), 15, "F.Inicio")
-'    Cad = Cad & ParaGrid(Text1(3), 15, "F.Fin")
-'    tabla = NombreTabla & " INNER JOIN confpale ON palets.codpalet=confpale.codpalet "
-'
-'    Titulo = "Palets"
-'    devuelve = "0|"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vDevuelve = devuelve
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-''        If EsCabecera Then
-''            PonerCadenaBusqueda
-''            Text1(0).Text = Format(Text1(0).Text, "0000000")
-''        End If
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmPal = New frmBasico2
 
-    AyudaPalets frmPal
+    AyudaPalets frmPal, , CadB
     
     Set frmPal = Nothing
     

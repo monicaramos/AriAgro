@@ -899,15 +899,17 @@ On Error GoTo eProcesarCambios
     Pb1.Max = HayReg
     Pb1.Value = 0
     
-    SQL1 = "select sum(impcoste) from (" & cadTABLA
+    '[Monica]30/03/2019: duplicaba coste por enlace con facturas
+    SQL1 = "select sum(impcoste) from (" & "(albaran INNER JOIN albaran_variedad ON albaran.numalbar = albaran_variedad.numalbar ) INNER JOIN variedades ON albaran_variedad.codvarie = variedades.codvarie"
     SQL1 = SQL1 & ") INNER JOIN albaran_costes on albaran_variedad.numalbar = albaran_costes.numalbar and albaran_variedad.numlinea = albaran_costes.numlinea "
     SQL1 = SQL1 & " where albaran_costes.tipogasto = 1 "
     If cadwhere <> "" Then SQL1 = SQL1 & " and " & cadwhere
     GastosEnvases = DevuelveValor(SQL1)
     
-    
+   
     '[Monica] 15/06/2010 añadido costes paletizacion
-    SQL1 = "select sum(impcoste) from (" & cadTABLA
+      '[Monica]30/03/2019: duplicaba coste por enlace con facturas
+    SQL1 = "select sum(impcoste) from (" & "(albaran INNER JOIN albaran_variedad ON albaran.numalbar = albaran_variedad.numalbar ) INNER JOIN variedades ON albaran_variedad.codvarie = variedades.codvarie"
     SQL1 = SQL1 & ") INNER JOIN albaran_costes on albaran_variedad.numalbar = albaran_costes.numalbar and albaran_variedad.numlinea = albaran_costes.numlinea "
     SQL1 = SQL1 & " where albaran_costes.tipogasto = 4 "
     If cadwhere <> "" Then SQL1 = SQL1 & " and " & cadwhere

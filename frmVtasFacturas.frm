@@ -1518,7 +1518,6 @@ Begin VB.Form frmVtasFacturas
       _ExtentX        =   31062
       _ExtentY        =   8996
       _Version        =   393216
-      Tab             =   1
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
@@ -1531,17 +1530,15 @@ Begin VB.Form frmVtasFacturas
       EndProperty
       TabCaption(0)   =   "Variedades"
       TabPicture(0)   =   "frmVtasFacturas.frx":0097
-      Tab(0).ControlEnabled=   0   'False
+      Tab(0).ControlEnabled=   -1  'True
       Tab(0).Control(0)=   "FrameAux0"
       Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Envases"
       TabPicture(1)   =   "frmVtasFacturas.frx":00B3
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "FrameAux1"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "txtAux(13)"
-      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "txtAux(13)"
+      Tab(1).Control(1)=   "FrameAux1"
       Tab(1).ControlCount=   2
       TabCaption(2)   =   "Facturas a Cuenta"
       TabPicture(2)   =   "frmVtasFacturas.frx":00CF
@@ -1555,7 +1552,7 @@ Begin VB.Form frmVtasFacturas
          BorderStyle     =   0  'None
          Height          =   315
          Index           =   13
-         Left            =   11550
+         Left            =   -63450
          MaxLength       =   10
          TabIndex        =   141
          Tag             =   "Fecha Albaran|F|S|||facturas_envase|fecalbar|dd/mm/yyyy||"
@@ -2044,7 +2041,7 @@ Begin VB.Form frmVtasFacturas
       Begin VB.Frame FrameAux1 
          BorderStyle     =   0  'None
          Height          =   4290
-         Left            =   45
+         Left            =   -74955
          TabIndex        =   79
          Top             =   345
          Width           =   16825
@@ -2610,7 +2607,7 @@ Begin VB.Form frmVtasFacturas
       Begin VB.Frame FrameAux0 
          BorderStyle     =   0  'None
          Height          =   4065
-         Left            =   -74955
+         Left            =   45
          TabIndex        =   63
          Top             =   420
          Width           =   17430
@@ -3784,7 +3781,6 @@ Dim TituloLinea As String 'Descripcion de la linea que estamos en Mantenimiento
 Dim PrimeraVez As Boolean
 
 Dim EsCabecera As Boolean
-'Para saber en MandaBusquedaPrevia si busca en la tabla scapla o en la tabla sdirec
 Dim NumTabMto As Integer 'Indica quin nº de Tab està en modo Mantenimient
 
 
@@ -5203,65 +5199,11 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
-Dim Desc As String, devuelve As String
-'    'Llamamos a al form
-'    '##A mano
-'    Cad = ""
-'    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
-'    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
-'    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
-'    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
-'
-'    Titulo = "Facturas"
-'    devuelve = "0|1|4|"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|4|"
-'        frmB.vDevuelve = devuelve
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-''        If EsCabecera Then
-''            PonerCadenaBusqueda
-''            Text1(0).Text = Format(Text1(0).Text, "0000000")
-''        End If
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
-'
     Set frmFac = New frmBasico2
 
     AyudaFacturas frmFac, , CadB
 
     Set frmFac = Nothing
-
-
-
 
 End Sub
 
@@ -5799,7 +5741,7 @@ Dim Precio As Currency
         txtAux(2).Text = Text1(1).Text
         txtAux(3).Text = NumLinea
         txtAux(4).Text = vParamAplic.Almacen
-        txtAux(5).Text = DBLet(Rs!CodArtic)
+        txtAux(5).Text = DBLet(Rs!codArtic)
         txtAux(6).Text = DBLet(Rs!Cantidad)
         txtAux(7).Text = Precio
         txtAux(8).Text = "0"
@@ -6224,7 +6166,7 @@ Dim vCStock As CStock
         
             devuelve = ""
             If ModificaLineas = 2 Then
-                If Not Adoaux(1).Recordset.EOF Then devuelve = Adoaux(1).Recordset!CodArtic
+                If Not Adoaux(1).Recordset.EOF Then devuelve = Adoaux(1).Recordset!codArtic
             End If
         
             If Not PonerArticulo(txtAux(5), Text2(0), txtAux(4).Text, CodTipoMov, ModificaLineas, devuelve) Then
@@ -8196,12 +8138,12 @@ Private Function InicializarCStock(ByRef vCStock As CStock, TipoM As String, Opt
     
     '1=Insertar, 2=Modificar
     If ModificaLineas = 1 Or (ModificaLineas = 2 And TipoM = "S") Then
-        vCStock.CodArtic = txtAux(5).Text
+        vCStock.codArtic = txtAux(5).Text
         vCStock.codAlmac = CInt(txtAux(4).Text)
         If ModificaLineas = 1 Then '1=Insertar
             vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
         Else '2=Modificar(Debe haber en stock la diferencia)
-            If Adoaux(1).Recordset!CodArtic = txtAux(5).Text Then
+            If Adoaux(1).Recordset!codArtic = txtAux(5).Text Then
                 vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text)) - Adoaux(1).Recordset!Cantidad
             Else
                 vCStock.Cantidad = CSng(ComprobarCero(txtAux(6).Text))
@@ -8209,7 +8151,7 @@ Private Function InicializarCStock(ByRef vCStock As CStock, TipoM As String, Opt
         End If
         vCStock.Importe = CCur(ComprobarCero(txtAux(9).Text))
     Else
-        vCStock.CodArtic = Adoaux(1).Recordset!CodArtic
+        vCStock.codArtic = Adoaux(1).Recordset!codArtic
         vCStock.codAlmac = CInt(Adoaux(1).Recordset!codAlmac)
         vCStock.Cantidad = CSng(Adoaux(1).Recordset!Cantidad)
         vCStock.Importe = CCur(Adoaux(1).Recordset!ImporteL)
@@ -8276,7 +8218,7 @@ Dim b As Boolean
         
         vCStock.Cantidad = DBLet(Rs!Cantidad, "N")
         vCStock.codAlmac = DBLet(Rs!codAlmac, "N")
-        vCStock.CodArtic = DBLet(Rs!CodArtic, "T")
+        vCStock.codArtic = DBLet(Rs!codArtic, "T")
         '[Monica]20/03/2012: lo que se guardó es el numero de albaran
         If DBLet(Rs!NumAlbar, "N") <> 0 And EsFacturaEnvases(Text1(6).Text, Text1(0).Text, Text1(1).Text) Then
             vCStock.Documento = CLng(DBLet(Rs!NumAlbar, "N"))

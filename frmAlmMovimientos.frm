@@ -2383,67 +2383,12 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-''Carga el formulario frmBuscaGrid con los valores correspondientes
-'Dim Cad As String
-'Dim Tabla As String
-'Dim Titulo As String
-'
-'    'Llamamos a al form
-'    Cad = ""
-'    'Registro de la tabla de cabeceras: scamov
-'    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Mov.")
-'    Cad = Cad & ParaGrid(Text1(1), 20, "Fecha")
-'    Cad = Cad & "Almacen|salmpr.codalmac|N||10·"
-'
-'
-''    cad = cad & ParaGrid(Text1(2), 10, "Alm.")
-''--monica: sustituida la siguiente instruccion por la de abajo
-''    cad = cad & "Desc. Alm. Orig|salmpr|nomalmac|T||40·"
-'    Cad = Cad & "Desc. Alm. Orig|nomalmac|T||40·"
-'    Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
-'    Titulo = Me.Caption
-'
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = Tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''**quitado
-''        frmB.vConexionGrid = cAgro 'Conexion a BD Ariges
-'
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-''            If Modo = 5 Then
-''                PonerFoco txtAux(0)
-''            Else
-'                PonerFoco Text1(kCampo)
-''            End If
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmMov = New frmBasico2
     
     AyudaMovimientosAlmacenPrev frmMov, , , EsHistorico
     
     Set frmMov = Nothing
-
-
 End Sub
 
 

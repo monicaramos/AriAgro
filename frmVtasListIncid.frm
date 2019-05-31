@@ -31,10 +31,10 @@ Begin VB.Form frmVtasListIncid
       Begin VB.Frame FrameCategoria 
          BorderStyle     =   0  'None
          Height          =   1305
-         Left            =   4230
+         Left            =   405
          TabIndex        =   32
          Top             =   810
-         Width           =   5565
+         Width           =   5925
          Begin VB.TextBox txtCodigo 
             Alignment       =   1  'Right Justify
             BeginProperty Font 
@@ -111,7 +111,7 @@ Begin VB.Form frmVtasListIncid
          End
          Begin VB.Label Label4 
             AutoSize        =   -1  'True
-            Caption         =   "Categoria"
+            Caption         =   "Categoría"
             BeginProperty Font 
                Name            =   "Verdana"
                Size            =   9.75
@@ -616,7 +616,7 @@ Begin VB.Form frmVtasListIncid
          Width           =   690
       End
       Begin VB.Label Label1 
-         Caption         =   "Informe de Incidencias o Categorias"
+         Caption         =   "Informe de Incidencias o Categorías"
          BeginProperty Font 
             Name            =   "Tahoma"
             Size            =   14.25
@@ -945,7 +945,7 @@ InicializarVbles
 
                 End If
             Case 1
-                cadTitulo = "Informe de Categorias"
+                cadTitulo = "Informe de Categorías"
                 cadNombreRPT = "rVtasListCateg.rpt"
         End Select
         LlamarImprimir
@@ -1063,7 +1063,9 @@ Dim List As Collection
             FrameCategoria.visible = False
             FrameCategoria.Enabled = False
         Case 1
-            Label1.Caption = "Informe de Categorias"
+            Label1.Caption = "Informe de Categorías"
+            FrameCategoria.visible = True
+            FrameCategoria.Enabled = True
         
     End Select
 
@@ -1076,7 +1078,7 @@ Dim List As Collection
     tabla = "albaran"
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.cmdCancel.Cancel = True
+    Me.CmdCancel.Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub
@@ -1162,14 +1164,14 @@ End Sub
 
 Private Sub Optcodigo_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then 'ENTER
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     ElseIf KeyAscii = 27 Then Unload Me  'ESC
     End If
 End Sub
 
 Private Sub OptNombre_KeyPress(KeyAscii As Integer)
     If KeyAscii = 13 Then 'ENTER
-        PonerFocoBtn Me.cmdAceptar
+        PonerFocoBtn Me.CmdAceptar
     ElseIf KeyAscii = 27 Then Unload Me  'ESC
     End If
 End Sub

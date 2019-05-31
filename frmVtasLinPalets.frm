@@ -1326,7 +1326,7 @@ Private Sub btnBuscar_Click(Index As Integer)
             Set frmCali = Nothing
             PonerFoco txtAux(1)
     End Select
-    If Modo = 4 Then BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+    If Modo = 4 Then BloqueaRegistro "palets", "numpalet = " & text1(0).Text
     'BLOQUEADesdeFormulario2 Me, Data1, 1
 End Sub
 
@@ -1354,7 +1354,7 @@ Dim V As Integer
 '                    PosicionarData
 
                     TerminaBloquear
-                    BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                    BloqueaRegistro "palets", "numpalet = " & text1(0).Text
 
                     CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                     PonerCadenaBusqueda
@@ -1371,7 +1371,7 @@ Dim V As Integer
                 If ModificaDesdeFormulario2(Me, 1) Then
                     TerminaBloquear
                     '++monica
-                    BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                    BloqueaRegistro "palets", "numpalet = " & text1(0).Text
                     
                     PosicionarData
                 End If
@@ -1411,7 +1411,7 @@ Dim V As Integer
                         LLamaLineas NumTabMto, 0
                         TerminaBloquear
                         '++monica
-                        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
                         PosicionarData
                     Else
                         PonerFoco txtAux(12)
@@ -1460,8 +1460,8 @@ Dim Cad As String
 '    If ComprobarNumCajas Then Exit Sub
 
     Cad = ""
-    If Text1(0).Text <> "" And Text1(1).Text <> "" Then
-        Cad = Text1(0).Text & "|" & Text1(1).Text & "|"
+    If text1(0).Text <> "" And text1(1).Text <> "" Then
+        Cad = text1(0).Text & "|" & text1(1).Text & "|"
     End If
     RaiseEvent DatoSeleccionado(Cad)
 
@@ -1561,10 +1561,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(frameAux As String)
+Private Sub LimpiarCamposLin(FrameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -1575,7 +1575,7 @@ End Sub
 '   En PONERMODO s'habiliten, o no, els diversos camps del
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim i As Integer, Numreg As Byte
+Dim i As Integer, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -1594,17 +1594,17 @@ Dim b As Boolean
 '        cmdRegresar.visible = False
 '    End If
     
-    Text1(5).Enabled = True
+    text1(5).Enabled = True
     
     
     '=======================================
     b = (Modo = 2)
     'Posar Fleches de desplasament visibles
-    Numreg = 1
+    NumReg = 1
     If Not Data1.Recordset.EOF Then
-        If Data1.Recordset.RecordCount > 1 Then Numreg = 2 'Només es per a saber que n'hi ha + d'1 registre
+        If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, Numreg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
     '---------------------------------------------
     
     b = Modo <> 0 And Modo <> 2
@@ -1621,8 +1621,8 @@ Dim b As Boolean
     
     ' ***** bloquejar tots els controls visibles de la clau primaria de la capçalera ***
     If Modo = 4 Then
-        BloquearTxt Text1(0), True 'si estic en  modificar, bloqueja la clau primaria
-        BloquearTxt Text1(1), True 'si estic en  modificar, bloqueja la clau primaria
+        BloquearTxt text1(0), True 'si estic en  modificar, bloqueja la clau primaria
+        BloquearTxt text1(1), True 'si estic en  modificar, bloqueja la clau primaria
     End If
     ' **********************************************************************************
     
@@ -1767,7 +1767,7 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
         CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
@@ -1785,24 +1785,24 @@ End Sub
 
 Private Sub frmFor_DatoSeleccionado(CadenaSeleccion As String)
 'Forfaits
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codforfait
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmMar_DatoSeleccionado(CadenaSeleccion As String)
 'Marcas
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmarca
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmarca
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmVar_DatoSeleccionado(CadenaSeleccion As String)
 'Variedades
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvariedad
-    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codvariedad
+    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
-     Text1(indice).Text = vCampo
+     text1(indice).Text = vCampo
 End Sub
 
 
@@ -1872,15 +1872,15 @@ Dim i As Integer
     If Modo <> 1 Then
         LimpiarCampos
         PonerModo 1
-        PonerFoco Text1(0) ' <===
-        Text1(0).BackColor = vbYellow ' <===
+        PonerFoco text1(0) ' <===
+        text1(0).BackColor = vbYellow ' <===
         ' *** si n'hi han combos a la capçalera ***
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
-            PonerFoco Text1(kCampo)
+            text1(kCampo).Text = ""
+            text1(kCampo).BackColor = vbYellow
+            PonerFoco text1(kCampo)
         End If
     End If
 ' ******************************************************************************
@@ -1897,7 +1897,7 @@ Private Sub HacerBusqueda()
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
-        PonerFoco Text1(0)
+        PonerFoco text1(0)
         ' **********************************************************************
     End If
 End Sub
@@ -1909,9 +1909,9 @@ Private Sub MandaBusquedaPrevia(CadB As String)
     ' **************** arreglar-ho per a vore lo que es desije ****************
     ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
     Cad = ""
-    Cad = Cad & ParaGrid(Text1(0), 20, "Código")
-    Cad = Cad & ParaGrid(Text1(1), 20, "Confección")
-    Cad = Cad & ParaGrid(Text1(2), 60, "Descripción")
+    Cad = Cad & ParaGrid(text1(0), 20, "Código")
+    Cad = Cad & ParaGrid(text1(1), 20, "Confección")
+    Cad = Cad & ParaGrid(text1(2), 60, "Descripción")
     If Cad <> "" Then
         Screen.MousePointer = vbHourglass
         Set frmB = New frmBuscaGrid
@@ -1931,7 +1931,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
             If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
                 cmdRegresar_Click
         Else   'de ha retornat datos, es a decir NO ha retornat datos
-            PonerFoco Text1(kCampo)
+            PonerFoco text1(kCampo)
         End If
     End If
 End Sub
@@ -1998,14 +1998,14 @@ Private Sub BotonAnyadir()
 '    text1(0).Text = SugerirCodigoSiguienteStr("forfaits", "codforfait")
 '    FormateaCampo text1(0)
     
-    Text1(0).Text = Palet
-    Text1(1).Text = SugerirCodigoSiguienteStr("palets_variedad", "numlinea", "numpalet = " & Text1(0).Text)
-    Text1(0).BackColor = &H80000013
-    Text1(1).BackColor = &H80000013
-    Text1(0).Locked = True
-    Text1(1).Locked = True
+    text1(0).Text = Palet
+    text1(1).Text = SugerirCodigoSiguienteStr("palets_variedad", "numlinea", "numpalet = " & text1(0).Text)
+    text1(0).BackColor = &H80000013
+    text1(1).BackColor = &H80000013
+    text1(0).Locked = True
+    text1(1).Locked = True
     
-    PonerFoco Text1(2) '*** 1r camp visible que siga PK ***
+    PonerFoco text1(2) '*** 1r camp visible que siga PK ***
     
     ' *** si n'hi han camps de descripció a la capçalera ***
     'PosarDescripcions
@@ -2016,19 +2016,19 @@ Private Sub BotonModificar()
 
     PonerModo 4
     
-    Text1(0).Text = Palet
-    Text1(1).Text = Linea
+    text1(0).Text = Palet
+    text1(1).Text = Linea
     
-    Text1(0).BackColor = &H80000013
-    Text1(1).BackColor = &H80000013
+    text1(0).BackColor = &H80000013
+    text1(1).BackColor = &H80000013
 
     ' *** bloquejar els camps visibles de la clau primaria de la capçalera ***
-    BloquearTxt Text1(0), True
-    BloquearTxt Text1(1), True
-    BloquearTxt Text1(2), True
+    BloquearTxt text1(0), True
+    BloquearTxt text1(1), True
+    BloquearTxt text1(2), True
     
     ' *** foco al 1r camp visible que NO siga clau primaria ***
-    PonerFoco Text1(3)
+    PonerFoco text1(3)
 End Sub
 
 Private Sub BotonEliminar()
@@ -2089,10 +2089,10 @@ Dim CPostal As String, desProvi As String, desPais As String
 
     
     ' ************* configurar els camps de les descripcions de la capçalera *************
-    Text2(2).Text = PonerNombreDeCod(Text1(2), "variedades", "nomvarie")
-    Text2(3).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(3).Text, "N")
-    Text2(4).Text = PonerNombreDeCod(Text1(4), "marcas", "nommarca")
-    Text2(5).Text = PonerNombreDeCod(Text1(5), "forfaits", "nomconfe")
+    text2(2).Text = PonerNombreDeCod(text1(2), "variedades", "nomvarie")
+    text2(3).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", text1(3).Text, "N")
+    text2(4).Text = PonerNombreDeCod(text1(4), "marcas", "nommarca")
+    text2(5).Text = PonerNombreDeCod(text1(5), "forfaits", "nomconfe")
     ' ********************************************************************************
     
     CalcularTotales
@@ -2119,17 +2119,17 @@ Dim V
                     PonerCampos
                 End If
                 ' *** foco al primer camp visible de la capçalera ***
-                PonerFoco Text1(0)
+                PonerFoco text1(0)
 
         Case 4  'Modificar
                 TerminaBloquear
                 '++monica
-                BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                BloqueaRegistro "palets", "numpalet = " & text1(0).Text
                 
                 PonerModo 2
                 PonerCampos
                 ' *** primer camp visible de la capçalera ***
-                PonerFoco Text1(0)
+                PonerFoco text1(0)
 
         Case 5 'LLÍNIES
             Select Case ModoLineas
@@ -2198,7 +2198,7 @@ Dim Sql As String
     If (Modo = 3) Then 'insertar
         'comprobar si existe ya el cod. del campo clave primaria
         Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "palets_calibre", "numpalet", "numpalet", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
+        Sql = DevuelveDesdeBDNew(cAgro, "palets_calibre", "numpalet", "numpalet", text1(0).Text, "N", , "numlinea", text1(1).Text, "N")
         If Sql <> "" Then
             MsgBox "Ya existe el numero de linea para este palet", vbExclamation
             b = False
@@ -2216,8 +2216,8 @@ Private Sub PosicionarData()
 Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    Cad = "(numpalet=" & DBSet(Text1(0).Text, "N") & ")"
-    Cad = Cad & " and (numlinea = " & DBSet(Text1(1).Text, "N") & ")"
+    Cad = "(numpalet=" & DBSet(text1(0).Text, "N") & ")"
+    Cad = Cad & " and (numlinea = " & DBSet(text1(1).Text, "N") & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     If SituarDataMULTI(Data1, Cad, Indicador) Then
@@ -2260,7 +2260,7 @@ End Function
 
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco Text1(Index), Modo
+    ConseguirFoco text1(Index), Modo
 End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
@@ -2268,7 +2268,7 @@ Dim cadMen As String
 Dim Nuevo As Boolean
 Dim Variedad As String
 
-    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -2278,111 +2278,117 @@ Dim Variedad As String
     ' ***************** configurar els LostFocus dels camps de la capçalera *****************
     Select Case Index
         Case 0 'codigo de forfait
-            Text1(Index).Text = UCase(Text1(Index).Text)
+            text1(Index).Text = UCase(text1(Index).Text)
         
         Case 2, 3 'Variedad
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", Text1(Index).Text, "N")
-                If Text2(Index).Text = "" Then
-                    cadMen = "No existe la Variedad: " & Text1(Index).Text & vbCrLf
+            If PonerFormatoEntero(text1(Index)) Then
+                text2(Index).Text = DevuelveDesdeBDNew(cAgro, "variedades", "nomvarie", "codvarie", text1(Index).Text, "N")
+                If text2(Index).Text = "" Then
+                    cadMen = "No existe la Variedad: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         indice = Index
                         Set frmVar = New frmManVariedad
                         frmVar.DatosADevolverBusqueda = "0|1|"
-                        frmVar.NuevoCodigo = Text1(Index).Text
-                        Text1(Index).Text = ""
+                        frmVar.NuevoCodigo = text1(Index).Text
+                        text1(Index).Text = ""
                         TerminaBloquear
                         
                         frmVar.Show vbModal
                         Set frmVar = Nothing
                         '++monica
-                        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
 '                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 End If
             Else
-                Text2(Index).Text = ""
+                text2(Index).Text = ""
             End If
             
         Case 4 'Marca
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index) = PonerNombreDeCod(Text1(Index), "marcas", "nommarca")
-                If Text2(Index).Text = "" Then
-                    cadMen = "No existe la Marca: " & Text1(Index).Text & vbCrLf
+            If PonerFormatoEntero(text1(Index)) Then
+                text2(Index) = PonerNombreDeCod(text1(Index), "marcas", "nommarca")
+                If text2(Index).Text = "" Then
+                    cadMen = "No existe la Marca: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         indice = Index
                         Set frmMar = New frmManMarcas
                         frmMar.DatosADevolverBusqueda = "0|1|"
-                        frmMar.NuevoCodigo = Text1(Index).Text
-                        Text1(Index).Text = ""
+                        frmMar.NuevoCodigo = text1(Index).Text
+                        text1(Index).Text = ""
                         TerminaBloquear
                         
                         frmMar.Show vbModal
                         Set frmMar = Nothing
                         '++monica
-                        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
 '                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 End If
             Else
-                Text2(Index).Text = ""
+                text2(Index).Text = ""
             End If
                 
         Case 5 'Forfait
-            If Text1(Index).Text <> "" Then
-                Text2(Index) = PonerNombreDeCod(Text1(Index), "forfaits", "nomconfe")
-                If Text2(Index).Text = "" Then
-                    cadMen = "No existe el Forfait: " & Text1(Index).Text & vbCrLf
+            If text1(Index).Text <> "" Then
+                text2(Index) = PonerNombreDeCod(text1(Index), "forfaits", "nomconfe")
+                If text2(Index).Text = "" Then
+                    cadMen = "No existe el Forfait: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         indice = Index
                         Set frmFor = New frmManForfaits
                         frmFor.DatosADevolverBusqueda = "0|1|"
-                        frmFor.NuevoCodigo = Text1(Index).Text
-                        Text1(Index).Text = ""
+                        frmFor.NuevoCodigo = text1(Index).Text
+                        text1(Index).Text = ""
                         TerminaBloquear
 
                         frmFor.Show vbModal
                         Set frmFor = Nothing
                         '++monica
-                        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
 '                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 '++monica:02/12/2008 control d que el forfait sea de la variedad introducida
                 Else
-                    Variedad = ""
-                    Variedad = DevuelveDesdeBDNew(cAgro, "forfaits", "codvarie", "codforfait", Text1(Index).Text, "T")
-                    If Variedad <> "" Then
-                        If CInt(Variedad) <> CInt(Text1(2).Text) Then
-                            MsgBox "El Forfait no es de la Variedad introducida.", vbExclamation
+                    '[Monica]31/05/2019: no dejamos meter un forfait inactivo
+                    If EstaForfaitInactivo(text1(Index)) Then
+                        MsgBox "Este Forfait está inactivo. Reintroduzca.", vbExclamation
+                        PonerFoco text1(Index)
+                    Else
+                        Variedad = ""
+                        Variedad = DevuelveDesdeBDNew(cAgro, "forfaits", "codvarie", "codforfait", text1(Index).Text, "T")
+                        If Variedad <> "" Then
+                            If CInt(Variedad) <> CInt(text1(2).Text) Then
+                                MsgBox "El Forfait no es de la Variedad introducida.", vbExclamation
+                            End If
                         End If
                     End If
                 '++
                 End If
             Else
-                Text2(Index).Text = ""
+                text2(Index).Text = ""
             End If
         
         Case 6 ' categoria
-            Text1(Index).Text = UCase(Text1(Index).Text)
+            text1(Index).Text = UCase(text1(Index).Text)
             
         Case 7, 8 'peso bruto y peso neto
-            PonerFormatoEntero Text1(Index)
+            PonerFormatoEntero text1(Index)
             If Index = 7 Then CalculoPesoNeto False
             
         Case 9 ' numero de cajas
-            PonerFormatoEntero Text1(Index)
+            PonerFormatoEntero text1(Index)
             CalculoPesoNeto False
     End Select
         ' ***************************************************************************
@@ -2485,13 +2491,13 @@ Dim Eliminar As Boolean
         NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
         TerminaBloquear
         '++monica
-        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
         
         conn.BeginTrans
         
         conn.Execute Sql
         
-        ActualizarVariedades Text1(0), Text1(1)
+        ActualizarVariedades text1(0), text1(1)
 
         conn.CommitTrans
         
@@ -2541,8 +2547,8 @@ Dim i As Integer
     PonerModo 5, Index
     
     ' *** bloquejar la clau primaria de la capçalera ***
-    BloquearTxt Text1(0), True
-    BloquearTxt Text1(1), True
+    BloquearTxt text1(0), True
+    BloquearTxt text1(1), True
     
 
     ' *** posar el nom del les distintes taules de llínies ***
@@ -2573,10 +2579,10 @@ Dim i As Integer
             Select Case Index
                 ' *** valor per defecte a l'insertar i formateig de tots els camps ***
                 Case 0 'calibres
-                    txtAux(0).Text = Text1(0).Text 'numpalet
-                    txtAux(3).Text = Text1(1).Text 'numlinea
-                    txtAux(5).Text = SugerirCodigoSiguienteStr("palets_calibre", "numline1", "numpalet = " & Text1(0).Text & " and numlinea =  " & Text1(1).Text) 'numline1
-                    txtAux(4).Text = Text1(2).Text
+                    txtAux(0).Text = text1(0).Text 'numpalet
+                    txtAux(3).Text = text1(1).Text 'numlinea
+                    txtAux(5).Text = SugerirCodigoSiguienteStr("palets_calibre", "numline1", "numpalet = " & text1(0).Text & " and numlinea =  " & text1(1).Text) 'numline1
+                    txtAux(4).Text = text1(2).Text
                     
                     txtAux(1).Text = ""
                     txtAux(2).Text = ""
@@ -2609,7 +2615,7 @@ Private Sub BotonModificarLinea(Index As Integer)
     NumTabMto = Index
     PonerModo 5, Index
     ' *** bloqueje la clau primaria de la capçalera ***
-    BloquearTxt Text1(0), True
+    BloquearTxt text1(0), True
   
     Select Case Index
         Case 0, 1 ' *** pose els index de llínies que tenen datagrid (en o sense tab) ***
@@ -2709,7 +2715,7 @@ Dim Nuevo As Boolean
                         frmCali.Show vbModal
                         Set frmCali = Nothing
 '                        If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
-                        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+                        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
                     Else
                         txtAux(Index).Text = ""
                     End If
@@ -2807,27 +2813,27 @@ Private Sub imgBuscar_Click(Index As Integer)
             indice = Index + 2
             Set frmVar = New frmManVariedad
             frmVar.DatosADevolverBusqueda = "0|1|"
-            frmVar.CodigoActual = Text1(indice).Text
+            frmVar.CodigoActual = text1(indice).Text
             frmVar.Show vbModal
             Set frmVar = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
         Case 2 'Marca
             Set frmMar = New frmManMarcas
             frmMar.DatosADevolverBusqueda = "0|1|"
-            frmMar.CodigoActual = Text1(4).Text
+            frmMar.CodigoActual = text1(4).Text
             frmMar.Show vbModal
             Set frmMar = Nothing
-            PonerFoco Text1(4)
+            PonerFoco text1(4)
         Case 3 'forfait
             Set frmFor = New frmManForfaits
             frmFor.DatosADevolverBusqueda = "0|1|"
-            frmFor.CodigoActual = Text1(5).Text
+            frmFor.CodigoActual = text1(5).Text
             frmFor.Show vbModal
             Set frmFor = Nothing
-            PonerFoco Text1(5)
+            PonerFoco text1(5)
     End Select
     
-    If Modo = 4 Then BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+    If Modo = 4 Then BloqueaRegistro "palets", "numpalet = " & text1(0).Text
                 'BLOQUEADesdeFormulario2 Me, Data1, 1
 End Sub
 
@@ -2977,7 +2983,7 @@ Dim MenError As String
     If DatosOkLlin(nomFrame) Then
         TerminaBloquear
         '++monica
-        BloqueaRegistro "palets", "numpalet = " & Text1(0).Text
+        BloqueaRegistro "palets", "numpalet = " & text1(0).Text
         
         'Aqui empieza transaccion
         conn.BeginTrans
@@ -2985,7 +2991,7 @@ Dim MenError As String
         bol = InsertarDesdeForm2(Me, 2, nomFrame)
         If bol Then
             MenError = "Modificando variedades"
-            bol = ActualizarVariedades(Text1(0), Text1(1))
+            bol = ActualizarVariedades(text1(0), text1(1))
         End If
         
 '        If InsertarDesdeForm2(Me, 2, nomFrame) Then
@@ -3042,7 +3048,7 @@ Dim MenError As String
         bol = ModificaDesdeFormulario2(Me, 2, nomFrame)
         If bol Then
             MenError = "Modificando variedades"
-            bol = ActualizarVariedades(Text1(0), Text1(1))
+            bol = ActualizarVariedades(text1(0), text1(1))
         End If
         
         
@@ -3095,7 +3101,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " numpalet=" & Me.Data1.Recordset!numpalet & " and numlinea = " & Me.Data1.Recordset!NumLinea
+    vWhere = vWhere & " numpalet=" & Me.Data1.Recordset!NumPalet & " and numlinea = " & Me.Data1.Recordset!NumLinea
     
     ObtenerWhereCab = vWhere
 End Function
@@ -3153,8 +3159,8 @@ Dim Valor As Currency
 
     'total importes de envases para ese forfait
     Sql = "select sum(numcajas) "
-    Sql = Sql & " from palets_calibre where numpalet = " & DBSet(Text1(0).Text, "N")
-    Sql = Sql & " and numlinea = " & DBSet(Text1(1).Text, "N")
+    Sql = Sql & " from palets_calibre where numpalet = " & DBSet(text1(0).Text, "N")
+    Sql = Sql & " and numlinea = " & DBSet(text1(1).Text, "N")
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
@@ -3179,12 +3185,12 @@ On Error Resume Next
     
     Sql = ""
     If conW Then Sql = " WHERE "
-    Sql = Sql & NombreTabla & ".numpalet= " & DBSet(Text1(0).Text, "N")
-    Sql = Sql & " and " & NombreTabla & ".numlinea=" & Val(Text1(1).Text)
+    Sql = Sql & NombreTabla & ".numpalet= " & DBSet(text1(0).Text, "N")
+    Sql = Sql & " and " & NombreTabla & ".numlinea=" & Val(text1(1).Text)
     ObtenerWhereCP = Sql
 End Function
 
-Private Sub CalculoPesoNeto(actTabla As Boolean)
+Private Sub CalculoPesoNeto(acttabla As Boolean)
 Dim CodPalet As String
 Dim PesoCaja As String
 Dim PesoPalet As String
@@ -3198,13 +3204,21 @@ Dim Pesoneto As Long
 
 Dim Sql As String
 
-    If Text1(5).Text <> "" Then ' si me han introducido el forfait
+    '[Monica]29/03/2019: el calculo del peso neto lo tiene que hacer en funcion de las lineas
+    If vParamAplic.Cooperativa = 18 Then
+        CalculoPesoNetoFrutasInma acttabla
+        Exit Sub
+    End If
+
+
+
+    If text1(5).Text <> "" Then ' si me han introducido el forfait
         PesoCaja = ""
-        PesoCaja = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", Text1(5).Text, "T")
+        PesoCaja = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", text1(5).Text, "T")
     End If
     
     CodPalet = ""
-    CodPalet = DevuelveDesdeBDNew(cAgro, "palets", "codpalet", "numpalet", Text1(0).Text, "N")
+    CodPalet = DevuelveDesdeBDNew(cAgro, "palets", "codpalet", "numpalet", text1(0).Text, "N")
     nPesopalet = 0
     If CodPalet <> "" Then
         PesoPalet = ""
@@ -3224,28 +3238,28 @@ Dim Sql As String
     
     nPesocaja = 0
     nNumcajas = 0
-    If PesoCaja <> "" And Text1(9).Text <> "" Then
+    If PesoCaja <> "" And text1(9).Text <> "" Then
         nPesocaja = CCur(ImporteSinFormato(PesoCaja))
-        nNumcajas = CLng(ImporteSinFormato(Text1(9).Text))
+        nNumcajas = CLng(ImporteSinFormato(text1(9).Text))
     End If
     
     TaraCajas = Round2((nPesocaja * nNumcajas) + nPesopalet, 0)
     
     PesoBruto = 0
-    If Text1(7).Text <> "" Then
-        PesoBruto = CLng(Text1(7).Text)
+    If text1(7).Text <> "" Then
+        PesoBruto = CLng(text1(7).Text)
     End If
     
     Pesoneto = PesoBruto - TaraCajas
     
-    If actTabla Then
+    If acttabla Then
         Sql = "update palets_variedad set pesoneto = " & DBSet(Pesoneto, "N")
-        Sql = Sql & " where numpalet = " & DBSet(Text1(0).Text, "N") & " and numlinea = " & DBSet(Text1(1).Text, "N")
+        Sql = Sql & " where numpalet = " & DBSet(text1(0).Text, "N") & " and numlinea = " & DBSet(text1(1).Text, "N")
         
         conn.Execute Sql
     Else
-        Text1(8) = CStr(Pesoneto)
-        PonerFormatoEntero Text1(8)
+        text1(8) = CStr(Pesoneto)
+        PonerFormatoEntero text1(8)
     End If
 
 End Sub
@@ -3283,7 +3297,7 @@ Dim SQL1 As String
     
             conn.Execute Sql
             
-            Text1(9).Text = 0
+            text1(9).Text = 0
         End If
         
         If DBLet(Rs.Fields(0).Value, "N") <> 0 Then
@@ -3293,7 +3307,7 @@ Dim SQL1 As String
     
             conn.Execute Sql
             
-            Text1(9).Text = Format(DBLet(Rs.Fields(0).Value, "N"), "###0")
+            text1(9).Text = Format(DBLet(Rs.Fields(0).Value, "N"), "###0")
         End If
     
     End If
@@ -3307,4 +3321,74 @@ eActualizarVariedades:
     
 End Function
 
+
+Private Sub CalculoPesoNetoFrutasInma(acttabla As Boolean)
+Dim CodPalet As String
+Dim PesoCaja As String
+Dim PesoPalet As String
+
+Dim nPesocaja As Currency
+Dim nNumcajas As Long
+Dim nPesopalet As Currency
+Dim TaraCajas As Long
+Dim PesoBruto As Long
+Dim Pesoneto As Long
+
+Dim Sql As String
+Dim nTotalCajas As Long
+
+    If text1(5).Text <> "" Then ' si me han introducido el forfait
+        PesoCaja = ""
+        PesoCaja = DevuelveDesdeBDNew(cAgro, "forfaits", "pesocaja", "codforfait", text1(5).Text, "T")
+    End If
+    
+    CodPalet = ""
+    CodPalet = DevuelveDesdeBDNew(cAgro, "palets", "codpalet", "numpalet", text1(0).Text, "N")
+    nPesopalet = 0
+    If CodPalet <> "" Then
+        PesoPalet = ""
+        PesoPalet = DevuelveDesdeBDNew(cAgro, "confpale", "pesopale", "codpalet", CodPalet, "N")
+        nPesopalet = 0
+        If PesoPalet <> "" Then
+            nPesopalet = CCur(ImporteSinFormato(PesoPalet))
+        End If
+    End If
+    
+'    PesoPalet = ""
+'    PesoPalet = DevuelveDesdeBDNew(cAgro, "confpale", "pesopale", "codpalet", Text1(0).Text, "N")
+'    nPesopalet = 0
+'    If PesoPalet <> "" Then
+'        nPesopalet = CCur(ImporteSinFormato(PesoPalet))
+'    End If
+    
+    nPesocaja = 0
+    nNumcajas = 0
+    If PesoCaja <> "" And text1(9).Text <> "" Then
+        nPesocaja = CCur(ImporteSinFormato(PesoCaja))
+        nNumcajas = CLng(ImporteSinFormato(text1(9).Text))
+    End If
+    
+    nTotalCajas = DevuelveValor("select sum(numcajas) from palets_variedad where numpalet = " & DBSet(text1(0).Text, "N") & " and numlinea <> " & DBSet(text1(1), "N"))
+    nTotalCajas = nTotalCajas + nNumcajas
+    
+    TaraCajas = Round2((nPesocaja * nNumcajas) + ((nPesopalet / nTotalCajas) * nNumcajas), 0)
+    
+    PesoBruto = 0
+    If text1(7).Text <> "" Then
+        PesoBruto = CLng(text1(7).Text)
+    End If
+    
+    Pesoneto = PesoBruto - TaraCajas
+    
+    If acttabla Then
+        Sql = "update palets_variedad set pesoneto = " & DBSet(Pesoneto, "N")
+        Sql = Sql & " where numpalet = " & DBSet(text1(0).Text, "N") & " and numlinea = " & DBSet(text1(1).Text, "N")
+        
+        conn.Execute Sql
+    Else
+        text1(8) = CStr(Pesoneto)
+        PonerFormatoEntero text1(8)
+    End If
+
+End Sub
 

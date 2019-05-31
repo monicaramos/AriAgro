@@ -4,28 +4,28 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Begin VB.Form frmManAgencias 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Agencias de Transporte / Comisionistas"
-   ClientHeight    =   8040
+   ClientHeight    =   8910
    ClientLeft      =   45
    ClientTop       =   30
-   ClientWidth     =   14055
+   ClientWidth     =   14865
    Icon            =   "frmManAgencias.frx":0000
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8040
-   ScaleWidth      =   14055
+   ScaleHeight     =   8910
+   ScaleWidth      =   14865
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   70
+      TabIndex        =   71
       Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   71
+         TabIndex        =   72
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -81,13 +81,13 @@ Begin VB.Form frmManAgencias
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   3720
-      TabIndex        =   68
+      TabIndex        =   69
       Top             =   90
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   69
+         TabIndex        =   70
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -130,8 +130,8 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       Height          =   300
-      Left            =   11430
-      TabIndex        =   67
+      Left            =   12285
+      TabIndex        =   68
       Top             =   285
       Width           =   1605
    End
@@ -147,12 +147,12 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   2385
+      Height          =   2655
       Index           =   4
       Left            =   6750
-      TabIndex        =   56
+      TabIndex        =   58
       Top             =   1890
-      Width           =   7185
+      Width           =   7995
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -167,10 +167,10 @@ Begin VB.Form frmManAgencias
          Index           =   27
          Left            =   1755
          MaxLength       =   4
-         TabIndex        =   13
+         TabIndex        =   15
          Tag             =   "IBAN|T|S|||agencias|iban|||"
          Text            =   "Text1"
-         Top             =   315
+         Top             =   360
          Width           =   615
       End
       Begin VB.TextBox Text1 
@@ -188,9 +188,9 @@ Begin VB.Form frmManAgencias
          Index           =   26
          Left            =   1755
          MaxLength       =   5
-         TabIndex        =   21
+         TabIndex        =   23
          Tag             =   "Porc.Retencion|N|S|0|100|agencias|porcereten|##0.00||"
-         Top             =   1935
+         Top             =   2160
          Width           =   660
       End
       Begin VB.TextBox Text2 
@@ -209,10 +209,10 @@ Begin VB.Form frmManAgencias
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   60
+         TabIndex        =   62
          Text            =   "0"
-         Top             =   1125
-         Width           =   4440
+         Top             =   1260
+         Width           =   5295
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -230,10 +230,10 @@ Begin VB.Form frmManAgencias
          Left            =   2520
          Locked          =   -1  'True
          MaxLength       =   40
-         TabIndex        =   59
+         TabIndex        =   61
          Text            =   "Text2"
-         Top             =   720
-         Width           =   4440
+         Top             =   810
+         Width           =   5295
       End
       Begin VB.TextBox Text1 
          Alignment       =   1  'Right Justify
@@ -250,10 +250,10 @@ Begin VB.Form frmManAgencias
          Index           =   25
          Left            =   1740
          MaxLength       =   3
-         TabIndex        =   18
+         TabIndex        =   20
          Tag             =   "Forma Pago|N|N|0|999|agencias|codforpa|000|N|"
          Text            =   "Text1"
-         Top             =   720
+         Top             =   810
          Width           =   660
       End
       Begin VB.TextBox Text1 
@@ -270,10 +270,10 @@ Begin VB.Form frmManAgencias
          Index           =   24
          Left            =   4650
          MaxLength       =   10
-         TabIndex        =   17
+         TabIndex        =   19
          Tag             =   "Cuenta Bancaria|T|S|||agencias|cuentaba|0000000000||"
          Text            =   "1234567890"
-         Top             =   315
+         Top             =   360
          Width           =   1350
       End
       Begin VB.TextBox Text1 
@@ -290,10 +290,10 @@ Begin VB.Form frmManAgencias
          Index           =   23
          Left            =   4005
          MaxLength       =   2
-         TabIndex        =   16
+         TabIndex        =   18
          Tag             =   "Digito Control|T|S|||agencias|digcontr|00||"
          Text            =   "Text1"
-         Top             =   315
+         Top             =   360
          Width           =   495
       End
       Begin VB.TextBox Text1 
@@ -310,10 +310,10 @@ Begin VB.Form frmManAgencias
          Index           =   22
          Left            =   3270
          MaxLength       =   4
-         TabIndex        =   15
+         TabIndex        =   17
          Tag             =   "Sucursal|N|S|0|9999|agencias|codsucur|0000||"
          Text            =   "Text1"
-         Top             =   315
+         Top             =   360
          Width           =   615
       End
       Begin VB.TextBox Text1 
@@ -330,10 +330,10 @@ Begin VB.Form frmManAgencias
          Index           =   21
          Left            =   2505
          MaxLength       =   4
-         TabIndex        =   14
+         TabIndex        =   16
          Tag             =   "Banco|N|S|0|9999|agencias|codbanco|0000||"
          Text            =   "Text1"
-         Top             =   315
+         Top             =   360
          Width           =   615
       End
       Begin VB.TextBox Text1 
@@ -351,10 +351,10 @@ Begin VB.Form frmManAgencias
          Index           =   20
          Left            =   1755
          MaxLength       =   4
-         TabIndex        =   19
+         TabIndex        =   21
          Tag             =   "Banco Propio|N|N|0|9999|agencias|codbanpr|0000||"
          Text            =   "Text1"
-         Top             =   1125
+         Top             =   1260
          Width           =   660
       End
       Begin VB.TextBox Text2 
@@ -372,9 +372,9 @@ Begin VB.Form frmManAgencias
          Height          =   360
          Index           =   19
          Left            =   3150
-         TabIndex        =   57
-         Top             =   1530
-         Width           =   3795
+         TabIndex        =   59
+         Top             =   1710
+         Width           =   4650
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -390,10 +390,10 @@ Begin VB.Form frmManAgencias
          Index           =   19
          Left            =   1755
          MaxLength       =   10
-         TabIndex        =   20
+         TabIndex        =   22
          Tag             =   "Cta.Contable|T|S|||agencias|codmacta|||"
          Text            =   "0000000000"
-         Top             =   1530
+         Top             =   1710
          Width           =   1290
       End
       Begin VB.Label Label2 
@@ -409,8 +409,8 @@ Begin VB.Form frmManAgencias
          EndProperty
          Height          =   255
          Left            =   135
-         TabIndex        =   64
-         Top             =   1980
+         TabIndex        =   66
+         Top             =   2205
          Width           =   1185
       End
       Begin VB.Label Label1 
@@ -427,8 +427,8 @@ Begin VB.Form frmManAgencias
          Height          =   285
          Index           =   21
          Left            =   135
-         TabIndex        =   63
-         Top             =   360
+         TabIndex        =   65
+         Top             =   405
          Width           =   1320
       End
       Begin VB.Label Label1 
@@ -445,8 +445,8 @@ Begin VB.Form frmManAgencias
          Height          =   285
          Index           =   19
          Left            =   135
-         TabIndex        =   62
-         Top             =   1170
+         TabIndex        =   64
+         Top             =   1305
          Width           =   1305
       End
       Begin VB.Image imgBuscar 
@@ -454,7 +454,7 @@ Begin VB.Form frmManAgencias
          Index           =   2
          Left            =   1485
          ToolTipText     =   "Buscar banco propio"
-         Top             =   1170
+         Top             =   1305
          Width           =   240
       End
       Begin VB.Image imgBuscar 
@@ -462,7 +462,7 @@ Begin VB.Form frmManAgencias
          Index           =   1
          Left            =   1485
          ToolTipText     =   "Buscar forma de pago"
-         Top             =   765
+         Top             =   855
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -479,8 +479,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   14
          Left            =   135
-         TabIndex        =   61
-         Top             =   765
+         TabIndex        =   63
+         Top             =   855
          Width           =   1185
       End
       Begin VB.Label Label20 
@@ -496,8 +496,8 @@ Begin VB.Form frmManAgencias
          EndProperty
          Height          =   255
          Left            =   135
-         TabIndex        =   58
-         Top             =   1575
+         TabIndex        =   60
+         Top             =   1755
          Width           =   1320
       End
       Begin VB.Image imgBuscar 
@@ -505,7 +505,7 @@ Begin VB.Form frmManAgencias
          Index           =   0
          Left            =   1485
          ToolTipText     =   "Buscar Cta.Contable"
-         Top             =   1575
+         Top             =   1755
          Width           =   240
       End
    End
@@ -519,16 +519,16 @@ Begin VB.Form frmManAgencias
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      Height          =   450
+      Height          =   720
       Index           =   18
       Left            =   6795
       MaxLength       =   250
       MultiLine       =   -1  'True
       ScrollBars      =   2  'Vertical
-      TabIndex        =   22
+      TabIndex        =   24
       Tag             =   "Observaciones|T|S|||agencias|obstrans|||"
-      Top             =   4590
-      Width           =   7050
+      Top             =   4905
+      Width           =   7905
    End
    Begin VB.Frame Frame2 
       Caption         =   "Datos Administración"
@@ -542,12 +542,12 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   1980
+      Height          =   2430
       Index           =   3
       Left            =   6750
-      TabIndex        =   48
-      Top             =   5130
-      Width           =   7140
+      TabIndex        =   50
+      Top             =   5715
+      Width           =   7950
       Begin VB.TextBox Text1 
          BeginProperty Font 
             Name            =   "Verdana"
@@ -562,9 +562,9 @@ Begin VB.Form frmManAgencias
          Index           =   17
          Left            =   225
          MaxLength       =   10
-         TabIndex        =   23
+         TabIndex        =   25
          Tag             =   "Teléfono|T|S|||agencias|teltrans1|||"
-         Top             =   585
+         Top             =   630
          Width           =   1695
       End
       Begin VB.TextBox Text1 
@@ -581,9 +581,9 @@ Begin VB.Form frmManAgencias
          Index           =   16
          Left            =   4095
          MaxLength       =   10
-         TabIndex        =   25
+         TabIndex        =   27
          Tag             =   "Fax|T|S|||agencias|faxtrans1|||"
-         Top             =   585
+         Top             =   630
          Width           =   1785
       End
       Begin VB.TextBox Text1 
@@ -600,10 +600,10 @@ Begin VB.Form frmManAgencias
          Index           =   15
          Left            =   2070
          MaxLength       =   40
-         TabIndex        =   27
+         TabIndex        =   29
          Tag             =   "E-mail|T|S|||agencias|maitrans1|||"
-         Top             =   1395
-         Width           =   4755
+         Top             =   1710
+         Width           =   4980
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -619,10 +619,10 @@ Begin VB.Form frmManAgencias
          Index           =   14
          Left            =   2070
          MaxLength       =   35
-         TabIndex        =   26
+         TabIndex        =   28
          Tag             =   "Persona de Contacto|T|S|||agencias|pertrans1|||"
-         Top             =   990
-         Width           =   4755
+         Top             =   1170
+         Width           =   4980
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -638,9 +638,9 @@ Begin VB.Form frmManAgencias
          Index           =   13
          Left            =   2070
          MaxLength       =   10
-         TabIndex        =   24
+         TabIndex        =   26
          Tag             =   "Móvil|T|S|||agencias|movtrans1|||"
-         Top             =   585
+         Top             =   630
          Width           =   1650
       End
       Begin VB.Label Label1 
@@ -657,7 +657,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   18
          Left            =   4095
-         TabIndex        =   53
+         TabIndex        =   55
          Top             =   360
          Width           =   1185
       End
@@ -675,7 +675,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   17
          Left            =   225
-         TabIndex        =   52
+         TabIndex        =   54
          Top             =   360
          Width           =   1185
       End
@@ -693,15 +693,15 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   15
          Left            =   225
-         TabIndex        =   51
-         Top             =   1395
+         TabIndex        =   53
+         Top             =   1710
          Width           =   915
       End
       Begin VB.Image imgMail 
          Height          =   240
          Index           =   1
          Left            =   1710
-         Top             =   1440
+         Top             =   1755
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -718,8 +718,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   11
          Left            =   225
-         TabIndex        =   50
-         Top             =   990
+         TabIndex        =   52
+         Top             =   1170
          Width           =   1770
       End
       Begin VB.Label Label1 
@@ -736,7 +736,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   10
          Left            =   2070
-         TabIndex        =   49
+         TabIndex        =   51
          Top             =   360
          Width           =   1185
       End
@@ -753,10 +753,10 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   3120
+      Height          =   3750
       Index           =   1
       Left            =   90
-      TabIndex        =   42
+      TabIndex        =   44
       Top             =   1890
       Width           =   6630
       Begin VB.TextBox Text1 
@@ -773,9 +773,9 @@ Begin VB.Form frmManAgencias
          Index           =   10
          Left            =   1305
          MaxLength       =   40
-         TabIndex        =   7
+         TabIndex        =   9
          Tag             =   "Web|T|S|||agencias|wwwtrans|||"
-         Top             =   2520
+         Top             =   3015
          Width           =   4935
       End
       Begin VB.TextBox Text1 
@@ -792,9 +792,9 @@ Begin VB.Form frmManAgencias
          Index           =   2
          Left            =   1320
          MaxLength       =   9
-         TabIndex        =   2
+         TabIndex        =   4
          Tag             =   "NIF|T|N|||agencias|ciftrans|||"
-         Top             =   315
+         Top             =   360
          Width           =   1335
       End
       Begin VB.TextBox Text1 
@@ -811,9 +811,9 @@ Begin VB.Form frmManAgencias
          Index           =   3
          Left            =   1320
          MaxLength       =   35
-         TabIndex        =   3
+         TabIndex        =   5
          Tag             =   "Domicilio|T|S|||agencias|domtrans|||"
-         Top             =   750
+         Top             =   885
          Width           =   4980
       End
       Begin VB.TextBox Text1 
@@ -830,9 +830,9 @@ Begin VB.Form frmManAgencias
          Index           =   5
          Left            =   1320
          MaxLength       =   30
-         TabIndex        =   5
+         TabIndex        =   7
          Tag             =   "Población|T|S|||agencias|pobtrans|||"
-         Top             =   1635
+         Top             =   1950
          Width           =   4935
       End
       Begin VB.TextBox Text1 
@@ -850,9 +850,9 @@ Begin VB.Form frmManAgencias
          Index           =   4
          Left            =   1320
          MaxLength       =   6
-         TabIndex        =   4
+         TabIndex        =   6
          Tag             =   "Código Postal|T|S|||agencias|codpobla|||"
-         Top             =   1200
+         Top             =   1425
          Width           =   735
       End
       Begin VB.TextBox Text1 
@@ -869,9 +869,9 @@ Begin VB.Form frmManAgencias
          Index           =   6
          Left            =   1320
          MaxLength       =   30
-         TabIndex        =   6
+         TabIndex        =   8
          Tag             =   "Provincia|T|S|||agencias|protrans|||"
-         Top             =   2085
+         Top             =   2490
          Width           =   4935
       End
       Begin VB.Image imgWeb 
@@ -881,7 +881,7 @@ Begin VB.Form frmManAgencias
          Stretch         =   -1  'True
          Tag             =   "-1"
          ToolTipText     =   "Abrir web"
-         Top             =   2565
+         Top             =   3060
          Width           =   255
       End
       Begin VB.Label Label1 
@@ -898,8 +898,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   9
          Left            =   180
-         TabIndex        =   55
-         Top             =   2565
+         TabIndex        =   57
+         Top             =   3060
          Width           =   555
       End
       Begin VB.Label Label1 
@@ -916,8 +916,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   0
          Left            =   195
-         TabIndex        =   47
-         Top             =   315
+         TabIndex        =   49
+         Top             =   360
          Width           =   495
       End
       Begin VB.Label Label1 
@@ -934,8 +934,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   2
          Left            =   195
-         TabIndex        =   46
-         Top             =   765
+         TabIndex        =   48
+         Top             =   900
          Width           =   870
       End
       Begin VB.Label Label1 
@@ -952,8 +952,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   4
          Left            =   180
-         TabIndex        =   45
-         Top             =   1665
+         TabIndex        =   47
+         Top             =   1980
          Width           =   1005
       End
       Begin VB.Label Label1 
@@ -970,8 +970,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   7
          Left            =   195
-         TabIndex        =   44
-         Top             =   1215
+         TabIndex        =   46
+         Top             =   1440
          Width           =   495
       End
       Begin VB.Label Label1 
@@ -988,8 +988,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   8
          Left            =   180
-         TabIndex        =   43
-         Top             =   2115
+         TabIndex        =   45
+         Top             =   2520
          Width           =   1050
       End
    End
@@ -1005,11 +1005,11 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       ForeColor       =   &H00972E0B&
-      Height          =   1980
+      Height          =   2430
       Index           =   2
       Left            =   90
-      TabIndex        =   36
-      Top             =   5130
+      TabIndex        =   38
+      Top             =   5715
       Width           =   6600
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1025,9 +1025,9 @@ Begin VB.Form frmManAgencias
          Index           =   12
          Left            =   2070
          MaxLength       =   10
-         TabIndex        =   9
+         TabIndex        =   11
          Tag             =   "Móvil|T|S|||agencias|movtrans|||"
-         Top             =   585
+         Top             =   630
          Width           =   1650
       End
       Begin VB.TextBox Text1 
@@ -1044,9 +1044,9 @@ Begin VB.Form frmManAgencias
          Index           =   11
          Left            =   2070
          MaxLength       =   35
-         TabIndex        =   11
+         TabIndex        =   13
          Tag             =   "Persona de Contactol|T|S|||agencias|pertrans|||"
-         Top             =   990
+         Top             =   1170
          Width           =   4170
       End
       Begin VB.TextBox Text1 
@@ -1063,9 +1063,9 @@ Begin VB.Form frmManAgencias
          Index           =   9
          Left            =   2070
          MaxLength       =   40
-         TabIndex        =   12
+         TabIndex        =   14
          Tag             =   "E-mail|T|S|||agencias|maitrans|||"
-         Top             =   1395
+         Top             =   1710
          Width           =   4170
       End
       Begin VB.TextBox Text1 
@@ -1082,9 +1082,9 @@ Begin VB.Form frmManAgencias
          Index           =   8
          Left            =   3915
          MaxLength       =   10
-         TabIndex        =   10
+         TabIndex        =   12
          Tag             =   "Fax|T|S|||agencias|faxtrans|||"
-         Top             =   585
+         Top             =   630
          Width           =   1785
       End
       Begin VB.TextBox Text1 
@@ -1101,9 +1101,9 @@ Begin VB.Form frmManAgencias
          Index           =   7
          Left            =   225
          MaxLength       =   10
-         TabIndex        =   8
+         TabIndex        =   10
          Tag             =   "Teléfono|T|S|||agencias|teltrans|||"
-         Top             =   585
+         Top             =   630
          Width           =   1695
       End
       Begin VB.Label Label1 
@@ -1120,7 +1120,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   6
          Left            =   2070
-         TabIndex        =   41
+         TabIndex        =   43
          Top             =   360
          Width           =   735
       End
@@ -1138,15 +1138,15 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   5
          Left            =   225
-         TabIndex        =   40
-         Top             =   990
+         TabIndex        =   42
+         Top             =   1170
          Width           =   1770
       End
       Begin VB.Image imgMail 
          Height          =   240
          Index           =   0
          Left            =   1665
-         Top             =   1440
+         Top             =   1755
          Width           =   240
       End
       Begin VB.Label Label1 
@@ -1163,8 +1163,8 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   16
          Left            =   225
-         TabIndex        =   39
-         Top             =   1395
+         TabIndex        =   41
+         Top             =   1710
          Width           =   915
       End
       Begin VB.Label Label1 
@@ -1181,7 +1181,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   13
          Left            =   225
-         TabIndex        =   38
+         TabIndex        =   40
          Top             =   360
          Width           =   1050
       End
@@ -1199,7 +1199,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   12
          Left            =   3915
-         TabIndex        =   37
+         TabIndex        =   39
          Top             =   360
          Width           =   735
       End
@@ -1208,9 +1208,31 @@ Begin VB.Form frmManAgencias
       Height          =   975
       Index           =   0
       Left            =   75
-      TabIndex        =   33
+      TabIndex        =   35
       Top             =   855
-      Width           =   13860
+      Width           =   14670
+      Begin VB.ComboBox Combo1 
+         Appearance      =   0  'Flat
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   360
+         Index           =   1
+         ItemData        =   "frmManAgencias.frx":0596
+         Left            =   9180
+         List            =   "frmManAgencias.frx":0598
+         Style           =   2  'Dropdown List
+         TabIndex        =   3
+         Tag             =   "Tipo|N|S|0||agencias|codfortrans|||"
+         Top             =   450
+         Width           =   3480
+      End
       Begin VB.ComboBox Combo1 
          Appearance      =   0  'Flat
          BeginProperty Font 
@@ -1224,14 +1246,14 @@ Begin VB.Form frmManAgencias
          EndProperty
          Height          =   360
          Index           =   0
-         ItemData        =   "frmManAgencias.frx":0596
+         ItemData        =   "frmManAgencias.frx":059A
          Left            =   6750
-         List            =   "frmManAgencias.frx":0598
+         List            =   "frmManAgencias.frx":059C
          Style           =   2  'Dropdown List
-         TabIndex        =   65
+         TabIndex        =   2
          Tag             =   "Tipo|N|N|0|1|agencias|tipo|||"
          Top             =   450
-         Width           =   1905
+         Width           =   1995
       End
       Begin VB.TextBox Text1 
          BeginProperty Font 
@@ -1273,6 +1295,24 @@ Begin VB.Form frmManAgencias
          Width           =   865
       End
       Begin VB.Label Label1 
+         Caption         =   "Tipo de Transporte"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   255
+         Index           =   22
+         Left            =   9180
+         TabIndex        =   74
+         Top             =   180
+         Width           =   2445
+      End
+      Begin VB.Label Label1 
          Caption         =   "Tipo"
          BeginProperty Font 
             Name            =   "Verdana"
@@ -1286,7 +1326,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   20
          Left            =   6750
-         TabIndex        =   66
+         TabIndex        =   67
          Top             =   180
          Width           =   1275
       End
@@ -1304,7 +1344,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   3
          Left            =   240
-         TabIndex        =   35
+         TabIndex        =   37
          Top             =   195
          Width           =   735
       End
@@ -1322,7 +1362,7 @@ Begin VB.Form frmManAgencias
          Height          =   255
          Index           =   1
          Left            =   1320
-         TabIndex        =   34
+         TabIndex        =   36
          Top             =   195
          Width           =   735
       End
@@ -1339,9 +1379,9 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   11655
-      TabIndex        =   28
-      Top             =   7380
+      Left            =   12465
+      TabIndex        =   30
+      Top             =   8370
       Visible         =   0   'False
       Width           =   1065
    End
@@ -1358,9 +1398,9 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12825
-      TabIndex        =   29
-      Top             =   7380
+      Left            =   13635
+      TabIndex        =   31
+      Top             =   8370
       Visible         =   0   'False
       Width           =   1065
    End
@@ -1376,18 +1416,18 @@ Begin VB.Form frmManAgencias
          Strikethrough   =   0   'False
       EndProperty
       Height          =   375
-      Left            =   12825
-      TabIndex        =   32
-      Top             =   7380
+      Left            =   13635
+      TabIndex        =   34
+      Top             =   8370
       Visible         =   0   'False
       Width           =   1065
    End
    Begin VB.Frame Frame1 
       Height          =   555
       Index           =   1
-      Left            =   135
-      TabIndex        =   30
-      Top             =   7290
+      Left            =   90
+      TabIndex        =   32
+      Top             =   8190
       Width           =   2385
       Begin VB.Label lblIndicador 
          Alignment       =   2  'Center
@@ -1403,7 +1443,7 @@ Begin VB.Form frmManAgencias
          EndProperty
          Height          =   255
          Left            =   45
-         TabIndex        =   31
+         TabIndex        =   33
          Top             =   195
          Width           =   2295
       End
@@ -1457,8 +1497,8 @@ Begin VB.Form frmManAgencias
    End
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
-      Left            =   13470
-      TabIndex        =   72
+      Left            =   14325
+      TabIndex        =   73
       Top             =   225
       Width           =   405
       _ExtentX        =   714
@@ -1487,8 +1527,8 @@ Begin VB.Form frmManAgencias
       EndProperty
       Height          =   255
       Left            =   6795
-      TabIndex        =   54
-      Top             =   4320
+      TabIndex        =   56
+      Top             =   4590
       Width           =   1530
    End
    Begin VB.Image imgZoom 
@@ -1496,7 +1536,7 @@ Begin VB.Form frmManAgencias
       Index           =   0
       Left            =   8370
       ToolTipText     =   "Zoom descripción"
-      Top             =   4320
+      Top             =   4590
       Width           =   240
    End
    Begin VB.Menu mnOpciones 
@@ -1578,8 +1618,8 @@ Private CadenaSelect As String
 Private CadenaConsulta As String
 Private CadB As String
 
-Private WithEvents frmB As frmBuscaGrid
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmAge As frmBasico2
+Attribute frmAge.VB_VarHelpID = -1
 Private WithEvents frmZ As frmZoom  'Zoom para campos Text
 Attribute frmZ.VB_VarHelpID = -1
 
@@ -1759,35 +1799,12 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 Dim Cad As String
 
-        'Llamamos a al form
-        Cad = ""
-        Cad = Cad & ParaGrid(Text1(0), 20, "Cód.")
-        Cad = Cad & ParaGrid(Text1(1), 80, "Nombre")
-        
-        If Cad <> "" Then
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = Cad
-            frmB.vtabla = NomTabla
-            frmB.vSql = CadB
-            HaDevueltoDatos = False
-            '###A mano
-            frmB.vDevuelve = "0|1|"
-            frmB.vTitulo = "Agencias de Transporte / Comisionistas"
-            frmB.vSelElem = 0
+    Set frmAge = New frmBasico2
+    
+    AyudaAgenciasPrev frmAge, , CadB
+    
+    Set frmAge = Nothing
 
-            frmB.Show vbModal
-            Set frmB = Nothing
-            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-            'tendremos que cerrar el form lanzando el evento
-            If HaDevueltoDatos Then
-                If (Not Me.adodc1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                    cmdRegresar_Click
-            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-                PonerFoco Text1(1)
-            End If
-        End If
-        ' *************************************************************************
 End Sub
 
 Private Sub PonerCadenaBusqueda()
@@ -1827,7 +1844,7 @@ Private Sub BotonBuscar()
         PonerModo 1
         PonerFoco Text1(0)
 '        PosicionarCombo Combo1(0), 754
-        Text1(0).BackColor = vbYellow
+        Text1(0).BackColor = vbLightBlue
     End If
 End Sub
 
@@ -2001,6 +2018,14 @@ Private Sub Combo1_KeyPress(Index As Integer, KeyAscii As Integer)
     KEYpress KeyAscii
 End Sub
 
+Private Sub Combo1_Validate(Index As Integer, Cancel As Boolean)
+    '[Monica]25/04/2019: si es un transportista hemos de poner que forma de transporte tiene
+    If Index = 0 Then
+        Combo1(1).Enabled = (Combo1(0).ListIndex = 0)
+        If Not Combo1(1).Enabled Then Combo1(1).ListIndex = -1
+    End If
+End Sub
+
 Private Sub Form_Activate()
     Screen.MousePointer = vbDefault
 End Sub
@@ -2123,6 +2148,23 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
+End Sub
+
+Private Sub frmAge_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codtrans = '" & RecuperaValor(CadenaSeleccion, 1) & "'"
+        CadenaConsulta = "select * from agencias WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
+
 End Sub
 
 Private Sub frmBan_DatoSeleccionado(CadenaSeleccion As String)
@@ -2552,6 +2594,8 @@ Dim i As Integer
     On Error Resume Next
 
     limpiar Me
+    Combo1(0).ListIndex = -1
+    Combo1(1).ListIndex = -1
     
     ' ****************************************************
     
@@ -2608,7 +2652,24 @@ Dim Rs As ADODB.Recordset
     Combo1(0).AddItem "Comisionista"
     Combo1(0).ItemData(Combo1(0).NewIndex) = 1
     
-    Exit Sub
+    
+    
+    'Tipo de transporte
+    Combo1(1).Clear
+    
+    Cad = "SELECT * FROM fortranspor ORDER BY codfortrans"
+    Set Rs = New ADODB.Recordset
+'    Rs.Open Cad, conn, OpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenDynamic, adLockReadOnly, adCmdText
+    
+    While Not Rs.EOF
+        Combo1(1).AddItem Rs!Nombre
+        Combo1(1).ItemData(Combo1(1).NewIndex) = Rs!codfortrans
+        Rs.MoveNext
+    Wend
+    Rs.Close
+    Set Rs = Nothing
+        
     
 ErrCarga:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargar datos combo.", Err.Description

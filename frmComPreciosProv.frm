@@ -1107,8 +1107,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmPrec As frmBasico2 'Form para busquedas (frmBuscaGrid)
+Attribute frmPrec.VB_VarHelpID = -1
 Private WithEvents frmC As frmCal 'Calendario de Fechas
 Attribute frmC.VB_VarHelpID = -1
 Private WithEvents frmA As frmManArtic 'Form Mantenimiento Articulos
@@ -1193,7 +1193,7 @@ Private Sub cmdCancelar_Click()
             TerminaBloquear
             PonerModo 2
             PonerCampos
-            PonerFoco Text1(0)
+            PonerFoco text1(0)
     End Select
     
 ECancelar:
@@ -1312,7 +1312,7 @@ End Sub
 
 Private Sub frmA_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento Articulos
-    Text1(1).Text = RecuperaValor(CadenaSeleccion, 1)
+    text1(1).Text = RecuperaValor(CadenaSeleccion, 1)
     Text2(1).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
@@ -1331,9 +1331,9 @@ Dim Aux As String
             'Sabemos que campos son los que nos devuelve
             'Creamos una cadena consulta y ponemos los datos
             CadB = ""
-            Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+            Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
             CadB = Aux
-            Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 2)
+            Aux = ValorDevueltoFormGrid(text1(1), CadenaDevuelta, 2)
             CadB = CadB & " and " & Aux
             CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
             PonerCadenaBusqueda
@@ -1346,11 +1346,11 @@ Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es Text3 o Text1 ***
     Select Case imgFec(1).Tag
         Case 3
-            Text1(3).Text = Format(vFecha, "dd/mm/yyyy") '<===
+            text1(3).Text = Format(vFecha, "dd/mm/yyyy") '<===
         Case 7
-            Text1(7).Text = Format(vFecha, "dd/mm/yyyy") '<===
+            text1(7).Text = Format(vFecha, "dd/mm/yyyy") '<===
         Case 8
-            Text1(8).Text = Format(vFecha, "dd/mm/yyyy") '<===
+            text1(8).Text = Format(vFecha, "dd/mm/yyyy") '<===
     End Select
     ' ********************************************
 End Sub
@@ -1358,11 +1358,27 @@ End Sub
 
 Private Sub frmP_DatoSeleccionado(CadenaSeleccion As String)
 'Formulario Mantenimiento Proveedores
-    Text1(0).Text = RecuperaValor(CadenaSeleccion, 1)
-    FormateaCampo Text1(0)
+    text1(0).Text = RecuperaValor(CadenaSeleccion, 1)
+    FormateaCampo text1(0)
     Text2(0).Text = RecuperaValor(CadenaSeleccion, 2)
 End Sub
 
+
+Private Sub frmPrec_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "codprove = " & RecuperaValor(CadenaSeleccion, 1) & " and codartic = '" & RecuperaValor(CadenaSeleccion, 2) & "'"
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
+
+End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
     If Modo = 2 Or Modo = 0 Then Exit Sub
@@ -1381,7 +1397,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmA = Nothing
     End Select
     
-    PonerFoco Text1(Index)
+    PonerFoco text1(Index)
     Screen.MousePointer = vbDefault
 End Sub
 
@@ -1418,21 +1434,21 @@ Dim indice As Byte
             imgFec(1).Tag = 3 '<===
         
             ' *** repasar si el camp es Text3 o Text1 ***
-            If Text1(3).Text <> "" Then frmC.NovaData = Text1(3).Text
+            If text1(3).Text <> "" Then frmC.NovaData = text1(3).Text
             ' ********************************************
         
         Case 1
             imgFec(1).Tag = 7 '<===
             
             ' *** repasar si el camp es Text3 o Text1 ***
-            If Text1(7).Text <> "" Then frmC.NovaData = Text1(7).Text
+            If text1(7).Text <> "" Then frmC.NovaData = text1(7).Text
             ' ********************************************
         
         Case 2
             imgFec(1).Tag = 8 '<===
             
             ' *** repasar si el camp es Text3 o Text1 ***
-            If Text1(8).Text <> "" Then frmC.NovaData = Text1(8).Text
+            If text1(8).Text <> "" Then frmC.NovaData = text1(8).Text
             ' ********************************************
     End Select
     
@@ -1440,7 +1456,7 @@ Dim indice As Byte
     frmC.Show vbModal
     Set frmC = Nothing
     ' *** repasar si el camp es Text3 o Text1 ***
-    PonerFoco Text1(CByte(imgFec(1).Tag)) '<===
+    PonerFoco text1(CByte(imgFec(1).Tag)) '<===
     ' ********************************************
 End Sub
 
@@ -1471,7 +1487,7 @@ End Sub
 
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco Text1(Index), Modo
+    ConseguirFoco text1(Index), Modo
 End Sub
 
 
@@ -1487,34 +1503,34 @@ End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 
-    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
 
     Select Case Index
         Case 0 'Codigo Proveedor
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "proveedor", "nomprove")
+            If PonerFormatoEntero(text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(text1(Index), "proveedor", "nomprove")
             Else
                 Text2(Index).Text = ""
             End If
 
         Case 1 'Codigo Articulo
-            Text2(Index).Text = PonerNombreDeCod(Text1(Index), "sartic", "nomartic")
+            Text2(Index).Text = PonerNombreDeCod(text1(Index), "sartic", "nomartic")
         
         Case 2, 4, 9 'Precios Actuales y Nuevos
             'Formato tipo 2: Decimal(10,4)
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 2
+            If text1(Index).Text <> "" Then PonerFormatoDecimal text1(Index), 2
         
         Case 5, 6 'cantidades Decimal(8,2)
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 6
-            BloquearTxt Text1(5), (Text1(6).Text <> "")
-            BloquearTxt Text1(6), (Text1(5).Text <> "")
+            If text1(Index).Text <> "" Then PonerFormatoDecimal text1(Index), 6
+            BloquearTxt text1(5), (text1(6).Text <> "")
+            BloquearTxt text1(6), (text1(5).Text <> "")
             
         Case 3, 7, 8 'Fecha Cambio
-            If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
+            If text1(Index).Text <> "" Then PonerFormatoFecha text1(Index)
             
         Case 10, 11 'descuentos
             'Formato tipo 4: Decimal(4,2)
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 4
+            If text1(Index).Text <> "" Then PonerFormatoDecimal text1(Index), 4
     End Select
 End Sub
 
@@ -1570,8 +1586,8 @@ Dim NumReg As Byte
     BloquearText1 Me, Modo
     
     If Modo = 4 Then 'Modificar
-        BloquearTxt Text1(5), (Text1(6).Text <> "")
-        BloquearTxt Text1(6), (Text1(5).Text <> "")
+        BloquearTxt text1(5), (text1(6).Text <> "")
+        BloquearTxt text1(6), (text1(5).Text <> "")
     End If
     
     'Modo Insertar
@@ -1661,18 +1677,18 @@ Private Function MontaSQLCarga(enlaza As Boolean) As String
 '           -> Si no lo cargamos sin enlazar a ningun campo
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim tabla As String
+Dim Tabla As String
     
-    tabla = "slisp1" 'Tabla de lineas
-    Sql = "SELECT * FROM " & tabla
+    Tabla = "slisp1" 'Tabla de lineas
+    Sql = "SELECT * FROM " & Tabla
     
     If enlaza Then
-        Sql = Sql & " WHERE codartic=" & DBSet(Data1.Recordset!CodArtic, "T") & " AND codprove=" & Data1.Recordset!codProve
+        Sql = Sql & " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T") & " AND codprove=" & Data1.Recordset!codProve
     Else
         Sql = Sql & " WHERE codprove = -1"
     End If
     
-    Sql = Sql & " ORDER BY " & tabla & ".numlinea desc"
+    Sql = Sql & " ORDER BY " & Tabla & ".numlinea desc"
     MontaSQLCarga = Sql
 End Function
 
@@ -1685,14 +1701,14 @@ Private Sub BotonBuscar()
         CargaGrid False
 
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco Text1(1)
-        Text1(1).BackColor = vbYellow
+        PonerFoco text1(1)
+        text1(1).BackColor = vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbYellow
-            PonerFoco Text1(kCampo)
+            text1(kCampo).Text = ""
+            text1(kCampo).BackColor = vbYellow
+            PonerFoco text1(kCampo)
         End If
     End If
 End Sub
@@ -1722,7 +1738,7 @@ Private Sub BotonAnyadir()
            
     'Ponemos el grid de lineas enlazando a ningun sitio
     CargaGrid False
-    PonerFoco Text1(1)
+    PonerFoco text1(1)
 End Sub
 
 
@@ -1731,7 +1747,7 @@ Private Sub BotonModificar()
     
     'Escondemos el navegador y ponemos Modo Modificar
     PonerModo 4
-    PonerFoco Text1(2)
+    PonerFoco text1(2)
 End Sub
 
 
@@ -1745,8 +1761,8 @@ Dim Sql As String
     Sql = Sql & "--------------------------" & vbCrLf & vbCrLf
     
     Sql = Sql & "Va a Eliminar El Precio de Proveedor:"
-    Sql = Sql & vbCrLf & "Proveedor : " & Text1(0).Text & " - " & Text2(0).Text
-    Sql = Sql & vbCrLf & "Articulo : " & Text1(1).Text & " - " & Text2(1).Text
+    Sql = Sql & vbCrLf & "Proveedor : " & text1(0).Text & " - " & Text2(0).Text
+    Sql = Sql & vbCrLf & "Articulo : " & text1(1).Text & " - " & Text2(1).Text
     
     Sql = Sql & vbCrLf & vbCrLf & "¿Desea continuar ? "
     
@@ -1781,7 +1797,7 @@ Dim Sql As String
     On Error GoTo FinEliminar
         
     conn.BeginTrans
-    Sql = " WHERE codartic=" & DBSet(Data1.Recordset!CodArtic, "T")
+    Sql = " WHERE codartic=" & DBSet(Data1.Recordset!codArtic, "T")
     Sql = Sql & " AND codprove=" & Val(Data1.Recordset!codProve)
     
     'Lineas
@@ -1812,7 +1828,7 @@ Dim b As Boolean
     If Not b Then Exit Function
     
     'Comprobar que si hay valores nuevos, la fecha de cambio no es nulo
-    If (Not EsVacio(Text1(4))) Then b = (Not EsVacio(Text1(3)))
+    If (Not EsVacio(text1(4))) Then b = (Not EsVacio(text1(3)))
     
     If Not b Then
         MsgBox "La Fecha de Cambio debe tener valor.", vbInformation
@@ -1820,7 +1836,7 @@ Dim b As Boolean
     End If
     
     'Comprobar que si no hay valores nuevos no haya fecha de Cambio
-    If EsVacio(Text1(4)) Then b = (EsVacio(Text1(3)))
+    If EsVacio(text1(4)) Then b = (EsVacio(text1(3)))
     
     If Not b Then
         MsgBox "No hay precio nuevo para la fecha de cambio", vbInformation
@@ -1833,58 +1849,13 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-    'Estamos en Modo de Cabeceras
-    'Registro de la tabla de cabeceras: slista
+    Set frmPrec = New frmBasico2
     
-'    cad = cad & ParaGrid(Text1(0), 9, "Prov.")
-    Cad = Cad & "Prov.|proveedor.codprove|N||9·"
-    Cad = Cad & "Nombre Prov.|proveedor.nomprove|T||33·"
-'    cad = cad & ParaGrid(Text1(1), 20, "Articulo")
-    Cad = Cad & "Articulo|sartic.codartic|T||20·"
-    Cad = Cad & "Desc. Artic|sartic.nomartic|T||38·"
+    AyudaPrecProvPrev frmPrec, , CadB
     
-    tabla = "(" & NombreTabla & " LEFT JOIN proveedor ON " & NombreTabla & ".codprove=proveedor.codprove" & ")"
-    tabla = tabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic"
-    
-    Titulo = "Precios Proveedor"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|2|"
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = conAri 'Conexion a BD Ariges
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmPrec = Nothing
+
 End Sub
 
 
@@ -1915,7 +1886,7 @@ On Error GoTo EEPonerBusq
         MsgBox "No hay ningún registro en la tabla " & NombreTabla & " para ese criterio de Búsqueda.", vbInformation
         Screen.MousePointer = vbDefault
         PonerModo Modo
-        PonerFoco Text1(0)
+        PonerFoco text1(0)
         Exit Sub
     Else
         PonerModo 2
@@ -1940,16 +1911,16 @@ On Error GoTo EPonerCampos
     
     PonerCamposForma Me, Data1
     'Poner el nombre del cod. cliente
-    Text2(0).Text = PonerNombreDeCod(Text1(0), "proveedor", "nomprove")
+    Text2(0).Text = PonerNombreDeCod(text1(0), "proveedor", "nomprove")
     'Poner el nombre del cod. Articulo
-    Text2(1).Text = PonerNombreDeCod(Text1(1), "sartic", "nomartic")
+    Text2(1).Text = PonerNombreDeCod(text1(1), "sartic", "nomartic")
     
     'Si los campos de precios nuevos son cero mostrar cadena vacia
-    If Text1(2).Text <> "" Then
-        If Text1(2).Text = 0 Then Text1(2).Text = ""
+    If text1(2).Text <> "" Then
+        If text1(2).Text = 0 Then text1(2).Text = ""
     End If
-    If Text1(4).Text <> "" Then
-        If Text1(4).Text = 0 Then Text1(4).Text = ""
+    If text1(4).Text <> "" Then
+        If text1(4).Text = 0 Then text1(4).Text = ""
     End If
     
     CargaGrid True
@@ -2043,7 +2014,7 @@ Dim Sql As String
     On Error GoTo ErrModCab
 
     Sql = "UPDATE " & NombreTabla & " SET precioac=precionu, precioa1=precion1, dtoespec=dtoespe1, fechanue=null, precionu=0, precion1=0"
-    Sql = Sql & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!CodArtic, "T")
+    Sql = Sql & " WHERE codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
    
     conn.Execute Sql
     ModificarCabecera = True
@@ -2066,12 +2037,12 @@ Dim NumF As String
     On Error GoTo ErrInsLin
 
     'Obtenemos la siguiente numero de linea de tarifa
-    Sql = "codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!CodArtic, "T")
+    Sql = "codclien=" & Data1.Recordset!CodClien & " AND codartic=" & DBSet(Data1.Recordset!codArtic, "T")
     NumF = SugerirCodigoSiguienteStr("spree1", "numlinea", Sql)
 
     Sql = "INSERT INTO spree1 (codclien, codartic, numlinea, fechanue, precioac, precioa1, dtoespec)"
     Sql = Sql & " VALUES (" & Data1.Recordset.Fields(0).Value & ", " & DBSet(Data1.Recordset.Fields(1).Value, "T") & ", "
-    Sql = Sql & NumF & ", " & DBSet(Text1(4).Text, "F") & ", "
+    Sql = Sql & NumF & ", " & DBSet(text1(4).Text, "F") & ", "
     Sql = Sql & DBSet(Data1.Recordset!precioac, "N") & ", " & DBSet(Data1.Recordset!precioa1, "N") & ", "
     Sql = Sql & DBSet(Data1.Recordset!dtoespec, "N") & ") "
     conn.Execute Sql
@@ -2090,7 +2061,7 @@ End Function
 
 
 Private Sub BotonImprimir()
-        frmListado.NumCod = Text1(0).Text
+        frmListado.NumCod = text1(0).Text
         AbrirListado (8) '8: Informe Movimientos Almacen
 End Sub
 
@@ -2104,7 +2075,7 @@ Private Sub PosicionarData()
 Dim Indicador As String
 Dim vWhere As String
 
-    vWhere = "(codartic=" & DBSet(Text1(1).Text, "T") & " AND codprove=" & Text1(0).Text & ")"
+    vWhere = "(codartic=" & DBSet(text1(1).Text, "T") & " AND codprove=" & text1(0).Text & ")"
     If SituarDataMULTI(Data1, vWhere, Indicador) Then
         PonerModo 2
         lblIndicador.Caption = Indicador

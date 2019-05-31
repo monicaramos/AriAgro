@@ -351,8 +351,8 @@ Begin VB.Form frmVtasRecFactTrans2
          Alignment       =   2  'Center
          Caption         =   "Label2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9.75
             Charset         =   0
             Weight          =   700
             Underline       =   0   'False
@@ -360,9 +360,9 @@ Begin VB.Form frmVtasRecFactTrans2
             Strikethrough   =   0   'False
          EndProperty
          Height          =   255
-         Left            =   40
+         Left            =   45
          TabIndex        =   6
-         Top             =   240
+         Top             =   180
          Width           =   2295
       End
    End

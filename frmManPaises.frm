@@ -118,7 +118,7 @@ Begin VB.Form frmManPaises
       List            =   "frmManPaises.frx":000E
       Style           =   2  'Dropdown List
       TabIndex        =   3
-      Tag             =   "Intrastad|N|N|0|1|paises|intrastad|||"
+      Tag             =   "Intrastat|N|N|0|1|paises|intrastat|||"
       Top             =   4905
       Width           =   735
    End
@@ -958,7 +958,7 @@ Private Sub Form_Load()
     '****************** canviar la consulta *********************************+
     CadenaConsulta = "SELECT paises.codpaise, paises.nompaise, paises.intracom, "
     CadenaConsulta = CadenaConsulta & "CASE paises.intracom WHEN 0 THEN ""General"" WHEN 1 THEN ""Intracomunitaria"" WHEN 2 THEN ""Export-Import"" END, "
-    CadenaConsulta = CadenaConsulta & " paises.intrastad, CASE paises.intrastad WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
+    CadenaConsulta = CadenaConsulta & " paises.intrastat, CASE paises.intrastat WHEN 0 THEN ""No"" WHEN 1 THEN ""Si"" END, "
     CadenaConsulta = CadenaConsulta & " paises.nommoned, paises.simmoned, paises.letraspais "
     
     CadenaConsulta = CadenaConsulta & " FROM paises"
@@ -1060,7 +1060,7 @@ Private Sub CargaGrid(Optional vSQL As String)
     ' *******************canviar els noms i si fa falta la cantitat********************
     tots = "S|txtAux(0)|T|Código|1000|;S|txtAux(1)|T|Descripción|4100|;"
     tots = tots & "N||||0|;S|Combo1(0)|C|Tipo Operacion|2100|;"
-    tots = tots & "N||||0|;S|Combo1(1)|C|Intrastad|1350|;"
+    tots = tots & "N||||0|;S|Combo1(1)|C|Intrastat|1350|;"
     tots = tots & "S|txtAux(2)|T|Moneda|1350|;S|txtAux(3)|T|Simb.|1100|;S|txtAux(4)|T|Letras|1100|;"
     
     arregla tots, DataGrid1, Me, 350

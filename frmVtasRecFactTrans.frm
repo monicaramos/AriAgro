@@ -71,6 +71,7 @@ Begin VB.Form frmVtasRecFactTrans
       _ExtentY        =   9313
       _Version        =   393216
       Tabs            =   2
+      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
@@ -84,14 +85,14 @@ Begin VB.Form frmVtasRecFactTrans
       EndProperty
       TabCaption(0)   =   "Albaranes"
       TabPicture(0)   =   "frmVtasRecFactTrans.frx":000C
-      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).ControlEnabled=   0   'False
       Tab(0).Control(0)=   "ListView1"
-      Tab(0).Control(0).Enabled=   0   'False
       Tab(0).ControlCount=   1
       TabCaption(1)   =   "Portes de Vuelta"
       TabPicture(1)   =   "frmVtasRecFactTrans.frx":0028
-      Tab(1).ControlEnabled=   0   'False
+      Tab(1).ControlEnabled=   -1  'True
       Tab(1).Control(0)=   "FrameAux0"
+      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).ControlCount=   1
       Begin VB.Frame FrameAux0 
          BorderStyle     =   0  'None
@@ -105,7 +106,7 @@ Begin VB.Form frmVtasRecFactTrans
             Strikethrough   =   0   'False
          EndProperty
          Height          =   4695
-         Left            =   -74865
+         Left            =   135
          TabIndex        =   62
          Top             =   360
          Width           =   7540
@@ -423,7 +424,7 @@ Begin VB.Form frmVtasRecFactTrans
       End
       Begin MSComctlLib.ListView ListView1 
          Height          =   4545
-         Left            =   90
+         Left            =   -74910
          TabIndex        =   61
          Top             =   450
          Width           =   8140
@@ -1710,7 +1711,7 @@ Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
-    txtAux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cuenta
+    txtaux(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'Cuenta
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
@@ -2477,7 +2478,9 @@ Dim Sql3 As String
 '                    If Not BloquºeoManual("FACTRA", Text1(3).Text) Then
                     Select Case Combo1(0).ListIndex
                         Case 0 ' transportista
-                            vWhere = "codtrans = " & DBSet(Text1(3).Text, "N")
+                            '[Monica]16/04/2019: el codigo de transporte está en lineas (albaran_transporte)
+                            'vWhere = "codtrans = " & DBSet(Text1(3).Text, "N")
+                            vWhere = "albaran.numalbar in (select distinct numalbar from albaran_transporte where codtrans = " & DBSet(Text1(3).Text, "N") & ")"
                         Case 1 ' comisionista
                             vWhere = "codcomis = " & DBSet(Text1(3).Text, "N")
                     End Select
@@ -2574,15 +2577,15 @@ Dim Sql3 As String
 End Sub
 
 
-Private Function AgenciaSinCtaContable(vCodigo As String) As Boolean
-Dim vSql As String
+Private Function AgenciaSinCtaContable(vcodigo As String) As Boolean
+Dim vSQL As String
 
     AgenciaSinCtaContable = True
 
-    vSql = DevuelveDesdeBDNew(cAgro, "agencias", "codmacta", "codtrans", vCodigo, "N")
-    If vSql <> "" Then
-        vSql = DevuelveDesdeBDNew(cConta, "cuentas", "nommacta", "codmacta", vSql, "T")
-        If vSql = "" Then
+    vSQL = DevuelveDesdeBDNew(cAgro, "agencias", "codmacta", "codtrans", vcodigo, "N")
+    If vSQL <> "" Then
+        vSQL = DevuelveDesdeBDNew(cConta, "cuentas", "nommacta", "codmacta", vSQL, "T")
+        If vSQL = "" Then
             MsgBox "Cuenta contable no existe en contabilidad.", vbExclamation
         Else
             AgenciaSinCtaContable = False
@@ -2644,9 +2647,9 @@ On Error GoTo EPonerModo
                     
 '    Me.chkVistaPrevia.Enabled = (Modo <= 2)
     
-    For i = 0 To txtAux.Count - 1
-        BloquearTxt txtAux(i), True
-        txtAux(i).visible = False
+    For i = 0 To txtaux.Count - 1
+        BloquearTxt txtaux(i), True
+        txtaux(i).visible = False
     Next i
         
     Me.FrameIntro.Enabled = (Modo = 3)
@@ -2919,7 +2922,7 @@ On Error GoTo ECargar
                 Sql = "SELECT albaran.numalbar,albaran.fechaalb,albaran.matriveh,albaran.paletspag as totpalet, sum(albaran_costes.impcoste) as portesac, albaran.portespag "
             End If
             '[Monica]11/12/2018: tiene que ser la condicion en el ON obligatoriamente pq sino no devuelve registros
-            Sql = Sql & " FROM albaran LEFT JOIN albaran_costes ON albaran.numalbar = albaran_costes.numalbar and albaran_costes.tipogasto = 2 "
+            Sql = Sql & " FROM (albaran LEFT JOIN albaran_costes ON albaran.numalbar = albaran_costes.numalbar and albaran_costes.tipogasto = 2) LEFT JOIN albaran_transporte on albaran.numalbar = albaran_transporte.numalbar  "
             Sql = Sql & " WHERE " & cadwhere '& Text1(3).Text
             
 '[Monica] 04/01/2010 : un mismo albaran puede ser recepcionado varias veces por lo que el coste irá aumentando
@@ -3055,6 +3058,7 @@ Dim ImpBruto As Currency
 Dim impiva As Currency
 Dim vFactu As CFacturaTra
 Dim Rs As ADODB.Recordset
+Dim CadTabla As String
 
     'Limpiar en el form los datos calculados de la factura
     'y volvemos a recalcular
@@ -3100,23 +3104,23 @@ Dim Rs As ADODB.Recordset
         Select Case Combo1(0).ListIndex
             Case 0
     
-                cadwhere = "albaran.codtrans=" & Val(Text1(3).Text)
-                
+                cadwhere = "albaran_transporte.codtrans=" & Val(Text1(3).Text)
+                CadTabla = "albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar"
             Case 1
             
                 cadwhere = "albaran.codcomis=" & Val(Text1(3).Text)
-                
+                CadTabla = "albaran"
         End Select
         
         cadwhere = cadwhere & " AND (" & cadAux & ")"
     
-        If Not SeleccionaRegistros Then Exit Sub
+        If Not SeleccionaRegistros(Combo1(0).ListIndex) Then Exit Sub
         
-        If Not BloqueaRegistro("albaran", cadwhere) Then
+        If Not BloqueaRegistro(CadTabla, cadwhere) Then
             Select Case Combo1(0).ListIndex
                 Case 0
         
-                    conn.Execute "update albaran set portespag = 0 where " & cadwhere
+                    conn.Execute "update albaran, albaran_transporte set portespag = 0 where albaran.numalbar = albaran_transporte.numalbar and " & cadwhere
                     
                     
                 Case 1
@@ -3230,7 +3234,7 @@ Dim Rs As ADODB.Recordset
     
 End Sub
 
-Private Function SeleccionaRegistros() As Boolean
+Private Function SeleccionaRegistros(Tipo As Byte) As Boolean
 'Comprueba que se seleccionan albaranes en la base de datos
 'es decir que hay albaranes marcados
 'cuando se van marcando albaranes se van añadiendo el la cadena cadWhere
@@ -3241,7 +3245,13 @@ Dim Sql As String
     
     If cadwhere = "" Then Exit Function
     
-    Sql = "Select count(*) FROM albaran"
+    
+    If Tipo = 0 Then
+        Sql = "Select count(*) FROM albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar "
+    Else
+        Sql = "Select count(*) FROM albaran  "
+    End If
+    
     Sql = Sql & " WHERE " & cadwhere
     If RegistrosAListar(Sql) <> 0 Then SeleccionaRegistros = True
     Exit Function
@@ -3549,25 +3559,25 @@ Dim i As Integer
             
             LLamaLineas Index, ModoLineas, anc
             
-            BloquearTxt txtAux(2), False
-            BloquearTxt txtAux(3), False
+            BloquearTxt txtaux(2), False
+            BloquearTxt txtaux(3), False
             
             Select Case Index
                 ' *** valor per defecte a l'insertar i formateig de tots els camps ***
                 Case 0 'cuentas
-                    For i = 0 To txtAux.Count - 1
-                        txtAux(i).Text = ""
+                    For i = 0 To txtaux.Count - 1
+                        txtaux(i).Text = ""
                     Next i
-                    txtAux(0).Text = vUsu.Codigo
-                    txtAux(1).Text = Text1(3).Text 'tranportista
-                    txtAux(4).Text = Text1(0).Text 'numfactu
-                    txtAux(5).Text = Text1(1).Text 'fecfactu
+                    txtaux(0).Text = vUsu.Codigo
+                    txtaux(1).Text = Text1(3).Text 'tranportista
+                    txtaux(4).Text = Text1(0).Text 'numfactu
+                    txtaux(5).Text = Text1(1).Text 'fecfactu
                     
                     For i = 2 To 3
-                        txtAux(i).Text = ""
+                        txtaux(i).Text = ""
                     Next i
                     Text2(2).Text = ""
-                    PonerFoco txtAux(2)
+                    PonerFoco txtaux(2)
                     
             End Select
     End Select
@@ -3614,16 +3624,16 @@ Private Sub BotonModificarLinea(Index As Integer)
     Select Case Index
         ' *** valor per defecte al modificar dels camps del grid ***
         Case 0 'importes
-            txtAux(0).Text = DataGridAux(Index).Columns(0).Text
-            txtAux(1).Text = DataGridAux(Index).Columns(1).Text
-            txtAux(4).Text = DataGridAux(Index).Columns(2).Text
-            txtAux(5).Text = DataGridAux(Index).Columns(3).Text
-            txtAux(2).Text = DataGridAux(Index).Columns(4).Text
+            txtaux(0).Text = DataGridAux(Index).Columns(0).Text
+            txtaux(1).Text = DataGridAux(Index).Columns(1).Text
+            txtaux(4).Text = DataGridAux(Index).Columns(2).Text
+            txtaux(5).Text = DataGridAux(Index).Columns(3).Text
+            txtaux(2).Text = DataGridAux(Index).Columns(4).Text
             Text2(2).Text = DataGridAux(Index).Columns(5).Text
-            txtAux(3).Text = DataGridAux(Index).Columns(6).Text
+            txtaux(3).Text = DataGridAux(Index).Columns(6).Text
                        
-            BloquearTxt txtAux(2), True
-            BloquearTxt txtAux(3), False
+            BloquearTxt txtaux(2), True
+            BloquearTxt txtaux(3), False
     End Select
     
     LLamaLineas Index, ModoLineas, anc
@@ -3631,7 +3641,7 @@ Private Sub BotonModificarLinea(Index As Integer)
     ' *** foco al 1r camp visible de les llinies en grids que no siga PK (en o sense tab) ***
     Select Case Index
         Case 0 'importes
-            PonerFoco txtAux(3)
+            PonerFoco txtaux(3)
     End Select
     ' ***************************************************************************************
 End Sub
@@ -3654,21 +3664,21 @@ Dim tots As String
             tots = "N||||0|;N||||0|;N||||0|;N||||0|;"
             tots = tots & "S|txtaux(2)|T|Cta.Contable|1400|;S|btnBuscar(1)|B|||;S|Text2(2)|T|Nombre|2800|;"
             tots = tots & "S|txtaux(3)|T|Importe|1500|;"
-            arregla tots, DataGridAux(Index), Me
+            arregla tots, DataGridAux(Index), Me, 350
         
             DataGridAux(0).Columns(1).Alignment = dbgLeft
             DataGridAux(0).Columns(2).Alignment = dbgRight
         
             b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
-            BloquearTxt txtAux(2), Not b
-            BloquearTxt txtAux(3), Not b
+            BloquearTxt txtaux(2), Not b
+            BloquearTxt txtaux(3), Not b
 
             If (enlaza = True) And (Not AdoAux(Index).Recordset.EOF) Then 'per a que pose els valors de les arees de text la primera volta
 '                txtAux(2).Text = DataGridAux(Index).Columns(5).Text
 '                txtAux(3).Text = DataGridAux(Index).Columns(6).Text
             Else
-                txtAux(2).Text = ""
-                txtAux(3).Text = ""
+                txtaux(2).Text = ""
+                txtaux(3).Text = ""
             End If
             
     End Select
@@ -3853,7 +3863,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codusu=" & Val(txtAux(0).Text)
+    vWhere = vWhere & " codusu=" & Val(txtaux(0).Text)
     ' *******************************************************
     
     ObtenerWhereCab = vWhere
@@ -3928,10 +3938,10 @@ Dim b As Boolean
     b = (xModo = 1 Or xModo = 2) 'Insertar o Modificar Llínies
     Select Case Index
         Case 0 'destinos
-            txtAux(0).visible = False
+            txtaux(0).visible = False
             For jj = 1 To 3
-                txtAux(jj).visible = b
-                txtAux(jj).Top = alto
+                txtaux(jj).visible = b
+                txtaux(jj).Top = alto
             Next jj
             Me.btnBuscar(1).visible = b
             Me.btnBuscar(1).Enabled = (xModo = 1)
@@ -4120,7 +4130,7 @@ Dim vFact As Byte, vDocum As Byte
         'comprobar si existe ya el cod. del campo clave primaria
         Sql = "select * from tmpportesv where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Text1(3).Text, "N")
         Sql = Sql & " and numfactu = " & DBSet(Text1(0).Text, "T") & " and fecfactu = " & DBSet(Text1(1).Text, "F")
-        Sql = Sql & " and codmacta = " & DBSet(txtAux(2).Text, "T")
+        Sql = Sql & " and codmacta = " & DBSet(txtaux(2).Text, "T")
         If RegistrosAListar(Sql, cAgro) = 1 Then
             MsgBox "Ya existe la cuenta contable para la factura. Modifique.", vbExclamation
             b = False
@@ -4151,7 +4161,7 @@ Dim i As Byte
 End Sub
 
 Private Sub txtAux_GotFocus(Index As Integer)
-    ConseguirFoco txtAux(Index), Modo
+    ConseguirFoco txtaux(Index), Modo
 End Sub
 
 Private Sub txtAux_KeyDown(Index As Integer, KeyCode As Integer, Shift As Integer)
@@ -4169,18 +4179,18 @@ Dim Unidades As String
 Dim Cantidad As String
 
     'Quitar espacios en blanco
-    If Not PerderFocoGnralLineas(txtAux(Index), ModoLineas) Then Exit Sub
+    If Not PerderFocoGnralLineas(txtaux(Index), ModoLineas) Then Exit Sub
     
     Select Case Index
         Case 2 'Cta Contable
-            If txtAux(Index).Text = "" Then Exit Sub
-            Text2(2).Text = PonerNombreCuenta(txtAux(Index), Modo)
+            If txtaux(Index).Text = "" Then Exit Sub
+            Text2(2).Text = PonerNombreCuenta(txtaux(Index), Modo)
             If Text2(2).Text = "" Then
-                PonerFoco txtAux(Index)
+                PonerFoco txtaux(Index)
             End If
             
         Case 3 ' Importe
-            If txtAux(Index).Text <> "" Then PonerFormatoDecimal txtAux(Index), 1
+            If txtaux(Index).Text <> "" Then PonerFormatoDecimal txtaux(Index), 1
             
     End Select
 End Sub
@@ -4221,12 +4231,18 @@ Dim ImpReten As Currency
 
     On Error GoTo eRecalcularDatosFactura
     
-    If Not SeleccionaRegistros Then Exit Sub
+    '[Monica]23/04/2019: la tabla de transportista es albaran_transportista
+    If Not SeleccionaRegistros(Combo1(0).ListIndex) Then Exit Sub
     
-    If Not BloqueaRegistro("albaran", cadwhere) Then
-        ListView1.SelectedItem.Checked = False
+    If Combo1(0).ListIndex = 0 Then
+        If Not BloqueaRegistro("albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar", cadwhere) Then
+            ListView1.SelectedItem.Checked = False
+        End If
+    Else
+        If Not BloqueaRegistro("albaran", cadwhere) Then
+            ListView1.SelectedItem.Checked = False
+        End If
     End If
-    
     TotalFactura = 0
     If Text1(16).Text <> "" Then
         cadAux = Text1(13).Text

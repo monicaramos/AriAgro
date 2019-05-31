@@ -2185,14 +2185,14 @@ Public Event DatoSeleccionado(CadenaSeleccion As String)
 
 
 '========== VBLES PRIVADAS ====================
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas
-Attribute frmB.VB_VarHelpID = -1
 Private WithEvents frmC As frmCal
 Attribute frmC.VB_VarHelpID = -1
 Private WithEvents frmCC As frmCal
 Attribute frmCC.VB_VarHelpID = -1
 Private WithEvents frmAux As frmANECOOPAux
 Attribute frmAux.VB_VarHelpID = -1
+Private WithEvents frmAneExped As frmBasico2
+Attribute frmAneExped.VB_VarHelpID = -1
 
 Private Modo As Byte
 '-----------------------------
@@ -2310,7 +2310,7 @@ Private Sub Check1_Click(Index As Integer)
 End Sub
 
 Private Sub cmdAceptar_Click()
-Dim I As Integer
+Dim i As Integer
 
     Screen.MousePointer = vbHourglass
     On Error GoTo Error1
@@ -2416,12 +2416,12 @@ Dim anc As Single
         
         'Si pasamos el control aqui lo ponemos en amarillo
         PonerFoco text1(0)
-        text1(0).BackColor = vbYellow
+        text1(0).BackColor = vbLightBlue
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
             text1(kCampo).Text = ""
-            text1(kCampo).BackColor = vbYellow
+            text1(kCampo).BackColor = vbLightBlue
             PonerFoco text1(kCampo)
         End If
     End If
@@ -2647,7 +2647,7 @@ Private Sub Form_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub Form_Load()
-Dim I As Integer
+Dim i As Integer
 
     'Icono del formulario
     Me.Icon = frmPpal.Icon
@@ -2789,6 +2789,30 @@ Dim Aux As String
     Screen.MousePointer = vbDefault
 End Sub
 
+Private Sub frmAneExped_DatoSeleccionado(CadenaDevuelta As String)
+    Dim Aux As String
+    Dim CadB As String
+    
+    If CadenaDevuelta <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        'Sabem quins camps son els que mos torna
+        'Creem una cadena consulta i posem els datos
+        CadB = ""
+        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
+        CadB = Aux
+        '   Com la clau principal es única, en posar el sql apuntant
+        '   al valor retornat sobre la clau ppal es suficient
+        ' *** canviar o llevar el WHERE; repasar codEmpre ***
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        'CadenaConsulta = "select * from " & NombreTabla & " WHERE codempre = " & codEmpre & " AND " & CadB & " " & Ordenacion
+        ' **********************************
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+
+End Sub
+
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
      text1(indice).Text = Format(vFecha, "dd/mm/yyyy") '<===
@@ -2924,7 +2948,7 @@ Dim Sql As String
 Dim Sql2 As String
 Dim Sql3 As String
 Dim Numexped As String
-Dim I As Integer
+Dim i As Integer
 Dim Rs As ADODB.Recordset
 Dim Rs2 As ADODB.Recordset
 Dim RS3 As ADODB.Recordset
@@ -3011,13 +3035,13 @@ Dim PNeto As Currency
         Rs.MoveNext
     
         ' resto de expedientes, los creados
-        I = 0
+        i = 0
         While Not Rs.EOF
-            I = I + 1
+            i = i + 1
             ' concateno 18 ceros al inicio y cojo los 18 de la derecha (esto es por si el expediente no está relleno a ceros por la izquierda)
             Numexped = Right("000000000000000000" & text1(0).Text, 18)
             ' le quito la primera posicion para poner un 1, 2 o el que sea
-            Numexped = I & Mid(Numexped, Len(CStr(I)) + 1, 18 - Len(CStr(I)))
+            Numexped = i & Mid(Numexped, Len(CStr(i)) + 1, 18 - Len(CStr(i)))
             
             
             vBase1 = 0
@@ -3302,19 +3326,19 @@ Dim CadB As String
 Dim CadB1 As String
 
 Dim cadAux As String
-Dim I As Integer
+Dim i As Integer
 
-    For I = 0 To text1.Count - 1
-        text1(I).Tag = Replace(text1(I).Tag, "|T|", "|TT|")
-    Next I
+    For i = 0 To text1.Count - 1
+        text1(i).Tag = Replace(text1(i).Tag, "|T|", "|TT|")
+    Next i
     
     CadB = ObtenerBusqueda2(Me, BuscaChekc, 1)
     
     CadB1 = ObtenerBusqueda2(Me, BuscaChekc, 2, "FrameAux1")
  
-    For I = 0 To text1.Count - 1
-        text1(I).Tag = Replace(text1(I).Tag, "|TT|", "|T|")
-    Next I
+    For i = 0 To text1.Count - 1
+        text1(i).Tag = Replace(text1(i).Tag, "|TT|", "|T|")
+    Next i
  
  
     If chkVistaPrevia(0) = 1 Then
@@ -3344,55 +3368,14 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
-Dim Desc As String, devuelve As String
-    'Llamamos a al form
-    '##A mano
-    Cad = ""
-    Cad = Cad & "Nº.Expediente|anecoop.expediente_id|T||30·"
-    Cad = Cad & "Linea|anecoop.linea_expediente|T||20·" 'ParaGrid(Text1(3), 10, "Cliente")
-    Cad = Cad & "Campaña|anecoop.codigo_campanya|T||20·"
-    tabla = NombreTabla & " LEFT JOIN anecoop_pago ON anecoop.expediente_id = anecoop_pago.expediente_id "
+
+    Set frmAneExped = New frmBasico2
     
-    Titulo = "Expedientes"
-    devuelve = "0|1|2|"
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|2|"
-        frmB.vDevuelve = devuelve
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-        If Not EsCabecera Then frmB.Label1.FontSize = 11
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-'        If EsCabecera Then
-'            PonerCadenaBusqueda
-'            Text1(0).Text = Format(Text1(0).Text, "0000000")
-'        End If
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-                cmdRegresar_Click
-        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco text1(kCampo)
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    AyudaAneExpedPrev frmAneExped, , CadB
+    
+    Set frmAneExped = Nothing
+
+
 End Sub
 
 
@@ -3434,7 +3417,7 @@ Private Sub PonerCamposLineas()
 'Carga el grid de los AlbaranesxFactura, es decir, la tabla scafac1 de la factura seleccionada
 Dim b As Boolean
 Dim b2 As Boolean
-Dim I As Integer
+Dim i As Integer
 
     On Error GoTo EPonerLineas
 
@@ -3495,7 +3478,7 @@ End Sub
 '   En PONERMODO se habilitan, o no, los diverso campos del
 '   formulario en funcion del modo en k vayamos a trabajar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
-Dim I As Byte, NumReg As Byte
+Dim i As Byte, NumReg As Byte
 Dim b As Boolean
 
     On Error GoTo EPonerModo
@@ -3539,10 +3522,10 @@ Dim b As Boolean
     BloquearTxt text1(19), b, True
     
     'Si no es modo lineas Boquear los TxtAux
-    For I = 1 To txtAux.Count - 1
-        txtAux(I).visible = False
-        BloquearTxt txtAux(I), True
-    Next I
+    For i = 1 To txtAux.Count - 1
+        txtAux(i).visible = False
+        BloquearTxt txtAux(i), True
+    Next i
     txtAux2(2).visible = False
     
     
@@ -3566,17 +3549,17 @@ Dim b As Boolean
     
         
     If Modo = 1 Then
-        For I = 2 To 8
+        For i = 2 To 8
     '        BloquearTxt txtAux(I), (Modo <> 1)
-            txtAux(I).Enabled = True
-            txtAux(I).visible = True
-            txtAux(I).Locked = False
-        Next I
+            txtAux(i).Enabled = True
+            txtAux(i).visible = True
+            txtAux(i).Locked = False
+        Next i
         If Modo = 1 Then
             Dim anc As Single
               anc = DataGrid3.Top
               If DataGrid3.Row < 0 Then
-                  anc = anc + 215 '210
+                  anc = anc + 240 '210
               Else
                   anc = anc + DataGrid3.RowTop(DataGrid3.Row) + 5
               End If
@@ -3647,23 +3630,23 @@ End Function
 
 Private Function DatosOkLinea() As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
 
     On Error GoTo EDatosOkLinea
 
     DatosOkLinea = False
     b = True
 
-    For I = 4 To 7
-        If I = 4 Or I = 6 Or I = 7 Then
-            If txtAux(I).Text = "" Then
-                MsgBox "El campo " & txtAux(I).Tag & " no puede ser nulo", vbExclamation
+    For i = 4 To 7
+        If i = 4 Or i = 6 Or i = 7 Then
+            If txtAux(i).Text = "" Then
+                MsgBox "El campo " & txtAux(i).Tag & " no puede ser nulo", vbExclamation
                 b = False
-                PonerFoco txtAux(I)
+                PonerFoco txtAux(i)
                 Exit Function
             End If
         End If
-    Next I
+    Next i
             
     DatosOkLinea = b
     
@@ -3815,7 +3798,7 @@ Dim b As Boolean
 Dim Opcion As Byte
 Dim Sql As String
 
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     b = DataGrid3.Enabled
     Select Case vDataGrid.Name
@@ -3836,7 +3819,7 @@ Dim Sql As String
     
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -3844,7 +3827,7 @@ End Sub
 Private Sub CargaGrid2(ByRef vDataGrid As DataGrid, ByRef vData As Adodc)
 Dim tots As String
     
-    On Error GoTo ECargaGrid
+    On Error GoTo ECargaGRid
 
     Select Case vDataGrid.Name
          Case "DataGrid3" 'slialb lineas de envases
@@ -3861,7 +3844,7 @@ Dim tots As String
     vDataGrid.HoldFields
     Exit Sub
     
-ECargaGrid:
+ECargaGRid:
     If Err.Number <> 0 Then MuestraError Err.Number, "Cargando datos grid", Err.Description
 End Sub
 
@@ -4092,7 +4075,7 @@ End Function
 Private Sub PonerModoOpcionesMenu(Modo As Byte)
 'Activas unas Opciones de Menu y Toolbar según el modo en que estemos
 Dim b As Boolean, bAux As Boolean
-Dim I As Integer
+Dim i As Integer
 
         b = ((Modo = 2) Or (Modo = 0)) 'Or (Modo = 5 And ModificaLineas = 0)
         'Buscar
@@ -4127,20 +4110,20 @@ Dim I As Integer
 '++monica: si insertamos lo he quitado
 '    b = (Modo = 3 Or Modo = 4 Or Modo = 2) And Not DeConsulta
     b = (Modo = 2)
-    For I = 1 To 1
-        ToolAux(I).Buttons(1).Enabled = b
+    For i = 1 To 1
+        ToolAux(i).Buttons(1).Enabled = b
         
         If b Then
-            Select Case I
+            Select Case i
               Case 0
                 bAux = (b And Me.AdoAux(0).Recordset.RecordCount > 0)
               Case 1
                 bAux = (b And Me.AdoAux(1).Recordset.RecordCount > 0)
             End Select
         End If
-        ToolAux(I).Buttons(2).Enabled = bAux
-        ToolAux(I).Buttons(3).Enabled = bAux
-    Next I
+        ToolAux(i).Buttons(2).Enabled = bAux
+        ToolAux(i).Buttons(3).Enabled = bAux
+    Next i
 
 
 End Sub
@@ -4348,7 +4331,7 @@ End Sub
 Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim I As Byte
+Dim i As Byte
     
 '    Combo1(0).Clear
 '
@@ -4497,7 +4480,7 @@ Private Sub BotonAnyadirLinea(Index As Integer)
 Dim NumF As String
 Dim vWhere As String, vtabla As String
 Dim anc As Single
-Dim I As Integer
+Dim i As Integer
     
     ModificaLineas = 1 'Posem Modo Afegir Llínia
     
@@ -4547,10 +4530,10 @@ Dim I As Integer
 ' ******************************************
 End Sub
 
-Private Sub LimpiarCamposLin(FrameAux As String)
+Private Sub LimpiarCamposLin(frameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -4727,7 +4710,7 @@ End Function
 
 Private Function DatosOkLineaEnv() As Boolean
 Dim b As Boolean
-Dim I As Byte
+Dim i As Byte
     
     On Error GoTo EDatosOkLineaEnv
 

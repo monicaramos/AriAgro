@@ -1634,13 +1634,13 @@ Private Sub cmdCancelar_Click()
             LimpiarCampos
             'Poner los grid sin apuntar a nada
             PonerModo 0
-            PonerFoco Text1(3)
+            PonerFoco text1(3)
             
         Case 4  'Modificar
             TerminaBloquear
             PonerModo 2
             PonerCampos
-            PonerFoco Text1(3)
+            PonerFoco text1(3)
             
     End Select
 End Sub
@@ -1658,10 +1658,10 @@ Private Sub BotonAnyadir()
 '    FormateaCampo Text1(0)
 '    cmbAux(0).ListIndex = -1
     
-    Text1(1).Text = Format(Now, "dd/mm/yyyy")
+    text1(1).Text = Format(Now, "dd/mm/yyyy")
         
     
-    PonerFoco Text1(1) '*** 1r camp visible que siga PK ***
+    PonerFoco text1(1) '*** 1r camp visible que siga PK ***
     
     ' *** si n'hi han camps de descripció a la capçalera ***
     'PosarDescripcions
@@ -1678,14 +1678,14 @@ Dim anc As Single
         PonerModo 1
         
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco Text1(3)
-        Text1(3).BackColor = vbLightBlue 'vbYellow
+        PonerFoco text1(3)
+        text1(3).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
-            PonerFoco Text1(kCampo)
+            text1(kCampo).Text = ""
+            text1(kCampo).BackColor = vbLightBlue 'vbYellow
+            PonerFoco text1(kCampo)
         End If
     End If
 End Sub
@@ -1734,7 +1734,7 @@ Dim DeVarios As Boolean
     'Añadiremos el boton de aceptar y demas objetos para insertar
     PonerModo 4
     
-    PonerFoco Text1(1) '*** 1r camp visible que siga PK ***
+    PonerFoco text1(1) '*** 1r camp visible que siga PK ***
         
 End Sub
 
@@ -1765,9 +1765,9 @@ Dim Cad As String
     Cad = "Cabecera de Facturas." & vbCrLf
     Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
     Cad = Cad & "Va a eliminar la Factura:            "
-    Cad = Cad & vbCrLf & "Tipo:  " & Text1(6).Text
-    Cad = Cad & vbCrLf & "Nº Factura:  " & Format(Text1(0).Text, "0000000")
-    Cad = Cad & vbCrLf & "Fecha:  " & Format(Text1(1).Text, "dd/mm/yyyy")
+    Cad = Cad & vbCrLf & "Tipo:  " & text1(6).Text
+    Cad = Cad & vbCrLf & "Nº Factura:  " & Format(text1(0).Text, "0000000")
+    Cad = Cad & vbCrLf & "Fecha:  " & Format(text1(1).Text, "dd/mm/yyyy")
 
     Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarla? "
 
@@ -1993,11 +1993,11 @@ Dim Aux As String
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(6), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(text1(6), CadenaDevuelta, 1)
         CadB = Aux
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 2)
+        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 2)
         CadB = CadB & " and  " & Aux
-        Aux = ValorDevueltoFormGrid(Text1(1), CadenaDevuelta, 3)
+        Aux = ValorDevueltoFormGrid(text1(1), CadenaDevuelta, 3)
         CadB = CadB & " and " & Aux
         
         
@@ -2013,17 +2013,17 @@ End Sub
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
     If imgFec(0).Tag < 2 Then
-        Text1(CByte(imgFec(0).Tag) + 1).Text = Format(vFecha, "dd/mm/yyyy") '<===
+        text1(CByte(imgFec(0).Tag) + 1).Text = Format(vFecha, "dd/mm/yyyy") '<===
     Else
-        Text1(CByte(imgFec(0).Tag) + 8).Text = Format(vFecha, "dd/mm/yyyy") '<===
+        text1(CByte(imgFec(0).Tag) + 8).Text = Format(vFecha, "dd/mm/yyyy") '<===
     End If
     ' ********************************************
 End Sub
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
+    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
-    PonerFoco Text1(indice)
+    PonerFoco text1(indice)
 End Sub
 
 Private Sub frmFac_DatoSeleccionado(CadenaSeleccion As String)
@@ -2045,18 +2045,18 @@ End Sub
 
 Private Sub frmFPag_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'Codigo
+    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "00") 'Codigo
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre
 End Sub
 
 Private Sub frmMer_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Formas de Pago
-    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Codigo
+    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Codigo
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
-     Text1(indice).Text = vCampo
+     text1(indice).Text = vCampo
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -2067,30 +2067,30 @@ Private Sub imgBuscar_Click(Index As Integer)
     Select Case Index
         Case 0 'Cod. de Cliente
             indice = 3
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             Set frmCli = New frmClientes
             frmCli.DatosADevolverBusqueda = "0|1|2|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
         
         Case 1 'Forma de Pago
             indice = 4
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             Set frmFPag = New frmManFpago
             frmFPag.DatosADevolverBusqueda = "0|1|"
             frmFPag.Show vbModal
             Set frmFPag = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             
         Case 2 'Variedad
             indice = 19
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             Set frmVar = New frmManVariedad
             frmVar.DatosADevolverBusqueda = "0|1|"
             frmVar.Show vbModal
             Set frmVar = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             
         Case 3 ' tipo de mercado
             indice = 20
@@ -2098,7 +2098,7 @@ Private Sub imgBuscar_Click(Index As Integer)
             frmMer.DatosADevolverBusqueda = "0|1|2|"
             frmMer.Show vbModal
             Set frmMer = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             
 '        Case 4 ' Almacen
 '            Indice = 16
@@ -2140,11 +2140,11 @@ Private Sub imgFec_Click(Index As Integer)
     If Index < 2 Then
         imgFec(0).Tag = Index '<===
         ' *** repasar si el camp es txtAux o Text1 ***
-        If Text1(Index + 1).Text <> "" Then frmC.NovaData = Text1(Index + 1).Text
+        If text1(Index + 1).Text <> "" Then frmC.NovaData = text1(Index + 1).Text
     Else
         imgFec(0).Tag = Index '<===
         ' *** repasar si el camp es txtAux o Text1 ***
-        If Text1(Index + 8).Text <> "" Then frmC.NovaData = Text1(Index + 8).Text
+        If text1(Index + 8).Text <> "" Then frmC.NovaData = text1(Index + 8).Text
     End If
     ' ********************************************
 
@@ -2152,9 +2152,9 @@ Private Sub imgFec_Click(Index As Integer)
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
     If Index < 2 Then
-        PonerFoco Text1(CByte(imgFec(0).Tag) + 1) '<===
+        PonerFoco text1(CByte(imgFec(0).Tag) + 1) '<===
     Else
-        PonerFoco Text1(CByte(imgFec(0).Tag) + 8) '<===
+        PonerFoco text1(CByte(imgFec(0).Tag) + 8) '<===
     End If
     ' ********************************************
 End Sub
@@ -2167,13 +2167,13 @@ Private Sub imgZoom_Click(Index As Integer)
     If Index = 0 Then
         indice = 2
         frmZ.pTitulo = "Observaciones de la Factura"
-        frmZ.pValor = Text1(indice).Text
+        frmZ.pValor = text1(indice).Text
         frmZ.pModo = Modo
     
         frmZ.Show vbModal
         Set frmZ = Nothing
             
-        PonerFoco Text1(indice)
+        PonerFoco text1(indice)
     End If
 End Sub
 
@@ -2235,7 +2235,7 @@ End Sub
 'Los descomentamos cuando esten puestos ya los controles
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco Text1(Index), Modo
+    ConseguirFoco text1(Index), Modo
 End Sub
 
 
@@ -2246,7 +2246,7 @@ End Sub
 
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    If Index <> 2 Or (Index = 2 And Text1(2).Text = "") Then KEYpress KeyAscii
+    If Index <> 2 Or (Index = 2 And text1(2).Text = "") Then KEYpress KeyAscii
 End Sub
 
 
@@ -2265,7 +2265,7 @@ Dim Sql As String
 Dim Nregs As Long
 Dim vTipoMov As CTiposMov
         
-    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
         
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -2274,108 +2274,108 @@ Dim vTipoMov As CTiposMov
     'Si queremos hacer algo ..
     Select Case Index
         Case 1 'Fecha factura
-            If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index)
+            If text1(Index).Text <> "" Then PonerFormatoFecha text1(Index)
             
         Case 3 'Cliente
-            If PonerFormatoEntero(Text1(Index)) Then
+            If PonerFormatoEntero(text1(Index)) Then
                 If Modo = 1 Then
-                    Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
+                    Text2(Index).Text = PonerNombreDeCod(text1(Index), "clientes", "nomclien")
                 Else
-                    If Modo = 4 And Text1(Index).Text = ClienAnt Then Exit Sub
-                    PonerDatosCliente (Text1(Index).Text)
+                    If Modo = 4 And text1(Index).Text = ClienAnt Then Exit Sub
+                    PonerDatosCliente (text1(Index).Text)
                     If Text2(Index).Text = "" Then
-                        cadMen = "No existe el Cliente: " & Text1(Index).Text & vbCrLf
+                        cadMen = "No existe el Cliente: " & text1(Index).Text & vbCrLf
                         cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                         If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                             Set frmCli = New frmClientes
                             frmCli.DatosADevolverBusqueda = "0|1|"
-                            Text1(Index).Text = ""
+                            text1(Index).Text = ""
                             TerminaBloquear
                             frmCli.Show vbModal
                             Set frmCli = Nothing
                             If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                         Else
-                            Text1(Index).Text = ""
+                            text1(Index).Text = ""
                         End If
-                        PonerFoco Text1(Index)
+                        PonerFoco text1(Index)
                     End If
-                    If Text1(Index).Text <> "" Then CalcularDatosFacturaVenta
+                    If text1(Index).Text <> "" Then CalcularDatosFacturaVenta
                End If
             End If
                 
             
         Case 4 ' Forma de Pago
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "forpago", "nomforpa")
+            If PonerFormatoEntero(text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(text1(Index), "forpago", "nomforpa")
                 If Text2(Index).Text = "" Then
-                    cadMen = "No existe la Forma de Pago: " & Text1(Index).Text & vbCrLf
+                    cadMen = "No existe la Forma de Pago: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmFPag = New frmManFpago
                         frmFPag.DatosADevolverBusqueda = "0|1|"
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                         TerminaBloquear
                         frmFPag.Show vbModal
                         Set frmFPag = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 End If
             End If
             
         Case 19 ' variedad
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "variedades", "nomvarie")
+            If PonerFormatoEntero(text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(text1(Index), "variedades", "nomvarie")
                 If Text2(Index).Text = "" Then
-                    cadMen = "No existe la Variedad: " & Text1(Index).Text & vbCrLf
+                    cadMen = "No existe la Variedad: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearla?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmVar = New frmManVariedad
                         frmVar.DatosADevolverBusqueda = "0|1|"
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                         TerminaBloquear
                         frmVar.Show vbModal
                         Set frmVar = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 End If
             End If
          
         Case 20 'Tipo de Mercado
-            If PonerFormatoEntero(Text1(Index)) Then
-                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "tipomer", "nomtimer")
+            If PonerFormatoEntero(text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(text1(Index), "tipomer", "nomtimer")
                 If Text2(Index).Text = "" Then
-                    cadMen = "No existe el Tipo de Mercado: " & Text1(Index).Text & vbCrLf
+                    cadMen = "No existe el Tipo de Mercado: " & text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmMer = New frmManTipMerc
                         frmMer.DatosADevolverBusqueda = "0|1|"
-                        frmMer.NuevoCodigo = Text1(Index).Text
-                        Text1(Index).Text = ""
+                        frmMer.NuevoCodigo = text1(Index).Text
+                        text1(Index).Text = ""
                         TerminaBloquear
                         frmMer.Show vbModal
                         Set frmMer = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        Text1(Index).Text = ""
+                        text1(Index).Text = ""
                     End If
-                    PonerFoco Text1(Index)
+                    PonerFoco text1(Index)
                 End If
             End If
          
          Case 7, 8 'descuentos
             If Modo = 1 Then Exit Sub
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 4
+            If text1(Index).Text <> "" Then PonerFormatoDecimal text1(Index), 4
             CalcularDatosFacturaVenta
             
          Case 9 ' bruto de la factura
             If Modo = 1 Then Exit Sub
-            If Text1(Index).Text <> "" Then PonerFormatoDecimal Text1(Index), 3
+            If text1(Index).Text <> "" Then PonerFormatoDecimal text1(Index), 3
     
             CalcularDatosFacturaVenta
 
@@ -2407,65 +2407,12 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
-Dim Desc As String, devuelve As String
-'    'Llamamos a al form
-'    '##A mano
-'    Cad = ""
-'    Cad = Cad & "Tipo|facturas.codtipom|N||10·"
-'    Cad = Cad & "Nº.Factura|facturas.numfactu|N||15·"
-'    Cad = Cad & "Cliente|facturas.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Factura")
-'    tabla = NombreTabla & " INNER JOIN clientes ON facturas.codclien=clientes.codclien "
-'
-'    Titulo = "Facturas"
-'    devuelve = "0|1|4|"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|4|"
-'        frmB.vDevuelve = devuelve
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-''        If EsCabecera Then
-''            PonerCadenaBusqueda
-''            Text1(0).Text = Format(Text1(0).Text, "0000000")
-''        End If
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
-
 
     Set frmFac = New frmBasico2
 
     AyudaFacturas frmFac, , CadB
 
     Set frmFac = Nothing
-
-
 
 End Sub
 
@@ -2481,7 +2428,7 @@ Private Sub PonerCadenaBusqueda()
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
-            PonerFoco Text1(kCampo)
+            PonerFoco text1(kCampo)
 '            Text1(0).BackColor = vbYellow
         End If
         Exit Sub
@@ -2515,9 +2462,9 @@ Dim b As Boolean
     b = PonerCamposForma2(Me, Data1, 2, "Frame2")
     b = PonerCamposForma2(Me, Data1, 2, "FrameFactura")
 
-    Text1(12).Text = Format(Round2(DBLet(Data1.Recordset!BrutoFac, "N") - DBLet(Data1.Recordset!impordto, "N"), 2), FormatoImporte)
+    text1(12).Text = Format(Round2(DBLet(Data1.Recordset!BrutoFac, "N") - DBLet(Data1.Recordset!impordto, "N"), 2), FormatoImporte)
 
-    CodTipoMov = Text1(6).Text
+    CodTipoMov = text1(6).Text
     
 '    FormatoDatosTotales
     
@@ -2525,10 +2472,10 @@ Dim b As Boolean
     Modo = 4
     
     
-    Text2(3).Text = PonerNombreDeCod(Text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
-    Text2(4).Text = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", Text1(4), "N") 'forma de pago
-    Text2(19).Text = PonerNombreDeCod(Text1(19), "variedades", "nomvarie", "codvarie", "N") ' variedades
-    Text2(20).Text = PonerNombreDeCod(Text1(20), "tipomer", "nomtimer", "codtimer", "N") ' tipo de mercado
+    Text2(3).Text = PonerNombreDeCod(text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
+    Text2(4).Text = DevuelveDesdeBDNew(cAgro, "forpago", "nomforpa", "codforpa", text1(4), "N") 'forma de pago
+    Text2(19).Text = PonerNombreDeCod(text1(19), "variedades", "nomvarie", "codvarie", "N") ' variedades
+    Text2(20).Text = PonerNombreDeCod(text1(20), "tipomer", "nomtimer", "codtimer", "N") ' tipo de mercado
     
     
     Modo = 2
@@ -2587,11 +2534,11 @@ Dim b As Boolean
     BloquearText1 Me, Modo
     
     For i = 10 To 18
-        BloquearTxt Text1(i), Not (Modo = 1)
-        Text1(i).Enabled = (Modo = 1)
+        BloquearTxt text1(i), Not (Modo = 1)
+        text1(i).Enabled = (Modo = 1)
     Next i
-    BloquearTxt Text1(5), Not (Modo = 1)
-    Text1(5).Enabled = (Modo = 1)
+    BloquearTxt text1(5), Not (Modo = 1)
+    text1(5).Enabled = (Modo = 1)
 
 
 '    Me.Check1.Enabled = (Modo = 1)
@@ -2601,9 +2548,9 @@ Dim b As Boolean
     b = (Modo = 1 Or Modo = 3 Or (Modo = 4 And Check1(1).Value = 0))
     
     'Campos Nº Factura bloqueado y en azul
-    BloquearTxt Text1(0), (Modo <> 1), True 'And (TipoFactura = 0)  'numero factura
-    BloquearTxt Text1(1), Not b 'fechafactura
-    BloquearTxt Text1(3), Not b 'cliente
+    BloquearTxt text1(0), (Modo <> 1), True 'And (TipoFactura = 0)  'numero factura
+    BloquearTxt text1(1), Not b 'fechafactura
+    BloquearTxt text1(3), Not b 'cliente
     
     imgFec(0).Enabled = b
     imgFec(0).visible = b
@@ -2675,10 +2622,10 @@ Dim Sql As String
 
         'comprobamos que no exista ya la factura en la tabla facturas de ariagro
         Sql = ""
-        Sql = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
+        Sql = DevuelveDesdeBDNew(cAgro, "facturas", "numfactu", "codtipom", text1(6).Text, "T", , "numfactu", text1(0).Text, "N", "fecfactu", text1(1).Text, "F")
         If Sql <> "" Then
             MsgBox "Factura ya existente. Reintroduzca.", vbExclamation
-            PonerFoco Text1(0)
+            PonerFoco text1(0)
             b = False
         End If
         If Not b Then Exit Function
@@ -2687,18 +2634,18 @@ Dim Sql As String
 '--monica:10/02/2009 stipom
 '        Serie = DevuelveDesdeBDNew(cAgro, "stipom", "letraser", "codtipom", Text1(6).Text, "T")
 '++monica
-        Serie = ObtenerLetraSerie(Text1(6).Text)
+        Serie = ObtenerLetraSerie(text1(6).Text)
 '++
         If Serie <> "" Then
             Sql = ""
             If vParamAplic.ContabilidadNueva Then
-                Sql = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", Text1(0).Text, "N", "fecfactu", Mid(Text1(1).Text, 7, 4), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "factcli", "numfactu", "numserie", Serie, "T", , "numfactu", text1(0).Text, "N", "fecfactu", Mid(text1(1).Text, 7, 4), "N")
             Else
-                Sql = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", Text1(0).Text, "N", "fecfaccl", Mid(Text1(1).Text, 7, 4), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "cabfact", "codfaccl", "numserie", Serie, "T", , "codfaccl", text1(0).Text, "N", "fecfaccl", Mid(text1(1).Text, 7, 4), "N")
             End If
             If Sql <> "" Then
                 MsgBox "Factura existente en contabilidad. Reintroduzca.", vbExclamation
-                PonerFoco Text1(0)
+                PonerFoco text1(0)
                 b = False
             End If
         Else
@@ -2710,7 +2657,7 @@ Dim Sql As String
         
         '[Monica]20/06/2017: control de fechas que antes no estaba
         If vParamAplic.NumeroConta <> 0 Then
-            ResultadoFechaContaOK = EsFechaOKConta(CDate(Text1(1).Text))
+            ResultadoFechaContaOK = EsFechaOKConta(CDate(text1(1).Text))
             If ResultadoFechaContaOK > 0 Then
                 If ResultadoFechaContaOK <> 4 Then MsgBox MensajeFechaOkConta, vbExclamation
                 Exit Function
@@ -2890,7 +2837,7 @@ Dim Mens As String
     
     'Decrementar contador si borramos el ult. palet
     Set vTipoMov = New CTiposMov
-    vTipoMov.DevolverContador Text1(6).Text, Val(Text1(0).Text)
+    vTipoMov.DevolverContador text1(6).Text, Val(text1(0).Text)
     Set vTipoMov = Nothing
     
     b = True
@@ -2937,7 +2884,7 @@ Dim Sql As String
 
     On Error Resume Next
     
-    Sql = "codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & DBSet(Text1(0).Text, "N") & " and fecfactu= " & DBSet(Text1(1).Text, "F")
+    Sql = "codtipom = " & DBSet(text1(6).Text, "T") & " and numfactu= " & DBSet(text1(0).Text, "N") & " and fecfactu= " & DBSet(text1(1).Text, "F")
     If conWhere Then Sql = " WHERE " & Sql
     ObtenerWhereCP = Sql
     
@@ -2986,7 +2933,7 @@ Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-    If Text1(0).Text = "" Then
+    If text1(0).Text = "" Then
         MsgBox "Debe seleccionar una Factura para Imprimir.", vbInformation
         Exit Sub
     End If
@@ -3008,21 +2955,21 @@ Dim devuelve As String
     '================= FORMULA =========================
     'Cadena para seleccion Nº de factura
     '---------------------------------------------------
-    If Text1(0).Text <> "" Then
+    If text1(0).Text <> "" Then
         'Tipo de factura
-        devuelve = "{" & NombreTabla & ".codtipom}='" & Text1(6).Text & "'"
+        devuelve = "{" & NombreTabla & ".codtipom}='" & text1(6).Text & "'"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "codtipom = '" & Text1(6).Text & "'"
+        devuelve = "codtipom = '" & text1(6).Text & "'"
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
         'Nº Factura
-        devuelve = "{" & NombreTabla & ".numfactu}=" & Val(Text1(0).Text)
+        devuelve = "{" & NombreTabla & ".numfactu}=" & Val(text1(0).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "numfactu = " & Val(Text1(0).Text)
+        devuelve = "numfactu = " & Val(text1(0).Text)
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
         'Fecha Factura
-        devuelve = "{" & NombreTabla & ".fecfactu}=Date(" & Year(Text1(1).Text) & "," & Month(Text1(1).Text) & "," & Day(Text1(1).Text) & ")"
+        devuelve = "{" & NombreTabla & ".fecfactu}=Date(" & Year(text1(1).Text) & "," & Month(text1(1).Text) & "," & Day(text1(1).Text) & ")"
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "fecfactu = " & DBSet(Text1(1).Text, "F")
+        devuelve = "fecfactu = " & DBSet(text1(1).Text, "F")
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
     End If
     
@@ -3093,11 +3040,11 @@ Dim Sql As String
 
     On Error GoTo EInsertarCab
     
-    CodTipoMov = Text1(6).Text
+    CodTipoMov = text1(6).Text
     
     Set vTipoMov = New CTiposMov
     If vTipoMov.Leer(CodTipoMov) Then
-        Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
+        text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
         Sql = CadenaInsertarDesdeForm(Me)
         If Sql <> "" Then
             If InsertarOferta(Sql, vTipoMov) Then
@@ -3108,7 +3055,7 @@ Dim Sql As String
 '                BotonMtoLineas 0, "Variedades"
             End If
         End If
-        Text1(0).Text = Format(Text1(0).Text, "0000000")
+        text1(0).Text = Format(text1(0).Text, "0000000")
     End If
     Set vTipoMov = Nothing
     
@@ -3132,12 +3079,12 @@ Dim devuelve As String
     'Comprobar si mientras tanto se incremento el contador de Albaranes
     'para ello vemos si existe una factura con ese contador y si existe la incrementamos
     Do
-        devuelve = DevuelveDesdeBDNew(cAgro, NombreTabla, "numfactu", "codtipom", Text1(6).Text, "T", , "numfactu", Text1(0), "N", "fecfactu", Text1(1), "F")
+        devuelve = DevuelveDesdeBDNew(cAgro, NombreTabla, "numfactu", "codtipom", text1(6).Text, "T", , "numfactu", text1(0), "N", "fecfactu", text1(1), "F")
         If devuelve <> "" Then
             'Ya existe el contador incrementarlo
             Existe = True
             vTipoMov.IncrementarContador (CodTipoMov)
-            Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
+            text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
             cambiaSQL = True
         Else
             Existe = False
@@ -3178,7 +3125,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codtipom = " & DBSet(Text1(6).Text, "T") & " and numfactu= " & Val(Text1(0).Text) & " and fecfactu = " & DBSet(Text1(1).Text, "F")
+    vWhere = vWhere & " codtipom = " & DBSet(text1(6).Text, "T") & " and numfactu= " & Val(text1(0).Text) & " and fecfactu = " & DBSet(text1(1).Text, "F")
     ' *******************************************************
     
     ObtenerWhereCab = vWhere
@@ -3203,18 +3150,18 @@ Dim Observaciones As String
     'si se ha modificado el cliente volver a cargar los datos
     If vCliente.Existe(CodClien) Then
         If vCliente.LeerDatos(CodClien) Then
-            Text1(3).Text = vCliente.Codigo
-            FormateaCampo Text1(3)
+            text1(3).Text = vCliente.Codigo
+            FormateaCampo text1(3)
             If (Modo = 3) Or (Modo = 4) Then
                 Text2(3).Text = vCliente.Nombre  'Nom clien
-                Text1(4).Text = vCliente.ForPago
-                Text2(4).Text = PonerNombreDeCod(Text1(4), "forpago", "nomforpa")
-                Text1(7).Text = Format(vCliente.Dto1, FormatoDescuento)
-                Text1(8).Text = Format(vCliente.Dto2, FormatoDescuento)
+                text1(4).Text = vCliente.ForPago
+                Text2(4).Text = PonerNombreDeCod(text1(4), "forpago", "nomforpa")
+                text1(7).Text = Format(vCliente.Dto1, FormatoDescuento)
+                text1(8).Text = Format(vCliente.Dto2, FormatoDescuento)
                 Me.Combo1(0).ListIndex = vCliente.TipoIva
                 
                 TipoFactura = vCliente.TipoFactu
-                Text1(6).Text = "EAC"
+                text1(6).Text = "EAC"
             End If
 
             Observaciones = DBLet(vCliente.Observaciones)
@@ -3235,10 +3182,10 @@ End Sub
 Private Sub LimpiarDatosCliente()
 Dim i As Byte
 
-    Text1(2).Text = ""
-    Text1(4).Text = ""
-    Text1(7).Text = ""
-    Text1(8).Text = ""
+    text1(2).Text = ""
+    text1(4).Text = ""
+    text1(7).Text = ""
+    text1(8).Text = ""
 
     Text2(3).Text = ""
     Text2(4).Text = ""
@@ -3335,12 +3282,12 @@ Dim Bruto As Currency
     ImpBImIVA = vNeto
 
     Set vClien = New CCliente
-    If vClien.LeerDatos(Text1(3).Text) Then
+    If vClien.LeerDatos(text1(3).Text) Then
     
         'Como son de tipo string comprobar que si vale "" lo ponemos a 0
-        Bruto = CCur(ComprobarCero(Text1(9).Text))
-        Dto1 = CCur(ComprobarCero(Text1(7).Text))
-        Dto2 = CCur(ComprobarCero(Text1(8).Text))
+        Bruto = CCur(ComprobarCero(text1(9).Text))
+        Dto1 = CCur(ComprobarCero(text1(7).Text))
+        Dto2 = CCur(ComprobarCero(text1(8).Text))
         
         vImp = Bruto
             
@@ -3356,14 +3303,14 @@ Dim Bruto As Currency
         End If
         vImp = Round2(vImp, 2)
     
-        Text1(12).Text = vImp
+        text1(12).Text = vImp
         
         ' importe de descuento
-        Text1(10).Text = ""
-        If vDto1 + vDto2 <> 0 Then Text1(10).Text = Round2(vDto1 + vDto2, 2)
+        text1(10).Text = ""
+        If vDto1 + vDto2 <> 0 Then text1(10).Text = Round2(vDto1 + vDto2, 2)
         
         ' base importe iva
-        ImpBImIVA = CCur(Text1(12).Text)
+        ImpBImIVA = CCur(text1(12).Text)
         
         'Obtener el % de IVA
         Select Case Combo1(0).ListIndex
@@ -3417,19 +3364,19 @@ Dim Bruto As Currency
         'TOTAL de la factura
         TotalFac = BaseIVA1 + ImpIVA1 + ImpREC1
      
-        Text1(12).Text = Format(BaseIVA1, "###,###,##0.00") ' base imponible
-        Text1(13).Text = TipoIVA1
-        Text1(15).Text = Text1(12).Text
-        Text1(14).Text = PorceIVA1
-        Text1(16).Text = ImpIVA1
-        Text1(17).Text = ""
-        Text1(18).Text = ""
+        text1(12).Text = Format(BaseIVA1, "###,###,##0.00") ' base imponible
+        text1(13).Text = TipoIVA1
+        text1(15).Text = text1(12).Text
+        text1(14).Text = PorceIVA1
+        text1(16).Text = ImpIVA1
+        text1(17).Text = ""
+        text1(18).Text = ""
         
         If PorceREC1 <> 0 Then
-            Text1(17).Text = PorceREC1
-            Text1(18).Text = ImpREC1
+            text1(17).Text = PorceREC1
+            text1(18).Text = ImpREC1
         End If
-        Text1(5).Text = Format(TotalFac, "###,###,##0.00") ' total factura
+        text1(5).Text = Format(TotalFac, "###,###,##0.00") ' total factura
     End If
     
     Set vClien = Nothing

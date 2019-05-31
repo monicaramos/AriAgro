@@ -49,12 +49,12 @@ Begin VB.Form frmVtasOrdenCarga
       Begin VB.Frame Frame4 
          Caption         =   "FACTURACION DEL TRANSPORTE A : "
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          Height          =   1740
@@ -102,12 +102,12 @@ Begin VB.Form frmVtasOrdenCarga
       Begin VB.Frame Frame3 
          Caption         =   "ENTREGA 2"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3090
@@ -397,12 +397,12 @@ Begin VB.Form frmVtasOrdenCarga
       Begin VB.Frame Frame2 
          Caption         =   "ENTREGA 1"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3090
@@ -696,12 +696,12 @@ Begin VB.Form frmVtasOrdenCarga
       Begin VB.Frame Frame1 
          Caption         =   "RECOGIDA"
          BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   8.25
+            Name            =   "Verdana"
+            Size            =   9
             Charset         =   0
-            Weight          =   700
+            Weight          =   400
             Underline       =   0   'False
-            Italic          =   0   'False
+            Italic          =   -1  'True
             Strikethrough   =   0   'False
          EndProperty
          Height          =   3075
@@ -1108,7 +1108,7 @@ Dim indCodigo As Integer 'indice para txtCodigo
 Dim indFrame As Single 'nº de frame en el que estamos
  
 'Se inicializan para cada Informe (tabla de BD a la que hace referencia
-Dim tabla As String
+Dim Tabla As String
 Dim Codigo As String 'Código para FormulaSelection de Crystal Report
 Dim TipCod As String
 Dim Orden1 As String 'Campo de Ordenacion (por codigo) para Cristal Report
@@ -1261,14 +1261,14 @@ Dim Sql As String
          
     FrameCobrosVisible True, H, W
     indFrame = 5
-    tabla = "pedidos"
+    Tabla = "pedidos"
     
     imgAyuda(0).Picture = frmPpal.ImageListB.ListImages(10).Picture
 
     
     
     'Esto se consigue poneinedo el cancel en el opcion k corresponda
-    Me.cmdCancel.Cancel = True
+    Me.CmdCancel.Cancel = True
     Me.Width = W + 70
     Me.Height = H + 350
 End Sub

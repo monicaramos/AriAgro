@@ -157,6 +157,8 @@ Private Mens As String    'Para los mensajes
 Private mvarBDDestino As String     ' Base de datos destino de Frutas Inma
 Private mvarBDSAT As String     ' Base de datos sat de Frutas Inma
 
+Private mvarCodIvaIntra As String ' codigo de iva aplicado a intracomunitarios
+
 
 '------------------------------------------------
 'Propiedades del modulo CParamAplic
@@ -800,7 +802,15 @@ Public Property Get BDSat() As String
 End Property
 
 
+' codigo de iva aplicado a intracomunitarios
 
+Public Property Let CodIvaIntra(ByVal vData As String)
+     mvarCodIvaIntra = vData
+End Property
+
+Public Property Get CodIvaIntra() As String
+     CodIvaIntra = mvarCodIvaIntra
+End Property
 
 
 
@@ -932,6 +942,9 @@ On Error GoTo Err3
 
         '[Monica]16/10/2018: base de datos de la sat
         mvarBDSAT = DBLet(Rs!BDSat, "T")
+
+        '[Monica]29/05/2019: iva intracomunitario creado para terceros en  recoleccion
+        mvarCodIvaIntra = (DevuelveValor("select codivaintracom from rparam"))
 
         Leer = 0
         

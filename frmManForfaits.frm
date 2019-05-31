@@ -31,20 +31,20 @@ Begin VB.Form frmManForfaits
       Height          =   300
       Index           =   0
       Left            =   14895
-      TabIndex        =   85
+      TabIndex        =   86
       Top             =   240
       Width           =   1605
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   135
-      TabIndex        =   83
+      TabIndex        =   84
       Top             =   45
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   84
+         TabIndex        =   85
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -100,13 +100,13 @@ Begin VB.Form frmManForfaits
    Begin VB.Frame FrameBotonGnral2 
       Height          =   705
       Left            =   3795
-      TabIndex        =   81
+      TabIndex        =   82
       Top             =   45
       Width           =   1785
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
-         TabIndex        =   82
+         TabIndex        =   83
          Top             =   180
          Width           =   1410
          _ExtentX        =   2487
@@ -133,13 +133,13 @@ Begin VB.Form frmManForfaits
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   5655
-      TabIndex        =   79
+      TabIndex        =   80
       Top             =   45
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   80
+         TabIndex        =   81
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -174,9 +174,28 @@ Begin VB.Form frmManForfaits
       Height          =   3465
       Index           =   0
       Left            =   135
-      TabIndex        =   23
+      TabIndex        =   24
       Top             =   810
       Width           =   17250
+      Begin VB.CheckBox Check1 
+         Caption         =   "Inactivo"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   270
+         Index           =   0
+         Left            =   3645
+         TabIndex        =   1
+         Tag             =   "Está inactivo|N|N|0|1|forfaits|estainactivo||N|"
+         Top             =   270
+         Width           =   1140
+      End
       Begin VB.TextBox text1 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -192,7 +211,7 @@ Begin VB.Form frmManForfaits
          Index           =   16
          Left            =   8295
          MaxLength       =   9
-         TabIndex        =   10
+         TabIndex        =   11
          Tag             =   "Precio por Kilo|N|S|||forfaits|preciokilonom|###0.0000||"
          Top             =   2985
          Width           =   1440
@@ -212,7 +231,7 @@ Begin VB.Form frmManForfaits
          Index           =   15
          Left            =   8280
          MaxLength       =   16
-         TabIndex        =   9
+         TabIndex        =   10
          Tag             =   "Cajas por Palet|N|S|||forfaits|cajaspalet|##,##0||"
          Top             =   2505
          Width           =   1440
@@ -233,7 +252,7 @@ Begin VB.Form frmManForfaits
          MaxLength       =   250
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
-         TabIndex        =   3
+         TabIndex        =   4
          Tag             =   "Observaciones|T|S|||forfaits|observac|||"
          Top             =   1800
          Width           =   6600
@@ -253,7 +272,7 @@ Begin VB.Form frmManForfaits
          Index           =   14
          Left            =   8280
          MaxLength       =   16
-         TabIndex        =   8
+         TabIndex        =   9
          Tag             =   "Peso Caja|N|S|||forfaits|pesocaja|#0.00||"
          Top             =   2055
          Width           =   1440
@@ -273,7 +292,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   2
          Left            =   2295
-         TabIndex        =   58
+         TabIndex        =   59
          Text            =   "12345678901234567890"
          Top             =   1125
          Width           =   4515
@@ -293,7 +312,7 @@ Begin VB.Form frmManForfaits
          Index           =   2
          Left            =   1350
          MaxLength       =   6
-         TabIndex        =   2
+         TabIndex        =   3
          Tag             =   "Variedad|N|S|||forfaits|codvarie|000000||"
          Text            =   "123456"
          Top             =   1125
@@ -314,7 +333,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   13
          Left            =   12825
-         TabIndex        =   56
+         TabIndex        =   57
          Top             =   2970
          Width           =   4065
       End
@@ -333,7 +352,7 @@ Begin VB.Form frmManForfaits
          Index           =   13
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   17
+         TabIndex        =   18
          Tag             =   "Palet|N|N|0|999|forfaits|codpalet|000||"
          Text            =   "123"
          Top             =   2970
@@ -354,7 +373,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   12
          Left            =   12825
-         TabIndex        =   54
+         TabIndex        =   55
          Top             =   2520
          Width           =   4065
       End
@@ -373,7 +392,7 @@ Begin VB.Form frmManForfaits
          Index           =   12
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   16
+         TabIndex        =   17
          Tag             =   "Marca|N|S|0|999|forfaits|codmarca|000||"
          Text            =   "123"
          Top             =   2520
@@ -394,7 +413,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   11
          Left            =   12825
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   2070
          Width           =   4065
       End
@@ -413,7 +432,7 @@ Begin VB.Form frmManForfaits
          Index           =   11
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   15
+         TabIndex        =   16
          Tag             =   "Presentacion|N|N|0|999|forfaits|codprese|000||"
          Text            =   "123"
          Top             =   2070
@@ -434,7 +453,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   10
          Left            =   12825
-         TabIndex        =   50
+         TabIndex        =   51
          Top             =   1605
          Width           =   4065
       End
@@ -453,7 +472,7 @@ Begin VB.Form frmManForfaits
          Index           =   10
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   14
+         TabIndex        =   15
          Tag             =   "Confeccion|N|N|0|999|forfaits|codtipco|000||"
          Text            =   "123"
          Top             =   1605
@@ -474,7 +493,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   9
          Left            =   12825
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   1155
          Width           =   4065
       End
@@ -493,7 +512,7 @@ Begin VB.Form frmManForfaits
          Index           =   9
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   13
+         TabIndex        =   14
          Tag             =   "Medida|N|N|0|999|forfaits|codmedid|000||"
          Text            =   "123"
          Top             =   1155
@@ -514,7 +533,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   8
          Left            =   12825
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   705
          Width           =   4065
       End
@@ -533,7 +552,7 @@ Begin VB.Form frmManForfaits
          Index           =   8
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   12
+         TabIndex        =   13
          Tag             =   "Capacidad|N|N|0|999|forfaits|codcapac|000||"
          Text            =   "123"
          Top             =   705
@@ -545,7 +564,7 @@ Begin VB.Form frmManForfaits
          Index           =   6
          Left            =   3915
          MaxLength       =   16
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   1980
          Width           =   1035
       End
@@ -564,7 +583,7 @@ Begin VB.Form frmManForfaits
          Index           =   5
          Left            =   8280
          MaxLength       =   16
-         TabIndex        =   7
+         TabIndex        =   8
          Tag             =   "Kilos Unidad|N|S|0|999.99|forfaits|kilosuni|##0.00||"
          Top             =   1605
          Width           =   1440
@@ -584,7 +603,7 @@ Begin VB.Form frmManForfaits
          Index           =   4
          Left            =   8280
          MaxLength       =   16
-         TabIndex        =   6
+         TabIndex        =   7
          Tag             =   "Kilos Caja|N|S|0|999.99|forfaits|kiloscaj|##0.00||"
          Top             =   1125
          Width           =   1440
@@ -605,7 +624,7 @@ Begin VB.Form frmManForfaits
          Left            =   8280
          List            =   "frmManForfaits.frx":0016
          Style           =   2  'Dropdown List
-         TabIndex        =   5
+         TabIndex        =   6
          Tag             =   "Facturar por|N|N|0||forfaits|facturar|||"
          Top             =   660
          Width           =   1440
@@ -624,7 +643,7 @@ Begin VB.Form frmManForfaits
          Index           =   1
          Left            =   1350
          MaxLength       =   40
-         TabIndex        =   1
+         TabIndex        =   2
          Tag             =   "Nombre|T|N|||forfaits|nomconfe|||"
          Text            =   "1234657890123456798012345678901234567890"
          Top             =   675
@@ -646,7 +665,7 @@ Begin VB.Form frmManForfaits
          Left            =   8280
          List            =   "frmManForfaits.frx":0036
          Style           =   2  'Dropdown List
-         TabIndex        =   4
+         TabIndex        =   5
          Tag             =   "Caja / Kilo|N|N|0|1|forfaits|cajakilo|||"
          Top             =   195
          Width           =   1440
@@ -666,7 +685,7 @@ Begin VB.Form frmManForfaits
          Height          =   360
          Index           =   7
          Left            =   12825
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   255
          Width           =   4065
       End
@@ -685,7 +704,7 @@ Begin VB.Form frmManForfaits
          Index           =   7
          Left            =   12150
          MaxLength       =   4
-         TabIndex        =   11
+         TabIndex        =   12
          Tag             =   "Envase|N|N|0|999|forfaits|codtipen|000||"
          Text            =   "123"
          Top             =   255
@@ -725,7 +744,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   5
          Left            =   7065
-         TabIndex        =   76
+         TabIndex        =   77
          Top             =   2985
          Width           =   1185
       End
@@ -743,7 +762,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   3
          Left            =   7065
-         TabIndex        =   75
+         TabIndex        =   76
          Top             =   2535
          Width           =   1185
       End
@@ -758,11 +777,11 @@ Begin VB.Form frmManForfaits
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   255
-         Left            =   4995
-         TabIndex        =   74
+         Height          =   315
+         Left            =   5085
+         TabIndex        =   75
          Top             =   270
-         Width           =   1320
+         Width           =   1275
       End
       Begin VB.Image imgBuscar 
          Height          =   330
@@ -786,7 +805,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   4
          Left            =   7065
-         TabIndex        =   72
+         TabIndex        =   73
          Top             =   2085
          Width           =   1185
       End
@@ -803,7 +822,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   180
-         TabIndex        =   59
+         TabIndex        =   60
          Top             =   1125
          Width           =   870
       End
@@ -828,7 +847,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   57
+         TabIndex        =   58
          Top             =   2970
          Width           =   870
       End
@@ -853,7 +872,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   2520
          Width           =   870
       End
@@ -878,7 +897,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   53
+         TabIndex        =   54
          Top             =   2070
          Width           =   1320
       End
@@ -903,7 +922,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   51
+         TabIndex        =   52
          Top             =   1605
          Width           =   1320
       End
@@ -928,7 +947,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   1155
          Width           =   870
       End
@@ -953,7 +972,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   705
          Width           =   1275
       End
@@ -979,7 +998,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   2
          Left            =   7065
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   1650
          Width           =   1275
       End
@@ -997,7 +1016,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   1
          Left            =   7065
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   1155
          Width           =   1095
       End
@@ -1015,7 +1034,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   1
          Left            =   7065
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   705
          Width           =   1200
       End
@@ -1033,7 +1052,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   1
          Left            =   180
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   675
          Width           =   780
       End
@@ -1050,7 +1069,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   180
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   1530
          Width           =   1575
       End
@@ -1076,7 +1095,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   0
          Left            =   7065
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   240
          Width           =   1200
       End
@@ -1093,7 +1112,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   255
          Left            =   10530
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   255
          Width           =   870
       End
@@ -1119,7 +1138,7 @@ Begin VB.Form frmManForfaits
          Height          =   255
          Index           =   0
          Left            =   180
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   270
          Width           =   1095
       End
@@ -1140,7 +1159,7 @@ Begin VB.Form frmManForfaits
       Height          =   360
       Index           =   3
       Left            =   13590
-      TabIndex        =   78
+      TabIndex        =   79
       Text            =   "Text3"
       Top             =   10305
       Width           =   1215
@@ -1161,7 +1180,7 @@ Begin VB.Form frmManForfaits
       Height          =   360
       Index           =   2
       Left            =   9155
-      TabIndex        =   70
+      TabIndex        =   71
       Text            =   "Text3"
       Top             =   10305
       Width           =   1575
@@ -1181,7 +1200,7 @@ Begin VB.Form frmManForfaits
       Height          =   360
       Index           =   1
       Left            =   15615
-      TabIndex        =   68
+      TabIndex        =   69
       Text            =   "Text3"
       Top             =   9855
       Width           =   1485
@@ -1201,7 +1220,7 @@ Begin VB.Form frmManForfaits
       Height          =   360
       Index           =   0
       Left            =   9155
-      TabIndex        =   66
+      TabIndex        =   67
       Text            =   "Text3"
       Top             =   9855
       Width           =   1575
@@ -1220,7 +1239,7 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   5385
       Left            =   11340
-      TabIndex        =   36
+      TabIndex        =   37
       Top             =   4320
       Width           =   6070
       Begin VB.CommandButton btnBuscar 
@@ -1239,7 +1258,7 @@ Begin VB.Form frmManForfaits
          Index           =   1
          Left            =   1350
          MaskColor       =   &H00000000&
-         TabIndex        =   65
+         TabIndex        =   66
          ToolTipText     =   "Buscar Coste"
          Top             =   2610
          Visible         =   0   'False
@@ -1262,7 +1281,7 @@ Begin VB.Form frmManForfaits
          Height          =   330
          Index           =   3
          Left            =   1710
-         TabIndex        =   64
+         TabIndex        =   65
          Text            =   "nombre"
          Top             =   2610
          Visible         =   0   'False
@@ -1285,7 +1304,7 @@ Begin VB.Form frmManForfaits
          Index           =   9
          Left            =   810
          MaxLength       =   2
-         TabIndex        =   38
+         TabIndex        =   39
          Tag             =   "Codigo coste|N|N|1|99|forfaits_costes|codcoste|00|S|"
          Text            =   "linea"
          Top             =   2610
@@ -1309,7 +1328,7 @@ Begin VB.Form frmManForfaits
          Index           =   10
          Left            =   3690
          MaxLength       =   9
-         TabIndex        =   39
+         TabIndex        =   40
          Tag             =   "Importes|N|N|||forfaits_costes|importes|###0.0000||"
          Text            =   "impcoste"
          Top             =   2610
@@ -1333,7 +1352,7 @@ Begin VB.Form frmManForfaits
          Index           =   8
          Left            =   360
          MaxLength       =   16
-         TabIndex        =   37
+         TabIndex        =   38
          Tag             =   "Codigo Forfaits|T|N|||forfaits_costes|codforfait||S|"
          Text            =   "codfor"
          Top             =   2610
@@ -1344,7 +1363,7 @@ Begin VB.Form frmManForfaits
          Height          =   390
          Index           =   1
          Left            =   90
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   270
          Width           =   1200
          _ExtentX        =   2117
@@ -1374,7 +1393,7 @@ Begin VB.Form frmManForfaits
          Height          =   2390
          Index           =   1
          Left            =   90
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   675
          Width           =   5910
          _ExtentX        =   10425
@@ -1503,7 +1522,7 @@ Begin VB.Form frmManForfaits
       ForeColor       =   &H00972E0B&
       Height          =   5430
       Left            =   180
-      TabIndex        =   30
+      TabIndex        =   31
       Top             =   4320
       Width           =   11010
       Begin VB.TextBox txtAux 
@@ -1523,7 +1542,7 @@ Begin VB.Form frmManForfaits
          Index           =   3
          Left            =   450
          MaxLength       =   16
-         TabIndex        =   73
+         TabIndex        =   74
          Tag             =   "Linea|N|N|||forfaits_envases|numlinea|00|S|"
          Text            =   "lin"
          Top             =   2565
@@ -1548,7 +1567,7 @@ Begin VB.Form frmManForfaits
          Height          =   330
          Index           =   1
          Left            =   5850
-         TabIndex        =   63
+         TabIndex        =   64
          Text            =   "importe"
          Top             =   2610
          Visible         =   0   'False
@@ -1572,7 +1591,7 @@ Begin VB.Form frmManForfaits
          Height          =   330
          Index           =   0
          Left            =   4815
-         TabIndex        =   62
+         TabIndex        =   63
          Text            =   "precio"
          Top             =   2610
          Visible         =   0   'False
@@ -1594,7 +1613,7 @@ Begin VB.Form frmManForfaits
          Index           =   0
          Left            =   1620
          MaskColor       =   &H00000000&
-         TabIndex        =   61
+         TabIndex        =   62
          ToolTipText     =   "Buscar Envase"
          Top             =   2610
          Visible         =   0   'False
@@ -1617,7 +1636,7 @@ Begin VB.Form frmManForfaits
          Height          =   330
          Index           =   2
          Left            =   1830
-         TabIndex        =   60
+         TabIndex        =   61
          Top             =   2610
          Visible         =   0   'False
          Width           =   1815
@@ -1639,7 +1658,7 @@ Begin VB.Form frmManForfaits
          Index           =   2
          Left            =   3690
          MaxLength       =   9
-         TabIndex        =   33
+         TabIndex        =   34
          Tag             =   "Cantidad|N|N|||forfaits_envases|cantidad|###0.0000||"
          Text            =   "cantidad"
          Top             =   2610
@@ -1662,7 +1681,7 @@ Begin VB.Form frmManForfaits
          Index           =   1
          Left            =   675
          MaxLength       =   16
-         TabIndex        =   32
+         TabIndex        =   33
          Tag             =   "Codigo Articulo|T|N|||forfaits_envases|codartic||N|"
          Text            =   "articuloarticulo"
          Top             =   2565
@@ -1686,7 +1705,7 @@ Begin VB.Form frmManForfaits
          Index           =   0
          Left            =   45
          MaxLength       =   16
-         TabIndex        =   31
+         TabIndex        =   32
          Tag             =   "Codigo Forfaits|T|N|||forfaits_envases|codforfait||S|"
          Text            =   "codforfaits"
          Top             =   2565
@@ -1697,7 +1716,7 @@ Begin VB.Form frmManForfaits
          Height          =   390
          Index           =   0
          Left            =   135
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   225
          Width           =   1200
          _ExtentX        =   2117
@@ -1775,7 +1794,7 @@ Begin VB.Form frmManForfaits
          Height          =   4545
          Index           =   0
          Left            =   135
-         TabIndex        =   35
+         TabIndex        =   36
          Top             =   630
          Width           =   10595
          _ExtentX        =   18680
@@ -1846,7 +1865,7 @@ Begin VB.Form frmManForfaits
       Height          =   555
       Index           =   0
       Left            =   240
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   10035
       Width           =   2865
       Begin VB.Label lblIndicador 
@@ -1863,7 +1882,7 @@ Begin VB.Form frmManForfaits
          EndProperty
          Height          =   240
          Left            =   120
-         TabIndex        =   22
+         TabIndex        =   23
          Top             =   180
          Width           =   2655
       End
@@ -1882,7 +1901,7 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   375
       Left            =   16335
-      TabIndex        =   20
+      TabIndex        =   21
       Top             =   10305
       Width           =   1065
    End
@@ -1899,7 +1918,7 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   375
       Left            =   15135
-      TabIndex        =   19
+      TabIndex        =   20
       Top             =   10290
       Width           =   1065
    End
@@ -1963,7 +1982,7 @@ Begin VB.Form frmManForfaits
       EndProperty
       Height          =   375
       Left            =   16320
-      TabIndex        =   25
+      TabIndex        =   26
       Top             =   10290
       Visible         =   0   'False
       Width           =   1065
@@ -1971,7 +1990,7 @@ Begin VB.Form frmManForfaits
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
       Left            =   16935
-      TabIndex        =   86
+      TabIndex        =   87
       Top             =   180
       Width           =   405
       _ExtentX        =   714
@@ -2002,7 +2021,7 @@ Begin VB.Form frmManForfaits
       Height          =   240
       Index           =   3
       Left            =   11925
-      TabIndex        =   77
+      TabIndex        =   78
       Top             =   10350
       Width           =   1725
    End
@@ -2027,7 +2046,7 @@ Begin VB.Form frmManForfaits
       Height          =   240
       Index           =   2
       Left            =   6675
-      TabIndex        =   71
+      TabIndex        =   72
       Top             =   10350
       Width           =   2445
    End
@@ -2046,7 +2065,7 @@ Begin VB.Form frmManForfaits
       Height          =   240
       Index           =   1
       Left            =   11925
-      TabIndex        =   69
+      TabIndex        =   70
       Top             =   9900
       Width           =   2400
    End
@@ -2065,7 +2084,7 @@ Begin VB.Form frmManForfaits
       Height          =   240
       Index           =   0
       Left            =   6675
-      TabIndex        =   67
+      TabIndex        =   68
       Top             =   9900
       Width           =   2445
    End
@@ -2159,6 +2178,7 @@ Public NuevoCodigo As String
 Public CodigoActual As String
 Public DeConsulta As Boolean
 
+
 ' *** declarar els formularis als que vaig a cridar ***
 Private WithEvents frmB As frmBuscaGrid
 Attribute frmB.VB_VarHelpID = -1
@@ -2236,6 +2256,8 @@ Dim btnPrimero As Byte 'Variable que indica el nº del Botó PrimerRegistro en la 
 Dim indice As Byte 'Index del text1 on es poses els datos retornats des d'atres Formularis de Mtos
 Dim CadB As String
 
+Private BuscaChekc As String
+
 Private Sub btnBuscar_Click(Index As Integer)
     TerminaBloquear
     Select Case Index
@@ -2255,6 +2277,22 @@ Private Sub btnBuscar_Click(Index As Integer)
             PonerFoco txtAux(9)
     End Select
     If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
+End Sub
+
+
+Private Sub Check1_Click(Index As Integer)
+    If Modo = 1 Then
+        'Buscqueda
+        If InStr(1, BuscaChekc, "Check1(" & Index & ")") = 0 Then BuscaChekc = BuscaChekc & "Check1(" & Index & ")|"
+    End If
+End Sub
+
+Private Sub Check1_GotFocus(Index As Integer)
+    PonerFocoChk Me.Check1(Index)
+End Sub
+
+Private Sub Check1_KeyPress(Index As Integer, KeyAscii As Integer)
+    KEYpress KeyAscii
 End Sub
 
 
@@ -2500,6 +2538,7 @@ Private Sub LimpiarCampos()
     Me.Combo1(0).ListIndex = -1
     Me.Combo1(1).ListIndex = -1
     ' *****************************************
+    Me.Check1(0).Value = 0
 
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -2539,6 +2578,7 @@ Dim b As Boolean
     
     Text1(5).Enabled = True
     Combo1(1).Enabled = True
+    BloquearChk Me.Check1(0), (Modo = 0 Or Modo = 2 Or Modo = 5)
     
     
     '=======================================
@@ -2693,7 +2733,7 @@ Dim i As Byte
     b = (Modo = 4 Or Modo = 2) And Not DeConsulta
     For i = 0 To ToolAux.Count - 1
         ToolAux(i).Buttons(1).Enabled = b
-        If b Then bAux = (b And Me.AdoAux(i).Recordset.RecordCount > 0)
+        If b Then bAux = (b And Me.Adoaux(i).Recordset.RecordCount > 0)
         ToolAux(i).Buttons(2).Enabled = bAux
         ToolAux(i).Buttons(3).Enabled = bAux
     Next i
@@ -2717,7 +2757,7 @@ Private Function MontaSQLCarga(Index As Integer, enlaza As Boolean) As String
 '           -> Si no el carreguem sense enllaçar a cap camp
 '--------------------------------------------------------------------
 Dim Sql As String
-Dim Tabla As String
+Dim tabla As String
     
     ' ********* si n'hi han tabs, dona igual si en datagrid o no ***********
     Select Case Index
@@ -3010,8 +3050,18 @@ Dim i As Integer
 End Sub
 
 Private Sub HacerBusqueda()
+Dim CadB1 As String
 
-    CadB = ObtenerBusqueda2(Me, 1)
+    CadB = ObtenerBusqueda2(Me, BuscaChekc, 0)
+    
+    '[Monica]31/05/2019: si estamos buscando solo los que no estand inactivos
+    If DatosADevolverBusqueda <> "" Then
+        If CadB <> "" Then
+            CadB = CadB & " and estainactivo = 0 "
+        Else
+            CadB = "estainactivo = 0"
+        End If
+    End If
     
     If chkVistaPrevia(0) = 1 Then
         MandaBusquedaPrevia CadB
@@ -3029,7 +3079,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 
     Set frmFor = New frmBasico2
     
-    AyudaForfaits frmFor
+    AyudaForfaits frmFor, , CadB
     
     Set frmFor = Nothing
    
@@ -3093,10 +3143,20 @@ Private Sub BotonVerTodos()
     LimpiarCampos 'Neteja els Text1
     CadB = ""
     
+    '[Monica]31/05/2019: solo los que estan activos
+    If DatosADevolverBusqueda <> "" Then CadB = "estainactivo = 0"
+    
+    
     If chkVistaPrevia(0).Value = 1 Then
-        MandaBusquedaPrevia ""
+        '[Monica]31/05/2019: mandamos el cadB
+        MandaBusquedaPrevia CadB '""
     Else
-        CadenaConsulta = "Select * from " & NombreTabla & Ordenacion
+        '[Monica]31/05/2019: añadimos el if con el where con el cadB
+        If CadB <> "" Then
+            CadenaConsulta = "Select * from " & NombreTabla & " where " & CadB & Ordenacion
+        Else
+            CadenaConsulta = "Select * from " & NombreTabla & Ordenacion
+        End If
         PonerCadenaBusqueda
     End If
 End Sub
@@ -3185,7 +3245,7 @@ End Sub
 
 Private Sub PonerCampos()
 Dim i As Integer
-Dim codpobla As String, despobla As String
+Dim codPobla As String, desPobla As String
 Dim CPostal As String, desProvi As String, desPais As String
 
     If Data1.Recordset.EOF Then Exit Sub
@@ -3195,8 +3255,8 @@ Dim CPostal As String, desProvi As String, desPais As String
     'For i = 0 To DataGridAux.Count - 1
     For i = 0 To 1
             CargaGrid i, True
-            If Not AdoAux(i).Recordset.EOF Then _
-                PonerCamposForma2 Me, AdoAux(i), 2, "FrameAux" & i
+            If Not Adoaux(i).Recordset.EOF Then _
+                PonerCamposForma2 Me, Adoaux(i), 2, "FrameAux" & i
     Next i
 
     
@@ -3264,8 +3324,8 @@ Dim V
 '                    ' *** si n'hi han tabs ***
 '                    SituarTab (NumTabMto + 1)
                     
-                    If Not AdoAux(NumTabMto).Recordset.EOF Then
-                        AdoAux(NumTabMto).Recordset.MoveFirst
+                    If Not Adoaux(NumTabMto).Recordset.EOF Then
+                        Adoaux(NumTabMto).Recordset.MoveFirst
                     End If
 
                 Case 2 'modificar llínies
@@ -3275,10 +3335,10 @@ Dim V
 '                    SituarTab (NumTabMto + 1)
                     LLamaLineas NumTabMto, ModoLineas 'ocultar txtAux
                     PonerModo 4
-                    If Not AdoAux(NumTabMto).Recordset.EOF Then
+                    If Not Adoaux(NumTabMto).Recordset.EOF Then
                         ' *** l'Index de Fields es el que canvie de la PK de llínies ***
-                        V = AdoAux(NumTabMto).Recordset.Fields(1) 'el 2 es el nº de llinia
-                        AdoAux(NumTabMto).Recordset.Find (AdoAux(NumTabMto).Recordset.Fields(1).Name & " =" & V)
+                        V = Adoaux(NumTabMto).Recordset.Fields(1) 'el 2 es el nº de llinia
+                        Adoaux(NumTabMto).Recordset.Find (Adoaux(NumTabMto).Recordset.Fields(1).Name & " =" & V)
                         ' ***************************************************************
                     End If
 
@@ -3289,7 +3349,7 @@ Dim V
             PosicionarData
             
             ' *** si n'hi han llínies en grids i camps fora d'estos ***
-            If Not AdoAux(NumTabMto).Recordset.EOF Then
+            If Not Adoaux(NumTabMto).Recordset.EOF Then
                 DataGridAux_RowColChange NumTabMto, 1, 1
             Else
                 LimpiarCamposFrame NumTabMto
@@ -3725,7 +3785,7 @@ Dim Eliminar As Boolean
     NumTabMto = Index
     PonerModo 5, Index
 
-    If AdoAux(Index).Recordset.EOF Then Exit Sub
+    If Adoaux(Index).Recordset.EOF Then Exit Sub
     If Not SepuedeBorrar(Index) Then Exit Sub
     NumTabMto = Index
     Eliminar = False
@@ -3737,31 +3797,31 @@ Dim Eliminar As Boolean
     Select Case Index
         Case 0 'envases
             Sql = "¿Seguro que desea eliminar el Envase?"
-            Sql = Sql & vbCrLf & "Envase: " & AdoAux(Index).Recordset!codArtic
+            Sql = Sql & vbCrLf & "Envase: " & Adoaux(Index).Recordset!CodArtic
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 Sql = "DELETE FROM forfaits_envases "
-                Sql = Sql & vWhere & " AND numlinea= " & AdoAux(Index).Recordset!NumLinea
+                Sql = Sql & vWhere & " AND numlinea= " & Adoaux(Index).Recordset!NumLinea
             End If
             
         Case 1 'coste
             Sql = "¿Seguro que desea eliminar el Coste Confección?"
-            Sql = Sql & vbCrLf & "Nombre: " & AdoAux(Index).Recordset!codCoste
+            Sql = Sql & vbCrLf & "Nombre: " & Adoaux(Index).Recordset!codCoste
             If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
                 Eliminar = True
                 Sql = "DELETE FROM forfaits_costes "
-                Sql = Sql & vWhere & " AND codcoste= " & AdoAux(Index).Recordset!codCoste
+                Sql = Sql & vWhere & " AND codcoste= " & Adoaux(Index).Recordset!codCoste
             End If
             
     End Select
 
     If Eliminar Then
-        NumRegElim = AdoAux(Index).Recordset.AbsolutePosition
+        NumRegElim = Adoaux(Index).Recordset.AbsolutePosition
         TerminaBloquear
         conn.Execute Sql
         ' *** si n'hi han tabs sense datagrid, posar l'If ***
         CargaGrid Index, True
-        If Not SituarDataTrasEliminar(AdoAux(Index), NumRegElim, True) Then
+        If Not SituarDataTrasEliminar(Adoaux(Index), NumRegElim, True) Then
 '            PonerCampos
             
         End If
@@ -3814,7 +3874,7 @@ Dim i As Integer
             
             If Index = 0 Then NumF = SugerirCodigoSiguienteStr(vtabla, "numlinea", vWhere)
 
-            AnyadirLinea DataGridAux(Index), AdoAux(Index)
+            AnyadirLinea DataGridAux(Index), Adoaux(Index)
     
             anc = DataGridAux(Index).Top
             If DataGridAux(Index).Row < 0 Then
@@ -3859,8 +3919,8 @@ Private Sub BotonModificarLinea(Index As Integer)
     Dim i As Integer
     Dim J As Integer
     
-    If AdoAux(Index).Recordset.EOF Then Exit Sub
-    If AdoAux(Index).Recordset.RecordCount < 1 Then Exit Sub
+    If Adoaux(Index).Recordset.EOF Then Exit Sub
+    If Adoaux(Index).Recordset.RecordCount < 1 Then Exit Sub
     
     ModoLineas = 2 'Modificar llínia
        
@@ -4268,14 +4328,14 @@ Private Sub CargaFrame(Index As Integer, enlaza As Boolean)
 Dim tip As Integer
 Dim i As Byte
 
-    AdoAux(Index).ConnectionString = conn
-    AdoAux(Index).RecordSource = MontaSQLCarga(Index, enlaza)
-    AdoAux(Index).CursorType = adOpenDynamic
-    AdoAux(Index).LockType = adLockPessimistic
-    AdoAux(Index).Refresh
+    Adoaux(Index).ConnectionString = conn
+    Adoaux(Index).RecordSource = MontaSQLCarga(Index, enlaza)
+    Adoaux(Index).CursorType = adOpenDynamic
+    Adoaux(Index).LockType = adLockPessimistic
+    Adoaux(Index).Refresh
     
-    If Not AdoAux(Index).Recordset.EOF Then
-        PonerCamposForma2 Me, AdoAux(Index), 2, "FrameAux" & Index
+    If Not Adoaux(Index).Recordset.EOF Then
+        PonerCamposForma2 Me, Adoaux(Index), 2, "FrameAux" & Index
     Else
         ' *** si n'hi han tabs sense datagrids, li pose els valors als camps ***
         NetejaFrameAux "FrameAux3" 'neteja només lo que te TAG
@@ -4309,7 +4369,7 @@ Dim tots As String
 
     tots = MontaSQLCarga(Index, enlaza)
 
-    CargaGridGnral Me.DataGridAux(Index), Me.AdoAux(Index), tots, PrimeraVez
+    CargaGridGnral Me.DataGridAux(Index), Me.Adoaux(Index), tots, PrimeraVez
     
     Select Case Index
         Case 0 'envases
@@ -4401,9 +4461,9 @@ Dim V As Integer
             
             Select Case NumTabMto
                 Case 0
-                    V = AdoAux(NumTabMto).Recordset.Fields(1) 'el 2 es el nº de llinia
+                    V = Adoaux(NumTabMto).Recordset.Fields(1) 'el 2 es el nº de llinia
                 Case 1
-                    V = AdoAux(NumTabMto).Recordset.Fields(2) 'el 2 es el nº de llinia
+                    V = Adoaux(NumTabMto).Recordset.Fields(2) 'el 2 es el nº de llinia
             End Select
             CargaGrid NumTabMto, True
             
@@ -4412,7 +4472,7 @@ Dim V As Integer
 
             ' *** si n'hi han tabs que no tenen datagrid, posar el if ***
             PonerFocoGrid Me.DataGridAux(NumTabMto)
-            AdoAux(NumTabMto).Recordset.Find (AdoAux(NumTabMto).Recordset.Fields(1).Name & " =" & V)
+            Adoaux(NumTabMto).Recordset.Find (Adoaux(NumTabMto).Recordset.Fields(1).Name & " =" & V)
             
             LLamaLineas NumTabMto, 0
             ModificarLinea = True

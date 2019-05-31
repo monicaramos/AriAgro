@@ -1132,7 +1132,7 @@ Dim i As Integer
     Else
         PonerModo 1 'búsqueda
         ' *** posar de groc els camps visibles de la clau primaria de la capçalera ***
-        Text1(0).BackColor = vbYellow 'codclien
+        text1(0).BackColor = vbYellow 'codclien
         ' ****************************************************************************
     End If
 End Sub
@@ -1146,10 +1146,10 @@ Private Sub LimpiarCampos()
     If Err.Number <> 0 Then Err.Clear
 End Sub
 
-Private Sub LimpiarCamposLin(FrameAux As String)
+Private Sub LimpiarCamposLin(frameAux As String)
     On Error Resume Next
     
-    LimpiarLin Me, FrameAux  'Mètode general: Neteja els controls TextBox
+    LimpiarLin Me, frameAux  'Mètode general: Neteja els controls TextBox
     lblIndicador.Caption = ""
 
     If Err.Number <> 0 Then Err.Clear
@@ -1294,7 +1294,7 @@ Private Sub frmB_Selecionado(CadenaDevuelta As String)
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
         CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
@@ -1309,9 +1309,9 @@ Private Sub frmTra_Actualizar(vValor As Integer)
 'Mantenimiento de Colectivos
     
     LimpiarCampos
-    Text1(0).Text = vValor 'codcoope
+    text1(0).Text = vValor 'codcoope
     
-    FormateaCampo Text1(0)
+    FormateaCampo text1(0)
 '    text2(7).Text = RecuperaValor(CadenaSeleccion, 2) 'nomcoope
         Modo = 1
         cmdAceptar_Click
@@ -1328,7 +1328,7 @@ Dim Aux As String
         'Sabem quins camps son els que mos torna
         'Creem una cadena consulta i posem els datos
         CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaSeleccion, 1)
+        Aux = ValorDevueltoFormGrid(text1(0), CadenaSeleccion, 1)
         CadB = Aux
         '   Com la clau principal es única, en posar el sql apuntant
         '   al valor retornat sobre la clau ppal es suficient
@@ -1398,14 +1398,14 @@ Dim i As Integer
     If Modo <> 1 Then
         LimpiarCampos
         PonerModo 1
-        PonerFoco Text1(0) ' <===
-        Text1(0).BackColor = vbLightBlue ' <===
+        PonerFoco text1(0) ' <===
+        text1(0).BackColor = vbLightBlue ' <===
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            Text1(kCampo).Text = ""
-            Text1(kCampo).BackColor = vbLightBlue
-            PonerFoco Text1(kCampo)
+            text1(kCampo).Text = ""
+            text1(kCampo).BackColor = vbLightBlue
+            PonerFoco text1(kCampo)
         End If
     End If
 ' ******************************************************************************
@@ -1422,53 +1422,20 @@ Private Sub HacerBusqueda()
         PonerCadenaBusqueda
     Else
         ' *** foco al 1r camp visible de la capçalera que siga clau primaria ***
-        PonerFoco Text1(0)
+        PonerFoco text1(0)
         ' **********************************************************************
     End If
 End Sub
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-    Dim Cad As String
-        
-'    'Cridem al form
-'    ' **************** arreglar-ho per a vore lo que es desije ****************
-'    ' NOTA: el total d'amples de ParaGrid, ha de sumar 100
-'    cad = ""
-'    cad = cad & ParaGrid(Text1(0), 15, "Cód.")
-'    cad = cad & ParaGrid(Text1(1), 50, "Denominación")
-'    cad = cad & ParaGrid(Text1(2), 15, "Cta.Ventas")
-'    cad = cad & ParaGrid(Text1(3), 15, "Cta.Compras")
-'    If cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = cad
-'        frmB.vtabla = NombreTabla
-'        frmB.vSQL = cadB
-'        HaDevueltoDatos = False
-'        frmB.vDevuelve = "0|1|2|3|" '*** els camps que volen que torne ***
-'        frmB.vTitulo = "Familias de Artículos" ' ***** repasa açò: títol de BuscaGrid *****
-'        frmB.vSelElem = 1
-'
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha posat valors i tenim que es formulari de búsqueda llavors
-'        'tindrem que tancar el form llançant l'event
-'        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-'        Else   'de ha retornat datos, es a decir NO ha retornat datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
 
     Set frmB = New frmBasico2
     
-    AyudaFamilias frmB, Text1(0).Text
+    AyudaFamilias frmB, text1(0).Text, CadB
     
     Set frmB = Nothing
     
-    PonerFoco Text1(0)
-
+    PonerFoco text1(0)
 
 End Sub
 
@@ -1491,7 +1458,7 @@ Dim J As Integer
         If i > 0 Then
             Aux = Mid(DatosADevolverBusqueda, J, i - J)
             J = Val(Aux)
-            Cad = Cad & Text1(J).Text & "|"
+            Cad = Cad & text1(J).Text & "|"
         End If
     Loop Until i = 0
     RaiseEvent DatoSeleccionado(Cad)
@@ -1545,10 +1512,10 @@ Private Sub BotonAnyadir()
     
     ' ****** Valors per defecte a l'afegir, repasar si n'hi ha
     ' codEmpre i quins camps tenen la PK de la capçalera *******
-    Text1(0).Text = SugerirCodigoSiguienteStr("sfamia", "codfamia")
-    FormateaCampo Text1(0)
+    text1(0).Text = SugerirCodigoSiguienteStr("sfamia", "codfamia")
+    FormateaCampo text1(0)
       
-    PonerFoco Text1(0) '*** 1r camp visible que siga PK ***
+    PonerFoco text1(0) '*** 1r camp visible que siga PK ***
     
     ' *** si n'hi han camps de descripció a la capçalera ***
     'PosarDescripcions
@@ -1559,10 +1526,10 @@ Private Sub BotonModificar()
     PonerModo 4
 
     ' *** bloquejar els camps visibles de la clau primaria de la capçalera ***
-    BloquearTxt Text1(0), True
+    BloquearTxt text1(0), True
     
     ' *** foco al 1r camp visible que NO siga clau primaria ***
-    PonerFoco Text1(1)
+    PonerFoco text1(1)
 End Sub
 
 Private Sub BotonEliminar()
@@ -1581,7 +1548,7 @@ Dim Cad As String
 
     ' *************** canviar la pregunta ****************
     Cad = "¿Seguro que desea eliminar la Familia?"
-    Cad = Cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), FormatoCampo(Text1(0)))
+    Cad = Cad & vbCrLf & "Código: " & Format(Data1.Recordset.Fields(0), FormatoCampo(text1(0)))
     Cad = Cad & vbCrLf & "Nombre: " & Data1.Recordset.Fields(1)
     
     If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
@@ -1616,17 +1583,17 @@ Dim CPostal As String, desProvi As String, desPais As String
     
     ' ************* configurar els camps de les descripcions de la capçalera *************
     If vParamAplic.NumeroConta <> 0 Then
-        Text2(2).Text = PonerNombreCuenta(Text1(2), Modo)
-        Text2(3).Text = PonerNombreCuenta(Text1(3), Modo)
-        Text2(4).Text = PonerNombreCuenta(Text1(4), Modo)
-        Text2(5).Text = PonerNombreCuenta(Text1(5), Modo)
-        Text2(6).Text = PonerNombreCuenta(Text1(6), Modo)
-        Text2(7).Text = PonerNombreCuenta(Text1(7), Modo)
+        Text2(2).Text = PonerNombreCuenta(text1(2), Modo)
+        Text2(3).Text = PonerNombreCuenta(text1(3), Modo)
+        Text2(4).Text = PonerNombreCuenta(text1(4), Modo)
+        Text2(5).Text = PonerNombreCuenta(text1(5), Modo)
+        Text2(6).Text = PonerNombreCuenta(text1(6), Modo)
+        Text2(7).Text = PonerNombreCuenta(text1(7), Modo)
         
         If vParamAplic.ContabilidadNueva Then
-            Text2(8).Text = PonerNombreDeCod(Text1(8), "ccoste", "nomccost", "codccost", "T", cConta)
+            Text2(8).Text = PonerNombreDeCod(text1(8), "ccoste", "nomccost", "codccost", "T", cConta)
         Else
-            Text2(8).Text = PonerNombreDeCod(Text1(8), "cabccost", "nomccost", "codccost", "T", cConta)
+            Text2(8).Text = PonerNombreDeCod(text1(8), "cabccost", "nomccost", "codccost", "T", cConta)
         End If
     End If
     ' ********************************************************************************
@@ -1652,14 +1619,14 @@ Dim V
                     PonerCampos
                 End If
                 ' *** foco al primer camp visible de la capçalera ***
-                PonerFoco Text1(0)
+                PonerFoco text1(0)
 
         Case 4  'Modificar
                 TerminaBloquear
                 PonerModo 2
                 PonerCampos
                 ' *** primer camp visible de la capçalera ***
-                PonerFoco Text1(0)
+                PonerFoco text1(0)
         
     End Select
 End Sub
@@ -1678,19 +1645,19 @@ Dim Sql As String
     ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
     If (Modo = 3) Then 'insertar
         'comprobar si existe ya el cod. del campo clave primaria
-        If ExisteCP(Text1(0)) Then b = False
+        If ExisteCP(text1(0)) Then b = False
     End If
     
     If b Then
         If vEmpresa.TieneAnalitica Then 'hay contab. analitica
              If vParamAplic.ContabilidadNueva Then
-                Sql = DevuelveDesdeBDNew(cConta, "ccoste", "codccost", "codccost", Text1(8), "T")
+                Sql = DevuelveDesdeBDNew(cConta, "ccoste", "codccost", "codccost", text1(8), "T")
              Else
-                Sql = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", Text1(8), "T")
+                Sql = DevuelveDesdeBDNew(cConta, "cabccost", "codccost", "codccost", text1(8), "T")
              End If
              If Sql = "" Then
                 MsgBox "No existe el Centro de Coste. Reintroduzca.", vbExclamation
-                PonerFoco Text1(8)
+                PonerFoco text1(8)
                 b = False
              End If
         End If
@@ -1706,7 +1673,7 @@ Private Sub PosicionarData()
 Dim Cad As String, Indicador As String
 
     ' *** canviar-ho per tota la PK de la capçalera, no llevar els () ***
-    Cad = "(codfamia=" & Text1(0).Text & ")"
+    Cad = "(codfamia=" & text1(0).Text & ")"
     
     ' *** gastar SituarData o SituarDataMULTI depenent de si la PK es simple o composta ***
     'If SituarDataMULTI(Data1, cad, Indicador) Then
@@ -1744,14 +1711,14 @@ End Function
 
 Private Sub Text1_GotFocus(Index As Integer)
     kCampo = Index
-    ConseguirFoco Text1(Index), Modo
+    ConseguirFoco text1(Index), Modo
 End Sub
 
 Private Sub Text1_LostFocus(Index As Integer)
 Dim cadMen As String
 Dim Nuevo As Boolean
 
-    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
     
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -1760,17 +1727,17 @@ Dim Nuevo As Boolean
     ' ***************** configurar els LostFocus dels camps de la capçalera *****************
     Select Case Index
         Case 0 'PROVEEDOR
-            PonerFormatoEntero Text1(Index)
+            PonerFormatoEntero text1(Index)
 
         Case 1 'NOMBRE y NOMBRE COMERCIAL
-            Text1(Index).Text = UCase(Text1(Index).Text)
+            text1(Index).Text = UCase(text1(Index).Text)
         
         Case 2, 3, 4, 5, 6, 7 'cuenta contable
-            If Text1(Index).Text = "" Then Exit Sub
+            If text1(Index).Text = "" Then Exit Sub
             If Modo = 3 Then
-                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") 'text1(0).Text)
+                Text2(Index).Text = PonerNombreCuenta(text1(Index), Modo, "") 'text1(0).Text)
             Else
-                Text2(Index).Text = PonerNombreCuenta(Text1(Index), Modo, "") 'Text1(0).Text)
+                Text2(Index).Text = PonerNombreCuenta(text1(Index), Modo, "") 'Text1(0).Text)
             End If
     End Select
         ' ***************************************************************************
@@ -1836,10 +1803,10 @@ Private Sub imgBuscar_Click(Index As Integer)
             Set frmCtas = New frmCtasConta
             frmCtas.NumDigit = 0
             frmCtas.DatosADevolverBusqueda = "0|1|"
-            frmCtas.CodigoActual = Text1(indice).Text
+            frmCtas.CodigoActual = text1(indice).Text
             frmCtas.Show vbModal
             Set frmCtas = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             
             
         Case 6 'centro de coste
@@ -1848,10 +1815,10 @@ Private Sub imgBuscar_Click(Index As Integer)
             indice = 8
             Set frmCCos = New frmCCosConta
             frmCCos.DatosADevolverBusqueda = "0|1|"
-            frmCCos.CodigoActual = Text1(indice).Text
+            frmCCos.CodigoActual = text1(indice).Text
             frmCCos.Show vbModal
             Set frmCCos = Nothing
-            PonerFoco Text1(indice)
+            PonerFoco text1(indice)
             
     End Select
     
@@ -1860,13 +1827,13 @@ End Sub
 
 Private Sub frmCCos_DatoSeleccionado(CadenaSeleccion As String)
 'Centro de Coste de la contabilidad
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
+    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codigo
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
 End Sub
 
 Private Sub frmCtas_DatoSeleccionado(CadenaSeleccion As String)
 'Cuentas contables de la Contabilidad
-    Text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
+    text1(indice).Text = RecuperaValor(CadenaSeleccion, 1) 'codmacta
     Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'des macta
 End Sub
 
@@ -1876,7 +1843,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " codfamia=" & Val(Text1(0).Text)
+    vWhere = vWhere & " codfamia=" & Val(text1(0).Text)
     
     ObtenerWhereCab = vWhere
 End Function

@@ -1284,7 +1284,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 
     Set frmHinve = New frmBasico2
     
-    AyudaHistoricoInventarioPrev frmHinve
+    AyudaHistoricoInventarioPrev frmHinve, , CadB
     
     Set frmHinve = Nothing
     

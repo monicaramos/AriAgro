@@ -540,18 +540,18 @@ Public Function LeerDatos(vCodTrans As String, vNumfactu As String, vFecfactu As
 'OUT: True si lee los datos correctamente
 Dim Rs As ADODB.Recordset
 Dim Mens As String
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ELeer
     
     LeerDatos = False
-    SQL = "SELECT codtrans,numfactu,fecfactu,codforpa,brutofac,totalfac,nomtrans,domtrans,codpobla,pobtrans,protrans,niftrans FROM tcafpc "
-    SQL = SQL & " WHERE codtrans=" & vCodTrans
-    SQL = SQL & " AND numfactu='" & vNumfactu & "'"
-    SQL = SQL & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
+    Sql = "SELECT codtrans,numfactu,fecfactu,codforpa,brutofac,totalfac,nomtrans,domtrans,codpobla,pobtrans,protrans,niftrans FROM tcafpc "
+    Sql = Sql & " WHERE codtrans=" & vCodTrans
+    Sql = Sql & " AND numfactu='" & vNumfactu & "'"
+    Sql = Sql & " AND fecfactu='" & Format(vFecfactu, FormatoFecha) & "'"
 
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     Mens = ""
     If Rs.EOF Then
         LeerDatos = False
@@ -566,7 +566,7 @@ Dim SQL As String
         
         mNomTrans = DBLet(Rs!NomTrans, "T")
         mDomTrans = DBLet(Rs!domtrans, "T")
-        mCodpobla = DBLet(Rs!codPobla, "T")
+        mCodpobla = DBLet(Rs!codpobla, "T")
         mPobTrans = DBLet(Rs!pobtrans, "T")
         mProTrans = DBLet(Rs!protrans, "T")
         mNifTrans = DBLet(Rs!NIFTrans, "T")
@@ -583,12 +583,12 @@ Dim SQL As String
             'leer la cuenta prevista de pagos de la tabla de contabilidad: conta.spagos
             'cuando vamos a borrar una factura porque modificarmos
             If vParamAplic.ContabilidadNueva Then
-                SQL = DevuelveDesdeBDNew(cConta, "pagos", "ctabanc1", "codmacta", CtaTrans, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
+                Sql = DevuelveDesdeBDNew(cConta, "pagos", "ctabanc1", "codmacta", CtaTrans, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
             Else
-                SQL = DevuelveDesdeBDNew(cConta, "spagop", "ctabanc1", "ctaprove", CtaTrans, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
+                Sql = DevuelveDesdeBDNew(cConta, "spagop", "ctabanc1", "ctaprove", CtaTrans, "T", , "numfactu", vNumfactu, "T", "fecfactu", vFecfactu, "F")
             End If
-            If SQL <> "" Then
-                CuentaPrev = SQL
+            If Sql <> "" Then
+                CuentaPrev = Sql
                 LeerDatos = True
             Else
                 LeerDatos = False
@@ -624,7 +624,7 @@ Public Function InsertarEnTesoreria(MenError As String) As Boolean
 Dim b As Boolean
 Dim Rs As ADODB.Recordset
 Dim rsVenci As ADODB.Recordset
-Dim SQL As String
+Dim Sql As String
 Dim cadValuesAux As String 'para insertar en svenci
 Dim CadValues2 As String, CadValuesAux2 As String 'para insertar en conta.scobro
 Dim FecVenci As Date, FecVenci1 As Date
@@ -638,18 +638,18 @@ Dim i As Byte
     CadValues2 = ""
 
     'Obtener el Nº de Vencimientos de la forma de pago
-    SQL = "SELECT numerove, primerve, restoven FROM forpago WHERE codforpa=" & ForPago
+    Sql = "SELECT numerove, primerve, restoven FROM forpago WHERE codforpa=" & ForPago
     Set rsVenci = New ADODB.Recordset
-    rsVenci.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    rsVenci.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Not rsVenci.EOF Then
         If rsVenci!numerove > 0 Then
             'Obtener los dias de pago de la tabla de parametros: spara1
-            SQL = " SELECT  diapago1, diapago2, diapago3,mesnogir "
-            SQL = SQL & " FROM sparam "
-            SQL = SQL & " WHERE codparam=1"
+            Sql = " SELECT  diapago1, diapago2, diapago3,mesnogir "
+            Sql = Sql & " FROM sparam "
+            Sql = Sql & " WHERE codparam=1"
             Set Rs = New ADODB.Recordset
-            Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
             
             If Not Rs.EOF Then
             
@@ -708,10 +708,10 @@ Dim i As Byte
               End If
 
               'David. JUNIO 07.   Los dos textos de grabacion de datos de csb
-              SQL = "Factura num.: " & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
-              CadValues2 = CadValues2 & "'" & DevNombreSQL(SQL) & "',"
-              SQL = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
-              CadValues2 = CadValues2 & "'" & DevNombreSQL(SQL) & "'"
+              Sql = "Factura num.: " & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
+              CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
+              Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
+              CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'"
               If vParamAplic.ContabilidadNueva Then
                   CadValues2 = CadValues2 & "," & DBSet(mNomTrans, "T") & "," & DBSet(mDomTrans, "T") & "," & DBSet(mPobTrans, "T") & "," & DBSet(mCodpobla, "T") & "," & DBSet(mProTrans, "T") & "," & DBSet(mNifTrans, "T") & ",'ES')"
               Else
@@ -756,10 +756,10 @@ Dim i As Byte
                           CadValues2 = CadValues2 & DBSet(mCCC_Iban, "T", "S") & ","
                       End If
                   End If
-                  SQL = "Factura num.: " & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
-                  CadValues2 = CadValues2 & "'" & DevNombreSQL(SQL) & "',"
-                  SQL = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
-                  CadValues2 = CadValues2 & "'" & DevNombreSQL(SQL) & "'"
+                  Sql = "Factura num.: " & NumFactu & "-" & Format(FecFactu, "dd/mm/yyyy")
+                  CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "',"
+                  Sql = "Vto a fecha: " & Format(FecVenci1, "dd/mm/yyyy")
+                  CadValues2 = CadValues2 & "'" & DevNombreSQL(Sql) & "'"
                   If vParamAplic.ContabilidadNueva Then
                         CadValues2 = CadValues2 & "," & DBSet(mNomTrans, "T") & "," & DBSet(mDomTrans, "T") & "," & DBSet(mPobTrans, "T") & "," & DBSet(mCodpobla, "T") & "," & DBSet(mProTrans, "T") & "," & DBSet(mNifTrans, "T") & ",'ES')"
                   Else
@@ -825,23 +825,23 @@ Dim i As Byte
         'SQL = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1) "
         'David. Cuenta bancaria y descripcion textos
         If vParamAplic.ContabilidadNueva Then
-            SQL = "INSERT INTO pagos (numserie, codmacta, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,iban,"
-            SQL = SQL & "text1csb,text2csb,nomprove,domprove,pobprove,cpprove,proprove,nifprove,codpais) "
+            Sql = "INSERT INTO pagos (numserie, codmacta, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,iban,"
+            Sql = Sql & "text1csb,text2csb,nomprove,domprove,pobprove,cpprove,proprove,nifprove,codpais) "
         
         
         Else
-            SQL = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba,"
+            Sql = "INSERT INTO spagop (ctaprove, numfactu, fecfactu, numorden, codforpa, fecefect, impefect, ctabanc1,entidad,oficina,cc,cuentaba,"
             
             '[Monica]22/11/2013:Tema iban
             If vEmpresa.HayNorma19_34Nueva = 1 Then
-                SQL = SQL & "iban,text1csb,text2csb) "
+                Sql = Sql & "iban,text1csb,text2csb) "
             Else
-                SQL = SQL & "text1csb,text2csb) "
+                Sql = Sql & "text1csb,text2csb) "
             End If
         End If
             
-        SQL = SQL & " VALUES " & CadValues2
-        ConnConta.Execute SQL
+        Sql = Sql & " VALUES " & CadValues2
+        ConnConta.Execute Sql
     End If
 
     b = True
@@ -861,23 +861,23 @@ Public Function TraspasoAlbaranesAFactura(cadSQL As String, PorlineaAlbaran As B
 'Desde Albaranes Genera las Facturas correspondientes
 Dim b As Boolean
 Dim MenError As String
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo ETraspasoAlbFac
     TraspasoAlbaranesAFactura = False
     
     
     '[Monica] 11/01/2010 : necesito una temporal para cargar las lineas de factura pq ahora acumulo costes
-    SQL = "DROP TABLE IF EXISTS tmpLineas; "
-    conn.Execute SQL
+    Sql = "DROP TABLE IF EXISTS tmpLineas; "
+    conn.Execute Sql
     
-    SQL = "CREATE  TABLE `tmpLineas` (" 'TEMPORARY
-    SQL = SQL & "`numalbar` int(6), "
-    SQL = SQL & "`numlinea` smallint(2), "
-    SQL = SQL & "`importel` decimal(10,2) "
-    SQL = SQL & " ) ENGINE=InnoDB DEFAULT CHARSET=latin1"
+    Sql = "CREATE  TABLE `tmpLineas` (" 'TEMPORARY
+    Sql = Sql & "`numalbar` int(6), "
+    Sql = Sql & "`numlinea` smallint(2), "
+    Sql = Sql & "`importel` decimal(10,2) "
+    Sql = Sql & " ) ENGINE=InnoDB DEFAULT CHARSET=latin1"
 
-    conn.Execute SQL
+    conn.Execute Sql
     '[Monica]
     
     conn.BeginTrans
@@ -1028,16 +1028,16 @@ End Function
 
 Private Function InsertarCostesPortes(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las lineas de albaran_costes para cada variedad prorrateada con los kilos
-Dim SQL As String, Sql2 As String, Sql3 As String
+Dim Sql As String, Sql2 As String, Sql3 As String
 Dim Rs As ADODB.Recordset, Rs1 As ADODB.Recordset
 Dim NetoTotal As Currency, RestoPortes As Currency, PortesLinea As Currency, PaletsLinea As Currency
 Dim Linea As Currency
 
     On Error GoTo EInsertarAlb
 
-    SQL = "select numalbar, portespag, paletspag from albaran where " & cadSQL
+    Sql = "select albaran.numalbar, portespag, paletspag from albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar where " & cadSQL
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         If vParamAplic.PortesKiloCaja = 0 Then ' caso de que se calculen por kilos
@@ -1068,42 +1068,42 @@ Dim Linea As Currency
                     Sql3 = Sql3 & " and tipogasto = 2"
                     
                     If TotalRegistros(Sql3) = 0 Then
-                        SQL = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                        SQL = SQL & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
-                        SQL = SQL & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
+                        Sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
+                        Sql = Sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
+                        Sql = Sql & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
                     Else
-                        SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
-                        SQL = SQL & ", importes = importes + " & DBSet(PortesLinea, "N")
-                        SQL = SQL & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                        SQL = SQL & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
-                        SQL = SQL & " and tipogasto = 2"
+                        Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
+                        Sql = Sql & ", importes = importes + " & DBSet(PortesLinea, "N")
+                        Sql = Sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
+                        Sql = Sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
+                        Sql = Sql & " and tipogasto = 2"
                     End If
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                 
                 
-                    SQL = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                    SQL = SQL & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
-                    SQL = SQL & DBSet(PortesLinea, "N") & ")"
+                    Sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
+                    Sql = Sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
+                    Sql = Sql & DBSet(PortesLinea, "N") & ")"
                 
-                    conn.Execute SQL
+                    conn.Execute Sql
                 
                     Rs1.MoveNext
                 Wend
                 Set Rs1 = Nothing
                 
                 If RestoPortes <> 0 Then
-                    SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoPortes, "N")
-                    SQL = SQL & ", importes = importes + " & DBSet(RestoPortes, "N")
-                    SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
-                    SQL = SQL & " and tipogasto = 2 "
+                    Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoPortes, "N")
+                    Sql = Sql & ", importes = importes + " & DBSet(RestoPortes, "N")
+                    Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                    Sql = Sql & " and tipogasto = 2 "
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                     
-                    SQL = "update tmpLineas set importel = importel + " & DBSet(RestoPortes, "N")
-                    SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                    Sql = "update tmpLineas set importel = importel + " & DBSet(RestoPortes, "N")
+                    Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                     
                     
                 End If
@@ -1138,23 +1138,23 @@ Dim Linea As Currency
                 Sql3 = Sql3 & " and tipogasto = 2"
                 
                 If TotalRegistros(Sql3) = 0 Then
-                    SQL = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                    SQL = SQL & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
-                    SQL = SQL & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
+                    Sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
+                    Sql = Sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",2," & ValorNulo & ","
+                    Sql = Sql & DBSet(PortesLinea, "N") & "," & DBSet(PortesLinea, "N") & ",1," & ValorNulo & ")"
                 Else
-                    SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
-                    SQL = SQL & ", importes = importes + " & DBSet(PortesLinea, "N")
-                    SQL = SQL & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                    SQL = SQL & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
-                    SQL = SQL & " and tipogasto = 2"
+                    Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(PortesLinea, "N")
+                    Sql = Sql & ", importes = importes + " & DBSet(PortesLinea, "N")
+                    Sql = Sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
+                    Sql = Sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
+                    Sql = Sql & " and tipogasto = 2"
                 End If
-                conn.Execute SQL
+                conn.Execute Sql
                 
-                SQL = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                SQL = SQL & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
-                SQL = SQL & DBSet(PortesLinea, "N") & ")"
+                Sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
+                Sql = Sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
+                Sql = Sql & DBSet(PortesLinea, "N") & ")"
             
-                conn.Execute SQL
+                conn.Execute Sql
                 
                 Rs1.MoveNext
             Wend
@@ -1162,17 +1162,17 @@ Dim Linea As Currency
             Set Rs1 = Nothing
                 
             If RestoPortes <> 0 Then
-                SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoPortes, "N")
-                SQL = SQL & ", importes = importes + " & DBSet(RestoPortes, "N")
-                SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
-                SQL = SQL & " and tipogasto = 2 "
+                Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoPortes, "N")
+                Sql = Sql & ", importes = importes + " & DBSet(RestoPortes, "N")
+                Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                Sql = Sql & " and tipogasto = 2 "
                 
-                conn.Execute SQL
+                conn.Execute Sql
                 
-                SQL = "update tmpLineas set importel = importel + " & DBSet(RestoPortes, "N")
-                SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                Sql = "update tmpLineas set importel = importel + " & DBSet(RestoPortes, "N")
+                Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
                 
-                conn.Execute SQL
+                conn.Execute Sql
             
             End If
         End If ' del caso en el que los calculos de portes se hagan por cajas
@@ -1193,7 +1193,7 @@ End Function
 
 Private Function InsertarCostesPortesLin(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las lineas de albaran_costes para cada variedad prorrateada con los kilos
-Dim SQL As String, Sql2 As String, Sql3 As String
+Dim Sql As String, Sql2 As String, Sql3 As String
 Dim Rs As ADODB.Recordset, Rs1 As ADODB.Recordset
 Dim NetoTotal As Currency, RestoPortes As Currency, PortesLinea As Currency, PaletsLinea As Currency
 Dim Linea As Currency
@@ -1201,12 +1201,12 @@ Dim Linea As Currency
     On Error GoTo EInsertarAlb
 
 
-    SQL = "select numalbar, numlinea, portespag from tmpalbaranes where codusu = " & vUsu.Codigo
-    SQL = SQL & " and portespag <> 0 "
-    SQL = SQL & " order by 1,2"
+    Sql = "select numalbar, numlinea, portespag from tmpalbaranes where codusu = " & vUsu.Codigo
+    Sql = Sql & " and portespag <> 0 "
+    Sql = Sql & " order by 1,2"
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
@@ -1214,26 +1214,26 @@ Dim Linea As Currency
         Sql3 = Sql3 & " and tipogasto = 2"
         
         If TotalRegistros(Sql3) = 0 Then
-            SQL = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-            SQL = SQL & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",2," & ValorNulo & ","
-            SQL = SQL & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
+            Sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
+            Sql = Sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",2," & ValorNulo & ","
+            Sql = Sql & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
         
         Else
-            SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
-            SQL = SQL & ", importes = importes + " & DBSet(Rs!portespag, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Rs!NumLinea, "N")
-            SQL = SQL & " and tipogasto = 2"
+            Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
+            Sql = Sql & ", importes = importes + " & DBSet(Rs!portespag, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Rs!NumLinea, "N")
+            Sql = Sql & " and tipogasto = 2"
         
         End If
         
-        conn.Execute SQL
+        conn.Execute Sql
     
-        SQL = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-        SQL = SQL & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
-        SQL = SQL & DBSet(Rs!portespag, "N") & ")"
+        Sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
+        Sql = Sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
+        Sql = Sql & DBSet(Rs!portespag, "N") & ")"
     
-        conn.Execute SQL
+        conn.Execute Sql
                 
         Rs.MoveNext
     Wend
@@ -1324,7 +1324,7 @@ End Function
 
 Private Function InsertarCabeceraFactu(Optional cadErr As String) As Boolean
 'Inserta la cabecera de la factura en la tabla: scafpc
-Dim SQL As String
+Dim Sql As String
 Dim vTrans As CTransportista
 Dim Nulo2 As String
 Dim Nulo3 As String
@@ -1349,30 +1349,30 @@ Dim Nulo5 As String
     End If
 
     'Insertar en la tabla cabecera de la factura de compras
-    SQL = "INSERT INTO tcafpc (codtrans,numfactu,fecfactu,fecrecep,nomtrans,domtrans,codpobla,pobtrans,protrans,niftrans,teltrans,codforpa,brutofac,dtoppago,dtognral,impppago,impgnral,baseiva1,baseiva2,baseiva3, "
-    SQL = SQL & "tipoiva1,tipoiva2,tipoiva3,porciva1,porciva2,porciva3,impoiva1,impoiva2,impoiva3,retfacpr,trefacpr,totalfac,intconta, tipo) "
-    SQL = SQL & " VALUES (" & Transportista & "," & DBSet(NumFactu, "T") & "," & DBSet(FecFactu, "F") & "," & DBSet(FecRecep, "F") & ","
-    SQL = SQL & DBSet(NombreTrans, "T", "N") & "," & DBSet(DomicilioTrans, "T", "N") & "," & DBSet(CPostalTrans, "T", "N") & "," & DBSet(PoblacionTrans, "T", "N") & "," & DBSet(ProvinciaTrans, "T", "N") & ","
-    SQL = SQL & DBSet(NIFTrans, "T", "N") & "," & DBSet(TelefTrans, "T", "N") & "," & ForPago & ","
-    SQL = SQL & DBSet(BrutoFac, "N", "N") & ","
-    SQL = SQL & DBSet(DtoPPago, "N", "N") & "," & DBSet(DtoGnral, "N", "N") & ","
-    SQL = SQL & DBSet(ImpPPago, "N", "N") & "," & DBSet(ImpGnral, "N", "N") & ","
-    SQL = SQL & DBSet(BaseIVA1, "N", "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
+    Sql = "INSERT INTO tcafpc (codtrans,numfactu,fecfactu,fecrecep,nomtrans,domtrans,codpobla,pobtrans,protrans,niftrans,teltrans,codforpa,brutofac,dtoppago,dtognral,impppago,impgnral,baseiva1,baseiva2,baseiva3, "
+    Sql = Sql & "tipoiva1,tipoiva2,tipoiva3,porciva1,porciva2,porciva3,impoiva1,impoiva2,impoiva3,retfacpr,trefacpr,totalfac,intconta, tipo) "
+    Sql = Sql & " VALUES (" & Transportista & "," & DBSet(NumFactu, "T") & "," & DBSet(FecFactu, "F") & "," & DBSet(FecRecep, "F") & ","
+    Sql = Sql & DBSet(NombreTrans, "T", "N") & "," & DBSet(DomicilioTrans, "T", "N") & "," & DBSet(CPostalTrans, "T", "N") & "," & DBSet(PoblacionTrans, "T", "N") & "," & DBSet(ProvinciaTrans, "T", "N") & ","
+    Sql = Sql & DBSet(NIFTrans, "T", "N") & "," & DBSet(TelefTrans, "T", "N") & "," & ForPago & ","
+    Sql = Sql & DBSet(BrutoFac, "N", "N") & ","
+    Sql = Sql & DBSet(DtoPPago, "N", "N") & "," & DBSet(DtoGnral, "N", "N") & ","
+    Sql = Sql & DBSet(ImpPPago, "N", "N") & "," & DBSet(ImpGnral, "N", "N") & ","
+    Sql = Sql & DBSet(BaseIVA1, "N", "N") & "," & DBSet(BaseIVA2, "N", "S") & "," & DBSet(BaseIVA3, "N", "S") & ","
     Nulo2 = "N"
     Nulo3 = "N"
     '[Monica]09/06/2017: antes era baseiva2 y baseiva 3
     If TipoIVA2 = 0 Then Nulo2 = "S"
     If TipoIVA3 = 0 Then Nulo3 = "S"
-    SQL = SQL & DBSet(TipoIVA1, "N", "N") & "," & DBSet(TipoIVA2, "N", Nulo2) & "," & DBSet(TipoIVA3, "N", Nulo3) & ","
-    SQL = SQL & DBSet(PorceIVA1, "N", "N") & "," & DBSet(PorceIVA2, "N", Nulo2) & "," & DBSet(PorceIVA3, "N", Nulo3) & ","
-    SQL = SQL & DBSet(ImpIVA1, "N", "N") & "," & DBSet(ImpIVA2, "N", Nulo2) & "," & DBSet(ImpIVA3, "N", Nulo3) & ","
+    Sql = Sql & DBSet(TipoIVA1, "N", "N") & "," & DBSet(TipoIVA2, "N", Nulo2) & "," & DBSet(TipoIVA3, "N", Nulo3) & ","
+    Sql = Sql & DBSet(PorceIVA1, "N", "N") & "," & DBSet(PorceIVA2, "N", Nulo2) & "," & DBSet(PorceIVA3, "N", Nulo3) & ","
+    Sql = Sql & DBSet(ImpIVA1, "N", "N") & "," & DBSet(ImpIVA2, "N", Nulo2) & "," & DBSet(ImpIVA3, "N", Nulo3) & ","
     If PorcReten = 0 Then Nulo4 = "S"
     If ImpReten = 0 Then Nulo5 = "S"
-    SQL = SQL & DBSet(PorcReten, "N", Nulo4) & ","
-    SQL = SQL & DBSet(ImpReten, "N", Nulo5) & ","
-    SQL = SQL & DBSet(TotalFac, "N", "N") & ",0," & DBSet(mtipo, "N") & ")"
+    Sql = Sql & DBSet(PorcReten, "N", Nulo4) & ","
+    Sql = Sql & DBSet(ImpReten, "N", Nulo5) & ","
+    Sql = Sql & DBSet(TotalFac, "N", "N") & ",0," & DBSet(mtipo, "N") & ")"
     
-    conn.Execute SQL
+    conn.Execute Sql
     Set vTrans = Nothing
     InsertarCabeceraFactu = True
 
@@ -1390,22 +1390,23 @@ End Function
 
 Private Function InsertarCabAlbaranesFactu(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las cabeceras de los Albaranes de la factura en la tabla: scafpa
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EInsertarAlb
 
-    SQL = "INSERT INTO tcafpa (codtrans,numfactu,fecfactu,numalbar,fechaalb,importel,observa1,observa2,observa3,observa4,observa5) "
-    SQL = SQL & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " numalbar,fechaalb,"
+    Sql = "INSERT INTO tcafpa (codtrans,numfactu,fecfactu,numalbar,fechaalb,importel,observa1,observa2,observa3,observa4,observa5) "
+    Sql = Sql & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " albaran.numalbar,fechaalb,"
     
     Select Case mtipo
         Case 0 ' transportista
-            SQL = SQL & "portespag , " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo
+            Sql = Sql & "portespag , " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo
+            Sql = Sql & " FROM albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar  WHERE " & cadSQL
         Case 1 ' comisionista
-            SQL = SQL & "comisionespag , " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo
+            Sql = Sql & "comisionespag , " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo & ", " & ValorNulo
+            Sql = Sql & " FROM albaran WHERE " & cadSQL
     End Select
     
-    SQL = SQL & " FROM albaran WHERE " & cadSQL
-    conn.Execute SQL
+    conn.Execute Sql
 
     InsertarCabAlbaranesFactu = True
     
@@ -1420,14 +1421,14 @@ End Function
 
 Private Function InsertarCabPortesVFactu(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar los portes de vuelta en la tabla: scafpv
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EInsertarAlb
 
-    SQL = "INSERT INTO tcafpv (codtrans,numfactu,fecfactu,codmacta,importel) "
-    SQL = SQL & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " codmacta,importel "
-    SQL = SQL & " FROM tmpportesvuelta WHERE " & cadSQL
-    conn.Execute SQL
+    Sql = "INSERT INTO tcafpv (codtrans,numfactu,fecfactu,codmacta,importel) "
+    Sql = Sql & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " codmacta,importel "
+    Sql = Sql & " FROM tmpportesvuelta WHERE " & cadSQL
+    conn.Execute Sql
 
     InsertarCabPortesVFactu = True
     
@@ -1444,16 +1445,16 @@ End Function
 
 Private Function InsertarCabPortesVuelta(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las cabeceras de los Albaranes de la factura en la tabla: scafpa
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EInsertarAlb
 
-    SQL = "INSERT INTO tcafpv (codtrans,numfactu,fecfactu,codmacta,importel) "
-    SQL = SQL & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " codmacta,importel "
-    SQL = SQL & " FROM tmpportesv WHERE codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
-    SQL = SQL & " and numfactu = " & DBSet(NumFactu, "T")
-    SQL = SQL & " and fecfactu = " & DBSet(FecFactu, "F")
-    conn.Execute SQL
+    Sql = "INSERT INTO tcafpv (codtrans,numfactu,fecfactu,codmacta,importel) "
+    Sql = Sql & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " codmacta,importel "
+    Sql = Sql & " FROM tmpportesv WHERE codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
+    Sql = Sql & " and numfactu = " & DBSet(NumFactu, "T")
+    Sql = Sql & " and fecfactu = " & DBSet(FecFactu, "F")
+    conn.Execute Sql
 
     InsertarCabPortesVuelta = True
     Exit Function
@@ -1471,14 +1472,14 @@ End Function
 
 Private Function InsertarLineasFactu(cadSQL As String, cadErr As String) As Boolean
 'Insertar las lineas de los Albaranes de la factura en la tabla: slifpc
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EInsertarLin
 
-    SQL = "INSERT INTO tlifpc (codtrans,numfactu,fecfactu,numalbar,numlinea,importel) "
-    SQL = SQL & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " numalbar, numlinea, importel "
+    Sql = "INSERT INTO tlifpc (codtrans,numfactu,fecfactu,numalbar,numlinea,importel) "
+    Sql = Sql & " SELECT " & Transportista & " as codtrans," & DBSet(NumFactu, "T") & " as numfactu," & DBSet(FecFactu, "F") & " as fecfactu," & " numalbar, numlinea, importel "
 '    SQL = SQL & " FROM albaran_costes, albaran WHERE " & cadSQL
-    SQL = SQL & " FROM tmpLineas "
+    Sql = Sql & " FROM tmpLineas "
     
 '    Select Case mtipo
 '        Case 0 'transportista
@@ -1486,7 +1487,7 @@ Dim SQL As String
 '        Case 1 ' Comsionista
 '            SQL = SQL & " and tipogasto = 3 and albaran.numalbar = albaran_costes.numalbar "
 '    End Select
-    conn.Execute SQL
+    conn.Execute Sql
 
     InsertarLineasFactu = True
     
@@ -1535,7 +1536,7 @@ Public Function CalcularDatosFactura(cadwhere As String, Transportista As String
 Dim Rs As ADODB.Recordset
 Dim i As Integer
 
-Dim SQL As String
+Dim Sql As String
 Dim cadAux As String
 
 'Aqui vamos acumulando los totales
@@ -1563,19 +1564,23 @@ Dim vTrans As CTransportista
 
     If Not Insertada Then
         If Not vTrans.EsComisionista = 1 Then
-            SQL = "SELECT sum(portespag) as bruto"
+            Sql = "SELECT sum(portespag) as bruto"
         Else
-            SQL = "SELECT sum(comisionespag) as bruto"
+            Sql = "SELECT sum(comisionespag) as bruto"
         End If
-        SQL = SQL & " FROM albaran "
-        SQL = SQL & " WHERE " & cadwhere
+        If vTrans.EsComisionista Then
+            Sql = Sql & " FROM albaran "
+        Else
+            Sql = Sql & " FROM albaran left join albaran_transporte on albaran.numalbar = albaran_transporte.numalbar "
+        End If
+        Sql = Sql & " WHERE " & cadwhere
     Else
-        SQL = "SELECT sum(importel) as bruto"
-        SQL = SQL & " FROM tcafpa "
-        SQL = SQL & " WHERE " & cadwhere
+        Sql = "SELECT sum(importel) as bruto"
+        Sql = Sql & " FROM tcafpa "
+        Sql = Sql & " WHERE " & cadwhere
     End If
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
     
     TotBruto = 0
     i = 1
@@ -1587,16 +1592,16 @@ Dim vTrans As CTransportista
     Rs.Close
     
     If Not Insertada Then
-        SQL = "select sum(importel) as bruto"
-        SQL = SQL & " from tmpportesv "
-        SQL = SQL & " where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
+        Sql = "select sum(importel) as bruto"
+        Sql = Sql & " from tmpportesv "
+        Sql = Sql & " where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
     Else
-        SQL = "select sum(importel) as bruto"
-        SQL = SQL & " from tcafpv "
-        SQL = SQL & " where " & Replace(cadwhere, "tcafpa", "tcafpv")
+        Sql = "select sum(importel) as bruto"
+        Sql = Sql & " from tcafpv "
+        Sql = Sql & " where " & Replace(cadwhere, "tcafpa", "tcafpv")
     End If
     
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         
         TotBruto = TotBruto + DBLet(Rs!Bruto, "N")
         
@@ -1726,7 +1731,7 @@ Public Function CalcularDatosFacturaSinAlbaran(cadwhere As String, Transportista
 Dim Rs As ADODB.Recordset
 Dim i As Integer
 
-Dim SQL As String
+Dim Sql As String
 Dim cadAux As String
 
 'Aqui vamos acumulando los totales
@@ -1756,12 +1761,12 @@ Dim vTrans As CTransportista
     TotBruto = 0
     i = 1
     
-    SQL = "select sum(importel) as bruto"
-    SQL = SQL & " from tmpportesv "
-    SQL = SQL & " where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
+    Sql = "select sum(importel) as bruto"
+    Sql = Sql & " from tmpportesv "
+    Sql = Sql & " where codusu = " & vUsu.Codigo & " and codtrans = " & DBSet(Transportista, "N")
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
         
         TotBruto = TotBruto + DBLet(Rs!Bruto, "N")
         
@@ -1889,14 +1894,14 @@ End Function
 '#### Laura 15/11/2006 Recuperar facturas ALZIRA
 Public Function MarcarContabilizada(Optional cadErr As String) As Boolean
 'Poner la factura como contabilizada
-Dim SQL As String
+Dim Sql As String
 
     On Error GoTo EActualizar
     MarcarContabilizada = False
     
-    SQL = "UPDATE tcafpc SET intconta=1 "
-    SQL = SQL & " WHERE codtrans=" & Me.Transportista & " AND numfactu=" & DBSet(Me.NumFactu, "T") & " AND fecfactu=" & DBSet(Me.FecFactu, "F")
-    conn.Execute SQL
+    Sql = "UPDATE tcafpc SET intconta=1 "
+    Sql = Sql & " WHERE codtrans=" & Me.Transportista & " AND numfactu=" & DBSet(Me.NumFactu, "T") & " AND fecfactu=" & DBSet(Me.FecFactu, "F")
+    conn.Execute Sql
     
     MarcarContabilizada = True
     Exit Function
@@ -1910,16 +1915,16 @@ End Function
 
 Private Function InsertarCostesComision(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las lineas de albaran_costes para cada variedad prorrateada con los kilos
-Dim SQL As String, Sql2 As String, Sql3 As String
+Dim Sql As String, Sql2 As String, Sql3 As String
 Dim Rs As ADODB.Recordset, Rs1 As ADODB.Recordset
 Dim NetoTotal As Currency, RestoComisiones As Currency, ComisionesLinea As Currency, PaletsLinea As Currency
 Dim Linea As Currency
 
     On Error GoTo EInsertarAlb
 
-    SQL = "select numalbar, comisionespag from albaran where " & cadSQL
+    Sql = "select numalbar, comisionespag from albaran where " & cadSQL
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
          ' caso de que se calculen por kilos
@@ -1951,24 +1956,24 @@ Dim Linea As Currency
                     Sql3 = Sql3 & " and tipogasto = 3"
                     
                     If TotalRegistros(Sql3) = 0 Then
-                        SQL = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-                        SQL = SQL & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",3," & ValorNulo & ","
-                        SQL = SQL & DBSet(ComisionesLinea, "N") & "," & DBSet(ComisionesLinea, "N") & ",1," & ValorNulo & ")"
+                        Sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
+                        Sql = Sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ",3," & ValorNulo & ","
+                        Sql = Sql & DBSet(ComisionesLinea, "N") & "," & DBSet(ComisionesLinea, "N") & ",1," & ValorNulo & ")"
                     Else
-                        SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(ComisionesLinea, "N")
-                        SQL = SQL & ", importes = importes + " & DBSet(ComisionesLinea, "N")
-                        SQL = SQL & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-                        SQL = SQL & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
-                        SQL = SQL & " and tipogasto = 3"
+                        Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(ComisionesLinea, "N")
+                        Sql = Sql & ", importes = importes + " & DBSet(ComisionesLinea, "N")
+                        Sql = Sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
+                        Sql = Sql & " and numlinea = " & DBSet(Rs1!NumLinea, "N")
+                        Sql = Sql & " and tipogasto = 3"
                     End If
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                 
-                    SQL = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-                    SQL = SQL & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
-                    SQL = SQL & DBSet(ComisionesLinea, "N") & ")"
+                    Sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
+                    Sql = Sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs1!NumLinea, "N") & ","
+                    Sql = Sql & DBSet(ComisionesLinea, "N") & ")"
                 
-                    conn.Execute SQL
+                    conn.Execute Sql
                 
                 
                     Rs1.MoveNext
@@ -1976,17 +1981,17 @@ Dim Linea As Currency
                 Set Rs1 = Nothing
                 
                 If RestoComisiones <> 0 Then
-                    SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoComisiones, "N")
-                    SQL = SQL & ", importes = importes + " & DBSet(RestoComisiones, "N")
-                    SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
-                    SQL = SQL & " and tipogasto = 3 "
+                    Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(RestoComisiones, "N")
+                    Sql = Sql & ", importes = importes + " & DBSet(RestoComisiones, "N")
+                    Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                    Sql = Sql & " and tipogasto = 3 "
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                 
-                    SQL = "update tmpLineas set importel = importel + " & DBSet(RestoComisiones, "N")
-                    SQL = SQL & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
+                    Sql = "update tmpLineas set importel = importel + " & DBSet(RestoComisiones, "N")
+                    Sql = Sql & " where numalbar = " & DBLet(Rs!NumAlbar, "N") & " and numlinea = " & DBSet(Linea, "N")
                     
-                    conn.Execute SQL
+                    conn.Execute Sql
                     
                 End If
             End If
@@ -2007,18 +2012,18 @@ End Function
 
 Private Function InsertarCostesComisionLin(cadSQL As String, Optional cadErr As String) As Boolean
 'Insertar las lineas de albaran_costes para cada variedad prorrateada con los kilos
-Dim SQL As String, Sql2 As String, Sql3 As String
+Dim Sql As String, Sql2 As String, Sql3 As String
 Dim Rs As ADODB.Recordset, Rs1 As ADODB.Recordset
 Dim NetoTotal As Currency, RestoComisiones As Currency, ComisionesLinea As Currency, PaletsLinea As Currency
 Dim Linea As Currency
 
     On Error GoTo EInsertarAlb
 
-    SQL = "select numalbar, numlinea, portespag from tmpalbaranes where codusu = " & DBSet(vUsu.Codigo, "N")
-    SQL = SQL & " and portespag <> 0 "
-    SQL = SQL & " order by 1,2"
+    Sql = "select numalbar, numlinea, portespag from tmpalbaranes where codusu = " & DBSet(vUsu.Codigo, "N")
+    Sql = Sql & " and portespag <> 0 "
+    Sql = Sql & " order by 1,2"
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     While Not Rs.EOF
         Sql3 = "select count(*) from albaran_costes where numalbar = " & DBLet(Rs!NumAlbar, "N")
@@ -2026,24 +2031,24 @@ Dim Linea As Currency
         Sql3 = Sql3 & " and tipogasto = 3"
         
         If TotalRegistros(Sql3) = 0 Then
-            SQL = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
-            SQL = SQL & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",3," & ValorNulo & ","
-            SQL = SQL & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
+            Sql = "INSERT INTO albaran_costes(numalbar, numlinea, tipogasto, codcoste, impcoste, importes, unidades, codartic) "
+            Sql = Sql & " VALUES (" & DBLet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ",3," & ValorNulo & ","
+            Sql = Sql & DBSet(Rs!portespag, "N") & "," & DBSet(Rs!portespag, "N") & ",1," & ValorNulo & ")"
         Else
-            SQL = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
-            SQL = SQL & ", importes = importes + " & DBSet(Rs!portespag, "N")
-            SQL = SQL & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
-            SQL = SQL & " and numlinea = " & DBSet(Rs!NumLinea, "N")
-            SQL = SQL & " and tipogasto = 3"
+            Sql = "update albaran_costes set impcoste = impcoste + " & DBSet(Rs!portespag, "N")
+            Sql = Sql & ", importes = importes + " & DBSet(Rs!portespag, "N")
+            Sql = Sql & " where numalbar = " & DBSet(Rs!NumAlbar, "N")
+            Sql = Sql & " and numlinea = " & DBSet(Rs!NumLinea, "N")
+            Sql = Sql & " and tipogasto = 3"
         End If
         
-        conn.Execute SQL
+        conn.Execute Sql
     
-        SQL = "insert into tmpLineas (numalbar, numlinea, importel) values ("
-        SQL = SQL & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
-        SQL = SQL & DBSet(Rs!portespag, "N") & ")"
+        Sql = "insert into tmpLineas (numalbar, numlinea, importel) values ("
+        Sql = Sql & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
+        Sql = Sql & DBSet(Rs!portespag, "N") & ")"
     
-        conn.Execute SQL
+        conn.Execute Sql
     
     
         Rs.MoveNext

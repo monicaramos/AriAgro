@@ -289,7 +289,7 @@ Begin VB.Form frmComDirecciones
       Left            =   4920
       TabIndex        =   8
       Top             =   4995
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdCancelar 
       Cancel          =   -1  'True
@@ -307,7 +307,7 @@ Begin VB.Form frmComDirecciones
       Left            =   6075
       TabIndex        =   9
       Top             =   4995
-      Width           =   1035
+      Width           =   1065
    End
    Begin VB.CommandButton cmdRegresar 
       Caption         =   "&Regresar"
@@ -646,6 +646,10 @@ Private VieneDeBuscar As Boolean
 'Para cuando devuelve dos poblaciones con el mismo codigo Postal. Si viene de pulsar prismatico
 'de busqueda poner el valor de poblacion seleccionado y no volver a recuperar de la Base de Datos
 
+Private WithEvents frmComDirPrev As frmBasico2
+Attribute frmComDirPrev.VB_VarHelpID = -1
+
+
 
 Private Sub cboTipoDirec_KeyPress(KeyAscii As Integer)
     KEYpress KeyAscii
@@ -810,36 +814,21 @@ Dim Aux As String
 End Sub
 
 
-'Private Sub frmCP_DatoSeleccionado(CadenaSeleccion As String)
-''Formulario Mantenimiento C. Postales
-'Dim Indice As Byte
-'Dim devuelve As String
-'
-'    Indice = 3
-'    Text1(Indice).Text = RecuperaValor(CadenaSeleccion, 1) 'CPostal
-'    Text1(Indice + 1).Text = ObtenerPoblacion(Text1(Indice).Text, devuelve) 'poblacion
-'    'provincia
-'    Text1(Indice + 2).Text = devuelve
-'End Sub
+Private Sub frmComDirPrev_DatoSeleccionado(CadenaSeleccion As String)
+Dim CadB As String
+Dim Aux As String
+      
+    If CadenaSeleccion <> "" Then
+        HaDevueltoDatos = True
+        Screen.MousePointer = vbHourglass
+        CadB = "coddirec = " & RecuperaValor(CadenaSeleccion, 1)
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        PonerCadenaBusqueda
+        Screen.MousePointer = vbDefault
+    End If
+    Screen.MousePointer = vbDefault
 
-
-
-'Private Sub imgBuscar_Click()
-'
-'    If Modo = 2 Or Modo = 0 Then Exit Sub
-'
-'    Screen.MousePointer = vbHourglass
-'
-'    Set frmCP = New frmCPostal
-'    frmCP.DatosADevolverBusqueda = "0"
-'    frmCP.Show vbModal
-'    Set frmCP = Nothing
-'    VieneDeBuscar = True
-'
-'    PonerFoco Text1(3)
-'    Screen.MousePointer = vbDefault
-'End Sub
-
+End Sub
 
 Private Sub mnBuscar_Click()
     BotonBuscar
@@ -1167,53 +1156,11 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-'Carga el formulario frmBuscaGrid con los valores correspondientes
-Dim Cad As String
-Dim tabla As String
-Dim Titulo As String
-
-    'Llamamos a al form
-    Cad = ""
-    'Estamos en Modo de Cabeceras
-    'Registro de la tabla de cabeceras: slista
-    Cad = Cad & ParaGrid(Text1(0), 25, "Cod. Direc.")
-'    cad = cad & ParaGrid(cboTipoDirec, 25, "Tipo Direc.")
-    Cad = Cad & "Tipo Dir.|if(tipodire=0,""Albaran"",""Factura"") as tipodire|C||20·"
-    Cad = Cad & ParaGrid(Text1(1), 50, "Nombre")
     
-    tabla = "sdirpr"
-    Titulo = "Direcciones Compras"
-               
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|2|"
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = conAri 'Conexion a BD Ariges
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            If Modo = 5 Then
-'                PonerFoco txtAux(0)
-'            Else
-                PonerFoco Text1(kCampo)
-'            End If
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmComDirPrev = New frmBasico2
+    AyudaDireccionesPrev frmComDirPrev, , CadB
+    Set frmComDirPrev = Nothing
+
 End Sub
 
 

@@ -1617,7 +1617,7 @@ Begin VB.Form frmComEntAlbaranes
             Tag             =   "CPostal|T|N|||scaalp|codpobla||N|"
             Text            =   "Text15"
             Top             =   1005
-            Width           =   810
+            Width           =   1035
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1631,13 +1631,13 @@ Begin VB.Form frmComEntAlbaranes
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   2100
+            Left            =   2370
             MaxLength       =   30
             TabIndex        =   10
             Tag             =   "Población|T|N|||scaalp|pobprove||N|"
             Text            =   "Text1 wwwwwwwwwwwwwwwwwwwwwwaq"
             Top             =   1005
-            Width           =   3495
+            Width           =   3225
          End
          Begin VB.TextBox Text1 
             BeginProperty Font 
@@ -1677,7 +1677,7 @@ Begin VB.Form frmComEntAlbaranes
             Tag             =   "NIF Proveedor|T|N|||scaalp|nifprove||N|"
             Text            =   "123456789"
             Top             =   195
-            Width           =   1350
+            Width           =   1485
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -1713,13 +1713,13 @@ Begin VB.Form frmComEntAlbaranes
             EndProperty
             Height          =   360
             Index           =   12
-            Left            =   7830
+            Left            =   7785
             Locked          =   -1  'True
             MaxLength       =   40
             TabIndex        =   41
             Text            =   "Text2"
             Top             =   195
-            Width           =   5020
+            Width           =   4980
          End
          Begin VB.TextBox Text1 
             Alignment       =   1  'Right Justify
@@ -2851,7 +2851,7 @@ Dim b As Boolean
         'seleccionar todas las lineas de ese albaran para actualizar la fecha (slialp)
         Sql = "SELECT * FROM " & NomTablaLineas & " WHERE numalbar=" & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         
         Set Rs = New ADODB.Recordset
         Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -2874,21 +2874,21 @@ Dim b As Boolean
         'Eliminamos las lineas que tenia ese albaran (slialp) para volverlas a insertar con la fecha nueva
         Sql = "DELETE from slialp WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la cabecera (scaalp)
         Sql = "UPDATE scaalp SET fechaalb = " & DBSet(Text1(1).Text, "F")
         Sql = Sql & " WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la tabla smoval
         Sql = "UPDATE smoval SET fechamov=" & DBSet(Text1(1).Text, "F")
         Sql = Sql & " WHERE document = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechamov=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codigope=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codigope=" & Data1.Recordset!codProve
         Sql = Sql & " AND detamovi='" & CodTipoMov & "'"
         conn.Execute Sql
         
@@ -3147,7 +3147,7 @@ Dim cArt As CArticulo
     'de nº de lote
 '    BloquearTxt Text2(17), (DBLet(Data2.Recordset!numlotes, "T") = "")
     Set cArt = New CArticulo
-    If cArt.LeerDatos(Data2.Recordset!codArtic) Then
+    If cArt.LeerDatos(Data2.Recordset!CodArtic) Then
         BloquearTxt Text2(17), Not cArt.TieneNumLote
     End If
     Set cArt = Nothing
@@ -3232,7 +3232,7 @@ Dim Sql As String
     Sql = "¿Seguro que desea eliminar la línea de Albaran?     "
     Sql = Sql & vbCrLf & "NumLinea:  " & Data2.Recordset!NumLinea & vbCrLf
     Sql = Sql & "Almacen:  " & Format(Data2.Recordset!codAlmac, "000")
-    Sql = Sql & vbCrLf & "Artículo:  " & Data2.Recordset!codArtic & " - " & Data2.Recordset!NomArtic
+    Sql = Sql & vbCrLf & "Artículo:  " & Data2.Recordset!CodArtic & " - " & Data2.Recordset!NomArtic
     
     If MsgBox(Sql, vbQuestion + vbYesNo) = vbYes Then
         'Hay que eliminar
@@ -3298,7 +3298,7 @@ Dim cadLote As String
         Text2(16).Text = devuelve
         'poner el numero de lote
         Text2(17).Text = cadLote
-        CargarDatosArticulo (Data2.Recordset!codArtic)
+        CargarDatosArticulo (Data2.Recordset!CodArtic)
     End If
     If ModificaLineas = 1 Then
         Text2(16).Text = ""
@@ -3927,50 +3927,10 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-''Carga el formulario frmBuscaGrid con los valores correspondientes
-'Dim Cad As String
-'Dim Tabla As String
-'Dim Titulo As String
-'
-'    'Llamamos a al form
-'    '##A mano
-'    Cad = ""
-'    Cad = Cad & ParaGrid(Text1(0), 20, "Nº Albaran")
-'    Cad = Cad & ParaGrid(Text1(1), 15, "Fecha Alb.")
-'    Cad = Cad & ParaGrid(Text1(4), 15, "Provedor")
-'    Cad = Cad & ParaGrid(Text1(5), 50, "Nombre Prov.")
-'    Tabla = NombreTabla
-'    Titulo = "Albaranes"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = Tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|2|"
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = conAri  'Conexión a BD: Ariges
-'
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-''        If HaDevueltoDatos Then
-''''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''''                cmdRegresar_Click
-''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-''            PonerFoco Text1(kCampo)
-'        'End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmAlb = New frmBasico2
     
-    AyudaAlbaranesCompraPrev frmAlb
+    AyudaAlbaranesCompraPrev frmAlb, , CadB
     
     Set frmAlb = Nothing
 
@@ -5283,7 +5243,7 @@ Dim b As Boolean
     '==== Laura: 20/09/2006
     'Inicializar la clase para actualizar precio medio ponderado del Articulo
     Set cArt = New CArticulo
-    If Not cArt.LeerDatos(vCStock.codArtic) Then Exit Function
+    If Not cArt.LeerDatos(vCStock.CodArtic) Then Exit Function
     '====
     
     On Error GoTo EEliminarLinea
@@ -5355,12 +5315,12 @@ On Error Resume Next
     vCStock.Documento = Text1(0).Text
     
     If ModificaLineas = 1 Or (ModificaLineas = 2 And TipoM = "E") Then '1=Insertar, 2=Modificar
-        vCStock.codArtic = txtAux(1).Text
+        vCStock.CodArtic = txtAux(1).Text
         vCStock.codAlmac = CInt(txtAux(0).Text)
         vCStock.Cantidad = CSng(ComprobarCero(txtAux(3).Text))
         vCStock.Importe = CCur(ComprobarCero(txtAux(7).Text))
     Else
-        vCStock.codArtic = Data2.Recordset!codArtic
+        vCStock.CodArtic = Data2.Recordset!CodArtic
         vCStock.codAlmac = CInt(Data2.Recordset!codAlmac)
         vCStock.Cantidad = CSng(Data2.Recordset!Cantidad)
         vCStock.Importe = CCur(Data2.Recordset!ImporteL)
@@ -5402,7 +5362,7 @@ Dim Sql As String
         Set vCStock = New CStock
            If InicializarCStock(vCStock, "S", Rs!NumLinea) Then
                 'estos valores hay q leerlos del RS y no del data2
-                 vCStock.codArtic = Rs!codArtic
+                 vCStock.CodArtic = Rs!CodArtic
                  vCStock.codAlmac = CInt(Rs!codAlmac)
                  vCStock.Cantidad = CSng(Rs!Cantidad)
                  vCStock.Importe = CCur(Rs!ImporteL)
@@ -5411,7 +5371,7 @@ Dim Sql As String
                 '==== Laura 20/09/2006
                 'antes de actualizar el stock reestablecer el precio medio ponderado del articulo
                 Set cArt = New CArticulo
-                If cArt.LeerDatos(vCStock.codArtic) Then
+                If cArt.LeerDatos(vCStock.CodArtic) Then
                     'Laura 19/12/2006: Calcular precio medio pond. con precio con los descuentos (importe/cantidad)
                     'If Not cArt.ReestablecerPrecioMedPon(CCur(vCStock.Cantidad), CCur(RS!precioar)) Then b = False
                     If Not cArt.ReestablecerPrecioMedPon(CCur(vCStock.Cantidad), Round2(vCStock.Importe / vCStock.Cantidad, 4)) Then b = False
@@ -5799,28 +5759,28 @@ End Sub
 
 
 
-Private Sub PonerDatosProveedor(CodProve As String, Optional nifProve As String)
+Private Sub PonerDatosProveedor(codProve As String, Optional nifProve As String)
 Dim vProve As CProveedor
 Dim Observaciones As String
     
     On Error GoTo EPonerDatos
     
-    If CodProve = "" Then
+    If codProve = "" Then
         LimpiarDatosProve
         Exit Sub
     End If
 
     Set vProve = New CProveedor
     'si se ha modificado el proveedor volver a cargar los datos
-    If vProve.Existe(CodProve) Then
-        If vProve.LeerDatos(CodProve) Then
+    If vProve.Existe(codProve) Then
+        If vProve.LeerDatos(codProve) Then
            
             EsDeVarios = vProve.DeVarios
             BloquearDatosProve (EsDeVarios)
         
             If Modo = 4 And EsDeVarios Then 'Modificar
                 'si no se ha modificado el proveedor no hacer nada
-                If CLng(Text1(4).Text) = CLng(Data1.Recordset!CodProve) Then
+                If CLng(Text1(4).Text) = CLng(Data1.Recordset!codProve) Then
                     Set vProve = Nothing
                     Exit Sub
                 End If
@@ -6218,14 +6178,14 @@ Dim b As Boolean
     If Data1.Recordset.EOF Then Exit Function
 
     
-    If (CDate(Text1(4).Text) <> CDate(Data1.Recordset!CodProve)) Then
+    If (CDate(Text1(4).Text) <> CDate(Data1.Recordset!codProve)) Then
     'si ha modificado el codigo de proveedor
         On Error GoTo EComprobar
         
         'seleccionar todas las lineas de ese albaran para actualizar la fecha (slialp)
         Sql = "SELECT * FROM " & NomTablaLineas & " WHERE numalbar=" & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         
         Set Rs = New ADODB.Recordset
         Rs.Open Sql, conn, adOpenForwardOnly, adLockOptimistic, adCmdText
@@ -6248,21 +6208,21 @@ Dim b As Boolean
         'Eliminamos las lineas que tenia ese albaran (slialp) para volverlas a insertar con el proveedor nuevo
         Sql = "DELETE from slialp WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la cabecera (scaalp)
         Sql = "UPDATE scaalp SET codprove = " & DBSet(Text1(4).Text, "N")
         Sql = Sql & " WHERE numalbar = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechaalb=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codprove=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codprove=" & Data1.Recordset!codProve
         conn.Execute Sql
         
         'Actualizamos la fecha en la tabla smoval
         Sql = "UPDATE smoval SET codigope=" & DBSet(Text1(4).Text, "N")
         Sql = Sql & " WHERE document = " & DBSet(Data1.Recordset!NumAlbar, "T")
         Sql = Sql & " AND fechamov=" & DBSet(Data1.Recordset!FechaAlb, "F")
-        Sql = Sql & " AND codigope=" & Data1.Recordset!CodProve
+        Sql = Sql & " AND codigope=" & Data1.Recordset!codProve
         Sql = Sql & " AND detamovi='" & CodTipoMov & "'"
         conn.Execute Sql
         
@@ -6303,15 +6263,15 @@ EComprobar:
 End Function
 
 
-Private Sub CargarDatosArticulo(codArtic As String)
+Private Sub CargarDatosArticulo(CodArtic As String)
 Dim Rs As ADODB.Recordset
 Dim Sql As String
         
     On Error GoTo eCargarDatosArticulo
         
-    If Trim(codArtic) <> "" Then
+    If Trim(CodArtic) <> "" Then
         Sql = "select nomfamia, nomunida from sartic, sfamia, sunida "
-        Sql = Sql & " where sartic.codartic = " & DBSet(codArtic, "T")
+        Sql = Sql & " where sartic.codartic = " & DBSet(CodArtic, "T")
         Sql = Sql & " and sartic.codfamia = sfamia.codfamia and sartic.codunida = sunida.codunida"
         
         Set Rs = New ADODB.Recordset

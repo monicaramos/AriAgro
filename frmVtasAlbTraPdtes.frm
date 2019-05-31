@@ -790,7 +790,7 @@ InicializarVbles
     nHasta = txtNombre(7).Text
     If Not (cDesde = "" And cHasta = "") Then
         'Cadena para seleccion Desde y Hasta
-        Codigo = "{" & tabla & ".codtrans}"
+        Codigo = "{albaran_transporte.codtrans}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHAgencia= """) Then Exit Sub
     End If
@@ -1177,8 +1177,9 @@ On Error GoTo eProcesarCambios
     End If
         
     Sql = "insert into tmpinformes (codusu, codigo1) select " & DBSet(vUsu.Codigo, "N")
-    Sql = Sql & ", albaran.numalbar from albaran, albaran_variedad where albaran.numalbar not in (select numalbar from tcafpa) "
+    Sql = Sql & ", albaran.numalbar from albaran, albaran_variedad, albaran_transporte where albaran.numalbar not in (select numalbar from tcafpa) "
     Sql = Sql & " and albaran.numalbar = albaran_variedad.numalbar "
+    Sql = Sql & " and albaran.numalbar = albaran_transporte.numalbar "
     
     If cadwhere <> "" Then Sql = Sql & " and " & cadwhere
     

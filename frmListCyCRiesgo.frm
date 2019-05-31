@@ -27,6 +27,41 @@ Begin VB.Form frmListCyCRiesgo
       TabIndex        =   6
       Top             =   0
       Width           =   6555
+      Begin VB.CheckBox Check1 
+         Caption         =   "Sólo con riesgo concedido"
+         Enabled         =   0   'False
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Left            =   2565
+         TabIndex        =   19
+         Top             =   3240
+         Width           =   3570
+      End
+      Begin VB.CheckBox Check3 
+         Caption         =   "Datos Seguro"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   240
+         Left            =   495
+         TabIndex        =   16
+         Top             =   3240
+         Width           =   2670
+      End
       Begin VB.TextBox txtCodigo 
          Alignment       =   1  'Right Justify
          BeginProperty Font 
@@ -81,7 +116,7 @@ Begin VB.Form frmListCyCRiesgo
          Height          =   375
          Left            =   5175
          TabIndex        =   5
-         Top             =   3510
+         Top             =   3645
          Width           =   1020
       End
       Begin VB.CommandButton cmdAceptar 
@@ -98,7 +133,7 @@ Begin VB.Form frmListCyCRiesgo
          Height          =   375
          Left            =   4005
          TabIndex        =   4
-         Top             =   3510
+         Top             =   3645
          Width           =   1020
       End
       Begin VB.TextBox txtCodigo 
@@ -180,6 +215,43 @@ Begin VB.Form frmListCyCRiesgo
          Text            =   "Text5"
          Top             =   2745
          Width           =   3585
+      End
+      Begin VB.Label Label4 
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   18
+         Left            =   495
+         TabIndex        =   18
+         Top             =   3870
+         Visible         =   0   'False
+         Width           =   3480
+      End
+      Begin VB.Label Label4 
+         Caption         =   "Cargando tabla temporal"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   8.25
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   17
+         Left            =   495
+         TabIndex        =   17
+         Top             =   3645
+         Visible         =   0   'False
+         Width           =   3480
       End
       Begin VB.Label Label1 
          Caption         =   "Listado de Riesgo"
@@ -409,6 +481,15 @@ Dim cerrar As Boolean
     If cerrar Then Unload Me
 End Sub
 
+
+
+
+Private Sub Check3_Click()
+    Check1.Enabled = (Check3.Value = 1)
+    If (Check3.Value = 0) Then Check1.Value = 0
+End Sub
+
+
 Private Sub cmdAceptar_Click()
 Dim cDesde As String, cHasta As String 'cadena codigo Desde/Hasta
 Dim nDesde As String, nHasta As String 'cadena Descripcion Desde/Hasta
@@ -420,7 +501,7 @@ Dim devuelve As String
 
 Dim Sql As String
 
-InicializarVbles
+    InicializarVbles
     
     If Not DatosOk Then Exit Sub
     
@@ -446,6 +527,35 @@ InicializarVbles
         Codigo = "{" & tabla & ".codclien}"
         TipCod = "N"
         If Not PonerDesdeHasta(cDesde, cHasta, nDesde, nHasta, "pDHCliente= """) Then Exit Sub
+    End If
+    
+    '[Monica]26/04/2019: para el caso del nuevo listado de riesgo por cliente
+    If Check3.Value = 1 Then
+        cadselect = Replace(cadselect, "albaran", "clientes")
+        
+        '[Monica]26/04/2019: para el caso de los datos de seguro
+        If Check1.Value = 1 Then
+            If Not AnyadirAFormula(cadselect, "(not isnull({clientes.nroseguro}) and {clientes.nroseguro}<> """")") Then Exit Sub
+        End If
+        
+        If HayRegistros("clientes", cadselect) Then
+            If CargarTemporal2("clientes", cadselect) Then
+                cadFormula = "{tmpinformes.codusu} = " & vUsu.Codigo
+                
+                cadTitulo = "Listado de Riesgo"
+                indRPT = 124 'Listado de Riesgos
+                If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then Exit Sub
+                
+                cadNombreRPT = nomDocu
+                cadselect = cadFormula
+                If HayRegistros("tmpinformes", cadselect) Then
+                    LlamarImprimir
+                Else
+                    MsgBox "No hay registros para imprimir", vbExclamation
+                End If
+            End If
+        End If
+        Exit Sub
     End If
     
     
@@ -487,6 +597,102 @@ InicializarVbles
         End If
     End If
 End Sub
+
+Private Function CargarTemporal2(tabla As String, vWhere As String) As Boolean
+Dim Sql As String
+Dim Rs As ADODB.Recordset
+Dim RSaux As ADODB.Recordset
+Dim importe1 As Currency
+Dim importe2 As Currency
+Dim Importe3 As Currency
+Dim Importe4 As Currency
+Dim SqlValues As String
+Dim SQLinsert As String
+Dim ImporteRiesgo As Currency
+
+    On Error GoTo eCargaTemporal2
+
+    CargarTemporal2 = False
+
+
+    Label4(17).Caption = "Cargando tabla temporal"
+    Label4(17).visible = True
+    Me.Refresh
+
+    Sql = "delete from tmpinformes where codusu = " & vUsu.Codigo
+    conn.Execute Sql
+
+    SQLinsert = "insert into tmpinformes (codusu, codigo1, nombre1, importe1, importe2, importe3, importe4, importe5) values "
+    SqlValues = ""
+
+    Sql = "select codclien, nomclien, limiteriesgos, codmacta from clientes where (1=1)"
+    If vWhere <> "" Then Sql = Sql & " and " & vWhere
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+
+    While Not Rs.EOF
+        Label4(17).Caption = "Cargando cliente " & DBLet(Rs!CodClien)
+        
+        Label4(18).Caption = "Cobros Pendientes"
+        Me.Refresh
+        ' cobros pendientes
+        Sql = "select sum(impvenci+coalesce(gastos,0)-coalesce(impcobro,0)) from cobros where codmacta = " & DBSet(Rs!Codmacta, "T")
+        Set RSaux = New ADODB.Recordset
+        importe1 = 0
+        RSaux.Open Sql, ConnConta, adOpenForwardOnly, adLockPessimistic, adCmdText
+        If Not RSaux.EOF Then
+            importe1 = DBLet(RSaux.Fields(0).Value, "N")
+        End If
+        
+        Label4(18).Caption = "Facturas no contabilizadas"
+        Me.Refresh
+        ' facturas no contabilizadas
+        Sql = "select sum(totalfac) from factura where codclien = " & DBSet(Rs!CodClien, "N") & " and intconta = 0"
+        importe2 = DevuelveValor(Sql)
+        
+        Label4(18).Caption = "Albaranes sin Factura"
+        Me.Refresh
+        ' albaranes sin factura
+        Sql = "select sum(round(coalesce(pesoneto,0) * if(coalesce(preciodef,0)= 0 ,coalesce(preciopro,0),coalesce(preciodef,0)),2)) from albaran_variedad inner join albaran on albaran_variedad.numalbar = albaran.numalbar "
+        Sql = Sql & " where albaran.codclien = " & DBSet(Rs!CodClien, "N")
+        Sql = Sql & " and not (albaran_variedad.numalbar, albaran_variedad.numlinea) in (select numalbar, numlinealbar from facturas_variedad)"
+        Importe3 = DevuelveValor(Sql)
+        
+        Label4(18).Caption = "Pedidos sin Albaran"
+        Me.Refresh
+        ' pedidos sin albaran
+        Sql = "select sum(round(pesoneto * coalesce(preciopro,0),2)) from pedidos_variedad inner join pedidos on pedidos_variedad.numpedid = pedidos.numpedid "
+        Sql = Sql & " where pedidos.codclien = " & DBSet(Rs!CodClien, "N")
+        Sql = Sql & " and (pedidos.numalbar is null or pedidos.numalbar = 0)"
+        Importe4 = DevuelveValor(Sql)
+        
+        ImporteRiesgo = DBLet(Rs!limiteRiesgos, "N")
+        SqlValues = SqlValues & ",(" & vUsu.Codigo & "," & DBSet(Rs!CodClien, "N") & "," & DBSet(Rs!Nomclien, "T")
+        SqlValues = SqlValues & "," & DBSet(ImporteRiesgo, "N") & "," & DBSet(importe1, "N") & "," & DBSet(importe2, "N")
+        SqlValues = SqlValues & "," & DBSet(Importe3, "N") & "," & DBSet(Importe4, "N") & ")"
+        
+        Rs.MoveNext
+    Wend
+    
+    If SqlValues <> "" Then
+        SqlValues = Mid(SqlValues, 2)
+        
+        conn.Execute SQLinsert & SqlValues
+    End If
+    
+    Set Rs = Nothing
+
+    CargarTemporal2 = True
+    Label4(17).visible = False
+    Label4(18).visible = False
+    
+    Exit Function
+
+eCargaTemporal2:
+    MuestraError Err.Number, "Cargar Tabla Temporal", Err.Description
+End Function
+
 
 Private Sub cmdCancel_Click()
     Unload Me
@@ -876,7 +1082,7 @@ On Error GoTo eCargarTemporal
     Registro = ""
     
     While Not Rs.EOF
-        Registro = Registro & "(" & vUsu.Codigo & "," & DBSet(Rs!Tipo, "N") & "," & DBSet(Rs!codpaise, "N") & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
+        Registro = Registro & "(" & vUsu.Codigo & "," & DBSet(Rs!Tipo, "N") & "," & DBSet(Rs!CodPaise, "N") & "," & DBSet(Rs!NumAlbar, "N") & "," & DBSet(Rs!NumLinea, "N") & ","
         Registro = Registro & DBSet(Rs!FechaAlb, "F") & "," & DBSet(Rs!CodClien, "N") & ","
                 
         If AlbaranFacturado(CCur(Rs!NumAlbar), CCur(Rs!NumLinea)) Then

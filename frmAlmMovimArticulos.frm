@@ -4,7 +4,7 @@ Object = "{67397AA1-7FB1-11D0-B148-00A0C922E820}#6.0#0"; "MSADODC.OCX"
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
 Begin VB.Form frmAlmMovimArticulos 
    BorderStyle     =   3  'Fixed Dialog
-   Caption         =   "Movimientos Articulos"
+   Caption         =   "Movimientos Artículos"
    ClientHeight    =   9555
    ClientLeft      =   45
    ClientTop       =   330
@@ -259,7 +259,7 @@ Begin VB.Form frmAlmMovimArticulos
          Height          =   255
          Left            =   4470
          TabIndex        =   37
-         Top             =   150
+         Top             =   105
          Width           =   1605
       End
       Begin VB.Label Label9 
@@ -276,7 +276,7 @@ Begin VB.Form frmAlmMovimArticulos
          Height          =   255
          Left            =   2820
          TabIndex        =   34
-         Top             =   150
+         Top             =   105
          Width           =   1605
       End
       Begin VB.Label Label8 
@@ -293,7 +293,7 @@ Begin VB.Form frmAlmMovimArticulos
          Height          =   255
          Left            =   1200
          TabIndex        =   33
-         Top             =   150
+         Top             =   105
          Width           =   1605
       End
       Begin VB.Label Label4 
@@ -1043,8 +1043,8 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
-Private WithEvents frmB As frmBuscaGrid 'Form para busquedas (frmBuscaGrid)
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmMovPrev As frmBasico2
+Attribute frmMovPrev.VB_VarHelpID = -1
 Private WithEvents frmF As frmCal 'Calendario de Fechas
 Attribute frmF.VB_VarHelpID = -1
 Private WithEvents frmA As frmManAlmProp 'Almacen Origen/Destino
@@ -1577,28 +1577,33 @@ Private Sub frmArtic_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
-'Formulario para Busqueda
+
+Private Sub frmF_Selec(vFecha As Date)
+'Calendario de Fecha
+    Text1(1).Text = Format(vFecha, "dd/mm/yyyy")
+End Sub
+
+Private Sub frmMovPrev_DatoSeleccionado(CadenaDevuelta As String)
+Dim Aux As String
 Dim CadB As String
 
     If CadenaDevuelta <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-
+        'Sabem quins camps son els que mos torna
+        'Creem una cadena consulta i posem els datos
         CadB = ""
-        CadB = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadenaConsulta = "select codartic from " & NombreTabla & " WHERE " & CadB & " GROUP BY codartic " & Ordenacion
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
+        CadB = Aux
+        '   Com la clau principal es única, en posar el sql apuntant
+        '   al valor retornat sobre la clau ppal es suficient
+        ' *** canviar o llevar el WHERE; repasar codEmpre ***
+        CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
+        'CadenaConsulta = "select * from " & NombreTabla & " WHERE codempre = " & codEmpre & " AND " & CadB & " " & Ordenacion
+        ' **********************************
         PonerCadenaBusqueda
-        
-        CadB = RecuperaValor(CadenaDevuelta, 1)
-        cadSeleccion = "{smoval.codartic}=""" & CadB & """"
+        Screen.MousePointer = vbDefault
     End If
-    Screen.MousePointer = vbDefault
-End Sub
-
-Private Sub frmF_Selec(vFecha As Date)
-'Calendario de Fecha
-    Text1(1).Text = Format(vFecha, "dd/mm/yyyy")
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -2018,45 +2023,15 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim tabla As String
+Dim Tabla As String
 Dim Titulo As String
 
-    'Llamamos a al form
-    Cad = ""
-            
-    Cad = Cad & "Código|smoval.codartic|T||25·Denominacion|sartic.nomartic|T||70·"
-    tabla = "(" & NombreTabla & " LEFT JOIN sartic ON " & NombreTabla & ".codartic=sartic.codartic" & ") "
-    tabla = tabla & " GROUP BY smoval.codartic "
-    Titulo = "Movimientos de Articulos"
+    Set frmMovPrev = New frmBasico2
+    
+    AyudaAlmMovArtPrev frmMovPrev, , CadB
 
-           
-    If Cad <> "" Then
-        Screen.MousePointer = vbHourglass
-        Set frmB = New frmBuscaGrid
-        frmB.vCampos = Cad
-        frmB.vtabla = tabla
-        frmB.vSQL = CadB
-        HaDevueltoDatos = False
-        '###A mano
-        frmB.vDevuelve = "0|1|"
-        frmB.vTitulo = Titulo
-        frmB.vSelElem = 0
-'        frmB.vConexionGrid = conAri 'Conexion a BD Ariges
-'        frmB.vBuscaPrevia = chkVistaPrevia
-        '#
-        frmB.Show vbModal
-        Set frmB = Nothing
-        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-        'tendremos que cerrar el form lanzando el evento
-        If HaDevueltoDatos Then
-''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-''                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-            PonerFoco Text1(kCampo)
-            Toolbar1.Buttons(5).Enabled = True 'Imprimir
-        End If
-    End If
-    Screen.MousePointer = vbDefault
+    Set frmMovPrev = Nothing
+
 End Sub
 
 

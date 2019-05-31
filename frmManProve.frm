@@ -1416,7 +1416,7 @@ Begin VB.Form frmManProve
          Tag             =   "Tipo de Proveedor|N|N|||proveedor|tipprove||N|"
          Text            =   "Combo1"
          Top             =   585
-         Width           =   1575
+         Width           =   2115
       End
       Begin VB.TextBox Text2 
          BackColor       =   &H80000018&
@@ -2317,8 +2317,8 @@ Dim i As Integer
     Next i
     
     'carga IMAGES de mail
-    For i = 0 To Me.imgMail.Count - 1
-        Me.imgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
+    For i = 0 To Me.ImgMail.Count - 1
+        Me.ImgMail(i).Picture = frmPpal.imgListImages16.ListImages(2).Picture
     Next i
     
     'IMAGES para zoom
@@ -2847,7 +2847,7 @@ Private Sub MandaBusquedaPrevia(CadB As String)
 
     Set frmPro = New frmBasico2
     
-    AyudaProveedoresPrev frmPro
+    AyudaProveedoresPrev frmPro, , CadB
     
     Set frmPro = Nothing
 

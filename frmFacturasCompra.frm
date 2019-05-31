@@ -2400,7 +2400,7 @@ Dim PulsadoF2 As Boolean
 Private BuscaChekc As String
 
 Dim VarieAnt As String
-
+Dim CajasLinAnt As Currency
 
 Private Sub btnBuscar_Click(Index As Integer)
     TerminaBloquear
@@ -2730,7 +2730,8 @@ Dim J As Byte
             Me.DataGrid1.Enabled = False
 
             VarieAnt = txtAux(5).Text
-       
+            CajasLinAnt = ComprobarCero(txtAux(6).Text)
+      
     End Select
     
 eModificarLinea:
@@ -3440,7 +3441,7 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim Tabla As String
+Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
 '    'Llamamos a al form
@@ -3774,7 +3775,7 @@ Dim Codmacta As String
         'comprobamos que no exista ya la factura en la tabla facturas de ariagro
         Sql = ""
         '[Monica]04/03/2013: antes no me miraba la fecha de factura, estaba comentado
-        Sql = DevuelveDesdeBDNew(cAgro, "facturascom", "numfactu", "codprove", Text1(3).Text, "N", , "numfactu", Text1(0).Text, "N", "fecfactu", Text1(1).Text, "F")
+        Sql = DevuelveDesdeBDNew(cAgro, "facturascom", "numfactu", "codprove", Text1(3).Text, "N", , "numfactu", Text1(0).Text, "T", "fecfactu", Text1(1).Text, "F")
         If Sql <> "" Then
             MsgBox "Factura ya existente. Reintroduzca.", vbExclamation
             PonerFoco Text1(0)
@@ -3789,9 +3790,9 @@ Dim Codmacta As String
             Sql = ""
             '[Monica]04/03/2013: en la contabilidad hemos de mirar el año de la factura, no la fecha
             If vParamAplic.ContabilidadNueva Then
-                Sql = DevuelveDesdeBDNew(cConta, "factpro", "numfactu", "codmacta", Codmacta, "T", , "numfactu", Text1(0).Text, "N", "anofactu", Year(CDate(Text1(1).Text)), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "factpro", "numfactu", "codmacta", Codmacta, "T", , "numfactu", Text1(0).Text, "T", "anofactu", Year(CDate(Text1(1).Text)), "N")
             Else
-                Sql = DevuelveDesdeBDNew(cConta, "cabfactprov", "numfacpr", "codmacta", Codmacta, "T", , "codfacpr", Text1(0).Text, "N", "anofacpr", Year(CDate(Text1(1).Text)), "N")
+                Sql = DevuelveDesdeBDNew(cConta, "cabfactprov", "numfacpr", "codmacta", Codmacta, "T", , "codfacpr", Text1(0).Text, "T", "anofacpr", Year(CDate(Text1(1).Text)), "N")
             End If
             If Sql <> "" Then
                 MsgBox "Factura existente en contabilidad. Reintroduzca.", vbExclamation
@@ -3881,7 +3882,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
         End If
     End If
     
-    If BloqueaRegistro(NombreTabla, "numfactu = " & Data1.Recordset!NumFactu) Then
+    If BloqueaRegistro(NombreTabla, "numfactu = " & DBSet(Data1.Recordset!NumFactu, "T")) Then
 '    If BLOQUEADesdeFormulario2(Me, Data1, 1) Then
         Select Case Button.Index
             Case 1
@@ -4181,7 +4182,14 @@ Dim Variedad As String
                 Text2(1).Text = ""
             End If
         
+        
+        Case 6 ' cajas
+            If txtAux(Index).Text <> "" Then PonerFormatoEntero txtAux(Index)
             
+            '[Monica]11/12/2018: solo en el caso de que me modifiquen las cajas o inserten linea
+            If (ModificaLineas = 2 And CajasLinAnt <> ComprobarCero(txtAux(Index))) Or ModificaLineas = 1 Then
+                CalculoPesoNeto
+            End If
         Case 11, 12 'peso bruto, peso neto
             PonerFormatoEntero txtAux(Index)
         
@@ -4211,6 +4219,35 @@ Dim Variedad As String
     
 End Sub
 
+Private Sub CalculoPesoNeto()
+Dim Sql As String
+Dim Kilos1 As Currency
+Dim Kilos2 As Currency
+Dim Rs As ADODB.Recordset
+
+    Sql = "select kiloscaj, kilosuni  from forfaits where codforfait = " & DBSet(txtAux(5).Text, "T")
+    
+    Set Rs = New ADODB.Recordset
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Kilos1 = 0
+    Kilos2 = 0
+    If Not Rs.EOF Then
+        Kilos1 = DBLet(Rs!kiloscaj, "N")
+        Kilos2 = DBLet(Rs!KilosUni, "N")
+    End If
+    
+    'si hay cajas
+    If ComprobarCero(txtAux(6).Text) <> 0 Then
+        If Kilos1 <> 0 Then
+            txtAux(11).Text = Round2(Kilos1 * ImporteSinFormato(txtAux(6).Text), 0)
+            PonerFormatoEntero txtAux(11)
+            txtAux(12).Text = txtAux(11).Text
+        End If
+    End If
+    ' si hay unidades
+    ' No hacemos nada pq en el formulario no se pide
+
+End Sub
 
 
 
@@ -4986,19 +5023,19 @@ Dim CADENA As String
                 
                     conn.CommitTrans
                     
-                    V = Adoaux(0).Recordset.Fields(3) 'el 2 es el nº de llinia
+                    V = Adoaux(1).Recordset.Fields(3) 'el 2 es el nº de llinia
                 
                     CalcularDatosFactura
                     ModificaLineas = 0
         
 '                    V = AdoAux(0).Recordset.Fields(3) 'el 2 es el nº de llinia
-                    CargaGrid DataGrid1, Adoaux(0), True
+                    CargaGrid DataGrid1, Adoaux(1), True
     
                     ' *** si n'hi han tabs ***
                     SSTab1.Tab = 0
     
                     DataGrid1.SetFocus
-                    Adoaux(0).Recordset.Find (Adoaux(0).Recordset.Fields(3).Name & " =" & V)
+                    Adoaux(1).Recordset.Find (Adoaux(1).Recordset.Fields(3).Name & " =" & V)
     
                     LLamaLineas ModificaLineas, 0, "DataGrid1"
                End If

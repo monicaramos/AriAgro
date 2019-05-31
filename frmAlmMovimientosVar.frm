@@ -2118,17 +2118,17 @@ Private Sub txtAux_LostFocus(Index As Integer)
     End If
 End Sub
 
-Private Sub PonerPrecio(Articulo As String, Cliente As String)
+Private Sub PonerPrecio(articulo As String, Cliente As String)
 Dim Sql As String
 Dim Precio As Currency
 
     On Error Resume Next
 
     Sql = "select precioar from clientes_precio where codclien =  " & DBSet(Cliente, "N")
-    Sql = Sql & " and codartic = " & DBSet(Articulo, "T")
+    Sql = Sql & " and codartic = " & DBSet(articulo, "T")
     
     If TotalRegistrosConsulta(Sql) = 0 Then
-        Sql = "select preciove from sartic where codartic = " & DBSet(Articulo, "T")
+        Sql = "select preciove from sartic where codartic = " & DBSet(articulo, "T")
     End If
     
     Precio = DevuelveValor(Sql)
@@ -2893,69 +2893,13 @@ End Function
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-''Carga el formulario frmBuscaGrid con los valores correspondientes
-'Dim Cad As String
-'Dim Tabla As String
-'Dim Titulo As String
-'
-'    'Llamamos a al form
-'    Cad = ""
-'    'Registro de la tabla de cabeceras: scaser
-'    Cad = Cad & ParaGrid(Text1(0), 15, "Nº Mov.")
-'
-'    If NombreTabla = "scaser" Then
-'        Cad = Cad & "Tipo|if(scaser.clisoc=0,'Socio','Cliente')|N||10·"
-'    Else
-'        Cad = Cad & "Tipo|if(schser.clisoc=0,'Socio','Cliente')|N||10·"
-'    End If
-'
-'    Cad = Cad & ParaGrid(Text1(1), 20, "Fecha")
-'    Cad = Cad & "Almacen|salmpr.codalmac|N||10·"
-'    Cad = Cad & "Desc. Alm. Orig|nomalmac|T||40·"
-'
-'    Tabla = "(" & NombreTabla & " LEFT JOIN salmpr ON " & NombreTabla & ".codalmac=salmpr.codalmac" & ") "
-'    Titulo = Me.Caption
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = Tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''**quitado
-''        frmB.vConexionGrid = cAgro 'Conexion a BD Ariges
-'
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'''            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'''                cmdRegresar_Click
-''        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-''            If Modo = 5 Then
-''                PonerFoco txtAux(0)
-''            Else
-'                PonerFoco Text1(kCampo)
-''            End If
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmMovVar = New frmBasico2
     
-    AyudaMovimientosVariosPrev frmMovVar, , , EsHistorico
+    AyudaMovimientosVariosPrev frmMovVar, , CadB, EsHistorico
     
     Set frmMovVar = Nothing
     
-
 
 End Sub
 

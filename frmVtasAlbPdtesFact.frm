@@ -25,9 +25,9 @@ Begin VB.Form frmVtasAlbPdtesFact
    End
    Begin VB.Frame FrameCobros 
       Height          =   9120
-      Left            =   120
+      Left            =   0
       TabIndex        =   12
-      Top             =   45
+      Top             =   0
       Width           =   7815
       Begin VB.ComboBox Combo1 
          BeginProperty Font 
@@ -1366,9 +1366,9 @@ On Error GoTo eProcesarCambios
         
         Sql = "select count(*) from tmpinformes where codusu = " & vUsu.Codigo
         Nregs = TotalRegistros(Sql)
-        Me.pb1.visible = True
+        Me.Pb1.visible = True
         
-        CargarProgresNew Me.pb1, Nregs
+        CargarProgresNew Me.Pb1, Nregs
         DoEvents
         
         ' cargamos el importe de los albaranes facturados posteriormente a la fecha
@@ -1378,7 +1378,7 @@ On Error GoTo eProcesarCambios
         
         While Not Rs.EOF
         
-            IncrementarProgresNew Me.pb1, 1
+            IncrementarProgresNew Me.Pb1, 1
             DoEvents
             
             SQL1 = "select sum(impornet) from facturas_variedad where numalbar = " & DBSet(Rs!Codigo1, "N") & " and numlinealbar = " & DBSet(Rs!campo1, "N")
@@ -1409,7 +1409,7 @@ On Error GoTo eProcesarCambios
             SQL1 = "select round((if(preciodef is null or preciodef = 0, if(preciopro is null or preciopro = 0, 0, preciopro),preciodef)) * pesoneto, 2) from albaran_variedad where numalbar = " & DBSet(Rs!Codigo1, "N") & " and numlinea= " & DBSet(Rs!campo1, "N")
             Importe = DevuelveValor(SQL1)
             
-            IncrementarProgresNew Me.pb1, 1
+            IncrementarProgresNew Me.Pb1, 1
             DoEvents
     
             
@@ -1427,12 +1427,12 @@ On Error GoTo eProcesarCambios
         
     End If
         
-    Me.pb1.visible = False
+    Me.Pb1.visible = False
         
     ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.Codigo)
 
 eProcesarCambios:
-    Me.pb1.visible = False
+    Me.Pb1.visible = False
     If Err.Number <> 0 Then
         ProcesarCambios = False
     End If

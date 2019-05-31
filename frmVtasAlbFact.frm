@@ -28,6 +28,147 @@ Begin VB.Form frmVtasAlbFact
       TabIndex        =   12
       Top             =   45
       Width           =   7725
+      Begin VB.Frame FrameFechaFra 
+         BorderStyle     =   0  'None
+         Caption         =   "Frame1"
+         Enabled         =   0   'False
+         Height          =   1500
+         Left            =   4050
+         TabIndex        =   38
+         Top             =   1935
+         Width           =   3525
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   9
+            Left            =   1860
+            MaxLength       =   10
+            TabIndex        =   42
+            Tag             =   "Código Postal|T|S|||clientes|codposta|||"
+            Top             =   945
+            Width           =   1350
+         End
+         Begin VB.TextBox txtCodigo 
+            Alignment       =   1  'Right Justify
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   8
+            Left            =   1875
+            MaxLength       =   10
+            TabIndex        =   39
+            Tag             =   "Código Postal|T|S|||clientes|codposta|||"
+            Top             =   525
+            Width           =   1350
+         End
+         Begin VB.Image imgFec 
+            Height          =   240
+            Index           =   1
+            Left            =   1545
+            Picture         =   "frmVtasAlbFact.frx":000C
+            ToolTipText     =   "Buscar fecha"
+            Top             =   945
+            Width           =   240
+         End
+         Begin VB.Label Label4 
+            Caption         =   "Hasta"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   9
+            Left            =   825
+            TabIndex        =   43
+            Top             =   945
+            Width           =   690
+         End
+         Begin VB.Image imgFec 
+            Height          =   240
+            Index           =   0
+            Left            =   1560
+            Picture         =   "frmVtasAlbFact.frx":0097
+            ToolTipText     =   "Buscar fecha"
+            Top             =   525
+            Width           =   240
+         End
+         Begin VB.Label Label4 
+            Caption         =   "Desde"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   195
+            Index           =   8
+            Left            =   825
+            TabIndex        =   41
+            Top             =   525
+            Width           =   645
+         End
+         Begin VB.Label Label4 
+            Caption         =   "Fecha Factura"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ForeColor       =   &H00972E0B&
+            Height          =   255
+            Index           =   7
+            Left            =   225
+            TabIndex        =   40
+            Top             =   225
+            Width           =   1815
+         End
+      End
+      Begin VB.CheckBox Check1 
+         Caption         =   "Detallado por Factura"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   195
+         Index           =   2
+         Left            =   585
+         TabIndex        =   37
+         Top             =   7785
+         Width           =   3120
+      End
       Begin VB.CheckBox Check1 
          Caption         =   "Detalle Calibres"
          BeginProperty Font 
@@ -440,7 +581,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   13
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":000C
+         MouseIcon       =   "frmVtasAlbFact.frx":0122
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar mercado"
          Top             =   6315
@@ -450,7 +591,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   12
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":015E
+         MouseIcon       =   "frmVtasAlbFact.frx":0274
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar mercado"
          Top             =   5895
@@ -571,7 +712,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   5
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":02B0
+         MouseIcon       =   "frmVtasAlbFact.frx":03C6
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar clase"
          Top             =   5160
@@ -581,7 +722,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   4
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":0402
+         MouseIcon       =   "frmVtasAlbFact.frx":0518
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar clase"
          Top             =   4740
@@ -702,7 +843,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   2
          Left            =   1635
-         Picture         =   "frmVtasAlbFact.frx":0554
+         Picture         =   "frmVtasAlbFact.frx":066A
          ToolTipText     =   "Buscar fecha"
          Top             =   2505
          Width           =   240
@@ -711,7 +852,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   3
          Left            =   1635
-         Picture         =   "frmVtasAlbFact.frx":05DF
+         Picture         =   "frmVtasAlbFact.frx":06F5
          ToolTipText     =   "Buscar fecha"
          Top             =   2910
          Width           =   240
@@ -776,7 +917,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   0
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":066A
+         MouseIcon       =   "frmVtasAlbFact.frx":0780
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   3585
@@ -786,7 +927,7 @@ Begin VB.Form frmVtasAlbFact
          Height          =   240
          Index           =   1
          Left            =   1635
-         MouseIcon       =   "frmVtasAlbFact.frx":07BC
+         MouseIcon       =   "frmVtasAlbFact.frx":08D2
          MousePointer    =   4  'Icon
          ToolTipText     =   "Buscar cliente"
          Top             =   4005
@@ -865,6 +1006,23 @@ Dim cerrar As Boolean
     If cerrar Then Unload Me
 End Sub
 
+Private Sub Check1_Click(Index As Integer)
+    FrameFechaFra.Enabled = (Check1(2).Value = 1)
+    If (Check1(2).Value = 0) Then
+        txtCodigo(8).Text = ""
+        txtCodigo(9).Text = ""
+        Check1(0).Enabled = True
+        Check1(1).Enabled = True
+    Else
+        Check1(0).Enabled = False
+        Check1(1).Enabled = False
+        Check1(0).Value = 0
+        Check1(1).Value = 0
+    End If
+    
+End Sub
+
+
 Private Sub frmCla_DatoSeleccionado(CadenaSeleccion As String)
 'Form de Consulta de clases
     txtCodigo(indCodigo).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000")
@@ -872,7 +1030,7 @@ Private Sub frmCla_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmMensCate_DatoSeleccionado(CadenaSeleccion As String)
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 
     If SeleccionadosTodos Then
@@ -882,50 +1040,50 @@ Dim Sql2 As String
         If CadenaSeleccion <> "" Then
             '[Monica]17/06/2013: añadida la categoria
             If CategoriaValorNulo Then
-                SQL = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in (" & CadenaSeleccion & "))"
+                Sql = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in (" & CadenaSeleccion & "))"
                 Sql2 = " (isnull({albaran_variedad.categori}) or {albaran_variedad.categori} ='' or {albaran_variedad.categori} in [" & CadenaSeleccion & "])"
             Else
-                SQL = " {albaran_variedad.categori} in (" & CadenaSeleccion & ")"
+                Sql = " {albaran_variedad.categori} in (" & CadenaSeleccion & ")"
                 Sql2 = " {albaran_variedad.categori} in [" & CadenaSeleccion & "]"
             End If
         Else
             If CategoriaValorNulo Then
-                SQL = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='') "
+                Sql = " ({albaran_variedad.categori} is null or {albaran_variedad.categori} ='') "
                 Sql2 = " (isnull({albaran_variedad.categori}) or {albaran_variedad.categori} ='') "
             Else
-                SQL = " {albaran_variedad.categori} = '-1' "
+                Sql = " {albaran_variedad.categori} = '-1' "
             End If
         End If
-        If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
+        If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
         If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
     End If
 End Sub
 
 Private Sub frmMensMercado_DatoSeleccionado(CadenaSeleccion As String)
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        SQL = " {albaran.codtimer} in (" & CadenaSeleccion & ")"
+        Sql = " {albaran.codtimer} in (" & CadenaSeleccion & ")"
         Sql2 = " {albaran.codtimer} in [" & CadenaSeleccion & "]"
     Else
-        SQL = " {albaran.codtimer} = -1 "
+        Sql = " {albaran.codtimer} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 End Sub
 
 Private Sub frmMensVariedad_DatoSeleccionado(CadenaSeleccion As String)
-Dim SQL As String
+Dim Sql As String
 Dim Sql2 As String
 
     If CadenaSeleccion <> "" Then
-        SQL = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
+        Sql = " {variedades.codvarie} in (" & CadenaSeleccion & ")"
         Sql2 = " {variedades.codvarie} in [" & CadenaSeleccion & "]"
     Else
-        SQL = " {variedades.codvarie} = -1 "
+        Sql = " {variedades.codvarie} = -1 "
     End If
-    If Not AnyadirAFormula(cadselect, SQL) Then Exit Sub
+    If Not AnyadirAFormula(cadselect, Sql) Then Exit Sub
     If Not AnyadirAFormula(cadFormula, Sql2) Then Exit Sub
 
 End Sub
@@ -995,6 +1153,19 @@ Dim vSqlMercado As String
         Codigo = "{" & tabla & ".fechaalb}"
         TipCod = "F"
         If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
+    End If
+    
+    '[Monica]28/05/2019: fecha de factura
+    If Check1(2).Value = 1 Then
+        'D/H Fecha factura
+        cDesde = Trim(txtCodigo(8).Text)
+        cHasta = Trim(txtCodigo(9).Text)
+        If Not (cDesde = "" And cHasta = "") Then
+            'Cadena para seleccion Desde y Hasta
+            Codigo = "{facturas_variedad.fecfactu}"
+            TipCod = "F"
+            If Not PonerDesdeHasta(cDesde, cHasta, "", "", "pDHFecha= """) Then Exit Sub
+        End If
     End If
     
     'D/H Numero de albaran
@@ -1077,42 +1248,48 @@ Dim vSqlMercado As String
                 CargarTemporal cadTABLA, cadselect
           End If
     
-          If Check1(0).Value = 0 Then
-                cadTitulo = "Informe Albaranes Facturas"
-'                cadNombreRPT = "rAlbFact.rpt"
-                
-                '[Monica]06/04/2018: personalizamos el informe
-                indRPT = 120 'Informe de albaranes/ facturas
-                If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then Exit Sub
-                'Nombre fichero .rpt a Imprimir
-                cadNombreRPT = nomDocu
-                
+          '[Monica]28/05/2019: nuevo report ordenado por factura
+          If Check1(2).Value = 1 Then
+               cadTitulo = "Informe Albaranes facturados por Factura"
+               cadNombreRPT = "rAlbFactxFra.rpt"
           Else
-                cadTitulo = "Informe Albaranes Facturas Resumido por Fecha"
-                cadNombreRPT = "rAlbFactResFec.rpt"
+              If Check1(0).Value = 0 Then
+                    cadTitulo = "Informe Albaranes Facturas"
+    '                cadNombreRPT = "rAlbFact.rpt"
+                    
+                    '[Monica]06/04/2018: personalizamos el informe
+                    indRPT = 120 'Informe de albaranes/ facturas
+                    If Not PonerParamRPT(indRPT, cadParam, numParam, nomDocu) Then Exit Sub
+                    'Nombre fichero .rpt a Imprimir
+                    cadNombreRPT = nomDocu
+              Else
+                        cadTitulo = "Informe Albaranes Facturas Resumido por Fecha"
+                        cadNombreRPT = "rAlbFactResFec.rpt"
+              End If
           End If
+
           LlamarImprimir
           'AbrirVisReport
     End If
 End Sub
 
 Private Sub CargarTemporal(tabla As String, condicion As String)
-Dim SQL As String
+Dim Sql As String
 Dim SqlIns As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
-    conn.Execute SQL
+    Sql = "delete from tmpinformes where codusu = " & DBSet(vUsu.Codigo, "N")
+    conn.Execute Sql
     
     tabla = "(" & tabla & ") inner join albaran_calibre on albaran_variedad.numalbar = albaran_calibre.numalbar and albaran_variedad.numlinea = albaran_calibre.numlinea  "
     tabla = "(" & tabla & ") inner join facturas_calibre on albaran_calibre.numalbar = facturas_calibre.numalbar and albaran_calibre.numlinea = facturas_calibre.numlinealbar and albaran_calibre.numline1 = facturas_calibre.numline1albar "
     
-    SQL = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_variedad.codvarie, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe from " & tabla
-    If condicion <> "" Then SQL = SQL & " where " & condicion
-    SQL = SQL & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
+    Sql = "select " & vUsu.Codigo & ", albaran.fechaalb, albaran_variedad.codvarie, albaran_calibre.codcalib, albaran_calibre.numalbar, albaran_calibre.numlinea, albaran_calibre.numline1, albaran_calibre.pesoneto, sum(facturas_calibre.impornet) importe from " & tabla
+    If condicion <> "" Then Sql = Sql & " where " & condicion
+    Sql = Sql & " group by 1,2,3,4,5,6,7,8 order by 1,2,3,4 "
     
     SqlIns = "insert into tmpinformes (codusu, fecha1, importe1, importe2, importeb1, importeb2, importeb3, importe3, importe4 )     "
-    SqlIns = SqlIns & SQL
+    SqlIns = SqlIns & Sql
     conn.Execute SqlIns
     
 End Sub
@@ -1209,8 +1386,21 @@ Private Sub imgFec_Click(Index As Integer)
     frmC.Left = esq + imgFec(Index).Parent.Left + 30
     frmC.Top = dalt + imgFec(Index).Parent.Top + imgFec(Index).Height + 420 + 30
 
+    '[Monica]28/05/2019: fecha de factura
+    Select Case Index
+        Case 0
+            indCodigo = 8
+        Case 1
+            indCodigo = 9
+        Case 2
+            indCodigo = 2
+        Case 3
+            indCodigo = 3
+    End Select
+
+
     ' ***canviar l'index de imgFec pel 1r index de les imagens de buscar data***
-    imgFec(2).Tag = Index 'independentment de les dates que tinga, sempre pose l'index en la 27
+    imgFec(2).Tag = indCodigo 'independentment de les dates que tinga, sempre pose l'index en la 27
     If txtCodigo(Index).Text <> "" Then frmC.NovaData = txtCodigo(Index).Text
 
     frmC.Show vbModal
@@ -1276,6 +1466,9 @@ Private Sub txtCodigo_KeyPress(Index As Integer, KeyAscii As Integer)
             Case 3: KEYFecha KeyAscii, 3 'fecha hasta
             Case 12: KEYBusqueda KeyAscii, 12 'tipo de mercado desde
             Case 13: KEYBusqueda KeyAscii, 13 'tipo de mercado hasta
+            '[Monica]28/05/2019:fecha de factura
+            Case 8: KEYFecha KeyAscii, 0 'fecha desde
+            Case 9: KEYFecha KeyAscii, 1 'fecha hasta
         End Select
     Else
         KEYpress KeyAscii
@@ -1310,7 +1503,7 @@ Dim Cad As String, cadTipo As String 'tipo cliente
             txtNombre(Index).Text = PonerNombreDeCod(txtCodigo(Index), "clientes", "nomclien", "codclien", "N")
             If txtCodigo(Index).Text <> "" Then txtCodigo(Index).Text = Format(txtCodigo(Index).Text, "000000")
         
-        Case 2, 3 'FECHAS
+        Case 2, 3, 8, 9 'FECHAS
             If txtCodigo(Index).Text <> "" Then PonerFormatoFecha txtCodigo(Index)
             
         Case 4, 5 'clases
@@ -1476,19 +1669,19 @@ End Sub
 
 Private Function HayRegistros(cTabla As String, cWhere As String) As Boolean
 'Comprobar si hay registros a Mostrar antes de abrir el Informe
-Dim SQL As String
+Dim Sql As String
 Dim Rs As ADODB.Recordset
 
-    SQL = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
+    Sql = "Select * FROM " & QuitarCaracterACadena(cTabla, "_1")
     If cWhere <> "" Then
         cWhere = QuitarCaracterACadena(cWhere, "{")
         cWhere = QuitarCaracterACadena(cWhere, "}")
         cWhere = QuitarCaracterACadena(cWhere, "_1")
-        SQL = SQL & " WHERE " & cWhere
+        Sql = Sql & " WHERE " & cWhere
     End If
     
     Set Rs = New ADODB.Recordset
-    Rs.Open SQL, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
     
     If Rs.EOF Then
         MsgBox "No hay datos para mostrar en el Informe.", vbInformation
@@ -1500,7 +1693,7 @@ Dim Rs As ADODB.Recordset
 End Function
 
 Private Function ProcesarCambios(cadwhere As String) As Boolean
-Dim SQL As String
+Dim Sql As String
 Dim SQL1 As String
 Dim i As Integer
 Dim HayReg As Integer
@@ -1518,14 +1711,14 @@ On Error GoTo eProcesarCambios
         cadwhere = QuitarCaracterACadena(cadwhere, "_1")
     End If
         
-    SQL = "insert into tmpinformes (codusu, codigo1, campo1) select " & DBSet(vUsu.Codigo, "N")
-    SQL = SQL & ", albaran.numalbar, albaran_variedad.numlinea from albaran, albaran_variedad where albaran.numalbar "
-    SQL = SQL & " and albaran.numalbar = albaran_variedad.numalbar "
+    Sql = "insert into tmpinformes (codusu, codigo1, campo1) select " & DBSet(vUsu.Codigo, "N")
+    Sql = Sql & ", albaran.numalbar, albaran_variedad.numlinea from albaran, albaran_variedad where albaran.numalbar "
+    Sql = Sql & " and albaran.numalbar = albaran_variedad.numalbar "
     
-    If cadwhere <> "" Then SQL = SQL & " and " & cadwhere
+    If cadwhere <> "" Then Sql = Sql & " and " & cadwhere
     
     
-    conn.Execute SQL
+    conn.Execute Sql
         
     ProcesarCambios = HayRegistros("tmpinformes", "codusu = " & vUsu.Codigo)
 
@@ -1537,7 +1730,7 @@ End Function
 
 
 Private Sub InsertaLineaEnTemporal(ByRef ItmX As ListItem)
-Dim SQL As String
+Dim Sql As String
 Dim Codmacta As String
 Dim Rs As ADODB.Recordset
 Dim SQL1 As String

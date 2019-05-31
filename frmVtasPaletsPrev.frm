@@ -1628,8 +1628,8 @@ Dim i As Long
 End Sub
 
 
-Private Sub lw1_ItemClick(ByVal item As MSComctlLib.ListItem)
-    lblIndicador.Caption = PonerContRegistrosLw(lw1, item)
+Private Sub lw1_ItemClick(ByVal Item As MSComctlLib.ListItem)
+    lblIndicador.Caption = PonerContRegistrosLw(lw1, Item)
     
     VisualizarEstadoPedido
     
@@ -2702,7 +2702,9 @@ Dim TotPalet As Long
 Dim Estado As Integer
 Dim NewEstado As Integer
 
-
+Dim VarAnt As Long
+Dim ForAnt As String
+Dim CatAnt As String
 
     Screen.MousePointer = vbHourglass
     
@@ -2717,7 +2719,7 @@ Dim NewEstado As Integer
 
     Sql = "Select palets.numpalet, palets.fechaconf fecha, palets.numpedid, palets_variedad.codvarie, variedades.nomvarie,  "
     Sql = Sql & " palets_variedad.codforfait, forfaits.nomconfe, "
-    Sql = Sql & " calibres.nomcalib , confpale.nompalet, palets_variedad.categori, "
+    Sql = Sql & " calibres.nomcalib, confpale.nompalet, palets_variedad.categori, "
     Sql = Sql & " palets_variedad.numcajas, palets_variedad.pesobrut, palets_variedad.pesoneto, if(palets.noacabado,'*','') noacabado, pedidos.numalbar "
     Sql = Sql & ", concat(year(palets.fechaconf),right(concat('00',month(palets.fechaconf)),2),right(concat('00',day(palets.fechaconf)),2)) fechaconf"
     Sql = Sql & " FROM ((((((palets left join palets_variedad on palets.numpalet = palets_variedad.numpalet) "
@@ -2785,6 +2787,9 @@ Dim NewEstado As Integer
         
         Dim PaletAnt As Long
         PaletAnt = 0
+        VarAnt = 0
+        ForAnt = ""
+        CatAnt = ""
         
         Me.Label1(0).Caption = "Mostrando palets  "
         Label1(0).Refresh
@@ -2832,8 +2837,8 @@ Dim NewEstado As Integer
                 IT.SubItems(6) = DBLet(Rs!nomconfe, "T")
                 IT.SubItems(7) = DBLet(Rs!nomcalib, "T")
                 IT.SubItems(8) = DBLet(Rs!nompalet, "T")
-                IT.SubItems(9) = DBLet(Rs!categori, "T")
-                If PaletAnt <> DBLet(Rs!NumPalet, "N") Then
+                IT.SubItems(9) = DBLet(Rs!Categori, "T")
+                If PaletAnt <> DBLet(Rs!NumPalet, "N") Or VarAnt <> DBLet(Rs!codvarie, "N") Or ForAnt <> DBLet(Rs!codforfait, "T") Or CatAnt <> DBLet(Rs!Categori, "T") Then
                     IT.SubItems(10) = Format(DBLet(Rs!NumCajas, "N"), "###,###,###,##0") ' antes 7
                     IT.SubItems(11) = Format(DBLet(Rs!pesobrut, "N"), "###,###,###,##0") ' antes 8
                     IT.SubItems(12) = Format(DBLet(Rs!Pesoneto, "N"), "###,###,###,##0") ' antes 9
@@ -2853,6 +2858,9 @@ Dim NewEstado As Integer
                     TotNeto = TotNeto + DBLet(Rs!Pesoneto, "N")
                     
                     PaletAnt = DBLet(Rs!NumPalet, "T")
+                    VarAnt = DBLet(Rs!codvarie, "N")
+                    ForAnt = DBLet(Rs!codforfait, "T")
+                    CatAnt = DBLet(Rs!Categori, "T")
                     
                     TotPalet = TotPalet + 1
                 Else
@@ -2869,37 +2877,37 @@ Dim NewEstado As Integer
                 
                 If Estado = 2 Then
                     IT.ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(1).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(2).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(3).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(4).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(5).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(6).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(7).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(8).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(9).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(1).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(2).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(3).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(4).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(5).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(6).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(7).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(8).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(9).ForeColor = vbDarkBlue
                     '[Monica]10/10/2018: añadido
-                    IT.ListSubItems.item(10).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(11).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(12).ForeColor = vbDarkBlue
-                    IT.ListSubItems.item(13).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(10).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(11).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(12).ForeColor = vbDarkBlue
+                    IT.ListSubItems.Item(13).ForeColor = vbDarkBlue
                 Else
                     If Estado = 3 Then
                         IT.ForeColor = vbRed
-                        IT.ListSubItems.item(1).ForeColor = vbRed
-                        IT.ListSubItems.item(2).ForeColor = vbRed
-                        IT.ListSubItems.item(3).ForeColor = vbRed
-                        IT.ListSubItems.item(4).ForeColor = vbRed
-                        IT.ListSubItems.item(5).ForeColor = vbRed
-                        IT.ListSubItems.item(6).ForeColor = vbRed
-                        IT.ListSubItems.item(7).ForeColor = vbRed
-                        IT.ListSubItems.item(8).ForeColor = vbRed
-                        IT.ListSubItems.item(9).ForeColor = vbRed
+                        IT.ListSubItems.Item(1).ForeColor = vbRed
+                        IT.ListSubItems.Item(2).ForeColor = vbRed
+                        IT.ListSubItems.Item(3).ForeColor = vbRed
+                        IT.ListSubItems.Item(4).ForeColor = vbRed
+                        IT.ListSubItems.Item(5).ForeColor = vbRed
+                        IT.ListSubItems.Item(6).ForeColor = vbRed
+                        IT.ListSubItems.Item(7).ForeColor = vbRed
+                        IT.ListSubItems.Item(8).ForeColor = vbRed
+                        IT.ListSubItems.Item(9).ForeColor = vbRed
                         '[Monica]10/10/2018: añadido
-                        IT.ListSubItems.item(10).ForeColor = vbRed
-                        IT.ListSubItems.item(11).ForeColor = vbRed
-                        IT.ListSubItems.item(12).ForeColor = vbRed
-                        IT.ListSubItems.item(13).ForeColor = vbRed
+                        IT.ListSubItems.Item(10).ForeColor = vbRed
+                        IT.ListSubItems.Item(11).ForeColor = vbRed
+                        IT.ListSubItems.Item(12).ForeColor = vbRed
+                        IT.ListSubItems.Item(13).ForeColor = vbRed
                     End If
                 End If
                 

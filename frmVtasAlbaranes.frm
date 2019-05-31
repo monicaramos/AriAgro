@@ -32,20 +32,20 @@ Begin VB.Form frmVtasAlbaranes
       Index           =   0
       Left            =   11160
       Style           =   2  'Dropdown List
-      TabIndex        =   230
+      TabIndex        =   192
       Top             =   270
       Width           =   2235
    End
    Begin VB.Frame FrameBotonGnral 
       Height          =   705
       Left            =   90
-      TabIndex        =   227
+      TabIndex        =   189
       Top             =   90
       Width           =   3585
       Begin MSComctlLib.Toolbar Toolbar1 
          Height          =   330
          Left            =   210
-         TabIndex        =   228
+         TabIndex        =   190
          Top             =   180
          Width           =   3135
          _ExtentX        =   5530
@@ -101,13 +101,13 @@ Begin VB.Form frmVtasAlbaranes
    Begin VB.Frame FrameBotonGnral2 
       Height          =   705
       Left            =   3750
-      TabIndex        =   225
+      TabIndex        =   187
       Top             =   90
       Width           =   2820
       Begin MSComctlLib.Toolbar Toolbar5 
          Height          =   330
          Left            =   210
-         TabIndex        =   226
+         TabIndex        =   188
          Top             =   180
          Width           =   2355
          _ExtentX        =   4154
@@ -140,13 +140,13 @@ Begin VB.Form frmVtasAlbaranes
    Begin VB.Frame FrameDesplazamiento 
       Height          =   705
       Left            =   6645
-      TabIndex        =   223
+      TabIndex        =   185
       Top             =   90
       Width           =   2415
       Begin MSComctlLib.Toolbar ToolbarDes 
          Height          =   330
          Left            =   240
-         TabIndex        =   224
+         TabIndex        =   186
          Top             =   180
          Width           =   1965
          _ExtentX        =   3466
@@ -190,14 +190,14 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   300
       Left            =   15390
-      TabIndex        =   222
+      TabIndex        =   184
       Top             =   315
       Width           =   1605
    End
    Begin TabDlg.SSTab SSTab2 
       Height          =   3870
       Left            =   90
-      TabIndex        =   173
+      TabIndex        =   139
       Top             =   885
       Width           =   17835
       _ExtentX        =   31459
@@ -228,7 +228,7 @@ Begin VB.Form frmVtasAlbaranes
       Begin VB.Frame Frame5 
          Height          =   3285
          Left            =   -74940
-         TabIndex        =   201
+         TabIndex        =   165
          Top             =   390
          Width           =   17595
          Begin VB.TextBox Text1 
@@ -245,7 +245,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   27
             Left            =   6150
             MaxLength       =   30
-            TabIndex        =   29
+            TabIndex        =   28
             Tag             =   "Airport Destiny|T|S|||albaran|airdestiny|||"
             Top             =   990
             Width           =   2715
@@ -264,7 +264,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   26
             Left            =   6150
             MaxLength       =   30
-            TabIndex        =   28
+            TabIndex        =   27
             Tag             =   "Airport Origin|T|S|||albaran|airorigin|||"
             Top             =   330
             Width           =   2715
@@ -283,7 +283,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   25
             Left            =   1200
             MaxLength       =   30
-            TabIndex        =   27
+            TabIndex        =   26
             Tag             =   "Flight2|T|S|||albaran|flight2|||"
             Top             =   2310
             Width           =   2715
@@ -302,7 +302,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   24
             Left            =   6150
             MaxLength       =   30
-            TabIndex        =   31
+            TabIndex        =   30
             Tag             =   "ETA|T|S|||albaran|ETA|||"
             Top             =   2280
             Width           =   2715
@@ -321,7 +321,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   23
             Left            =   6150
             MaxLength       =   30
-            TabIndex        =   30
+            TabIndex        =   29
             Tag             =   "ETD|T|S|||albaran|ETD|||"
             Top             =   1650
             Width           =   2715
@@ -340,7 +340,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   22
             Left            =   1200
             MaxLength       =   30
-            TabIndex        =   26
+            TabIndex        =   25
             Tag             =   "Flight1|T|S|||albaran|flight1|||"
             Top             =   1650
             Width           =   2715
@@ -359,7 +359,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   21
             Left            =   1200
             MaxLength       =   30
-            TabIndex        =   25
+            TabIndex        =   24
             Tag             =   "AWB|T|S|||albaran|AWB|||"
             Top             =   990
             Width           =   2715
@@ -378,7 +378,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   20
             Left            =   1200
             MaxLength       =   30
-            TabIndex        =   24
+            TabIndex        =   23
             Tag             =   "Airline|T|S|||albaran|airline|||"
             Top             =   330
             Width           =   2715
@@ -397,7 +397,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   56
             Left            =   4350
-            TabIndex        =   209
+            TabIndex        =   173
             Top             =   1050
             Width           =   1965
          End
@@ -415,7 +415,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   55
             Left            =   4350
-            TabIndex        =   208
+            TabIndex        =   172
             Top             =   390
             Width           =   1875
          End
@@ -433,7 +433,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   54
             Left            =   300
-            TabIndex        =   207
+            TabIndex        =   171
             Top             =   2355
             Width           =   780
          End
@@ -451,7 +451,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   53
             Left            =   5310
-            TabIndex        =   206
+            TabIndex        =   170
             Top             =   2325
             Width           =   780
          End
@@ -469,7 +469,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   52
             Left            =   5310
-            TabIndex        =   205
+            TabIndex        =   169
             Top             =   1710
             Width           =   780
          End
@@ -487,7 +487,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   51
             Left            =   300
-            TabIndex        =   204
+            TabIndex        =   168
             Top             =   1710
             Width           =   780
          End
@@ -505,7 +505,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   50
             Left            =   300
-            TabIndex        =   203
+            TabIndex        =   167
             Top             =   1050
             Width           =   780
          End
@@ -523,7 +523,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   49
             Left            =   300
-            TabIndex        =   202
+            TabIndex        =   166
             Top             =   390
             Width           =   780
          End
@@ -531,7 +531,7 @@ Begin VB.Form frmVtasAlbaranes
       Begin VB.Frame Frame2 
          Height          =   3375
          Left            =   60
-         TabIndex        =   174
+         TabIndex        =   140
          Top             =   390
          Width           =   17655
          Begin VB.TextBox Text1 
@@ -546,13 +546,13 @@ Begin VB.Form frmVtasAlbaranes
                Strikethrough   =   0   'False
             EndProperty
             Height          =   360
-            Index           =   28
+            Index           =   6
             Left            =   5895
             MaxLength       =   7
             TabIndex        =   2
             Tag             =   "Tipo Albarán|T|S|||albaran|codtipom|||"
             Text            =   "Text1 7"
-            Top             =   180
+            Top             =   270
             Width           =   855
          End
          Begin VB.CheckBox Check1 
@@ -569,9 +569,9 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   240
             Index           =   1
             Left            =   15255
-            TabIndex        =   220
+            TabIndex        =   182
             Tag             =   "Precios no definitivos|N|N|||albaran|precnodef|0||"
-            Top             =   450
+            Top             =   540
             Width           =   2310
          End
          Begin VB.TextBox Text1 
@@ -588,12 +588,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   0
-            Left            =   1440
+            Left            =   1485
             MaxLength       =   7
             TabIndex        =   0
             Tag             =   "Nº Albarán|N|S|||albaran|numalbar|0000000|S|"
             Text            =   "Text1 7"
-            Top             =   180
+            Top             =   270
             Width           =   1080
          End
          Begin VB.TextBox Text1 
@@ -608,12 +608,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   14
-            Left            =   6810
+            Left            =   7035
             MaxLength       =   12
-            TabIndex        =   15
+            TabIndex        =   14
             Tag             =   "Referencia Cl|T|S|||albaran|refclien|||"
             Text            =   "Text3"
-            Top             =   1440
+            Top             =   1575
             Width           =   1545
          End
          Begin VB.TextBox Text1 
@@ -634,7 +634,7 @@ Begin VB.Form frmVtasAlbaranes
             TabIndex        =   3
             Tag             =   "Cod. Cliente|N|N|0|999999|albaran|codclien|000000||"
             Text            =   "Text1"
-            Top             =   630
+            Top             =   765
             Width           =   850
          End
          Begin VB.TextBox Text1 
@@ -647,15 +647,15 @@ Begin VB.Form frmVtasAlbaranes
                Italic          =   0   'False
                Strikethrough   =   0   'False
             EndProperty
-            Height          =   960
+            Height          =   870
             Index           =   15
-            Left            =   6810
+            Left            =   7035
             MultiLine       =   -1  'True
             ScrollBars      =   2  'Vertical
-            TabIndex        =   21
+            TabIndex        =   20
             Tag             =   "Observaciones|T|S|||albaran|observac|||"
-            Top             =   2295
-            Width           =   10740
+            Top             =   2385
+            Width           =   10515
          End
          Begin VB.TextBox Text2 
             BackColor       =   &H80000018&
@@ -674,9 +674,9 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2655
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   180
+            TabIndex        =   145
             Text            =   "Text2"
-            Top             =   630
+            Top             =   765
             Width           =   4080
          End
          Begin VB.TextBox Text1 
@@ -692,12 +692,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   9
-            Left            =   10620
+            Left            =   10935
             MaxLength       =   7
-            TabIndex        =   11
+            TabIndex        =   10
             Tag             =   "Nº Pedido|N|S|||albaran|numpedid|0000000||"
             Text            =   "Text3"
-            Top             =   630
+            Top             =   765
             Width           =   1140
          End
          Begin VB.TextBox Text1 
@@ -712,12 +712,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   7
-            Left            =   6810
+            Left            =   7035
             MaxLength       =   12
-            TabIndex        =   9
+            TabIndex        =   8
             Tag             =   "Matricula Vehiculo|T|S|||albaran|matriveh|||"
             Text            =   "123456789012"
-            Top             =   630
+            Top             =   765
             Width           =   1545
          End
          Begin VB.TextBox Text1 
@@ -733,11 +733,11 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   1
-            Left            =   3645
+            Left            =   3690
             MaxLength       =   10
             TabIndex        =   1
             Tag             =   "Fecha Albarán|F|N|||albaran|fechaalb|dd/mm/yyyy||"
-            Top             =   180
+            Top             =   270
             Width           =   1350
          End
          Begin VB.TextBox Text1 
@@ -752,12 +752,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   8
-            Left            =   8685
+            Left            =   8910
             MaxLength       =   40
-            TabIndex        =   10
+            TabIndex        =   9
             Tag             =   "Matricula Remolque|T|S|||albaran|matrirem|||"
             Text            =   "123456789012"
-            Top             =   630
+            Top             =   765
             Width           =   1545
          End
          Begin VB.TextBox Text1 
@@ -775,9 +775,9 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   2
             Left            =   13530
             MaxLength       =   10
-            TabIndex        =   19
+            TabIndex        =   18
             Tag             =   "Portes Previstos|N|S|||albaran|portespre|###,##0.00||"
-            Top             =   1440
+            Top             =   1575
             Width           =   1200
          End
          Begin VB.TextBox Text2 
@@ -797,9 +797,9 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2655
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   179
+            TabIndex        =   144
             Text            =   "Text2"
-            Top             =   1080
+            Top             =   1293
             Width           =   4080
          End
          Begin VB.TextBox Text1 
@@ -820,7 +820,7 @@ Begin VB.Form frmVtasAlbaranes
             TabIndex        =   4
             Tag             =   "Cod.Destino|N|N|0|9999|albaran|coddesti|0000||"
             Text            =   "Text1"
-            Top             =   1080
+            Top             =   1293
             Width           =   850
          End
          Begin VB.TextBox Text1 
@@ -836,11 +836,11 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   10
-            Left            =   11955
+            Left            =   12135
             MaxLength       =   10
-            TabIndex        =   12
+            TabIndex        =   11
             Tag             =   "Fecha Pedido|F|S|||albaran|fechaped|dd/mm/yyyy||"
-            Top             =   630
+            Top             =   765
             Width           =   1350
          End
          Begin VB.TextBox Text2 
@@ -860,9 +860,9 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2655
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   178
+            TabIndex        =   143
             Text            =   "Text2"
-            Top             =   1530
+            Top             =   1821
             Width           =   4080
          End
          Begin VB.TextBox Text1 
@@ -883,50 +883,7 @@ Begin VB.Form frmVtasAlbaranes
             TabIndex        =   5
             Tag             =   "Tipo Mercado|N|N|0|999|albaran|codtimer|000||"
             Text            =   "Text1"
-            Top             =   1530
-            Width           =   850
-         End
-         Begin VB.TextBox Text2 
-            BackColor       =   &H80000018&
-            Enabled         =   0   'False
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   6
-            Left            =   2655
-            Locked          =   -1  'True
-            MaxLength       =   40
-            TabIndex        =   177
-            Text            =   "Text2"
-            Top             =   1980
-            Width           =   4080
-         End
-         Begin VB.TextBox Text1 
-            Alignment       =   1  'Right Justify
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   360
-            Index           =   6
-            Left            =   1755
-            MaxLength       =   6
-            TabIndex        =   6
-            Tag             =   "Agencia Transporte|N|N|0|999|albaran|codtrans|000||"
-            Text            =   "Text1"
-            Top             =   1980
+            Top             =   1821
             Width           =   850
          End
          Begin VB.TextBox Text1 
@@ -942,12 +899,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   11
-            Left            =   11970
+            Left            =   12150
             MaxLength       =   3
-            TabIndex        =   18
+            TabIndex        =   17
             Tag             =   "Nro.Palets|N|S|||albaran|totpalet|##0||"
             Text            =   "Text3"
-            Top             =   1440
+            Top             =   1575
             Width           =   1140
          End
          Begin VB.TextBox Text1 
@@ -962,12 +919,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   12
-            Left            =   8685
+            Left            =   8910
             MaxLength       =   15
-            TabIndex        =   16
+            TabIndex        =   15
             Tag             =   "Nro.Contrato|T|S|||albaran|nrocontra|||"
             Text            =   "123456789012345"
-            Top             =   1440
+            Top             =   1575
             Width           =   1875
          End
          Begin VB.TextBox Text1 
@@ -983,12 +940,12 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   360
             Index           =   13
-            Left            =   10605
+            Left            =   10920
             MaxLength       =   4
-            TabIndex        =   17
+            TabIndex        =   16
             Tag             =   "Nro.Acta|N|S|||albaran|nroactas|##0||"
             Text            =   "Text3"
-            Top             =   1440
+            Top             =   1575
             Width           =   1140
          End
          Begin VB.CheckBox Check1 
@@ -1005,9 +962,9 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   240
             Index           =   0
             Left            =   15255
-            TabIndex        =   14
+            TabIndex        =   13
             Tag             =   "Pasa Aridoc|N|N|||albaran|pasaridoc|0||"
-            Top             =   735
+            Top             =   825
             Width           =   1815
          End
          Begin VB.TextBox Text1 
@@ -1025,7 +982,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   16
             Left            =   1755
             MaxLength       =   6
-            TabIndex        =   8
+            TabIndex        =   7
             Tag             =   "Cod.Almacen|N|N|0|999|albaran|codalmac|000||"
             Text            =   "Text1"
             Top             =   2880
@@ -1048,7 +1005,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2655
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   176
+            TabIndex        =   142
             Text            =   "Text2"
             Top             =   2880
             Width           =   4080
@@ -1068,9 +1025,9 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   17
             Left            =   13530
             MaxLength       =   10
-            TabIndex        =   13
+            TabIndex        =   12
             Tag             =   "Número CMR|N|S|||albaran|numerocmr|######0||"
-            Top             =   630
+            Top             =   765
             Width           =   1200
          End
          Begin VB.TextBox Text1 
@@ -1088,9 +1045,9 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   18
             Left            =   15240
             MaxLength       =   10
-            TabIndex        =   20
+            TabIndex        =   19
             Tag             =   "Comisiones Previstas|N|S|||albaran|comisionespre|###,##0.00||"
-            Top             =   1440
+            Top             =   1575
             Width           =   1575
          End
          Begin VB.TextBox Text1 
@@ -1108,10 +1065,10 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   19
             Left            =   1755
             MaxLength       =   6
-            TabIndex        =   7
+            TabIndex        =   6
             Tag             =   "Cod.Comsionista|N|S|0|999|albaran|codcomis|000||"
             Text            =   "Text1"
-            Top             =   2430
+            Top             =   2349
             Width           =   850
          End
          Begin VB.TextBox Text2 
@@ -1131,9 +1088,9 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2655
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   175
+            TabIndex        =   141
             Text            =   "Text2"
-            Top             =   2430
+            Top             =   2349
             Width           =   4080
          End
          Begin VB.Label Label1 
@@ -1150,8 +1107,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   57
             Left            =   5310
-            TabIndex        =   232
-            Top             =   225
+            TabIndex        =   194
+            Top             =   315
             Width           =   540
          End
          Begin VB.Label Label1 
@@ -1168,8 +1125,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   28
             Left            =   135
-            TabIndex        =   200
-            Top             =   225
+            TabIndex        =   164
+            Top             =   315
             Width           =   1125
          End
          Begin VB.Image imgBuscar 
@@ -1177,7 +1134,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   0
             Left            =   1485
             ToolTipText     =   "Buscar Cliente"
-            Top             =   675
+            Top             =   810
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1194,8 +1151,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   0
             Left            =   135
-            TabIndex        =   199
-            Top             =   675
+            TabIndex        =   163
+            Top             =   810
             Width           =   810
          End
          Begin VB.Label Label1 
@@ -1211,9 +1168,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   5
-            Left            =   6810
-            TabIndex        =   198
-            Top             =   1170
+            Left            =   7035
+            TabIndex        =   162
+            Top             =   1305
             Width           =   1785
          End
          Begin VB.Label Label29 
@@ -1228,17 +1185,17 @@ Begin VB.Form frmVtasAlbaranes
                Strikethrough   =   0   'False
             EndProperty
             Height          =   255
-            Left            =   6810
-            TabIndex        =   197
-            Top             =   1980
+            Left            =   7035
+            TabIndex        =   161
+            Top             =   2070
             Width           =   1485
          End
          Begin VB.Image imgZoom 
             Height          =   240
             Index           =   0
-            Left            =   8430
+            Left            =   8655
             ToolTipText     =   "Zoom descripción"
-            Top             =   1980
+            Top             =   2070
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1254,18 +1211,18 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   6
-            Left            =   10605
-            TabIndex        =   196
-            Top             =   360
+            Left            =   10920
+            TabIndex        =   160
+            Top             =   495
             Width           =   750
          End
          Begin VB.Image imgFec 
             Height          =   240
             Index           =   0
-            Left            =   3375
+            Left            =   3420
             Picture         =   "frmVtasAlbaranes.frx":0044
             ToolTipText     =   "Buscar fecha"
-            Top             =   225
+            Top             =   315
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1281,9 +1238,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   2
-            Left            =   6810
-            TabIndex        =   195
-            Top             =   360
+            Left            =   7035
+            TabIndex        =   159
+            Top             =   495
             Width           =   1410
          End
          Begin VB.Label Label1 
@@ -1299,9 +1256,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   29
-            Left            =   2610
-            TabIndex        =   194
-            Top             =   225
+            Left            =   2655
+            TabIndex        =   158
+            Top             =   315
             Width           =   1005
          End
          Begin VB.Label Label1 
@@ -1317,9 +1274,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   4
-            Left            =   8670
-            TabIndex        =   193
-            Top             =   360
+            Left            =   8895
+            TabIndex        =   157
+            Top             =   495
             Width           =   1500
          End
          Begin VB.Label Label1 
@@ -1336,8 +1293,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   3
             Left            =   13530
-            TabIndex        =   192
-            Top             =   1170
+            TabIndex        =   156
+            Top             =   1305
             Width           =   1635
          End
          Begin VB.Label Label1 
@@ -1354,8 +1311,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   8
             Left            =   135
-            TabIndex        =   191
-            Top             =   1125
+            TabIndex        =   155
+            Top             =   1338
             Width           =   765
          End
          Begin VB.Image imgBuscar 
@@ -1363,7 +1320,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   1
             Left            =   1485
             ToolTipText     =   "Buscar Destino"
-            Top             =   1125
+            Top             =   1320
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1379,18 +1336,18 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   13
-            Left            =   11955
-            TabIndex        =   190
-            Top             =   360
+            Left            =   12135
+            TabIndex        =   154
+            Top             =   495
             Width           =   870
          End
          Begin VB.Image imgFec 
             Height          =   240
             Index           =   2
-            Left            =   13035
+            Left            =   13215
             Picture         =   "frmVtasAlbaranes.frx":00CF
             ToolTipText     =   "Buscar fecha"
-            Top             =   315
+            Top             =   450
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1407,8 +1364,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   14
             Left            =   135
-            TabIndex        =   189
-            Top             =   1575
+            TabIndex        =   153
+            Top             =   1866
             Width           =   1350
          End
          Begin VB.Image imgBuscar 
@@ -1416,33 +1373,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   2
             Left            =   1485
             ToolTipText     =   "Buscar T.Mercado"
-            Top             =   1575
-            Width           =   240
-         End
-         Begin VB.Label Label1 
-            Caption         =   "Agencia "
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   255
-            Index           =   15
-            Left            =   135
-            TabIndex        =   188
-            Top             =   2025
-            Width           =   810
-         End
-         Begin VB.Image imgBuscar 
-            Height          =   240
-            Index           =   3
-            Left            =   1485
-            ToolTipText     =   "Buscar Agencia"
-            Top             =   2025
+            Top             =   1845
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1458,9 +1389,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   16
-            Left            =   12000
-            TabIndex        =   187
-            Top             =   1170
+            Left            =   12180
+            TabIndex        =   152
+            Top             =   1305
             Width           =   1110
          End
          Begin VB.Label Label1 
@@ -1476,9 +1407,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   17
-            Left            =   8670
-            TabIndex        =   186
-            Top             =   1170
+            Left            =   8895
+            TabIndex        =   151
+            Top             =   1305
             Width           =   1515
          End
          Begin VB.Label Label1 
@@ -1494,9 +1425,9 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   255
             Index           =   18
-            Left            =   10605
-            TabIndex        =   185
-            Top             =   1170
+            Left            =   10920
+            TabIndex        =   150
+            Top             =   1305
             Width           =   1020
          End
          Begin VB.Image imgBuscar 
@@ -1521,7 +1452,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   1
             Left            =   135
-            TabIndex        =   184
+            TabIndex        =   149
             Top             =   2925
             Width           =   855
          End
@@ -1539,8 +1470,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   44
             Left            =   13530
-            TabIndex        =   183
-            Top             =   360
+            TabIndex        =   148
+            Top             =   495
             Width           =   1320
          End
          Begin VB.Label Label1 
@@ -1557,8 +1488,8 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   45
             Left            =   15240
-            TabIndex        =   182
-            Top             =   1170
+            TabIndex        =   147
+            Top             =   1305
             Width           =   1635
          End
          Begin VB.Image imgBuscar 
@@ -1566,7 +1497,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   5
             Left            =   1485
             ToolTipText     =   "Buscar Comisionista"
-            Top             =   2475
+            Top             =   2400
             Width           =   240
          End
          Begin VB.Label Label1 
@@ -1583,24 +1514,24 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   46
             Left            =   135
-            TabIndex        =   181
-            Top             =   2475
+            TabIndex        =   146
+            Top             =   2394
             Width           =   1215
          End
       End
    End
    Begin TabDlg.SSTab SSTab1 
       Height          =   4740
-      Left            =   135
-      TabIndex        =   35
-      Top             =   4845
+      Left            =   90
+      TabIndex        =   34
+      Top             =   4815
       Width           =   17820
       _ExtentX        =   31433
       _ExtentY        =   8361
       _Version        =   393216
-      Tabs            =   5
+      Tabs            =   6
       Tab             =   4
-      TabsPerRow      =   5
+      TabsPerRow      =   6
       TabHeight       =   520
       BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
          Name            =   "Verdana"
@@ -1659,23 +1590,30 @@ Begin VB.Form frmVtasAlbaranes
       TabPicture(2)   =   "frmVtasAlbaranes.frx":0192
       Tab(2).ControlEnabled=   0   'False
       Tab(2).Control(0)=   "FrameAux1"
-      Tab(2).Control(0).Enabled=   0   'False
       Tab(2).ControlCount=   1
       TabCaption(3)   =   "Palets"
       TabPicture(3)   =   "frmVtasAlbaranes.frx":01AE
       Tab(3).ControlEnabled=   0   'False
-      Tab(3).Control(0)=   "FrameAux2"
-      Tab(3).ControlCount=   1
-      TabCaption(4)   =   "Resultados"
+      Tab(3).Control(0)=   "Text2(42)"
+      Tab(3).Control(0).Enabled=   0   'False
+      Tab(3).Control(1)=   "Text2(6)"
+      Tab(3).Control(1).Enabled=   0   'False
+      Tab(3).Control(2)=   "FrameAux2"
+      Tab(3).Control(2).Enabled=   0   'False
+      Tab(3).ControlCount=   3
+      TabCaption(4)   =   "Agencias Transporte"
       TabPicture(4)   =   "frmVtasAlbaranes.frx":01CA
       Tab(4).ControlEnabled=   -1  'True
-      Tab(4).Control(0)=   "ListView1"
+      Tab(4).Control(0)=   "FrameAux3"
       Tab(4).Control(0).Enabled=   0   'False
-      Tab(4).Control(1)=   "Frame4"
-      Tab(4).Control(1).Enabled=   0   'False
-      Tab(4).ControlCount=   2
+      Tab(4).ControlCount=   1
+      TabCaption(5)   =   "Resultados"
+      TabPicture(5)   =   "frmVtasAlbaranes.frx":01E6
+      Tab(5).ControlEnabled=   0   'False
+      Tab(5).Control(0)=   "Frame4"
+      Tab(5).Control(1)=   "ListView1"
+      Tab(5).ControlCount=   2
       Begin VB.TextBox Text2 
-         Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
@@ -1688,18 +1626,19 @@ Begin VB.Form frmVtasAlbaranes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
-         Index           =   41
-         Left            =   -60810
-         MaxLength       =   30
-         TabIndex        =   172
-         Text            =   "Pr.Pro"
-         Top             =   3900
+         Height          =   330
+         Index           =   42
+         Left            =   -65955
+         Locked          =   -1  'True
+         MaxLength       =   40
+         TabIndex        =   242
+         Tag             =   "Hora Fin Confec|FH|S|||palets|horafconf|hh:mm:ss||"
+         Text            =   "Hora.Ini."
+         Top             =   495
          Visible         =   0   'False
-         Width           =   495
+         Width           =   1110
       End
       Begin VB.TextBox Text2 
-         Alignment       =   1  'Right Justify
          Appearance      =   0  'Flat
          BackColor       =   &H80000018&
          BorderStyle     =   0  'None
@@ -1712,71 +1651,23 @@ Begin VB.Form frmVtasAlbaranes
             Italic          =   0   'False
             Strikethrough   =   0   'False
          EndProperty
-         Height          =   315
-         Index           =   40
-         Left            =   -61440
-         MaxLength       =   30
-         TabIndex        =   171
-         Text            =   "kil/caj"
-         Top             =   3900
+         Height          =   330
+         Index           =   6
+         Left            =   -64695
+         Locked          =   -1  'True
+         MaxLength       =   40
+         TabIndex        =   241
+         Tag             =   "Hora Fin Confec|FH|S|||palets|horafconf|hh:mm:ss||"
+         Text            =   "Hora Fin"
+         Top             =   495
          Visible         =   0   'False
-         Width           =   495
-      End
-      Begin VB.TextBox txtAux3 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000018&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   315
-         Index           =   16
-         Left            =   -64245
-         MaxLength       =   4
-         TabIndex        =   162
-         Tag             =   "Unidades|N|S|||albaran_variedad|unidades|##,##0|N|"
-         Text            =   "Ud"
-         Top             =   1935
-         Visible         =   0   'False
-         Width           =   855
-      End
-      Begin VB.TextBox txtAux 
-         Alignment       =   1  'Right Justify
-         Appearance      =   0  'Flat
-         BackColor       =   &H80000018&
-         BorderStyle     =   0  'None
-         BeginProperty Font 
-            Name            =   "Verdana"
-            Size            =   9.75
-            Charset         =   0
-            Weight          =   400
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   315
-         Index           =   22
-         Left            =   -62940
-         MaxLength       =   4
-         TabIndex        =   161
-         Tag             =   "Unidades|N|S|0|999|albaran_calibre|unidades|##,##0||"
-         Text            =   "ud"
-         Top             =   3915
-         Visible         =   0   'False
-         Width           =   495
+         Width           =   1110
       End
       Begin VB.Frame Frame4 
          Height          =   3390
-         Left            =   8200
-         TabIndex        =   133
-         Top             =   765
+         Left            =   -66795
+         TabIndex        =   206
+         Top             =   870
          Width           =   9195
          Begin VB.TextBox Text2 
             Alignment       =   1  'Right Justify
@@ -1795,7 +1686,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   169
+            TabIndex        =   218
             Text            =   "Costes Comis"
             Top             =   1350
             Width           =   1575
@@ -1817,7 +1708,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   144
+            TabIndex        =   217
             Text            =   "Costes Totales"
             Top             =   2115
             Width           =   1575
@@ -1839,7 +1730,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   143
+            TabIndex        =   216
             Text            =   "Costes Totales"
             Top             =   1710
             Width           =   1575
@@ -1861,7 +1752,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   142
+            TabIndex        =   215
             Text            =   "Costes Portes"
             Top             =   990
             Width           =   1575
@@ -1883,7 +1774,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   141
+            TabIndex        =   214
             Text            =   "Costes Envases"
             Top             =   630
             Width           =   1575
@@ -1905,7 +1796,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   140
+            TabIndex        =   213
             Text            =   "Gastos/kg"
             Top             =   2835
             Width           =   1575
@@ -1927,7 +1818,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2160
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   139
+            TabIndex        =   212
             Text            =   "Gastos/caja"
             Top             =   2475
             Width           =   1575
@@ -1949,7 +1840,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   6795
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   138
+            TabIndex        =   211
             Text            =   "Importe Vta"
             Top             =   855
             Width           =   1575
@@ -1971,7 +1862,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   6795
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   137
+            TabIndex        =   210
             Text            =   "venta/kg"
             Top             =   1575
             Width           =   1575
@@ -1993,7 +1884,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   6795
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   136
+            TabIndex        =   209
             Text            =   "venta/caja"
             Top             =   1215
             Width           =   1575
@@ -2015,7 +1906,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   6795
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   135
+            TabIndex        =   208
             Text            =   "Valorfruta"
             Top             =   2115
             Width           =   1575
@@ -2037,7 +1928,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   6795
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   134
+            TabIndex        =   207
             Text            =   "Neto/kg"
             Top             =   2475
             Width           =   1575
@@ -2056,7 +1947,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   48
             Left            =   1035
-            TabIndex        =   170
+            TabIndex        =   237
             Top             =   1395
             Width           =   945
          End
@@ -2075,7 +1966,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   195
             Index           =   1
             Left            =   4590
-            TabIndex        =   164
+            TabIndex        =   236
             Top             =   2925
             Visible         =   0   'False
             Width           =   1275
@@ -2095,7 +1986,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   195
             Index           =   1
             Left            =   6795
-            TabIndex        =   163
+            TabIndex        =   235
             Top             =   2925
             Visible         =   0   'False
             Width           =   915
@@ -2123,7 +2014,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   43
             Left            =   4590
-            TabIndex        =   160
+            TabIndex        =   234
             Top             =   270
             Width           =   1170
          End
@@ -2141,7 +2032,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   42
             Left            =   720
-            TabIndex        =   159
+            TabIndex        =   233
             Top             =   270
             Width           =   720
          End
@@ -2165,7 +2056,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   41
             Left            =   720
-            TabIndex        =   158
+            TabIndex        =   232
             Top             =   2895
             Width           =   1290
          End
@@ -2174,7 +2065,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   180
             Index           =   40
             Left            =   720
-            TabIndex        =   157
+            TabIndex        =   231
             Top             =   1755
             Width           =   165
          End
@@ -2193,7 +2084,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   39
             Left            =   720
-            TabIndex        =   156
+            TabIndex        =   230
             Top             =   2175
             Width           =   1530
          End
@@ -2211,7 +2102,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   38
             Left            =   1035
-            TabIndex        =   155
+            TabIndex        =   229
             Top             =   1755
             Width           =   945
          End
@@ -2229,7 +2120,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   37
             Left            =   1035
-            TabIndex        =   154
+            TabIndex        =   228
             Top             =   1035
             Width           =   945
          End
@@ -2247,7 +2138,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   36
             Left            =   1035
-            TabIndex        =   153
+            TabIndex        =   227
             Top             =   675
             Width           =   945
          End
@@ -2268,7 +2159,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   360
             Index           =   7
             Left            =   2160
-            TabIndex        =   152
+            TabIndex        =   226
             Top             =   225
             Width           =   1575
          End
@@ -2289,7 +2180,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   360
             Index           =   6
             Left            =   6795
-            TabIndex        =   151
+            TabIndex        =   225
             Top             =   225
             Width           =   1575
          End
@@ -2307,7 +2198,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   35
             Left            =   720
-            TabIndex        =   150
+            TabIndex        =   224
             Top             =   2535
             Width           =   1290
          End
@@ -2326,7 +2217,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   34
             Left            =   4590
-            TabIndex        =   149
+            TabIndex        =   223
             Top             =   915
             Width           =   1785
          End
@@ -2344,7 +2235,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   33
             Left            =   4590
-            TabIndex        =   148
+            TabIndex        =   222
             Top             =   1620
             Width           =   1920
          End
@@ -2362,7 +2253,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   32
             Left            =   4590
-            TabIndex        =   147
+            TabIndex        =   221
             Top             =   1260
             Width           =   2010
          End
@@ -2381,7 +2272,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   31
             Left            =   4590
-            TabIndex        =   146
+            TabIndex        =   220
             Top             =   2175
             Width           =   1470
          End
@@ -2399,22 +2290,449 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   255
             Index           =   12
             Left            =   4590
-            TabIndex        =   145
+            TabIndex        =   219
             Top             =   2535
             Width           =   1380
          End
+      End
+      Begin VB.Frame FrameAux3 
+         BorderStyle     =   0  'None
+         Height          =   4110
+         Left            =   90
+         TabIndex        =   195
+         Top             =   450
+         Width           =   17700
+         Begin VB.ComboBox cmbAux 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   360
+            Index           =   2
+            Left            =   5175
+            Style           =   2  'Dropdown List
+            TabIndex        =   199
+            Tag             =   "Tipo Transporte|N|N|||albaran_transporte|codfortrans|0||"
+            Top             =   3240
+            Width           =   1260
+         End
+         Begin VB.TextBox Text2 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Index           =   44
+            Left            =   3330
+            Locked          =   -1  'True
+            MaxLength       =   40
+            TabIndex        =   197
+            Text            =   "Nombre transportista"
+            Top             =   3240
+            Width           =   1740
+         End
+         Begin VB.TextBox txtAux 
+            Alignment       =   1  'Right Justify
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Index           =   27
+            Left            =   525
+            MaxLength       =   12
+            TabIndex        =   202
+            Tag             =   "Num.Albaran|N|N|||albaran_transporte|numalbar||S|"
+            Text            =   "numalbar"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   855
+         End
+         Begin VB.TextBox txtAux 
+            Alignment       =   1  'Right Justify
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Index           =   28
+            Left            =   1485
+            MaxLength       =   12
+            TabIndex        =   200
+            Tag             =   "Num.Linea|N|N|||albaran_transporte|numlinea|00|S|"
+            Text            =   "numlinea"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   735
+         End
+         Begin VB.TextBox txtAux 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Index           =   29
+            Left            =   2295
+            MaxLength       =   16
+            TabIndex        =   198
+            Tag             =   "Agencia Transporte|N|N|0|999|albaran_transporte|codtrans|000||"
+            Text            =   "transportista"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   975
+         End
+         Begin VB.TextBox txtAux 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   315
+            Index           =   30
+            Left            =   6525
+            MaxLength       =   255
+            TabIndex        =   201
+            Tag             =   "Observaciones|T|S|||albaran_transporte|observaciones|||"
+            Text            =   "observaciones"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   3030
+         End
+         Begin VB.CommandButton btnBuscar 
+            Appearance      =   0  'Flat
+            Caption         =   "+"
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   300
+            Index           =   3
+            Left            =   3195
+            MaskColor       =   &H00000000&
+            TabIndex        =   196
+            ToolTipText     =   "Buscar Agencia Transporte"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   195
+         End
+         Begin VB.CheckBox chkAux 
+            BackColor       =   &H80000005&
+            Height          =   255
+            Index           =   1
+            Left            =   9630
+            TabIndex        =   203
+            Tag             =   "Es medio principal|N|N|0|1|albaran_transporte|esmedioppal|||"
+            Top             =   3240
+            Visible         =   0   'False
+            Width           =   255
+         End
+         Begin MSComctlLib.Toolbar ToolAux 
+            Height          =   390
+            Index           =   3
+            Left            =   90
+            TabIndex        =   204
+            Top             =   45
+            Width           =   1110
+            _ExtentX        =   1958
+            _ExtentY        =   688
+            ButtonWidth     =   609
+            ButtonHeight    =   582
+            AllowCustomize  =   0   'False
+            _Version        =   393216
+            BeginProperty Buttons {66833FE8-8583-11D1-B16A-00C0F0283628} 
+               NumButtons      =   3
+               BeginProperty Button1 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Nuevo"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button2 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Modificar"
+                  Object.Tag             =   "2"
+               EndProperty
+               BeginProperty Button3 {66833FEA-8583-11D1-B16A-00C0F0283628} 
+                  Object.ToolTipText     =   "Eliminar"
+                  Object.Tag             =   "2"
+               EndProperty
+            EndProperty
+         End
+         Begin MSDataGridLib.DataGrid DataGrid6 
+            Bindings        =   "frmVtasAlbaranes.frx":0202
+            Height          =   3495
+            Left            =   90
+            TabIndex        =   205
+            Top             =   495
+            Width           =   17520
+            _ExtentX        =   30903
+            _ExtentY        =   6165
+            _Version        =   393216
+            AllowUpdate     =   0   'False
+            AllowArrows     =   -1  'True
+            ColumnHeaders   =   -1  'True
+            HeadLines       =   1
+            RowHeight       =   19
+            FormatLocked    =   -1  'True
+            BeginProperty HeadFont {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Verdana"
+               Size            =   9
+               Charset         =   0
+               Weight          =   700
+               Underline       =   0   'False
+               Italic          =   -1  'True
+               Strikethrough   =   0   'False
+            EndProperty
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            ColumnCount     =   2
+            BeginProperty Column00 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   3082
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            BeginProperty Column01 
+               DataField       =   ""
+               Caption         =   ""
+               BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+                  Type            =   0
+                  Format          =   ""
+                  HaveTrueFalseNull=   0
+                  FirstDayOfWeek  =   0
+                  FirstWeekOfYear =   0
+                  LCID            =   3082
+                  SubFormatType   =   0
+               EndProperty
+            EndProperty
+            SplitCount      =   1
+            BeginProperty Split0 
+               BeginProperty Column00 
+               EndProperty
+               BeginProperty Column01 
+               EndProperty
+            EndProperty
+         End
+         Begin MSAdodcLib.Adodc Adoaux 
+            Height          =   330
+            Index           =   3
+            Left            =   1395
+            Top             =   135
+            Visible         =   0   'False
+            Width           =   1425
+            _ExtentX        =   2514
+            _ExtentY        =   582
+            ConnectMode     =   0
+            CursorLocation  =   3
+            IsolationLevel  =   -1
+            ConnectionTimeout=   15
+            CommandTimeout  =   30
+            CursorType      =   3
+            LockType        =   3
+            CommandType     =   8
+            CursorOptions   =   0
+            CacheSize       =   50
+            MaxRecords      =   0
+            BOFAction       =   0
+            EOFAction       =   0
+            ConnectStringType=   1
+            Appearance      =   1
+            BackColor       =   -2147483643
+            ForeColor       =   -2147483640
+            Orientation     =   0
+            Enabled         =   -1
+            Connect         =   ""
+            OLEDBString     =   ""
+            OLEDBFile       =   ""
+            DataSourceName  =   ""
+            OtherAttributes =   ""
+            UserName        =   ""
+            Password        =   ""
+            RecordSource    =   ""
+            Caption         =   "Adodc1"
+            BeginProperty Font {0BE35203-8F91-11CE-9DE3-00AA004BB851} 
+               Name            =   "MS Sans Serif"
+               Size            =   8.25
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            _Version        =   393216
+         End
+      End
+      Begin VB.TextBox Text2 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000018&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   41
+         Left            =   -60810
+         MaxLength       =   30
+         TabIndex        =   138
+         Text            =   "Pr.Pro"
+         Top             =   3600
+         Visible         =   0   'False
+         Width           =   495
+      End
+      Begin VB.TextBox Text2 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000018&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   40
+         Left            =   -61440
+         MaxLength       =   30
+         TabIndex        =   137
+         Text            =   "kil/caj"
+         Top             =   3600
+         Visible         =   0   'False
+         Width           =   495
+      End
+      Begin VB.TextBox txtAux3 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000018&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   16
+         Left            =   -64245
+         MaxLength       =   4
+         TabIndex        =   132
+         Tag             =   "Unidades|N|S|||albaran_variedad|unidades|##,##0|N|"
+         Text            =   "Ud"
+         Top             =   1635
+         Visible         =   0   'False
+         Width           =   855
+      End
+      Begin VB.TextBox txtAux 
+         Alignment       =   1  'Right Justify
+         Appearance      =   0  'Flat
+         BackColor       =   &H80000018&
+         BorderStyle     =   0  'None
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   315
+         Index           =   22
+         Left            =   -62940
+         MaxLength       =   4
+         TabIndex        =   131
+         Tag             =   "Unidades|N|S|0|999|albaran_calibre|unidades|##,##0||"
+         Text            =   "ud"
+         Top             =   3615
+         Visible         =   0   'False
+         Width           =   495
       End
       Begin VB.Frame FrameAux1 
          BorderStyle     =   0  'None
          Height          =   4110
          Left            =   -74955
-         TabIndex        =   80
-         Top             =   360
+         TabIndex        =   79
+         Top             =   450
          Width           =   17580
          Begin VB.Frame Frame3 
             Height          =   3390
             Left            =   8155
-            TabIndex        =   102
+            TabIndex        =   101
             Top             =   405
             Width           =   9285
             Begin VB.TextBox Text2 
@@ -2434,7 +2752,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   167
+               TabIndex        =   135
                Text            =   "Costes Comis"
                Top             =   1350
                Width           =   1575
@@ -2456,7 +2774,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   6795
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   129
+               TabIndex        =   128
                Text            =   "Neto/kg"
                Top             =   2475
                Width           =   1575
@@ -2478,7 +2796,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   6795
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   128
+               TabIndex        =   127
                Text            =   "Valorfruta"
                Top             =   2115
                Width           =   1575
@@ -2500,7 +2818,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   6795
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   127
+               TabIndex        =   126
                Text            =   "venta/caja"
                Top             =   1215
                Width           =   1575
@@ -2522,7 +2840,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   6795
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   126
+               TabIndex        =   125
                Text            =   "venta/kg"
                Top             =   1575
                Width           =   1575
@@ -2544,7 +2862,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   6795
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   125
+               TabIndex        =   124
                Text            =   "Importe Vta"
                Top             =   855
                Width           =   1575
@@ -2566,7 +2884,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   124
+               TabIndex        =   123
                Text            =   "Gastos/caja"
                Top             =   2475
                Width           =   1575
@@ -2588,7 +2906,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   123
+               TabIndex        =   122
                Text            =   "Gastos/kg"
                Top             =   2835
                Width           =   1575
@@ -2610,7 +2928,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   106
+               TabIndex        =   105
                Text            =   "Costes Envases"
                Top             =   630
                Width           =   1575
@@ -2632,7 +2950,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   105
+               TabIndex        =   104
                Text            =   "Costes Portes"
                Top             =   990
                Width           =   1575
@@ -2654,7 +2972,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   104
+               TabIndex        =   103
                Text            =   "Costes Totales"
                Top             =   1710
                Width           =   1575
@@ -2676,7 +2994,7 @@ Begin VB.Form frmVtasAlbaranes
                Left            =   2160
                Locked          =   -1  'True
                MaxLength       =   40
-               TabIndex        =   103
+               TabIndex        =   102
                Text            =   "Costes Totales"
                Top             =   2115
                Width           =   1575
@@ -2695,7 +3013,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   47
                Left            =   1035
-               TabIndex        =   168
+               TabIndex        =   136
                Top             =   1395
                Width           =   855
             End
@@ -2723,7 +3041,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   195
                Index           =   0
                Left            =   6795
-               TabIndex        =   131
+               TabIndex        =   130
                Top             =   2925
                Visible         =   0   'False
                Width           =   1095
@@ -2743,7 +3061,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   195
                Index           =   0
                Left            =   4590
-               TabIndex        =   130
+               TabIndex        =   129
                Top             =   2925
                Visible         =   0   'False
                Width           =   1275
@@ -2762,7 +3080,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   30
                Left            =   4590
-               TabIndex        =   122
+               TabIndex        =   121
                Top             =   2535
                Width           =   1380
             End
@@ -2781,7 +3099,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   27
                Left            =   4590
-               TabIndex        =   121
+               TabIndex        =   120
                Top             =   2175
                Width           =   1470
             End
@@ -2799,7 +3117,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   26
                Left            =   4590
-               TabIndex        =   120
+               TabIndex        =   119
                Top             =   1260
                Width           =   1965
             End
@@ -2817,7 +3135,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   25
                Left            =   4590
-               TabIndex        =   119
+               TabIndex        =   118
                Top             =   1620
                Width           =   1875
             End
@@ -2836,7 +3154,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   24
                Left            =   4590
-               TabIndex        =   118
+               TabIndex        =   117
                Top             =   915
                Width           =   1605
             End
@@ -2854,7 +3172,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   23
                Left            =   720
-               TabIndex        =   117
+               TabIndex        =   116
                Top             =   2535
                Width           =   1245
             End
@@ -2875,7 +3193,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   360
                Index           =   4
                Left            =   6795
-               TabIndex        =   116
+               TabIndex        =   115
                Top             =   225
                Width           =   1575
             End
@@ -2896,7 +3214,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   360
                Index           =   5
                Left            =   2160
-               TabIndex        =   115
+               TabIndex        =   114
                Top             =   225
                Width           =   1575
             End
@@ -2914,7 +3232,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   7
                Left            =   1035
-               TabIndex        =   114
+               TabIndex        =   113
                Top             =   675
                Width           =   810
             End
@@ -2932,7 +3250,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   9
                Left            =   1035
-               TabIndex        =   113
+               TabIndex        =   112
                Top             =   1035
                Width           =   720
             End
@@ -2950,7 +3268,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   10
                Left            =   1035
-               TabIndex        =   112
+               TabIndex        =   111
                Top             =   1755
                Width           =   720
             End
@@ -2969,7 +3287,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   11
                Left            =   720
-               TabIndex        =   111
+               TabIndex        =   110
                Top             =   2175
                Width           =   1530
             End
@@ -2978,7 +3296,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   180
                Index           =   19
                Left            =   720
-               TabIndex        =   110
+               TabIndex        =   109
                Top             =   1755
                Width           =   165
             End
@@ -2996,7 +3314,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   20
                Left            =   720
-               TabIndex        =   109
+               TabIndex        =   108
                Top             =   2895
                Width           =   1155
             End
@@ -3020,7 +3338,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   21
                Left            =   720
-               TabIndex        =   108
+               TabIndex        =   107
                Top             =   270
                Width           =   720
             End
@@ -3038,7 +3356,7 @@ Begin VB.Form frmVtasAlbaranes
                Height          =   255
                Index           =   22
                Left            =   4590
-               TabIndex        =   107
+               TabIndex        =   106
                Top             =   270
                Width           =   1215
             End
@@ -3061,7 +3379,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   20
             Left            =   6255
             MaxLength       =   16
-            TabIndex        =   89
+            TabIndex        =   88
             Tag             =   "Unidades|N|N|||albaran_costes|unidades|###,##0|N|"
             Text            =   "unidades"
             Top             =   3285
@@ -3077,7 +3395,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   19
             Left            =   7065
             MaxLength       =   16
-            TabIndex        =   90
+            TabIndex        =   89
             Tag             =   "Importe|N|N|||albaran_costes|importes|#,##0.0000|N|"
             Text            =   "importes"
             Top             =   3285
@@ -3093,7 +3411,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   18
             Left            =   7920
             MaxLength       =   16
-            TabIndex        =   92
+            TabIndex        =   91
             Tag             =   "Imp.Coste|N|N|||albaran_costes|impcoste|##,##,##0.0000|N|"
             Text            =   "impcoste"
             Top             =   3285
@@ -3118,7 +3436,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   4320
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   91
+            TabIndex        =   90
             Text            =   "Nomcoste"
             Top             =   3285
             Width           =   1740
@@ -3141,7 +3459,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   17
             Left            =   3465
             MaxLength       =   2
-            TabIndex        =   88
+            TabIndex        =   87
             Tag             =   "Cod.Coste|N|N|||albaran_costes|codcoste|00|N|"
             Text            =   "codcoste"
             Top             =   3285
@@ -3166,7 +3484,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   16
             Left            =   1140
             MaxLength       =   12
-            TabIndex        =   86
+            TabIndex        =   85
             Tag             =   "Num.Linea|N|N|||albaran_costes|numlinea|00|N|"
             Text            =   "numlinea"
             Top             =   3285
@@ -3191,7 +3509,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   15
             Left            =   210
             MaxLength       =   12
-            TabIndex        =   85
+            TabIndex        =   84
             Tag             =   "Num.Albaran|N|N|||albaran_costes|numalbar||S|"
             Text            =   "numalbar"
             Top             =   3285
@@ -3214,16 +3532,16 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   1
             Left            =   2070
             Style           =   2  'Dropdown List
-            TabIndex        =   87
+            TabIndex        =   86
             Tag             =   "Tipo Movimiento|N|N|||albaran_costes|tipogasto|0||"
             Top             =   3285
             Width           =   1260
          End
          Begin MSDataGridLib.DataGrid DataGrid4 
-            Bindings        =   "frmVtasAlbaranes.frx":01E6
+            Bindings        =   "frmVtasAlbaranes.frx":0217
             Height          =   3285
             Left            =   45
-            TabIndex        =   81
+            TabIndex        =   80
             Top             =   495
             Width           =   7345
             _ExtentX        =   12965
@@ -3350,7 +3668,7 @@ Begin VB.Form frmVtasAlbaranes
             ForeColor       =   &H00000000&
             Height          =   195
             Left            =   9810
-            TabIndex        =   101
+            TabIndex        =   100
             Top             =   135
             Width           =   735
          End
@@ -3368,7 +3686,7 @@ Begin VB.Form frmVtasAlbaranes
             ForeColor       =   &H00000000&
             Height          =   195
             Left            =   6165
-            TabIndex        =   100
+            TabIndex        =   99
             Top             =   135
             Width           =   465
          End
@@ -3386,7 +3704,7 @@ Begin VB.Form frmVtasAlbaranes
             ForeColor       =   &H00000000&
             Height          =   195
             Left            =   3195
-            TabIndex        =   99
+            TabIndex        =   98
             Top             =   135
             Width           =   690
          End
@@ -3404,7 +3722,7 @@ Begin VB.Form frmVtasAlbaranes
             ForeColor       =   &H00000000&
             Height          =   150
             Left            =   45
-            TabIndex        =   98
+            TabIndex        =   97
             Top             =   135
             Width           =   645
          End
@@ -3423,7 +3741,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   285
             Index           =   3
             Left            =   10575
-            TabIndex        =   97
+            TabIndex        =   96
             Top             =   90
             Width           =   4695
          End
@@ -3442,7 +3760,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   285
             Index           =   2
             Left            =   6660
-            TabIndex        =   96
+            TabIndex        =   95
             Top             =   90
             Width           =   3075
          End
@@ -3461,7 +3779,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   285
             Index           =   1
             Left            =   3915
-            TabIndex        =   95
+            TabIndex        =   94
             Top             =   90
             Width           =   2310
          End
@@ -3480,7 +3798,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   285
             Index           =   0
             Left            =   720
-            TabIndex        =   94
+            TabIndex        =   93
             Top             =   90
             Width           =   2400
          End
@@ -3489,8 +3807,8 @@ Begin VB.Form frmVtasAlbaranes
          BorderStyle     =   0  'None
          Height          =   4110
          Left            =   -74910
-         TabIndex        =   78
-         Top             =   405
+         TabIndex        =   77
+         Top             =   450
          Width           =   13650
          Begin VB.TextBox Text2 
             Appearance      =   0  'Flat
@@ -3507,37 +3825,13 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   330
             Index           =   13
-            Left            =   8775
+            Left            =   9315
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   218
-            Tag             =   "Hora Inicio|FH|N|||palets|horafin|hh:mm:ss||"
+            TabIndex        =   240
             Text            =   "Hora Fin"
             Top             =   3240
-            Width           =   1110
-         End
-         Begin VB.TextBox Text2 
-            Appearance      =   0  'Flat
-            BackColor       =   &H80000018&
-            BorderStyle     =   0  'None
-            BeginProperty Font 
-               Name            =   "Verdana"
-               Size            =   9.75
-               Charset         =   0
-               Weight          =   400
-               Underline       =   0   'False
-               Italic          =   0   'False
-               Strikethrough   =   0   'False
-            EndProperty
-            Height          =   330
-            Index           =   12
-            Left            =   7560
-            Locked          =   -1  'True
-            MaxLength       =   40
-            TabIndex        =   217
-            Text            =   "Fecha Fin"
-            Top             =   3240
-            Width           =   1110
+            Width           =   1290
          End
          Begin VB.TextBox Text2 
             Appearance      =   0  'Flat
@@ -3554,14 +3848,36 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
             Height          =   330
             Index           =   11
-            Left            =   6345
+            Left            =   6390
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   216
-            Tag             =   "Hora Inicio|FH|N|||palets|horaini|hh:mm:ss||"
+            TabIndex        =   239
             Text            =   "Hora.Ini."
             Top             =   3240
-            Width           =   1110
+            Width           =   1470
+         End
+         Begin VB.TextBox Text2 
+            Appearance      =   0  'Flat
+            BackColor       =   &H80000018&
+            BorderStyle     =   0  'None
+            BeginProperty Font 
+               Name            =   "Verdana"
+               Size            =   9.75
+               Charset         =   0
+               Weight          =   400
+               Underline       =   0   'False
+               Italic          =   0   'False
+               Strikethrough   =   0   'False
+            EndProperty
+            Height          =   330
+            Index           =   12
+            Left            =   7920
+            Locked          =   -1  'True
+            MaxLength       =   40
+            TabIndex        =   180
+            Text            =   "Fecha Fin"
+            Top             =   3240
+            Width           =   1335
          End
          Begin VB.TextBox Text2 
             Appearance      =   0  'Flat
@@ -3581,7 +3897,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   5130
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   215
+            TabIndex        =   179
             Text            =   "Fec.Inicio"
             Top             =   3240
             Width           =   1110
@@ -3604,7 +3920,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   3960
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   214
+            TabIndex        =   178
             Text            =   "Tip.Mercancia"
             Top             =   3240
             Width           =   1110
@@ -3627,7 +3943,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   2790
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   213
+            TabIndex        =   177
             Text            =   "Lin.Confec"
             Top             =   3240
             Width           =   1110
@@ -3649,9 +3965,9 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   330
             Index           =   14
             Left            =   2025
-            MaxLength       =   6
-            TabIndex        =   212
-            Tag             =   "Num.Palets|N|N|||albaran_palets|numpalet|###,##0|N|"
+            MaxLength       =   9
+            TabIndex        =   176
+            Tag             =   "Num.Palets|N|N|||albaran_palets|numpalet|#,###,##0|N|"
             Text            =   "N.Palets"
             Top             =   3240
             Visible         =   0   'False
@@ -3675,7 +3991,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   13
             Left            =   1215
             MaxLength       =   12
-            TabIndex        =   211
+            TabIndex        =   175
             Tag             =   "Num.Linea|N|N|||albaran_palets|numlinea|00|S|"
             Text            =   "numlinea"
             Top             =   3240
@@ -3700,7 +4016,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   12
             Left            =   315
             MaxLength       =   12
-            TabIndex        =   210
+            TabIndex        =   174
             Tag             =   "Num.Albar|N|N|||albaran_palets|numalbar||S|"
             Text            =   "numalbar"
             Top             =   3240
@@ -3710,9 +4026,9 @@ Begin VB.Form frmVtasAlbaranes
          Begin MSComctlLib.Toolbar ToolAux 
             Height          =   390
             Index           =   2
-            Left            =   45
-            TabIndex        =   79
-            Top             =   0
+            Left            =   90
+            TabIndex        =   78
+            Top             =   45
             Width           =   1200
             _ExtentX        =   2117
             _ExtentY        =   688
@@ -3737,14 +4053,14 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
          End
          Begin MSDataGridLib.DataGrid DataGrid5 
-            Bindings        =   "frmVtasAlbaranes.frx":01FB
-            Height          =   3285
-            Left            =   0
-            TabIndex        =   84
-            Top             =   450
-            Width           =   10955
+            Bindings        =   "frmVtasAlbaranes.frx":022C
+            Height          =   3465
+            Left            =   90
+            TabIndex        =   83
+            Top             =   495
+            Width           =   10950
             _ExtentX        =   19315
-            _ExtentY        =   5794
+            _ExtentY        =   6112
             _Version        =   393216
             AllowUpdate     =   0   'False
             AllowArrows     =   -1  'True
@@ -3857,9 +4173,9 @@ Begin VB.Form frmVtasAlbaranes
       Begin VB.Frame FrameAux0 
          BorderStyle     =   0  'None
          Height          =   4110
-         Left            =   -74955
-         TabIndex        =   64
-         Top             =   360
+         Left            =   -74910
+         TabIndex        =   63
+         Top             =   450
          Width           =   17700
          Begin VB.CommandButton btnBuscar 
             Appearance      =   0  'Flat
@@ -3877,7 +4193,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   1
             Left            =   13380
             MaskColor       =   &H00000000&
-            TabIndex        =   219
+            TabIndex        =   181
             ToolTipText     =   "Buscar fecha"
             Top             =   3240
             Visible         =   0   'False
@@ -3900,7 +4216,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   26
             Left            =   12630
             MaxLength       =   10
-            TabIndex        =   73
+            TabIndex        =   72
             Tag             =   "Fec.Factura|F|S|||albaran_envase|fecfactu|dd/mm/yyyy||"
             Text            =   "fecfac"
             Top             =   3240
@@ -3924,7 +4240,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   25
             Left            =   11850
             MaxLength       =   10
-            TabIndex        =   72
+            TabIndex        =   71
             Tag             =   "Factura|T|S|||albaran_envase|factura|||"
             Text            =   "fra"
             Top             =   3240
@@ -3949,7 +4265,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   24
             Left            =   11070
             MaxLength       =   10
-            TabIndex        =   71
+            TabIndex        =   70
             Tag             =   "Fianza|N|N|||albaran_envase|impfianza|###,##0.00||"
             Text            =   "fianza"
             Top             =   3240
@@ -3974,7 +4290,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   23
             Left            =   10305
             MaxLength       =   10
-            TabIndex        =   70
+            TabIndex        =   69
             Tag             =   "Cliente|N|N|||albaran_envase|codclien|000000||"
             Text            =   "cliente"
             Top             =   3240
@@ -3999,7 +4315,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   21
             Left            =   9585
             MaxLength       =   10
-            TabIndex        =   69
+            TabIndex        =   68
             Tag             =   "Fecha Movimiento|F|N|||albaran_envase|fechamov|dd/mm/yyyy||"
             Text            =   "fechamov"
             Top             =   3240
@@ -4022,7 +4338,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   0
             Left            =   3195
             MaskColor       =   &H00000000&
-            TabIndex        =   93
+            TabIndex        =   92
             ToolTipText     =   "Buscar Envase"
             Top             =   3240
             Visible         =   0   'False
@@ -4044,7 +4360,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   0
             Left            =   7515
             Style           =   2  'Dropdown List
-            TabIndex        =   67
+            TabIndex        =   66
             Tag             =   "Tipo Movimiento|N|N|||albaran_envase|tipomovi|0||"
             Top             =   3240
             Width           =   1260
@@ -4067,7 +4383,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   5715
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   83
+            TabIndex        =   82
             Text            =   "Nomtipart"
             Top             =   3240
             Width           =   1740
@@ -4090,7 +4406,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   5085
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   74
+            TabIndex        =   73
             Text            =   "TipArt"
             Top             =   3240
             Width           =   570
@@ -4113,7 +4429,7 @@ Begin VB.Form frmVtasAlbaranes
             Left            =   3330
             Locked          =   -1  'True
             MaxLength       =   40
-            TabIndex        =   82
+            TabIndex        =   81
             Text            =   "Nombre articulo"
             Top             =   3240
             Width           =   1740
@@ -4136,7 +4452,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   8
             Left            =   525
             MaxLength       =   12
-            TabIndex        =   76
+            TabIndex        =   75
             Tag             =   "Num.Albaran|N|N|||albaran_envase|numalbar||S|"
             Text            =   "numalbar"
             Top             =   3240
@@ -4161,7 +4477,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   9
             Left            =   1485
             MaxLength       =   12
-            TabIndex        =   75
+            TabIndex        =   74
             Tag             =   "Num.Linea|N|N|||albaran_envase|numlinea|00|S|"
             Text            =   "numlinea"
             Top             =   3240
@@ -4185,7 +4501,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   10
             Left            =   2295
             MaxLength       =   16
-            TabIndex        =   66
+            TabIndex        =   65
             Tag             =   "Artículo|T|N|||albaran_envase|codartic||N|"
             Text            =   "Articulo"
             Top             =   3240
@@ -4210,7 +4526,7 @@ Begin VB.Form frmVtasAlbaranes
             Index           =   11
             Left            =   8820
             MaxLength       =   7
-            TabIndex        =   68
+            TabIndex        =   67
             Tag             =   "Cantidad|N|N|||albaran_envase|cantidad|###,##0||"
             Text            =   "cantidad"
             Top             =   3240
@@ -4221,7 +4537,7 @@ Begin VB.Form frmVtasAlbaranes
             Height          =   390
             Index           =   1
             Left            =   90
-            TabIndex        =   65
+            TabIndex        =   64
             Top             =   45
             Width           =   1110
             _ExtentX        =   1958
@@ -4247,11 +4563,11 @@ Begin VB.Form frmVtasAlbaranes
             EndProperty
          End
          Begin MSDataGridLib.DataGrid DataGrid3 
-            Bindings        =   "frmVtasAlbaranes.frx":0210
+            Bindings        =   "frmVtasAlbaranes.frx":0241
             Height          =   3495
-            Left            =   45
-            TabIndex        =   77
-            Top             =   540
+            Left            =   90
+            TabIndex        =   76
+            Top             =   495
             Width           =   17520
             _ExtentX        =   30903
             _ExtentY        =   6165
@@ -4382,10 +4698,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   2
          Left            =   -73515
          MaxLength       =   30
-         TabIndex        =   60
+         TabIndex        =   59
          Tag             =   "Variedad|N|N|||albaran_variedad|codvarie||N|"
          Text            =   "variedad"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4407,10 +4723,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   1
          Left            =   -74190
          MaxLength       =   15
-         TabIndex        =   59
+         TabIndex        =   58
          Tag             =   "Num.Linea|N|N|||albaran_variedad|numlinea|00|S|"
          Text            =   "numlinea"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4432,10 +4748,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   0
          Left            =   -74550
          MaxLength       =   7
-         TabIndex        =   58
+         TabIndex        =   57
          Tag             =   "Num.Albaran|N|N|||albaran_variedad|numalbar||S|"
          Text            =   "numpedi"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   615
       End
@@ -4457,10 +4773,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   4
          Left            =   -65025
          MaxLength       =   5
-         TabIndex        =   57
+         TabIndex        =   56
          Tag             =   "Calibre|N|N|||albaran_calibre|codcalib|00|N|"
          Text            =   "calib"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   615
       End
@@ -4482,10 +4798,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   3
          Left            =   -66090
          MaxLength       =   12
-         TabIndex        =   56
+         TabIndex        =   55
          Tag             =   "Variedad|N|N|||albaran_calibre|codvarie|000000|N|"
          Text            =   "variedad"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   735
       End
@@ -4506,10 +4822,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   2
          Left            =   -67170
          MaxLength       =   12
-         TabIndex        =   55
+         TabIndex        =   54
          Tag             =   "Num.Linea 1|N|N|||albaran_calibre|numline1||N|"
          Text            =   "numline1"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   975
       End
@@ -4531,10 +4847,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   1
          Left            =   -67980
          MaxLength       =   12
-         TabIndex        =   54
+         TabIndex        =   53
          Tag             =   "Num.Linea|N|N|||albaran_calibre|numlinea|00|N|"
          Text            =   "numlinea"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   735
       End
@@ -4556,10 +4872,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   0
          Left            =   -68940
          MaxLength       =   12
-         TabIndex        =   53
+         TabIndex        =   52
          Tag             =   "Num.Palet|N|N|||albaran_calibre|numpalet||S|"
          Text            =   "numpedid"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   855
       End
@@ -4581,9 +4897,9 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   5
          Left            =   -64335
          MaxLength       =   5
-         TabIndex        =   52
+         TabIndex        =   51
          Text            =   "nomca"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   615
       End
@@ -4605,10 +4921,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   6
          Left            =   -63585
          MaxLength       =   30
-         TabIndex        =   51
+         TabIndex        =   50
          Tag             =   "Num.Cajas|N|N|0||albaran_calibre|numcajas|#,##0||"
          Text            =   "numcajas"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   495
       End
@@ -4630,9 +4946,9 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   3
          Left            =   -72840
          MaxLength       =   30
-         TabIndex        =   50
+         TabIndex        =   49
          Text            =   "nomvarie"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4654,10 +4970,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   4
          Left            =   -72165
          MaxLength       =   30
-         TabIndex        =   49
+         TabIndex        =   48
          Tag             =   "Variedad Comercial|N|N|||albaran_variedad|codvarco|||"
          Text            =   "var.comer."
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4679,9 +4995,9 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   5
          Left            =   -71400
          MaxLength       =   30
-         TabIndex        =   48
+         TabIndex        =   47
          Text            =   "nom.var.comer"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4703,10 +5019,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   7
          Left            =   -69690
          MaxLength       =   30
-         TabIndex        =   47
+         TabIndex        =   46
          Tag             =   "Forfait|N|N|||albaran_variedad|codforfait|||"
          Text            =   "forfait"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   585
       End
@@ -4728,10 +5044,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   8
          Left            =   -68880
          MaxLength       =   30
-         TabIndex        =   46
+         TabIndex        =   45
          Tag             =   "Categoria|T|S|||albaran_variedad|categori|||"
          Text            =   "categ"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4753,10 +5069,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   9
          Left            =   -68070
          MaxLength       =   30
-         TabIndex        =   45
+         TabIndex        =   44
          Tag             =   "Peso Bruto|N|N|||albaran_variedad|pesobrut|###,##0||"
          Text            =   "peso bruto"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4778,10 +5094,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   10
          Left            =   -67305
          MaxLength       =   30
-         TabIndex        =   44
+         TabIndex        =   43
          Tag             =   "Peso Neto|N|S|||albaran_variedad|pesoneto|###,##0|N|"
          Text            =   "peso neto"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   765
       End
@@ -4803,10 +5119,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   6
          Left            =   -70635
          MaxLength       =   30
-         TabIndex        =   42
+         TabIndex        =   41
          Tag             =   "Marca|N|N|||albaran_variedad|codmarca|000||"
          Text            =   "marca"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   405
       End
@@ -4819,9 +5135,9 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   11
          Left            =   -70410
          MaxLength       =   30
-         TabIndex        =   41
+         TabIndex        =   40
          Text            =   "nom marca"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4843,9 +5159,9 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   12
          Left            =   -69150
          MaxLength       =   30
-         TabIndex        =   40
+         TabIndex        =   39
          Text            =   "nom forf"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   585
       End
@@ -4867,10 +5183,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   13
          Left            =   -66540
          MaxLength       =   30
-         TabIndex        =   39
+         TabIndex        =   38
          Tag             =   "Num.Cajas|N|S|||albaran_variedad|numcajas|#,##0|N|"
          Text            =   "num.caj"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   675
       End
@@ -4892,10 +5208,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   14
          Left            =   -65865
          MaxLength       =   30
-         TabIndex        =   38
+         TabIndex        =   37
          Tag             =   "Total Palets|N|S|||albaran_variedad|totpalet|##0|N|"
          Text            =   "tot.palet"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   765
       End
@@ -4917,10 +5233,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   15
          Left            =   -65145
          MaxLength       =   30
-         TabIndex        =   37
+         TabIndex        =   36
          Tag             =   "Prec.Profes.|N|S|||albaran_variedad|preciopro|#0.0000|N|"
          Text            =   "precio prof"
-         Top             =   1935
+         Top             =   1635
          Visible         =   0   'False
          Width           =   855
       End
@@ -4942,10 +5258,10 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   7
          Left            =   -62310
          MaxLength       =   30
-         TabIndex        =   36
+         TabIndex        =   35
          Tag             =   "Peso Neto|N|N|0||albaran_calibre|pesoneto|###,##0||"
          Text            =   "pesoneto"
-         Top             =   3915
+         Top             =   3615
          Visible         =   0   'False
          Width           =   495
       End
@@ -4953,8 +5269,8 @@ Begin VB.Form frmVtasAlbaranes
          Height          =   390
          Index           =   0
          Left            =   -74865
-         TabIndex        =   43
-         Top             =   405
+         TabIndex        =   42
+         Top             =   375
          Width           =   1110
          _ExtentX        =   1958
          _ExtentY        =   688
@@ -4979,11 +5295,11 @@ Begin VB.Form frmVtasAlbaranes
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid2 
-         Bindings        =   "frmVtasAlbaranes.frx":0225
+         Bindings        =   "frmVtasAlbaranes.frx":0256
          Height          =   2055
          Left            =   -74910
-         TabIndex        =   61
-         Top             =   855
+         TabIndex        =   60
+         Top             =   825
          Width           =   17670
          _ExtentX        =   31168
          _ExtentY        =   3625
@@ -5048,11 +5364,11 @@ Begin VB.Form frmVtasAlbaranes
          EndProperty
       End
       Begin MSDataGridLib.DataGrid DataGrid1 
-         Bindings        =   "frmVtasAlbaranes.frx":023A
+         Bindings        =   "frmVtasAlbaranes.frx":026B
          Height          =   1680
          Left            =   -69105
-         TabIndex        =   62
-         Top             =   2970
+         TabIndex        =   61
+         Top             =   2940
          Width           =   11865
          _ExtentX        =   20929
          _ExtentY        =   2963
@@ -5118,10 +5434,10 @@ Begin VB.Form frmVtasAlbaranes
       End
       Begin MSComctlLib.ListView ListView1 
          Height          =   3285
-         Left            =   90
-         TabIndex        =   132
-         Top             =   855
-         Width           =   7345
+         Left            =   -74910
+         TabIndex        =   238
+         Top             =   960
+         Width           =   7350
          _ExtentX        =   12965
          _ExtentY        =   5794
          View            =   3
@@ -5158,8 +5474,8 @@ Begin VB.Form frmVtasAlbaranes
          Height          =   195
          Index           =   2
          Left            =   -72690
-         TabIndex        =   166
-         Top             =   3960
+         TabIndex        =   134
+         Top             =   3930
          Visible         =   0   'False
          Width           =   915
       End
@@ -5178,8 +5494,8 @@ Begin VB.Form frmVtasAlbaranes
          Height          =   195
          Index           =   2
          Left            =   -73890
-         TabIndex        =   165
-         Top             =   3960
+         TabIndex        =   133
+         Top             =   3930
          Visible         =   0   'False
          Width           =   1185
       End
@@ -5188,7 +5504,7 @@ Begin VB.Form frmVtasAlbaranes
          Index           =   2
          Left            =   -74490
          ToolTipText     =   "Facturas asociadas"
-         Top             =   3870
+         Top             =   3840
          Visible         =   0   'False
          Width           =   330
       End
@@ -5206,16 +5522,16 @@ Begin VB.Form frmVtasAlbaranes
          ForeColor       =   &H0000C000&
          Height          =   645
          Left            =   -74550
-         TabIndex        =   63
-         Top             =   3105
+         TabIndex        =   62
+         Top             =   3075
          Width           =   5190
       End
    End
    Begin VB.Frame Frame1 
       Height          =   475
       Index           =   0
-      Left            =   90
-      TabIndex        =   33
+      Left            =   135
+      TabIndex        =   32
       Top             =   9690
       Width           =   2175
       Begin VB.Label lblIndicador 
@@ -5232,7 +5548,7 @@ Begin VB.Form frmVtasAlbaranes
          EndProperty
          Height          =   240
          Left            =   240
-         TabIndex        =   34
+         TabIndex        =   33
          Top             =   135
          Width           =   1755
       End
@@ -5251,7 +5567,7 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   375
       Left            =   16830
-      TabIndex        =   23
+      TabIndex        =   22
       Top             =   9795
       Width           =   1065
    End
@@ -5268,7 +5584,7 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   375
       Left            =   15660
-      TabIndex        =   22
+      TabIndex        =   21
       Top             =   9795
       Width           =   1065
    End
@@ -5285,7 +5601,7 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   375
       Left            =   16830
-      TabIndex        =   32
+      TabIndex        =   31
       Top             =   9810
       Visible         =   0   'False
       Width           =   1065
@@ -5434,7 +5750,7 @@ Begin VB.Form frmVtasAlbaranes
    Begin MSComctlLib.Toolbar ToolbarAyuda 
       Height          =   330
       Left            =   17430
-      TabIndex        =   229
+      TabIndex        =   191
       Top             =   255
       Width           =   405
       _ExtentX        =   714
@@ -5463,7 +5779,7 @@ Begin VB.Form frmVtasAlbaranes
       EndProperty
       Height          =   255
       Left            =   10440
-      TabIndex        =   231
+      TabIndex        =   193
       Top             =   315
       Width           =   1035
    End
@@ -5481,7 +5797,7 @@ Begin VB.Form frmVtasAlbaranes
       ForeColor       =   &H00000040&
       Height          =   645
       Left            =   4995
-      TabIndex        =   221
+      TabIndex        =   183
       Top             =   9630
       Visible         =   0   'False
       Width           =   6225
@@ -5638,7 +5954,6 @@ Dim TituloLinea As String 'Descripcion de la linea que estamos en Mantenimiento
 Dim PrimeraVez As Boolean
 
 Dim EsCabecera As Boolean
-'Para saber en MandaBusquedaPrevia si busca en la tabla scapla o en la tabla sdirec
 Dim NumTabMto As Integer 'Indica quin nº de Tab està en modo Mantenimient
 
 
@@ -5730,6 +6045,14 @@ Private Sub btnBuscar_Click(Index As Integer)
             PonerFoco txtAux(26) '<===
             ' ********************************************
     
+        Case 3 ' agencias de transporte
+            indice = 29
+            PonerFoco txtAux(indice)
+            Set frmTra = New frmManAgencias
+            frmTra.DatosADevolverBusqueda = "0|1|2|"
+            frmTra.Show vbModal
+            Set frmTra = Nothing
+            PonerFoco txtAux(indice)
     
     End Select
     If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
@@ -5799,7 +6122,7 @@ Dim i As Integer
             End Select
             
             If vParamAplic.Cooperativa = 16 Then
-                If AlbaranComunicado(text1(0).Text) Then
+                If AlbaranComunicado(Text1(0).Text) Then
                     ComunicaDatos False
                 End If
             End If
@@ -5822,13 +6145,14 @@ Private Sub cmdCancelar_Click()
             LimpiarDataGrids
             PonerModo 0
             LLamaLineas Modo, 0, "DataGrid2"
-            PonerFoco text1(0)
+            LLamaLineas Modo, 0, "DataGrid6"
+            PonerFoco Text1(0)
             
         Case 4  'Modificar
             TerminaBloquear
             PonerModo 2
             PonerCampos
-            PonerFoco text1(0)
+            PonerFoco Text1(0)
             
         Case 5 'Lineas Detalle
             TerminaBloquear
@@ -5855,7 +6179,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid3.AllowAddNew = False
-                        If Not AdoAux(0).Recordset.EOF Then AdoAux(0).Recordset.MoveFirst
+                        If Not Adoaux(0).Recordset.EOF Then Adoaux(0).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid3"
@@ -5874,7 +6198,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid4.AllowAddNew = False
-                        If Not AdoAux(1).Recordset.EOF Then AdoAux(1).Recordset.MoveFirst
+                        If Not Adoaux(1).Recordset.EOF Then Adoaux(1).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid4"
@@ -5893,7 +6217,7 @@ Private Sub cmdCancelar_Click()
                     If ModificaLineas = 1 Then 'INSERTAR
                         ModificaLineas = 0
                         DataGrid5.AllowAddNew = False
-                        If Not AdoAux(2).Recordset.EOF Then AdoAux(2).Recordset.MoveFirst
+                        If Not Adoaux(2).Recordset.EOF Then Adoaux(2).Recordset.MoveFirst
                     End If
                     ModificaLineas = 0
                     LLamaLineas Modo, 0, "DataGrid5"
@@ -5907,6 +6231,28 @@ Private Sub cmdCancelar_Click()
                     PonerOpcionesMenu 'Habilitar las opciones correctas del menu segun Nivel de Acceso
                     DataGrid5.Enabled = True
                     PonerFocoGrid DataGrid5
+             
+                '[Monica]15/04/2019:
+                Case 4 ' agencias de transporte
+                    If ModificaLineas = 1 Then 'INSERTAR
+                        ModificaLineas = 0
+                        DataGrid6.AllowAddNew = False
+                        If Not Adoaux(3).Recordset.EOF Then Adoaux(3).Recordset.MoveFirst
+                    End If
+                    ModificaLineas = 0
+                    LLamaLineas Modo, 0, "DataGrid6"
+                    PonerModo 2
+                    DataGrid6.Enabled = True
+                    If Not Data1.Recordset.EOF Then _
+                        Me.lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
+            
+                    'Habilitar las opciones correctas del menu segun Modo
+                    PonerModoOpcionesMenu (Modo)
+                    PonerOpcionesMenu 'Habilitar las opciones correctas del menu segun Nivel de Acceso
+                    DataGrid6.Enabled = True
+                    PonerFocoGrid DataGrid6
+                    
+             
              End Select
             
 '            PonerBotonCabecera True
@@ -5927,14 +6273,14 @@ Private Sub BotonAnyadir()
 '    FormateaCampo Text1(0)
     cmbAux(0).ListIndex = -1
     
-    text1(1).Text = Format(Now, "dd/mm/yyyy")
-    text1(16).Text = Format(vParamAplic.Almacen, "000")
-    text2(18).Text = PonerNombreDeCod(text1(16), "salmpr", "nomalmac", "codalmac", "N")
+    Text1(1).Text = Format(Now, "dd/mm/yyyy")
+    Text1(16).Text = Format(vParamAplic.Almacen, "000")
+    Text2(18).Text = PonerNombreDeCod(Text1(16), "salmpr", "nomalmac", "codalmac", "N")
         
         
     LimpiarDataGrids
     
-    PonerFoco text1(1) '*** 1r camp visible que siga PK ***
+    PonerFoco Text1(1) '*** 1r camp visible que siga PK ***
     ' *** si n'hi han camps de descripció a la capçalera ***
     'PosarDescripcions
 End Sub
@@ -5946,6 +6292,7 @@ Dim anc As Single
     'Buscar
     If Modo <> 1 Then
         LimpiarCampos
+        LimpiarCamposLin "FrameAux3"
         'Poner los grid sin apuntar a nada
         LimpiarDataGrids
         PonerModo 1
@@ -5960,15 +6307,25 @@ Dim anc As Single
         LLamaLineas Modo, anc, "DataGrid2"
         
         
+        anc = DataGrid6.Top
+        If DataGrid6.Row < 0 Then
+            anc = anc + 240
+        Else
+            anc = anc + DataGrid6.RowTop(DataGrid6.Row) + 20
+        End If
+        
+        LLamaLineas Modo, anc, "DataGrid6"
+        
+        
         'Si pasamos el control aqui lo ponemos en amarillo
-        PonerFoco text1(0)
-        text1(0).BackColor = vbLightBlue 'vbYellow
+        PonerFoco Text1(0)
+        Text1(0).BackColor = vbLightBlue 'vbYellow
     Else
         HacerBusqueda
         If Data1.Recordset.EOF Then
-            text1(kCampo).Text = ""
-            text1(kCampo).BackColor = vbLightBlue 'vbYellow
-            PonerFoco text1(kCampo)
+            Text1(kCampo).Text = ""
+            Text1(kCampo).BackColor = vbLightBlue 'vbYellow
+            PonerFoco Text1(kCampo)
         End If
     End If
 End Sub
@@ -6011,7 +6368,7 @@ Dim DeVarios As Boolean
     'Añadiremos el boton de aceptar y demas objetos para insertar
     PonerModo 4
     
-    PonerFoco text1(1) '*** 1r camp visible que siga PK ***
+    PonerFoco Text1(1) '*** 1r camp visible que siga PK ***
         
 End Sub
 
@@ -6045,6 +6402,7 @@ Dim J As Byte
     
     NumTabMto = Index
     If Index = 2 Then NumTabMto = 3
+    If Index = 3 Then NumTabMto = 5
     PonerModo 5, Index
  
 
@@ -6074,9 +6432,9 @@ Dim J As Byte
             For J = 8 To 10
                 txtAux(J).Text = DataGrid3.Columns(J - 8).Text
             Next J
-            text2(0).Text = DataGrid3.Columns(3).Text
-            text2(1).Text = DataGrid3.Columns(4).Text
-            text2(2).Text = DataGrid3.Columns(5).Text
+            Text2(0).Text = DataGrid3.Columns(3).Text
+            Text2(1).Text = DataGrid3.Columns(4).Text
+            Text2(2).Text = DataGrid3.Columns(5).Text
             
             cmbAux(0).Text = DataGrid3.Columns(7).Text
             txtAux(11).Text = DataGrid3.Columns(8).Text
@@ -6138,6 +6496,53 @@ Dim J As Byte
             PonerFoco txtAux(14)
             Me.DataGrid5.Enabled = False
        
+        Case 5
+            vWhere = ObtenerWhereCP(False)
+            vWhere = vWhere & " and numlinea=" & Data2.Recordset!NumLinea
+            If Not BloqueaRegistro("albaran_transporte", vWhere) Then
+                TerminaBloquear
+                Exit Sub
+            End If
+            If DataGrid6.Bookmark < DataGrid6.FirstRow Or DataGrid6.Bookmark > (DataGrid6.FirstRow + DataGrid6.VisibleRows - 1) Then
+                J = DataGrid6.Bookmark - DataGrid6.FirstRow
+                DataGrid6.Scroll 0, J
+                DataGrid6.Refresh
+            End If
+            
+        '    anc = ObtenerAlto(Me.DataGrid1)
+            anc = DataGrid6.Top
+            If DataGrid6.Row < 0 Then
+                anc = anc + 240
+            Else
+                anc = anc + DataGrid6.RowTop(DataGrid6.Row) + 10
+            End If
+        
+            txtAux(27).Text = DataGrid6.Columns(0).Text
+            txtAux(28).Text = DataGrid6.Columns(1).Text
+            
+            txtAux(29).Text = DataGrid6.Columns(2).Text
+            Text2(44).Text = DataGrid6.Columns(3).Text
+            
+            PosicionarCombo cmbAux(2), DataGrid6.Columns(4).Text
+            
+            txtAux(30).Text = DataGrid6.Columns(6).Text
+            chkAux(1).Value = DataGrid6.Columns(7).Text
+            
+            ModificaLineas = 2 'Modificar
+            LLamaLineas ModificaLineas, anc, "DataGrid6"
+            
+            'Añadiremos el boton de aceptar y demas objetos para insertar
+            Me.lblIndicador.Caption = "MODIFICAR"
+            PonerModoOpcionesMenu (Modo)
+            PonerOpcionesMenu 'Habilitar las opciones correctas del menu segun Nivel de Acceso
+            DataGrid6.Enabled = True
+            
+'            PonerBotonCabecera False
+            PonerFoco txtAux(29)
+            Me.DataGrid6.Enabled = False
+        
+       
+       
     End Select
     
 eModificarLinea:
@@ -6185,9 +6590,9 @@ Dim b As Boolean
             btnBuscar(0).Top = alto + 5
             btnBuscar(0).visible = b
             For jj = 0 To 2
-                text2(jj).Height = DataGrid3.RowHeight - 10
-                text2(jj).Top = alto + 5
-                text2(jj).visible = b
+                Text2(jj).Height = DataGrid3.RowHeight - 10
+                Text2(jj).Top = alto + 5
+                Text2(jj).visible = b
             Next jj
             txtAux(8).visible = False
             txtAux(8).Enabled = False
@@ -6227,10 +6632,43 @@ Dim b As Boolean
                 txtAux(jj).visible = b
             Next jj
             For jj = 8 To 13
-                text2(jj).Height = DataGrid5.RowHeight - 10
-                text2(jj).Top = alto + 5
-                text2(jj).visible = b
+                Text2(jj).Height = DataGrid5.RowHeight - 10
+                Text2(jj).Top = alto + 5
+                Text2(jj).visible = b
             Next jj
+            Text2(11).Left = Text2(42).Left
+            Text2(11).Width = Text2(42).Width
+            
+            Text2(13).Left = Text2(6).Left
+            Text2(13).Width = Text2(6).Width
+    
+        Case "DataGrid6"
+            DeseleccionaGrid Me.DataGrid6
+            b = (xModo = 1 Or xModo = 2)
+            For jj = 29 To 30
+                txtAux(jj).Height = DataGrid6.RowHeight - 10
+                txtAux(jj).Top = alto + 5
+                txtAux(jj).visible = b
+            Next jj
+            btnBuscar(3).Height = DataGrid6.RowHeight - 10
+            btnBuscar(3).Top = alto + 5
+            btnBuscar(3).visible = b
+            For jj = 44 To 44
+                Text2(jj).Height = DataGrid6.RowHeight - 10
+                Text2(jj).Top = alto + 5
+                Text2(jj).visible = b
+            Next jj
+            txtAux(27).visible = False
+            txtAux(27).Enabled = False
+            txtAux(28).visible = False
+            txtAux(28).Enabled = False
+            
+            cmbAux(2).Top = alto + 5
+            cmbAux(2).visible = b
+            
+            chkAux(1).Top = alto + 5
+            chkAux(1).visible = b
+    
     End Select
 End Sub
 
@@ -6254,7 +6692,7 @@ Dim Cad As String
     
     '[Monica]26/06/2018: si la entrada está comunicada tiene que tener permiso para modificarla
     If vParamAplic.Cooperativa = 16 Then
-        If AlbaranComunicado(text1(0).Text) Then
+        If AlbaranComunicado(Text1(0).Text) Then
             MsgBox "No puede eliminar este albarán.", vbExclamation
             Exit Sub
         End If
@@ -6297,8 +6735,8 @@ Dim Cad As String
     Cad = "Cabecera de Albaranes." & vbCrLf
     Cad = Cad & "-------------------------------------      " & vbCrLf & vbCrLf
     Cad = Cad & "Va a eliminar el Albarán:            "
-    Cad = Cad & vbCrLf & "Nº Albarán:  " & Format(text1(0).Text, "0000000")
-    Cad = Cad & vbCrLf & "Fecha:  " & Format(text1(1).Text, "dd/mm/yyyy")
+    Cad = Cad & vbCrLf & "Nº Albarán:  " & Format(Text1(0).Text, "0000000")
+    Cad = Cad & vbCrLf & "Fecha:  " & Format(Text1(1).Text, "dd/mm/yyyy")
 
     Cad = Cad & vbCrLf & vbCrLf & " ¿Desea Eliminarlo? "
 
@@ -6439,14 +6877,14 @@ Dim i As Byte
 
 '[Monica]22/10/2014:
         If ModoConsulta Then
-            CargaGrid DataGrid4, AdoAux(1), False
+            CargaGrid DataGrid4, Adoaux(1), False
         End If
         
         For i = 14 To 17
-            text2(i) = ""
+            Text2(i) = ""
         Next i
         For i = 19 To 25
-            text2(i) = ""
+            Text2(i) = ""
         Next i
     End If
     
@@ -6470,11 +6908,11 @@ End Sub
 
 Private Sub DataGrid5_DblClick()
 
-    If AdoAux(2).Recordset.EOF Then Exit Sub
+    If Adoaux(2).Recordset.EOF Then Exit Sub
 
     Set frmPal = New frmVtasPalets
     
-    frmPal.DatosADevolverBusqueda = AdoAux(2).Recordset.Fields(2)
+    frmPal.DatosADevolverBusqueda = Adoaux(2).Recordset.Fields(2)
     frmPal.Show vbModal
     Set frmPal = Nothing
 
@@ -6512,7 +6950,9 @@ Dim i As Integer
     
          'Icono de busqueda
     For kCampo = 0 To Me.imgBuscar.Count - 1
-        Me.imgBuscar(kCampo).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+        If kCampo <> 3 Then
+            Me.imgBuscar(kCampo).Picture = frmPpal.imgListImages16.ListImages(1).Picture
+        End If
     Next kCampo
 
     ' ICONITOS DE LA BARRA
@@ -6669,7 +7109,7 @@ Dim i As Integer
         If NumAlbar = "" Then
             PonerModo 0
         Else
-            text1(0).Text = NumAlbar
+            Text1(0).Text = NumAlbar
             HacerBusqueda
             If hcoCodMovim = "" Then
                 SSTab1.Tab = 1
@@ -6749,17 +7189,17 @@ Dim Aux As String
 End Sub
 
 Private Sub frmAlm_DatoSeleccionado(CadenaSeleccion As String)
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod almacen
-    text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod almacen
+    Text2(indice + 2).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del almacen
 End Sub
 
 Private Sub frmArt_DatoSeleccionado(CadenaSeleccion As String)
 'Articulos
     txtAux(10).Text = RecuperaValor(CadenaSeleccion, 1) 'codartic
-    text2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
+    Text2(0).Text = RecuperaValor(CadenaSeleccion, 2) 'descripcion
     If txtAux(10) <> "" Then
-        text2(1) = DevuelveDesdeBDNew(cAgro, "sartic", "codtipar", "codartic", txtAux(10), "N")
-        text2(2) = DevuelveDesdeBDNew(cAgro, "stipar", "nomtipar", "codtipar", text2(1), "N")
+        Text2(1) = DevuelveDesdeBDNew(cAgro, "sartic", "codtipar", "codartic", txtAux(10), "N")
+        Text2(2) = DevuelveDesdeBDNew(cAgro, "stipar", "nomtipar", "codtipar", Text2(1), "N")
     End If
 '    VisualizaPrecio
 End Sub
@@ -6772,7 +7212,7 @@ Dim Aux As String
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
         CadB = ""
-        Aux = ValorDevueltoFormGrid(text1(0), CadenaDevuelta, 1)
+        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
         CadB = Aux
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
@@ -6786,9 +7226,9 @@ End Sub
 Private Sub frmC_Selec(vFecha As Date)
     ' *** repasar si el camp es txtAux o Text1 ***
     If imgFec(0).Tag < 2 Then
-        text1(CByte(imgFec(0).Tag) + 1).Text = Format(vFecha, "dd/mm/yyyy") '<===
+        Text1(CByte(imgFec(0).Tag) + 1).Text = Format(vFecha, "dd/mm/yyyy") '<===
     Else
-        text1(CByte(imgFec(0).Tag) + 8).Text = Format(vFecha, "dd/mm/yyyy") '<===
+        Text1(CByte(imgFec(0).Tag) + 8).Text = Format(vFecha, "dd/mm/yyyy") '<===
     End If
     ' ********************************************
 End Sub
@@ -6801,8 +7241,8 @@ End Sub
 
 
 Private Sub frmCli_DatoSeleccionado(CadenaSeleccion As String)
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000000") 'Cod Cliente
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 3) 'Nombre del cliente
 End Sub
 
 Private Sub frmDatos_DatoSeleccionado(CadenaSeleccion As String)
@@ -6815,14 +7255,14 @@ Private Sub frmDatos_DatoSeleccionado(CadenaSeleccion As String)
 End Sub
 
 Private Sub frmDest_DatoSeleccionado(CadenaSeleccion As String)
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Destino
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del destino
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Destino
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nombre del destino
     
-    text1(5) = DevuelveDesdeBDNew(cAgro, "destinos", "codtimer", "codclien", text1(3).Text, "N", , "coddesti", text1(4), "N")
-    text1(5) = Format(text1(5), "000")
-    text2(5) = DevuelveDesdeBDNew(cAgro, "tipomer", "nomtimer", "codtimer", text1(5).Text, "N")
+    Text1(5) = DevuelveDesdeBDNew(cAgro, "destinos", "codtimer", "codclien", Text1(3).Text, "N", , "coddesti", Text1(4), "N")
+    Text1(5) = Format(Text1(5), "000")
+    Text2(5) = DevuelveDesdeBDNew(cAgro, "tipomer", "nomtimer", "codtimer", Text1(5).Text, "N")
     
-    MostrarCadena text1(3), text1(4)
+    MostrarCadena Text1(3), Text1(4)
 End Sub
 
 ' devolvemos la linea del datagrid en donde estabamos
@@ -6848,24 +7288,24 @@ End Sub
 
 Private Sub frmMer_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Tipos de Mercado
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Mercado
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Mercado
+    Text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Mercado
+    Text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Nom Mercado
 End Sub
 
 Private Sub frmTra_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Agencias de Transporte
-    text1(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Agencias de Transporte
-    text2(indice).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
+    txtAux(indice).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Cod Agencias de Transporte
+    Text2(44).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
 End Sub
 
 Private Sub frmTra1_DatoSeleccionado(CadenaSeleccion As String)
 'Form Mantenimiento de Agencias de Transporte (Comisionista)
-    text1(19).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Codigo comisionista
-    text2(37).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
+    Text1(19).Text = Format(RecuperaValor(CadenaSeleccion, 1), "000") 'Codigo comisionista
+    Text2(37).Text = RecuperaValor(CadenaSeleccion, 2) 'Descripcion
 End Sub
 
 Private Sub frmZ_Actualizar(vCampo As String)
-     text1(indice).Text = vCampo
+     Text1(indice).Text = vCampo
 End Sub
 
 Private Sub imgBuscar_Click(Index As Integer)
@@ -6876,59 +7316,59 @@ Private Sub imgBuscar_Click(Index As Integer)
     Select Case Index
         Case 0 'Cod. de Cliente
             indice = 3
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             Set frmCli = New frmClientes
             frmCli.DatosADevolverBusqueda = "0|1|2|"
             frmCli.Show vbModal
             Set frmCli = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
         
         Case 1 'Cod. de Destino de Cliente
-            If text1(3) = "" Then Exit Sub
+            If Text1(3) = "" Then Exit Sub
             
             indice = 4
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             Set frmDest = New frmDestCli
-            frmDest.Cliente = text1(3)
+            frmDest.Cliente = Text1(3)
             frmDest.DatosADevolverBusqueda = "0|1|"
             frmDest.Show vbModal
             Set frmDest = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             
         Case 2 ' Tipo de Mercado
             indice = 5
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             Set frmMer = New frmManTipMerc
             frmMer.DatosADevolverBusqueda = "0|1|2|"
             frmMer.Show vbModal
             Set frmMer = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
         
         Case 3 ' Agencia de Transporte
             indice = 6
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             Set frmTra = New frmManAgencias
             frmTra.DatosADevolverBusqueda = "0|1|2|"
             frmTra.Show vbModal
             Set frmTra = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
         
         Case 4 ' Almacen
             indice = 16
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             Set frmAlm = New frmManAlmProp
             frmAlm.DatosADevolverBusqueda = "0|1|"
             frmAlm.Show vbModal
             Set frmAlm = Nothing
-            PonerFoco text1(indice)
+            PonerFoco Text1(indice)
             
         Case 5 ' comisionista
-            PonerFoco text1(19)
+            PonerFoco Text1(19)
             Set frmTra1 = New frmManAgencias
             frmTra1.DatosADevolverBusqueda = "0|1|2|"
             frmTra1.Show vbModal
             Set frmTra1 = Nothing
-            PonerFoco text1(19)
+            PonerFoco Text1(19)
             
     End Select
     
@@ -6972,11 +7412,11 @@ Private Sub imgFec_Click(Index As Integer)
     If Index < 2 Then
         imgFec(0).Tag = Index '<===
         ' *** repasar si el camp es txtAux o Text1 ***
-        If text1(Index + 1).Text <> "" Then frmC.NovaData = text1(Index + 1).Text
+        If Text1(Index + 1).Text <> "" Then frmC.NovaData = Text1(Index + 1).Text
     Else
         imgFec(0).Tag = Index '<===
         ' *** repasar si el camp es txtAux o Text1 ***
-        If text1(Index + 8).Text <> "" Then frmC.NovaData = text1(Index + 8).Text
+        If Text1(Index + 8).Text <> "" Then frmC.NovaData = Text1(Index + 8).Text
     End If
     ' ********************************************
 
@@ -6984,9 +7424,9 @@ Private Sub imgFec_Click(Index As Integer)
     Set frmC = Nothing
     ' *** repasar si el camp es txtAux o Text1 ***
     If Index < 2 Then
-        PonerFoco text1(CByte(imgFec(0).Tag) + 1) '<===
+        PonerFoco Text1(CByte(imgFec(0).Tag) + 1) '<===
     Else
-        PonerFoco text1(CByte(imgFec(0).Tag) + 8) '<===
+        PonerFoco Text1(CByte(imgFec(0).Tag) + 8) '<===
     End If
     ' ********************************************
 End Sub
@@ -6999,13 +7439,13 @@ Private Sub imgZoom_Click(Index As Integer)
     If Index = 0 Then
         indice = 15
         frmZ.pTitulo = "Observaciones del Albarán"
-        frmZ.pValor = text1(indice).Text
+        frmZ.pValor = Text1(indice).Text
         frmZ.pModo = Modo
     
         frmZ.Show vbModal
         Set frmZ = Nothing
             
-        PonerFoco text1(indice)
+        PonerFoco Text1(indice)
     End If
 End Sub
 
@@ -7033,7 +7473,7 @@ Dim vPrim As Boolean
     If Index = 1 Then
         ModoConsulta = True
         SSTab1.TabEnabled(2) = True
-        SSTab1.TabEnabled(4) = True
+        SSTab1.TabEnabled(5) = True
         vPrim = PrimeraVez
         PrimeraVez = True
         LimpiarDataGrids
@@ -7041,7 +7481,7 @@ Dim vPrim As Boolean
     Else
         ModoConsulta = False
         SSTab1.TabEnabled(2) = False
-        SSTab1.TabEnabled(4) = False
+        SSTab1.TabEnabled(5) = False
     End If
     Filtro = Index
     AbrirFicheroFiltro False
@@ -7270,8 +7710,8 @@ Private Sub SSTab1_Click(PreviousTab As Integer)
         CargarCostesVariedad
     End If
     
-    If SSTab1.Tab = 4 Then
-        If Data1.Recordset.RecordCount > 0 And SSTab1.Tab = 4 Then
+    If SSTab1.Tab = 5 Then
+        If Data1.Recordset.RecordCount > 0 And SSTab1.Tab = 5 Then
             CargarListView CStr(Data1.Recordset.Fields(0))
             CargarTotales
             '[Monica]27/10/2011:añadido
@@ -7298,9 +7738,9 @@ Private Sub Text1_GotFocus(Index As Integer)
 '        Exit Sub
 '    End If
     If Index = 3 Then 'codigo de cliente
-        Cliente = text1(Index).Text
+        Cliente = Text1(Index).Text
     End If
-    ConseguirFoco text1(Index), Modo
+    ConseguirFoco Text1(Index), Modo
 End Sub
 
 
@@ -7311,7 +7751,7 @@ End Sub
 
 
 Private Sub Text1_KeyPress(Index As Integer, KeyAscii As Integer)
-    If Index <> 15 Or (Index = 15 And text1(15).Text = "") Then KEYpress KeyAscii
+    If Index <> 15 Or (Index = 15 And Text1(15).Text = "") Then KEYpress KeyAscii
 End Sub
 
 
@@ -7329,7 +7769,7 @@ Dim cadMen As String
 Dim Sql As String
 
         
-    If Not PerderFocoGnral(text1(Index), Modo) Then Exit Sub
+    If Not PerderFocoGnral(Text1(Index), Modo) Then Exit Sub
         
     'Si se ha abierto otro formulario, es que se ha pinchado en prismaticos y no
     'mostrar mensajes ni hacer nada
@@ -7339,34 +7779,34 @@ Dim Sql As String
     Select Case Index
         '[Monica]23/04/2013: si me ponen el nro de albaran manual comprobar aquí si existe.
         Case 0
-            If Modo = 3 And text1(Index).Text <> "" Then
-                Sql = DevuelveDesdeBDNew(cAgro, "albaran", "numalbar", "numalbar", text1(0).Text, "N")
+            If Modo = 3 And Text1(Index).Text <> "" Then
+                Sql = DevuelveDesdeBDNew(cAgro, "albaran", "numalbar", "numalbar", Text1(0).Text, "N")
                 If Sql <> "" Then
                     MsgBox "Código ya existe. Reintroduzca.", vbExclamation
-                    PonerFoco text1(Index)
+                    PonerFoco Text1(Index)
                 End If
             End If
         
         Case 1, 10 'Fecha albaran y fecha de pedido
             '[Monica]28/08/2013: comprobamos que la fecha esté dentro de campaña, añado true
-            If text1(Index).Text <> "" Then PonerFormatoFecha text1(Index), True
+            If Text1(Index).Text <> "" Then PonerFormatoFecha Text1(Index), True
         Case 2, 18
-            If text1(Index) <> "" Then PonerFormatoDecimal text1(Index), 9
+            If Text1(Index) <> "" Then PonerFormatoDecimal Text1(Index), 9
         
         Case 3 'Cliente
-            If PonerFormatoEntero(text1(Index)) Then
+            If PonerFormatoEntero(Text1(Index)) Then
                 If Modo = 4 Then
-                    If CLng(text1(Index)) <> CLng(Cliente) Then
-                        text1(4).Text = ""
-                        text2(4).Text = ""
-                        text1(5).Text = ""
-                        text2(5).Text = ""
+                    If CLng(Text1(Index)) <> CLng(Cliente) Then
+                        Text1(4).Text = ""
+                        Text2(4).Text = ""
+                        Text1(5).Text = ""
+                        Text2(5).Text = ""
                         Label3.Caption = ""
                     End If
                 End If
                 
-                text2(Index).Text = PonerNombreDeCod(text1(Index), "clientes", "nomclien")
-                If text2(Index).Text = "" Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "clientes", "nomclien")
+                If Text2(Index).Text = "" Then
 '[Monica]23/04/2013: No existe el cliente damos unicamente un aviso
 '                    cadMen = "No existe el Cliente: " & Text1(Index).Text & vbCrLf
 '                    cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
@@ -7382,22 +7822,22 @@ Dim Sql As String
 '                        Text1(Index).Text = ""
 '                    End If
                     MsgBox "No existe el cliente. Reintroduzca.", vbExclamation
-                    PonerFoco text1(Index)
+                    PonerFoco Text1(Index)
                 Else
                     ' mostramos en el label3 la cadena
-                    MostrarCadena text1(Index), text1(4)
+                    MostrarCadena Text1(Index), Text1(4)
                     
-                    If Modo = 3 And text1(0).Text = "" Then
+                    If Modo = 3 And Text1(0).Text = "" Then
                         '[Monica]22/06/2018: si no es coopic trae el tipo de albaran del cliente
                         '                    en coopic cuando aceptamos se hace una pregunta de si es de
                         '                    una variedad compartida
                         If vParamAplic.Cooperativa <> 16 Then
-                            CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(text1(3).Text, "N"))
+                            CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
                             
                             Dim vTipoMov As CTiposMov
                             Set vTipoMov = New CTiposMov
                             If vTipoMov.Leer(CodTipoMov) Then
-                                text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
+                                Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
                             End If
                             Set vTipoMov = Nothing
                         End If
@@ -7407,10 +7847,10 @@ Dim Sql As String
             End If
                 
         Case 4 ' Destino del cliente
-            If PonerFormatoEntero(text1(Index)) Then
-                If text1(3).Text <> "" Then
-                    text2(Index).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", text1(3), "N", , "coddesti", text1(4), "N")
-                    If text2(Index).Text = "" Then
+            If PonerFormatoEntero(Text1(Index)) Then
+                If Text1(3).Text <> "" Then
+                    Text2(Index).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", Text1(3), "N", , "coddesti", Text1(4), "N")
+                    If Text2(Index).Text = "" Then
 '[Monica]23/04/2013: No existe el destino de cliente damos unicamente un aviso
 '                        cadMen = "No existe el Destino: " & Text1(Index).Text & vbCrLf
 '                        cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
@@ -7426,82 +7866,82 @@ Dim Sql As String
 '                            Text1(Index).Text = ""
 '                        End If
                         MsgBox "No existe el destino de cliente. Reintroduzca.", vbExclamation
-                        PonerFoco text1(Index)
+                        PonerFoco Text1(Index)
                     Else
                         ' traemos el tipo de mercado del destino
-                        text1(5).Text = DevuelveDesdeBDNew(cAgro, "destinos", "codtimer", "codclien", text1(3), "N", , "coddesti", text1(4), "N")
-                        PonerFormatoEntero text1(5)
-                        If text1(5) <> "" Then
-                            text2(5).Text = PonerNombreDeCod(text1(5), "tipomer", "nomtimer", "codtimer", "N")
+                        Text1(5).Text = DevuelveDesdeBDNew(cAgro, "destinos", "codtimer", "codclien", Text1(3), "N", , "coddesti", Text1(4), "N")
+                        PonerFormatoEntero Text1(5)
+                        If Text1(5) <> "" Then
+                            Text2(5).Text = PonerNombreDeCod(Text1(5), "tipomer", "nomtimer", "codtimer", "N")
                         End If
                         ' mostramos en el label3 la cadena
-                        MostrarCadena text1(3), text1(4)
+                        MostrarCadena Text1(3), Text1(4)
                     End If
                 Else
                     MsgBox "Debe introducir previamente el cliente.", vbExclamation
-                    PonerFoco text1(3)
+                    PonerFoco Text1(3)
                 End If
             End If
             
         Case 5 'Tipo de Mercado
-            If PonerFormatoEntero(text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(text1(Index), "tipomer", "nomtimer")
-                If text2(Index).Text = "" Then
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "tipomer", "nomtimer")
+                If Text2(Index).Text = "" Then
                     MsgBox "No existe el Tipo de Mercado. Revise.", vbExclamation
-                    PonerFoco text1(Index)
+                    PonerFoco Text1(Index)
                 End If
             End If
                 
-        Case 6 'Agencia de Transporte
-            If PonerFormatoEntero(text1(Index)) Then
-                text2(Index).Text = PonerNombreDeCod(text1(Index), "agencias", "nomtrans")
-                If text2(Index).Text = "" Then
-                    MsgBox "No existe la Agencia de Transporte. Revise.", vbExclamation
-                    PonerFoco text1(Index)
-                Else
-                    If Not EsTransportista(text1(Index).Text) Then
-                        MsgBox "Este código corresponde a un Comisionista." & vbCrLf & "No a una Agencia de Transporte. Revise.", vbExclamation
-                                        
-                    End If
-                End If
-            End If
+'        Case 6 'Agencia de Transporte
+'            If PonerFormatoEntero(Text1(Index)) Then
+'                Text2(Index).Text = PonerNombreDeCod(Text1(Index), "agencias", "nomtrans")
+'                If Text2(Index).Text = "" Then
+'                    MsgBox "No existe la Agencia de Transporte. Revise.", vbExclamation
+'                    PonerFoco Text1(Index)
+'                Else
+'                    If Not EsTransportista(Text1(Index).Text) Then
+'                        MsgBox "Este código corresponde a un Comisionista." & vbCrLf & "No a una Agencia de Transporte. Revise.", vbExclamation
+'
+'                    End If
+'                End If
+'            End If
     
     
         Case 19 'Comisionistas
-            If PonerFormatoEntero(text1(Index)) Then
-                text2(37).Text = DevuelveDesdeBDNew(cAgro, "agencias", "nomtrans", "codtrans", text1(Index).Text, "N")
-                If text2(37).Text = "" Then
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(37).Text = DevuelveDesdeBDNew(cAgro, "agencias", "nomtrans", "codtrans", Text1(Index).Text, "N")
+                If Text2(37).Text = "" Then
                     MsgBox "No existe el comisionista. Revise.", vbExclamation
-                    PonerFoco text1(Index)
+                    PonerFoco Text1(Index)
                 Else
                     ' comprobamos que se trata de un comisionista
-                    If EsTransportista(text1(Index)) Then
+                    If EsTransportista(Text1(Index)) Then
                         MsgBox "Este código corresponde a una Agencia de Transporte. " & vbCrLf & "No a un Comisionista. Revise.", vbExclamation
-                        PonerFoco text1(Index)
+                        PonerFoco Text1(Index)
                     End If
                 End If
             End If
     
     
         Case 16 'Almacen
-            If PonerFormatoEntero(text1(Index)) Then
-                text2(Index + 2).Text = PonerNombreDeCod(text1(Index), "salmpr", "nomalmac")
-                If text2(Index + 2).Text = "" Then
-                    cadMen = "No existe el Almacén: " & text1(Index).Text & vbCrLf
+            If PonerFormatoEntero(Text1(Index)) Then
+                Text2(Index + 2).Text = PonerNombreDeCod(Text1(Index), "salmpr", "nomalmac")
+                If Text2(Index + 2).Text = "" Then
+                    cadMen = "No existe el Almacén: " & Text1(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
                         Set frmAlm = New frmManAlmProp
                         frmAlm.DatosADevolverBusqueda = "0|1|"
-                        frmAlm.NuevoCodigo = text1(Index).Text
-                        text1(Index).Text = ""
+                        frmAlm.NuevoCodigo = Text1(Index).Text
+                        Text1(Index).Text = ""
                         TerminaBloquear
                         frmAlm.Show vbModal
                         Set frmAlm = Nothing
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
-                        text1(Index).Text = ""
+                        Text1(Index).Text = ""
                     End If
-                    PonerFoco text1(Index)
+                    PonerFoco Text1(Index)
                 End If
             End If
             
@@ -7509,7 +7949,7 @@ Dim Sql As String
             If Modo = 3 Then
                 If vParamAplic.Cooperativa = 15 Then
                     Me.SSTab2.Tab = 1
-                    PonerFoco text1(20)
+                    PonerFoco Text1(20)
                 Else
                     cmdAceptar.SetFocus
                 End If
@@ -7522,6 +7962,7 @@ End Sub
 
 Private Sub HacerBusqueda()
 Dim CadB As String
+Dim cadB2 As String
 Dim cadAux As String
     
 '    '--- Laura 12/01/2007
@@ -7539,15 +7980,22 @@ Dim cadAux As String
     Else
         CadB = CadB & " and " & CadB1
     End If
-    
-    
+    cadB2 = ObtenerBusqueda2(Me, chkAux(1), 2, "FrameAux3")
+    If cadB2 <> "" Then
+        If CadB = "" Then
+            CadB = cadB2
+        Else
+            CadB = CadB & " and " & cadB2
+        End If
+    End If
     
     If chkVistaPrevia = 1 Then
         EsCabecera = True
         MandaBusquedaPrevia CadB
     ElseIf CadB <> "" Then
         'Se muestran en el mismo form
-        CadenaConsulta = "select albaran.* from " & NombreTabla & " LEFT JOIN albaran_variedad ON albaran.numalbar=albaran_variedad.numalbar "
+        CadenaConsulta = "select albaran.* from (" & NombreTabla & " LEFT JOIN albaran_variedad ON albaran.numalbar=albaran_variedad.numalbar)  "
+        CadenaConsulta = CadenaConsulta & " LEFT JOIN albaran_transporte on albaran.numalbar = albaran_transporte.numalbar "
         CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY albaran.numalbar " & Ordenacion
 '        CadenaConsulta = "select palets.* from " & NombreTabla
 '        CadenaConsulta = CadenaConsulta & " WHERE " & CadB & " GROUP BY palets.numpalet " & Ordenacion
@@ -7559,58 +8007,13 @@ End Sub
 Private Sub MandaBusquedaPrevia(CadB As String)
 'Carga el formulario frmBuscaGrid con los valores correspondientes
 Dim Cad As String
-Dim Tabla As String
+Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-'    'Llamamos a al form
-'    '##A mano
-'    Cad = ""
-'    Cad = Cad & "Nº.Albaran|albaran.numalbar|N||15·"
-'
-'    Cad = Cad & "Cliente|albaran.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-'    Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Albarán")
-'    tabla = NombreTabla & " INNER JOIN clientes ON albaran.codclien=clientes.codclien "
-'
-'    Titulo = "Albaranes"
-'    devuelve = "0|"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vDevuelve = devuelve
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-''        If EsCabecera Then
-''            PonerCadenaBusqueda
-''            Text1(0).Text = Format(Text1(0).Text, "0000000")
-''        End If
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmAlb = New frmBasico2
 
-    AyudaAlbaranes frmAlb, text1(0), CadB
+    AyudaAlbaranes frmAlb, Text1(0), CadB
     
     Set frmAlb = Nothing
     
@@ -7628,7 +8031,7 @@ Private Sub PonerCadenaBusqueda()
         MsgBox "No hay ningún registro en la tabla " & NombreTabla, vbInformation
         Screen.MousePointer = vbDefault
         If Modo = 1 Then
-            PonerFoco text1(kCampo)
+            PonerFoco Text1(kCampo)
 '            Text1(0).BackColor = vbYellow
         End If
         Exit Sub
@@ -7636,9 +8039,9 @@ Private Sub PonerCadenaBusqueda()
         Data1.Recordset.MoveFirst
         PonerModo 2
         LLamaLineas Modo, 0, "DataGrid2"
+        LLamaLineas 0, 0, "DataGrid6"
         PonerCampos
     End If
-
 
     Screen.MousePointer = vbDefault
     Exit Sub
@@ -7663,7 +8066,7 @@ Dim i As Integer
     
     Screen.MousePointer = vbHourglass
     
-    For i = 1 To 5
+    For i = 1 To 6
         Select Case i
             Case 1
 '[Monica]16/01/2013: Se hace en el datagrid2.rowcolchange
@@ -7677,9 +8080,9 @@ Dim i As Integer
 '                '++
             Case 2  ' envases
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid3, AdoAux(0), True
+                    CargaGrid DataGrid3, Adoaux(0), True
                 Else
-                    CargaGrid DataGrid3, AdoAux(0), False
+                    CargaGrid DataGrid3, Adoaux(0), False
                 End If
             Case 3  ' costes
 '[Monica]16/01/2013: Se hace en el datagrid2.rowcolchange
@@ -7690,16 +8093,16 @@ Dim i As Integer
 '                End If
             Case 4  ' palets
                 If Data1.Recordset.RecordCount > 0 Then
-                    CargaGrid DataGrid5, AdoAux(2), True
+                    CargaGrid DataGrid5, Adoaux(2), True
                 Else
-                    CargaGrid DataGrid5, AdoAux(2), False
+                    CargaGrid DataGrid5, Adoaux(2), False
                 End If
                 
 
             Case 5  ' totales
                 If Data1.Recordset.RecordCount > 0 Then
                     
-                    If SSTab1.Tab = 4 Then
+                    If SSTab1.Tab = 5 Then
                         CargarListView CStr(Data1.Recordset.Fields(0))
                     
                         CargarTotales
@@ -7710,7 +8113,14 @@ Dim i As Integer
                     'fin
                     
                 End If
-
+                
+            Case 6 ' trasnportistas
+                If Data1.Recordset.RecordCount > 0 Then
+                    CargaGrid DataGrid6, Adoaux(3), True
+                Else
+                    CargaGrid DataGrid6, Adoaux(3), False
+                End If
+                
         End Select
     Next i
     
@@ -7740,15 +8150,15 @@ Dim b As Boolean
     'poner descripcion campos
     Modo = 4
     
-    text2(3).Text = PonerNombreDeCod(text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
-    text2(4).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", text1(3), "N", , "coddesti", text1(4), "N") 'destino
-    text2(5).Text = PonerNombreDeCod(text1(5), "tipomer", "nomtimer", "codtimer", "N") 'tipo de mercado
-    text2(6).Text = PonerNombreDeCod(text1(6), "agencias", "nomtrans", "codtrans", "N") 'agencia
-    text2(18).Text = PonerNombreDeCod(text1(16), "salmpr", "nomalmac", "codalmac", "N") 'almacen
-    text2(37).Text = PonerNombreDeCod(text1(19), "agencias", "nomtrans", "codtrans", "N") 'comsionista
+    Text2(3).Text = PonerNombreDeCod(Text1(3), "clientes", "nomclien", "codclien", "N") 'cliente
+    Text2(4).Text = DevuelveDesdeBDNew(cAgro, "destinos", "nomdesti", "codclien", Text1(3), "N", , "coddesti", Text1(4), "N") 'destino
+    Text2(5).Text = PonerNombreDeCod(Text1(5), "tipomer", "nomtimer", "codtimer", "N") 'tipo de mercado
+    Text2(6).Text = PonerNombreDeCod(Text1(6), "agencias", "nomtrans", "codtrans", "N") 'agencia
+    Text2(18).Text = PonerNombreDeCod(Text1(16), "salmpr", "nomalmac", "codalmac", "N") 'almacen
+    Text2(37).Text = PonerNombreDeCod(Text1(19), "agencias", "nomtrans", "codtrans", "N") 'comsionista
     
     
-    MostrarCadena text1(3), text1(4)
+    MostrarCadena Text1(3), Text1(4)
     
     '[Monica]03/11/2017: para el caso de castelduc sacamos el cartel de precios no definitivos si lo tienen marcado
     Label10.visible = (Check1(1).Value = 1) And vParamAplic.Cooperativa = 5
@@ -7756,6 +8166,9 @@ Dim b As Boolean
     Modo = 2
     
     PonerCamposLineas  'Pone los datos de las tablas de lineas
+    
+    '[Monica]16/04/2019: deben introducir el medio de transporte ppal
+    ComprobarTransportista
     
     '-- Esto permanece para saber donde estamos
     lblIndicador.Caption = Data1.Recordset.AbsolutePosition & " de " & Data1.Recordset.RecordCount
@@ -7765,6 +8178,28 @@ Dim b As Boolean
 
     If Err.Number <> 0 Then Err.Clear
 End Sub
+
+Private Sub ComprobarTransportista()
+Dim Sql As String
+Dim Nregs As Integer
+
+    If Data1.Recordset.EOF Then Exit Sub
+
+    If Adoaux(3).Recordset.EOF Then Exit Sub
+
+    Sql = "select * from albaran_transporte where esmedioppal = 1 and numalbar = " & DBSet(Text1(0), "N")
+    Nregs = TotalRegistrosConsulta(Sql)
+    If Nregs = 0 Then
+        MsgBox "Debe marcar una linea de transporte como principal. Revise.", vbExclamation
+    Else
+        If Nregs > 1 Then
+            MsgBox "Hay más de una agencia de transporte como principal. Revise.", vbExclamation
+        End If
+    End If
+
+
+End Sub
+
 
 
 '----------------------------------------------------------------
@@ -7809,8 +8244,8 @@ Dim b As Boolean
     BloquearText1 Me, Modo
     BloquearCombo Me, Modo
     For i = 9 To 10
-        BloquearTxt text1(i), Not (Modo = 1)
-        text1(i).Enabled = (Modo = 1)
+        BloquearTxt Text1(i), Not (Modo = 1)
+        Text1(i).Enabled = (Modo = 1)
     Next i
     Me.Check1(0).Enabled = (Modo = 1)
     '[Monica]03/11/2017: para el caso de Castelduc, precio no definitivo
@@ -7823,7 +8258,7 @@ Dim b As Boolean
 '    If vParamAplic.Cooperativa <> 11 Then
 '       BloquearTxt Text1(0), b, True
 '    Else
-        BloquearTxt text1(0), b And (Modo <> 3)
+        BloquearTxt Text1(0), b And (Modo <> 3)
 '    End If
     
 '    BloquearTxt Text1(3), b 'referencia
@@ -7838,12 +8273,16 @@ Dim b As Boolean
         cmbAux(i).Enabled = True
     Next i
     For i = 0 To 2
-        text2(i).visible = False
-        text2(i).Enabled = True
+        Text2(i).visible = False
+        Text2(i).Enabled = True
     Next i
     For i = 7 To 13
-        text2(i).visible = False
-        text2(i).Enabled = True
+        Text2(i).visible = False
+        Text2(i).Enabled = True
+    Next i
+    For i = 44 To 44
+        Text2(i).visible = False
+        Text2(i).Enabled = True
     Next i
     
     For i = 0 To 7
@@ -7863,9 +8302,15 @@ Dim b As Boolean
         txtAux3(i).Enabled = (Modo = 1)
     Next i
     
+    For i = 29 To 30
+        BloquearTxt txtAux(i), (Modo <> 1 And Modo <> 5)
+        txtAux(i).Enabled = (Modo = 1 Or Modo = 5)
+    Next i
+    
+    BloquearCmb Me.cmbAux(2), (Modo <> 1 And Modo <> 5)
     
     '[Monica]27/06/2018: el cotipom solo se puede consultar
-    BloquearTxt text1(28), Not (Modo = 1)
+    BloquearTxt Text1(6), Not (Modo = 1)
     
     '---------------------------------------------
     b = (Modo <> 0 And Modo <> 2)
@@ -7892,6 +8337,9 @@ Dim b As Boolean
             BloquearFrameAux Me, "FrameAux0", Modo, NumTabMto
         Case 3
             BloquearFrameAux Me, "FrameAux2", Modo, NumTabMto
+        Case 5
+            If Modo <> 1 Then BloquearFrameAux Me, "FrameAux3", Modo, NumTabMto
+'            BloquearFrameAux Me, "FrameAux3", Modo, NumTabMto
     End Select
     
         
@@ -7935,9 +8383,9 @@ Dim b As Boolean
             
     '[Monica]04/07/2012: Pueden meterme en Belgida el numero de albaran
     If b And Modo = 3 Then
-        If DevuelveValor("select count(*) from albaran where numalbar = " & DBSet(text1(0).Text, "N")) <> 0 Then
+        If DevuelveValor("select count(*) from albaran where numalbar = " & DBSet(Text1(0).Text, "N")) <> 0 Then
             MsgBox "Número de albarán existe. Reintroduzca.", vbExclamation
-            PonerFoco text1(0)
+            PonerFoco Text1(0)
             b = False
         End If
     End If
@@ -8031,7 +8479,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
                         
                         frmLAlb.ModoExt = 3
                         frmLAlb.Albaran = Data1.Recordset.Fields(0).Value
-                        frmLAlb.codTipoM = text1(28)
+                        frmLAlb.codTipoM = Text1(6)
                         
                         frmLAlb.Show vbModal
                     
@@ -8042,7 +8490,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
                         frmLAlb.ModoExt = 4
                         frmLAlb.Albaran = Data3.Recordset.Fields(0).Value
                         frmLAlb.Linea = Data3.Recordset.Fields(1).Value
-                        frmLAlb.codTipoM = text1(28)
+                        frmLAlb.codTipoM = Text1(6)
                         
                         frmLAlb.Show vbModal
                         
@@ -8054,7 +8502,7 @@ Private Sub ToolAux_ButtonClick(Index As Integer, ByVal Button As MSComctlLib.Bu
                 End Select
                 
                 If vParamAplic.Cooperativa = 16 Then
-                    If AlbaranComunicado(text1(0).Text) Then
+                    If AlbaranComunicado(Text1(0).Text) Then
                         ComunicaDatos False
                     End If
                 End If
@@ -8124,21 +8572,21 @@ Dim Sql As String
        Case 1 'envases
             ' *************** canviar la pregunta ****************
             Cad = "¿Seguro que desea eliminar el Envase?"
-            Cad = Cad & vbCrLf & "Albarán: " & AdoAux(0).Recordset.Fields(0)
-            Cad = Cad & vbCrLf & "Envase: " & AdoAux(0).Recordset.Fields(2) & "-" & AdoAux(0).Recordset.Fields(3)
+            Cad = Cad & vbCrLf & "Albarán: " & Adoaux(0).Recordset.Fields(0)
+            Cad = Cad & vbCrLf & "Envase: " & Adoaux(0).Recordset.Fields(2) & "-" & Adoaux(0).Recordset.Fields(3)
             
             If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
                 On Error GoTo EEliminarLinea
                 Screen.MousePointer = vbHourglass
-                NumRegElim = AdoAux(0).Recordset.AbsolutePosition
+                NumRegElim = Adoaux(0).Recordset.AbsolutePosition
                 TerminaBloquear
-                Sql = "delete from albaran_envase where numalbar = " & AdoAux(0).Recordset.Fields(0)
-                Sql = Sql & " and numlinea = " & AdoAux(0).Recordset.Fields(1)
+                Sql = "delete from albaran_envase where numalbar = " & Adoaux(0).Recordset.Fields(0)
+                Sql = Sql & " and numlinea = " & Adoaux(0).Recordset.Fields(1)
                 conn.Execute Sql
                 
-                SituarDataTrasEliminar AdoAux(0), NumRegElim
+                SituarDataTrasEliminar Adoaux(0), NumRegElim
                 
-                CargaGrid DataGrid3, AdoAux(0), True
+                CargaGrid DataGrid3, Adoaux(0), True
                 SSTab1.Tab = 1
 
             End If
@@ -8147,25 +8595,50 @@ Dim Sql As String
        Case 2 'palets
             ' *************** canviar la pregunta ****************
             Cad = "¿Seguro que desea eliminar el Palet?"
-            Cad = Cad & vbCrLf & "Albarán: " & AdoAux(2).Recordset.Fields(0)
-            Cad = Cad & vbCrLf & "Palet: " & AdoAux(2).Recordset.Fields(1) & "-" & AdoAux(2).Recordset.Fields(2)
+            Cad = Cad & vbCrLf & "Albarán: " & Adoaux(2).Recordset.Fields(0)
+            Cad = Cad & vbCrLf & "Palet: " & Adoaux(2).Recordset.Fields(1) & "-" & Adoaux(2).Recordset.Fields(2)
             
             If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
                 On Error GoTo EEliminarLinea
                 Screen.MousePointer = vbHourglass
-                NumRegElim = AdoAux(2).Recordset.AbsolutePosition
+                NumRegElim = Adoaux(2).Recordset.AbsolutePosition
                 TerminaBloquear
                
-                Sql = "delete from albaran_palets where numalbar = " & AdoAux(2).Recordset.Fields(0)
-                Sql = Sql & " and numlinea = " & AdoAux(2).Recordset.Fields(1)
+                Sql = "delete from albaran_palets where numalbar = " & Adoaux(2).Recordset.Fields(0)
+                Sql = Sql & " and numlinea = " & Adoaux(2).Recordset.Fields(1)
                 conn.Execute Sql
                 
-                SituarDataTrasEliminar AdoAux(2), NumRegElim
+                SituarDataTrasEliminar Adoaux(2), NumRegElim
                 
-                CargaGrid DataGrid5, AdoAux(2), True
+                CargaGrid DataGrid5, Adoaux(2), True
                 SSTab1.Tab = 3
             End If
             Screen.MousePointer = vbDefault
+       
+       Case 3 'agencias de transporte
+            ' *************** canviar la pregunta ****************
+            Cad = "¿Seguro que desea eliminar la Agencia de transporte?"
+            Cad = Cad & vbCrLf & "Albarán: " & Adoaux(3).Recordset.Fields(0)
+            Cad = Cad & vbCrLf & "Agencia: " & Adoaux(3).Recordset.Fields(2) & "-" & Adoaux(3).Recordset.Fields(3)
+            
+            If MsgBox(Cad, vbQuestion + vbYesNo) = vbYes Then
+                On Error GoTo EEliminarLinea
+                Screen.MousePointer = vbHourglass
+                NumRegElim = Adoaux(3).Recordset.AbsolutePosition
+                TerminaBloquear
+               
+                Sql = "delete from albaran_transporte where numalbar = " & Adoaux(3).Recordset.Fields(0)
+                Sql = Sql & " and numlinea = " & Adoaux(3).Recordset.Fields(1)
+                conn.Execute Sql
+                
+                SituarDataTrasEliminar Adoaux(3), NumRegElim
+                
+                CargaGrid DataGrid6, Adoaux(3), True
+                SSTab1.Tab = 4
+            End If
+            Screen.MousePointer = vbDefault
+       
+       
        
     End Select
        
@@ -8335,6 +8808,8 @@ Dim Sql As String
             Opcion = 4
         Case "DataGrid5" 'palets
             Opcion = 5
+        Case "DataGrid6" 'transportistas
+            Opcion = 6
     End Select
     
     Sql = MontaSQLCarga(enlaza, Opcion)
@@ -8408,8 +8883,18 @@ Dim tots As String
          Case "DataGrid5" 'albaran_palets
 '       SQL = SELECT albaran_palets.numalbar, numlinea, numpalet, linconfe, CASE tipmercan WHEN 0 THEN ""Cooperativa"" WHEN 1 THEN ""Terceros"" WHEN 2 THEN ""Mezclado"" WHEN 3 THEN ""Otros"" END, fechaini, time(horaini), fechafin, time(horafin) "
             tots = "N||||0|;N||||0|;"
-            tots = tots & "S|txtAux(14)|T|N.Palets|1300|;S|Text2(8)|T|Lin.Confec.|1400|;S|Text2(9)|T|Tipo Mercancia|1750|;S|Text2(10)|T|Fecha Inicio|1500|;S|Text2(11)|T|Hora Inicio|1400|;S|Text2(12)|T|Fecha Fin|1500|;S|Text2(13)|T|Hora Fin|1400|;"
+            tots = tots & "S|txtAux(14)|T|N.Palets|1300|;S|Text2(8)|T|Lin.Confec.|1400|;S|Text2(9)|T|Tipo Mercancia|1750|;S|Text2(10)|T|Fecha Inicio|1500|;S|Text2(42)|T|Hora Inicio|1400|;S|Text2(12)|T|Fecha Fin|1500|;S|Text2(6)|T|Hora Fin|1400|;"
             arregla tots, DataGrid5, Me, 350
+            
+         Case "DataGrid6" 'albaran_transporte
+'        Sql = "SELECT albaran_transporte.numalbar, numlinea, albaran_transporte.codtrans, agencias.nomtrans, albaran_transporte.codfortrans, fortranspor.nombre, albaran_transporte.observaciones, CASE albaran_transporte.esmedioppal WHEN 0 THEN "" "" WHEN 1 THEN ""*""  END "
+            tots = "N||||0|;N||||0|;"
+            tots = tots & "S|txtAux(29)|T|Codigo|800|;S|btnBuscar(3)|B|||;S|Text2(44)|T|Transportista|4400|;N||||0|;S|cmbAux(2)|T|Tipo Transporte|3850|;S|txtAux(30)|T|Observaciones|7400|;N||||0|;S|chkAux(1)|T|Ppal|500|;"
+            arregla tots, DataGrid6, Me, 350
+            
+            DataGrid6.Columns(5).Alignment = dbgLeft
+            DataGrid6.Columns(8).Alignment = dbgCenter
+            
             
     End Select
     
@@ -8475,31 +8960,31 @@ Dim Sql As String
             
         Case 6, 7 'Descuentos
             PonerFormatoDecimal txtAux(Index), 4 'Tipo 4: Decimal(4,2)
-            If Index = 7 Then PonerFoco Me.text2(16)
+            If Index = 7 Then PonerFoco Me.Text2(16)
             
         Case 8 'Importe Linea
             PonerFormatoDecimal txtAux(Index), 3 'Tipo 3: Decimal(10,2)
             
         Case 10 ' envase
             If txtAux(Index) <> "" Then
-                text2(0).Text = PonerNombreDeCod(txtAux(Index), "sartic", "nomartic")
-                text2(1) = DevuelveDesdeBDNew(cAgro, "sartic", "codtipar", "codartic", txtAux(10), "T")
-                text2(2) = ""
-                If text2(1) <> "" Then
-                    If EsArticuloRetornable(text2(1).Text) Then 'CByte(Text2(1)) = 1 Or CByte(Text2(1)) = 2 Or CByte(Text2(1)) = 3 Then
-                        text2(2) = DevuelveDesdeBDNew(cAgro, "stipar", "nomtipar", "codtipar", text2(1), "T")
+                Text2(0).Text = PonerNombreDeCod(txtAux(Index), "sartic", "nomartic")
+                Text2(1) = DevuelveDesdeBDNew(cAgro, "sartic", "codtipar", "codartic", txtAux(10), "T")
+                Text2(2) = ""
+                If Text2(1) <> "" Then
+                    If EsArticuloRetornable(Text2(1).Text) Then 'CByte(Text2(1)) = 1 Or CByte(Text2(1)) = 2 Or CByte(Text2(1)) = 3 Then
+                        Text2(2) = DevuelveDesdeBDNew(cAgro, "stipar", "nomtipar", "codtipar", Text2(1), "T")
                     Else
                         MsgBox "El Tipo de Envase ha de ser retornable. Reintroduzca.", vbExclamation
                         txtAux(Index).Text = ""
-                        text2(0).Text = ""
-                        text2(1).Text = ""
-                        text2(2).Text = ""
+                        Text2(0).Text = ""
+                        Text2(1).Text = ""
+                        Text2(2).Text = ""
                         PonerFoco txtAux(Index)
                         Exit Sub
                     End If
                 End If
                     
-                If text2(0).Text = "" Then
+                If Text2(0).Text = "" Then
                     cadMen = "No existe el Envase: " & txtAux(Index).Text & vbCrLf
                     cadMen = cadMen & "¿Desea crearlo?" & vbCrLf
                     If MsgBox(cadMen, vbQuestion + vbYesNo) = vbYes Then
@@ -8513,16 +8998,16 @@ Dim Sql As String
                         If Modo = 4 Then BLOQUEADesdeFormulario2 Me, Data1, 1
                     Else
                         txtAux(Index).Text = ""
-                        text2(0).Text = ""
-                        text2(1).Text = ""
-                        text2(2).Text = ""
+                        Text2(0).Text = ""
+                        Text2(1).Text = ""
+                        Text2(2).Text = ""
                     End If
                     PonerFoco txtAux(Index)
                 End If
             Else
-                text2(0).Text = ""
-                text2(1).Text = ""
-                text2(2).Text = ""
+                Text2(0).Text = ""
+                Text2(1).Text = ""
+                Text2(2).Text = ""
             End If
         
         Case 11 'cantidad
@@ -8555,7 +9040,7 @@ Dim Sql As String
         Case 14 'numero de palet
             If txtAux(Index) <> "" Then
                 PonerFormatoEntero txtAux(Index)
-                Sql = DevuelveDesdeBDNew(cAgro, "palets", "numpalet", "numpalet", txtAux(Index), "N")
+                Sql = DevuelveDesdeBDNew(cAgro, "palets", "numpalet", "numpalet", ImporteSinFormato(txtAux(Index)), "N")
                 If Sql = "" Then
                     MsgBox "No existe el palet introducido. Reintroduzca.", vbExclamation
                     txtAux(Index) = ""
@@ -8578,6 +9063,22 @@ Dim Sql As String
                 End If
             End If
             cmdAceptar.SetFocus
+    
+    
+        Case 29 ' agencia de transporte
+            If PonerFormatoEntero(txtAux(Index)) Then
+                Text2(44).Text = PonerNombreDeCod(txtAux(Index), "agencias", "nomtrans")
+                If Text2(44).Text = "" Then
+                    MsgBox "No existe la Agencia de Transporte. Revise.", vbExclamation
+                    PonerFoco txtAux(Index)
+                Else
+                    If Not EsTransportista(txtAux(Index).Text) Then
+                        MsgBox "Este código corresponde a un Comisionista." & vbCrLf & "No a una Agencia de Transporte. Revise.", vbExclamation
+                                        
+                    End If
+                End If
+            End If
+    
     End Select
     
 End Sub
@@ -8620,16 +9121,22 @@ Dim Mens As String
         'Lineas de variedades
         conn.Execute "Delete from albaran_variedad " & Sql
         
+        '[Monica]15/04/2019: lineas de transportistas
+        'Lineas de transportistas
+        conn.Execute "Delete from albaran_transporte " & Sql
+        
+        
+        
         'Cabecera de albaran
         conn.Execute "Delete from " & NombreTabla & Sql
         
         'Decrementar contador si borramos el ult. albaran
         
-        CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(text1(3).Text, "N"))
+        CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
         
         Set vTipoMov = New CTiposMov
         '[Monica]29/06/2012: antes era vParamAplic.CodTipomAlb
-        vTipoMov.DevolverContador CodTipoMov, Val(text1(0).Text)  ' "ALV", Val(Text1(0).Text)
+        vTipoMov.DevolverContador CodTipoMov, Val(Text1(0).Text)  ' "ALV", Val(Text1(0).Text)
         Set vTipoMov = Nothing
         
         'si este albarán esta asociado a pedidos actualizamos:
@@ -8709,12 +9216,13 @@ On Error Resume Next
 
     CargaGrid DataGrid2, Data3, False 'variedades y calibres
     CargaGrid DataGrid1, Data2, False
-    CargaGrid DataGrid3, Me.AdoAux(0), False 'envases
+    CargaGrid DataGrid3, Me.Adoaux(0), False 'envases
 '[Monica]22/10/2014:
     If ModoConsulta Then
-        CargaGrid DataGrid4, Me.AdoAux(1), False 'costes
+        CargaGrid DataGrid4, Me.Adoaux(1), False 'costes
     End If
-    CargaGrid DataGrid5, Me.AdoAux(2), False 'palets
+    CargaGrid DataGrid5, Me.Adoaux(2), False 'palets
+    CargaGrid DataGrid6, Me.Adoaux(3), False ' agencias de transporte
     
     If Err.Number <> 0 Then Err.Clear
 End Sub
@@ -8749,7 +9257,7 @@ Dim Sql As String
 
     On Error Resume Next
     
-    Sql = " numalbar= " & text1(0).Text
+    Sql = " numalbar= " & Text1(0).Text
     If conWhere Then Sql = " WHERE " & Sql
     ObtenerWhereCP = Sql
     
@@ -8805,7 +9313,7 @@ Dim Sql As String
             Sql = Sql & " FROM albaran_costes inner join nombcoste on albaran_costes.codcoste = nombcoste.codcoste "
             Sql = Sql & " WHERE "
             If enlaza Then
-                Sql = Sql & " albaran_costes.numalbar = " & DBSet(text1(0).Text, "N")
+                Sql = Sql & " albaran_costes.numalbar = " & DBSet(Text1(0).Text, "N")
                 Sql = Sql & " AND numlinea=" & Data3.Recordset.Fields!NumLinea
                 Sql = Sql & " and albaran_costes.tipogasto = 0  "
             Else
@@ -8820,6 +9328,11 @@ Dim Sql As String
         Sql = "SELECT albaran_palets.numalbar, numlinea, albaran_palets.numpalet, palets.linconfe, CASE palets.tipmercan WHEN 0 THEN ""Cooperativa"" WHEN 1 THEN ""Terceros"" WHEN 2 THEN ""Mezclado"" WHEN 3 THEN ""Otros"" END, palets.fechaini, time(palets.horaini), palets.fechafin, time(palets.horafin) "
         Sql = Sql & " FROM albaran_palets, palets " 'lineas de palets del albaran
         Sql = Sql & " WHERE albaran_palets.numpalet = palets.numpalet "
+    Case 6 ' agencias de transporte
+        Sql = "SELECT albaran_transporte.numalbar, numlinea, albaran_transporte.codtrans, agencias.nomtrans, albaran_transporte.codfortrans, fortranspor.nombre, albaran_transporte.observaciones, albaran_transporte.esmedioppal ,CASE albaran_transporte.esmedioppal WHEN 0 THEN "" "" WHEN 1 THEN ""*""  END "
+        Sql = Sql & " FROM albaran_transporte, fortranspor, agencias "
+        Sql = Sql & " WHERE albaran_transporte.codfortrans = fortranspor.codfortrans and albaran_transporte.codtrans = agencias.codtrans "
+    
     End Select
     
     If enlaza Then
@@ -8829,7 +9342,7 @@ Dim Sql As String
         Sql = Sql & " and numalbar is null"  '[Monica]24/09/2014: antes numalbar = -1
     End If
     Sql = Sql & " ORDER BY numalbar"
-    If (Opcion = 1 Or Opcion = 4) Then Sql = Sql & ", numlinea "
+    If (Opcion = 1 Or Opcion = 4 Or Opcion = 6) Then Sql = Sql & ", numlinea "
     MontaSQLCarga = Sql
 End Function
 
@@ -8895,9 +9408,11 @@ Dim i As Integer
               Case 0
                 bAux = (b And Me.Data3.Recordset.RecordCount > 0) And (NumAlbar = "")
               Case 1
-                bAux = (b And Me.AdoAux(0).Recordset.RecordCount > 0) And (NumAlbar = "")
+                bAux = (b And Me.Adoaux(0).Recordset.RecordCount > 0) And (NumAlbar = "")
               Case 2
-                bAux = (b And Me.AdoAux(2).Recordset.RecordCount > 0) And (NumAlbar = "")
+                bAux = (b And Me.Adoaux(2).Recordset.RecordCount > 0) And (NumAlbar = "")
+              Case 3
+                bAux = (b And Me.Adoaux(3).Recordset.RecordCount > 0) And (NumAlbar = "")
             End Select
         End If
         ToolAux(i).Buttons(2).Enabled = bAux
@@ -8920,7 +9435,7 @@ Dim NroCopias As Integer
 
 Dim ImprimeDesdePalets As Boolean
 
-    If text1(0).Text = "" Then
+    If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Albarán para Imprimir.", vbInformation
         Exit Sub
     End If
@@ -8972,7 +9487,7 @@ Dim ImprimeDesdePalets As Boolean
         numParam = numParam + 1
     
         If Not LimpiarTemporal Then Exit Sub
-        If Not CargarTemporalPalets(text1(0).Text, ImprimeDesdePalets) Then Exit Sub
+        If Not CargarTemporalPalets(Text1(0).Text, ImprimeDesdePalets) Then Exit Sub
         
         If ImprimeDesdePalets Then
             devuelve = "{tmpinformes.codusu}=" & vUsu.Codigo
@@ -8997,24 +9512,24 @@ Dim ImprimeDesdePalets As Boolean
     '================= FORMULA =========================
     'Cadena para seleccion Nº de albaran
     '---------------------------------------------------
-    If text1(0).Text <> "" Then
+    If Text1(0).Text <> "" Then
         'Nº palet
-        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(text1(0).Text)
+        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "numalbar = " & Val(text1(0).Text)
+        devuelve = "numalbar = " & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
     End If
     
     If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
      
-     NroCopias = DevuelveDesdeBDNew(cAgro, "clientes", "nrocopias", "codclien", text1(3).Text, "N")
+    NroCopias = DevuelveDesdeBDNew(cAgro, "clientes", "nrocopias", "codclien", Text1(3).Text, "N")
      
-     With frmImprimir
+    With frmImprimir
           '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
-            .outClaveNombreArchiv = Format(text1(0).Text, "0000000")
-            .outCodigoCliProv = text1(3).Text
+            .outClaveNombreArchiv = Format(Text1(0).Text, "0000000")
+            .outCodigoCliProv = Text1(3).Text
             '[Monica]06/05/2015: destino para sacar email
-            .outCodigoDestino = text1(4).Text
+            .outCodigoDestino = Text1(4).Text
             .outTipoDocumento = 4
             
             .FormulaSeleccion = cadFormula
@@ -9044,7 +9559,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 Dim NroCopias As Integer
 
-    If text1(0).Text = "" Then
+    If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Albarán para Imprimir.", vbInformation
         Exit Sub
     End If
@@ -9066,11 +9581,11 @@ Dim NroCopias As Integer
     '================= FORMULA =========================
     'Cadena para seleccion Nº de albaran
     '---------------------------------------------------
-    If text1(0).Text <> "" Then
+    If Text1(0).Text <> "" Then
         'Nº palet
-        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(text1(0).Text)
+        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "numalbar = " & Val(text1(0).Text)
+        devuelve = "numalbar = " & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
     End If
     
@@ -9078,10 +9593,10 @@ Dim NroCopias As Integer
      
      With frmImprimir
           '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
-            .outClaveNombreArchiv = Format(text1(0).Text, "0000000")
-            .outCodigoCliProv = text1(3).Text
+            .outClaveNombreArchiv = Format(Text1(0).Text, "0000000")
+            .outCodigoCliProv = Text1(3).Text
             '[Monica]06/05/2015: destino para sacar email
-            .outCodigoDestino = text1(4).Text
+            .outCodigoDestino = Text1(4).Text
             .outTipoDocumento = 4
             
             .FormulaSeleccion = cadFormula
@@ -9109,7 +9624,7 @@ Dim indRPT As Byte 'Indica el tipo de Documento en la tabla "scryst"
 Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 
-    If text1(0).Text = "" Then
+    If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Albarán para Imprimir.", vbInformation
         Exit Sub
     End If
@@ -9122,7 +9637,7 @@ Dim devuelve As String
     If vParamAplic.Cooperativa = 15 Then
         Set frmOrden = New frmVtasOrdenCarga
         
-        frmOrden.NumCod = Mid(text1(9).Text, 4, 4) & "/" & Year(CDate(text1(10).Text))
+        frmOrden.NumCod = Mid(Text1(9).Text, 4, 4) & "/" & Year(CDate(Text1(10).Text))
         frmOrden.Show vbModal
         
         Set frmOrden = Nothing
@@ -9146,11 +9661,11 @@ Dim devuelve As String
     '================= FORMULA =========================
     'Cadena para seleccion Nº de albaran
     '---------------------------------------------------
-    If text1(0).Text <> "" Then
+    If Text1(0).Text <> "" Then
         'Nº pedido
-        devuelve = "{palets.numpedid}=" & Val(text1(9).Text)
+        devuelve = "{palets.numpedid}=" & Val(Text1(9).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "numpedid = " & Val(text1(9).Text)
+        devuelve = "numpedid = " & Val(Text1(9).Text)
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
     End If
     
@@ -9158,10 +9673,10 @@ Dim devuelve As String
      
      With frmImprimir
           '[Monica]02/07/2014: añadido la siguientes 3 lineas para el envio por el outlook
-            .outClaveNombreArchiv = Format(text1(0).Text, "0000000")
-            .outCodigoCliProv = text1(3).Text
+            .outClaveNombreArchiv = Format(Text1(0).Text, "0000000")
+            .outCodigoCliProv = Text1(3).Text
             '[Monica]06/05/2015: destino para sacar email
-            .outCodigoDestino = text1(4).Text
+            .outCodigoDestino = Text1(4).Text
             .outTipoDocumento = 6
      
             .FormulaSeleccion = cadFormula
@@ -9183,7 +9698,7 @@ Dim frmCMR As frmVtasCMR
     Set frmCMR = New frmVtasCMR
     
     frmCMR.NumCod = Data1.Recordset.Fields(0).Value
-    frmCMR.NomTrans = text2(6).Text
+    frmCMR.NomTrans = DevuelveValor("select nomtrans from agencias inner join albaran_transporte on agencias.codtrans = albaran_transporte.codtrans where albaran_transporte.numalbar = " & DBSet(Text1(0), "N") & " and albaran_transporte.esmedioppal = 1")
     frmCMR.Show vbModal
     
     Set frmCMR = Nothing
@@ -9193,7 +9708,7 @@ Private Sub BotonTraspaso()
 
     Screen.MousePointer = vbHourglass
     frmListado.Opcionlistado = 3
-    frmListado.NumCod = text1(0).Text ' numero de albaran
+    frmListado.NumCod = Text1(0).Text ' numero de albaran
     frmListado.Show vbModal
     Screen.MousePointer = vbDefault
 
@@ -9209,7 +9724,7 @@ Dim nomDocu As String 'Nombre de Informe rpt de crystal
 Dim devuelve As String
 Dim NroCopias As Integer
 
-    If text1(0).Text = "" Then
+    If Text1(0).Text = "" Then
         MsgBox "Debe seleccionar un Albarán para Imprimir.", vbInformation
         Exit Sub
     End If
@@ -9232,24 +9747,24 @@ Dim NroCopias As Integer
     '================= FORMULA =========================
     'Cadena para seleccion Nº de albaran
     '---------------------------------------------------
-    If text1(0).Text <> "" Then
+    If Text1(0).Text <> "" Then
         'Nº palet
-        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(text1(0).Text)
+        devuelve = "{" & NombreTabla & ".numalbar}=" & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadFormula, devuelve) Then Exit Sub
-        devuelve = "numalbar = " & Val(text1(0).Text)
+        devuelve = "numalbar = " & Val(Text1(0).Text)
         If Not AnyadirAFormula(cadselect, devuelve) Then Exit Sub
     End If
     
     If Not HayRegParaInforme(NombreTabla, cadselect) Then Exit Sub
      
-     NroCopias = DevuelveDesdeBDNew(cAgro, "clientes", "nrocopias", "codclien", text1(3).Text, "N")
+     NroCopias = DevuelveDesdeBDNew(cAgro, "clientes", "nrocopias", "codclien", Text1(3).Text, "N")
      
      With frmImprimir
           '[Monica]24/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
-            .outClaveNombreArchiv = Format(text1(0).Text, "0000000")
-            .outCodigoCliProv = text1(3).Text
+            .outClaveNombreArchiv = Format(Text1(0).Text, "0000000")
+            .outCodigoCliProv = Text1(3).Text
             '[Monica]06/05/2015: destino para sacar email
-            .outCodigoDestino = text1(4).Text
+            .outCodigoDestino = Text1(4).Text
             .outTipoDocumento = 4
             
             .FormulaSeleccion = cadFormula
@@ -9288,6 +9803,7 @@ Private Sub CargaCombo()
 Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim i As Byte
+Dim Cad As String
     
     cmbAux(1).Clear
     
@@ -9309,16 +9825,21 @@ Dim i As Byte
     cmbAux(0).ItemData(cmbAux(0).NewIndex) = 1
     
     
-'    ' *** neteje els combos, els pose valor i seleccione el valor per defecte ***
-'    For i = 0 To Combo1.Count - 1
-'        Combo1(i).Clear
-'    Next i
-'
-'    'tipo irpf
-'    Combo1(0).AddItem "Modo Consulta"
-'    Combo1(0).ItemData(Combo1(0).NewIndex) = 1
-'    Combo1(0).AddItem "Modo Inserción"
-'    Combo1(0).ItemData(Combo1(0).NewIndex) = 2
+    'Tipo de transporte
+    cmbAux(2).Clear
+    
+    Cad = "SELECT * FROM fortranspor ORDER BY codfortrans"
+    Set Rs = New ADODB.Recordset
+'    Rs.Open Cad, conn, OpenForwardOnly, adLockPessimistic, adCmdText
+    Rs.Open Cad, conn, adOpenDynamic, adLockReadOnly, adCmdText
+    
+    While Not Rs.EOF
+        cmbAux(2).AddItem Rs!Nombre
+        cmbAux(2).ItemData(cmbAux(2).NewIndex) = Rs!codfortrans
+        Rs.MoveNext
+    Wend
+    Rs.Close
+    Set Rs = Nothing
     
     
     
@@ -9333,13 +9854,13 @@ Dim MenError As String
     conn.BeginTrans
     b = True
     '++monica: añadido la fecha de movimiento a los envases retornables
-    If CDate(Data1.Recordset!FechaAlb) <> CDate(text1(1).Text) Then
+    If CDate(Data1.Recordset!FechaAlb) <> CDate(Text1(1).Text) Then
         MenError = "Actualizando Fecha de Movimiento de Envases Retornables"
-        b = ModificarFechaMovimiento(Data1.Recordset.Fields(0), text1(1).Text)
+        b = ModificarFechaMovimiento(Data1.Recordset.Fields(0), Text1(1).Text)
     End If
     '++
     If b Then
-        If CCur(Data1.Recordset!codAlmac) <> CCur(text1(16).Text) Then
+        If CCur(Data1.Recordset!codAlmac) <> CCur(Text1(16).Text) Then
         
             MenError = "Eliminando Costes"
             b = EliminarCostes(Data1.Recordset.Fields(0))
@@ -9362,31 +9883,31 @@ Dim MenError As String
         End If
     End If
     '[Monica] 30/09/2010: modificamos el codigo de cliente en las lineas de envases retornables
-    If b And CCur(Data1.Recordset!CodClien) <> CCur(ComprobarCero(text1(3).Text)) Then
+    If b And CCur(Data1.Recordset!CodClien) <> CCur(ComprobarCero(Text1(3).Text)) Then
         MenError = "Modificando Envases Retornables"
-        b = ModificarClienteEnvasesRetornables(Data1.Recordset.Fields(0), text1(3).Text)
+        b = ModificarClienteEnvasesRetornables(Data1.Recordset.Fields(0), Text1(3).Text)
     End If
 
     '[Monica]26/06/2018: en caso de que la entrada esté comunicada y modifican
     If b Then
         'en caso de que sea coopic
         If vParamAplic.Cooperativa = 16 Then
-            If AlbaranComunicado(text1(0).Text) Then
-                If CStr(DBLet(Data1.Recordset!FechaAlb, "F")) <> text1(1).Text Or CLng(DBLet(Data1.Recordset!CodClien, "N")) <> CLng(text1(3).Text) Or CLng(DBLet(Data1.Recordset!coddesti, "N")) <> CLng(text1(4).Text) Or _
-                    CLng(DBLet(Data1.Recordset!Codtimer, "N")) <> text1(5).Text Or CLng(Data1.Recordset!codTrans) <> CLng(text1(6).Text) Or _
-                    CLng(DBLet(Data1.Recordset!codcomis, "N")) <> CLng(ComprobarCero(text1(19).Text)) Or _
-                    CCur(DBLet(Data1.Recordset!codAlmac, "N")) <> CCur(ComprobarCero(text1(16).Text)) Or _
-                    CStr(DBLet(Data1.Recordset!matriveh, "T")) <> text1(7).Text Or _
-                    CStr(DBLet(Data1.Recordset!matrirem, "T")) <> text1(8).Text Or _
-                    CLng(DBLet(Data1.Recordset!numpedid, "N")) <> CCur(ComprobarCero(text1(9).Text)) Or _
-                    CStr(DBLet(Data1.Recordset!FechaPed, "T")) <> text1(10).Text Or _
-                    CLng(DBLet(Data1.Recordset!numerocmr, "N")) <> CLng(ComprobarCero(text1(17).Text)) Or _
-                    CStr(DBLet(Data1.Recordset!refclien, "T")) <> text1(14).Text Or CStr(DBLet(Data1.Recordset!nrocontra, "T")) <> text1(12).Text Or _
-                    CLng(DBLet(Data1.Recordset!nroactas, "N")) <> CCur(ComprobarCero(text1(13).Text)) Or _
-                    CLng(DBLet(Data1.Recordset!TotPalet, "N")) <> CCur(ComprobarCero(text1(11).Text)) Or _
-                    CCur(DBLet(Data1.Recordset!portespre, "N")) <> CCur(ComprobarCero(text1(2).Text)) Or _
-                    CCur(DBLet(Data1.Recordset!comisionespre, "N")) <> CCur(ComprobarCero(text1(18).Text)) Or _
-                    CStr(DBLet(Data1.Recordset!Observac, "N")) <> text1(15).Text Then
+            If AlbaranComunicado(Text1(0).Text) Then
+                If CStr(DBLet(Data1.Recordset!FechaAlb, "F")) <> Text1(1).Text Or CLng(DBLet(Data1.Recordset!CodClien, "N")) <> CLng(Text1(3).Text) Or CLng(DBLet(Data1.Recordset!coddesti, "N")) <> CLng(Text1(4).Text) Or _
+                    CLng(DBLet(Data1.Recordset!Codtimer, "N")) <> Text1(5).Text Or CLng(Data1.Recordset!codTrans) <> CLng(Text1(6).Text) Or _
+                    CLng(DBLet(Data1.Recordset!codcomis, "N")) <> CLng(ComprobarCero(Text1(19).Text)) Or _
+                    CCur(DBLet(Data1.Recordset!codAlmac, "N")) <> CCur(ComprobarCero(Text1(16).Text)) Or _
+                    CStr(DBLet(Data1.Recordset!matriveh, "T")) <> Text1(7).Text Or _
+                    CStr(DBLet(Data1.Recordset!matrirem, "T")) <> Text1(8).Text Or _
+                    CLng(DBLet(Data1.Recordset!numpedid, "N")) <> CCur(ComprobarCero(Text1(9).Text)) Or _
+                    CStr(DBLet(Data1.Recordset!FechaPed, "T")) <> Text1(10).Text Or _
+                    CLng(DBLet(Data1.Recordset!numerocmr, "N")) <> CLng(ComprobarCero(Text1(17).Text)) Or _
+                    CStr(DBLet(Data1.Recordset!refclien, "T")) <> Text1(14).Text Or CStr(DBLet(Data1.Recordset!nrocontra, "T")) <> Text1(12).Text Or _
+                    CLng(DBLet(Data1.Recordset!nroactas, "N")) <> CCur(ComprobarCero(Text1(13).Text)) Or _
+                    CLng(DBLet(Data1.Recordset!TotPalet, "N")) <> CCur(ComprobarCero(Text1(11).Text)) Or _
+                    CCur(DBLet(Data1.Recordset!portespre, "N")) <> CCur(ComprobarCero(Text1(2).Text)) Or _
+                    CCur(DBLet(Data1.Recordset!comisionespre, "N")) <> CCur(ComprobarCero(Text1(18).Text)) Or _
+                    CStr(DBLet(Data1.Recordset!Observac, "N")) <> Text1(15).Text Then
 
                     ComunicaDatos True
 
@@ -9417,15 +9938,15 @@ Dim Sql As String
 
     On Error GoTo eModificaDatosIMG
     
-    Sql = "update albaran set airline = " & DBSet(text1(20).Text, "T")
-    Sql = Sql & ", awb = " & DBSet(text1(21).Text, "T")
-    Sql = Sql & ", flight1 = " & DBSet(text1(22).Text, "T")
-    Sql = Sql & ", flight2 = " & DBSet(text1(25).Text, "T")
-    Sql = Sql & ", airorigin = " & DBSet(text1(26).Text, "T")
-    Sql = Sql & ", airdestiny = " & DBSet(text1(27).Text, "T")
-    Sql = Sql & ", etd = " & DBSet(text1(23).Text, "T")
-    Sql = Sql & ", eta = " & DBSet(text1(24).Text, "T")
-    Sql = Sql & " where numalbar = " & DBSet(text1(0).Text, "N")
+    Sql = "update albaran set airline = " & DBSet(Text1(20).Text, "T")
+    Sql = Sql & ", awb = " & DBSet(Text1(21).Text, "T")
+    Sql = Sql & ", flight1 = " & DBSet(Text1(22).Text, "T")
+    Sql = Sql & ", flight2 = " & DBSet(Text1(25).Text, "T")
+    Sql = Sql & ", airorigin = " & DBSet(Text1(26).Text, "T")
+    Sql = Sql & ", airdestiny = " & DBSet(Text1(27).Text, "T")
+    Sql = Sql & ", etd = " & DBSet(Text1(23).Text, "T")
+    Sql = Sql & ", eta = " & DBSet(Text1(24).Text, "T")
+    Sql = Sql & " where numalbar = " & DBSet(Text1(0).Text, "N")
     
     conn.Execute Sql
     
@@ -9449,17 +9970,17 @@ Dim Sql As String
         If MsgBox("¿Es un albarán de variedad comercializada en común?", vbQuestion + vbYesNo + vbDefaultButton1) = vbYes Then
             CodTipoMov = "ALX"
         Else
-            CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(text1(3).Text, "N"))
+            CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
         End If
     Else
-        CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(text1(3).Text, "N"))
+        CodTipoMov = DevuelveValor("select codtipalb from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
     End If
     
-    text1(28).Text = CodTipoMov
+    Text1(6).Text = CodTipoMov
     
     Set vTipoMov = New CTiposMov
     If vTipoMov.Leer(CodTipoMov) Then
-        If text1(0).Text = "" Then text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
+        If Text1(0).Text = "" Then Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
         Sql = CadenaInsertarDesdeForm(Me)
         If Sql <> "" Then
             If InsertarOferta(Sql, vTipoMov) Then
@@ -9472,13 +9993,13 @@ Dim Sql As String
                 Set frmLAlb = New frmVtasLinAlbaranes
                 
                 frmLAlb.ModoExt = 3
-                frmLAlb.Albaran = CLng(text1(0).Text)
+                frmLAlb.Albaran = CLng(Text1(0).Text)
                 frmLAlb.Show vbModal
                 
                 Set frmLAlb = Nothing
             End If
         End If
-        text1(0).Text = Format(text1(0).Text, "0000000")
+        Text1(0).Text = Format(Text1(0).Text, "0000000")
     End If
     Set vTipoMov = Nothing
     
@@ -9502,12 +10023,12 @@ Dim devuelve As String
     'Comprobar si mientras tanto se incremento el contador de Albaranes
     'para ello vemos si existe una oferta con ese contador y si existe la incrementamos
     Do
-        devuelve = DevuelveDesdeBDNew(cAgro, NombreTabla, "numalbar", "numalbar", text1(0).Text, "N")
+        devuelve = DevuelveDesdeBDNew(cAgro, NombreTabla, "numalbar", "numalbar", Text1(0).Text, "N")
         If devuelve <> "" Then
             'Ya existe el contador incrementarlo
             Existe = True
             vTipoMov.IncrementarContador (CodTipoMov)
-            text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
+            Text1(0).Text = vTipoMov.ConseguirContador(CodTipoMov)
             cambiaSQL = True
         Else
             Existe = False
@@ -9521,7 +10042,7 @@ Dim devuelve As String
     MenError = "Error al insertar en la tabla Cabecera de Albaranes (" & NombreTabla & ")."
     conn.Execute vSQL, , adCmdText
     
-    If text1(0).Text = vTipoMov.Contador + 1 Then
+    If Text1(0).Text = vTipoMov.Contador + 1 Then
         MenError = "Error al actualizar el contador del Albarán."
         vTipoMov.IncrementarContador (CodTipoMov)
     End If
@@ -9579,6 +10100,7 @@ Dim b As Boolean
         Case 1: nomFrame = "FrameAux0" 'envases
         Case 2: nomFrame = "FrameAux1" 'costes
         Case 3: nomFrame = "FrameAux2" 'palets
+        Case 5: nomFrame = "FrameAux3" 'transportistas
     End Select
     ' ***************************************************************
     
@@ -9596,14 +10118,18 @@ Dim b As Boolean
             b = BloqueaRegistro("albaran", "numalbar = " & Data1.Recordset!NumAlbar)
             Select Case Index
                 Case 1  ' *** els index de les llinies en grid (en o sense tab) ***
-                    CargaGrid DataGrid3, AdoAux(0), True
+                    CargaGrid DataGrid3, Adoaux(0), True
                     If b Then BotonAnyadirLinea NumTabMto
                 Case 3 ' *** els index dels tabs que NO tenen grid ***
-                    CargaGrid DataGrid5, AdoAux(2), True
+                    CargaGrid DataGrid5, Adoaux(2), True
                     If b Then BotonAnyadirLinea NumTabMto
-'                LLamaLineas NumTabMto, 0
+                Case 5
+                    CargaGrid DataGrid6, Adoaux(3), True
+                    If b Then BotonAnyadirLinea NumTabMto
+                
             End Select
-            SSTab1.Tab = NumTabMto
+'[Monica]25/04/2019: cambio de lugar del tab de transportista
+'            SSTab1.Tab = NumTabMto
         End If
     End If
 End Sub
@@ -9623,17 +10149,19 @@ Dim i As Integer
        
     NumTabMto = Index
     If Index = 2 Then NumTabMto = 3
+    If Index = 3 Then NumTabMto = 5
     
     PonerModo 5, Index
     
     ' *** bloquejar la clau primaria de la capçalera ***
-    BloquearTxt text1(0), True
+    BloquearTxt Text1(0), True
     ' **************************************************
 
     ' *** posar el nom del les distintes taules de llínies ***
     Select Case NumTabMto
         Case 1: vtabla = "albaran_envase"
         Case 3: vtabla = "albaran_palets"
+        Case 5: vtabla = "albaran_transporte"
     End Select
     ' ********************************************************
     
@@ -9646,7 +10174,7 @@ Dim i As Integer
             NumF = SugerirCodigoSiguienteStr(vtabla, "numlinea", vWhere)
             ' ***************************************************************
 
-            AnyadirLinea DataGrid3, AdoAux(0)
+            AnyadirLinea DataGrid3, Adoaux(0)
     
             anc = DataGrid3.Top
             If DataGrid3.Row < 0 Then
@@ -9659,13 +10187,13 @@ Dim i As Integer
         
             LimpiarCamposLin "FrameAux0"
             
-            txtAux(8).Text = text1(0).Text 'numalbar
+            txtAux(8).Text = Text1(0).Text 'numalbar
             txtAux(9).Text = NumF 'numlinea
             txtAux(21).Text = Format(Data1.Recordset!FechaAlb, "dd/mm/yyyy")
             txtAux(23).Text = Format(Data1.Recordset!CodClien, "000000")
             
             For i = 0 To 2
-                text2(i).Text = ""
+                Text2(i).Text = ""
             Next i
             cmbAux(0).ListIndex = 0
             BloquearTxt txtAux(10), False
@@ -9677,7 +10205,7 @@ Dim i As Integer
             NumF = SugerirCodigoSiguienteStr(vtabla, "numlinea", vWhere)
             ' ***************************************************************
 
-            AnyadirLinea DataGrid5, AdoAux(2)
+            AnyadirLinea DataGrid5, Adoaux(2)
     
             anc = DataGrid5.Top
             If DataGrid5.Row < 0 Then
@@ -9689,12 +10217,38 @@ Dim i As Integer
             LLamaLineas ModificaLineas, anc, "DataGrid5"
         
             LimpiarCamposLin "FrameAux2"
-            txtAux(12).Text = text1(0).Text 'codclien
+            txtAux(12).Text = Text1(0).Text 'codclien
             txtAux(13).Text = NumF
             PonerFoco txtAux(14)
             For i = 8 To 13
-                text2(i).Text = ""
+                Text2(i).Text = ""
             Next i
+        
+        
+        Case 5
+            NumF = SugerirCodigoSiguienteStr(vtabla, "numlinea", vWhere)
+            ' ***************************************************************
+
+            AnyadirLinea DataGrid6, Adoaux(3)
+    
+            anc = DataGrid6.Top
+            If DataGrid6.Row < 0 Then
+                anc = anc + 240
+            Else
+                anc = anc + DataGrid6.RowTop(DataGrid6.Row) + 5
+            End If
+          
+            LLamaLineas ModificaLineas, anc, "DataGrid6"
+        
+            LimpiarCamposLin "FrameAux3"
+            txtAux(27).Text = Text1(0).Text 'numero de albaran
+            txtAux(28).Text = NumF
+            PonerFoco txtAux(29)
+            For i = 44 To 44
+                Text2(i).Text = ""
+            Next i
+        
+        
         ' ******************************************
     End Select
 End Sub
@@ -9719,6 +10273,7 @@ Dim Cad As String
     Select Case NumTabMto
         Case 1: nomFrame = "FrameAux0" 'envases
         Case 3: nomFrame = "FrameAux2" 'palets
+        Case 5: nomFrame = "FrameAux3" ' transportistas
     End Select
     ' **************************************************************
 
@@ -9739,27 +10294,40 @@ Dim Cad As String
             Select Case NumTabMto
                 Case 1
 
-                    V = AdoAux(0).Recordset.Fields(1) 'el 2 es el nº de llinia
-                    CargaGrid DataGrid3, AdoAux(0), True
+                    V = Adoaux(0).Recordset.Fields(1) 'el 2 es el nº de llinia
+                    CargaGrid DataGrid3, Adoaux(0), True
 
                     ' *** si n'hi han tabs ***
                     SSTab1.Tab = 1
 
                     DataGrid3.SetFocus
-                    AdoAux(0).Recordset.Find (AdoAux(0).Recordset.Fields(1).Name & " =" & V)
+                    Adoaux(0).Recordset.Find (Adoaux(0).Recordset.Fields(1).Name & " =" & V)
 
                     LLamaLineas ModificaLineas, 0, "DataGrid3"
                 Case 3
-                    V = AdoAux(2).Recordset.Fields(1) 'el 2 es el nº de llinia
-                    CargaGrid DataGrid5, AdoAux(2), True
+                    V = Adoaux(2).Recordset.Fields(1) 'el 2 es el nº de llinia
+                    CargaGrid DataGrid5, Adoaux(2), True
 
                     ' *** si n'hi han tabs ***
                     SSTab1.Tab = 3
 
                     DataGrid5.SetFocus
-                    AdoAux(2).Recordset.Find (AdoAux(2).Recordset.Fields(1).Name & " =" & V)
+                    Adoaux(2).Recordset.Find (Adoaux(2).Recordset.Fields(1).Name & " =" & V)
 
                     LLamaLineas ModificaLineas, 0, "DataGrid5"
+            
+                Case 5
+                    V = Adoaux(3).Recordset.Fields(1) 'el 2 es el nº de llinia
+                    CargaGrid DataGrid6, Adoaux(3), True
+
+                    ' *** si n'hi han tabs ***
+                    SSTab1.Tab = 4
+
+                    DataGrid6.SetFocus
+                    Adoaux(3).Recordset.Find (Adoaux(3).Recordset.Fields(1).Name & " =" & V)
+
+                    LLamaLineas ModificaLineas, 0, "DataGrid6"
+            
             End Select
         End If
     End If
@@ -9878,25 +10446,12 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " numalbar= " & Val(text1(0).Text)
+    vWhere = vWhere & " numalbar= " & Val(Text1(0).Text)
     ' *******************************************************
     
     ObtenerWhereCab = vWhere
 End Function
 
-' ***** si n'hi han varios nivells de tabs *****
-Private Sub SituarTab(numTab As Integer)
-    On Error Resume Next
-    
-    If numTab = 0 Or numTab = 1 Or numTab = 2 Or numTab = 3 Then
-        SSTab1.Tab = 2
-    ElseIf numTab = 4 Then
-        SSTab1.Tab = 2
-    End If
-    
-    If Err.Number <> 0 Then Err.Clear
-End Sub
-' **********************************************
 
 Private Function ActualizaMovimiento(Mens As String) As Boolean
 Dim Sql As String
@@ -9904,7 +10459,7 @@ Dim Sql As String
     On Error GoTo eActualizaMovimiento
     
     
-    Sql = "update smoval set fechamov = " & DBSet(text1(1).Text, "F") & ", codigope = " & DBSet(text1(3).Text, "N")
+    Sql = "update smoval set fechamov = " & DBSet(Text1(1).Text, "F") & ", codigope = " & DBSet(Text1(3).Text, "N")
     Sql = Sql & " where tipomovi = 'ALV' and document = " & Data1.Recordset!NumAlbar
     Sql = Sql & " and codigope = " & Data1.Recordset!CodClien
     Sql = Sql & " and fechamov = " & DBSet(Data1.Recordset!FechaAlb, "F")
@@ -9975,32 +10530,32 @@ Dim Sql As String
     Cajas = TotalRegistros("select sum(numcajas) from albaran_variedad where numalbar = " & Data1.Recordset.Fields(0))
     Kilos = TotalRegistros("select sum(pesoneto) from albaran_variedad where numalbar = " & Data1.Recordset.Fields(0))
     
-    text2(33).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 1)
-    text2(33).Text = CCur(text2(33).Text) + CCur(TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 4))
+    Text2(33).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 1)
+    Text2(33).Text = CCur(Text2(33).Text) + CCur(TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 4))
     
-    text2(34).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 2)
-    text2(35).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 0)
-    text2(39).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 3)
+    Text2(34).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 2)
+    Text2(35).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 0)
+    Text2(39).Text = TotalCostesEnvases(Data1.Recordset.Fields(0), -1, 3)
     
     '[Monica]27/10/2011: Si no hay costes de portes ni de comision se ponen los previstos
     '                    cargamos lo previsto en los gastos de portes y de comisiones
-    If ComprobarCero(text2(34).Text) = 0 Then
-        text2(34).Text = ComprobarCero(text1(2).Text) ' portes previstos
+    If ComprobarCero(Text2(34).Text) = 0 Then
+        Text2(34).Text = ComprobarCero(Text1(2).Text) ' portes previstos
     End If
-    If ComprobarCero(text2(39).Text) = 0 Then
-        text2(39).Text = ComprobarCero(text1(18).Text) ' comisiones previstas
+    If ComprobarCero(Text2(39).Text) = 0 Then
+        Text2(39).Text = ComprobarCero(Text1(18).Text) ' comisiones previstas
     End If
     '27/10/2011:fin
     
     'total gastos
-    text2(36).Text = CCur(ImporteSinFormato(DBLet(text2(33), "N"))) + CCur(ImporteSinFormato(DBLet(text2(34), "N"))) + CCur(ImporteSinFormato(DBLet(text2(35), "N"))) + CCur(ImporteSinFormato(DBLet(text2(39), "N")))
+    Text2(36).Text = CCur(ImporteSinFormato(DBLet(Text2(33), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(34), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(35), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(39), "N")))
     'gastos/kilo
     If Kilos <> 0 Then
-        text2(32).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(36), "N"))) / Kilos, 4)
+        Text2(32).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(36), "N"))) / Kilos, 4)
     End If
     'gastos/caja
     If Cajas <> 0 Then
-        text2(31).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(36), "N"))) / Cajas, 4)
+        Text2(31).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(36), "N"))) / Cajas, 4)
     End If
     ImpVentas = 0
     
@@ -10028,39 +10583,39 @@ Dim Sql As String
     Wend
     Set Rs = Nothing
     
-    text2(30).Text = Format(ImpVentas, "###,###,##0.00")
+    Text2(30).Text = Format(ImpVentas, "###,###,##0.00")
     
     'ventas / caja
     If Cajas <> 0 Then
-        text2(28).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(30), "N"))) / Cajas, 4)
+        Text2(28).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(30), "N"))) / Cajas, 4)
     End If
     'ventas / kilo
     If Kilos <> 0 Then
-        text2(29).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(30), "N"))) / Kilos, 4)
+        Text2(29).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(30), "N"))) / Kilos, 4)
     End If
     
     'valor fruta = importe venta - gastos
-    text2(27).Text = CCur(ImporteSinFormato(DBLet(text2(30).Text, "N"))) - CCur(ImporteSinFormato(DBLet(text2(36).Text, "N")))
-    text2(27).Text = Format(text2(27).Text, "###,###,##0.00")
+    Text2(27).Text = CCur(ImporteSinFormato(DBLet(Text2(30).Text, "N"))) - CCur(ImporteSinFormato(DBLet(Text2(36).Text, "N")))
+    Text2(27).Text = Format(Text2(27).Text, "###,###,##0.00")
     
     'neto/kilo
     If Kilos <> 0 Then
-        text2(26).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(27), "N"))) / Kilos, 4)
+        Text2(26).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(27), "N"))) / Kilos, 4)
     End If
     
     
     Label2(7).Caption = Format(Cajas, "###,###,##0")
     Label2(6).Caption = Format(Kilos, "###,###,##0")
-    text2(33) = Format(text2(33), "###,###,##0.00")
-    text2(34) = Format(text2(34), "###,###,##0.00")
-    text2(35) = Format(text2(35), "###,###,##0.00")
-    text2(36) = Format(text2(36), "###,###,##0.00")
-    text2(39) = Format(text2(39), "###,###,##0.00")
-    text2(32) = Format(text2(32), "###,###,##0.0000")
-    text2(31) = Format(text2(31), "###,###,##0.0000")
-    text2(29) = Format(text2(29), "###,###,##0.0000")
-    text2(28) = Format(text2(28), "###,###,##0.0000")
-    text2(26) = Format(text2(26), "###,###,##0.0000")
+    Text2(33) = Format(Text2(33), "###,###,##0.00")
+    Text2(34) = Format(Text2(34), "###,###,##0.00")
+    Text2(35) = Format(Text2(35), "###,###,##0.00")
+    Text2(36) = Format(Text2(36), "###,###,##0.00")
+    Text2(39) = Format(Text2(39), "###,###,##0.00")
+    Text2(32) = Format(Text2(32), "###,###,##0.0000")
+    Text2(31) = Format(Text2(31), "###,###,##0.0000")
+    Text2(29) = Format(Text2(29), "###,###,##0.0000")
+    Text2(28) = Format(Text2(28), "###,###,##0.0000")
+    Text2(26) = Format(Text2(26), "###,###,##0.0000")
 
 End Sub
 
@@ -10187,12 +10742,12 @@ Dim NroCopias As Integer
     
     If Not HayRegParaInforme("facturas", cadselect) Then Exit Sub
     
-    NroCopias = DevuelveValor("select nrocopias from clientes where codclien = " & DBSet(text1(3).Text, "N"))
+    NroCopias = DevuelveValor("select nrocopias from clientes where codclien = " & DBSet(Text1(3).Text, "N"))
     
     With frmImprimir
           '[Monica]11/01/2012: añadido la siguientes 3 lineas para el envio por el outlook
             .outClaveNombreArchiv = cTipoM & Format(numFac, "0000000")
-            .outCodigoCliProv = text1(3).Text
+            .outCodigoCliProv = Text1(3).Text
             '[Monica]06/05/2015: destino para sacar email
             .outCodigoDestino = ""
             .outTipoDocumento = 2
@@ -10270,41 +10825,41 @@ Dim i As Byte
 '@@        CargaGrid DataGrid4, AdoAux(1), False
                 
         'Datos de la tabla albaran_costes
-        CargaGrid DataGrid4, AdoAux(1), True
+        CargaGrid DataGrid4, Adoaux(1), True
 '        'Datos de gastos totales
 '        CargarListView
         
-        text2(14).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 1)
-        text2(14).Text = CCur(text2(14).Text) + CCur(TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 4))
-        text2(15).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 2)
-        text2(16).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 0)
-        text2(38).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 3)
+        Text2(14).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 1)
+        Text2(14).Text = CCur(Text2(14).Text) + CCur(TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 4))
+        Text2(15).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 2)
+        Text2(16).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 0)
+        Text2(38).Text = TotalCostesEnvases(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1), 3)
         
         
         '[Monica]27/10/2011: si no hay gastos de portes pero sí previstos los prorrateamos por los kilos netos de la linea
-        If ComprobarCero(text2(15).Text) = 0 Then
+        If ComprobarCero(Text2(15).Text) = 0 Then
             If ComprobarCero(Label2(6).Caption) <> 0 Then
-                text2(15).Text = Round2(CCur(ImporteSinFormato(ComprobarCero(Label2(4).Caption))) * CCur(ImporteSinFormato(ComprobarCero(text1(2).Text))) / CCur(ImporteSinFormato(ComprobarCero(Label2(6).Caption))), 2)
+                Text2(15).Text = Round2(CCur(ImporteSinFormato(ComprobarCero(Label2(4).Caption))) * CCur(ImporteSinFormato(ComprobarCero(Text1(2).Text))) / CCur(ImporteSinFormato(ComprobarCero(Label2(6).Caption))), 2)
             End If
         End If
         '[Monica]27/10/2011: si no hay gastos de comisiones pero sí previstos los prorrateamos por los kilos netos de la linea
-        If ComprobarCero(text2(38).Text) = 0 Then
+        If ComprobarCero(Text2(38).Text) = 0 Then
             If ComprobarCero(Label2(6).Caption) <> 0 Then
-                text2(38).Text = Round2(CCur(ImporteSinFormato(ComprobarCero(Label2(4).Caption))) * CCur(ImporteSinFormato(ComprobarCero(text1(18).Text))) / CCur(ImporteSinFormato(ComprobarCero(Label2(6).Caption))), 2)
+                Text2(38).Text = Round2(CCur(ImporteSinFormato(ComprobarCero(Label2(4).Caption))) * CCur(ImporteSinFormato(ComprobarCero(Text1(18).Text))) / CCur(ImporteSinFormato(ComprobarCero(Label2(6).Caption))), 2)
             End If
         End If
         'fin
         
         
         'total gastos
-        text2(17).Text = CCur(ImporteSinFormato(DBLet(text2(14), "N"))) + CCur(ImporteSinFormato(DBLet(text2(15), "N"))) + CCur(ImporteSinFormato(DBLet(text2(16), "N"))) + CCur(ImporteSinFormato(DBLet(text2(38), "N")))
+        Text2(17).Text = CCur(ImporteSinFormato(DBLet(Text2(14), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(15), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(16), "N"))) + CCur(ImporteSinFormato(DBLet(Text2(38), "N")))
         'gastos/kilo
         If CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) <> 0 Then
-            text2(19).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(17), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
+            Text2(19).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(17), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
         End If
         'gastos/caja
         If CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))) <> 0 Then
-            text2(20).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(17), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))), 4)
+            Text2(20).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(17), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))), 4)
         End If
 
         'albaran facturado
@@ -10316,37 +10871,37 @@ Dim i As Byte
                 'Label8(i).visible = (FacturaCobradaTesoreria(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1)) = 1)
                 Label8(i).visible = (AlbaranCobradoTesoreria(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1)) = 1)
                 'importe facturado: lo miramos de la factura
-                text2(21).Text = ImporteAlbaranFacturado(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1))
+                Text2(21).Text = ImporteAlbaranFacturado(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1))
             Else
                 Label8(i).visible = False
                 
                 '[Monica]07/02/2013: si hay precio definitivo se calcula con el precio definitivo
                 If DBLet(Data3.Recordset.Fields(18).Value, "N") <> 0 Then
                     'importe facturado: precio provisional * kilos
-                    text2(21).Text = Round2(CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) * DBLet(Data3.Recordset.Fields(18).Value, "N"), 2)
+                    Text2(21).Text = Round2(CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) * DBLet(Data3.Recordset.Fields(18).Value, "N"), 2)
                 Else
                     'importe facturado: precio provisional * kilos
-                    text2(21).Text = Round2(CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) * DBLet(Data3.Recordset.Fields(13).Value, "N"), 2)
+                    Text2(21).Text = Round2(CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) * DBLet(Data3.Recordset.Fields(13).Value, "N"), 2)
                 End If
             End If
         Next i
         
         'ventas / caja
         If CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))) <> 0 Then
-            text2(23).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(21), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))), 4)
+            Text2(23).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(21), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(5).Caption, "N"))), 4)
         End If
         'ventas / kilo
         If CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) <> 0 Then
-            text2(22).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(21), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
+            Text2(22).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(21), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
         End If
         
         'valor fruta = importe venta - gastos
-        text2(24).Text = CCur(ImporteSinFormato(DBLet(text2(21).Text, "N"))) - CCur(ImporteSinFormato(DBLet(text2(17).Text, "N")))
-        text2(24).Text = Format(text2(24).Text, "###,###,##0.00")
+        Text2(24).Text = CCur(ImporteSinFormato(DBLet(Text2(21).Text, "N"))) - CCur(ImporteSinFormato(DBLet(Text2(17).Text, "N")))
+        Text2(24).Text = Format(Text2(24).Text, "###,###,##0.00")
         
         'neto/kilo
         If CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))) <> 0 Then
-            text2(25).Text = Round2(CCur(ImporteSinFormato(DBLet(text2(24), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
+            Text2(25).Text = Round2(CCur(ImporteSinFormato(DBLet(Text2(24), "N"))) / CCur(ImporteSinFormato(DBLet(Label2(4).Caption, "N"))), 4)
         End If
         For i = 0 To 2
             Me.imgFact(i).visible = Label9(0).visible
@@ -10357,17 +10912,17 @@ Dim i As Byte
             Facturas = FacturasdeAlbaran(Data3.Recordset.Fields(0), Data3.Recordset.Fields(1))
         End If
         
-        text2(14) = Format(text2(14), "###,###,##0.00")
-        text2(15) = Format(text2(15), "###,###,##0.00")
-        text2(16) = Format(text2(16), "###,###,##0.00")
-        text2(38) = Format(text2(38), "###,###,##0.00")
-        text2(17) = Format(text2(17), "###,###,##0.00")
-        text2(19) = Format(text2(19), "###,###,##0.0000")
-        text2(20) = Format(text2(20), "###,###,##0.0000")
-        text2(21) = Format(text2(21), "###,###,##0.00")
-        text2(22) = Format(text2(22), "###,###,##0.0000")
-        text2(23) = Format(text2(23), "###,###,##0.0000")
-        text2(25) = Format(text2(25), "###,###,##0.0000")
+        Text2(14) = Format(Text2(14), "###,###,##0.00")
+        Text2(15) = Format(Text2(15), "###,###,##0.00")
+        Text2(16) = Format(Text2(16), "###,###,##0.00")
+        Text2(38) = Format(Text2(38), "###,###,##0.00")
+        Text2(17) = Format(Text2(17), "###,###,##0.00")
+        Text2(19) = Format(Text2(19), "###,###,##0.0000")
+        Text2(20) = Format(Text2(20), "###,###,##0.0000")
+        Text2(21) = Format(Text2(21), "###,###,##0.00")
+        Text2(22) = Format(Text2(22), "###,###,##0.0000")
+        Text2(23) = Format(Text2(23), "###,###,##0.0000")
+        Text2(25) = Format(Text2(25), "###,###,##0.0000")
 Else
         Label2(0).Caption = ""
         Label2(1).Caption = ""
@@ -10385,13 +10940,13 @@ Else
         'Datos de la tabla palets_calibres
         CargaGrid DataGrid1, Data2, False
         'Datos de la tabla palets_costes
-        CargaGrid DataGrid4, AdoAux(1), False
+        CargaGrid DataGrid4, Adoaux(1), False
         
         For i = 14 To 17
-            text2(i) = ""
+            Text2(i) = ""
         Next i
         For i = 19 To 25
-            text2(i) = ""
+            Text2(i) = ""
         Next i
 
 
@@ -10437,53 +10992,53 @@ Dim Albaran As String
 
     If EsCabecera Then
         Sql = "update albaran set "
-        Sql = Sql & "fechaalb = " & DBSet(text1(1).Text, "F")
-        Sql = Sql & ",codclien = " & DBSet(text1(3).Text, "N")
-        Sql = Sql & ",coddesti = " & DBSet(text1(4).Text, "N")
-        Sql = Sql & ",codtimer = " & DBSet(text1(5), "N")
-        Sql = Sql & ",codtrans = " & DBSet(text1(6).Text, "N")
-        Sql = Sql & ",codcomis = " & DBSet(text1(19).Text, "N")
-        Sql = Sql & ",codalmac = " & DBSet(text1(16).Text, "N")
-        Sql = Sql & ",matriveh = " & DBSet(text1(7).Text, "T", "S")
-        Sql = Sql & ",matrirem = " & DBSet(text1(8).Text, "T", "S")
-        Sql = Sql & ",numpedid = " & DBSet(text1(9).Text, "N", "S")
-        Sql = Sql & ",fechaped = " & DBSet(text1(10).Text, "F", "S")
-        Sql = Sql & ",numerocmr = " & DBSet(text1(17).Text, "N", "S")
-        Sql = Sql & ",matriveh = " & DBSet(text1(7).Text, "T", "S")
-        Sql = Sql & ",refclien = " & DBSet(text1(14).Text, "T", "S")
-        Sql = Sql & ",nrocontra = " & DBSet(text1(12).Text, "T", "S")
-        Sql = Sql & ",nroactas = " & DBSet(text1(13).Text, "N", "S")
-        Sql = Sql & ",totpalet = " & DBSet(text1(11).Text, "N", "S")
-        Sql = Sql & ",portespre = " & DBSet(text1(2).Text, "N", "S")
-        Sql = Sql & ",comisionespre = " & DBSet(text1(18).Text, "N", "S")
-        Sql = Sql & ",observac = " & DBSet(text1(15).Text, "T", "S")
+        Sql = Sql & "fechaalb = " & DBSet(Text1(1).Text, "F")
+        Sql = Sql & ",codclien = " & DBSet(Text1(3).Text, "N")
+        Sql = Sql & ",coddesti = " & DBSet(Text1(4).Text, "N")
+        Sql = Sql & ",codtimer = " & DBSet(Text1(5), "N")
+        Sql = Sql & ",codtrans = " & DBSet(Text1(6).Text, "N")
+        Sql = Sql & ",codcomis = " & DBSet(Text1(19).Text, "N")
+        Sql = Sql & ",codalmac = " & DBSet(Text1(16).Text, "N")
+        Sql = Sql & ",matriveh = " & DBSet(Text1(7).Text, "T", "S")
+        Sql = Sql & ",matrirem = " & DBSet(Text1(8).Text, "T", "S")
+        Sql = Sql & ",numpedid = " & DBSet(Text1(9).Text, "N", "S")
+        Sql = Sql & ",fechaped = " & DBSet(Text1(10).Text, "F", "S")
+        Sql = Sql & ",numerocmr = " & DBSet(Text1(17).Text, "N", "S")
+        Sql = Sql & ",matriveh = " & DBSet(Text1(7).Text, "T", "S")
+        Sql = Sql & ",refclien = " & DBSet(Text1(14).Text, "T", "S")
+        Sql = Sql & ",nrocontra = " & DBSet(Text1(12).Text, "T", "S")
+        Sql = Sql & ",nroactas = " & DBSet(Text1(13).Text, "N", "S")
+        Sql = Sql & ",totpalet = " & DBSet(Text1(11).Text, "N", "S")
+        Sql = Sql & ",portespre = " & DBSet(Text1(2).Text, "N", "S")
+        Sql = Sql & ",comisionespre = " & DBSet(Text1(18).Text, "N", "S")
+        Sql = Sql & ",observac = " & DBSet(Text1(15).Text, "T", "S")
 
-        Sql = Sql & " where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = Sql & " where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
     
     Else
 
         
-        Sql = "delete from albaran_palets where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = "delete from albaran_palets where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
         
-        Sql = "delete from albaran_envase where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = "delete from albaran_envase where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
         
-        Sql = "delete from albaran_costes where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = "delete from albaran_costes where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
         
-        Sql = "delete from albaran_calibre where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = "delete from albaran_calibre where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
         
-        Sql = "delete from albaran_variedad where numalbar = " & DBSet(text1(0).Text, "N")
+        Sql = "delete from albaran_variedad where numalbar = " & DBSet(Text1(0).Text, "N")
         
-        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & text1(0).Text
+        ComunicaCooperativa "albaran", Sql, "U", "Albarán modificado " & Text1(0).Text
         
         
         
@@ -10507,7 +11062,7 @@ Dim Albaran As String
         CadIns6 = "insert into albaran_costes (numalbar,numlinea,tipogasto,codcoste,impcoste,importes,unidades,codartic) values ("
             
             
-        Albaran = text1(0).Text
+        Albaran = Text1(0).Text
             
         ' albaran_variedad
         Sql2 = "select * from albaran_variedad where numalbar = " & DBSet(Albaran, "N")

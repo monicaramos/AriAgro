@@ -886,8 +886,310 @@ Public Sub AyudaFacturasComprasPrev(frmCom As frmBasico2, Optional CodActual As 
     frmCom.Show vbModal
 End Sub
 
+ 
+Public Sub AyudaAlmMovArtPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Artículo|2205|;S|txtAux(1)|T|Nombre|4795|;"
+    
+    frmCom.CadenaConsulta = "SELECT distinct smoval.codartic, sartic.nomartic "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM smoval inner join sartic on smoval.codartic = sartic.codartic "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Artículo|T|N|||smoval|codartic||S|"
+    frmCom.Tag2 = "Denominacion|T|N|||sartic|nomartic||N|"
+    
+    frmCom.Maxlen1 = 16
+    frmCom.Maxlen2 = 35
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "smoval"
+    frmCom.CampoCP = "codartic"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Movimientos Artículos"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 0
+    
+    frmCom.Show vbModal
+End Sub
+
+     
+Public Sub AyudaAneExpedPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Expediente|2705|;S|txtAux(1)|T|Linea|1295|;S|txtAux(2)|T|Campaña|1500|;S|txtAux(3)|T|Periodo|1500|;"
+    
+    frmCom.CadenaConsulta = "SELECT anecoop.expediente_id, anecoop.linea_expediente, anecoop.codigo_campanya, anecoop.periodo "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM anecoop left join anecoop_pago on anecoop.expediente_id = anecoop_pago.expediente_id "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Expediente|T|S|||anecoop|expediente_id||S|"
+    frmCom.Tag2 = "Linea|T|S|||anecoop|linea_expediente||S|"
+    frmCom.Tag3 = "Codigo Campaña|T|S|||anecoop|codigo_campanya||S|"
+    frmCom.Tag4 = "Periodo|T|S|||anecoop|periodo|||"
+    
+    frmCom.Maxlen1 = 16
+    frmCom.Maxlen2 = 10
+    frmCom.Maxlen3 = 5
+    frmCom.Maxlen3 = 5
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "anecoop left join anecoop_pago on anecoop.expediente_id = anecoop_pago.expediente_id"
+    frmCom.CampoCP = "anecoop.expediente_id"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Expedientes de ANECOOP"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 0
+    
+    frmCom.Show vbModal
+End Sub
 
 
+Public Sub AyudaDireccionesPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Código|905|;S|txtAux(1)|T|Tipo|1095|;S|txtAux(2)|T|Nombre Direccion|5000|;"
+    frmCom.CadenaConsulta = "SELECT sdirpr.coddirec, if(tipodire=0,""Albaran"",""Factura"") as tipodire, sdirpr.nomdirec "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM sdirpr "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Cod. Dirección|N|N|0|999|sdirpr|coddirec|000|S|"
+    frmCom.Tag2 = "Tipo Dirección|N|N|||sdirpr|tipodire||N|"
+    frmCom.Tag3 = "Nombre Dirección|T|N|||sdirpr|nomdirec||N|"
+    
+    frmCom.Maxlen1 = 3
+    frmCom.Maxlen2 = 15
+    frmCom.Maxlen3 = 30
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "sdirpr"
+    frmCom.CampoCP = "coddirec"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Direcciones de compras"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 0
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaProveVPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|NIF|2000|;S|txtAux(1)|T|Nombre Proveedor|5000|;"
+    frmCom.CadenaConsulta = "SELECT sprvar.nifprove, sprvar.nomprove "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM sprvar "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "N.I.F.|T|N|||sprvar|nifprove||S|"
+    frmCom.Tag2 = "Nombre Proveedor Varios|T|N|||sprvar|nomprove||N|"
+    
+    frmCom.Maxlen1 = 15
+    frmCom.Maxlen2 = 30
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "sprvar"
+    frmCom.CampoCP = "nifprove"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Proveedores Varios"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 0
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaPrecProvPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Código|1205|;S|txtAux(1)|T|Proveedor|3295|;S|txtAux(2)|T|Codigo|1500|;S|txtAux(3)|T|Artículo|3000|;"
+    
+    frmCom.CadenaConsulta = "SELECT slispr.codprove, proveedor.nomprove, slispr.codartic, sartic.nomartic "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM (slispr left join proveedor on slispr.codprove = proveedor.codprove) left join sartic on slispr.codartic = sartic.codartic "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Cod. Proveedor|N|N|0|999999|slispr|codprove|000000|S|"
+    frmCom.Tag2 = "Proveedor|T|N|||proveedor|nomprove|||"
+    frmCom.Tag3 = "Cod. Artículo|T|N|||slispr|codartic||S|"
+    frmCom.Tag4 = "Artículo|T|S|||sartic|nomartic|||"
+    
+    frmCom.Maxlen1 = 6
+    frmCom.Maxlen2 = 35
+    frmCom.Maxlen3 = 16
+    frmCom.Maxlen3 = 35
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "(slispr left join proveedor on slispr.codprove = proveedor.codprove) left join sartic on slispr.codartic = sartic.codartic "
+    frmCom.CampoCP = "slispr.codprove"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Precios Proveedor"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|2|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 2000
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaNomCostePrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Codigo|1000|;S|txtAux(1)|T|Nombre|5000|;"
+    frmCom.CadenaConsulta = "SELECT nombcoste.codcoste, nombcoste.denominacion "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM nombcoste "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Código|N|N|||nombcoste|codcoste|00|S|"
+    frmCom.Tag2 = "Nombre|T|N|||nombcoste|denominacion|||"
+    
+    frmCom.Maxlen1 = 15
+    frmCom.Maxlen2 = 30
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "nombcoste"
+    frmCom.CampoCP = "codcoste"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Denominación de Costes"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, -1000
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaPaletConfPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Codigo|1000|;S|txtAux(1)|T|Descripcion|3800|;S|txtAux(2)|T|Peso|1200|;"
+    frmCom.CadenaConsulta = "SELECT confpale.codpalet, confpale.nompalet, confpale.pesopale "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM confpale "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Código|N|N|0|999|confpale|codpalet|000|S|"
+    frmCom.Tag2 = "Descripción|T|N|||confpale|nompalet|||"
+    frmCom.Tag3 = "Peso Palet|N|N|||confpale|pesopale|#0.00||"
+    
+    
+    frmCom.Maxlen1 = 3
+    frmCom.Maxlen2 = 30
+    frmCom.Maxlen3 = 10
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "confpale"
+    frmCom.CampoCP = "codpalet"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Paletizacion"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, -1000
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaAgenciasPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    frmCom.CadenaTots = "S|txtAux(0)|T|Codigo|1000|;S|txtAux(1)|T|Descripcion|4200|;S|txtAux(2)|T|Tipo|1800|;"
+    frmCom.CadenaConsulta = "SELECT agencias.codtrans, agencias.nomtrans, if(agencias.tipo=0,'Transportista','Comisionista') "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM agencias "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Código Agencia|N|N|0|999|agencias|codtrans|000|S|"
+    frmCom.Tag2 = "Nombre|T|N|||agencias|nomtrans|||"
+    frmCom.Tag3 = "Tipo|T|N|||agencias|tipo|||"
+    
+    
+    frmCom.Maxlen1 = 3
+    frmCom.Maxlen2 = 30
+    frmCom.Maxlen3 = 10
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "agencias"
+    frmCom.CampoCP = "codtrans"
+    frmCom.TipoCP = "N"
+    frmCom.Caption = "Agencias de transporte / Comisionistas"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 0
+    
+    frmCom.Show vbModal
+End Sub
+
+
+Public Sub AyudaCCostesDiarisoPrev(frmCom As frmBasico2, Optional CodActual As String, Optional cWhere As String)
+    
+    frmCom.CadenaTots = "S|txtAux(0)|T|Fecha|1400|;S|txtAux(1)|T|Coste|1000|;S|txtAux(2)|T|Descripcion|3800|;S|txtAux(3)|T|Observaciones|3800|;"
+    frmCom.CadenaConsulta = "SELECT cccabdia.fecha, cccabdia.codcoste, ccconcostes.nomcoste, cccabdia.observac "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " FROM cccabdia "
+    frmCom.CadenaConsulta = frmCom.CadenaConsulta & " WHERE (1=1) "
+    If cWhere <> "" Then frmCom.CadenaConsulta = frmCom.CadenaConsulta & " and " & cWhere
+    
+    frmCom.Tag1 = "Fecha|F|N|||cccabdia|fecha|dd/mm/yyyy|S|"
+    frmCom.Tag2 = "Código Coste|N|S|||cccabdia|codcoste|000000|S|"
+    frmCom.Tag3 = "Nombre Coste|N|S|||ccconcostes|nomcoste|||"
+    frmCom.Tag4 = "Observaciones|T|S|||cccabdia|observac|||"
+    
+    
+    frmCom.Maxlen1 = 10
+    frmCom.Maxlen2 = 6
+    frmCom.Maxlen3 = 30
+    frmCom.Maxlen4 = 30
+    
+    frmCom.pConn = cAgro
+    
+    frmCom.Tabla = "cccabdia"
+    frmCom.CampoCP = "fecha"
+    frmCom.TipoCP = "F"
+    frmCom.Caption = "Entrada Costes Diarios"
+    frmCom.DeConsulta = True
+    
+    frmCom.DatosADevolverBusqueda = "0|1|"
+    frmCom.CodigoActual = 0
+    If CodActual <> "" Then frmCom.CodigoActual = CodActual
+    
+    Redimensiona frmCom, 3000
+    
+    frmCom.Show vbModal
+    
+End Sub
 
 Private Sub Redimensiona(frmBas As frmBasico2, Cant As Integer)
     frmBas.Width = frmBas.Width + Cant

@@ -595,8 +595,8 @@ Option Explicit
 Public DatosADevolverBusqueda As String    'Tendra el nº de text que quiere que devuelva, empipados
 Public Event DatoSeleccionado(CadenaSeleccion As String)
 
-Private WithEvents frmB As frmBuscaGrid
-Attribute frmB.VB_VarHelpID = -1
+Private WithEvents frmProveVPrev As frmBasico2
+Attribute frmProveVPrev.VB_VarHelpID = -1
 'Private WithEvents frmCP As frmCPostal 'Codigos Postales
 
 '-----------------------------
@@ -873,27 +873,22 @@ Private Sub Form_Unload(Cancel As Integer)
     CheckValueGuardar Me.Name, Me.chkVistaPrevia.Value
 End Sub
 
-Private Sub frmB_Selecionado(CadenaDevuelta As String)
+
+Private Sub frmProveVPrev_DatoSeleccionado(CadenaSeleccion As String)
 Dim CadB As String
 Dim Aux As String
-
-    If CadenaDevuelta <> "" Then
+      
+    If CadenaSeleccion <> "" Then
         HaDevueltoDatos = True
         Screen.MousePointer = vbHourglass
-        'Sabemos que campos son los que nos devuelve
-        'Creamos una cadena consulta y ponemos los datos
-        CadB = ""
-        Aux = ValorDevueltoFormGrid(Text1(0), CadenaDevuelta, 1)
-        CadB = Aux
-        '   Como la clave principal es unica, con poner el sql apuntando
-        '   al valor devuelto sobre la clave ppal es suficiente
-        'Se muestran en el mismo form
+        CadB = "nifprove = '" & RecuperaValor(CadenaSeleccion, 1) & "'"
         CadenaConsulta = "select * from " & NombreTabla & " WHERE " & CadB & " " & Ordenacion
         PonerCadenaBusqueda
         Screen.MousePointer = vbDefault
     End If
-End Sub
+    Screen.MousePointer = vbDefault
 
+End Sub
 
 Private Sub mnBuscar_Click()
     BotonBuscar
@@ -982,36 +977,14 @@ End Sub
 
 
 Private Sub MandaBusquedaPrevia(CadB As String)
-Dim Cad As String
-        'Llamamos a al form
-        '##A mano
-        Cad = ""
-        Cad = Cad & ParaGrid(Text1(0), 30, "N.I.F.")
-        Cad = Cad & ParaGrid(Text1(1), 70, "Nombre")
-        If Cad <> "" Then
-            Screen.MousePointer = vbHourglass
-            Set frmB = New frmBuscaGrid
-            frmB.vCampos = Cad
-            frmB.vtabla = NombreTabla
-            frmB.vSQL = CadB
-            HaDevueltoDatos = False
-            '###A mano
-            frmB.vDevuelve = "0|1|" 'Campos de la tabla que devuelve
-            frmB.vTitulo = "Proveedores Varios"
-            frmB.vSelElem = 1
-'            frmB.vConexionGrid = 1 'Conexión a BD: Ariges
-'            frmB.vBuscaPrevia = chkVistaPrevia
-            frmB.Show vbModal
-            Set frmB = Nothing
-            'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-            'tendremos que cerrar el form lanzando el evento
-            If HaDevueltoDatos Then
-'                If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                    cmdRegresar_Click
-            Else   'de ha devuelto datos, es decir NO ha devuelto datos
-                PonerFoco Text1(kCampo)
-            End If
-        End If
+
+    Set frmProveVPrev = New frmBasico2
+    
+    AyudaProveVPrev frmProveVPrev, , CadB
+    
+    Set frmProveVPrev = Nothing
+
+
 End Sub
 
 

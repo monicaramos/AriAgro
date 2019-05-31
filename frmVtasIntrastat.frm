@@ -28,6 +28,23 @@ Begin VB.Form frmVtasIntrastat
       TabIndex        =   8
       Top             =   120
       Width           =   6555
+      Begin VB.CheckBox chkResumen 
+         Caption         =   "Resumen por variedad"
+         BeginProperty Font 
+            Name            =   "Verdana"
+            Size            =   9.75
+            Charset         =   0
+            Weight          =   400
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Left            =   495
+         TabIndex        =   24
+         Top             =   4680
+         Width           =   2835
+      End
       Begin VB.CheckBox Check1 
          Caption         =   "Fecha de Factura"
          BeginProperty Font 
@@ -688,14 +705,18 @@ InicializarVbles
     cadTABLA = "(" & cadTABLA & ") INNER JOIN clientes ON albaran.codclien = clientes.codclien "
     cadTABLA = "(" & cadTABLA & ") INNER JOIN paises ON clientes.codpaise = paises.codpaise "
     
-    If Not AnyadirAFormula(cadFormula, "({paises.intracom} = 1 or {paises.intrastad} = 1)") Then Exit Sub
-    If Not AnyadirAFormula(cadselect, "({paises.intracom} = 1 or {paises.intrastad} = 1)") Then Exit Sub
+    If Not AnyadirAFormula(cadFormula, "({paises.intracom} = 1 or {paises.intrastat} = 1)") Then Exit Sub
+    If Not AnyadirAFormula(cadselect, "({paises.intracom} = 1 or {paises.intrastat} = 1)") Then Exit Sub
     
     If CargarTablaTemporal(cadTABLA, cadselect, cadSelect1) Then
         If HayRegParaInforme("tmpinformes", "{tmpinformes.codusu}=" & vUsu.Codigo) Then
               'Nombre fichero .rpt a Imprimir
               cadTitulo = "Informe Intrastat"
               cadNombreRPT = "rIntrastat.rpt"
+              
+              '[Monica]
+              If chkResumen.Value Then cadNombreRPT = Replace(cadNombreRPT, ".rpt", "Resum.rpt")
+              
               LlamarImprimir
               'AbrirVisReport
         End If
@@ -1036,7 +1057,7 @@ Dim Facturas As String
         Sql = Sql & " WHERE " & cWhere
     End If
     
-    Sql = "select albaran_variedad.numalbar, albaran_variedad.numlinea from " & cadTABLA & " where " & cWhere
+    Sql = "select albaran_variedad.numalbar, albaran_variedad.numlinea, albaran_variedad.codvarie from " & cadTABLA & " where " & cWhere
     
     If cWhere1 <> "" Then Sql = Sql & " and (albaran_variedad.numalbar, albaran_variedad.numlinea) in (select numalbar, numlinealbar from facturas_variedad where " & cWhere1 & ")"
     
@@ -1059,9 +1080,10 @@ Dim Facturas As String
         If Not Rs2.EOF Then Importe = DBLet(Rs2.Fields(0).Value, "N")
         Set Rs2 = Nothing
         
-        Sql2 = "insert into tmpinformes(codusu,codigo1,campo1,importe1) values ("
+        '[Monica]24/04/2019: en el campo importeb1, ponemos la variedad para el resumen
+        Sql2 = "insert into tmpinformes(codusu,codigo1,campo1,importe1, importeb1) values ("
         Sql2 = Sql2 & vUsu.Codigo & "," & DBSet(Rs.Fields(0), "N") & "," & DBSet(Rs.Fields(1), "N") & ","
-        Sql2 = Sql2 & DBSet(Importe, "N") & ")"
+        Sql2 = Sql2 & DBSet(Importe, "N") & "," & DBSet(Rs.Fields(2), "N") & ")"
         
         conn.Execute Sql2
         
@@ -1095,6 +1117,16 @@ Dim Facturas As String
         
         Rs.MoveNext
     Wend
+    
+    
+    '[Monica]18/04/2019: medio de transporte, actualizamos lo que haya
+    Sql2 = "update tmpinformes dd, albaran_transporte ff set "
+    Sql2 = Sql2 & " dd.importe2 = ff.codfortrans "
+    Sql2 = Sql2 & " where dd.codusu = " & DBSet(vUsu.Codigo, "N") & " and dd.codigo1 = ff.numalbar and ff.esmedioppal = 1 "
+    
+    conn.Execute Sql2
+    
+    
     
     CargarTablaTemporal = True
     Exit Function

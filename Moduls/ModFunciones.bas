@@ -3183,6 +3183,16 @@ Dim Sql As String
 
 End Function
 
+Public Function EstaForfaitInactivo(Codigo As String) As Boolean
+Dim Sql As String
+
+    Sql = ""
+    Sql = DevuelveDesdeBDNew(cAgro, "forfaits", "estainactivo", "codforfait", Codigo, "T")
+
+    EstaForfaitInactivo = (Sql = "1")
+
+End Function
+
 
 Public Function NroAlbaranAsignado(PaletPedido As String, Tipo As Boolean) As String
 'Tipo 0 = palet

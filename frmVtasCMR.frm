@@ -1035,8 +1035,8 @@ Dim Rs As ADODB.Recordset
     
     ProvAgenciaTransporte = ""
     
-    Sql = "select protrans from agencias, albaran where albaran.numalbar = " & DBSet(NumCod, "N")
-    Sql = Sql & " and albaran.codtrans = agencias.codtrans"
+    Sql = "select protrans from agencias, albaran_transporte where albaran_transporte.numalbar = " & DBSet(NumCod, "N")
+    Sql = Sql & " and albaran_transporte.codtrans = agencias.codtrans and albaran_transporte.esmedioppal = 1"
     
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText

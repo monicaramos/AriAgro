@@ -721,7 +721,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   6
          Left            =   11250
          TabIndex        =   84
-         Top             =   225
+         Top             =   180
          Width           =   750
       End
       Begin VB.Label Label1 
@@ -739,7 +739,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   2
          Left            =   7560
          TabIndex        =   83
-         Top             =   225
+         Top             =   180
          Width           =   1410
       End
       Begin VB.Label Label1 
@@ -775,7 +775,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   4
          Left            =   9495
          TabIndex        =   81
-         Top             =   225
+         Top             =   180
          Width           =   1500
       End
       Begin VB.Label Label1 
@@ -811,7 +811,7 @@ Begin VB.Form frmVtasPedidos
          Index           =   13
          Left            =   12555
          TabIndex        =   79
-         Top             =   225
+         Top             =   180
          Width           =   1140
       End
       Begin VB.Label Label1 
@@ -2479,7 +2479,6 @@ Dim TituloLinea As String 'Descripcion de la linea que estamos en Mantenimiento
 Dim PrimeraVez As Boolean
 
 Dim EsCabecera As Boolean
-'Para saber en MandaBusquedaPrevia si busca en la tabla scapla o en la tabla sdirec
 
 
 Dim EsDeVarios As Boolean
@@ -3831,57 +3830,6 @@ Dim Cad As String
 Dim tabla As String
 Dim Titulo As String
 Dim Desc As String, devuelve As String
-'    'Llamamos a al form
-'    '##A mano
-'    Cad = ""
-'    Cad = Cad & "Nº.Pedido|pedidos.numpedid|N||15·"
-'
-'    If vParamAplic.Cooperativa <> 18 Then
-'        Cad = Cad & "Cliente|pedidos.codclien|N||10·" 'ParaGrid(Text1(3), 10, "Cliente")
-'        Cad = Cad & "Nombre Cliente|clientes.nomclien|N||45·"
-'    Else
-'        Cad = Cad & "Nombre Cliente|clientes.nomclien|N||40·"
-'        Cad = Cad & "Ref.Cliente|pedidos.refclien|N||15·"
-'    End If
-'    Cad = Cad & ParaGrid(Text1(1), 15, "F.Pedido")
-'    Cad = Cad & ParaGrid(Text1(2), 15, "F.Carga")
-'    tabla = NombreTabla & " INNER JOIN clientes ON pedidos.codclien=clientes.codclien "
-'
-'    Titulo = "Pedidos"
-'    devuelve = "0|"
-'
-'    If Cad <> "" Then
-'        Screen.MousePointer = vbHourglass
-'        Set frmB = New frmBuscaGrid
-'        frmB.vCampos = Cad
-'        frmB.vtabla = tabla
-'        frmB.vSQL = CadB
-'        HaDevueltoDatos = False
-'        '###A mano
-'        frmB.vDevuelve = "0|1|"
-'        frmB.vDevuelve = devuelve
-'        frmB.vTitulo = Titulo
-'        frmB.vSelElem = 0
-''        frmB.vConexionGrid = cAgro  'Conexión a BD: Ariagro
-'        If Not EsCabecera Then frmB.Label1.FontSize = 11
-''        frmB.vBuscaPrevia = chkVistaPrevia
-'        '#
-'        frmB.Show vbModal
-'        Set frmB = Nothing
-''        If EsCabecera Then
-''            PonerCadenaBusqueda
-''            Text1(0).Text = Format(Text1(0).Text, "0000000")
-''        End If
-'        'Si ha puesto valores y tenemos que es formulario de busqueda entonces
-'        'tendremos que cerrar el form lanzando el evento
-'        If HaDevueltoDatos Then
-'            If (Not Data1.Recordset.EOF) And DatosADevolverBusqueda <> "" Then _
-'                cmdRegresar_Click
-'        Else   'de ha devuelto datos, es decir NO ha devuelto datos
-'            PonerFoco Text1(kCampo)
-'        End If
-'    End If
-'    Screen.MousePointer = vbDefault
 
     Set frmPed = New frmBasico2
     
@@ -5390,8 +5338,18 @@ Dim codTipoM As String
     MenError = "Error al insertar en la tabla Cabecera de Albaranes (albaranes)."
     conn.Execute vSQL, , adCmdText
     
+    
+    'Insertar Linea de transporte
+    MenError = "Error al insertar en la tabla Albaran Transporte (albaran_trasnporte)."
+    vSQL = "INSERT INTO albaran_transporte (numalbar,numlinea,codtrans,codfortrans,observaciones,esmedioppal) "
+    vSQL = vSQL & "SELECT " & NumAlb & " as numalbar, 1, " & NombreTabla & ".codtrans, agencias.codfortrans, null, 1 "
+    vSQL = vSQL & " FROM " & NombreTabla & " INNER JOIN agencias ON " & NombreTabla & ".codtrans = agencias.codtrans WHERE numpedid=" & Text1(0).Text
+    conn.Execute vSQL, , adCmdText
+    
+    
     '[Monica]02/07/2012: cogemos el tipo de movimiento de parametros para las inserciones en almacen
     codTipoM = vParamAplic.CodTipomAlb ' "ALV"
+    
     
     'Insertar Lineas (albaran_variedad, albaran_calibre, albaran_costes)
     MenError = "Error al insertar en la tabla Lineas de Albaran (albaran_variedad)."
@@ -5442,7 +5400,12 @@ Dim CategoriAnt As String
 
     If AlbDePalet Then
         If Not vParamAplic.PaseAlbarAgrupCalib Then
-            b = InsertarVariedades(MenError, NumAlb)
+        
+            If vParamAplic.Cooperativa = 18 Then
+                b = InsertarVariedadesxLineas(MenError, NumAlb)
+            Else
+                b = InsertarVariedades(MenError, NumAlb)
+            End If
         Else
             b = InsertarVariedadesSinAgrupar(MenError, NumAlb)
         End If
@@ -5461,7 +5424,7 @@ Dim CategoriAnt As String
             Sql = Sql & "totpalet,numcajas,pesobrut,pesoneto,preciopro,preciodef,codincid,impcomis,observac, unidades, codpalet) "
             Sql = Sql & " VALUES(" & NumAlb & ", " & Rs!NumLinea & " , "
             Sql = Sql & DBLet(Rs!codvarie, "N") & ", " & DBSet(Rs!codvarco, "N") & ", " & DBSet(Rs!codforfait, "T") & ", " & DBSet(Rs!Codmarca, "N") & ", "
-            Sql = Sql & DBSet(Rs!categori, "T") & ", " & DBSet(Rs!TotPalet, "N") & ", " & DBSet(Rs!NumCajas, "N") & ", " & DBSet(Rs!pesobrut, "N") & ", "
+            Sql = Sql & DBSet(Rs!Categori, "T") & ", " & DBSet(Rs!TotPalet, "N") & ", " & DBSet(Rs!NumCajas, "N") & ", " & DBSet(Rs!pesobrut, "N") & ", "
             Sql = Sql & DBSet(Rs!Pesoneto, "N") & ", " & DBSet(Rs!preciopro, "N") & ", " & ValorNulo & "," & DBSet(Incidencia, "N") & "," & ValorNulo & "," & ValorNulo & ","
             Sql = Sql & DBSet(Rs!Unidades, "N") & "," & DBSet(Rs!CodPalet, "N") & " )"
             MenError = "Error al insertar en la tabla Lineas de Albaran (albaran_variedad)."
@@ -5493,6 +5456,9 @@ eInsertarLineasAlbaran:
         InsertarLineasAlbaran = True
     End If
 End Function
+
+
+
 
 
 Private Function InsertarVariedades(MenError As String, NumAlb As String) As Boolean
@@ -6249,4 +6215,206 @@ eInsertarVariedades:
         InsertarVariedadesSinAgrupar = True
     End If
 End Function
+
+
+
+
+
+Private Function InsertarVariedadesxLineas(MenError As String, NumAlb As String) As Boolean
+'Inserta en la tabla de lineas de albaran (slialb)
+Dim Sql As String
+Dim Sql2 As String
+Dim Sql3 As String
+Dim Rs As ADODB.Recordset
+Dim Rs1 As ADODB.Recordset
+
+Dim ImpLinea As String
+
+Dim NumLin As Integer
+Dim NumLin1 As Integer
+Dim b As Boolean
+
+Dim NumCajas As Long
+Dim PesoBruto As Long
+Dim Pesoneto As Long
+
+Dim PesoBrutoLin As Long
+Dim PesoNetoLin As Long
+
+Dim VariedadAnt As Integer
+Dim VarComAnt As Integer
+Dim MarcaAnt As Integer
+Dim ForfaitAnt As String
+Dim CategoriAnt As String
+Dim PaletAnt As String
+Dim CajasAnt As String
+Dim CodPaletAnt As String
+
+Dim NumLinMayor As Long
+Dim TPesoBruto As Long
+Dim TPesoNeto As Long
+
+    On Error GoTo eInsertarVariedadesxLineas
+
+        'Insertar en la tabla de Pedido, los registros seleccionados de la tabla de Palets
+        
+        Sql = "SELECT palets_variedad.numpalet, palets_variedad.numlinea, palets_variedad.codvarie, palets_variedad.codvarco, palets_variedad.codmarca, "
+        Sql = Sql & " palets_variedad.codforfait, palets_variedad.categori, palets.codpalet, "
+        Sql = Sql & " pesobrut,pesoneto,numcajas "
+        Sql = Sql & " FROM palets, palets_variedad WHERE palets.numpedid=" & DBSet(Text1(0).Text, "N")
+        Sql = Sql & " and palets.numpalet = palets_variedad.numpalet "
+        Sql = Sql & " ORDER BY 1,2"
+        
+        Set Rs = New ADODB.Recordset
+        Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+        
+        NumLin = 0
+        If Not Rs.EOF Then
+            PaletAnt = DBLet(Rs!NumPalet, "N")
+            CajasAnt = DBLet(Rs!NumCajas, "N")
+            ForfaitAnt = DBLet(Rs!codforfait, "T")
+            CodPaletAnt = DBLet(Rs!CodPalet, "N")
+            
+            NumLinMayor = 1
+        End If
+        
+        b = True
+        While Not Rs.EOF And b 'agrupamos las lineas de palets_variedad
+            If PaletAnt <> DBLet(Rs!NumPalet, "N") Then
+                Sql = "update albaran_variedad set totpalet = 1 "
+                Sql = Sql & " where numalbar = " & DBSet(NumAlb, "N")
+                Sql = Sql & " and numlinea = " & DBSet(NumLinMayor, "N")
+                
+                conn.Execute Sql
+                
+                
+                MenError = "Error al Actualizar Costes."
+                If b Then b = ActualizarCostes(CLng(NumAlb), CInt(NumLinMayor), True, ForfaitAnt, CodPaletAnt)
+                
+                ForfaitAnt = DBLet(Rs!codforfait, "T")
+                CodPaletAnt = DBLet(Rs!CodPalet, "N")
+                PaletAnt = DBLet(Rs!NumPalet, "N")
+                CajasAnt = DBLet(Rs!NumCajas, "N")
+                
+                NumLin = NumLin + 1
+                NumLinMayor = NumLin
+            
+            Else
+                NumLin = NumLin + 1
+                
+                If CajasAnt < DBLet(Rs!NumCajas, "N") Then
+                    CajasAnt = DBLet(Rs!NumCajas, "N")
+                    ForfaitAnt = DBLet(Rs!codforfait, "T")
+                    CodPaletAnt = DBLet(Rs!CodPalet, "N")
+                    NumLinMayor = NumLin
+                End If
+            End If
+            
+            
+            Sql = "INSERT INTO albaran_variedad(numalbar,numlinea,codvarie,codvarco,codforfait,codmarca,"
+            Sql = Sql & "categori,totpalet,numcajas,pesobrut,pesoneto,preciopro,preciodef,"
+            Sql = Sql & "codincid,impcomis,observac, codpalet) VALUES "
+            Sql = Sql & "(" & NumAlb & "," & NumLin & "," & DBSet(Rs.Fields(2), "N") & "," & DBSet(Rs.Fields(3), "N") & ","
+            Sql = Sql & DBSet(Rs.Fields(5), "T") & "," & DBSet(Rs.Fields(4), "N") & ","
+            Sql = Sql & DBSet(Rs.Fields(6), "T") & "," & ValorNulo & ","
+            Sql = Sql & DBSet(Rs.Fields(10), "N") & "," & DBSet(Rs.Fields(8), "N") & ","
+            Sql = Sql & DBSet(Rs.Fields(9), "N") & "," & ValorNulo & "," & ValorNulo & ","
+            Sql = Sql & DBSet(Incidencia, "N") & "," & ValorNulo & "," & ValorNulo & ","
+            Sql = Sql & DBSet(Rs.Fields(7), "N") & ")"
+    
+            conn.Execute Sql
+            
+            'Insertar en la tabla de albaranes, los registros seleccionados de la tabla de Palets
+            Sql = "SELECT palets_calibre.numline1, palets_calibre.codcalib, "
+            Sql = Sql & " palets_calibre.numcajas "
+            Sql = Sql & " FROM  palets_calibre WHERE palets_calibre.numpalet = " & DBSet(Rs!NumPalet, "N")
+            Sql = Sql & " and palets_calibre.numlinea = " & DBSet(Rs!NumLinea, "N")
+            Sql = Sql & " ORDER BY 1"
+            
+            Set Rs1 = New ADODB.Recordset
+            Rs1.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
+            
+            PesoBruto = DBLet(Rs!pesobrut)
+            Pesoneto = DBLet(Rs!Pesoneto)
+            NumCajas = DBLet(Rs!NumCajas)
+            NumLin1 = 0
+            TPesoBruto = 0
+            TPesoNeto = 0
+            While Not Rs1.EOF
+                NumLin1 = NumLin1 + 1
+'22-09-2008
+'                PesoBruto = PesoBruto + DBLet(Rs1.Fields(6).Value, "N")
+'                PesoNeto = PesoNeto + DBLet(Rs1.Fields(7).Value, "N")
+'                NumCajas = NumCajas + DBLet(Rs1.Fields(8).Value, "N")
+                PesoBrutoLin = 0
+                If NumCajas <> 0 Then
+                    PesoBrutoLin = Round2(DBLet(Rs1!NumCajas, "N") * PesoBruto / NumCajas, 0)
+                End If
+                TPesoBruto = TPesoBruto + PesoBrutoLin
+                PesoNetoLin = 0
+                If NumCajas <> 0 Then
+                    PesoNetoLin = Round2(DBLet(Rs1!NumCajas, "N") * Pesoneto / NumCajas, 0)
+                End If
+                TPesoNeto = TPesoNeto + PesoNetoLin
+                
+                ' insertamos en la tabla albaran calibres
+                Sql = "INSERT INTO albaran_calibre(numalbar, numlinea, numline1, codvarie, codcalib, "
+                Sql = Sql & "numcajas, pesobrut, pesoneto) VALUES ("
+                Sql = Sql & NumAlb & "," & NumLin & "," & NumLin1 & "," & DBSet(Rs!codvarie, "N") & ","
+                Sql = Sql & DBSet(Rs1!codcalib, "N") & "," & DBSet(Rs1!NumCajas, "N") & ","
+                Sql = Sql & DBSet(PesoBrutoLin, "N") & "," & DBSet(PesoNetoLin, "N") & ")"
+                
+                MenError = "Error al insertar en la tabla Calibres de Albaran (albaran_calibre)."
+                conn.Execute Sql
+                
+                Rs1.MoveNext
+            Wend
+            
+            If TPesoBruto <> PesoBruto Or TPesoNeto <> Pesoneto Then
+                Sql = "update albaran_calibre set pesobrut = pesobrut + " & DBSet(PesoBruto - TPesoBruto, "N")
+                Sql = Sql & ", pesoneto = pesoneto + " & DBSet(Pesoneto - TPesoNeto, "N")
+                Sql = Sql & " where albaran_calibre.numalbar  = " & NumAlb
+                Sql = Sql & " and albaran_calibre.numlinea = " & NumLin
+                Sql = Sql & " and albaran_calibre.numline1 = " & NumLin1
+                
+                conn.Execute Sql
+            End If
+            Set Rs1 = Nothing
+            
+            
+            MenError = "Error al Actualizar Costes."
+            If b Then b = ActualizarCostes(CLng(NumAlb), NumLin, True, DBLet(Rs!codforfait, "T"), DBLet(Rs!CodPalet, "N"))
+            
+            Rs.MoveNext
+        Wend
+        Set Rs = Nothing
+        
+        If PaletAnt <> 0 Then
+            Sql = "update albaran_variedad set totpalet = 1 "
+            Sql = Sql & " where numalbar = " & DBSet(NumAlb, "N")
+            Sql = Sql & " and numlinea = " & DBSet(NumLinMayor, "N")
+            
+            conn.Execute Sql
+        
+            MenError = "Error al Actualizar Costes."
+            If b Then b = ActualizarCostes(CLng(NumAlb), CInt(NumLinMayor), True, ForfaitAnt, CodPaletAnt)
+        End If
+        
+        'Palets total
+        Dim Palets As Integer
+        Palets = DevuelveValor("select sum(totpalet) from albaran_variedad where numalbar = " & DBSet(NumAlb, "N"))
+        Sql = "update albaran set totpalet = " & DBSet(Palets, "N") & " where numalbar = " & DBSet(NumAlb, "N")
+        conn.Execute Sql
+        
+eInsertarVariedadesxLineas:
+    If Err.Number <> 0 Or Not b Then
+        InsertarVariedadesxLineas = False
+    Else
+        InsertarVariedadesxLineas = True
+    End If
+End Function
+
+
+
+
 
