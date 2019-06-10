@@ -648,7 +648,7 @@ Dim ImporteRiesgo As Currency
         Label4(18).Caption = "Facturas no contabilizadas"
         Me.Refresh
         ' facturas no contabilizadas
-        Sql = "select sum(totalfac) from factura where codclien = " & DBSet(Rs!CodClien, "N") & " and intconta = 0"
+        Sql = "select sum(totalfac) from facturas where codclien = " & DBSet(Rs!CodClien, "N") & " and intconta = 0"
         importe2 = DevuelveValor(Sql)
         
         Label4(18).Caption = "Albaranes sin Factura"

@@ -2854,7 +2854,7 @@ Dim Sql2 As String
             vvFecRecep = DBLet(Rs!FecRecep)
         
             '[Monica]27/07/2017
-            vCF.Observa = DBLet(Rs!confacpr)
+            vCF.observa = DBLet(Rs!confacpr)
         
             
             'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura
@@ -3827,7 +3827,6 @@ Dim ImporteACompensar As Currency
                     'quitamos la ultima coma
                     CadValues2 = Mid(CadValues2, 1, Len(CadValues2) - 1)
                 
-                
                     If vParamAplic.ContabilidadNueva Then
                         'Insertamos en la tabla scobro de la CONTA
                         Sql = "INSERT INTO cobros (numserie, numfactu, fecfactu, numorden, codmacta, codforpa, fecvenci, impvenci, "
@@ -4551,7 +4550,7 @@ Dim Sql2 As String
             vvFecRecep = DBLet(Rs!FecRecep)
         
             '[Monica]27/07/2017
-            vCF.Observa = DBLet(Rs!Observac)
+            vCF.observa = DBLet(Rs!Observac)
         
             
             'guardamos estos valores para utilizarlos cuando insertemos las lineas de la factura

@@ -2222,7 +2222,7 @@ End Sub
 
 
 Private Sub cmdAceptar_Click()
-Dim b As Boolean
+Dim B As Boolean
 Dim V As Integer
 Dim Forfait As String
 
@@ -2275,9 +2275,9 @@ Dim Forfait As String
                     If InsertarLinea Then
                         CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                         PonerCadenaBusqueda
-                        b = BLOQUEADesdeFormulario2(Me, Data1, 1)
+                        B = BLOQUEADesdeFormulario2(Me, Data1, 1)
                         CargaGrid 0, True
-                        If b Then BotonAnyadirLinea NumTabMto
+                        If B Then BotonAnyadirLinea NumTabMto
             
                         
                     End If
@@ -2289,7 +2289,7 @@ Dim Forfait As String
                         
                         CadenaConsulta = "Select * from " & NombreTabla & ObtenerWhereCP(True) & Ordenacion
                         PonerCadenaBusqueda
-                        b = BLOQUEADesdeFormulario2(Me, Data1, 1)
+                        B = BLOQUEADesdeFormulario2(Me, Data1, 1)
                         
                         CargaGrid NumTabMto, True
                         
@@ -2497,7 +2497,7 @@ End Sub
 '   formulari en funció del modo en que anem a treballar
 Private Sub PonerModo(Kmodo As Byte, Optional indFrame As Integer)
 Dim i As Integer, NumReg As Byte
-Dim b As Boolean
+Dim B As Boolean
 
     On Error GoTo EPonerModo
  
@@ -2521,25 +2521,25 @@ Dim b As Boolean
     
     
     '=======================================
-    b = (Modo = 2)
+    B = (Modo = 2)
     'Posar Fleches de desplasament visibles
     NumReg = 1
     If Not Data1.Recordset.EOF Then
         If Data1.Recordset.RecordCount > 1 Then NumReg = 2 'Només es per a saber que n'hi ha + d'1 registre
     End If
-    DesplazamientoVisible Me.Toolbar1, btnPrimero, b, NumReg
+    DesplazamientoVisible Me.Toolbar1, btnPrimero, B, NumReg
     '---------------------------------------------
     
-    b = Modo <> 0 And Modo <> 2
-    cmdCancelar.visible = b
-    cmdAceptar.visible = b
-    cmdRegresar.visible = Not b
+    B = Modo <> 0 And Modo <> 2
+    cmdCancelar.visible = B
+    cmdAceptar.visible = B
+    cmdRegresar.visible = Not B
 
     'Bloqueja els camps Text1 si no estem modificant/Insertant Datos
     'Si estem en Insertar a més neteja els camps Text1
     BloquearText1 Me, Modo
-    BloquearCmb Combo1, Not b
-    BloquearChk Check1(1), Not b
+    BloquearCmb Combo1, Not B
+    BloquearChk Check1(1), Not B
     '*** si n'hi han combos a la capçalera ***
     '**************************
     
@@ -2575,8 +2575,8 @@ Dim b As Boolean
         CargaGrid 0, False
     End If
     
-    b = (Modo = 4) Or (Modo = 2)
-    DataGridAux(0).Enabled = b
+    B = (Modo = 4) Or (Modo = 2)
+    DataGridAux(0).Enabled = B
       
     ' ****** si n'hi han combos a la capçalera ***********************
     ' ****************************************************************
@@ -2605,31 +2605,31 @@ End Sub
 
 Private Sub PonerModoOpcionesMenu(Modo)
 'Actives unes Opcions de Menú i Toolbar según el modo en que estem
-Dim b As Boolean, bAux As Boolean
+Dim B As Boolean, bAux As Boolean
 Dim i As Byte
     
     'Barra de CAPÇALERA
     '------------------------------------------
     'b = (Modo = 2 Or Modo = 0 Or Modo = 1)
-    b = (Modo = 2 Or Modo = 0)
+    B = (Modo = 2 Or Modo = 0)
     'Buscar
-    Toolbar1.Buttons(3).Enabled = b
-    Me.mnBuscar.Enabled = b
+    Toolbar1.Buttons(3).Enabled = B
+    Me.mnBuscar.Enabled = B
     'Vore Tots
-    Toolbar1.Buttons(4).Enabled = b
-    Me.mnVerTodos.Enabled = b
+    Toolbar1.Buttons(4).Enabled = B
+    Me.mnVerTodos.Enabled = B
     
     'Insertar
-    Toolbar1.Buttons(7).Enabled = b And Not DeConsulta
-    Me.mnNuevo.Enabled = b And Not DeConsulta
+    Toolbar1.Buttons(7).Enabled = B And Not DeConsulta
+    Me.mnNuevo.Enabled = B And Not DeConsulta
     
-    b = (Modo = 2 And Data1.Recordset.RecordCount > 0) And Not DeConsulta
+    B = (Modo = 2 And Data1.Recordset.RecordCount > 0) And Not DeConsulta
     'Modificar
-    Toolbar1.Buttons(8).Enabled = b
-    Me.mnModificar.Enabled = b
+    Toolbar1.Buttons(8).Enabled = B
+    Me.mnModificar.Enabled = B
     'eliminar
-    Toolbar1.Buttons(9).Enabled = b
-    Me.mnEliminar.Enabled = b
+    Toolbar1.Buttons(9).Enabled = B
+    Me.mnEliminar.Enabled = B
     
     'Expandir operaciones
     Toolbar1.Buttons(11).Enabled = True And Not DeConsulta
@@ -2640,10 +2640,10 @@ Dim i As Byte
     ' *** si n'hi han llínies que tenen grids (en o sense tab) ***
 '++monica: si insertamos lo he quitado
 '    b = (Modo = 3 Or Modo = 4 Or Modo = 2) And Not DeConsulta
-    b = (Modo = 4 Or Modo = 2) And Not DeConsulta
+    B = (Modo = 4 Or Modo = 2) And Not DeConsulta
     For i = 0 To ToolAux.Count - 1
-        ToolAux(i).Buttons(1).Enabled = b
-        If b Then bAux = (b And Me.Adoaux(i).Recordset.RecordCount > 0)
+        ToolAux(i).Buttons(1).Enabled = B
+        If B Then bAux = (B And Me.Adoaux(i).Recordset.RecordCount > 0)
         ToolAux(i).Buttons(2).Enabled = bAux
         ToolAux(i).Buttons(3).Enabled = bAux
     Next i
@@ -3194,15 +3194,15 @@ Dim V
 End Sub
 
 Private Function DatosOk() As Boolean
-Dim b As Boolean
+Dim B As Boolean
 Dim Sql As String
 'Dim Datos As String
 
     On Error GoTo EDatosOK
 
     DatosOk = False
-    b = CompForm2(Me, 1)
-    If Not b Then Exit Function
+    B = CompForm2(Me, 1)
+    If Not B Then Exit Function
     
     ' *** canviar els arguments de la funcio, el mensage i repasar si n'hi ha codEmpre ***
     If (Modo = 3) Then 'insertar
@@ -3211,7 +3211,7 @@ Dim Sql As String
         Sql = DevuelveDesdeBDNew(cAgro, "albaran_calibre", "numalbar", "numalbar", Text1(0).Text, "N", , "numlinea", Text1(1).Text, "N")
         If Sql <> "" Then
             MsgBox "Ya existe el numero de linea para este albarán", vbExclamation
-            b = False
+            B = False
         End If
     End If
     
@@ -3221,7 +3221,7 @@ Dim Sql As String
             'comprobamos que no me vaya a fallar la referencial a calibres
             If Not ExistenMismosCalibres Then
                 MsgBox "La variedad no tiene los mismos calibres que el albaran. Revise.", vbExclamation
-                b = False
+                B = False
             End If
         End If
     End If
@@ -3240,7 +3240,7 @@ Dim Sql As String
     
     
     ' ************************************************************************************
-    DatosOk = b
+    DatosOk = B
     
 EDatosOK:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -3250,27 +3250,27 @@ Private Function ExistenMismosCalibres() As Boolean
 Dim Rs As ADODB.Recordset
 Dim Sql As String
 Dim Sql2 As String
-Dim b As Boolean
+Dim B As Boolean
 
     On Error GoTo eExistenMismosCalibres
 
 
     Sql = "select codcalib from albaran_calibre where numalbar = " & DBSet(Albaran, "N") & " and numlinea = " & DBSet(Linea, "N")
 
-    b = True
+    B = True
     Set Rs = New ADODB.Recordset
     Rs.Open Sql, conn, adOpenForwardOnly, adLockPessimistic, adCmdText
-    While Not Rs.EOF And b
+    While Not Rs.EOF And B
         Sql2 = "select count(*) from calibres where codvarie = " & DBSet(Text1(2).Text, "N")
         Sql2 = Sql2 & " and codcalib = " & DBSet(Rs!codcalib, "N")
         
-        If TotalRegistros(Sql2) = 0 Then b = False
+        If TotalRegistros(Sql2) = 0 Then B = False
     
         Rs.MoveNext
     Wend
     Set Rs = Nothing
 
-    ExistenMismosCalibres = b
+    ExistenMismosCalibres = B
     Exit Function
     
 eExistenMismosCalibres:
@@ -3825,31 +3825,31 @@ End Sub
 
 Private Sub LLamaLineas(Index As Integer, xModo As Byte, Optional alto As Single)
 Dim jj As Integer
-Dim b As Boolean
+Dim B As Boolean
 
     ' *** si n'hi han tabs sense datagrid posar el If ***
     DeseleccionaGrid DataGridAux(Index)
        
-    b = (xModo = 1 Or xModo = 2) 'Insertar o Modificar Llínies
+    B = (xModo = 1 Or xModo = 2) 'Insertar o Modificar Llínies
     Select Case Index
         Case 0 'calibres
-            txtAux(1).visible = b 'numalbar
+            txtAux(1).visible = B 'numalbar
             txtAux(1).Top = alto
-            txtAux(2).visible = b 'numlinea
+            txtAux(2).visible = B 'numlinea
             txtAux(2).Top = alto
-            txtAux(6).visible = b
+            txtAux(6).visible = B
             txtAux(6).Top = alto
-            txtAux(7).visible = b
+            txtAux(7).visible = B
             txtAux(7).Top = alto
-            txtAux2(2).visible = b
+            txtAux2(2).visible = B
             txtAux2(2).Top = alto
-            btnBuscar(0).visible = b
+            btnBuscar(0).visible = B
             btnBuscar(0).Top = alto
-            txtAux(8).visible = b
+            txtAux(8).visible = B
             txtAux(8).Top = alto
-            txtAux(9).visible = b
+            txtAux(9).visible = B
             txtAux(9).Top = alto
-            txtAux2(0).visible = b
+            txtAux2(0).visible = B
             txtAux2(0).Top = alto
             
     End Select
@@ -3933,7 +3933,7 @@ Dim KilosUni As Currency
                 
                 '[Monica]11/12/2018: solo en el caso de que me modifiquen las cajas o inserten linea
                 If (ModoLineas = 2 And CajasLinAnt <> ComprobarCero(txtAux(Index))) Or ModoLineas = 1 Then
-                    Forfait = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "codforfait", "numalbar", Data1.Recordset!NumAlbar, "N", , "numlinea", Data1.Recordset!NumLinea, "N")
+                    Forfait = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "codforfait", "numalbar", Data1.Recordset!NumAlbar, "N", , "numlinea", Data1.Recordset!Numlinea, "N")
                     Sql = DevuelveDesdeBDNew(cAgro, "forfaits", "kilosuni", "codforfait", Forfait, "T")
                     If Sql <> "" Then
                         txtAux(7).Text = Round2(ImporteSinFormato(Sql) * txtAux(Index), 0)
@@ -4026,7 +4026,7 @@ End Sub
 Private Function DatosOkLlin(nomFrame As String) As Boolean
 Dim Rs As ADODB.Recordset
 Dim Sql As String
-Dim b As Boolean
+Dim B As Boolean
 Dim Cant As Integer
 Dim Mens As String
 Dim vFact As Byte, vDocum As Byte
@@ -4036,11 +4036,11 @@ Dim vFact As Byte, vDocum As Byte
     Mens = ""
     DatosOkLlin = False
         
-    b = CompForm2(Me, 2, nomFrame) 'Comprovar formato datos ok
-    If Not b Then Exit Function
+    B = CompForm2(Me, 2, nomFrame) 'Comprovar formato datos ok
+    If Not B Then Exit Function
     
     ' ******************************************************************************
-    DatosOkLlin = b
+    DatosOkLlin = B
     
 EDatosOKLlin:
     If Err.Number <> 0 Then MsgBox Err.Number & ": " & Err.Description, vbExclamation
@@ -4209,7 +4209,7 @@ Dim Control As Object
 End Sub
 
 Private Sub CargaGrid(Index As Integer, enlaza As Boolean)
-Dim b As Boolean
+Dim B As Boolean
 Dim i As Byte
 Dim tots As String
 
@@ -4235,7 +4235,7 @@ Dim tots As String
             DataGridAux(0).Columns(10).NumberFormat = "###,##0.00"
             
         
-            b = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
+            B = (Modo = 4) And ((ModoLineas = 1) Or (ModoLineas = 2))
             
             
     End Select
@@ -4284,9 +4284,9 @@ Dim NumCajas As String
         
         If bol Then
             Pesoneto = ""
-            Pesoneto = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "pesoneto", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!NumLinea, "N"), "N")
+            Pesoneto = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "pesoneto", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!Numlinea, "N"), "N")
             NumCajas = ""
-            NumCajas = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "numcajas", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!NumLinea, "N"), "N")
+            NumCajas = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "numcajas", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!Numlinea, "N"), "N")
             
             If CCur(ComprobarCero(Pesoneto)) <> KilosAnt Or CCur(ComprobarCero(NumCajas)) <> CajasAnt Then
                 MenError = "Actualizar Costes"
@@ -4356,35 +4356,15 @@ Dim NumCajas As String
         
         If bol Then
             Pesoneto = ""
-            Pesoneto = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "pesoneto", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!NumLinea, "N"), "N")
+            Pesoneto = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "pesoneto", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!Numlinea, "N"), "N")
             NumCajas = ""
-            NumCajas = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "numcajas", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!NumLinea, "N"), "N")
+            NumCajas = DevuelveDesdeBDNew(cAgro, "albaran_variedad", "numcajas", "numalbar", DBLet(Data1.Recordset!NumAlbar, "N"), "N", , "numlinea", DBLet(Data1.Recordset!Numlinea, "N"), "N")
             
             If CCur(ComprobarCero(Pesoneto)) <> KilosAnt Or CCur(ComprobarCero(NumCajas)) <> CajasAnt Then
                 MenError = "Actualizar Costes"
                 bol = ActualizarCostes(Text1(0), Text1(1), True, DBLet(Data1.Recordset!codforfait, "T"), DBLet(Data1.Recordset!CodPalet, "N"))
             End If
         End If
-        
-'            ModoLineas = 0
-'
-'            V = AdoAux(NumTabMto).Recordset.Fields(1) 'el 2 es el nº de llinia
-'
-'            CargaGrid NumTabMto, True
-'
-'            ' *** si n'hi han tabs ***
-''            SituarTab (NumTabMto + 1)
-'
-'            ' *** si n'hi han tabs que no tenen datagrid, posar el if ***
-'            PonerFocoGrid Me.DataGridAux(NumTabMto)
-'            AdoAux(NumTabMto).Recordset.Find (AdoAux(NumTabMto).Recordset.Fields(1).Name & " =" & V)
-'
-'            LLamaLineas NumTabMto, 0
-'            ModificarLinea = True
-'        End If
-        
-        '++monica
-'        BloqueaRegistro "pedidos", "numpedid = " & Text1(0).Text
         
     Else
         Exit Function
@@ -4411,7 +4391,7 @@ Dim vWhere As String
     vWhere = ""
     If conW Then vWhere = " WHERE "
     ' *** canviar-ho per la clau primaria de la capçalera ***
-    vWhere = vWhere & " numalbar=" & Me.Data1.Recordset!NumAlbar & " and numlinea = " & Me.Data1.Recordset!NumLinea
+    vWhere = vWhere & " numalbar=" & Me.Data1.Recordset!NumAlbar & " and numlinea = " & Me.Data1.Recordset!Numlinea
     
     ObtenerWhereCab = vWhere
 End Function

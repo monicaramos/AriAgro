@@ -2321,7 +2321,8 @@ Private WithEvents frmDes As frmDestCli 'Destinos de Clientes
 Attribute frmDes.VB_VarHelpID = -1
 Private WithEvents frmC As frmCal 'calendario fechas
 Attribute frmC.VB_VarHelpID = -1
-Private WithEvents frmFor As frmManForfaits 'Forfaits
+'Private WithEvents frmFor As frmManForfaits 'Forfaits
+Private WithEvents frmFor As frmBasico2
 Attribute frmFor.VB_VarHelpID = -1
 Private WithEvents frmMar As frmManMarcas 'Marcas
 Attribute frmMar.VB_VarHelpID = -1
@@ -4555,12 +4556,20 @@ End Sub
 
 Private Sub AbrirFrmForfaits(indice As Integer)
     indCodigo = indice
-    Set frmFor = New frmManForfaits
-    frmFor.DatosADevolverBusqueda = "0|1|"
-    frmFor.DeConsulta = True
-    frmFor.CodigoActual = txtCodigo(indCodigo)
-    frmFor.Show vbModal
+'    Set frmFor = New frmManForfaits
+'    frmFor.DatosADevolverBusqueda = "0|1|"
+'    frmFor.DeConsulta = True
+'    frmFor.CodigoActual = txtCodigo(indCodigo)
+'    frmFor.Show vbModal
+'    Set frmFor = Nothing
+
+    Set frmFor = New frmBasico2
+
+    AyudaForfaits frmFor
+    
     Set frmFor = Nothing
+
+
 End Sub
  
 Private Sub AbrirFrmMarcas(indice As Integer)

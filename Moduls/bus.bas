@@ -161,7 +161,7 @@ Public Sub Main()
        CadenaDesdeOtroForm = ""
        frmLogin.Show vbModal
        If CadenaDesdeOtroForm = "" Then
-            'No ha seleccionado nonguna empresa
+            'No ha seleccionado ninguna empresa
             Set conn = Nothing
             End
             Exit Sub
